@@ -204,7 +204,7 @@
     "@storybook/addon-links": "^8.6.2",
     "@storybook/addon-onboarding": "^8.6.2",
     "@storybook/blocks": "^8.6.2",
-    "@storybook/nextjs": "^8.6.2",
+    "@storybook/nextjs": "^9.0.18",
     "@storybook/react": "^8.6.2",
     "@storybook/test": "^8.6.2",
     "@storybook/test-runner": "^0.21.3",
