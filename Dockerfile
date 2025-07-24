@@ -1,7 +1,7 @@
 # Multi-stage Docker build for Railway deployment
 # Optimized for Railway's Docker environment and Next.js standalone mode
 
-FROM node:20-alpine AS base
+FROM node:24-alpine AS base
 
 # Install system dependencies and clean up
 RUN apk add --no-cache libc6-compat git dumb-init && \
@@ -57,7 +57,7 @@ RUN if [ -f "prisma/schema.prisma" ]; then npx prisma generate; fi
 RUN npm run build || (echo "Build failed, retrying..." && sleep 5 && npm run build)
 
 # === Production stage ===
-FROM node:20-alpine AS runner
+FROM node:24-alpine AS runner
 
 WORKDIR /app
 
