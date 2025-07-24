@@ -1,0 +1,20 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /admin/
+Disallow: /debug-payment/
+Disallow: /test-payment/
+Disallow: /pre-order/success
+Disallow: /sign-in/
+Disallow: /sign-up/
+Disallow: /user-profile/
+Disallow: /portfolio/
+Disallow: /test/
+
+# Host
+Host: https://www.rolitt.com
+
+# Sitemaps
+Sitemap: https://www.rolitt.com/sitemap.xml

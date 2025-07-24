@@ -1,0 +1,281 @@
+{
+  "navigation": {
+    "title": "管理パネル",
+    "dashboard": "ダッシュボード",
+    "monitoring": "監視",
+    "users": "ユーザー",
+    "orders": "注文",
+    "products": "商品",
+    "analytics": "分析",
+    "settings": "設定",
+    "scripts": "スクリプト管理",
+    "shopify": "Shopify",
+    "ai": "AI管理",
+    "soon": "近日公開",
+    "version": "バージョン {version}"
+  },
+  "header": {
+    "title": "管理ダッシュボード",
+    "description": "ECマーケティングシステムを管理",
+    "notifications": {
+      "label": "通知 ({count})",
+      "unread": "{count}件の未読通知"
+    },
+    "settings": {
+      "label": "設定"
+    },
+    "userMenu": {
+      "label": "ユーザーメニュー",
+      "admin": "管理者",
+      "myAccount": "マイアカウント",
+      "profile": "プロフィール",
+      "settings": "設定",
+      "signOut": "ログアウト"
+    }
+  },
+  "dashboard": {
+    "title": "管理ダッシュボード",
+    "description": "ECマーケティングシステムを管理",
+    "quickStats": {
+      "title": "クイック統計",
+      "totalUsers": "総ユーザー数",
+      "totalOrders": "総注文数",
+      "revenue": "売上",
+      "conversionRate": "コンバージョン率"
+    },
+    "modules": {
+      "monitoring": {
+        "title": "監視",
+        "description": "システム状態と決済指標を確認",
+        "viewDashboard": "ダッシュボードを表示"
+      },
+      "users": {
+        "title": "ユーザー管理",
+        "description": "顧客アカウントと権限を管理",
+        "comingSoon": "近日公開"
+      },
+      "orders": {
+        "title": "注文管理",
+        "description": "顧客注文の追跡と管理",
+        "comingSoon": "近日公開"
+      },
+      "analytics": {
+        "title": "分析",
+        "description": "詳細レポートと洞察を表示",
+        "comingSoon": "近日公開"
+      }
+    }
+  },
+  "monitoring": {
+    "title": "監視ダッシュボード",
+    "description": "リアルタイムシステム状態と決済指標",
+    "systemHealth": {
+      "title": "システム状態",
+      "healthy": "正常",
+      "warning": "警告",
+      "critical": "重要"
+    },
+    "alerts": {
+      "title": "アクティブアラート",
+      "noAlerts": "アクティブアラートなし",
+      "viewAll": "すべてのアラートを表示"
+    },
+    "metrics": {
+      "totalPayments": "総決済数",
+      "successfulPayments": "成功決済数",
+      "failedPayments": "失敗決済数",
+      "successRate": "成功率"
+    }
+  },
+  "users": {
+    "title": "ユーザー管理",
+    "description": "顧客アカウントと権限を管理",
+    "actions": {
+      "addUser": "ユーザー追加"
+    },
+    "search": {
+      "placeholder": "メールまたは名前でユーザーを検索..."
+    },
+    "table": {
+      "title": "全ユーザー",
+      "description": "登録済みユーザーの管理と表示",
+      "headers": {
+        "user": "ユーザー",
+        "role": "役割",
+        "status": "状態",
+        "joined": "登録日",
+        "lastLogin": "最終ログイン"
+      },
+      "status": {
+        "verified": "認証済み",
+        "pending": "保留中"
+      }
+    }
+  },
+  "shopify": {
+    "title": "Shopify Integration",
+    "description": "Monitor and manage your Shopify store integration",
+    "navigation": {
+      "overview": "Overview",
+      "orders": "Orders",
+      "products": "Products",
+      "webhooks": "Webhooks",
+      "health": "Health",
+      "config": "Configuration"
+    },
+    "status": {
+      "connected": "Connected",
+      "disconnected": "Disconnected",
+      "healthy": "Healthy",
+      "warning": "Warning",
+      "error": "Error"
+    },
+    "metrics": {
+      "connectionStatus": "Connection Status",
+      "syncQueue": "Sync Queue",
+      "ordersSynced": "Orders Synced",
+      "productsSynced": "Products Synced",
+      "successRate": "Success Rate",
+      "todaysActivity": "Today's Activity"
+    },
+    "sync": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "completed": "Completed",
+      "failed": "Failed",
+      "abandoned": "Abandoned",
+      "retryFailed": "Retry Failed",
+      "syncSelected": "Sync Selected",
+      "clearSelection": "Clear Selection"
+    },
+    "config": {
+      "title": "Configuration",
+      "description": "Manage your Shopify integration settings",
+      "testConnection": "Test Connection",
+      "saveChanges": "Save Changes",
+      "basic": "Basic",
+      "webhooks": "Webhooks",
+      "features": "Features",
+      "limits": "Limits"
+    }
+  },
+  "scripts": {
+    "title": "スクリプト管理",
+    "description": "システムスクリプトとツールを一元管理",
+    "health": {
+      "title": "システム状態",
+      "description": "システムコンポーネントのリアルタイム監視"
+    },
+    "tabs": {
+      "overview": "概要",
+      "shopify": "Shopify",
+      "environment": "環境",
+      "deployment": "デプロイ",
+      "scripts": "スクリプト"
+    },
+    "overview": {
+      "coreScripts": "コアスクリプト",
+      "shopifyStatus": "Shopify状態",
+      "systemHealth": "システム状態",
+      "coreScriptsCount": "15のコアスクリプトが利用可能です",
+      "shopifyIntegrationStatus": "Shopify統合の状態",
+      "systemOverallHealth": "システム全体の健康状態"
+    },
+    "statusLabels": {
+      "environmentValidation": "環境検証",
+      "buildValidation": "ビルド検証",
+      "stripeSync": "Stripe同期",
+      "apiConnection": "API接続",
+      "productSync": "商品同期",
+      "configValidation": "設定検証",
+      "databaseConnection": "データベース接続",
+      "redisCache": "Redisキャッシュ",
+      "apiService": "APIサービス"
+    },
+    "shopify": {
+      "title": "Shopify統合管理",
+      "description": "Shopify関連スクリプトと設定を管理",
+      "managementDescription": "Shopify関連スクリプトと設定を管理します。API接続、商品同期などが含まれます。"
+    },
+    "environment": {
+      "title": "環境変数管理",
+      "description": "環境変数設定の確認と管理"
+    },
+    "deployment": {
+      "title": "デプロイツール",
+      "description": "ビルド、テスト、デプロイプロセスを管理"
+    },
+    "scripts": {
+      "title": "スクリプト実行",
+      "description": "各種システムスクリプトの実行と監視"
+    }
+  },
+  "performanceDashboard": {
+    "title": "Performance Dashboard",
+    "description": "Monitor system performance and optimize bottlenecks",
+    "loading": "Loading performance metrics...",
+    "loadFailed": "Failed to load performance metrics",
+    "retry": "Retry",
+    "autoRefresh": "Auto Refresh:",
+    "on": "ON",
+    "off": "OFF",
+    "export": "Export",
+    "refresh": "Refresh",
+    "tabs": {
+      "overview": "Overview",
+      "cache": "Cache",
+      "queries": "Queries",
+      "system": "System",
+      "alerts": "Alerts"
+    },
+    "overview": {
+      "cacheHitRate": "Cache Hit Rate",
+      "avgQueryTime": "Avg Query Time",
+      "systemStatus": "System Status",
+      "activeAlerts": "Active Alerts"
+    },
+    "cacheStats": {
+      "hitRateTitle": "Cache Hit Rate",
+      "hitRateDescription": "Percentage of cache hits",
+      "totalOperationsTitle": "Total Operations",
+      "totalOperationsDescription": "Cache operations performed",
+      "cacheHitsTitle": "Cache Hits",
+      "cacheHitsDescription": "Successful cache retrievals",
+      "cacheMissesTitle": "Cache Misses",
+      "cacheMissesDescription": "Failed cache retrievals"
+    },
+    "queryStats": {
+      "totalQueriesTitle": "Total Queries",
+      "totalQueriesDescription": "Queries executed",
+      "averageTimeTitle": "Average Time",
+      "averageTimeDescription": "Average query execution time",
+      "slowQueriesTitle": "Slow Queries",
+      "slowQueriesDescription": "Queries over threshold",
+      "indexUsageTitle": "Index Usage",
+      "indexUsageDescription": "Active indexes",
+      "slowQueriesCardTitle": "Slow Queries",
+      "slowQueriesCardDescription": "Queries that exceed the performance threshold",
+      "mostFrequentQueriesCardTitle": "Most Frequent Queries",
+      "mostFrequentQueriesCardDescription": "Queries executed most often",
+      "avg": "Avg:",
+      "times": "times"
+    },
+    "systemHealth": {
+      "statusTitle": "System Status:",
+      "memoryUsage": "Memory Usage",
+      "cpuUsage": "CPU Usage",
+      "uptimeTitle": "Uptime",
+      "uptimeDescription": "System uptime",
+      "responseTimeTitle": "Response Time",
+      "responseTimeDescription": "Average response time"
+    },
+    "alerts": {
+      "noAlertsTitle": "No Active Alerts",
+      "noAlertsDescription": "System is running smoothly",
+      "alertTitle": "{type} Alert",
+      "severityHigh": "High",
+      "severityMedium": "Medium",
+      "severityLow": "Low"
+    }
+  }
+}

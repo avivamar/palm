@@ -1,0 +1,63 @@
+{
+  "name": "@rolitt/admin",
+  "version": "1.0.0",
+  "description": "Rolitt Admin Package - Decoupled admin functionality",
+  "author": "Rolitt Team",
+  "license": "MIT",
+  "keywords": [
+    "admin",
+    "management",
+    "dashboard",
+    "next.js",
+    "typescript"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components/index.js"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.ts"
+    }
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "test": "vitest"
+  },
+  "peerDependencies": {
+    "next": ">=14.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "dependencies": {
+    "@rolitt/shared": "file:../shared",
+    "@rolitt/email": "file:../email",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "zustand": "^4.4.7",
+    "lucide-react": "^0.263.1",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.2.0"
+  },
+  "devDependencies": {
+    "@humanwhocodes/config-array": "^0.13.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^8.0.0",
+    "is-path-inside": "^3.0.3",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  }
+}

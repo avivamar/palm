@@ -1,0 +1,146 @@
+# Dependencies
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+.next
+out
+dist
+build
+
+# Development files
+.env*.local
+.env.development
+.env.test
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Git
+.git
+.gitignore
+
+# Testing
+coverage
+.nyc_output
+.jest
+*.test.ts
+*.test.js
+*.spec.ts
+*.spec.js
+test-results
+tests
+__tests__
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Runtime files
+.npm
+.eslintcache
+.next/cache
+
+# Documentation
+README.md
+CHANGELOG.md
+*.md
+docs
+content
+
+# Development tools
+.storybook
+storybook-static
+
+# Railway specific
+railway.json
+Dockerfile.backup
+
+# Backup and temporary files
+*.backup
+*.bak
+*.tmp
+*.temp
+
+# Lock files (keeping package-lock.json for npm ci)
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+
+# Environment files (except production template)
+.env*
+!.env.example
+
+# Development databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Cache directories
+.cache
+.parcel-cache
+.turbo
+
+# Package manager cache
+.npm
+.yarn
+.pnpm
+
+# Build artifacts
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Log directories
+log
+logs
+dev*.log
+*_test.log
+build_output.log
+final_build.log
+
+# Development scripts output
+dev.pid
+npminstall-debug.log
+scripts_build_test*.log
+translation_build_test.log
+
+# Test configuration files
+vitest.config.ts
+vitest.config.js
+jest.config.ts
+jest.config.js
+packages/*/vitest.config.ts
+packages/*/jest.config.ts
+
+# Crowdin and localization build files
+crowdin.yml
+
+# Testing and coverage
+playwright-report
+test-results
+coverage
+
+# Generated files
+generated
+out
+browser-tools-mcp

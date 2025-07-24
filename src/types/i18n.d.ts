@@ -1,0 +1,125 @@
+// Use type safe message keys with `next-intl`
+import type { Messages } from 'next-intl';
+
+type PaymentMessages = typeof import('../locales/payment/en.json');
+
+declare module 'next-intl/messages' {
+  type IntlMessages = {
+    payment: PaymentMessages;
+    Partner: {
+      meta_title: string;
+      meta_description: string;
+      meta_keywords: string;
+      meta_og_title: string;
+      meta_og_description: string;
+      meta_twitter_title: string;
+      meta_twitter_description: string;
+      title: string;
+      subtitle: string;
+      why_partner_title: string;
+      why_partner_1: string;
+      why_partner_2: string;
+      why_partner_3: string;
+      why_partner_4: string;
+      investment_opportunities_title: string;
+      investment_opportunities_description: string;
+      investment_opportunity_1: string;
+      investment_opportunity_2: string;
+      investment_opportunity_3: string;
+      contact_us_title: string;
+      contact_us_description: string;
+      contact_button: string;
+    };
+    FAQ: {
+      meta_title: string;
+      meta_description: string;
+      meta_keywords: string;
+      meta_og_title: string;
+      meta_og_description: string;
+      meta_twitter_title: string;
+      meta_twitter_description: string;
+      title: string;
+      subtitle: string;
+      question_1: string;
+      answer_1: string;
+      question_2: string;
+      answer_2: string;
+      question_3: string;
+      answer_3: string;
+      question_4: string;
+      answer_4: string;
+      question_5: string;
+      answer_5: string;
+      question_6: string;
+      answer_6: string;
+      still_have_questions: string;
+      contact_us_text: string;
+    };
+    Solution: {
+      meta_title: string;
+      meta_description: string;
+      title: string;
+      subtitle: string;
+      solution1_title: string;
+      solution1_description: string;
+      solution2_title: string;
+      solution2_description: string;
+      solution3_title: string;
+      solution3_description: string;
+      solution4_title: string;
+      solution4_description: string;
+    };
+    Timeline: {
+      meta_title: string;
+      meta_description: string;
+      meta_og_image_alt: string;
+      title: string;
+      subtitle: string;
+      event1_date: string;
+      event1_title: string;
+      event1_description: string;
+      event2_date: string;
+      event2_title: string;
+      event2_description: string;
+      event3_date: string;
+      event3_title: string;
+      event3_description: string;
+      event4_date: string;
+      event4_title: string;
+      event4_description: string;
+      event5_date: string;
+      event5_title: string;
+      event5_description: string;
+    };
+    Contact: {
+      meta_title: string;
+      meta_description: string;
+      meta_keywords: string;
+      meta_og_title: string;
+      meta_og_description: string;
+      meta_twitter_title: string;
+      meta_twitter_description: string;
+      title: string;
+      subtitle: string;
+      form_title: string;
+      form_name: string;
+      form_name_placeholder: string;
+      form_email: string;
+      form_email_placeholder: string;
+      form_subject: string;
+      form_subject_placeholder: string;
+      form_message: string;
+      form_message_placeholder: string;
+      form_submit: string;
+      contact_info_title: string;
+      contact_email_title: string;
+      contact_email: string;
+      contact_phone_title: string;
+      contact_phone: string;
+      contact_address_title: string;
+      contact_address: string;
+      business_hours_title: string;
+      business_hours_content: string;
+    };
+  } & Messages;
+}

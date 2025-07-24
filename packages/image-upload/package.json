@@ -1,0 +1,61 @@
+{
+  "name": "@rolitt/image-upload",
+  "version": "1.0.0",
+  "description": "Rolitt image upload package - simple and secure image upload with Cloudflare R2",
+  "author": "Rolitt Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rolitt/rolitt-official",
+    "directory": "packages/image-upload"
+  },
+  "keywords": [
+    "image-upload",
+    "cloudflare-r2",
+    "rolitt",
+    "react-hooks",
+    "typescript"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./hooks": {
+      "types": "./dist/hooks/useImageUpload.d.ts",
+      "default": "./dist/hooks/useImageUpload.js"
+    }
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rimraf dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "typescript": ">=5.0.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.637.0",
+    "@aws-sdk/s3-request-presigner": "^3.637.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@types/react": "^18.3.3",
+    "rimraf": "^5.0.7",
+    "typescript": "^5.7.3",
+    "vitest": "^2.0.2"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

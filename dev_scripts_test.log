@@ -1,0 +1,17 @@
+
+> rolitt-official@1.0.0 dev
+> npx dotenv-cli -e .env -- next dev
+
+ ⚠ Port 3000 is in use, using available port 3001 instead.
+   ▲ Next.js 15.3.5
+   - Local:        http://localhost:3001
+   - Network:      http://192.168.31.89:3001
+   - Environments: .env.local
+
+ ✓ Starting...
+(node:81508) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ Compiled /instrumentation in 104ms (20 modules)
+Instrumentation registered (minimal implementation)
+ ✓ Ready in 2s
+[?25h

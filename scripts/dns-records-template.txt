@@ -1,0 +1,110 @@
+DNS记录配置模板 - rolitt.com
+=====================================
+生成时间: 2025-01-28
+用途: 修复DMARC DKIM对齐失败问题
+
+🚨 立即需要更新的记录
+=====================================
+
+1. DMARC记录 (修复DKIM对齐问题)
+记录类型: TXT
+主机名/名称: _dmarc
+记录值: v=DMARC1; p=none; rua=mailto:support@rolitt.com; ruf=mailto:support@rolitt.com; sp=none; adkim=r; aspf=r; pct=100
+TTL: 600 (或保持默认)
+说明: 将adkim从s改为r，解决严格模式对齐失败
+
+2. SPF记录 (添加Klaviyo支持)
+记录类型: TXT
+主机名/名称: @ (或 rolitt.com)
+记录值: v=spf1 include:zohomail.com include:_spf.mx.cloudflare.net include:_spf.klaviyo.com ~all
+TTL: 600 (或保持默认)
+说明: 添加_spf.klaviyo.com以支持Klaviyo邮件发送
+
+📝 当前存在的其他TXT记录 (保持不变)
+=====================================
+- klaviyo-site-verification=RW95a6
+- google-site-verification=bJMvnBbd-iTB3xzewBywep32TDSi-CO0oPenf2SlCUg
+- pinterest-site-verification=fec5044840dab34e822a697846a3950f
+- facebook-domain-verification=mlup283q8lotuxdd4y6syujlnutq76
+- facebook-domain-verification=a8ainyzp3hrcgs67uhhnmisyat2om9
+
+🔄 常见DNS提供商配置格式
+=====================================
+
+Cloudflare:
+-----------
+类型: TXT
+名称: _dmarc
+内容: v=DMARC1; p=none; rua=mailto:support@rolitt.com; ruf=mailto:support@rolitt.com; sp=none; adkim=r; aspf=r; pct=100
+
+类型: TXT
+名称: @
+内容: v=spf1 include:zohomail.com include:_spf.mx.cloudflare.net include:_spf.klaviyo.com ~all
+
+阿里云DNS:
+----------
+记录类型: TXT
+主机记录: _dmarc
+记录值: v=DMARC1; p=none; rua=mailto:support@rolitt.com; ruf=mailto:support@rolitt.com; sp=none; adkim=r; aspf=r; pct=100
+
+记录类型: TXT
+主机记录: @
+记录值: v=spf1 include:zohomail.com include:_spf.mx.cloudflare.net include:_spf.klaviyo.com ~all
+
+腾讯云DNS:
+----------
+记录类型: TXT
+主机记录: _dmarc
+记录值: v=DMARC1; p=none; rua=mailto:support@rolitt.com; ruf=mailto:support@rolitt.com; sp=none; adkim=r; aspf=r; pct=100
+
+记录类型: TXT
+主机记录: @
+记录值: v=spf1 include:zohomail.com include:_spf.mx.cloudflare.net include:_spf.klaviyo.com ~all
+
+NameCheap:
+----------
+Type: TXT Record
+Host: _dmarc
+Value: v=DMARC1; p=none; rua=mailto:support@rolitt.com; ruf=mailto:support@rolitt.com; sp=none; adkim=r; aspf=r; pct=100
+
+Type: TXT Record
+Host: @
+Value: v=spf1 include:zohomail.com include:_spf.mx.cloudflare.net include:_spf.klaviyo.com ~all
+
+⏰ 配置后验证时间表
+=====================================
+- 立即: 检查DNS管理面板保存成功
+- 15-30分钟: 使用dig命令验证传播
+- 2-4小时: 检查全球DNS传播
+- 24小时: 发送测试邮件验证
+- 48小时: 查看新的DMARC报告
+
+🔍 验证命令
+=====================================
+# 验证DMARC记录
+dig TXT _dmarc.rolitt.com
+
+# 验证SPF记录
+dig TXT rolitt.com
+
+# 在线验证工具
+https://mxtoolbox.com/dmarc.aspx?domain=rolitt.com
+https://dmarcian.com/dmarc-inspector/rolitt.com
+
+📈 预期改善效果
+=====================================
+✅ DKIM对齐成功率: 0% → 100%
+✅ 邮件投递率提升
+✅ 垃圾邮件分类减少
+✅ 品牌保护增强
+
+🚀 下一步计划 (1-2周后)
+=====================================
+1. 确认DKIM对齐问题解决
+2. 监控邮件投递率改善
+3. 考虑升级DMARC策略到quarantine模式:
+   v=DMARC1; p=quarantine; rua=mailto:support@rolitt.com; ruf=mailto:support@rolitt.com; sp=quarantine; adkim=r; aspf=r; pct=100
+
+---
+配置完成后请保存此文件作为记录
+技术支持: 如有问题请联系技术团队 

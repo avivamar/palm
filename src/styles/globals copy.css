@@ -1,0 +1,256 @@
+@import 'tailwindcss';
+
+@plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *));
+
+/* 全局平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 尊重用户的减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: linear-gradient(180deg, #ffffff 0%, #eafaad 100%);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #d9eb6a; /* Rolitt brand color */
+  --primary-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  --brand: #b3cb5d;
+  --brand-dark: #d9eb6a; /* 深色模式下使用的稍暗变体 */
+  --brand-light: #e4f66f; /* 浅色模式下使用的稍亮变体 */
+}
+
+.dark {
+  --background: #1a1a1a; /* 调亮背景色，提高可读性 */
+  --foreground: #f0f0f0; /* 增加文本亮度，提高对比度 */
+  --card: #252525; /* 比主背景稍亮 */
+  --card-foreground: #f0f0f0;
+  --popover: #252525;
+  --popover-foreground: #f0f0f0;
+  --primary: #d9eb6a; /* 品牌色 */
+  --primary-foreground: #121212; /* 加深文本颜色，提高在品牌色背景上的可读性 */
+  --secondary: oklch(0.3 0 0); /* 稍微调亮 */
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.3 0 0); /* 稍微调亮 */
+  --muted-foreground: #b8b8b8; /* 调亮，提高可读性 */
+  --accent: #333333; /* 比背景稍亮 */
+  --accent-foreground: #f0f0f0;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: #3a3a3a; /* 调亮边框颜色，提高可见性 */
+  --input: #333333; /* 调亮输入框背景 */
+  --ring: oklch(0.6 0 0); /* 调亮聚焦环 */
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+  --brand-color: var(--brand-dark);
+  --shadow: 0px 2px 8px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0px 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.light {
+  --brand-color: var(--brand);
+}
+
+/* 深色模式下品牌色的应用 */
+.dark .brand-element {
+  /* 减少发光效果或增加微妙的阴影 */
+  color: var(--brand-dark);
+  text-shadow: 0 0 2px rgba(235, 255, 127, 0.2);
+}
+
+/* 品牌色按钮在深色模式下的调整 */
+.dark .brand-button {
+  background-color: var(--brand-dark);
+  color: #1a1a1a; /* 确保文本在品牌色背景上清晰可见 */
+}
+
+/* Sonner Toast 自定义样式 */
+[data-sonner-toaster] {
+  --width: 356px;
+  --font-family: inherit;
+  --border-radius: var(--radius);
+}
+
+[data-sonner-toast] {
+  background: var(--popover) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--popover-foreground) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  padding: 16px !important;
+  min-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  backdrop-filter: blur(8px) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+[data-sonner-toast]:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+[data-sonner-toast][data-type='success'] {
+  border-left: 4px solid hsl(142.1 76.2% 36.3%) !important;
+}
+
+[data-sonner-toast][data-type='error'] {
+  border-left: 4px solid var(--destructive) !important;
+}
+
+[data-sonner-toast][data-type='warning'] {
+  border-left: 4px solid hsl(32.5 94.6% 43.7%) !important;
+}
+
+[data-sonner-toast][data-type='info'] {
+  border-left: 4px solid hsl(221.2 83.2% 53.3%) !important;
+}
+
+[data-sonner-toast] [data-icon] {
+  width: 20px !important;
+  height: 20px !important;
+  flex-shrink: 0 !important;
+}
+
+[data-sonner-toast] [data-content] {
+  flex: 1 !important;
+  line-height: 1.4 !important;
+}
+
+[data-sonner-toast] [data-title] {
+  font-weight: 600 !important;
+  margin-bottom: 4px !important;
+}
+
+[data-sonner-toast] [data-description] {
+  opacity: 0.8 !important;
+  font-size: 13px !important;
+}
+
+[data-sonner-toast] [data-close-button] {
+  background: transparent !important;
+  border: none !important;
+  color: var(--muted-foreground) !important;
+  cursor: pointer !important;
+  padding: 4px !important;
+  border-radius: calc(var(--radius) - 2px) !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+[data-sonner-toast] [data-close-button]:hover {
+  background: var(--muted) !important;
+  color: var(--foreground) !important;
+}
+
+/* 深色模式下的toast样式调整 */
+.dark [data-sonner-toast] {
+  background: var(--popover) !important;
+  border-color: var(--border) !important;
+  color: var(--popover-foreground) !important;
+}
+
+/* 响应式调整 */
+@media (max-width: 640px) {
+  [data-sonner-toaster] {
+    --width: calc(100vw - 32px);
+  }
+
+  [data-sonner-toast] {
+    padding: 12px !important;
+    font-size: 13px !important;
+  }
+}

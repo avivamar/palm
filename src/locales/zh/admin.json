@@ -1,0 +1,280 @@
+{
+  "navigation": {
+    "title": "管理面板",
+    "dashboard": "仪表板",
+    "monitoring": "监控",
+    "users": "用户",
+    "orders": "订单",
+    "products": "产品",
+    "analytics": "分析",
+    "settings": "设置",
+    "scripts": "脚本管理",
+    "shopify": "Shopify",
+    "soon": "即将推出",
+    "version": "版本 {version}"
+  },
+  "header": {
+    "title": "管理仪表板",
+    "description": "管理您的电商营销系统",
+    "notifications": {
+      "label": "通知 ({count})",
+      "unread": "{count} 条未读通知"
+    },
+    "settings": {
+      "label": "设置"
+    },
+    "userMenu": {
+      "label": "用户菜单",
+      "admin": "管理员",
+      "myAccount": "我的账户",
+      "profile": "个人资料",
+      "settings": "设置",
+      "signOut": "登出"
+    }
+  },
+  "dashboard": {
+    "title": "管理仪表板",
+    "description": "管理您的电商营销系统",
+    "quickStats": {
+      "title": "快速统计",
+      "totalUsers": "总用户数",
+      "totalOrders": "总订单数",
+      "revenue": "收入",
+      "conversionRate": "转换率"
+    },
+    "modules": {
+      "monitoring": {
+        "title": "监控",
+        "description": "查看系统健康状况和支付指标",
+        "viewDashboard": "查看仪表板"
+      },
+      "users": {
+        "title": "用户管理",
+        "description": "管理客户账户和权限",
+        "comingSoon": "即将推出"
+      },
+      "orders": {
+        "title": "订单管理",
+        "description": "跟踪和管理客户订单",
+        "comingSoon": "即将推出"
+      },
+      "analytics": {
+        "title": "分析",
+        "description": "查看详细报告和洞察",
+        "comingSoon": "即将推出"
+      }
+    }
+  },
+  "monitoring": {
+    "title": "监控仪表板",
+    "description": "实时系统健康状况和支付指标",
+    "systemHealth": {
+      "title": "系统健康状况",
+      "healthy": "健康",
+      "warning": "警告",
+      "critical": "严重"
+    },
+    "alerts": {
+      "title": "活跃警报",
+      "noAlerts": "没有活跃警报",
+      "viewAll": "查看所有警报"
+    },
+    "metrics": {
+      "totalPayments": "总支付数",
+      "successfulPayments": "成功支付",
+      "failedPayments": "失败支付",
+      "successRate": "成功率"
+    }
+  },
+  "users": {
+    "title": "用户管理",
+    "description": "管理客户账户和权限",
+    "actions": {
+      "addUser": "添加用户"
+    },
+    "search": {
+      "placeholder": "通过邮箱或姓名搜索用户..."
+    },
+    "table": {
+      "title": "所有用户",
+      "description": "管理和查看所有注册用户",
+      "headers": {
+        "user": "用户",
+        "role": "角色",
+        "status": "状态",
+        "joined": "加入时间",
+        "lastLogin": "最后登录"
+      },
+      "status": {
+        "verified": "已验证",
+        "pending": "待验证"
+      }
+    }
+  },
+  "shopify": {
+    "title": "Shopify Integration",
+    "description": "Monitor and manage your Shopify store integration",
+    "navigation": {
+      "overview": "Overview",
+      "orders": "Orders",
+      "products": "Products",
+      "webhooks": "Webhooks",
+      "health": "Health",
+      "config": "Configuration"
+    },
+    "status": {
+      "connected": "Connected",
+      "disconnected": "Disconnected",
+      "healthy": "Healthy",
+      "warning": "Warning",
+      "error": "Error"
+    },
+    "metrics": {
+      "connectionStatus": "Connection Status",
+      "syncQueue": "Sync Queue",
+      "ordersSynced": "Orders Synced",
+      "productsSynced": "Products Synced",
+      "successRate": "Success Rate",
+      "todaysActivity": "Today's Activity"
+    },
+    "sync": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "completed": "Completed",
+      "failed": "Failed",
+      "abandoned": "Abandoned",
+      "retryFailed": "Retry Failed",
+      "syncSelected": "Sync Selected",
+      "clearSelection": "Clear Selection"
+    },
+    "config": {
+      "title": "Configuration",
+      "description": "Manage your Shopify integration settings",
+      "testConnection": "Test Connection",
+      "saveChanges": "Save Changes",
+      "basic": "Basic",
+      "webhooks": "Webhooks",
+      "features": "Features",
+      "limits": "Limits"
+    }
+  },
+  "scripts": {
+    "title": "脚本管理",
+    "description": "集中管理系统脚本和工具",
+    "health": {
+      "title": "系统健康状态",
+      "description": "实时监控系统各组件的健康状况"
+    },
+    "tabs": {
+      "overview": "概览",
+      "shopify": "Shopify",
+      "environment": "环境",
+      "deployment": "部署",
+      "scripts": "脚本"
+    },
+    "overview": {
+      "coreScripts": "核心脚本",
+      "shopifyStatus": "Shopify 状态",
+      "systemHealth": "系统健康",
+      "coreScriptsCount": "15个核心脚本可用",
+      "shopifyIntegrationStatus": "Shopify 集成状态",
+      "systemOverallHealth": "系统整体健康状态"
+    },
+    "statusLabels": {
+      "environmentValidation": "环境验证",
+      "buildValidation": "构建验证",
+      "stripeSync": "Stripe 同步",
+      "apiConnection": "API 连接",
+      "productSync": "产品同步",
+      "configValidation": "配置验证",
+      "databaseConnection": "数据库连接",
+      "redisCache": "Redis 缓存",
+      "apiService": "API 服务"
+    },
+    "shopify": {
+      "title": "Shopify 集成管理",
+      "description": "管理 Shopify 相关的脚本和配置",
+      "managementDescription": "管理 Shopify 相关的脚本和配置，包括 API 连接、产品同步等。"
+    },
+    "environment": {
+      "title": "环境变量管理",
+      "description": "检查和管理环境变量配置"
+    },
+    "deployment": {
+      "title": "部署工具",
+      "description": "管理构建、测试和部署流程"
+    },
+    "scripts": {
+      "title": "脚本执行",
+      "description": "执行和监控各种系统脚本"
+    }
+  },
+  "performanceDashboard": {
+    "title": "Performance Dashboard",
+    "description": "Monitor system performance and optimize bottlenecks",
+    "loading": "Loading performance metrics...",
+    "loadFailed": "Failed to load performance metrics",
+    "retry": "Retry",
+    "autoRefresh": "Auto Refresh:",
+    "on": "ON",
+    "off": "OFF",
+    "export": "Export",
+    "refresh": "Refresh",
+    "tabs": {
+      "overview": "Overview",
+      "cache": "Cache",
+      "queries": "Queries",
+      "system": "System",
+      "alerts": "Alerts"
+    },
+    "overview": {
+      "cacheHitRate": "Cache Hit Rate",
+      "avgQueryTime": "Avg Query Time",
+      "systemStatus": "System Status",
+      "activeAlerts": "Active Alerts"
+    },
+    "cacheStats": {
+      "hitRateTitle": "Cache Hit Rate",
+      "hitRateDescription": "Percentage of cache hits",
+      "totalOperationsTitle": "Total Operations",
+      "totalOperationsDescription": "Cache operations performed",
+      "cacheHitsTitle": "Cache Hits",
+      "cacheHitsDescription": "Successful cache retrievals",
+      "cacheMissesTitle": "Cache Misses",
+      "cacheMissesDescription": "Failed cache retrievals"
+    },
+    "queryStats": {
+      "totalQueriesTitle": "Total Queries",
+      "totalQueriesDescription": "Queries executed",
+      "averageTimeTitle": "Average Time",
+      "averageTimeDescription": "Average query execution time",
+      "slowQueriesTitle": "Slow Queries",
+      "slowQueriesDescription": "Queries over threshold",
+      "indexUsageTitle": "Index Usage",
+      "indexUsageDescription": "Active indexes",
+      "slowQueriesCardTitle": "Slow Queries",
+      "slowQueriesCardDescription": "Queries that exceed the performance threshold",
+      "mostFrequentQueriesCardTitle": "Most Frequent Queries",
+      "mostFrequentQueriesCardDescription": "Queries executed most often",
+      "avg": "Avg:",
+      "times": "times"
+    },
+    "systemHealth": {
+      "statusTitle": "System Status:",
+      "memoryUsage": "Memory Usage",
+      "cpuUsage": "CPU Usage",
+      "uptimeTitle": "Uptime",
+      "uptimeDescription": "System uptime",
+      "responseTimeTitle": "Response Time",
+      "responseTimeDescription": "Average response time"
+    },
+    "alerts": {
+      "noAlertsTitle": "No Active Alerts",
+      "noAlertsDescription": "System is running smoothly",
+      "alertTitle": "{type} Alert",
+      "severityHigh": "High",
+      "severityMedium": "Medium",
+      "severityLow": "Low"
+    }
+  }
+}

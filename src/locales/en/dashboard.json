@@ -1,0 +1,296 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "view": "View",
+    "add": "Add",
+    "remove": "Remove",
+    "search": "Search",
+    "filter": "Filter",
+    "all": "All",
+    "none": "None",
+    "yes": "Yes",
+    "no": "No",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "close": "Close",
+    "submit": "Submit"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "orders": "Orders",
+    "favorites": "Favorites",
+    "billing": "Billing",
+    "settings": "Settings",
+    "profile": "Profile"
+  },
+  "title": "Dashboard",
+  "welcome_back": "Welcome back,",
+  "hello_greeting": "Hello",
+  "welcome_message": "Welcome to your Rolitt user center, manage your AI companion experience here",
+  "need_login": "Need to Sign In",
+  "please_login": "Please sign in to access your user center",
+  "sign_in_now": "Sign In Now",
+  "quick_stats": {
+    "account_status": "Account Status",
+    "verified": "Verified",
+    "unverified": "Unverified",
+    "email_verification": "Email verification status",
+    "order_count": "Order Count",
+    "total_orders": "Total orders",
+    "activity_level": "Activity",
+    "new_user": "New User",
+    "account_activity": "Account activity level",
+    "notifications": "Notifications",
+    "unread_notifications": "Unread notifications"
+  },
+  "quick_actions": {
+    "title": "Quick Actions",
+    "personal_profile": "Personal Profile",
+    "personal_profile_desc": "Manage your personal information and preference settings",
+    "manage_profile": "Manage Profile",
+    "browse_products": "Browse Products",
+    "browse_products_desc": "Explore our AI companion products and services",
+    "view_products": "View Products",
+    "account_settings": "Account Settings",
+    "account_settings_desc": "Configure your account settings and security options",
+    "setup_account": "Setup Account"
+  },
+  "recent_activity": {
+    "title": "Recent Activity",
+    "description": "Your account activity record",
+    "account_created": "Account created successfully",
+    "account_created_desc": "Welcome to Rolitt! Your account has been successfully created",
+    "recent": "Recently",
+    "no_other_activity": "No other activity records",
+    "start_exploring": "Start exploring to see more activities!"
+  },
+  "account_info": {
+    "title": "Account Information",
+    "description": "Your basic account details",
+    "email_address": "Email Address",
+    "display_name": "Display Name",
+    "not_set": "Not set",
+    "registration_time": "Registration Time",
+    "last_login": "Last Login",
+    "unknown": "Unknown",
+    "first_login": "First login"
+  },
+  "quick_links": {
+    "title": "Quick Links",
+    "description": "Quick access to common functions",
+    "my_orders": "My Orders",
+    "favorites": "Favorites",
+    "billing_management": "Billing Management",
+    "customer_support": "Customer Support"
+  },
+  "billing": {
+    "title": "Billing & Payments",
+    "description": "Manage your payment methods and billing history",
+    "current_plan": {
+      "title": "Current Plan",
+      "description": "Your active subscription details",
+      "pro_plan": "Pro Plan",
+      "monthly_price": "$29.99/month",
+      "next_billing": "Next billing date: {date}",
+      "change_plan": "Change Plan",
+      "cancel_subscription": "Cancel Subscription"
+    },
+    "payment_methods": {
+      "title": "Payment Methods",
+      "description": "Manage your saved payment methods",
+      "add_payment_method": "Add Payment Method",
+      "add_payment_method_desc": "Add a new payment method to your account",
+      "card_number": "Card Number",
+      "cardholder_name": "Cardholder Name",
+      "expiry_month": "Expiry Month",
+      "expiry_year": "Expiry Year",
+      "cvv": "CVV",
+      "default": "Default",
+      "expires": "Expires {month}/{year}",
+      "ending_in": "ending in {last4}",
+      "set_default": "Set as Default",
+      "remove": "Remove",
+      "cancel": "Cancel"
+    },
+    "billing_history": {
+      "title": "Billing History",
+      "description": "View your past invoices and payments",
+      "invoice_id": "Invoice ID",
+      "date": "Date",
+      "amount": "Amount",
+      "status": "Status",
+      "download": "Download",
+      "paid": "Paid",
+      "pending": "Pending",
+      "overdue": "Overdue"
+    },
+    "usage": {
+      "title": "Usage This Month",
+      "description": "Your current month usage statistics",
+      "api_calls": "API Calls",
+      "storage": "Storage",
+      "bandwidth": "Bandwidth",
+      "unlimited": "Unlimited"
+    }
+  },
+  "orders": {
+    "title": "Orders",
+    "description": "View and manage your order history",
+    "export_orders": "Export Orders",
+    "search_placeholder": "Search by order ID or tracking number...",
+    "filter_by_status": "Filter by status",
+    "status": {
+      "all": "All Status",
+      "pending": "Pending",
+      "processing": "Processing",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
+    },
+    "no_orders": "No orders found matching your criteria.",
+    "order_date": "Order Date: {date}",
+    "items": "Items: {count}",
+    "tracking": "Tracking: {number}",
+    "view_details": "View Details",
+    "summary": {
+      "title": "Order Summary",
+      "description": "Overview of your order history",
+      "total_orders": "Total Orders",
+      "total_spent": "Total Spent",
+      "avg_order": "Avg Order",
+      "pending_orders": "Pending Orders"
+    }
+  },
+  "favorites": {
+    "title": "Favorites",
+    "description": "Your saved items and wishlist",
+    "items_count": "{count} of {total} items",
+    "search_placeholder": "Search favorites...",
+    "category": "Category",
+    "all_categories": "All Categories",
+    "sort_by": "Sort by",
+    "sort_options": {
+      "newest": "Newest First",
+      "oldest": "Oldest First",
+      "price_low": "Price: Low to High",
+      "price_high": "Price: High to Low",
+      "name": "Name A-Z"
+    },
+    "no_favorites": "No favorites found",
+    "no_favorites_search": "Try adjusting your search or filters.",
+    "no_favorites_empty": "Start adding items to your favorites to see them here.",
+    "browse_products": "Browse Products",
+    "in_stock": "In Stock",
+    "out_of_stock": "Out of Stock",
+    "rating": "Rating",
+    "add_to_cart": "Add to Cart",
+    "remove_from_favorites": "Remove from Favorites",
+    "added_date": "Added {date}",
+    "summary": {
+      "title": "Favorites Summary",
+      "description": "Overview of your saved items",
+      "total_items": "Total Items",
+      "in_stock": "In Stock",
+      "total_value": "Total Value",
+      "on_sale": "On Sale"
+    }
+  },
+  "settings": {
+    "title": "Account Settings",
+    "description": "Manage your account settings and preferences",
+    "profile_info": {
+      "title": "Profile Information",
+      "description": "Update your personal information and display preferences",
+      "display_name": "Display Name",
+      "display_name_placeholder": "Enter your display name",
+      "email_address": "Email Address",
+      "email_readonly": "Email cannot be changed. Contact support if needed."
+    },
+    "notifications": {
+      "title": "Notification Preferences",
+      "description": "Choose what notifications you want to receive",
+      "email_notifications": "Email Notifications",
+      "email_notifications_desc": "Receive notifications about your account activity",
+      "marketing_emails": "Marketing Emails",
+      "marketing_emails_desc": "Receive emails about new features and promotions",
+      "security_alerts": "Security Alerts",
+      "security_alerts_desc": "Receive alerts about security-related activities"
+    },
+    "security": {
+      "title": "Security",
+      "description": "Manage your account security and privacy settings",
+      "two_factor": "Two-Factor Authentication",
+      "two_factor_desc": "Add an extra layer of security to your account",
+      "enable_2fa": "Enable 2FA",
+      "change_password": "Change Password",
+      "change_password_desc": "Update your account password",
+      "update_password": "Update Password",
+      "login_history": "Login History",
+      "login_history_desc": "View recent login activity",
+      "view_history": "View History"
+    },
+    "danger_zone": {
+      "title": "Danger Zone",
+      "description": "Irreversible and destructive actions",
+      "delete_account": "Delete Account",
+      "delete_account_desc": "Permanently delete your account and all data",
+      "delete_confirm": "Are you sure you want to delete your account? This action cannot be undone.",
+      "delete_not_implemented": "Account deletion not implemented yet"
+    },
+    "save_success": "Settings saved successfully!",
+    "save_error": "Failed to save settings",
+    "delete_error": "Failed to delete account"
+  },
+  "profile": {
+    "title": "User Profile",
+    "description": "Manage your personal information and preferences",
+    "edit_profile": "Edit Profile",
+    "please_sign_in": "Please Sign In",
+    "need_sign_in": "You need to be signed in to view your profile",
+    "sign_in": "Sign In",
+    "verified": "Verified",
+    "unverified": "Unverified",
+    "member_since": "Member since {date}",
+    "basic_info": {
+      "title": "Basic Information",
+      "description": "Your basic profile information",
+      "display_name": "Display Name",
+      "display_name_placeholder": "Enter your display name",
+      "email_address": "Email Address",
+      "bio": "Bio",
+      "bio_placeholder": "Tell us about yourself...",
+      "location": "Location",
+      "location_placeholder": "Your location",
+      "phone": "Phone Number",
+      "phone_placeholder": "Your phone number",
+      "website": "Website",
+      "website_placeholder": "Your website URL"
+    },
+    "professional_info": {
+      "title": "Professional Information",
+      "description": "Your work and professional details",
+      "company": "Company",
+      "company_placeholder": "Your company name",
+      "job_title": "Job Title",
+      "job_title_placeholder": "Your job title"
+    },
+    "account_stats": {
+      "title": "Account Statistics",
+      "description": "Your account activity and statistics",
+      "total_orders": "Total Orders",
+      "total_spent": "Total Spent",
+      "member_since": "Member Since",
+      "last_active": "Last Active"
+    },
+    "save_success": "Profile updated successfully!",
+    "save_error": "Failed to update profile"
+  },
+  "dashboard": {
+    "hello_greeting": "Hello"
+  }
+}

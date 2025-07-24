@@ -1,0 +1,168 @@
+{
+  "RootLayout": {
+    "meta_title": "Rolitt - Next Generation AI Companion",
+    "meta_description": "Rolitt is a next-generation AI companion that supports your daily life."
+  },
+  "BaseTemplate": {
+    "skip_to_content": "Skip to content"
+  },
+  "CTA": {
+    "title": "Ready to join the future?",
+    "description": "Reserve your AI companion now and be among the first to experience the future of companionship.",
+    "button_text": "Reserve Now"
+  },
+  "Footer": {
+    "company": "Company",
+    "about": "About Us",
+    "careers": "Careers",
+    "press": "Press Releases",
+    "contact": "Contact",
+    "products": "Products",
+    "features": "Features",
+    "pricing": "Pricing",
+    "roadmap": "Roadmap",
+    "resources": "Resources",
+    "blog": "Blog",
+    "docs": "Documentation",
+    "support": "Support",
+    "legal": "Legal",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "copyright": "© 2024 Rolitt Inc. Based on love, passion and sustained effort. All rights reserved.",
+    "product": "Product",
+    "community": "Community",
+    "solution": "Solution",
+    "pre-order": "Pre-order",
+    "rights_reserved": "All rights reserved.",
+    "follow_us": "Follow Us",
+    "about_us": "About Us",
+    "partners": "Partners",
+    "contact_us": "Contact Us",
+    "solutions": "Solutions",
+    "refund_policy": "Refund Policy",
+    "shipping_policy": "Shipping Policy",
+    "contact_information": "Contact Information",
+    "company_description": "Rolitt is a next-generation AI companion that combines emotion recognition, natural language processing, and machine learning technologies to provide compassionate emotional support and intelligent interactions.",
+    "newsletter_title": "Subscribe to Newsletter",
+    "newsletter_description": "Get updates about our latest products, features, and announcements.",
+    "email_placeholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "policies": "Policies",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service",
+    "timeline": "Timeline"
+  },
+
+  "Navbar": {
+    "auth": {
+      "signin": "Sign in",
+      "signup": "Sign up"
+    },
+    "timeline": "Timeline",
+    "product": "Product",
+    "docs": "Docs",
+    "blog": "Blog",
+    "community": "Community",
+    "company": "Company",
+    "about": "About",
+    "pre-order": "Pre-order",
+    "solution": "Solutions",
+    "partner": "Partners",
+    "rolittai": "Rolitt AI",
+    "services": "Services",
+    "contact": "Contact",
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "timeline": "Timeline",
+      "solution": "Solutions",
+      "partner": "Partners",
+      "contact": "Contact",
+      "auth": {
+        "signin": "Sign In",
+        "signup": "Sign Up"
+      }
+    },
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "dashboard": "Dashboard",
+    "sign_in": "Sign In",
+    "sign_up": "Sign Up",
+    "sign_out": "Sign Out",
+    "profile": "Profile",
+    "settings": "Settings",
+    "toggle_menu": "Toggle Menu"
+  },
+
+  "LocaleSwitcher": {
+    "switchLocale": "Switch to {locale}",
+    "label": "Change Language",
+    "en": "English",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh-HK": "Chinese (Hong Kong)"
+  },
+  "ThemeToggle": {
+    "light": "Light mode",
+    "dark": "Dark mode",
+    "system": "System mode",
+    "toggle": "Toggle theme"
+  },
+  "Newsletter": {
+    "email_placeholder": "Enter your email address",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing...",
+    "success_title": "Subscription Complete",
+    "success_message": "Thank you for subscribing! We've sent you a welcome email.",
+    "error_title": "Subscription Error",
+    "error_message": "Sorry, an error occurred during subscription. Please try again later.",
+    "already_subscribed": "This email address is already subscribed to the newsletter.",
+    "invalid_email_format": "Please enter a valid email address"
+  },
+  "CookieBanner": {
+    "description": "We use cookies to enhance your browsing experience, provide personalized content, and analyze traffic. By clicking 'Accept', you consent to our use of cookies.",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "MetaPixelTest": {
+    "title": "Meta Pixel Test Page",
+    "description": "This page is for testing Meta Pixel integration. Trigger events and check the logs below.",
+    "pixelLoaded": "Meta Pixel loaded. ID: {id}",
+    "pixelNotInitialized": "Meta Pixel script loaded but not initialized with ID.",
+    "pixelIdError": "Error accessing Pixel ID from fbq. Attempting fallback.",
+    "pixelLoadedEnv": "Meta Pixel ID from environment variables: {id}",
+    "pixelIdNotFound": "Meta Pixel ID not found in fbq state or environment variables.",
+    "fbqNotFound": "window.fbq (Meta Pixel) not found. It may be blocked or not loaded.",
+    "pixelActive": "Meta Pixel is active. ID: {id}",
+    "pixelInactive": "Meta Pixel is inactive or not loaded",
+    "eventSent": "Event sent: {eventName} Parameters: {params}",
+    "customEventSent": "Custom event sent: {eventName} Parameters: {params}",
+    "purchaseEventSent": "Purchase event sent: Value: {value}, Currency: {currency}",
+    "addToCartEventSent": "Add to cart event sent: Product: {name}, Value: {value}, Currency: {currency}",
+    "sendViewContent": "Send View Content",
+    "sendAddToCart": "Send Add to Cart",
+    "sendInitiateCheckout": "Send Initiate Checkout",
+    "sendPurchase": "Send Purchase",
+    "sendContact": "Send Contact",
+    "sendLead": "Send Lead",
+    "sendCompleteRegistration": "Send Complete Registration",
+    "sendCustomEvent": "Send Custom Event",
+    "sendSearchEvent": "Send Search Event",
+    "eventLogTitle": "Event Log",
+    "noEventsYet": "No events yet."
+  },
+  "NotFound": {
+    "meta_title": "Page Not Found | Rolitt",
+    "meta_description": "The page you are looking for does not exist or has been moved.",
+    "title": "Page Not Found",
+    "description": "The page you are looking for doesn't exist or has been moved.",
+    "back_home": "Back to Home"
+  },
+  "Error": {
+    "title": "Something went wrong!",
+    "description": "An unexpected error has occurred. We apologize for the inconvenience.",
+    "try_again": "Try Again",
+    "back_home": "Back to Home"
+  }
+}

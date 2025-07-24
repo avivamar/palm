@@ -1,0 +1,9 @@
+{
+  "unauthorized": {
+    "title": "Access Denied",
+    "description": "You don't have permission to access this area",
+    "message": "This page is restricted to administrators only. If you believe you should have access, please contact your system administrator.",
+    "backToDashboard": "Back to Dashboard",
+    "backToHome": "Back to Home"
+  }
+}

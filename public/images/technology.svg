@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="80" height="80" rx="16" fill="#F5F3FF"/>
+  <path d="M40 20C28.954 20 20 28.954 20 40C20 51.046 28.954 60 40 60C51.046 60 60 51.046 60 40C60 28.954 51.046 20 40 20Z" fill="#7C3AED" fill-opacity="0.1"/>
+  <path d="M40 28C33.373 28 28 33.373 28 40C28 46.627 33.373 52 40 52C46.627 52 52 46.627 52 40C52 33.373 46.627 28 40 28ZM40 48C35.582 48 32 44.418 32 40C32 35.582 35.582 32 40 32C44.418 32 48 35.582 48 40C48 44.418 44.418 48 40 48Z" fill="#7C3AED"/>
+  <path d="M40 36C37.791 36 36 37.791 36 40C36 42.209 37.791 44 40 44C42.209 44 44 42.209 44 40C44 37.791 42.209 36 40 36Z" fill="#7C3AED"/>
+  <path d="M40 24V28" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+  <path d="M40 52V56" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+  <path d="M24 40H28" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+  <path d="M52 40H56" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+  <path d="M28.9 28.9L31.7 31.7" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+  <path d="M48.3 48.3L51.1 51.1" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+  <path d="M28.9 51.1L31.7 48.3" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+  <path d="M48.3 31.7L51.1 28.9" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+</svg> 

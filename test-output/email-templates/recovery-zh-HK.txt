@@ -1,0 +1,8 @@
+重設您的 Rolitt 密碼
+
+Continue: https://rolitt.com/auth/reset?token=reset_1752393321614
+
+Email: test@example.com
+Site: https://rolitt.com
+
+© 2024 Rolitt. All rights reserved.

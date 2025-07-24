@@ -1,0 +1,994 @@
+{
+  "RootLayout": {
+    "home_link": "Inicio",
+    "about_link": "Acerca de",
+    "counter_link": "Contador",
+    "portfolio_link": "Portafolio",
+    "sign_in_link": "Iniciar sesión",
+    "sign_up_link": "Registrarse"
+  },
+  "BaseTemplate": {
+    "description": "Reserva hoy tu Compañero IA Rolitt y únete a la próxima generación de tecnología interactiva.",
+    "made_with": "Hecho con <author>Rolitt</author>."
+  },
+  "Index": {
+    "meta_title": "Rolitt – Tu Compañero IA Emocional Inteligente",
+    "meta_description": "¡Conoce a Rolitt, tu compañero emocional inteligente! Con tecnología IA avanzada, Rolitt trae alegría, apoyo y aventura a tu vida diaria. ¡Explora las infinitas posibilidades de la compañía IA!",
+    "meta_keywords": "Rolitt, compañero IA, robot inteligente, robot de apoyo emocional, robot compañero familiar, robot IA, robot doméstico inteligente, robot de reconocimiento emocional, robot de interacción por voz, robot asistente personal, robot de tecnología futura, robot innovador, tecnología robótica, desarrollo de robots, aplicaciones robóticas, soluciones robóticas, aprendizaje robótico, robot interactivo, seguridad robótica, protección de privacidad robótica, robot de computación emocional, robot de procesamiento del lenguaje natural, robot de aprendizaje automático, robot de cifrado de extremo a extremo",
+    "meta_og_title": "Rolitt - Redefiniendo la Compañía IA",
+    "meta_og_description": "Experimenta Rolitt, un compañero IA que entiende tus emociones y añade alegría a tu vida. Rolitt no es solo un asistente inteligente, sino tu compañero emocional.",
+    "meta_og_image_alt": "Compañero IA Rolitt - Tu Apoyo Emocional Inteligente",
+    "meta_twitter_title": "Rolitt: Inaugurando una Nueva Era de Compañía Emocional Inteligente",
+    "meta_twitter_description": "Conoce a Rolitt, un compañero IA que percibe tus emociones y se adapta a tus necesidades. Deja que la tecnología caliente tu día a día.",
+    "product_name": "Compañero IA Emocional Inteligente Rolitt",
+    "product_description": "Rolitt es un compañero IA de próxima generación que combina reconocimiento emocional, procesamiento del lenguaje natural y tecnologías de aprendizaje automático para proporcionarte apoyo emocional e interacción inteligente.",
+    "sponsors_title": "Nuestros Socios"
+  },
+  "Counter": {
+    "meta_title": "Contador",
+    "meta_description": "Un ejemplo de operación de base de datos",
+    "loading_counter": "Cargando contador...",
+    "security_powered_by": "Seguridad, detección de bots y limitación de velocidad impulsada por"
+  },
+  "CounterForm": {
+    "presentation": "El contador se almacena en la base de datos y se incrementa según el valor que proporciones.",
+    "label_increment": "Incrementar por",
+    "button_increment": "Incrementar"
+  },
+  "CurrentCount": {
+    "count": "Contador: {count}"
+  },
+  "BlogShowcase": {
+    "title": "Últimas Perspectivas",
+    "description": "Descubre las últimas tendencias, perspectivas e innovaciones en compañía IA y tecnología.",
+    "read_more": "Leer Más",
+    "view_all": "Ver Todas las Publicaciones"
+  },
+  "About": {
+    "meta_title": "Acerca de Rolitt | Nuestra Historia y Misión",
+    "meta_description": "Conoce más sobre Rolitt, nuestra misión, visión y el equipo detrás de nuestro innovador compañero IA.",
+    "meta_og_image_alt": "Equipo y Misión de Rolitt",
+    "title": "Acerca de Rolitt",
+    "subtitle": "Creamos compañeros IA que construyen conexiones emocionales y enriquecen vidas",
+    "mission_title": "Nuestra Misión",
+    "mission_description": "Nuestra misión es simple pero ambiciosa: cerrar la brecha entre la tecnología y el espíritu humano. En Rolitt, creemos que la tecnología debe sentirse personal y significativa. Estamos construyendo compañeros inteligentes —ya sea a través de nuestros robots interactivos o dispositivos vestibles como nuestro anillo inteligente— que enriquecen la vida de las personas de manera profundamente personal, aportando un sentido de compañía, empoderamiento y deleite a cada momento.",
+    "story_title": "Nuestra Historia",
+    "story_description": "Rolitt nació del deseo de crear algo más que tecnología funcional. Como equipo de ingenieros, diseñadores y soñadores, queríamos ir más allá de los límites típicos de la tecnología y diseñar algo que realmente conecte con las personas. Todo comenzó con nuestro robot compañero, diseñado para ofrecer calidez, comprensión y una presencia amigable en la vida diaria de las personas.",
+    "approach_title": "Nuestro Enfoque",
+    "approach_description": "En Rolitt, nuestro enfoque es simple: crear tecnología que resuene con las personas. Cada producto que diseñamos comienza con una pregunta: ¿Cómo podemos hacer que esto se sienta más humano? Desde dispositivos vestibles inteligentes que apoyan tu ritmo diario hasta dispositivos potenciados por IA que interactúan con calidez genuina, estamos dedicados a construir hardware inteligente que aporta alegría, facilidad y significado a lo cotidiano.",
+    "approach_description2": "Creemos que la tecnología no debería ser solo una herramienta—debería ser un compañero. Al centrarnos en el diseño reflexivo, IA avanzada e interacciones intuitivas, estamos creando una nueva categoría de dispositivos que cierran la brecha entre utilidad y humanidad. Rolitt no se trata solo de innovación; se trata de crear experiencias en las que puedas confiar, conectar y llevar contigo donde sea que la vida te lleve.",
+    "value1_title": "Innovación: ",
+    "value1_description": "Nos esforzamos por expandir los límites de lo que la IA puede lograr mediante la exploración e implementación continua de nuevas tecnologías.",
+    "value2_title": "Empatía: ",
+    "value2_description": "Diseñamos nuestros compañeros IA con una profunda comprensión de las emociones y necesidades humanas para proporcionar apoyo emocional genuino.",
+    "value3_title": "Accesibilidad: ",
+    "value3_description": "Estamos comprometidos a hacer que nuestra tecnología sea accesible y utilizable para personas de todas las edades y capacidades.",
+    "image_alt": "El equipo de Rolitt trabajando",
+    "team_subtitle": "Las personas detrás de Rolitt",
+    "team_title": "Nuestro Equipo",
+    "team_description": "Nuestro diverso equipo reúne expertos en inteligencia artificial, robótica, psicología y diseño para crear compañeros IA que son tanto tecnológicamente avanzados como humanamente atractivos.",
+    "member1_name": "Dra. Anna Schmidt",
+    "member1_bio": "Como fundadora y CEO, Anna aporta más de 15 años de experiencia en IA y robótica. Su visión de la IA emocional impulsa a Rolitt hacia adelante.",
+    "member2_name": "Michael Weber",
+    "member2_bio": "Como CTO, Michael lidera el desarrollo técnico de Rolitt, asegurando que nuestros sistemas de IA sean tanto innovadores como confiables.",
+    "member3_name": "Dra. Sofia Chen",
+    "member3_bio": "Como Jefa de Investigación, Sofia combina su experiencia en psicología e IA para mejorar la inteligencia emocional de Rolitt."
+  },
+  "Portfolio": {
+    "meta_title": "Portafolio",
+    "meta_description": "¡Bienvenido a mi página de portafolio!",
+    "presentation": "¡Bienvenido a mi página de portafolio! Aquí encontrarás una colección cuidadosamente seleccionada de mi trabajo y logros. A través de este portafolio, quiero mostrar mi experiencia, creatividad y el valor que puedo aportar a tus proyectos.",
+    "portfolio_name": "Portafolio {name}",
+    "error_reporting_powered_by": "Informes de errores impulsados por",
+    "coverage_powered_by": "Cobertura de código impulsada por"
+  },
+  "PortfolioSlug": {
+    "meta_title": "Portafolio {slug}",
+    "meta_description": "Descripción del portafolio {slug}",
+    "header": "Portafolio {slug}",
+    "content": "Creé un conjunto de materiales promocionales y elementos de marca para un evento corporativo. Diseñé un tema visualmente unificado, que incluye un logotipo, carteles, pancartas y activos digitales. Integré la identidad de marca del cliente mientras la infundía con un enfoque contemporáneo e innovador. Obtuve respuestas favorables de los asistentes al evento, resultando en un evento exitoso con mayor participación y visibilidad de marca.",
+    "log_management_powered_by": "Gestión de registros impulsada por"
+  },
+  "navigation": {
+    "dashboard": "Panel de Control",
+    "orders": "Pedidos",
+    "favorites": "Favoritos",
+    "billing": "Facturación",
+    "settings": "Configuración",
+    "profile": "Perfil"
+  },
+  "header": {
+    "title": "Panel de Administración",
+    "description": "Gestiona tu sistema de marketing de comercio electrónico",
+    "notifications": {
+      "label": "Notificaciones ({count})",
+      "unread": "{count} notificaciones sin leer"
+    },
+    "settings": {
+      "label": "Configuración"
+    },
+    "userMenu": {
+      "label": "Menú de usuario",
+      "admin": "Administrador",
+      "myAccount": "Mi Cuenta",
+      "profile": "Perfil",
+      "settings": "Configuración",
+      "signOut": "Cerrar sesión"
+    }
+  },
+  "adminDashboard": {
+    "title": "Panel de Administración",
+    "description": "Gestiona tu sistema de marketing de comercio electrónico",
+    "quickStats": {
+      "title": "Estadísticas Rápidas",
+      "totalUsers": "Total de Usuarios",
+      "totalOrders": "Total de Pedidos",
+      "revenue": "Ingresos",
+      "conversionRate": "Tasa de Conversión"
+    }
+  },
+  "monitoring": {
+    "title": "Panel de Monitoreo",
+    "description": "Métricas de salud del sistema y pagos en tiempo real",
+    "systemHealth": {
+      "title": "Salud del Sistema",
+      "healthy": "Saludable",
+      "warning": "Advertencia",
+      "critical": "Crítico"
+    }
+  },
+  "users": {
+    "title": "Gestión de Usuarios",
+    "description": "Gestiona cuentas de clientes y permisos",
+    "actions": {
+      "addUser": "Agregar Usuario"
+    }
+  },
+  "shopify": {
+    "title": "Integración Shopify",
+    "description": "Monitorea y gestiona tu integración con la tienda Shopify",
+    "status": {
+      "connected": "Conectado",
+      "disconnected": "Desconectado",
+      "healthy": "Saludable",
+      "warning": "Advertencia",
+      "error": "Error"
+    }
+  },
+  "scripts": {
+    "title": "Gestión de Scripts",
+    "description": "Gestiona centralmente scripts y herramientas del sistema",
+    "tabs": {
+      "overview": "Resumen",
+      "shopify": "Shopify",
+      "environment": "Entorno",
+      "deployment": "Despliegue",
+      "scripts": "Scripts"
+    }
+  },
+  "performanceDashboard": {
+    "title": "Panel de Rendimiento",
+    "description": "Monitorea el rendimiento del sistema y optimiza cuellos de botella",
+    "loading": "Cargando métricas de rendimiento...",
+    "loadFailed": "Error al cargar métricas de rendimiento",
+    "retry": "Reintentar"
+  },
+  "Payment": {
+    "title": "Pago",
+    "description": "Procesar pago de forma segura",
+    "loading": "Procesando pago...",
+    "success": "Pago exitoso",
+    "failed": "Pago fallido"
+  },
+  "PreOrder": {
+    "title": "Pre-pedido",
+    "description": "Realiza tu pre-pedido ahora",
+    "button": "Pre-pedir Ahora",
+    "success": "Pre-pedido realizado con éxito"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "view": "Ver",
+    "add": "Agregar",
+    "remove": "Eliminar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "all": "Todos",
+    "none": "Ninguno",
+    "yes": "Sí",
+    "no": "No",
+    "confirm": "Confirmar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "close": "Cerrar",
+    "submit": "Enviar"
+  },
+  "dashboard": {
+    "title": "Panel de Control",
+    "welcome_back": "Bienvenido de vuelta,",
+    "welcome_message": "Bienvenido a tu centro de usuario Rolitt, gestiona tu experiencia de compañero IA aquí"
+  },
+  "billing": {
+    "title": "Facturación y Pagos",
+    "description": "Gestiona tus métodos de pago e historial de facturación",
+    "current_plan": {
+      "title": "Plan Actual",
+      "description": "Detalles de tu suscripción activa"
+    }
+  },
+  "orders": {
+    "title": "Pedidos",
+    "description": "Ver y gestionar tu historial de pedidos",
+    "status": {
+      "all": "Todos los Estados",
+      "pending": "Pendiente",
+      "processing": "Procesando",
+      "shipped": "Enviado",
+      "delivered": "Entregado",
+      "cancelled": "Cancelado"
+    }
+  },
+  "favorites": {
+    "title": "Favoritos",
+    "description": "Tus artículos guardados y lista de deseos",
+    "no_favorites": "No se encontraron favoritos"
+  },
+  "settings": {
+    "title": "Configuración de Cuenta",
+    "description": "Gestiona la configuración y preferencias de tu cuenta",
+    "save_success": "¡Configuración guardada con éxito!",
+    "save_error": "Error al guardar configuración"
+  },
+  "profile": {
+    "title": "Perfil de Usuario",
+    "description": "Gestiona tu información personal y preferencias",
+    "edit_profile": "Editar Perfil",
+    "save_success": "¡Perfil actualizado con éxito!",
+    "save_error": "Error al actualizar perfil"
+  },
+  "unauthorized": {
+    "title": "Acceso Denegado",
+    "description": "No tienes permiso para acceder a esta área",
+    "message": "Esta página está restringida solo para administradores. Si crees que deberías tener acceso, por favor contacta a tu administrador del sistema.",
+    "backToDashboard": "Volver al Panel de Control",
+    "backToHome": "Volver al Inicio"
+  },
+  "Testimonials": {
+    "title": "Testimonios de los primeros adoptantes",
+    "rating": "⭐⭐⭐⭐⭐ Nuestros usuarios beta califican 4.9/5",
+    "video1": "Vista previa del video 1",
+    "video2": "Vista previa del video 2",
+    "video3": "Vista previa del video 3"
+  },
+  "SocialProof": {
+    "title": "Confiado por miles",
+    "description": "Únete a nuestra creciente comunidad de primeros adoptantes que creen en el futuro de los compañeros de IA",
+    "testimonialsTitle": "Testimonios de los primeros adoptantes",
+    "pressTitle": "Cobertura de prensa"
+  },
+  "Auth": {
+    "title": "Autenticación",
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "signOut": "Cerrar Sesión",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "createAccount": "Crear Cuenta",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "dontHaveAccount": "¿No tienes una cuenta?"
+  },
+  "Dashboard": {
+    "meta_title": "Panel de Control",
+    "hello_message": "¡Hola {email}!",
+    "alternative_message": "¿Quieres construir tu SaaS más rápido usando la misma pila? Prueba <url></url>."
+  },
+  "UserProfile": {
+    "meta_title": "User Profile"
+  },
+  "DashboardLayout": {
+    "dashboard_link": "Dashboard",
+    "user_profile_link": "Manage your account",
+    "sign_out": "Sign out"
+  },
+  "Navbar": {
+    "auth": {
+      "signin": "Sign in",
+      "signup": "Sign up"
+    },
+    "timeline": "Timeline",
+    "product": "Product",
+    "docs": "Docs",
+    "blog": "Blog",
+    "community": "Community",
+    "company": "Company",
+    "about": "About",
+    "pre-order": "Pre-order",
+    "solution": "Solutions",
+    "partner": "Partners",
+    "rolittai": "Rolitt AI",
+    "services": "Services",
+    "contact": "Contact",
+    "nav": {
+      "home": "Inicio",
+      "about": "Acerca de",
+      "timeline": "Cronología",
+      "solution": "Soluciones",
+      "partner": "Socios",
+      "contact": "Contacto",
+      "auth": {
+        "signin": "Iniciar sesión",
+        "signup": "Registrarse"
+      }
+    }
+
+  },
+  "Hero": {
+    "follow_twitter": "Follow Rolittai on Twitter",
+    "title": "Yoyo: Future of Friendship - Get Early Access",
+    "description": "Rolitt: Where AI Meets Warmth – Your 24/7 Emotional Companion Toy",
+    "primary_button": "Pre-order Now",
+    "secondary_button": "Early Bird Plan",
+    "avatar": "Join over 1,000 people worldwide discovering our innovations."
+  },
+  "Features": {
+    "section_subtitle": "Features",
+    "section_title": "Unlock the Full Potential of Yoyo",
+    "section_description": "92% of testers felt happier within 7 days — zero allergy complaints.",
+    "feature1_title": "Mood Decoder",
+    "feature1_description": "Stroke Yoyo → it hums back your vibe in ≈ 0.5 s.",
+    "feature1_main_spec": "Dual‑core MCU + 6‑axis IMU",
+    "feature1_detail_spec1": "45 ms touch→servo response",
+    "feature1_detail_spec2": "50‑voice mini‑TTS library",
+    "feature2_title": "11:57 Pop‑Up",
+    "feature2_description": "\"Lunch o'clock, champ!\" — beats Slack ☺︎",
+    "feature2_main_spec": "Cloud emotion push",
+    "feature2_detail_spec1": "iOS / Android reminders",
+    "feature2_detail_spec2": "Customizable greeting scripts",
+    "feature3_title": "Drop‑in Friday",
+    "feature3_description": "Cradle it Fri → still vibing next Thu.",
+    "feature3_main_spec": "4000 mAh ≈ 7‑day standby",
+    "feature3_detail_spec1": "YOYO HOME 5 W Qi dock",
+    "feature3_detail_spec2": "Smart sleep < 10 µA draw",
+    "feature4_title": "Wash‑Snuggle‑Repeat",
+    "feature4_description": "Hug wild, wash shell, repeat — still sneeze‑free.",
+    "feature4_main_spec": "Medical‑grade washable plush",
+    "feature4_detail_spec1": "Hypoallergenic & RoHS safe",
+    "feature4_detail_spec2": "1.2 m drop‑test certified",
+    "feature5_title": "Subway Head‑Turner",
+    "feature5_description": "Doors open → phones up: \"Is that an AI‑pet?!\"",
+    "feature5_main_spec": "180 g lightweight core",
+    "feature5_detail_spec1": "Mag‑safe clip & shell",
+    "feature5_detail_spec2": "BLE quick‑share snapshots",
+    "feature6_title": "Grandma Giggle Gift",
+    "feature6_description": "Hand it over; watch Grandma giggle like TikTok live.",
+    "feature6_main_spec": "Family account roles",
+    "feature6_detail_spec1": "Gift mode resets profile",
+    "feature6_detail_spec2": "30‑day trial & 1‑yr swap"
+  },
+  "FAQ": {
+    "meta_title": "Frequently Asked Questions | Rolitt",
+    "meta_description": "Find answers to common questions about our robotics solutions, technology, and services.",
+    "meta_keywords": "robotics FAQ, technology questions, Rolitt support, robotics help",
+    "meta_og_title": "Frequently Asked Questions | Rolitt",
+    "meta_og_description": "Get answers to common questions about our robotics solutions and services. Find the information you need quickly and easily.",
+    "meta_twitter_title": "Frequently Asked Questions | Rolitt",
+    "meta_twitter_description": "Get answers to common questions about our robotics solutions and services. Find the information you need quickly and easily.",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find Answers",
+    "question_1": "What types of robotics solutions does Rolitt offer?",
+    "answer_1": "Rolitt offers a wide range of robotics solutions including industrial automation systems, healthcare assistance robots, educational robotics platforms, and home automation solutions. Each product line is designed to address specific needs in different sectors while leveraging our core AI and robotics technologies.",
+    "question_2": "How can I integrate Rolitt's technology with my existing systems?",
+    "answer_2": "Our solutions are designed with interoperability in mind. We provide comprehensive APIs, documentation, and integration support to ensure seamless connection with your existing infrastructure. Our technical team works closely with clients during implementation to ensure successful integration and minimal disruption.",
+    "question_3": "What kind of support does Rolitt provide after purchase?",
+    "answer_3": "We offer comprehensive post-purchase support including technical assistance, maintenance services, software updates, and training programs. Our support packages can be tailored to your specific needs, from basic troubleshooting to full-service maintenance contracts with guaranteed response times.",
+    "question_4": "Is Rolitt's technology suitable for small businesses?",
+    "answer_4": "Absolutely! We have solutions designed for organizations of all sizes. For small businesses, we offer scalable options that provide advanced capabilities without requiring extensive infrastructure or technical expertise. Our modular approach allows you to start small and expand as your needs grow.",
+    "question_5": "How does Rolitt ensure the security of its robotic systems?",
+    "answer_5": "Security is a top priority at Rolitt. We implement multiple layers of protection including encrypted communications, secure authentication protocols, regular security updates, and comprehensive vulnerability testing. Our systems are designed with privacy-by-design principles and comply with relevant industry standards and regulations.",
+    "question_6": "What makes Rolitt's technology different from competitors?",
+    "answer_6": "Our key differentiator is our proprietary AI technology that enables more adaptive, intelligent behavior in our robotic systems. Additionally, we focus on user-friendly interfaces, seamless integration capabilities, and robust security features. Our solutions are developed with extensive real-world testing to ensure reliability and performance in diverse environments.",
+    "still_have_questions": "Still have questions? We're here to help!",
+    "contact_us_text": "Contact our support team for personalized assistance with your specific needs."
+  },
+  "CTA": {
+    "title": "Don't Miss This Limited Opportunity!",
+    "description": "Be one of the first to bring Rolitt home! Our early bird offer won't last long. Secure your companion today and save $70.",
+    "button_text": "Pre-order at $249"
+  },
+  "Footer": {
+    "product": "Product",
+    "docs": "Docs",
+    "blog": "Blog",
+    "community": "Community",
+    "company": "Company",
+    "about": "About",
+    "contact": "Contact",
+    "solution": "Solution",
+    "timeline": "Timeline",
+    "pre-order": "Pre-order",
+    "copyright": "© 2024 Rolitt Inc. Made with passion and love.",
+    "rights_reserved": "All rights reserved.",
+    "follow_us": "Follow Us",
+    "about_us": "About Us",
+    "partners": "Partners",
+    "contact_us": "Contact Us",
+    "products": "Products",
+    "solutions": "Solutions",
+    "features": "Features",
+    "refund_policy": "Refund Policy",
+    "shipping_policy": "Shipping Policy",
+    "contact_information": "Contact Information",
+    "company_description": "Rolitt is a next-generation AI companion that combines emotional recognition, natural language processing, and machine learning technologies to provide thoughtful emotional support and intelligent interaction.",
+    "newsletter_title": "Subscribe to our newsletter",
+    "newsletter_description": "Stay updated with our latest products, features, and announcements.",
+    "email_placeholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "policies": "Policies",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_service": "Terms of Service"
+  },
+  "Timeline": {
+    "meta_title": "Our Company Timeline | Key Milestones and Events",
+    "meta_description": "Explore the journey of our company through key milestones and events that have shaped our history and vision for the future.",
+    "meta_og_image_alt": "Company Timeline Visual Representation",
+    "title": "Our Journey",
+    "description": "Discover the key moments that have defined our path and shaped our vision for the future.",
+    "event1": {
+      "date": "November 2023",
+      "title": "The Beginning of an Idea",
+      "description": "Founder AVIVA bought a talking toy for his 4-year-old daughter. While it looked cute, he felt it was just a plastic toy. Inspired by his experience in the internet industry, AVIVA decided to create an AI-powered robotic toy."
+    },
+    "event2": {
+      "date": "April 2024",
+      "title": "Forming the Core Team",
+      "description": "AVIVA recognized the challenges of creating such an innovative product. He interviewed many industry experts and assembled a passionate team. They began developing the Rolitt product in a borrowed office space."
+    },
+    "event3": {
+      "date": "June-August 2024",
+      "title": "Countless Iterations",
+      "description": "The team tackled embedded development, AI SaaS development, APP,model fine-tuning, structural design, industrial design, website design, PCB design and soldering, hardware debugging, and more. Despite the difficulties, our perseverance led to at least five product iterations."
+    },
+    "event4": {
+      "date": "Late August 2024",
+      "title": "Refining the Prototype",
+      "description": "Starting is tough, but the Rolitt team stayed committed. By late August, we refined our prototype, marking a significant milestone."
+    },
+    "event5": {
+      "date": "September 2024",
+      "title": "Introducing Rolitt to the World",
+      "description": "With the prototype ready, we're excited to introduce Rolitt. We're committed to ongoing improvements and iterations as we move forward."
+    }
+  },
+  "PaymentSuccess": {
+    "title": "Payment Successful!",
+    "message": "Thank you for your pre-order! We've received your payment and your Rolitt AI Companion is one step closer to you. A confirmation email has been sent to your inbox.",
+    "button_back_home": "Back to Home",
+    "support_message": "If you have any questions, you can contact our support team:"
+  },
+  "PaymentCancel": {
+    "title": "¡Ups! ¿Te lo estás pensando?",
+    "message": "Parece que has cancelado el pago. ¡No te preocupes! Tu Rolitt te estará esperando. Dale otra oportunidad al futuro de la compañía.",
+    "button_try_again": "Intentar de Nuevo"
+  },
+  "Solution": {
+    "meta_title": "Robotic Solutions | Your Company",
+    "meta_description": "Discover our innovative robotic solutions designed to transform various industries and enhance everyday life.",
+    "title": "Our Robotic Solutions",
+    "subtitle": "Innovative technologies designed to transform industries and enhance everyday life",
+    "solution1_title": "Industrial Automation",
+    "solution1_description": "Our industrial robots streamline manufacturing processes, increasing efficiency and reducing costs. With advanced sensors and AI capabilities, they adapt to changing production needs in real-time.",
+    "solution2_title": "Healthcare Assistance",
+    "solution2_description": "Designed to support healthcare professionals, our medical robots assist in surgeries, patient care, and rehabilitation. They provide precision and consistency in critical procedures.",
+    "solution3_title": "Educational Robotics",
+    "solution3_description": "Our educational robots make learning STEM subjects engaging and interactive. They help students develop critical thinking, problem-solving skills, and technological literacy.",
+    "solution4_title": "Home Automation",
+    "solution4_description": "Smart home robots that simplify daily tasks, enhance security, and improve energy efficiency. They integrate seamlessly with existing smart home systems for a connected living experience."
+  },
+  "Partner": {
+    "meta_title": "Partnership Opportunities | Rolitt",
+    "meta_description": "Explore strategic partnership opportunities with Rolitt and join us in shaping the future of AI companionship and robotics.",
+    "meta_og_image_alt": "Rolitt Partnership Opportunities",
+    "title": "Partner With Rolitt",
+    "subtitle": "Join us on our mission to revolutionize AI companionship and create meaningful connections through innovative technology",
+    "cta_button": "Explore Partnership Opportunities",
+    "vision_title": "Our Vision for Partnerships",
+    "vision_description": "At Rolitt, we believe that groundbreaking innovation happens through collaboration. We're seeking forward-thinking partners who share our passion for creating technology that enhances human connection and brings joy to everyday life.",
+    "vision_description2": "Whether you're an investor looking for the next big opportunity, a technology provider interested in integration, or a distributor wanting to bring Rolitt to new markets, we're excited to explore how we can create value together.",
+    "vision_image_alt": "Rolitt Partnership Vision",
+    "current_partners_title": "Our Valued Partners",
+    "partner1_name": "TechInnovate",
+    "partner1_description": "Leading technology innovator specializing in AI and machine learning solutions.",
+    "partner2_name": "GlobalEdu",
+    "partner2_description": "Educational institution focused on bringing technology to classrooms worldwide.",
+    "partner3_name": "HealthTech Solutions",
+    "partner3_description": "Healthcare technology provider improving patient care through innovative solutions.",
+    "partner4_name": "Smart Living",
+    "partner4_description": "Home automation experts creating intelligent living spaces for modern families.",
+    "visit_website": "Visit Website",
+    "partnership_types_title": "Partnership Opportunities",
+    "partnership_types_description": "We offer various ways to collaborate with Rolitt, each designed to create mutual value and drive innovation in the AI companionship space.",
+    "partnership_type1_title": "Investment Opportunities",
+    "partnership_type1_description": "Join us as an investor and be part of the future of AI companionship. We offer attractive investment opportunities with significant growth potential in a rapidly expanding market.",
+    "partnership_type2_title": "Custom Solutions",
+    "partnership_type2_description": "Partner with us to develop tailored AI companion solutions for your specific industry or use case. Our flexible technology can be adapted to meet unique requirements.",
+    "partnership_type3_title": "Distribution & Retail",
+    "partnership_type3_description": "Become a distributor or retailer of Rolitt products. We're looking for partners to help us expand our reach and bring our AI companions to new markets worldwide.",
+    "partnership_type4_title": "Technology Integration",
+    "partnership_type4_description": "Integrate your technology with Rolitt or incorporate our AI capabilities into your products. We're open to collaborative innovation that enhances both our offerings.",
+    "benefits_title": "Benefits of Partnering With Us",
+    "benefit1": "Access to cutting-edge AI and robotics technology with proven market appeal",
+    "benefit2": "Opportunity to enter the rapidly growing AI companion market projected to reach $20B by 2028",
+    "benefit3": "Flexible partnership models tailored to your business objectives and capabilities",
+    "benefit4": "Dedicated partnership support team to ensure successful collaboration",
+    "benefit5": "Co-marketing opportunities and shared brand visibility",
+    "benefit6": "Early access to new product developments and technology innovations",
+    "testimonials_title": "What Our Partners Say",
+    "testimonial_quote": "Partnering with Rolitt has been transformative for our business. Their innovative approach to AI companionship and commitment to quality has helped us deliver exceptional value to our customers. The team is responsive, creative, and truly collaborative.",
+    "testimonial_name": "Sarah Johnson",
+    "testimonial_position": "VP of Strategic Partnerships, TechInnovate",
+    "become_partner_title": "Ready to Explore Partnership Opportunities?",
+    "become_partner_description": "We're excited to discuss how we can create value together. Contact us today to start the conversation about partnership possibilities with Rolitt.",
+    "contact_us": "Contact Our Partnership Team"
+  },
+  "Contact": {
+    "meta_title": "Contáctanos",
+    "meta_description": "Ponte en contacto con el equipo de Rolitt. Estamos aquí para ayudarte con cualquier pregunta sobre nuestros productos de compañía IA.",
+    "meta_og_image_alt": "Contactar a Rolitt - Soporte de Compañía IA",
+    "title": "Contáctanos",
+    "subtitle": "¿Tienes preguntas sobre Rolitt? Nos encantaría escucharte. Envíanos un mensaje y te responderemos lo antes posible.",
+    "email_title": "Email",
+    "email_value": "support@rolitt.com",
+    "phone_title": "Teléfono",
+    "phone_value": "+1 (302) 444-2859",
+    "address_title": "Dirección",
+    "address_value": "123 Innovation Street\nSan Francisco, CA 94105\nEstados Unidos",
+    "form_title": "Envíanos un mensaje",
+    "form_description": "Completa el formulario a continuación y te responderemos en 24 horas.",
+    "first_name": "Nombre",
+    "first_name_placeholder": "Juan",
+    "last_name": "Apellido",
+    "last_name_placeholder": "Pérez",
+    "email": "Email",
+    "email_placeholder": "juan@ejemplo.com",
+    "subject": "Asunto",
+    "subject_placeholder": "¿Cómo podemos ayudarte?",
+    "message": "Mensaje",
+    "message_placeholder": "Cuéntanos más sobre tu pregunta o comentario...",
+    "cancel": "Cancelar",
+    "submit_button": "Enviar Mensaje"
+  },
+  "LocaleSwitcher": {
+    "switchLocale": "Switch to {locale}",
+    "label": "Change language",
+    "en": "English",
+    "de": "German",
+    "zh-HK": "Chinese (Hong Kong)",
+    "he": "Hebrew"
+  },
+  "ThemeToggle": {
+    "light": "Light mode",
+    "dark": "Dark mode",
+    "system": "System mode",
+    "toggle": "Toggle theme"
+  },
+  "Terms": {
+    "meta_title": "Terms of Service | Rolitt",
+    "meta_description": "Read our terms of service to understand the rules and guidelines for using Rolitt's products and services.",
+    "title": "Terms of Service",
+    "last_updated": "Last updated: June 15, 2024",
+    "section1_title": "1. Acceptance of Terms",
+    "section1_content": "By accessing or using Rolitt's services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.",
+    "section2_title": "2. Use License",
+    "section2_content": "Permission is granted to temporarily use Rolitt's services for personal, non-commercial purposes. This license does not include: modifying or copying materials; using materials for commercial purposes; attempting to decompile or reverse engineer any software; removing any copyright or proprietary notations; or transferring materials to another person or 'mirroring' materials on any other server.",
+    "section3_title": "3. Disclaimer",
+    "section3_content": "Rolitt's services are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim all warranties, including without limitation implied warranties of merchantability and fitness for a particular purpose.",
+    "section4_title": "4. Limitations",
+    "section4_content": "In no event shall Rolitt or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use our services.",
+    "section5_title": "5. Revisions and Errata",
+    "section5_content": "The materials appearing on Rolitt's services could include technical, typographical, or photographic errors. We do not warrant that any of the materials are accurate, complete or current. We may make changes to the materials at any time without notice."
+  },
+  "Privacy": {
+    "meta_title": "Privacy Policy | Rolitt",
+    "meta_description": "Learn how Rolitt collects, uses, and protects your personal information through our privacy policy.",
+    "title": "Privacy Policy",
+    "last_updated": "Last updated: June 15, 2024",
+    "section1_title": "1. Information We Collect",
+    "section1_content": "We collect information you provide directly to us, such as when you create an account, contact us for support, or use our products. This may include your name, email address, phone number, and payment information. We also collect information automatically when you use our services, including log data, device information, and location information.",
+    "section2_title": "2. How We Use Your Information",
+    "section2_content": "We use the information we collect to provide, maintain, and improve our services; to process transactions; to send you technical notices and support messages; to communicate with you about products, services, and events; and to protect our services and users.",
+    "section3_title": "3. Information Sharing",
+    "section3_content": "We do not share your personal information with third parties except in limited circumstances, such as when you consent to the sharing, when it's necessary to complete a transaction or provide a service you've requested, or when required by law.",
+    "section4_title": "4. Your Choices",
+    "section4_content": "You can access, update, or delete your account information at any time through your account settings. You can also opt out of receiving promotional communications from us by following the instructions in those communications.",
+    "section5_title": "5. Security",
+    "section5_content": "We take reasonable measures to help protect your personal information from loss, theft, misuse, unauthorized access, disclosure, alteration, and destruction. However, no security system is impenetrable, and we cannot guarantee the security of our systems."
+  },
+  "NotFound": {
+    "meta_title": "Page Not Found | Rolitt",
+    "meta_description": "The page you are looking for does not exist or has been moved.",
+    "title": "Page Not Found",
+    "description": "The page you are looking for doesn't exist or has been moved.",
+    "back_home": "Back to Home"
+  },
+  "Error": {
+    "title": "Something went wrong!",
+    "description": "An unexpected error has occurred. We apologize for the inconvenience.",
+    "try_again": "Try Again",
+    "back_home": "Back to Home"
+  },
+  "Newsletter": {
+    "email_placeholder": "Enter your email address",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing...",
+    "success_title": "Subscription Successful",
+    "success_message": "Thank you for subscribing! A welcome email has been sent to your inbox.",
+    "error_title": "Subscription Failed",
+    "error_message": "Sorry, an error occurred during the subscription process. Please try again later.",
+    "already_subscribed": "This email is already subscribed to our newsletter.",
+    "invalid_email_format": "Please enter a valid email address"
+  },
+  "CookieBanner": {
+    "description": "We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking 'Accept', you consent to our use of cookies.",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "MetaPixelTest": {
+    "title": "Meta Pixel Test Page",
+    "description": "This page is for testing Meta Pixel integration. Trigger events and check the log below.",
+    "pixelLoaded": "Meta Pixel loaded. ID: {id}",
+    "pixelNotInitialized": "Meta Pixel script loaded, but not initialized with an ID.",
+    "pixelIdError": "Error accessing Pixel ID from fbq. Fallback attempt in progress.",
+    "pixelLoadedEnv": "Meta Pixel ID from environment: {id}",
+    "pixelIdNotFound": "Meta Pixel ID not found in fbq state or environment variables.",
+    "fbqNotFound": "window.fbq (Meta Pixel) not found. Is it blocked or not loaded?",
+    "pixelActive": "Meta Pixel is Active. ID: {id}",
+    "pixelInactive": "Meta Pixel is Inactive or Not Loaded",
+    "eventSent": "Event Sent: {eventName} with params: {params}",
+    "customEventSent": "Custom Event Sent: {eventName} with params: {params}",
+    "purchaseEventSent": "Purchase Event Sent: Value: {value}, Currency: {currency}",
+    "addToCartEventSent": "AddToCart Event Sent: Name: {name}, Value: {value}, Currency: {currency}",
+    "sendViewContent": "Send ViewContent",
+    "sendAddToCart": "Send AddToCart",
+    "sendInitiateCheckout": "Send InitiateCheckout",
+    "sendPurchase": "Send Purchase",
+    "sendContact": "Send Contact",
+    "sendLead": "Send Lead",
+    "sendCompleteRegistration": "Send CompleteRegistration",
+    "sendCustomEvent": "Send Custom Event",
+    "sendSearchEvent": "Send Search Event",
+    "eventLogTitle": "Event Log",
+    "noEventsYet": "No events triggered yet."
+  },
+  "preOrder": {
+    "hero": {
+      "title": "Be Among the First to Experience the Future of AI Companionship",
+      "description": "Pre-order your Rolitt AI Companion today and join the next generation of interactive technology.",
+      "cta": "Pre-order Now",
+      "colors": {
+        "honey_khaki": "Caqui Miel",
+        "sakura_pink": "Rosa Sakura",
+        "healing_green": "Verde Curativo",
+        "moonlight_grey": "Gris Lunar"
+      }
+    },
+    "features": {
+      "title": "Revolutionary AI Features",
+      "description": "Experience the perfect blend of cutting-edge technology and emotional intelligence.",
+      "ai": {
+        "title": "Advanced AI",
+        "description": "Powered by state-of-the-art language models for natural conversations"
+      },
+      "conversation": {
+        "title": "Natural Conversations",
+        "description": "Engage in meaningful dialogues with your AI companion"
+      },
+      "emotion": {
+        "title": "Emotional Intelligence",
+        "description": "Recognizes and responds to your emotional state"
+      },
+      "magic": {
+        "title": "Magic Moments",
+        "description": "Creates unforgettable interactive experiences"
+      }
+    },
+    "timeline": {
+      "title": "Product Journey",
+      "description": "Follow our journey from pre-order to delivery",
+      "preOrder": {
+        "date": "Now",
+        "title": "Pre-order Phase",
+        "description": "Secure your early bird price and be among the first to receive your AI companion"
+      },
+      "production": {
+        "date": "Q2 2024",
+        "title": "Production Phase",
+        "description": "Your AI companion is being carefully crafted with the latest technology"
+      },
+      "shipping": {
+        "date": "Q3 2024",
+        "title": "Shipping Phase",
+        "description": "Your AI companion is prepared for delivery with premium packaging"
+      },
+      "delivery": {
+        "date": "Q3 2024",
+        "title": "Delivery",
+        "description": "Your AI companion arrives at your doorstep, ready to become your new best friend"
+      }
+    },
+    "pricing": {
+      "title": "Early Bird Special",
+      "description": "Limited time offer for our first batch of AI companions",
+      "earlyBird": {
+        "title": "Early Bird Price",
+        "price": "$259.00",
+        "description": "Save $40 off the regular price"
+      },
+      "features": {
+        "ai": "Advanced AI capabilities with regular updates",
+        "battery": "Long-lasting battery life",
+        "connectivity": "Seamless Wi-Fi and Bluetooth connectivity",
+        "updates": "Free software updates for life",
+        "support": "24/7 customer support"
+      },
+      "cta": "Pre-order Now",
+      "colors": {
+        "honey_khaki": "Caqui Miel",
+        "sakura_pink": "Rosa Sakura",
+        "healing_green": "Verde Curativo",
+        "moonlight_grey": "Gris Lunar"
+      }
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "description": "Encuentra respuestas a preguntas comunes sobre pedidos anticipados, envíos y beneficios exclusivos.",
+      "tabs": {
+        "shipping": "Envíos",
+        "refund": "Reembolsos y Pedidos",
+        "perks": "Beneficios Exclusivos"
+      },
+      "faqs": {
+        "shipping": [
+          {
+            "question": "¿Cuándo se enviará mi pedido anticipado?",
+            "answer": "Todos los pedidos anticipados se enviarán en el orden en que se realizaron. Se espera que el primer lote se envíe a mediados de agosto de 2025. Recibirás una notificación por correo electrónico una vez que se envíe tu pedido."
+          },
+          {
+            "question": "¿Recibiré información de seguimiento?",
+            "answer": "Sí, una vez que se envíe tu pedido, te enviaremos un correo electrónico con información de seguimiento para que puedas monitorear el progreso de tu paquete."
+          }
+        ],
+        "refund": [
+          {
+            "question": "¿Puedo obtener un reembolso por mi pedido anticipado?",
+            "answer": "Puedes solicitar un reembolso completo dentro de los 7 días posteriores al pago si el producto aún no se ha enviado. Una vez enviado, no se aceptan reembolsos."
+          },
+          {
+            "question": "¿Puedo cambiar mi dirección de envío?",
+            "answer": "Sí, puedes modificar tu dirección de envío sin costo antes de que se envíe el producto. Por favor contáctanos lo antes posible para realizar cambios."
+          }
+        ],
+        "perks": [
+          {
+            "question": "¿Qué regalos exclusivos reciben los clientes de pedidos anticipados?",
+            "answer": "• Tarjeta numerada de edición limitada\n• Carta de agradecimiento de la marca\n• Bufanda o accesorio de bolsa pequeña"
+          },
+          {
+            "question": "¿Tengo cobertura de garantía?",
+            "answer": "Los productos Rolitt vienen con una garantía de un año. Cualquier daño no causado por humanos puede ser reemplazado o reparado sin costo."
+          }
+        ]
+      }
+    },
+    "cta": {
+      "title": "Ready to Join the Future?",
+      "description": "Pre-order your AI companion today and be among the first to experience the future of companionship."
+    },
+    "form": {
+      "name": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "Enter your email address"
+      },
+      "quantity": {
+        "label": "Quantity",
+        "placeholder": "Enter quantity"
+      },
+      "submit": "Pre-order Now",
+      "submitting": "Processing...",
+      "success": {
+        "title": "Pre-order Successful!",
+        "description": "Thank you for your pre-order. We'll send you updates about your order status."
+      },
+      "error": {
+        "title": "Error",
+        "description": "There was an error processing your pre-order. Please try again."
+      }
+    },
+    "product_selection": {
+      "title": "Pre-order Now",
+      "description": "Select your favorite color and be the first to get it.",
+      "color_label": "Color",
+      "email_label": "Email",
+      "email_placeholder": "Enter your email",
+      "no_products_title": "Products Unavailable",
+      "no_products_description": "We are sorry, but there are no products available for pre-order at this time. Please check back later.",
+      "go_to_payment_button": "Proceed to Payment"
+    },
+    "realtime": {
+      "stockAlert": "¡Solo quedan {count} unidades en stock!",
+      "countdownTitle": "La Oferta Especial Termina En",
+      "hours": "Horas",
+      "minutes": "Minutos",
+      "seconds": "Segundos",
+      "countdownDescription": "¡No te pierdas el precio especial!",
+      "liveActivityTitle": "Actividad en Vivo",
+      "activityOrder": "Alguien de {location} acaba de hacer un pedido anticipado",
+      "activityView": "Alguien de {location} está viendo esta página",
+      "justNow": "Ahora mismo",
+      "minutesAgo": "Hace {minutes}m",
+      "limitedStock": "⚡ Stock Limitado - ¡Solo quedan 47 unidades!",
+      "earlyBirdEnding": "🔥 ¡El precio especial termina en 24 horas!",
+      "freeShipping": "🚚 ¡Envío gratis mundial para pedidos anticipados!",
+      "socialProof": "🎉 ¡{count} personas ya han hecho su pedido anticipado!",
+      "socialProofLabel": "Clientes Satisfechos",
+      "socialProofText": "¡Únete a miles de clientes satisfechos en todo el mundo!"
+    }
+  },
+  "PreOrderTestimonials": {
+    "title": "What Our Early Adopters Say",
+    "rating": "⭐⭐⭐⭐⭐ Rated 4.9/5 by our beta users",
+    "video1": "Video 1 Preview",
+    "video2": "Video 2 Preview",
+    "video3": "Video 3 Preview"
+  },
+  "VideoSection": {
+    "badge": "Product Demo",
+    "title": "See Rolitt in Action",
+    "description": "Discover the features and user experience of Rolitt AI Companion through video",
+    "youtube_link_text": "Want to learn more? Visit our",
+    "youtube_channel": "YouTube channel",
+    "youtube_link_suffix": "to watch more video content"
+  },
+  "PreOrderSocialProof": {
+    "title": "Trusted by Thousands",
+    "description": "Join our growing community of early adopters who believe in the future of AI companionship",
+    "testimonialsTitle": "What Early Adopters Say",
+    "pressTitle": "Press Coverage"
+  },
+  "payment": {
+    "button": {
+      "pay": "Pay Now"
+    },
+    "status": {
+      "processing": "Processing..."
+    },
+    "success": {
+      "title": "Pre-order Successful!",
+      "description": "Thank you for your purchase. A confirmation email has been sent to you.",
+      "support_message": "If you have any questions, please contact our support team.",
+      "back_to_home": "Back to Homepage"
+    },
+    "cancel": {
+      "title": "Payment Canceled",
+      "description": "Your payment process was not completed. Your cart has been saved.",
+      "support_message": "If you're having trouble, please contact our support team.",
+      "try_again": "Try Again",
+      "back_to_home": "Back to Homepage"
+    }
+  },
+  "WebhookLogs": {
+    "title": "Gestión de Logs de Webhook",
+    "subtitle": "Monitorear y gestionar eventos de webhook",
+    "stats": {
+      "total": "Total de Logs",
+      "success": "Éxito",
+      "failed": "Fallido",
+      "pending": "Pendiente"
+    },
+    "filters": {
+      "all": "Todos los Estados",
+      "success": "Éxito",
+      "failed": "Fallido",
+      "pending": "Pendiente"
+    },
+    "table": {
+      "timestamp": "Marca de Tiempo",
+      "event_type": "Tipo de Evento",
+      "status": "Estado",
+      "response_time": "Tiempo de Respuesta",
+      "actions": "Acciones",
+      "view_details": "Ver Detalles"
+    },
+    "status": {
+      "success": "Éxito",
+      "failed": "Fallido",
+      "pending": "Pendiente"
+    },
+    "loading": "Cargando...",
+    "no_data": "No se encontraron logs de webhook",
+    "error": "Error al cargar logs de webhook",
+    "refresh": "Actualizar"
+  },
+  "ForgotPassword": {
+    "title": "¿Olvidaste tu contraseña?",
+    "description": "Ingresa tu dirección de correo electrónico a continuación y te enviaremos un enlace para restablecer tu contraseña.",
+    "email_label": "Dirección de correo electrónico",
+    "email_placeholder": "nombre@ejemplo.com",
+    "email_error": "Por favor ingresa una dirección de correo electrónico válida.",
+    "submit_button": "Enviar enlace de restablecimiento",
+    "success_message": "¡Correo de restablecimiento de contraseña enviado! Por favor revisa tu bandeja de entrada y sigue las instrucciones para restablecer tu contraseña.",
+    "error_not_configured": "El servicio de correo no está configurado. Por favor contacta al soporte técnico.",
+    "error_invalid_email": "Por favor ingresa una dirección de correo electrónico válida.",
+    "error_user_not_found": "No se encontró una cuenta con esta dirección de correo electrónico.",
+    "error_rate_limit": "Demasiadas solicitudes. Por favor espera unos minutos antes de intentar de nuevo.",
+    "error_email_rate_limit": "Límite de frecuencia de correo excedido. Por favor espera unos minutos antes de solicitar otro correo de restablecimiento de contraseña.",
+    "error_unexpected": "Ocurrió un error inesperado. Por favor inténtalo de nuevo."
+  },
+  "SignIn": {
+    "meta_title": "Iniciar sesión",
+    "meta_description": "Inicia sesión sin problemas en tu cuenta con nuestro proceso de inicio de sesión fácil de usar.",
+    "title": "Inicia sesión en tu cuenta",
+    "alt": "Logo de Rolitt",
+    "footer": "¿No eres miembro?",
+    "footer_link": "Regístrate ahora para convertirse en uno de nuestros primeros miembros",
+    "google_button": "Continuar con Google",
+    "email_divider": "O continuar con correo electrónico",
+    "email_label": "Correo electrónico",
+    "email_placeholder": "m@example.com",
+    "password_label": "Contraseña",
+    "password_placeholder": "********",
+    "forgot_password_link": "¿Olvidaste tu contraseña?",
+    "submit_button": "Iniciar sesión con correo electrónico",
+    "prompt": "¿No tienes una cuenta?",
+    "link": "Registrarse"
+  },
+  "SignUp": {
+    "meta_title": "Registrarse",
+    "meta_description": "Crea una cuenta sin esfuerzo a través de nuestro proceso de registro intuitivo.",
+    "title": "Crea tu cuenta",
+    "alt": "Logo de Rolitt",
+    "footer": "¿Ya eres miembro?",
+    "footer_link": "Inicia sesión aquí",
+    "google_button": "Continuar con Google",
+    "email_divider": "O continuar con correo electrónico",
+    "email_label": "Correo electrónico",
+    "email_placeholder": "m@example.com",
+    "password_label": "Contraseña",
+    "password_placeholder": "********",
+    "confirm_password_label": "Confirmar contraseña",
+    "confirm_password_placeholder": "********",
+    "submit_button": "Registrarse con correo electrónico",
+    "prompt": "¿Ya tienes una cuenta?",
+    "link": "Iniciar sesión"
+  },
+  "ResetPassword": {
+    "title": "Restablecer tu contraseña",
+    "description": "Ingresa tu nueva contraseña a continuación para restablecer tu contraseña.",
+    "new_password_label": "Nueva contraseña",
+    "confirm_password_label": "Confirmar nueva contraseña",
+    "password_min_error": "La contraseña debe tener al menos 6 caracteres.",
+    "password_match_error": "Las contraseñas no coinciden",
+    "invalid_link": "Enlace de restablecimiento de contraseña inválido.",
+    "submit_button": "Restablecer contraseña"
+  },
+  "VerifyEmail": {
+    "meta": {
+      "title": "Verificar Email",
+      "description": "Verifica tu dirección de email para completar el proceso de registro."
+    },
+    "title": "Verifica tu email",
+    "description": "Hemos enviado un email de verificación a tu dirección. Por favor haz clic en el enlace del email para completar tu registro.",
+    "resend_button": "Reenviar email de verificación",
+    "success_message": "¡Email de verificación reenviado!",
+    "error_message": "Error enviando email de verificación. Por favor intenta de nuevo más tarde."
+  }
+}

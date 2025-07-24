@@ -1,0 +1,135 @@
+/* eslint-disable jsonc/sort-keys */{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "strict": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnreachableCode": false,
+    "noFallthroughCasesInSwitch": true,
+    "target": "es2017",
+    "rootDir": ".",
+    "outDir": "out",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "checkJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "noEmit": true,
+    "isolatedModules": true,
+    "incremental": true,
+    // Load types
+    "types": [],
+    // Path aliases
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@/public/*": [
+        "./public/*"
+      ],
+      "@rolitt/admin": [
+        "./packages/admin/src"
+      ],
+      "@rolitt/admin/*": [
+        "./packages/admin/src/*"
+      ],
+      "@rolitt/shared": [
+        "./packages/shared/src"
+      ],
+      "@rolitt/shared/*": [
+        "./packages/shared/src/*"
+      ],
+      "@rolitt/payments": [
+        "./packages/payments/src"
+      ],
+      "@rolitt/payments/*": [
+        "./packages/payments/src/*"
+      ],
+      "@rolitt/auth": [
+        "./packages/auth/src"
+      ],
+      "@rolitt/auth/*": [
+        "./packages/auth/src/*"
+      ],
+      "@rolitt/email": [
+        "./packages/email/src"
+      ],
+      "@rolitt/email/*": [
+        "./packages/email/src/*"
+      ],
+      "@rolitt/shopify": [
+        "./packages/shopify/src"
+      ],
+      "@rolitt/shopify/*": [
+        "./packages/shopify/src/*"
+      ],
+      "@rolitt/image-upload": [
+        "./packages/image-upload/src"
+      ],
+      "@rolitt/image-upload/*": [
+        "./packages/image-upload/src/*"
+      ],
+      "@rolitt/referral": [
+        "./packages/referral/src"
+      ],
+      "@rolitt/referral/*": [
+        "./packages/referral/src/*"
+      ],
+      "@rolitt/ai-core": [
+        "./packages/ai-core/src"
+      ],
+      "@rolitt/ai-core/*": [
+        "./packages/ai-core/src/*"
+      ]
+    },
+    // Editor support
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "exclude": [
+    "./out/**/*",
+    "./node_modules/**/*",
+    "**/*.spec.ts",
+    "**/*.e2e.ts",
+    "./Next-js-Boilerplate-main/**/*",
+    "./vercel-commerce-reference/**/*",
+    "drizzle.config.ts",
+    "commitlint.config.ts",
+    "checkly.config.ts",
+    "playwright.config.ts",
+    "vitest.config.mts",
+    "lint-staged.config.js",
+    "open-next.config.ts"
+  ],
+  "include": [
+    "**/*.mts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".storybook/*.ts",
+    "next-env.d.ts",
+    ".next/types/**/*.ts",
+    "src/app/[locale]/(marketing)/page.test"
+  ]
+}

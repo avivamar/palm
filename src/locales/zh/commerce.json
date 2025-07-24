@@ -1,0 +1,505 @@
+{
+  "Payment": {
+    "Success": {
+      "title": "付款成功！",
+      "message": "感謝您的預訂！我們已收到您的付款，您的 Rolitt AI 伴侶正向您靠近一步。確認郵件已發送到您的收件箱。",
+      "button_back_home": "返回首頁",
+      "support_message": "如有任何問題，您可以聯繫我們的支持團隊："
+    },
+    "Cancel": {
+      "title": "付款已取消",
+      "message": "看起來您已取消付款。別擔心，您的預訂已保存。您可以隨時點擊下方按鈕完成購買。",
+      "button_try_again": "重試"
+    },
+    "Button": {
+      "pay": "立即付款"
+    },
+    "Status": {
+      "processing": "處理中..."
+    },
+    "SuccessPage": {
+      "title": "預訂成功！",
+      "description": "感謝您的購買。確認郵件已發送給您。",
+      "support_message": "如有任何問題，請聯繫我們的支持團隊。",
+      "back_to_home": "返回首頁"
+    },
+    "CancelPage": {
+      "title": "付款已取消",
+      "description": "您的付款流程未完成。您的購物車已保存。",
+      "support_message": "如果您遇到問題，請聯繫我們的支持團隊。",
+      "try_again": "重試",
+      "back_to_home": "返回首頁"
+    }
+  },
+  "PreOrder": {
+    "Hero": {
+      "title": "成為首批體驗 AI 伴侶未來的人",
+      "description": "立即預訂您的 Rolitt AI 伴侶，加入下一代互動技術。",
+      "cta": "立即預訂",
+      "limited_time_text": "✨ 限時預訂，享受早鳥優惠",
+      "features": {
+        "innovation": {
+          "icon": "🚀",
+          "text": "創新科技"
+        },
+        "quality": {
+          "icon": "💎",
+          "text": "精工品質"
+        },
+        "limited": {
+          "icon": "🌟",
+          "text": "限量發售"
+        },
+        "fast_delivery": {
+          "icon": "⚡",
+          "text": "快速交付"
+        }
+      },
+      "colors": {
+        "honey_khaki": "蜜糖卡其",
+        "sakura_pink": "櫻花粉",
+        "healing_green": "治癒綠",
+        "moonlight_grey": "月光灰"
+      }
+    },
+    "Features": {
+      "title": "革命性 AI 功能",
+      "description": "體驗尖端技術和情感智能的完美結合。",
+      "ai": {
+        "title": "先進 AI",
+        "description": "由最先進的語言模型驅動，提供自然對話體驗"
+      },
+      "conversation": {
+        "title": "自然對話",
+        "description": "與您的 AI 伴侶進行有意義的對話"
+      },
+      "emotion": {
+        "title": "情感智能",
+        "description": "識別並回應您的情緒狀態"
+      },
+      "magic": {
+        "title": "魔幻時刻",
+        "description": "創造難忘的互動體驗"
+      }
+    },
+    "Timeline": {
+      "title": "產品旅程",
+      "description": "跟隨我們從預訂到交付的旅程",
+      "preOrder": {
+        "date": "現在",
+        "title": "預訂階段",
+        "description": "鎖定您的早鳥價格，成為首批收到 AI 伴侶的人"
+      },
+      "production": {
+        "date": "2024年第二季",
+        "title": "生產階段",
+        "description": "您的 AI 伴侶正在用最新技術精心製作"
+      },
+      "shipping": {
+        "date": "2024年第三季",
+        "title": "發貨階段",
+        "description": "您的 AI 伴侶正在準備高級包裝發貨"
+      },
+      "delivery": {
+        "date": "2024年第三季",
+        "title": "交付",
+        "description": "您的 AI 伴侶送達您的門前，準備成為您的新夥伴"
+      }
+    },
+    "Pricing": {
+      "title": "早鳥特惠",
+      "description": "我們首批 AI 伴侶的限時優惠",
+      "earlyBird": {
+        "title": "早鳥價格",
+        "price": "$259.00",
+        "description": "比原價節省 $40"
+      },
+      "features": {
+        "ai": "先進 AI 功能，定期更新",
+        "battery": "長續航電池",
+        "connectivity": "無縫 Wi-Fi 和藍牙連接",
+        "updates": "終身免費軟件更新",
+        "support": "24/7 客戶支持"
+      },
+      "cta": "立即預訂",
+      "colors": {
+        "honey_khaki": "蜜糖卡其",
+        "sakura_pink": "櫻花粉",
+        "healing_green": "治癒綠",
+        "moonlight_grey": "月光灰"
+      }
+    },
+    "FAQ": {
+      "title": "常見問題",
+      "description": "找到有關預訂、發貨和獨家福利的常見問題答案。",
+      "tabs": {
+        "shipping": "發貨",
+        "refund": "退款與訂單",
+        "perks": "獨家福利"
+      },
+      "faqs": {
+        "shipping": [
+          {
+            "question": "我的預訂何時發貨？",
+            "answer": "所有預訂將按下單順序發貨。首批預計將於2025年8月中旬發貨。您的訂單發貨後將收到电子邮件通知。"
+          },
+          {
+            "question": "我會收到跟蹤信息嗎？",
+            "answer": "是的，一旦您的訂單發貨，我們將向您發送包含跟蹤信息的电子邮件，以便您可以監控包裹的進度。"
+          }
+        ],
+        "refund": [
+          {
+            "question": "我可以申請預訂退款嗎？",
+            "answer": "如果產品尚未發貨，您可以在付款後7天內申請全額退款。一旦發貨，將不接受退款。"
+          },
+          {
+            "question": "我可以更改我的送貨地址嗎？",
+            "answer": "是的，在產品發貨前，您可以免費修改送貨地址。請盡快聯繫我們進行更改。"
+          }
+        ],
+        "perks": [
+          {
+            "question": "預訂客戶會收到什麼獨家禮品？",
+            "answer": "• 限量版編號卡片\n• 品牌感謝信\n• 圍巾或小包包配件"
+          },
+          {
+            "question": "我是否享有保修服務？",
+            "answer": "Rolitt 產品享有一年保修。任何非人為損壞都可以免費更換或維修。"
+          }
+        ]
+      }
+    },
+    "CTA": {
+      "title": "準備加入未來嗎？",
+      "description": "立即預訂您的 AI 伴侶，成為首批體驗未來陪伴的人。"
+    },
+    "Form": {
+      "name": {
+        "label": "全名",
+        "placeholder": "請輸入您的全名"
+      },
+      "email": {
+        "label": "电子邮件地址",
+        "placeholder": "請輸入您的电子邮件地址"
+      },
+      "quantity": {
+        "label": "數量",
+        "placeholder": "請輸入數量"
+      },
+      "submit": "立即預訂",
+      "submitting": "處理中...",
+      "success": {
+        "title": "預訂成功！",
+        "description": "感謝您的預訂。我們會向您發送訂單狀態更新。"
+      },
+      "error": {
+        "title": "錯誤",
+        "description": "處理您的預訂時出現錯誤。請重試。"
+      }
+    },
+    "ProductSelection": {
+      "title": "立即預訂",
+      "description": "選擇您喜歡的顏色，搶先獲得。",
+      "color_label": "顏色",
+      "email_label": "电子邮件",
+      "email_placeholder": "請輸入您的电子邮件",
+      "no_products_title": "產品暫不可用",
+      "no_products_description": "很抱歉，目前沒有可預訂的產品。請稍後查看。",
+      "go_to_payment_button": "前往付款"
+    },
+    "Realtime": {
+      "stockAlert": "庫存僅剩 {count} 件！",
+      "countdownTitle": "早鳥優惠倒計時",
+      "hours": "小時",
+      "minutes": "分鐘",
+      "seconds": "秒",
+      "countdownDescription": "不要錯過特價優惠！",
+      "liveActivityTitle": "實時動態",
+      "activityOrder": "來自 {location} 的用戶剛剛預訂",
+      "activityView": "來自 {location} 的用戶正在查看此頁面",
+      "justNow": "剛剛",
+      "minutesAgo": "{minutes}分鐘前",
+      "limitedStock": "⚡ 限量庫存 - 僅剩 47 件！",
+      "earlyBirdEnding": "🔥 早鳥價格將在 24 小時內結束！",
+      "freeShipping": "🚚 預訂享全球免費送貨！",
+      "socialProof": "🎉 {count} 人已經預訂！",
+      "socialProofLabel": "滿意客戶",
+      "socialProofText": "加入全球成千上萬滿意客戶的行列！"
+    }
+  },
+  "PaymentSuccess": {
+    "title": "付款成功！",
+    "message": "感謝您的預訂！我們已收到您的付款，您的 Rolitt AI 伴侶正向您靠近一步。確認郵件已發送到您的收件箱。",
+    "button_back_home": "返回首頁",
+    "support_message": "如有任何問題，您可以聯繫我們的支持團隊："
+  },
+  "PaymentCancel": {
+    "title": "付款已取消",
+    "message": "看起來您已取消付款。別擔心，您的預訂已保存。您可以隨時點擊下方按鈕完成購買。",
+    "button_try_again": "重試"
+  },
+  "preOrder": {
+    "hero": {
+      "title": "成為首批體驗 AI 伴侶未來的人",
+      "description": "立即預訂您的 Rolitt AI 伴侶，加入下一代互動技術。",
+      "cta": "立即預訂",
+      "limited_time_text": "✨ 限時預訂，享受早鳥優惠",
+      "features": {
+        "innovation": {
+          "icon": "🚀",
+          "text": "創新科技"
+        },
+        "quality": {
+          "icon": "💎",
+          "text": "精工品質"
+        },
+        "limited": {
+          "icon": "🌟",
+          "text": "限量發售"
+        },
+        "fast_delivery": {
+          "icon": "⚡",
+          "text": "快速交付"
+        }
+      },
+      "urgency_banner": "限時優惠：省 $70",
+      "benefits": {
+        "save_money": "省 $70",
+        "free_shipping": "免費送貨",
+        "limited_stock": "限量供應"
+      },
+      "trust_indicators": {
+        "money_back": "30天退款保證",
+        "warranty": "1年保修",
+        "rating": "4.9/5 評分"
+      },
+      "colors": {
+        "honey_khaki": "蜜糖卡其",
+        "sakura_pink": "櫻花粉",
+        "healing_green": "治癒綠",
+        "moonlight_grey": "月光灰"
+      }
+    },
+    "features": {
+      "title": "革命性 AI 功能",
+      "description": "體驗尖端技術和情感智能的完美結合。",
+      "ai": {
+        "title": "先進 AI",
+        "description": "由最先進的語言模型驅動，提供自然對話體驗"
+      },
+      "conversation": {
+        "title": "自然對話",
+        "description": "與您的 AI 伴侶進行有意義的對話"
+      },
+      "emotion": {
+        "title": "情感智能",
+        "description": "識別並回應您的情緒狀態"
+      },
+      "magic": {
+        "title": "魔幻時刻",
+        "description": "創造難忘的互動體驗"
+      }
+    },
+    "timeline": {
+      "title": "產品旅程",
+      "description": "跟隨我們從預訂到交付的旅程",
+      "preOrder": {
+        "date": "現在",
+        "title": "預訂階段",
+        "description": "鎖定您的早鳥價格，成為首批收到 AI 伴侶的人"
+      },
+      "production": {
+        "date": "2024年第二季",
+        "title": "生產階段",
+        "description": "您的 AI 伴侶正在用最新技術精心製作"
+      },
+      "shipping": {
+        "date": "2024年第三季",
+        "title": "發貨階段",
+        "description": "您的 AI 伴侶正在準備高級包裝發貨"
+      },
+      "delivery": {
+        "date": "2024年第三季",
+        "title": "交付",
+        "description": "您的 AI 伴侶送達您的門前，準備成為您的新夥伴"
+      }
+    },
+    "pricing": {
+      "title": "早鳥特惠",
+      "description": "我們首批 AI 伴侶的限時優惠",
+      "earlyBird": {
+        "title": "早鳥價格",
+        "price": "$259.00",
+        "description": "比原價節省 $40"
+      },
+      "features": {
+        "ai": "先進 AI 功能，定期更新",
+        "battery": "長續航電池",
+        "connectivity": "無縫 Wi-Fi 和藍牙連接",
+        "updates": "終身免費軟件更新",
+        "support": "24/7 客戶支持"
+      },
+      "cta": "立即預訂",
+      "colors": {
+        "honey_khaki": "蜜糖卡其",
+        "sakura_pink": "櫻花粉",
+        "healing_green": "治癒綠",
+        "moonlight_grey": "月光灰"
+      }
+    },
+    "faq": {
+      "title": "常見問題",
+      "description": "找到有關預訂、發貨和獨家福利的常見問題答案。",
+      "tabs": {
+        "shipping": "發貨",
+        "refund": "退款與訂單",
+        "perks": "獨家福利"
+      },
+      "faqs": {
+        "shipping": [
+          {
+            "question": "我的預訂何時發貨？",
+            "answer": "所有預訂將按下單順序發貨。首批預計將於2025年8月中旬發貨。您的訂單發貨後將收到电子邮件通知。"
+          },
+          {
+            "question": "我會收到跟蹤信息嗎？",
+            "answer": "是的，一旦您的訂單發貨，我們將向您發送包含跟蹤信息的电子邮件，以便您可以監控包裹的進度。"
+          }
+        ],
+        "refund": [
+          {
+            "question": "我可以申請預訂退款嗎？",
+            "answer": "如果產品尚未發貨，您可以在付款後7天內申請全額退款。一旦發貨，將不接受退款。"
+          },
+          {
+            "question": "我可以更改我的送貨地址嗎？",
+            "answer": "是的，在產品發貨前，您可以免費修改送貨地址。請盡快聯繫我們進行更改。"
+          }
+        ],
+        "perks": [
+          {
+            "question": "預訂客戶會收到什麼獨家禮品？",
+            "answer": "• 限量版編號卡片\n• 品牌感謝信\n• 圍巾或小包包配件"
+          },
+          {
+            "question": "我是否享有保修服務？",
+            "answer": "Rolitt 產品享有一年保修。任何非人為損壞都可以免費更換或維修。"
+          }
+        ]
+      }
+    },
+    "cta": {
+      "title": "準備加入未來嗎？",
+      "description": "立即預訂您的 AI 伴侶，成為首批體驗未來陪伴的人。"
+    },
+    "form": {
+      "name": {
+        "label": "全名",
+        "placeholder": "請輸入您的全名"
+      },
+      "email": {
+        "label": "电子邮件地址",
+        "placeholder": "請輸入您的电子邮件地址"
+      },
+      "quantity": {
+        "label": "數量",
+        "placeholder": "請輸入數量"
+      },
+      "submit": "立即預訂",
+      "submitting": "處理中...",
+      "success": {
+        "title": "預訂成功！",
+        "description": "感謝您的預訂。我們會向您發送訂單狀態更新。"
+      },
+      "error": {
+        "title": "錯誤",
+        "description": "處理您的預訂時出現錯誤。請重試。"
+      }
+    },
+    "product_selection": {
+      "title": "立即預訂",
+      "description": "選擇您喜歡的顏色，搶先獲得。",
+      "color_label": "顏色",
+      "email_label": "电子邮件",
+      "email_placeholder": "請輸入您的电子邮件",
+      "no_products_title": "產品暫不可用",
+      "no_products_description": "很抱歉，目前沒有可預訂的產品。請稍後查看。",
+      "go_to_payment_button": "前往付款"
+    },
+    "realtime": {
+      "stockAlert": "庫存僅剩 {count} 件！",
+      "countdownTitle": "早鳥優惠倒計時",
+      "hours": "小時",
+      "minutes": "分鐘",
+      "seconds": "秒",
+      "countdownDescription": "不要錯過特價優惠！",
+      "liveActivityTitle": "實時動態",
+      "activityOrder": "來自 {location} 的用戶剛剛預訂",
+      "activityView": "來自 {location} 的用戶正在查看此頁面",
+      "justNow": "剛剛",
+      "minutesAgo": "{minutes}分鐘前",
+      "limitedStock": "⚡ 限量庫存 - 僅剩 47 件！",
+      "earlyBirdEnding": "🔥 早鳥價格將在 24 小時內結束！",
+      "freeShipping": "🚚 預訂享全球免費送貨！",
+      "socialProof": "🎉 {count} 人已經預訂！",
+      "socialProofLabel": "滿意客戶",
+      "socialProofText": "加入全球成千上萬滿意客戶的行列！"
+    }
+  },
+  "Testimonials": {
+    "title": "早期用戶評價",
+    "rating": "⭐⭐⭐⭐⭐ 測試用戶評分 4.9/5",
+    "video1": "視頻 1 預覽",
+    "video2": "視頻 2 預覽",
+    "video3": "視頻 3 預覽"
+  },
+  "SocialProof": {
+    "title": "受到成千上萬人信賴",
+    "description": "加入我們不斷壯大的早期用戶社區，他們相信 AI 陪伴的未來",
+    "testimonialsTitle": "早期用戶評價",
+    "pressTitle": "媒體報導"
+  },
+  "PreOrderTestimonials": {
+    "title": "早期用戶評價",
+    "rating": "⭐⭐⭐⭐⭐ 測試用戶評分 4.9/5",
+    "video1": "視頻 1 預覽",
+    "video2": "視頻 2 預覽",
+    "video3": "視頻 3 預覽"
+  },
+  "VideoSection": {
+    "badge": "產品演示",
+    "title": "看看 Rolitt 的實際效果",
+    "description": "通過視頻了解 Rolitt AI 伴侶的功能和用戶體驗",
+    "youtube_link_text": "想了解更多？請訪問我們的",
+    "youtube_channel": "YouTube 頻道",
+    "youtube_link_suffix": "觀看更多視頻內容"
+  },
+  "PreOrderSocialProof": {
+    "title": "受到成千上萬人信賴",
+    "description": "加入我們不斷壯大的早期用戶社區，他們相信 AI 陪伴的未來",
+    "testimonialsTitle": "早期用戶評價",
+    "pressTitle": "媒體報導"
+  },
+  "payment": {
+    "button": {
+      "pay": "立即付款"
+    },
+    "status": {
+      "processing": "處理中..."
+    },
+    "success": {
+      "title": "預訂成功！",
+      "description": "感謝您的購買。確認郵件已發送給您。",
+      "support_message": "如有任何問題，請聯繫我們的支持團隊。",
+      "back_to_home": "返回首頁"
+    },
+    "cancel": {
+      "title": "付款已取消",
+      "description": "您的付款流程未完成。您的購物車已保存。",
+      "support_message": "如果您遇到問題，請聯繫我們的支持團隊。",
+      "try_again": "重試",
+      "back_to_home": "返回首頁"
+    }
+  }
+}

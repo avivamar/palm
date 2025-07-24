@@ -1,0 +1,11 @@
+{
+  "required": "{field} 是必填项",
+  "minLength": "{field} 至少需要 {min} 个字符",
+  "maxLength": "{field} 不能超过 {max} 个字符",
+  "invalid": "请输入有效的 {field}",
+  "invalidEmail": "请输入有效的邮箱地址",
+  "invalidPhone": "请输入有效的电话号码",
+  "emailCheckError": "无法验证邮箱地址",
+  "validationError": "验证失败，请重试。",
+  "valid": "{field} 有效"
+}

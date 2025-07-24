@@ -1,0 +1,70 @@
+# 项目名称配置
+main = ".open-next/worker.js"
+name = "rolitt"
+compatibility_date = "2024-12-19"
+compatibility_flags = [ "nodejs_compat" ]
+
+# 自定义域名路由配置
+[[routes]]
+pattern = "www.rolitt.com"
+custom_domain = true
+
+[[routes]]
+pattern = "rolitt.com"
+custom_domain = true
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+# 环境变量配置
+[vars]
+# 在此处添加环境变量
+
+[env.production]
+compatibility_flags = [ "nodejs_compat" ]
+
+[env.production.vars]
+# App URL
+NEXT_PUBLIC_APP_URL = "https://www.rolitt.com"
+
+# Admin Access Control
+ADMIN_ACCESS_ENABLED = "true"
+
+# Google Analytics
+NEXT_PUBLIC_GA_MEASUREMENT_ID = "G-D32MFWSQJ7"
+# Meta Pixel (Facebook)
+NEXT_PUBLIC_META_PIXEL_ID = "444178048487559"
+
+# Microsoft Clarity
+NEXT_PUBLIC_CLARITY_PROJECT_ID = "rrk0zb42hs"
+
+# TikTok Pixel
+NEXT_PUBLIC_TIKTOK_PIXEL_ID = "YOUR_TIKTOK_PIXEL_ID_STRING"
+
+# Klaviyo
+NEXT_PUBLIC_KLAVIYO_COMPANY_ID = "RW95a6"
+
+# ## 🔐 Firebase 公共配置（前端使用）
+NEXT_PUBLIC_FIREBASE_API_KEY = "AIzaSyDifu_NwU0uLde4vvfalLms-FRAlSru-2A"
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN = "rolitt.firebaseapp.com"
+NEXT_PUBLIC_FIREBASE_PROJECT_ID = "rolitt"
+NEXT_PUBLIC_FIREBASE_APP_ID = "1:234635192772:web:3a5b5e6b9e82b29cf2dc91"
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID = "G-643VF2H04Z"
+
+# stripe
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY = "pk_live_51PSxxwBCMz50a5RzD4B1QIq2seBVk7e7E4esYfjmaA0G0Y8MtIWl8bFm3WYnPWaEPMXIv8YGvA3pUaXE8nOH7Uoo00dNcZkIa3"
+
+[env.preview.vars]
+CACHE_CONTROL_MAX_AGE = "31536000"
+
+# wrangler.toml (wrangler v3.88.0^)
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+
+# 在 wrangler.toml 中可以考虑添加构建配置
+[build]
+command = "npm ci && npm run build && npx opennextjs-cloudflare build"

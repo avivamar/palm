@@ -1,0 +1,551 @@
+{
+  "Payment": {
+    "Success": {
+      "title": "お支払い完了！",
+      "message": "ご予約いただきありがとうございます！お支払いを確認いたしました。あなたのRolitt AIコンパニオンはもうすぐお手元に届きます。確認メールをお送りいたしました。",
+      "button_back_home": "ホームに戻る",
+      "support_message": "ご質問がございましたら、サポートチームにお気軽にお問い合わせください："
+    },
+    "Cancel": {
+      "title": "お支払いがキャンセルされました",
+      "message": "お支払いがキャンセルされたようです。ご心配ありません。ご予約は保存されています。下記のボタンからいつでもお支払いを完了していただけます。",
+      "button_try_again": "再度お試しください"
+    },
+    "Button": {
+      "pay": "今すぐ支払う"
+    },
+    "Status": {
+      "processing": "処理中..."
+    },
+    "SuccessPage": {
+      "title": "ご予約完了！",
+      "description": "ご購入ありがとうございます。確認メールをお送りいたしました。",
+      "support_message": "ご質問がございましたら、サポートチームまでお問い合わせください。",
+      "back_to_home": "ホームページに戻る"
+    },
+    "CancelPage": {
+      "title": "お支払いがキャンセルされました",
+      "description": "お支払い処理が完了しませんでした。カートは保存されています。",
+      "support_message": "問題が発生している場合は、サポートチームまでお問い合わせください。",
+      "try_again": "再度お試しください",
+      "back_to_home": "ホームページに戻る"
+    }
+  },
+  "PreOrder": {
+    "Hero": {
+      "title": "AIコンパニオンシップの未来を最初に体験してください",
+      "description": "今すぐRolitt AIコンパニオンをご予約いただき、次世代のインタラクティブテクノロジーにご参加ください。",
+      "cta": "今すぐ予約する",
+      "limited_time_text": "✨ 限定予約、早期購入割引",
+      "features": {
+        "innovation": {
+          "icon": "🚀",
+          "text": "革新的テクノロジー"
+        },
+        "quality": {
+          "icon": "💎",
+          "text": "プレミアム品質"
+        },
+        "limited": {
+          "icon": "🌟",
+          "text": "限定版"
+        },
+        "fast_delivery": {
+          "icon": "⚡",
+          "text": "迅速配送"
+        }
+      },
+      "colors": {
+        "honey_khaki": "ハニーカーキ",
+        "sakura_pink": "桜ピンク",
+        "healing_green": "ヒーリンググリーン",
+        "moonlight_grey": "ムーンライトグレー"
+      }
+    },
+    "Features": {
+      "title": "革命的なAI機能",
+      "description": "最先端テクノロジーと感情知能の完璧な融合を体験してください。",
+      "ai": {
+        "title": "高度なAI",
+        "description": "自然な会話のための最先端言語モデルを搭載"
+      },
+      "conversation": {
+        "title": "自然な会話",
+        "description": "AIコンパニオンとの有意義な対話をお楽しみください"
+      },
+      "emotion": {
+        "title": "感情知能",
+        "description": "あなたの感情状態を認識し、適切に応答します"
+      },
+      "magic": {
+        "title": "魔法の瞬間",
+        "description": "忘れられないインタラクティブ体験を創造します"
+      }
+    },
+    "Timeline": {
+      "title": "製品の歩み",
+      "description": "予約から配送までの歩みをご確認ください",
+      "preOrder": {
+        "date": "現在",
+        "title": "予約段階",
+        "description": "早期購入価格を確保し、AIコンパニオンを最初に受け取る方の一人になってください"
+      },
+      "production": {
+        "date": "2024年第2四半期",
+        "title": "製造段階",
+        "description": "最新テクノロジーを使用して、あなたのAIコンパニオンを丁寧に製作しています"
+      },
+      "shipping": {
+        "date": "2024年第3四半期",
+        "title": "配送段階",
+        "description": "プレミアム包装でお届けの準備を整えています"
+      },
+      "delivery": {
+        "date": "2024年第3四半期",
+        "title": "配送",
+        "description": "あなたの新しい親友となる準備ができたAIコンパニオンがお手元に届きます"
+      }
+    },
+    "Pricing": {
+      "title": "早期購入特別価格",
+      "description": "AIコンパニオン第一陣の限定時間オファー",
+      "earlyBird": {
+        "title": "早期購入価格",
+        "price": "￥39,800",
+        "description": "通常価格より￥6,000お得"
+      },
+      "features": {
+        "ai": "定期アップデート付きの高度なAI機能",
+        "battery": "長時間持続するバッテリー",
+        "connectivity": "シームレスなWi-FiとBluetooth接続",
+        "updates": "生涯無料ソフトウェアアップデート",
+        "support": "24時間365日カスタマーサポート"
+      },
+      "cta": "今すぐ予約する",
+      "colors": {
+        "honey_khaki": "ハニーカーキ",
+        "sakura_pink": "桜ピンク",
+        "healing_green": "ヒーリンググリーン",
+        "moonlight_grey": "ムーンライトグレー"
+      }
+    },
+    "FAQ": {
+      "title": "よくあるご質問",
+      "description": "予約、配送、特典に関するよくあるご質問の回答をご確認ください。",
+      "tabs": {
+        "shipping": "配送",
+        "refund": "返品・注文",
+        "perks": "特典"
+      },
+      "faqs": {
+        "shipping": [
+          {
+            "question": "予約商品はいつ発送されますか？",
+            "answer": "すべての予約注文は注文順に発送されます。第一陣は2025年8月中旬に発送予定です。発送後にメール通知をお送りします。"
+          },
+          {
+            "question": "追跡情報は受け取れますか？",
+            "answer": "はい、発送後に追跡情報付きのメールをお送りしますので、荷物の配送状況をご確認いただけます。"
+          }
+        ],
+        "refund": [
+          {
+            "question": "予約のキャンセル・返金は可能ですか？",
+            "answer": "商品が発送される前であれば、お支払いから7日以内に全額返金をご請求いただけます。発送後の返金は承っておりません。"
+          },
+          {
+            "question": "配送先住所の変更は可能ですか？",
+            "answer": "はい、商品発送前であれば無料で配送先住所を変更いただけます。できるだけ早くお問い合わせください。"
+          }
+        ],
+        "perks": [
+          {
+            "question": "予約購入者にはどのような特典がありますか？",
+            "answer": "• 限定版ナンバリングカード\n• ブランドサンクスレター\n• スカーフまたは小物バッグアクセサリー"
+          },
+          {
+            "question": "保証は付いていますか？",
+            "answer": "Rolitt製品には1年間の保証が付いています。人為的でない損傷については無料で交換・修理いたします。"
+          }
+        ]
+      }
+    },
+    "CTA": {
+      "title": "未来に参加する準備はできていますか？",
+      "description": "今すぐAIコンパニオンをご予約いただき、コンパニオンシップの未来を最初に体験してください。"
+    },
+    "Form": {
+      "name": {
+        "label": "氏名",
+        "placeholder": "お名前を入力してください"
+      },
+      "email": {
+        "label": "メールアドレス",
+        "placeholder": "メールアドレスを入力してください"
+      },
+      "quantity": {
+        "label": "数量",
+        "placeholder": "数量を入力してください"
+      },
+      "submit": "今すぐ予約する",
+      "submitting": "処理中...",
+      "success": {
+        "title": "ご予約完了！",
+        "description": "ご予約ありがとうございます。注文状況についてアップデートをお送りします。"
+      },
+      "error": {
+        "title": "エラー",
+        "description": "ご予約の処理中にエラーが発生しました。もう一度お試しください。"
+      }
+    },
+    "ProductSelection": {
+      "title": "今すぐ予約する",
+      "description": "お気に入りの色を選択して、最初に手に入れてください。",
+      "color_label": "カラー",
+      "email_label": "メール",
+      "email_placeholder": "メールアドレスを入力",
+      "no_products_title": "商品が利用できません",
+      "no_products_description": "申し訳ございませんが、現在予約可能な商品がございません。後ほど再度ご確認ください。",
+      "go_to_payment_button": "お支払いに進む",
+      "continue_to_checkout": "チェックアウトに進む"
+    },
+    "Realtime": {
+      "stockAlert": "在庫残り{count}個のみ！",
+      "countdownTitle": "早期購入オファー終了まで",
+      "hours": "時間",
+      "minutes": "分",
+      "seconds": "秒",
+      "countdownDescription": "特別価格をお見逃しなく！",
+      "liveActivityTitle": "ライブアクティビティ",
+      "activityOrder": "{location}の方が先ほど予約しました",
+      "activityView": "{location}の方がこのページを閲覧中です",
+      "justNow": "たった今",
+      "minutesAgo": "{minutes}分前",
+      "limitedStock": "⚡ 在庫限定 - 残り47個のみ！",
+      "earlyBirdEnding": "🔥 早期購入価格は24時間で終了！",
+      "freeShipping": "🚚 予約注文で世界中送料無料！",
+      "socialProof": "🎉 {count}人の方がすでに予約済み！",
+      "socialProofLabel": "満足されたお客様",
+      "socialProofText": "世界中の数千人の満足されたお客様の仲間入りを！"
+    }
+  },
+  "Testimonials": {
+    "title": "早期利用者の声",
+    "rating": "⭐⭐⭐⭐⭐ ベータユーザーより4.9/5の評価",
+    "video1": "動画1プレビュー",
+    "video2": "動画2プレビュー",
+    "video3": "動画3プレビュー"
+  },
+  "SocialProof": {
+    "title": "数千人に信頼されています",
+    "description": "AIコンパニオンシップの未来を信じる、成長中の早期利用者コミュニティにご参加ください",
+    "testimonialsTitle": "早期利用者の声",
+    "pressTitle": "メディア掲載"
+  },
+  "PaymentSuccess": {
+    "title": "お支払い完了！",
+    "message": "ご予約いただきありがとうございます！お支払いを確認いたしました。あなたのRolitt AIコンパニオンはもうすぐお手元に届きます。確認メールをお送りいたしました。",
+    "button_back_home": "ホームに戻る",
+    "support_message": "ご質問がございましたら、サポートチームにお気軽にお問い合わせください："
+  },
+  "PaymentCancel": {
+    "title": "お支払いがキャンセルされました",
+    "message": "お支払いがキャンセルされたようです。ご心配ありません。ご予約は保存されています。下記のボタンからいつでもお支払いを完了していただけます。",
+    "button_try_again": "再度お試しください"
+  },
+  "preOrder": {
+    "progress": {
+      "steps": {
+        "product": {
+          "title": "商品",
+          "description": "コンパニオンを選択"
+        },
+        "details": {
+          "title": "詳細",
+          "description": "個人情報"
+        },
+        "payment": {
+          "title": "支払い",
+          "description": "配送と支払い"
+        },
+        "confirmation": {
+          "title": "完了",
+          "description": "注文確定"
+        }
+      },
+      "currentStep": "ステップ {step} / {total}: {stepName}"
+    },
+    "hero": {
+      "title": "AIコンパニオンシップの未来を最初に体験してください",
+      "description": "今すぐRolitt AIコンパニオンをご予約いただき、次世代のインタラクティブテクノロジーにご参加ください。",
+      "cta": "今すぐ予約する",
+      "limited_time_text": "✨ 限定予約、早期購入割引",
+      "features": {
+        "innovation": {
+          "icon": "🚀",
+          "text": "革新的テクノロジー"
+        },
+        "quality": {
+          "icon": "💎",
+          "text": "プレミアム品質"
+        },
+        "limited": {
+          "icon": "🌟",
+          "text": "限定版"
+        },
+        "fast_delivery": {
+          "icon": "⚡",
+          "text": "迅速配送"
+        }
+      },
+      "urgency_banner": "期間限定：￥10,000お得",
+      "benefits": {
+        "save_money": "￥10,000お得",
+        "free_shipping": "送料無料",
+        "limited_stock": "在庫限定"
+      },
+      "trust_indicators": {
+        "money_back": "30日間返金保証",
+        "warranty": "1年保証",
+        "rating": "4.9/5評価"
+      },
+      "colors": {
+        "honey_khaki": "ハニーカーキ",
+        "sakura_pink": "桜ピンク",
+        "healing_green": "ヒーリンググリーン",
+        "moonlight_grey": "ムーンライトグレー"
+      }
+    },
+    "features": {
+      "title": "革命的なAI機能",
+      "description": "最先端テクノロジーと感情知能の完璧な融合を体験してください。",
+      "ai": {
+        "title": "高度なAI",
+        "description": "自然な会話のための最先端言語モデルを搭載"
+      },
+      "conversation": {
+        "title": "自然な会話",
+        "description": "AIコンパニオンとの有意義な対話をお楽しみください"
+      },
+      "emotion": {
+        "title": "感情知能",
+        "description": "あなたの感情状態を認識し、適切に応答します"
+      },
+      "magic": {
+        "title": "魔法の瞬間",
+        "description": "忘れられないインタラクティブ体験を創造します"
+      }
+    },
+    "timeline": {
+      "title": "製品の歩み",
+      "description": "予約から配送までの歩みをご確認ください",
+      "preOrder": {
+        "date": "現在",
+        "title": "予約段階",
+        "description": "早期購入価格を確保し、AIコンパニオンを最初に受け取る方の一人になってください"
+      },
+      "production": {
+        "date": "2024年第2四半期",
+        "title": "製造段階",
+        "description": "最新テクノロジーを使用して、あなたのAIコンパニオンを丁寧に製作しています"
+      },
+      "shipping": {
+        "date": "2024年第3四半期",
+        "title": "配送段階",
+        "description": "プレミアム包装でお届けの準備を整えています"
+      },
+      "delivery": {
+        "date": "2024年第3四半期",
+        "title": "配送",
+        "description": "あなたの新しい親友となる準備ができたAIコンパニオンがお手元に届きます"
+      }
+    },
+    "pricing": {
+      "title": "早期購入特別価格",
+      "description": "AIコンパニオン第一陣の限定時間オファー",
+      "earlyBird": {
+        "title": "早期購入価格",
+        "price": "￥39,800",
+        "description": "通常価格より￥6,000お得"
+      },
+      "features": {
+        "ai": "定期アップデート付きの高度なAI機能",
+        "battery": "長時間持続するバッテリー",
+        "connectivity": "シームレスなWi-FiとBluetooth接続",
+        "updates": "生涯無料ソフトウェアアップデート",
+        "support": "24時間365日カスタマーサポート"
+      },
+      "cta": "今すぐ予約する",
+      "colors": {
+        "honey_khaki": "ハニーカーキ",
+        "sakura_pink": "桜ピンク",
+        "healing_green": "ヒーリンググリーン",
+        "moonlight_grey": "ムーンライトグレー"
+      }
+    },
+    "faq": {
+      "title": "よくあるご質問",
+      "description": "予約、配送、特典に関するよくあるご質問の回答をご確認ください。",
+      "tabs": {
+        "shipping": "配送",
+        "refund": "返品・注文",
+        "perks": "特典"
+      },
+      "faqs": {
+        "shipping": [
+          {
+            "question": "予約商品はいつ発送されますか？",
+            "answer": "すべての予約注文は注文順に発送されます。第一陣は2025年8月中旬に発送予定です。発送後にメール通知をお送りします。"
+          },
+          {
+            "question": "追跡情報は受け取れますか？",
+            "answer": "はい、発送後に追跡情報付きのメールをお送りしますので、荷物の配送状況をご確認いただけます。"
+          }
+        ],
+        "refund": [
+          {
+            "question": "予約のキャンセル・返金は可能ですか？",
+            "answer": "商品が発送される前であれば、お支払いから7日以内に全額返金をご請求いただけます。発送後の返金は承っておりません。"
+          },
+          {
+            "question": "配送先住所の変更は可能ですか？",
+            "answer": "はい、商品発送前であれば無料で配送先住所を変更いただけます。できるだけ早くお問い合わせください。"
+          }
+        ],
+        "perks": [
+          {
+            "question": "予約購入者にはどのような特典がありますか？",
+            "answer": "• 限定版ナンバリングカード\n• ブランドサンクスレター\n• スカーフまたは小物バッグアクセサリー"
+          },
+          {
+            "question": "保証は付いていますか？",
+            "answer": "Rolitt製品には1年間の保証が付いています。人為的でない損傷については無料で交換・修理いたします。"
+          }
+        ]
+      }
+    },
+    "cta": {
+      "title": "未来に参加する準備はできていますか？",
+      "description": "今すぐAIコンパニオンをご予約いただき、コンパニオンシップの未来を最初に体験してください。"
+    },
+    "form": {
+      "personalInfo": "個人情報",
+      "personalInfoDescription": "あなたの体験をパーソナライズするために、ご自身について教えてください",
+      "shippingInfo": "配送情報",
+      "shippingInfoDescription": "RolittAIコンパニオンをどちらにお送りしますか？",
+      "firstName": "名",
+      "lastName": "姓",
+      "email": "メールアドレス",
+      "phone": "電話番号",
+      "address": "住所",
+      "city": "市区町村",
+      "state": "都道府県",
+      "postalCode": "郵便番号",
+      "country": "国",
+      "previous": "前へ",
+      "continue": "続ける",
+      "complete": "注文を完了",
+      "name": {
+        "label": "氏名",
+        "placeholder": "お名前を入力してください"
+      },
+      "quantity": {
+        "label": "数量",
+        "placeholder": "数量を入力してください"
+      },
+      "submit": "今すぐ予約する",
+      "submitting": "処理中...",
+      "success": {
+        "title": "ご予約完了！",
+        "description": "ご予約ありがとうございます。注文状況についてアップデートをお送りします。"
+      },
+      "error": {
+        "title": "エラー",
+        "description": "ご予約の処理中にエラーが発生しました。もう一度お試しください。"
+      }
+    },
+    "security": {
+      "title": "安全な決済",
+      "description": "お支払い情報は暗号化されており安全です",
+      "processing": "処理には通常2〜3秒かかります"
+    },
+    "pricing": {
+      "includesTax": "すべての税金と手数料が含まれています"
+    },
+    "product_selection": {
+      "title": "今すぐ予約する",
+      "description": "お気に入りの色を選択して、最初に手に入れてください。",
+      "color_label": "カラー",
+      "email_label": "メール",
+      "email_placeholder": "メールアドレスを入力",
+      "no_products_title": "商品が利用できません",
+      "no_products_description": "申し訳ございませんが、現在予約可能な商品がございません。後ほど再度ご確認ください。",
+      "go_to_payment_button": "お支払いに進む",
+      "continue_to_checkout": "チェックアウトに進む",
+      "pay_now": "今すぐ支払う",
+      "processing": "処理中...",
+      "secure_payment": "Stripeによる安全な決済 • 安全なチェックアウトにリダイレクトされます"
+    },
+    "realtime": {
+      "stockAlert": "在庫残り{count}個のみ！",
+      "countdownTitle": "早期購入オファー終了まで",
+      "hours": "時間",
+      "minutes": "分",
+      "seconds": "秒",
+      "countdownDescription": "特別価格をお見逃しなく！",
+      "liveActivityTitle": "ライブアクティビティ",
+      "activityOrder": "{location}の方が先ほど予約しました",
+      "activityView": "{location}の方がこのページを閲覧中です",
+      "justNow": "たった今",
+      "minutesAgo": "{minutes}分前",
+      "limitedStock": "⚡ 在庫限定 - 残り47個のみ！",
+      "earlyBirdEnding": "🔥 早期購入価格は24時間で終了！",
+      "freeShipping": "🚚 予約注文で世界中送料無料！",
+      "socialProof": "🎉 {count}人の方がすでに予約済み！",
+      "socialProofLabel": "満足されたお客様",
+      "socialProofText": "世界中の数千人の満足されたお客様の仲間入りを！"
+    }
+  },
+  "PreOrderTestimonials": {
+    "title": "早期利用者の声",
+    "rating": "⭐⭐⭐⭐⭐ ベータユーザーより4.9/5の評価",
+    "video1": "動画1プレビュー",
+    "video2": "動画2プレビュー",
+    "video3": "動画3プレビュー"
+  },
+  "VideoSection": {
+    "badge": "製品デモ",
+    "title": "Rolittの動作を確認",
+    "description": "動画でRolitt AIコンパニオンの機能とユーザー体験をご確認ください",
+    "youtube_link_text": "詳しく知りたい方は、ぜひ",
+    "youtube_channel": "YouTubeチャンネル",
+    "youtube_link_suffix": "をご覧いただき、さらに多くの動画コンテンツをお楽しみください"
+  },
+  "PreOrderSocialProof": {
+    "title": "数千人に信頼されています",
+    "description": "AIコンパニオンシップの未来を信じる、成長中の早期利用者コミュニティにご参加ください",
+    "testimonialsTitle": "早期利用者の声",
+    "pressTitle": "メディア掲載"
+  },
+  "payment": {
+    "button": {
+      "pay": "今すぐ支払う"
+    },
+    "status": {
+      "processing": "処理中..."
+    },
+    "success": {
+      "title": "ご予約完了！",
+      "description": "ご購入ありがとうございます。確認メールをお送りいたしました。",
+      "support_message": "ご質問がございましたら、サポートチームまでお問い合わせください。",
+      "back_to_home": "ホームページに戻る"
+    },
+    "cancel": {
+      "title": "お支払いがキャンセルされました",
+      "description": "お支払い処理が完了しませんでした。カートは保存されています。",
+      "support_message": "問題が発生している場合は、サポートチームまでお問い合わせください。",
+      "try_again": "再度お試しください",
+      "back_to_home": "ホームページに戻る"
+    }
+  }
+}

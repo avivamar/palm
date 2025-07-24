@@ -1,0 +1,335 @@
+import { Env } from '@/libs/Env';
+
+// 检查是否在 Cloudflare Workers 环境中
+const isCloudflareWorkers = typeof globalThis.navigator !== 'undefined'
+  && globalThis.navigator.userAgent === 'Cloudflare-Workers';
+
+// 检查是否在 Vercel 环境中
+const isVercelEnvironment = process.env.VERCEL === '1';
+
+// 检查是否在服务器环境中且不是 Cloudflare Workers
+const isServerEnvironment = typeof window === 'undefined' && !isCloudflareWorkers;
+
+// 设置初始化超时
+const INIT_TIMEOUT = isVercelEnvironment ? 10000 : 30000; // Vercel 10s, 其他 30s
+
+/**
+ * 超时包装器函数
+ */
+function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error(`Operation timed out after ${timeoutMs}ms`)), timeoutMs),
+    ),
+  ]);
+}
+
+let app: any = null;
+let adminAuth: any = null;
+let isInitialized = false;
+let initializationError: string | null = null;
+
+/**
+ * 🔥 Enhanced Firebase Admin 初始化函数
+ * 增强错误处理、详细调试信息、环境变量验证、Vercel 优化
+ */
+async function initializeFirebaseAdmin() {
+  if (isInitialized) {
+    console.error(`[FirebaseAdmin] Already initialized: ${app ? 'Success' : 'Failed'}`);
+    return { app, adminAuth, error: initializationError };
+  }
+
+  if (!isServerEnvironment) {
+    console.error('[FirebaseAdmin] Not in server environment, skipping initialization');
+    return { app: null, adminAuth: null, error: 'Not in server environment' };
+  }
+
+  try {
+    console.error(`[FirebaseAdmin] 🔥 Starting enhanced Firebase Admin initialization (Vercel: ${isVercelEnvironment}, Timeout: ${INIT_TIMEOUT}ms)...`);
+
+    // 使用超时包装器
+    const result = await withTimeout(
+      performFirebaseInitialization(),
+      INIT_TIMEOUT,
+    );
+
+    return result;
+  } catch (error) {
+    // 详细错误日志
+    console.error('[FirebaseAdmin] Initialization failed:', {
+      error: error instanceof Error ? error.message : String(error),
+      isVercel: isVercelEnvironment,
+      timeout: INIT_TIMEOUT,
+      env: {
+        hasServiceAccount: !!Env.FIREBASE_SERVICE_ACCOUNT_KEY,
+        hasProjectId: !!Env.FIREBASE_PROJECT_ID,
+        hasPrivateKey: !!Env.FIREBASE_PRIVATE_KEY,
+        hasClientEmail: !!Env.FIREBASE_CLIENT_EMAIL,
+      },
+    });
+
+    initializationError = error instanceof Error ? error.message : String(error);
+    isInitialized = true;
+    return { app: null, adminAuth: null, error: initializationError };
+  }
+}
+
+/**
+ * 🔥 执行 Firebase 初始化的核心逻辑
+ */
+async function performFirebaseInitialization() {
+  try {
+    console.error('[FirebaseAdmin] 🔥 Starting core Firebase Admin initialization...');
+
+    // 🔧 Step 1: 验证环境变量
+    const envValidation = validateFirebaseEnvironment();
+    if (!envValidation.valid) {
+      initializationError = `Environment validation failed: ${envValidation.error}`;
+      console.error(`[FirebaseAdmin] ❌ ${initializationError}`);
+      isInitialized = true; // 标记为已尝试初始化，避免重复
+      return { app: null, adminAuth: null, error: initializationError };
+    }
+
+    console.error('[FirebaseAdmin] ✅ Environment variables validation passed');
+
+    // 🔧 Step 2: 动态导入Firebase模块
+    console.error('[FirebaseAdmin] 📦 Loading Firebase Admin modules...');
+    const { getApps, initializeApp, cert } = await import('firebase-admin/app');
+    const { getAuth } = await import('firebase-admin/auth');
+    console.error('[FirebaseAdmin] ✅ Firebase Admin modules loaded successfully');
+
+    // 🔧 Step 3: 准备凭证
+    const credential = await prepareFirebaseCredential(cert);
+    if (!credential) {
+      initializationError = 'Failed to prepare Firebase credential';
+      console.error(`[FirebaseAdmin] ❌ ${initializationError}`);
+      isInitialized = true;
+      return { app: null, adminAuth: null, error: initializationError };
+    }
+
+    console.error('[FirebaseAdmin] ✅ Firebase credential prepared successfully');
+
+    // 🔧 Step 4: 初始化应用
+    if (getApps().length === 0) {
+      console.error('[FirebaseAdmin] 🚀 Initializing new Firebase app...');
+      app = initializeApp({
+        credential,
+        projectId: Env.FIREBASE_PROJECT_ID || Env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+      });
+      console.error(`[FirebaseAdmin] ✅ New Firebase app initialized: ${app.name}`);
+    } else {
+      app = getApps()[0];
+      console.error(`[FirebaseAdmin] ✅ Using existing Firebase app: ${app.name}`);
+    }
+
+    // 🔧 Step 5: 初始化Auth
+    console.error('[FirebaseAdmin] 🔑 Initializing Firebase Auth...');
+    adminAuth = getAuth(app);
+    console.error('[FirebaseAdmin] ✅ Firebase Auth initialized successfully');
+
+    // 🔧 Step 6: 测试连接（在 Vercel 环境中跳过以减少初始化时间）
+    if (!isVercelEnvironment) {
+      await testFirebaseConnection(adminAuth);
+    } else {
+      console.error('[FirebaseAdmin] ⚡ Skipping connection test in Vercel environment for faster initialization');
+    }
+
+    isInitialized = true;
+    initializationError = null;
+    console.error('[FirebaseAdmin] 🎉 Firebase Admin initialization completed successfully!');
+
+    return { app, adminAuth, error: null };
+  } catch (error) {
+    const errorMessage = `Firebase Admin initialization failed: ${error instanceof Error ? error.message : String(error)}`;
+    console.error(`[FirebaseAdmin] ❌ Critical error:`, error);
+
+    // 详细错误信息
+    if (error instanceof Error) {
+      console.error(`[FirebaseAdmin] Error name: ${error.name}`);
+      console.error(`[FirebaseAdmin] Error message: ${error.message}`);
+      console.error(`[FirebaseAdmin] Error stack: ${error.stack}`);
+    }
+
+    app = null;
+    adminAuth = null;
+    isInitialized = true; // 标记为已尝试，避免重复初始化
+    throw new Error(errorMessage);
+  }
+}
+
+/**
+ * 🔍 验证Firebase环境变量
+ */
+function validateFirebaseEnvironment(): { valid: boolean; error?: string } {
+  console.error('[FirebaseAdmin] 🔍 Validating Firebase environment variables...');
+  
+  // 在构建时跳过验证，避免构建失败
+  const isBuildTime = process.env.NEXT_PHASE === 'phase-production-build' || 
+    (typeof window === 'undefined' && !process.env.RAILWAY_ENVIRONMENT && !process.env.VERCEL && !process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+  
+  if (isBuildTime) {
+    console.warn('[FirebaseAdmin] ⚠️ Skipping Firebase validation during build time');
+    return { valid: false, error: 'Build time - Firebase validation skipped' };
+  }
+
+  // 方法1: 检查 FIREBASE_SERVICE_ACCOUNT_KEY
+  if (Env.FIREBASE_SERVICE_ACCOUNT_KEY) {
+    console.error('[FirebaseAdmin] Found FIREBASE_SERVICE_ACCOUNT_KEY');
+    try {
+      const parsed = JSON.parse(Env.FIREBASE_SERVICE_ACCOUNT_KEY);
+      if (parsed.type === 'service_account' && parsed.project_id && parsed.private_key && parsed.client_email) {
+        console.error('[FirebaseAdmin] ✅ FIREBASE_SERVICE_ACCOUNT_KEY is valid');
+        return { valid: true };
+      } else {
+        console.error('[FirebaseAdmin] ❌ FIREBASE_SERVICE_ACCOUNT_KEY missing required fields');
+        return { valid: false, error: 'FIREBASE_SERVICE_ACCOUNT_KEY missing required fields' };
+      }
+    } catch (e) {
+      console.error('[FirebaseAdmin] ❌ FIREBASE_SERVICE_ACCOUNT_KEY is not valid JSON:', e);
+      return { valid: false, error: 'FIREBASE_SERVICE_ACCOUNT_KEY is not valid JSON' };
+    }
+  }
+
+  // 方法2: 检查分离的环境变量
+  const projectId = Env.FIREBASE_PROJECT_ID || Env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+  const privateKey = Env.FIREBASE_PRIVATE_KEY;
+  const clientEmail = Env.FIREBASE_CLIENT_EMAIL;
+
+  if (projectId && privateKey && clientEmail) {
+    console.error('[FirebaseAdmin] Found separate Firebase environment variables');
+    console.error(`[FirebaseAdmin] Project ID: ${projectId}`);
+    console.error(`[FirebaseAdmin] Client Email: ${clientEmail}`);
+    console.error(`[FirebaseAdmin] Private Key: ${privateKey ? `${privateKey.substring(0, 50)}...` : 'missing'}`);
+    return { valid: true };
+  }
+
+  console.error('[FirebaseAdmin] ❌ No valid Firebase configuration found');
+  console.error('[FirebaseAdmin] Available env vars:');
+  console.error(`[FirebaseAdmin] - FIREBASE_SERVICE_ACCOUNT_KEY: ${Env.FIREBASE_SERVICE_ACCOUNT_KEY ? 'present' : 'missing'}`);
+  console.error(`[FirebaseAdmin] - FIREBASE_PROJECT_ID: ${Env.FIREBASE_PROJECT_ID || 'missing'}`);
+  console.error(`[FirebaseAdmin] - NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${Env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'missing'}`);
+  console.error(`[FirebaseAdmin] - FIREBASE_PRIVATE_KEY: ${Env.FIREBASE_PRIVATE_KEY ? 'present' : 'missing'}`);
+  console.error(`[FirebaseAdmin] - FIREBASE_CLIENT_EMAIL: ${Env.FIREBASE_CLIENT_EMAIL || 'missing'}`);
+
+  return {
+    valid: false,
+    error: 'No valid Firebase configuration found. Need either FIREBASE_SERVICE_ACCOUNT_KEY or (FIREBASE_PROJECT_ID + FIREBASE_PRIVATE_KEY + FIREBASE_CLIENT_EMAIL)',
+  };
+}
+
+/**
+ * 🔧 准备Firebase凭证
+ */
+async function prepareFirebaseCredential(cert: any): Promise<any> {
+  console.error('[FirebaseAdmin] 🔧 Preparing Firebase credential...');
+
+  // 优先使用 FIREBASE_SERVICE_ACCOUNT_KEY
+  if (Env.FIREBASE_SERVICE_ACCOUNT_KEY) {
+    try {
+      console.error('[FirebaseAdmin] Using FIREBASE_SERVICE_ACCOUNT_KEY method');
+      const serviceAccount = JSON.parse(Env.FIREBASE_SERVICE_ACCOUNT_KEY);
+      const credential = cert(serviceAccount);
+      console.error('[FirebaseAdmin] ✅ Credential created from FIREBASE_SERVICE_ACCOUNT_KEY');
+      return credential;
+    } catch (e) {
+      console.error('[FirebaseAdmin] ❌ Failed to create credential from FIREBASE_SERVICE_ACCOUNT_KEY:', e);
+      return null;
+    }
+  }
+
+  // 回退到分离的环境变量
+  const projectId = Env.FIREBASE_PROJECT_ID || Env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+  const privateKey = Env.FIREBASE_PRIVATE_KEY;
+  const clientEmail = Env.FIREBASE_CLIENT_EMAIL;
+
+  if (projectId && privateKey && clientEmail) {
+    try {
+      console.error('[FirebaseAdmin] Using separate environment variables method');
+
+      // 处理私钥格式
+      const processedPrivateKey = privateKey.replace(/\\n/g, '\n');
+      console.error(`[FirebaseAdmin] Private key processed, length: ${processedPrivateKey.length}`);
+
+      const credential = cert({
+        projectId,
+        clientEmail,
+        privateKey: processedPrivateKey,
+      });
+
+      console.error('[FirebaseAdmin] ✅ Credential created from separate environment variables');
+      return credential;
+    } catch (e) {
+      console.error('[FirebaseAdmin] ❌ Failed to create credential from separate variables:', e);
+      return null;
+    }
+  }
+
+  console.error('[FirebaseAdmin] ❌ No valid credential configuration found');
+  return null;
+}
+
+/**
+ * 🧪 测试Firebase连接
+ */
+async function testFirebaseConnection(auth: any): Promise<void> {
+  try {
+    console.error('[FirebaseAdmin] 🧪 Testing Firebase connection...');
+
+    // 简单的测试：尝试获取用户列表（最多1个）
+    const listResult = await auth.listUsers(1);
+    console.error(`[FirebaseAdmin] ✅ Connection test passed. Users found: ${listResult.users.length}`);
+  } catch (error) {
+    console.error('[FirebaseAdmin] ⚠️ Connection test failed:', error);
+    throw new Error(`Firebase connection test failed: ${error instanceof Error ? error.message : String(error)}`);
+  }
+}
+
+/**
+ * 🔥 获取 Firebase Admin 实例的函数
+ */
+export async function getFirebaseAdmin() {
+  // 在构建时返回安全的默认值
+  const isBuildTime = process.env.NEXT_PHASE === 'phase-production-build' || 
+    (typeof window === 'undefined' && !process.env.RAILWAY_ENVIRONMENT && !process.env.VERCEL && !process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+  
+  if (isBuildTime) {
+    console.warn('[FirebaseAdmin] ⚠️ Build time detected - returning null Firebase Admin');
+    return {
+      app: null,
+      adminAuth: null,
+      error: 'Build time - Firebase Admin not available',
+      isInitialized: false,
+    };
+  }
+
+  const result = await initializeFirebaseAdmin();
+
+  if (result.error) {
+    console.error(`[FirebaseAdmin] getFirebaseAdmin() called but initialization failed: ${result.error}`);
+  }
+
+  return {
+    app: result.app,
+    adminAuth: result.adminAuth,
+    error: result.error,
+    isInitialized: isInitialized && !result.error,
+  };
+}
+
+/**
+ * 🔍 获取Firebase Admin状态
+ */
+export function getFirebaseAdminStatus() {
+  return {
+    isInitialized,
+    hasApp: !!app,
+    hasAuth: !!adminAuth,
+    error: initializationError,
+  };
+}
+
+// 兼容性导出
+export const getAdminAuth = () => adminAuth;
+export const getApp = () => app;
+export default getApp;

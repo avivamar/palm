@@ -1,0 +1,11 @@
+{
+  "required": "{field}係必填項目",
+  "minLength": "{field}最少需要{min}個字符",
+  "maxLength": "{field}最多不能超過{max}個字符",
+  "invalid": "請輸入有效嘅{field}",
+  "invalidEmail": "請輸入有效嘅電郵地址",
+  "invalidPhone": "請輸入有效嘅電話號碼",
+  "emailCheckError": "無法驗證電郵地址",
+  "validationError": "驗證失敗，請重試。",
+  "valid": "{field}係有效嘅"
+}

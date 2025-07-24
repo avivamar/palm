@@ -1,0 +1,36 @@
+<svg width="800" height="400" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#gradient)"/>
+  
+  <!-- Decorative circles -->
+  <circle cx="100" cy="100" r="50" fill="rgba(255,255,255,0.1)"/>
+  <circle cx="700" cy="300" r="80" fill="rgba(255,255,255,0.05)"/>
+  <circle cx="650" cy="80" r="30" fill="rgba(255,255,255,0.15)"/>
+  
+  <!-- Main content -->
+  <g transform="translate(400, 200)">
+    <!-- Welcome text -->
+    <text x="0" y="-40" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="48" font-weight="bold">
+      Welcome to
+    </text>
+    <text x="0" y="20" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="56" font-weight="bold">
+      Rolitt Blog
+    </text>
+    
+    <!-- Subtitle -->
+    <text x="0" y="60" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-family="Arial, sans-serif" font-size="18">
+      Insights, Updates & Innovation
+    </text>
+  </g>
+  
+  <!-- Decorative elements -->
+  <path d="M50 350 Q200 320 350 350 T650 350" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/>
+  <path d="M150 50 Q300 20 450 50 T750 50" stroke="rgba(255,255,255,0.2)" stroke-width="2" fill="none"/>
+</svg>

@@ -1,0 +1,10 @@
+{
+  "i18n-ally.localesPaths": [
+    "src/locales",
+    "src/messages"
+  ],
+  "idf.pythonInstallPath": "/opt/miniconda3/bin/python",
+  "WillLuke.nextjs.addTypesOnSave": true,
+  "WillLuke.nextjs.hasPrompted": true,
+  "i18n-ally.keystyle": "nested"
+}

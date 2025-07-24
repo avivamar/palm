@@ -1,0 +1,338 @@
+{
+  "VerifyEmail": {
+    "meta": {
+      "title": "驗證電子郵件",
+      "description": "驗證您的電子郵件地址以完成註冊流程。"
+    },
+    "title": "驗證您的電子郵件",
+    "description": "我們已發送驗證電子郵件到您的地址。請點擊電子郵件中的連結以完成您的註冊。",
+    "resend_button": "重新發送驗證電子郵件",
+    "success_message": "驗證電子郵件已重新發送！",
+    "error_message": "發送驗證電子郵件時發生錯誤。請稍後再試。"
+  },
+  "Auth": {
+    "Navbar": {
+      "signin": "登入",
+      "signup": "註冊",
+      "logout": "登出"
+    },
+    "ForgotPassword": {
+      "title": "忘記密碼？",
+      "description": "請在下方輸入您的電子郵件地址，我們將發送重設密碼連結給您。",
+      "email_label": "電子郵件地址",
+      "email_placeholder": "name@example.com",
+      "email_error": "請輸入有效的電子郵件地址。",
+      "submit_button": "發送重設連結",
+      "success_message": "密碼重設郵件已發送！請檢查您的收件匣並按照指示重設您的密碼。",
+      "error_not_configured": "郵件服務未配置。請聯絡技術支援。",
+      "error_invalid_email": "請輸入有效的電子郵件地址。",
+      "error_user_not_found": "找不到使用此電子郵件地址的帳戶。",
+      "error_rate_limit": "請求過於頻繁。請等待幾分鐘後再試。",
+      "error_email_rate_limit": "郵件頻率限制已超出。請等待幾分鐘後再請求另一封密碼重設郵件。",
+      "error_unexpected": "發生意外錯誤。請再試一次。"
+    },
+    "SignIn": {
+      "meta": {
+        "title": "登入",
+        "description": "透過我們友善的登入流程，無縫登入您的帳戶。"
+      },
+      "title": "登入您的帳戶",
+      "alt": "Rolitt 標誌",
+      "footer": "還不是會員？",
+      "footer_link": "立即註冊成為我們的首批會員",
+      "google_button": "使用 Google 繼續",
+      "email_divider": "或使用電子郵件繼續",
+      "email": {
+        "label": "電子郵件",
+        "placeholder": "m@example.com"
+      },
+      "password": {
+        "label": "密碼",
+        "placeholder": "********"
+      },
+      "forgot_password_link": "忘記密碼？",
+      "submit_button": "使用電子郵件登入",
+      "signup": {
+        "prompt": "沒有帳戶？",
+        "link": "註冊"
+      }
+    },
+    "SignUp": {
+      "meta": {
+        "title": "註冊",
+        "description": "透過我們直觀的註冊流程輕鬆建立您的帳戶。"
+      },
+      "title": "建立您的帳戶",
+      "alt": "Rolitt 標誌",
+      "footer": "已經是會員？",
+      "footer_link": "在此登入",
+      "google_button": "使用 Google 繼續",
+      "email_divider": "或使用電子郵件繼續",
+      "name": {
+        "label": "全名",
+        "placeholder": "John Doe"
+      },
+      "email": {
+        "label": "電子郵件",
+        "placeholder": "m@example.com"
+      },
+      "password": {
+        "label": "密碼",
+        "placeholder": "********"
+      },
+      "submit_button": "註冊",
+      "signin": {
+        "prompt": "已有帳戶？",
+        "link": "登入"
+      },
+      "terms": {
+        "prefix": "點擊註冊即表示您同意我們的",
+        "terms": "服務條款",
+        "and": "和",
+        "privacy": "隱私政策"
+      }
+    },
+    "VerifyEmail": {
+      "meta": {
+        "title": "驗證電子郵件",
+        "description": "驗證您的電子郵件地址以完成註冊流程。"
+      },
+      "title": "驗證您的電子郵件",
+      "description": "我們已發送驗證電子郵件到您的地址。請點擊電子郵件中的連結以完成您的註冊。",
+      "resend_button": "重新發送驗證電子郵件",
+      "success_message": "驗證電子郵件已重新發送！",
+      "error_message": "發送驗證電子郵件時發生錯誤。請稍後再試。"
+    },
+    "ResetPassword": {
+      "meta": {
+        "title": "重設密碼",
+        "description": "建立新密碼以重新取得您帳戶的存取權限。"
+      },
+      "title": "重設您的密碼",
+      "description": "請為您的帳戶建立新密碼。",
+      "password": {
+        "label": "新密碼",
+        "placeholder": "********"
+      },
+      "confirm_password": {
+        "label": "確認密碼",
+        "placeholder": "********"
+      },
+      "submit_button": "重設密碼",
+      "success_message": "密碼重設成功！您現在可以使用新密碼登入。",
+      "error_message": "重設密碼時發生錯誤。請稍後再試。"
+    },
+    "EmailVerified": {
+      "meta": {
+        "title": "電子郵件已驗證",
+        "description": "您的電子郵件已成功驗證。"
+      },
+      "title": "電子郵件已驗證！",
+      "description": "感謝您驗證電子郵件地址。您的帳戶現已完全啟用。",
+      "button": "前往儀表板"
+    },
+    "Error": {
+      "default": "發生錯誤。請稍後再試。",
+      "expired_token": "您的權杖已過期或無效。請要求新的重設連結。",
+      "invalid_credentials": "電子郵件或密碼無效。請再試一次。",
+      "email_exists": "此電子郵件地址已被使用。請使用不同的電子郵件或嘗試登入。",
+      "weak_password": "密碼太弱。請使用至少 8 個字元，包括字母、數字和特殊字元。",
+      "passwords_not_match": "密碼不相符。請確保兩個密碼欄位完全相同。",
+      "user_not_found": "找不到使用此電子郵件的使用者。請檢查您的電子郵件或建立新帳戶。",
+      "verification_failed": "電子郵件驗證失敗。請嘗試重新發送驗證電子郵件。",
+      "reset_failed": "密碼重設失敗。請要求新的重設連結。",
+      "server_error": "伺服器錯誤。請稍後再試。",
+      "unauthorized": "未授權存取。請登入以繼續。"
+    },
+    "Success": {
+      "password_reset_email": "密碼重設連結已發送到您的電子郵件！",
+      "signup": "註冊成功！請檢查您的電子郵件進行驗證。",
+      "signin": "登入成功！",
+      "signout": "您已成功登出。",
+      "password_reset": "密碼重設成功！",
+      "email_verified": "電子郵件驗證成功！"
+    }
+  },
+  "Dashboard": {
+    "meta_title": "儀表板",
+    "hello_message": "您好 {email}！",
+    "alternative_message": "想要使用相同的技術堆疊更快地建立您的 SaaS？試試 <url></url>。"
+  },
+  "DashboardLayout": {
+    "dashboard_link": "儀表板",
+    "user_profile_link": "管理您的帳戶",
+    "sign_out": "登出"
+  },
+  "ForgotPassword": {
+    "title": "忘記您的密碼？",
+    "description": "請在下方輸入您的電子郵件地址，我們將發送重設密碼連結給您。",
+    "email_label": "電子郵件地址",
+    "email_placeholder": "name@example.com",
+    "email_error": "請輸入有效的電子郵件地址。",
+    "submit_button": "發送重設連結",
+    "success_message": "密碼重設郵件已發送！請檢查您的收件匣並按照指示重設您的密碼。",
+    "error_not_configured": "郵件服務未配置。請聯絡技術支援。",
+    "error_invalid_email": "請輸入有效的電子郵件地址。",
+    "error_user_not_found": "找不到使用此電子郵件地址的帳戶。",
+    "error_rate_limit": "請求過於頻繁。請等待幾分鐘後再試。",
+    "error_email_rate_limit": "郵件頻率限制已超出。請等待幾分鐘後再請求另一封密碼重設郵件。",
+    "error_unexpected": "發生意外錯誤。請再試一次。"
+  },
+  "ResetPassword": {
+    "title": "重設您的密碼",
+    "description": "請在下方輸入您的新密碼以重設密碼。",
+    "new_password_label": "新密碼",
+    "confirm_password_label": "確認新密碼",
+    "password_min_error": "密碼必須至少 6 個字元。",
+    "password_match_error": "密碼不相符",
+    "invalid_link": "無效的密碼重設連結。",
+    "submit_button": "重設密碼"
+  },
+  "SignIn": {
+    "meta_title": "登入",
+    "meta_description": "透過我們友善的登入流程，無縫登入您的帳戶。",
+    "sign_in_title": "登入您的帳戶",
+    "sign_in_footer": "不是會員？",
+    "sign_in_footer_link": "立即註冊成為我們的首批會員",
+    "google_button": "使用 Google 繼續",
+    "email_divider": "或使用電子郵件繼續",
+    "email_label": "電子郵件",
+    "email_placeholder": "m@example.com",
+    "password_label": "密碼",
+    "password_placeholder": "********",
+    "forgot_password_link": "忘記您的密碼？",
+    "submit_button": "使用電子郵件登入",
+    "signup_prompt": "沒有帳戶？",
+    "signup_link": "註冊"
+  },
+  "SignUp": {
+    "meta_title": "註冊",
+    "meta_description": "透過我們直觀的註冊流程輕鬆建立帳戶。",
+    "sign_up_title": "建立您的帳戶",
+    "sign_up_footer": "已經是會員？",
+    "sign_up_footer_link": "在此登入",
+    "google_button": "使用 Google 繼續",
+    "email_divider": "或使用電子郵件繼續",
+    "name_label": "全名",
+    "name_placeholder": "John Doe",
+    "email_label": "電子郵件",
+    "email_placeholder": "m@example.com",
+    "password_label": "密碼",
+    "password_placeholder": "********",
+    "confirm_password_label": "確認密碼",
+    "confirm_password_placeholder": "********",
+    "submit_button": "使用電子郵件註冊",
+    "signin_prompt": "已經有帳戶？",
+    "signin_link": "登入"
+  },
+  "UserProfile": {
+    "meta_title": "用戶檔案 | Rolitt",
+    "meta_description": "管理您的 Rolitt 用戶檔案、偏好設定和帳戶資訊。",
+    "title": "用戶檔案",
+    "subtitle": "管理您的個人資訊和偏好設定",
+    "personal_info": {
+      "title": "個人資訊",
+      "description": "更新您的基本個人資訊",
+      "name": {
+        "label": "全名",
+        "placeholder": "您的全名"
+      },
+      "email": {
+        "label": "電子郵件地址",
+        "placeholder": "您的電子郵件"
+      },
+      "phone": {
+        "label": "電話號碼",
+        "placeholder": "您的電話號碼"
+      },
+      "bio": {
+        "label": "個人簡介",
+        "placeholder": "關於您自己的簡短介紹"
+      },
+      "save_button": "儲存變更"
+    },
+    "password": {
+      "title": "變更密碼",
+      "description": "更新您的密碼以保護您的帳戶",
+      "current_password": {
+        "label": "目前密碼",
+        "placeholder": "您目前的密碼"
+      },
+      "new_password": {
+        "label": "新密碼",
+        "placeholder": "您的新密碼"
+      },
+      "confirm_password": {
+        "label": "確認新密碼",
+        "placeholder": "再次輸入您的新密碼"
+      },
+      "save_button": "更新密碼"
+    },
+    "preferences": {
+      "title": "偏好設定",
+      "description": "自訂您的 Rolitt 體驗",
+      "language": {
+        "label": "語言",
+        "options": {
+          "en": "English",
+          "es": "Spanish",
+          "fr": "French",
+          "de": "German",
+          "ja": "Japanese",
+          "zh-HK": "繁體中文"
+        }
+      },
+      "notifications": {
+        "label": "通知偏好設定",
+        "options": {
+          "all": "所有通知",
+          "important": "僅重要通知",
+          "none": "無通知"
+        }
+      },
+      "theme": {
+        "label": "介面主題",
+        "options": {
+          "light": "淺色",
+          "dark": "深色",
+          "system": "系統預設"
+        }
+      },
+      "save_button": "儲存偏好設定"
+    },
+    "account": {
+      "title": "帳戶管理",
+      "description": "管理您的帳戶設定和訂閱",
+      "subscription": {
+        "label": "目前訂閱",
+        "status": {
+          "active": "啟用",
+          "inactive": "停用",
+          "pending": "待處理"
+        },
+        "plan": {
+          "free": "免費",
+          "basic": "基本",
+          "premium": "進階",
+          "enterprise": "企業"
+        },
+        "manage_button": "管理訂閱"
+      },
+      "data": {
+        "label": "資料與隱私",
+        "export_button": "匯出資料",
+        "delete_button": "刪除帳戶"
+      }
+    },
+    "success": {
+      "profile_updated": "檔案成功更新！",
+      "password_updated": "密碼成功更新！",
+      "preferences_updated": "偏好設定成功更新！"
+    },
+    "error": {
+      "update_failed": "更新失敗。請稍後再試。",
+      "incorrect_password": "目前密碼不正確。請再試一次。",
+      "passwords_not_match": "新密碼不相符。請確保兩個密碼欄位相同。"
+    }
+  }
+}

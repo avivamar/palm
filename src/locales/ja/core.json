@@ -1,0 +1,168 @@
+{
+  "RootLayout": {
+    "meta_title": "Rolitt - 次世代AIコンパニオン",
+    "meta_description": "Rolittは、あなたの日常生活をサポートする次世代AIコンパニオンです。"
+  },
+  "BaseTemplate": {
+    "skip_to_content": "コンテンツに移動"
+  },
+  "CTA": {
+    "title": "未来に参加する準備はできていますか？",
+    "description": "今すぐAIコンパニオンをご予約いただき、コンパニオンシップの未来を最初に体験してください。",
+    "button_text": "今すぐ予約する"
+  },
+  "Footer": {
+    "company": "会社",
+    "about": "会社概要",
+    "careers": "採用情報",
+    "press": "プレスリリース",
+    "contact": "お問い合わせ",
+    "products": "製品",
+    "features": "機能",
+    "pricing": "価格",
+    "roadmap": "ロードマップ",
+    "resources": "リソース",
+    "blog": "ブログ",
+    "docs": "ドキュメント",
+    "support": "サポート",
+    "legal": "法的事項",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "cookies": "クッキーポリシー",
+    "copyright": "© 2024 Rolitt Inc. Based on love, passion and sustained effortAll rights reserved.",
+    "product": "製品",
+    "community": "コミュニティ",
+    "solution": "ソリューション",
+    "pre-order": "予約注文",
+    "rights_reserved": "すべての権利を保有します。",
+    "follow_us": "フォローする",
+    "about_us": "会社概要",
+    "partners": "パートナー",
+    "contact_us": "お問い合わせ",
+    "solutions": "ソリューション",
+    "refund_policy": "返金ポリシー",
+    "shipping_policy": "配送ポリシー",
+    "contact_information": "お問い合わせ先",
+    "company_description": "Rolittは、感情認識、自然言語処理、機械学習技術を組み合わせて、思いやりのある感情的サポートとインテリジェントなインタラクションを提供する次世代AIコンパニオンです。",
+    "newsletter_title": "ニュースレター登録",
+    "newsletter_description": "最新の製品、機能、お知らせの更新情報をお受け取りください。",
+    "email_placeholder": "メールアドレスを入力",
+    "subscribe": "登録",
+    "policies": "ポリシー",
+    "privacy_policy": "プライバシーポリシー",
+    "terms_of_service": "利用規約",
+    "timeline": "タイムライン"
+  },
+
+  "Navbar": {
+    "auth": {
+      "signin": "ログイン",
+      "signup": "新規登録"
+    },
+    "timeline": "タイムライン",
+    "product": "製品",
+    "docs": "ドキュメント",
+    "blog": "ブログ",
+    "community": "コミュニティ",
+    "company": "会社",
+    "about": "会社概要",
+    "pre-order": "予約注文",
+    "solution": "ソリューション",
+    "partner": "パートナー",
+    "rolittai": "Rolitt AI",
+    "services": "サービス",
+    "contact": "お問い合わせ",
+    "nav": {
+      "home": "ホーム",
+      "about": "会社概要",
+      "timeline": "タイムライン",
+      "solution": "ソリューション",
+      "partner": "パートナー",
+      "contact": "お問い合わせ",
+      "auth": {
+        "signin": "ログイン",
+        "signup": "新規登録"
+      }
+    },
+    "home": "ホーム",
+    "portfolio": "ポートフォリオ",
+    "dashboard": "ダッシュボード",
+    "sign_in": "ログイン",
+    "sign_up": "新規登録",
+    "sign_out": "ログアウト",
+    "profile": "プロフィール",
+    "settings": "設定",
+    "toggle_menu": "メニューの開閉"
+  },
+
+  "LocaleSwitcher": {
+    "switchLocale": "{locale}に切り替える",
+    "label": "言語変更",
+    "en": "English",
+    "es": "Español",
+    "ja": "日本語",
+    "zh-HK": "繁體中文（香港）"
+  },
+  "ThemeToggle": {
+    "light": "ライトモード",
+    "dark": "ダークモード",
+    "system": "システム設定",
+    "toggle": "テーマの切り替え"
+  },
+  "Newsletter": {
+    "email_placeholder": "メールアドレスを入力してください",
+    "subscribe": "登録",
+    "subscribing": "登録中...",
+    "success_title": "登録完了",
+    "success_message": "ご登録ありがとうございます！ウェルカムメールをお送りしました。",
+    "error_title": "登録エラー",
+    "error_message": "申し訳ございませんが、登録中にエラーが発生しました。後でもう一度お試しください。",
+    "already_subscribed": "このメールアドレスは既にニュースレターに登録されています。",
+    "invalid_email_format": "有効なメールアドレスを入力してください"
+  },
+  "CookieBanner": {
+    "description": "当サイトでは、ブラウジング体験の向上、パーソナライズされたコンテンツの提供、トラフィック分析のためにクッキーを使用しています。「同意する」をクリックすることで、クッキーの使用に同意されたものとみなします。",
+    "accept": "同意する",
+    "decline": "拒否する"
+  },
+  "MetaPixelTest": {
+    "title": "Meta Pixelテストページ",
+    "description": "このページはMeta Pixel統合のテスト用です。イベントをトリガーして、下記のログをご確認ください。",
+    "pixelLoaded": "Meta Pixelが読み込まれました。ID: {id}",
+    "pixelNotInitialized": "Meta Pixelスクリプトは読み込まれましたが、IDで初期化されていません。",
+    "pixelIdError": "fbqからPixel IDにアクセス中にエラーが発生しました。フォールバックを試行中です。",
+    "pixelLoadedEnv": "環境変数からのMeta Pixel ID: {id}",
+    "pixelIdNotFound": "fbq状態または環境変数でMeta Pixel IDが見つかりません。",
+    "fbqNotFound": "window.fbq（Meta Pixel）が見つかりません。ブロックされているか、読み込まれていない可能性があります。",
+    "pixelActive": "Meta Pixelはアクティブです。ID: {id}",
+    "pixelInactive": "Meta Pixelは非アクティブまたは読み込まれていません",
+    "eventSent": "送信されたイベント: {eventName} パラメータ: {params}",
+    "customEventSent": "送信されたカスタムイベント: {eventName} パラメータ: {params}",
+    "purchaseEventSent": "送信された購入イベント: 値: {value}, 通貨: {currency}",
+    "addToCartEventSent": "送信されたカート追加イベント: 商品: {name}, 値: {value}, 通貨: {currency}",
+    "sendViewContent": "コンテンツ表示を送信",
+    "sendAddToCart": "カート追加を送信",
+    "sendInitiateCheckout": "チェックアウト開始を送信",
+    "sendPurchase": "購入を送信",
+    "sendContact": "お問い合わせを送信",
+    "sendLead": "リードを送信",
+    "sendCompleteRegistration": "登録完了を送信",
+    "sendCustomEvent": "カスタムイベントを送信",
+    "sendSearchEvent": "検索イベントを送信",
+    "eventLogTitle": "イベントログ",
+    "noEventsYet": "まだイベントはありません。"
+  },
+  "NotFound": {
+    "meta_title": "ページが見つかりません | Rolitt",
+    "meta_description": "お探しのページは存在しないか、移動されました。",
+    "title": "ページが見つかりません",
+    "description": "お探しのページは存在しないか、移動されました。",
+    "back_home": "ホームに戻る"
+  },
+  "Error": {
+    "title": "問題が発生しました！",
+    "description": "予期しないエラーが発生しました。ご迷惑をおかけして申し訳ございません。",
+    "try_again": "再試行",
+    "back_home": "ホームに戻る"
+  }
+}

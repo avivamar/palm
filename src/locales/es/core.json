@@ -1,0 +1,168 @@
+{
+  "RootLayout": {
+    "meta_title": "Rolitt - Compañía IA de Nueva Generación",
+    "meta_description": "Rolitt es una compañía IA de nueva generación que apoya tu vida diaria."
+  },
+  "BaseTemplate": {
+    "skip_to_content": "Saltar al contenido"
+  },
+  "CTA": {
+    "title": "¿Listo para unirte al futuro?",
+    "description": "Reserva tu compañero de IA ahora y sé uno de los primeros en experimentar el futuro de la compañía.",
+    "button_text": "Reservar Ahora"
+  },
+  "Footer": {
+    "company": "Empresa",
+    "about": "Acerca de Nosotros",
+    "careers": "Carreras",
+    "press": "Comunicados de Prensa",
+    "contact": "Contacto",
+    "products": "Productos",
+    "features": "Características",
+    "pricing": "Precios",
+    "roadmap": "Hoja de Ruta",
+    "resources": "Recursos",
+    "blog": "Blog",
+    "docs": "Documentación",
+    "support": "Soporte",
+    "legal": "Legal",
+    "terms": "Términos de Servicio",
+    "privacy": "Política de Privacidad",
+    "cookies": "Política de Cookies",
+    "copyright": "© 2024 Rolitt Inc. Based on love, passion and sustained effortTodos los derechos reservados.",
+    "product": "Producto",
+    "community": "Comunidad",
+    "solution": "Solución",
+    "pre-order": "Reserva Anticipada",
+    "rights_reserved": "Todos los derechos reservados.",
+    "follow_us": "Síguenos",
+    "about_us": "Acerca de Nosotros",
+    "partners": "Socios",
+    "contact_us": "Contáctanos",
+    "solutions": "Soluciones",
+    "refund_policy": "Política de Reembolsos",
+    "shipping_policy": "Política de Envíos",
+    "contact_information": "Información de Contacto",
+    "company_description": "Rolitt es una compañía IA de nueva generación que combina reconocimiento de emociones, procesamiento de lenguaje natural y tecnologías de aprendizaje automático para proporcionar soporte emocional compasivo e interacciones inteligentes.",
+    "newsletter_title": "Suscribirse al Boletín",
+    "newsletter_description": "Recibe actualizaciones sobre nuestros últimos productos, características y anuncios.",
+    "email_placeholder": "Ingresa tu email",
+    "subscribe": "Suscribirse",
+    "policies": "Políticas",
+    "privacy_policy": "Política de Privacidad",
+    "terms_of_service": "Términos de Servicio",
+    "timeline": "Cronología"
+  },
+
+  "Navbar": {
+    "auth": {
+      "signin": "Iniciar Sesión",
+      "signup": "Registrarse"
+    },
+    "timeline": "Cronología",
+    "product": "Producto",
+    "docs": "Documentos",
+    "blog": "Blog",
+    "community": "Comunidad",
+    "company": "Empresa",
+    "about": "Acerca de",
+    "pre-order": "Reserva Anticipada",
+    "solution": "Soluciones",
+    "partner": "Socios",
+    "rolittai": "Rolitt IA",
+    "services": "Servicios",
+    "contact": "Contacto",
+    "nav": {
+      "home": "Inicio",
+      "about": "Acerca de",
+      "timeline": "Cronología",
+      "solution": "Soluciones",
+      "partner": "Socios",
+      "contact": "Contacto",
+      "auth": {
+        "signin": "Iniciar Sesión",
+        "signup": "Registrarse"
+      }
+    },
+    "home": "Inicio",
+    "portfolio": "Portafolio",
+    "dashboard": "Panel",
+    "sign_in": "Iniciar Sesión",
+    "sign_up": "Registrarse",
+    "sign_out": "Cerrar Sesión",
+    "profile": "Perfil",
+    "settings": "Configuración",
+    "toggle_menu": "Alternar Menú"
+  },
+
+  "LocaleSwitcher": {
+    "switchLocale": "Cambiar a {locale}",
+    "label": "Cambiar Idioma",
+    "en": "Inglés",
+    "es": "Español",
+    "ja": "Japonés",
+    "zh-HK": "Chino (Hong Kong)"
+  },
+  "ThemeToggle": {
+    "light": "Modo claro",
+    "dark": "Modo oscuro",
+    "system": "Modo del sistema",
+    "toggle": "Cambiar tema"
+  },
+  "Newsletter": {
+    "email_placeholder": "Ingresa tu dirección de email",
+    "subscribe": "Suscribirse",
+    "subscribing": "Suscribiendo...",
+    "success_title": "Suscripción Completa",
+    "success_message": "¡Gracias por suscribirte! Te hemos enviado un email de bienvenida.",
+    "error_title": "Error de Suscripción",
+    "error_message": "Lo siento, ocurrió un error durante la suscripción. Por favor intenta de nuevo más tarde.",
+    "already_subscribed": "Esta dirección de email ya está suscrita al boletín.",
+    "invalid_email_format": "Por favor ingresa una dirección de email válida"
+  },
+  "CookieBanner": {
+    "description": "Usamos cookies para mejorar tu experiencia de navegación, proporcionar contenido personalizado y analizar el tráfico. Al hacer clic en 'Aceptar', consientes nuestro uso de cookies.",
+    "accept": "Aceptar",
+    "decline": "Rechazar"
+  },
+  "MetaPixelTest": {
+    "title": "Página de Prueba de Meta Pixel",
+    "description": "Esta página es para probar la integración de Meta Pixel. Activa eventos y revisa los registros abajo.",
+    "pixelLoaded": "Meta Pixel cargado. ID: {id}",
+    "pixelNotInitialized": "Script de Meta Pixel cargado pero no inicializado con ID.",
+    "pixelIdError": "Error accediendo al ID del Pixel desde fbq. Intentando alternativa.",
+    "pixelLoadedEnv": "ID de Meta Pixel desde variables de entorno: {id}",
+    "pixelIdNotFound": "ID de Meta Pixel no encontrado en el estado de fbq o variables de entorno.",
+    "fbqNotFound": "window.fbq (Meta Pixel) no encontrado. Puede estar bloqueado o no cargado.",
+    "pixelActive": "Meta Pixel está activo. ID: {id}",
+    "pixelInactive": "Meta Pixel está inactivo o no cargado",
+    "eventSent": "Evento enviado: {eventName} Parámetros: {params}",
+    "customEventSent": "Evento personalizado enviado: {eventName} Parámetros: {params}",
+    "purchaseEventSent": "Evento de compra enviado: Valor: {value}, Moneda: {currency}",
+    "addToCartEventSent": "Evento de agregar al carrito enviado: Producto: {name}, Valor: {value}, Moneda: {currency}",
+    "sendViewContent": "Enviar Ver Contenido",
+    "sendAddToCart": "Enviar Agregar al Carrito",
+    "sendInitiateCheckout": "Enviar Iniciar Pago",
+    "sendPurchase": "Enviar Compra",
+    "sendContact": "Enviar Contacto",
+    "sendLead": "Enviar Lead",
+    "sendCompleteRegistration": "Enviar Registro Completo",
+    "sendCustomEvent": "Enviar Evento Personalizado",
+    "sendSearchEvent": "Enviar Evento de Búsqueda",
+    "eventLogTitle": "Registro de Eventos",
+    "noEventsYet": "Aún no hay eventos."
+  },
+  "NotFound": {
+    "meta_title": "Página No Encontrada | Rolitt",
+    "meta_description": "La página que buscas no existe o ha sido movida.",
+    "title": "Página No Encontrada",
+    "description": "La página que buscas no existe o ha sido movida.",
+    "back_home": "Volver al Inicio"
+  },
+  "Error": {
+    "title": "¡Algo salió mal!",
+    "description": "Ha ocurrido un error inesperado. Nos disculpamos por las molestias.",
+    "try_again": "Intentar de Nuevo",
+    "back_home": "Volver al Inicio"
+  }
+}

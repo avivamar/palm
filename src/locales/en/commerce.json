@@ -1,0 +1,556 @@
+{
+  "Payment": {
+    "Success": {
+      "title": "Payment Successful!",
+      "message": "Thank you for your pre-order! We've received your payment and your Rolitt AI Companion is one step closer to you. A confirmation email has been sent to your inbox.",
+      "button_back_home": "Back to Home",
+      "support_message": "If you have any questions, you can contact our support team:"
+    },
+    "Cancel": {
+      "title": "Payment Canceled",
+      "message": "It looks like you've canceled the payment. Don't worry, your pre-order is saved. You can complete your purchase anytime by clicking the button below.",
+      "button_try_again": "Try Again"
+    },
+    "Button": {
+      "pay": "Pay Now"
+    },
+    "Status": {
+      "processing": "Processing..."
+    },
+    "SuccessPage": {
+      "title": "Pre-order Successful!",
+      "description": "Thank you for your purchase. A confirmation email has been sent to you.",
+      "support_message": "If you have any questions, please contact our support team.",
+      "back_to_home": "Back to Homepage"
+    },
+    "CancelPage": {
+      "title": "Payment Canceled",
+      "description": "Your payment process was not completed. Your cart has been saved.",
+      "support_message": "If you're having trouble, please contact our support team.",
+      "try_again": "Try Again",
+      "back_to_home": "Back to Homepage"
+    }
+  },
+  "PreOrder": {
+    "progress": {
+      "steps": {
+        "product": {
+          "title": "Product",
+          "description": "Choose your companion"
+        },
+        "details": {
+          "title": "Details",
+          "description": "Personal information"
+        },
+        "payment": {
+          "title": "Payment",
+          "description": "Shipping & payment"
+        },
+        "confirmation": {
+          "title": "Complete",
+          "description": "Order confirmed"
+        }
+      },
+      "currentStep": "Step {step} of {total}: {stepName}"
+    },
+    "form": {
+      "personalInfo": "Personal Information",
+      "personalInfoDescription": "Tell us about yourself to personalize your experience",
+      "shippingInfo": "Shipping Information",
+      "shippingInfoDescription": "Where should we send your Rolitt AI Companion?",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "address": "Street Address",
+      "city": "City",
+      "state": "State/Province",
+      "postalCode": "Postal Code",
+      "country": "Country",
+      "previous": "Previous",
+      "continue": "Continue",
+      "complete": "Complete Order"
+    },
+    "security": {
+      "title": "Secure Payment",
+      "description": "Your payment information is encrypted and secure",
+      "processing": "Processing typically takes 2-3 seconds"
+    },
+    "pricing": {
+      "includesTax": "Includes all taxes and fees"
+    },
+    "Hero": {
+      "title": "Be Among the First to Experience the Future of AI Companionship",
+      "description": "Pre-order your Rolitt AI Companion today and join the next generation of interactive technology.",
+      "cta": "Pre-order Now",
+      "limited_time_text": "✨ Limited Pre-order, Early Bird Discount",
+      "features": {
+        "innovation": {
+          "icon": "🚀",
+          "text": "Innovative Technology"
+        },
+        "quality": {
+          "icon": "💎",
+          "text": "Premium Quality"
+        },
+        "limited": {
+          "icon": "🌟",
+          "text": "Limited Edition"
+        },
+        "fast_delivery": {
+          "icon": "⚡",
+          "text": "Fast Delivery"
+        }
+      },
+      "colors": {
+        "honey_khaki": "Honey Khaki",
+        "sakura_pink": "Sakura Pink",
+        "healing_green": "Healing Green",
+        "moonlight_grey": "Moonlight Grey"
+      }
+    },
+    "Features": {
+      "title": "Revolutionary AI Features",
+      "description": "Experience the perfect blend of cutting-edge technology and emotional intelligence.",
+      "ai": {
+        "title": "Advanced AI",
+        "description": "Powered by state-of-the-art language models for natural conversations"
+      },
+      "conversation": {
+        "title": "Natural Conversations",
+        "description": "Engage in meaningful dialogues with your AI companion"
+      },
+      "emotion": {
+        "title": "Emotional Intelligence",
+        "description": "Recognizes and responds to your emotional state"
+      },
+      "magic": {
+        "title": "Magic Moments",
+        "description": "Creates unforgettable interactive experiences"
+      }
+    },
+    "Timeline": {
+      "title": "Product Journey",
+      "description": "Follow our journey from pre-order to delivery",
+      "preOrder": {
+        "date": "Now",
+        "title": "Pre-order Phase",
+        "description": "Secure your early bird price and be among the first to receive your AI companion"
+      },
+      "production": {
+        "date": "Q2 2024",
+        "title": "Production Phase",
+        "description": "Your AI companion is being carefully crafted with the latest technology"
+      },
+      "shipping": {
+        "date": "Q3 2024",
+        "title": "Shipping Phase",
+        "description": "Your AI companion is prepared for delivery with premium packaging"
+      },
+      "delivery": {
+        "date": "Q3 2024",
+        "title": "Delivery",
+        "description": "Your AI companion arrives at your doorstep, ready to become your new best friend"
+      }
+    },
+    "Pricing": {
+      "title": "Early Bird Special",
+      "description": "Limited time offer for our first batch of AI companions",
+      "earlyBird": {
+        "title": "Early Bird Price",
+        "price": "$259.00",
+        "description": "Save $40 off the regular price"
+      },
+      "features": {
+        "ai": "Advanced AI capabilities with regular updates",
+        "battery": "Long-lasting battery life",
+        "connectivity": "Seamless Wi-Fi and Bluetooth connectivity",
+        "updates": "Free software updates for life",
+        "support": "24/7 customer support"
+      },
+      "cta": "Pre-order Now",
+      "colors": {
+        "honey_khaki": "Honey Khaki",
+        "sakura_pink": "Sakura Pink",
+        "healing_green": "Healing Green",
+        "moonlight_grey": "Moonlight Grey"
+      }
+    },
+    "FAQ": {
+      "title": "Frequently Asked Questions",
+      "description": "Find answers to common questions about pre-orders, shipping, and exclusive perks.",
+      "tabs": {
+        "shipping": "Shipping",
+        "refund": "Refunds & Orders",
+        "perks": "Exclusive Perks"
+      },
+      "faqs": {
+        "shipping": [
+          {
+            "question": "When will my pre-order ship?",
+            "answer": "All pre-orders will ship in the order they were placed. The first batch is expected to ship in mid-August 2025. You will receive an email notification once your order ships."
+          },
+          {
+            "question": "Will I receive tracking information?",
+            "answer": "Yes, once your order ships, we will send you an email with tracking information so you can monitor your package's progress."
+          }
+        ],
+        "refund": [
+          {
+            "question": "Can I get a refund for my pre-order?",
+            "answer": "You can request a full refund within 7 days of payment if the product hasn't shipped yet. Once shipped, refunds are not accepted."
+          },
+          {
+            "question": "Can I change my shipping address?",
+            "answer": "Yes, you can modify your shipping address free of charge before the product ships. Please contact us as soon as possible to make changes."
+          }
+        ],
+        "perks": [
+          {
+            "question": "What exclusive gifts do pre-order customers receive?",
+            "answer": "• Limited edition numbered card\n• Brand thank you letter\n• Scarf or small bag accessory"
+          },
+          {
+            "question": "Do I get warranty coverage?",
+            "answer": "Rolitt products come with a one-year warranty. Any non-human damage can be replaced or repaired free of charge."
+          }
+        ]
+      }
+    },
+    "CTA": {
+      "title": "Ready to Join the Future?",
+      "description": "Pre-order your AI companion today and be among the first to experience the future of companionship."
+    },
+    "Form": {
+      "name": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "Enter your email address"
+      },
+      "quantity": {
+        "label": "Quantity",
+        "placeholder": "Enter quantity"
+      },
+      "submit": "Pre-order Now",
+      "submitting": "Processing...",
+      "success": {
+        "title": "Pre-order Successful!",
+        "description": "Thank you for your pre-order. We'll send you updates about your order status."
+      },
+      "error": {
+        "title": "Error",
+        "description": "There was an error processing your pre-order. Please try again."
+      }
+    },
+    "ProductSelection": {
+      "title": "Pre-order Now",
+      "description": "Select your favorite color and be the first to get it.",
+      "color_label": "Color",
+      "email_label": "Email",
+      "email_placeholder": "Enter your email",
+      "no_products_title": "Products Unavailable",
+      "no_products_description": "We are sorry, but there are no products available for pre-order at this time. Please check back later.",
+      "go_to_payment_button": "Proceed to Payment"
+    },
+    "Realtime": {
+      "stockAlert": "Only {count} units left in stock!",
+      "countdownTitle": "Early Bird Offer Ends In",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds",
+      "countdownDescription": "Don't miss out on the special pricing!",
+      "liveActivityTitle": "Live Activity",
+      "activityOrder": "Someone from {location} just pre-ordered",
+      "activityView": "Someone from {location} is viewing this page",
+      "justNow": "Just now",
+      "minutesAgo": "{minutes}m ago",
+      "limitedStock": "⚡ Limited Stock - Only 47 units remaining!",
+      "earlyBirdEnding": "🔥 Early Bird pricing ends in 24 hours!",
+      "freeShipping": "🚚 Free worldwide shipping for pre-orders!",
+      "socialProof": "🎉 {count} people have already pre-ordered!",
+      "socialProofLabel": "Happy Customers",
+      "socialProofText": "Join thousands of satisfied customers worldwide!"
+    }
+  },
+  "Testimonials": {
+    "title": "What Our Early Adopters Say",
+    "rating": "⭐⭐⭐⭐⭐ Rated 4.9/5 by our beta users",
+    "video1": "Video 1 Preview",
+    "video2": "Video 2 Preview",
+    "video3": "Video 3 Preview"
+  },
+  "SocialProof": {
+    "title": "Trusted by Thousands",
+    "description": "Join our growing community of early adopters who believe in the future of AI companionship",
+    "testimonialsTitle": "What Early Adopters Say",
+    "pressTitle": "Press Coverage"
+  },
+  "PaymentSuccess": {
+    "title": "Payment Successful!",
+    "message": "Thank you for your pre-order! We've received your payment and your Rolitt AI Companion is one step closer to you. A confirmation email has been sent to your inbox.",
+    "button_back_home": "Back to Home",
+    "support_message": "If you have any questions, you can contact our support team:"
+  },
+  "PaymentCancel": {
+    "title": "Payment Canceled",
+    "message": "It looks like you've canceled the payment. Don't worry, your pre-order is saved. You can complete your purchase anytime by clicking the button below.",
+    "button_try_again": "Try Again"
+  },
+  "preOrder": {
+    "hero": {
+      "title": "Be Among the First to Experience the Future of AI Companionship",
+      "description": "Pre-order your Rolitt AI Companion today and join the next generation of interactive technology.",
+      "cta": "Pre-order Now",
+      "limited_time_text": "✨ Limited Pre-order, Early Bird Discount",
+      "features": {
+        "innovation": {
+          "icon": "🚀",
+          "text": "Innovative Technology"
+        },
+        "quality": {
+          "icon": "💎",
+          "text": "Premium Quality"
+        },
+        "limited": {
+          "icon": "🌟",
+          "text": "Limited Edition"
+        },
+        "fast_delivery": {
+          "icon": "⚡",
+          "text": "Fast Delivery"
+        }
+      },
+      "urgency_banner": "Limited Time: Save $70",
+      "benefits": {
+        "save_money": "Save $70",
+        "free_shipping": "Free Shipping",
+        "limited_stock": "Limited Stock"
+      },
+      "trust_indicators": {
+        "money_back": "30-Day Money Back",
+        "warranty": "1-Year Warranty",
+        "rating": "4.9/5 Rating"
+      },
+      "colors": {
+        "honey_khaki": "Honey Khaki",
+        "sakura_pink": "Sakura Pink",
+        "healing_green": "Healing Green",
+        "moonlight_grey": "Moonlight Grey"
+      }
+    },
+    "features": {
+      "title": "Revolutionary AI Features",
+      "description": "Experience the perfect blend of cutting-edge technology and emotional intelligence.",
+      "ai": {
+        "title": "Advanced AI",
+        "description": "Powered by state-of-the-art language models for natural conversations"
+      },
+      "conversation": {
+        "title": "Natural Conversations",
+        "description": "Engage in meaningful dialogues with your AI companion"
+      },
+      "emotion": {
+        "title": "Emotional Intelligence",
+        "description": "Recognizes and responds to your emotional state"
+      },
+      "magic": {
+        "title": "Magic Moments",
+        "description": "Creates unforgettable interactive experiences"
+      }
+    },
+    "timeline": {
+      "title": "Product Journey",
+      "description": "Follow our journey from pre-order to delivery",
+      "preOrder": {
+        "date": "Now",
+        "title": "Pre-order Phase",
+        "description": "Secure your early bird price and be among the first to receive your AI companion"
+      },
+      "production": {
+        "date": "Q2 2024",
+        "title": "Production Phase",
+        "description": "Your AI companion is being carefully crafted with the latest technology"
+      },
+      "shipping": {
+        "date": "Q3 2024",
+        "title": "Shipping Phase",
+        "description": "Your AI companion is prepared for delivery with premium packaging"
+      },
+      "delivery": {
+        "date": "Q3 2024",
+        "title": "Delivery",
+        "description": "Your AI companion arrives at your doorstep, ready to become your new best friend"
+      }
+    },
+    "pricing": {
+      "title": "Early Bird Special",
+      "description": "Limited time offer for our first batch of AI companions",
+      "earlyBird": {
+        "title": "Early Bird Price",
+        "price": "$259.00",
+        "description": "Save $40 off the regular price"
+      },
+      "features": {
+        "ai": "Advanced AI capabilities with regular updates",
+        "battery": "Long-lasting battery life",
+        "connectivity": "Seamless Wi-Fi and Bluetooth connectivity",
+        "updates": "Free software updates for life",
+        "support": "24/7 customer support"
+      },
+      "cta": "Pre-order Now",
+      "colors": {
+        "honey_khaki": "Honey Khaki",
+        "sakura_pink": "Sakura Pink",
+        "healing_green": "Healing Green",
+        "moonlight_grey": "Moonlight Grey"
+      }
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "description": "Find answers to common questions about pre-orders, shipping, and exclusive perks.",
+      "tabs": {
+        "shipping": "Shipping",
+        "refund": "Refunds & Orders",
+        "perks": "Exclusive Perks"
+      },
+      "faqs": {
+        "shipping": [
+          {
+            "question": "When will my pre-order ship?",
+            "answer": "All pre-orders will ship in the order they were placed. The first batch is expected to ship in mid-August 2025. You will receive an email notification once your order ships."
+          },
+          {
+            "question": "Will I receive tracking information?",
+            "answer": "Yes, once your order ships, we will send you an email with tracking information so you can monitor your package's progress."
+          }
+        ],
+        "refund": [
+          {
+            "question": "Can I get a refund for my pre-order?",
+            "answer": "You can request a full refund within 7 days of payment if the product hasn't shipped yet. Once shipped, refunds are not accepted."
+          },
+          {
+            "question": "Can I change my shipping address?",
+            "answer": "Yes, you can modify your shipping address free of charge before the product ships. Please contact us as soon as possible to make changes."
+          }
+        ],
+        "perks": [
+          {
+            "question": "What exclusive gifts do pre-order customers receive?",
+            "answer": "• Limited edition numbered card\n• Brand thank you letter\n• Scarf or small bag accessory"
+          },
+          {
+            "question": "Do I get warranty coverage?",
+            "answer": "Rolitt products come with a one-year warranty. Any non-human damage can be replaced or repaired free of charge."
+          }
+        ]
+      }
+    },
+    "cta": {
+      "title": "Ready to Join the Future?",
+      "description": "Pre-order your AI companion today and be among the first to experience the future of companionship."
+    },
+    "form": {
+      "name": {
+        "label": "Full Name",
+        "placeholder": "Enter your full name"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "Enter your email address"
+      },
+      "quantity": {
+        "label": "Quantity",
+        "placeholder": "Enter quantity"
+      },
+      "submit": "Pre-order Now",
+      "submitting": "Processing...",
+      "success": {
+        "title": "Pre-order Successful!",
+        "description": "Thank you for your pre-order. We'll send you updates about your order status."
+      },
+      "error": {
+        "title": "Error",
+        "description": "There was an error processing your pre-order. Please try again."
+      }
+    },
+    "product_selection": {
+      "title": "Pre-order Now",
+      "description": "Select your favorite color and be the first to get it.",
+      "color_label": "Color",
+      "email_label": "Email",
+      "email_placeholder": "Enter your email",
+      "no_products_title": "Products Unavailable",
+      "no_products_description": "We are sorry, but there are no products available for pre-order at this time. Please check back later.",
+      "go_to_payment_button": "Proceed to Payment",
+      "continue_to_checkout": "Continue to Checkout",
+      "pay_now": "Pay Now",
+      "processing": "Processing...",
+      "secure_payment": "Secure payment via Stripe • You'll be redirected for safe checkout"
+    },
+    "realtime": {
+      "stockAlert": "Only {count} units left in stock!",
+      "countdownTitle": "Early Bird Offer Ends In",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "seconds": "Seconds",
+      "countdownDescription": "Don't miss out on the special pricing!",
+      "liveActivityTitle": "Live Activity",
+      "activityOrder": "Someone from {location} just pre-ordered",
+      "activityView": "Someone from {location} is viewing this page",
+      "justNow": "Just now",
+      "minutesAgo": "{minutes}m ago",
+      "limitedStock": "⚡ Limited Stock - Only 47 units remaining!",
+      "earlyBirdEnding": "🔥 Early Bird pricing ends in 24 hours!",
+      "freeShipping": "🚚 Free worldwide shipping for pre-orders!",
+      "socialProof": "🎉 {count} people have already pre-ordered!",
+      "socialProofLabel": "Happy Customers",
+      "socialProofText": "Join thousands of satisfied customers worldwide!"
+    }
+  },
+  "PreOrderTestimonials": {
+    "title": "What Our Early Adopters Say",
+    "rating": "⭐⭐⭐⭐⭐ Rated 4.9/5 by our beta users",
+    "video1": "Video 1 Preview",
+    "video2": "Video 2 Preview",
+    "video3": "Video 3 Preview"
+  },
+  "VideoSection": {
+    "badge": "Product Demo",
+    "title": "See Rolitt in Action",
+    "description": "Discover the features and user experience of Rolitt AI Companion through video",
+    "youtube_link_text": "Want to learn more? Visit our",
+    "youtube_channel": "YouTube channel",
+    "youtube_link_suffix": "to watch more video content"
+  },
+  "PreOrderSocialProof": {
+    "title": "Trusted by Thousands",
+    "description": "Join our growing community of early adopters who believe in the future of AI companionship",
+    "testimonialsTitle": "What Early Adopters Say",
+    "pressTitle": "Press Coverage"
+  },
+  "payment": {
+    "button": {
+      "pay": "Pay Now"
+    },
+    "status": {
+      "processing": "Processing..."
+    },
+    "success": {
+      "title": "Pre-order Successful!",
+      "description": "Thank you for your purchase. A confirmation email has been sent to you.",
+      "support_message": "If you have any questions, please contact our support team.",
+      "back_to_home": "Back to Homepage"
+    },
+    "cancel": {
+      "title": "Payment Canceled",
+      "description": "Your payment process was not completed. Your cart has been saved.",
+      "support_message": "If you're having trouble, please contact our support team.",
+      "try_again": "Try Again",
+      "back_to_home": "Back to Homepage"
+    }
+  }
+}

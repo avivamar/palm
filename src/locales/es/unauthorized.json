@@ -1,0 +1,9 @@
+{
+  "unauthorized": {
+    "title": "Acceso Denegado",
+    "description": "No tienes permisos para acceder a esta área",
+    "message": "Esta página está restringida solo para administradores. Si crees que deberías tener acceso, por favor contacta a tu administrador del sistema.",
+    "backToDashboard": "Volver al Panel",
+    "backToHome": "Volver al Inicio"
+  }
+}

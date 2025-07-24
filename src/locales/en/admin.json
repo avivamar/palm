@@ -1,0 +1,291 @@
+{
+  "navigation": {
+    "title": "Admin Panel",
+    "dashboard": "Dashboard",
+    "monitoring": "Monitoring",
+    "users": "Users",
+    "orders": "Orders",
+    "products": "Products",
+    "analytics": "Analytics",
+    "settings": "Settings",
+    "scripts": "Scripts Management",
+    "shopify": "Shopify",
+    "ai": "AI Management",
+    "soon": "Soon",
+    "version": "Version {version}"
+  },
+  "header": {
+    "title": "Admin Dashboard",
+    "description": "Manage your e-commerce marketing system",
+    "notifications": {
+      "label": "Notifications ({count})",
+      "unread": "{count} unread notifications"
+    },
+    "settings": {
+      "label": "Settings"
+    },
+    "userMenu": {
+      "label": "User menu",
+      "admin": "Admin",
+      "myAccount": "My Account",
+      "profile": "Profile",
+      "settings": "Settings",
+      "signOut": "Sign out"
+    }
+  },
+  "dashboard": {
+    "title": "Admin Dashboard",
+    "description": "Manage your e-commerce marketing system",
+    "quickStats": {
+      "title": "Quick Statistics",
+      "totalUsers": "Total Users",
+      "totalOrders": "Total Orders",
+      "revenue": "Revenue",
+      "conversionRate": "Conversion Rate"
+    },
+    "modules": {
+      "monitoring": {
+        "title": "Monitoring",
+        "description": "View system health and payment metrics",
+        "viewDashboard": "View Dashboard"
+      },
+      "performance": {
+        "title": "Performance Monitor",
+        "description": "Real-time payment flow performance analytics",
+        "viewMetrics": "View Metrics"
+      },
+      "users": {
+        "title": "User Management",
+        "description": "Manage customer accounts and permissions",
+        "comingSoon": "Coming Soon"
+      },
+      "orders": {
+        "title": "Order Management",
+        "description": "Track and manage customer orders",
+        "comingSoon": "Coming Soon"
+      },
+      "analytics": {
+        "title": "Analytics",
+        "description": "View detailed reports and insights",
+        "comingSoon": "Coming Soon"
+      }
+    }
+  },
+  "monitoring": {
+    "title": "Monitoring Dashboard",
+    "description": "Real-time system health and payment metrics",
+    "systemHealth": {
+      "title": "System Health",
+      "healthy": "Healthy",
+      "warning": "Warning",
+      "critical": "Critical"
+    },
+    "alerts": {
+      "title": "Active Alerts",
+      "noAlerts": "No active alerts",
+      "viewAll": "View All Alerts"
+    },
+    "metrics": {
+      "totalPayments": "Total Payments",
+      "successfulPayments": "Successful Payments",
+      "failedPayments": "Failed Payments",
+      "successRate": "Success Rate"
+    }
+  },
+  "users": {
+    "title": "User Management",
+    "description": "Manage customer accounts and permissions",
+    "actions": {
+      "addUser": "Add User"
+    },
+    "search": {
+      "placeholder": "Search users by email or name..."
+    },
+    "table": {
+      "title": "All Users",
+      "description": "Manage and view all registered users",
+      "headers": {
+        "user": "User",
+        "role": "Role",
+        "status": "Status",
+        "joined": "Joined",
+        "lastLogin": "Last Login"
+      },
+      "status": {
+        "verified": "Verified",
+        "pending": "Pending"
+      }
+    }
+  },
+  "shopify": {
+    "title": "Shopify Integration",
+    "description": "Monitor and manage your Shopify store integration",
+    "overview": "Overview",
+    "orderSync": "Order Sync",
+    "inventory": "Inventory",
+    "syncLogs": "Sync Logs",
+    "health": "Health Monitor",
+    "navigation": {
+      "overview": "Overview",
+      "orders": "Orders",
+      "products": "Products",
+      "webhooks": "Webhooks",
+      "health": "Health",
+      "config": "Configuration"
+    },
+    "status": {
+      "connected": "Connected",
+      "disconnected": "Disconnected",
+      "healthy": "Healthy",
+      "warning": "Warning",
+      "error": "Error"
+    },
+    "metrics": {
+      "connectionStatus": "Connection Status",
+      "syncQueue": "Sync Queue",
+      "ordersSynced": "Orders Synced",
+      "productsSynced": "Products Synced",
+      "successRate": "Success Rate",
+      "todaysActivity": "Today's Activity"
+    },
+    "sync": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "completed": "Completed",
+      "failed": "Failed",
+      "abandoned": "Abandoned",
+      "retryFailed": "Retry Failed",
+      "syncSelected": "Sync Selected",
+      "clearSelection": "Clear Selection"
+    },
+    "config": {
+      "title": "Configuration",
+      "description": "Manage your Shopify integration settings",
+      "testConnection": "Test Connection",
+      "saveChanges": "Save Changes",
+      "basic": "Basic",
+      "webhooks": "Webhooks",
+      "features": "Features",
+      "limits": "Limits"
+    }
+  },
+  "scripts": {
+    "title": "Scripts Management",
+    "description": "Centrally manage system scripts and tools",
+    "health": {
+      "title": "System Health Status",
+      "description": "Real-time monitoring of system component health"
+    },
+    "tabs": {
+      "overview": "Overview",
+      "shopify": "Shopify",
+      "environment": "Environment",
+      "deployment": "Deployment",
+      "scripts": "Scripts"
+    },
+    "overview": {
+      "coreScripts": "Core Scripts",
+      "shopifyStatus": "Shopify Status",
+      "systemHealth": "System Health",
+      "coreScriptsCount": "15 core scripts available",
+      "shopifyIntegrationStatus": "Shopify integration status",
+      "systemOverallHealth": "System overall health status"
+    },
+    "statusLabels": {
+      "environmentValidation": "Environment Validation",
+      "buildValidation": "Build Validation",
+      "stripeSync": "Stripe Sync",
+      "apiConnection": "API Connection",
+      "productSync": "Product Sync",
+      "configValidation": "Configuration Validation",
+      "databaseConnection": "Database Connection",
+      "redisCache": "Redis Cache",
+      "apiService": "API Service"
+    },
+    "shopify": {
+      "title": "Shopify Integration Management",
+      "description": "Manage Shopify-related scripts and configurations",
+      "managementDescription": "Manage Shopify-related scripts and configurations, including API connections, product synchronization, and more."
+    },
+    "environment": {
+      "title": "Environment Variables Management",
+      "description": "Check and manage environment variable configurations"
+    },
+    "deployment": {
+      "title": "Deployment Tools",
+      "description": "Manage build, test, and deployment processes"
+    },
+    "scripts": {
+      "title": "Script Execution",
+      "description": "Execute and monitor various system scripts"
+    }
+  },
+  "performanceDashboard": {
+    "title": "Performance Dashboard",
+    "description": "Monitor system performance and optimize bottlenecks",
+    "loading": "Loading performance metrics...",
+    "loadFailed": "Failed to load performance metrics",
+    "retry": "Retry",
+    "autoRefresh": "Auto Refresh:",
+    "on": "ON",
+    "off": "OFF",
+    "export": "Export",
+    "refresh": "Refresh",
+    "tabs": {
+      "overview": "Overview",
+      "cache": "Cache",
+      "queries": "Queries",
+      "system": "System",
+      "alerts": "Alerts"
+    },
+    "overview": {
+      "cacheHitRate": "Cache Hit Rate",
+      "avgQueryTime": "Avg Query Time",
+      "systemStatus": "System Status",
+      "activeAlerts": "Active Alerts"
+    },
+    "cacheStats": {
+      "hitRateTitle": "Cache Hit Rate",
+      "hitRateDescription": "Percentage of cache hits",
+      "totalOperationsTitle": "Total Operations",
+      "totalOperationsDescription": "Cache operations performed",
+      "cacheHitsTitle": "Cache Hits",
+      "cacheHitsDescription": "Successful cache retrievals",
+      "cacheMissesTitle": "Cache Misses",
+      "cacheMissesDescription": "Failed cache retrievals"
+    },
+    "queryStats": {
+      "totalQueriesTitle": "Total Queries",
+      "totalQueriesDescription": "Queries executed",
+      "averageTimeTitle": "Average Time",
+      "averageTimeDescription": "Average query execution time",
+      "slowQueriesTitle": "Slow Queries",
+      "slowQueriesDescription": "Queries over threshold",
+      "indexUsageTitle": "Index Usage",
+      "indexUsageDescription": "Active indexes",
+      "slowQueriesCardTitle": "Slow Queries",
+      "slowQueriesCardDescription": "Queries that exceed the performance threshold",
+      "mostFrequentQueriesCardTitle": "Most Frequent Queries",
+      "mostFrequentQueriesCardDescription": "Queries executed most often",
+      "avg": "Avg:",
+      "times": "times"
+    },
+    "systemHealth": {
+      "statusTitle": "System Status:",
+      "memoryUsage": "Memory Usage",
+      "cpuUsage": "CPU Usage",
+      "uptimeTitle": "Uptime",
+      "uptimeDescription": "System uptime",
+      "responseTimeTitle": "Response Time",
+      "responseTimeDescription": "Average response time"
+    },
+    "alerts": {
+      "noAlertsTitle": "No Active Alerts",
+      "noAlertsDescription": "System is running smoothly",
+      "alertTitle": "{type} Alert",
+      "severityHigh": "High",
+      "severityMedium": "Medium",
+      "severityLow": "Low"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+Reset Your Rolitt Password
+
+Continue: https://rolitt.com/auth/reset?token=reset_1752393321613
+
+Email: test@example.com
+Site: https://rolitt.com
+
+© 2024 Rolitt. All rights reserved.

@@ -1,0 +1,286 @@
+{
+  "navigation": {
+    "title": "Panel de Administración",
+    "dashboard": "Panel de Control",
+    "monitoring": "Monitoreo",
+    "users": "Usuarios",
+    "orders": "Pedidos",
+    "products": "Productos",
+    "analytics": "Analíticas",
+    "settings": "Configuración",
+    "scripts": "Gestión de Scripts",
+    "shopify": "Shopify",
+    "ai": "Gestión de IA",
+    "soon": "Próximamente",
+    "version": "Versión {version}"
+  },
+  "header": {
+    "title": "Panel de Administración",
+    "description": "Gestiona tu sistema de marketing de comercio electrónico",
+    "notifications": {
+      "label": "Notificaciones ({count})",
+      "unread": "{count} notificaciones sin leer"
+    },
+    "settings": {
+      "label": "Configuración"
+    },
+    "userMenu": {
+      "label": "Menú de usuario",
+      "admin": "Administrador",
+      "myAccount": "Mi Cuenta",
+      "profile": "Perfil",
+      "settings": "Configuración",
+      "signOut": "Cerrar sesión"
+    }
+  },
+  "dashboard": {
+    "title": "Panel de Administración",
+    "description": "Gestiona tu sistema de marketing de comercio electrónico",
+    "quickStats": {
+      "title": "Estadísticas Rápidas",
+      "totalUsers": "Total de Usuarios",
+      "totalOrders": "Total de Pedidos",
+      "revenue": "Ingresos",
+      "conversionRate": "Tasa de Conversión"
+    },
+    "modules": {
+      "monitoring": {
+        "title": "Monitoreo",
+        "description": "Ver el estado del sistema y métricas de pago",
+        "viewDashboard": "Ver Panel de Control"
+      },
+      "users": {
+        "title": "Gestión de Usuarios",
+        "description": "Gestionar cuentas de clientes y permisos",
+        "comingSoon": "Próximamente"
+      },
+      "orders": {
+        "title": "Gestión de Pedidos",
+        "description": "Rastrear y gestionar pedidos de clientes",
+        "comingSoon": "Próximamente"
+      },
+      "analytics": {
+        "title": "Analíticas",
+        "description": "Ver informes detallados y perspectivas",
+        "comingSoon": "Próximamente"
+      }
+    }
+  },
+  "monitoring": {
+    "title": "Panel de Monitoreo",
+    "description": "Estado del sistema en tiempo real y métricas de pago",
+    "systemHealth": {
+      "title": "Estado del Sistema",
+      "healthy": "Saludable",
+      "warning": "Advertencia",
+      "critical": "Crítico"
+    },
+    "alerts": {
+      "title": "Alertas Activas",
+      "noAlerts": "No hay alertas activas",
+      "viewAll": "Ver Todas las Alertas"
+    },
+    "metrics": {
+      "totalPayments": "Total de Pagos",
+      "successfulPayments": "Pagos Exitosos",
+      "failedPayments": "Pagos Fallidos",
+      "successRate": "Tasa de Éxito"
+    }
+  },
+  "users": {
+    "title": "Gestión de Usuarios",
+    "description": "Gestionar cuentas de clientes y permisos",
+    "actions": {
+      "addUser": "Agregar Usuario"
+    },
+    "search": {
+      "placeholder": "Buscar usuarios por correo o nombre..."
+    },
+    "table": {
+      "title": "Todos los Usuarios",
+      "description": "Gestionar y ver todos los usuarios registrados",
+      "headers": {
+        "user": "Usuario",
+        "role": "Rol",
+        "status": "Estado",
+        "joined": "Se unió",
+        "lastLogin": "Último acceso"
+      },
+      "status": {
+        "verified": "Verificado",
+        "pending": "Pendiente"
+      }
+    }
+  },
+  "shopify": {
+    "title": "Integración de Shopify",
+    "description": "Monitorear y gestionar la integración de tu tienda Shopify",
+    "overview": "Resumen",
+    "orderSync": "Sincronización de Pedidos",
+    "inventory": "Inventario",
+    "syncLogs": "Registros de Sincronización",
+    "health": "Monitor de Salud",
+    "navigation": {
+      "overview": "Resumen",
+      "orders": "Pedidos",
+      "products": "Productos",
+      "webhooks": "Webhooks",
+      "health": "Salud",
+      "config": "Configuración"
+    },
+    "status": {
+      "connected": "Conectado",
+      "disconnected": "Desconectado",
+      "healthy": "Saludable",
+      "warning": "Advertencia",
+      "error": "Error"
+    },
+    "metrics": {
+      "connectionStatus": "Estado de Conexión",
+      "syncQueue": "Cola de Sincronización",
+      "ordersSynced": "Pedidos Sincronizados",
+      "productsSynced": "Productos Sincronizados",
+      "successRate": "Tasa de Éxito",
+      "todaysActivity": "Actividad de Hoy"
+    },
+    "sync": {
+      "pending": "Pendiente",
+      "processing": "Procesando",
+      "completed": "Completado",
+      "failed": "Fallido",
+      "abandoned": "Abandonado",
+      "retryFailed": "Reintento Fallido",
+      "syncSelected": "Sincronizar Seleccionados",
+      "clearSelection": "Limpiar Selección"
+    },
+    "config": {
+      "title": "Configuración",
+      "description": "Gestionar configuraciones de integración de Shopify",
+      "testConnection": "Probar Conexión",
+      "saveChanges": "Guardar Cambios",
+      "basic": "Básico",
+      "webhooks": "Webhooks",
+      "features": "Características",
+      "limits": "Límites"
+    }
+  },
+  "scripts": {
+    "title": "Gestión de Scripts",
+    "description": "Gestiona scripts y herramientas del sistema de forma centralizada",
+    "health": {
+      "title": "Estado de Salud del Sistema",
+      "description": "Monitorea en tiempo real el estado de los componentes del sistema"
+    },
+    "tabs": {
+      "overview": "Resumen",
+      "shopify": "Shopify",
+      "environment": "Entorno",
+      "deployment": "Despliegue",
+      "scripts": "Scripts"
+    },
+    "overview": {
+      "coreScripts": "Scripts Principales",
+      "shopifyStatus": "Estado de Shopify",
+      "systemHealth": "Salud del Sistema",
+      "coreScriptsCount": "15 scripts principales disponibles",
+      "shopifyIntegrationStatus": "Estado de integración con Shopify",
+      "systemOverallHealth": "Estado general de salud del sistema"
+    },
+    "statusLabels": {
+      "environmentValidation": "Validación de Entorno",
+      "buildValidation": "Validación de Construcción",
+      "stripeSync": "Sincronización de Stripe",
+      "apiConnection": "Conexión API",
+      "productSync": "Sincronización de Productos",
+      "configValidation": "Validación de Configuración",
+      "databaseConnection": "Conexión de Base de Datos",
+      "redisCache": "Caché Redis",
+      "apiService": "Servicio API"
+    },
+    "shopify": {
+      "title": "Gestión de Integración Shopify",
+      "description": "Gestiona scripts y configuraciones relacionados con Shopify",
+      "managementDescription": "Gestiona scripts y configuraciones relacionados con Shopify, incluyendo conexiones API, sincronización de productos y más."
+    },
+    "environment": {
+      "title": "Gestión de Variables de Entorno",
+      "description": "Verifica y gestiona la configuración de variables de entorno"
+    },
+    "deployment": {
+      "title": "Herramientas de Despliegue",
+      "description": "Gestiona procesos de construcción, pruebas y despliegue"
+    },
+    "scripts": {
+      "title": "Ejecución de Scripts",
+      "description": "Ejecuta y monitorea varios scripts del sistema"
+    }
+  },
+  "performanceDashboard": {
+    "title": "Performance Dashboard",
+    "description": "Monitor system performance and optimize bottlenecks",
+    "loading": "Loading performance metrics...",
+    "loadFailed": "Failed to load performance metrics",
+    "retry": "Retry",
+    "autoRefresh": "Auto Refresh:",
+    "on": "ON",
+    "off": "OFF",
+    "export": "Export",
+    "refresh": "Refresh",
+    "tabs": {
+      "overview": "Overview",
+      "cache": "Cache",
+      "queries": "Queries",
+      "system": "System",
+      "alerts": "Alerts"
+    },
+    "overview": {
+      "cacheHitRate": "Cache Hit Rate",
+      "avgQueryTime": "Avg Query Time",
+      "systemStatus": "System Status",
+      "activeAlerts": "Active Alerts"
+    },
+    "cacheStats": {
+      "hitRateTitle": "Cache Hit Rate",
+      "hitRateDescription": "Percentage of cache hits",
+      "totalOperationsTitle": "Total Operations",
+      "totalOperationsDescription": "Cache operations performed",
+      "cacheHitsTitle": "Cache Hits",
+      "cacheHitsDescription": "Successful cache retrievals",
+      "cacheMissesTitle": "Cache Misses",
+      "cacheMissesDescription": "Failed cache retrievals"
+    },
+    "queryStats": {
+      "totalQueriesTitle": "Total Queries",
+      "totalQueriesDescription": "Queries executed",
+      "averageTimeTitle": "Average Time",
+      "averageTimeDescription": "Average query execution time",
+      "slowQueriesTitle": "Slow Queries",
+      "slowQueriesDescription": "Queries over threshold",
+      "indexUsageTitle": "Index Usage",
+      "indexUsageDescription": "Active indexes",
+      "slowQueriesCardTitle": "Slow Queries",
+      "slowQueriesCardDescription": "Queries that exceed the performance threshold",
+      "mostFrequentQueriesCardTitle": "Most Frequent Queries",
+      "mostFrequentQueriesCardDescription": "Queries executed most often",
+      "avg": "Avg:",
+      "times": "times"
+    },
+    "systemHealth": {
+      "statusTitle": "System Status:",
+      "memoryUsage": "Memory Usage",
+      "cpuUsage": "CPU Usage",
+      "uptimeTitle": "Uptime",
+      "uptimeDescription": "System uptime",
+      "responseTimeTitle": "Response Time",
+      "responseTimeDescription": "Average response time"
+    },
+    "alerts": {
+      "noAlertsTitle": "No Active Alerts",
+      "noAlertsDescription": "System is running smoothly",
+      "alertTitle": "{type} Alert",
+      "severityHigh": "High",
+      "severityMedium": "Medium",
+      "severityLow": "Low"
+    }
+  }
+}

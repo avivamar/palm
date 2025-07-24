@@ -1,0 +1,11 @@
+Confirm Your Email Change
+
+Continue: https://rolitt.com/auth/email-change?token=change_1752393321616
+
+From: test@example.com
+To: newtest@example.com
+
+Email: test@example.com
+Site: https://rolitt.com
+
+© 2024 Rolitt. All rights reserved.

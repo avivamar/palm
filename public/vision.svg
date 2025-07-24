@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300px" height="200px" viewBox="0 0 300 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>vision</title>
+    <g id="vision" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#0040FF" x="0" y="0" width="300" height="200"></rect>
+        <text id="VISION" fill="#FFF558" fill-rule="nonzero" font-family="PingFangSC-Semibold, PingFang SC" font-size="72" font-weight="500">
+            <tspan x="1" y="123">VISION</tspan>
+        </text>
+    </g>
+</svg>

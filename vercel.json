@@ -1,0 +1,93 @@
+{
+  "functions": {
+    "src/app/api/auth/callback/route.ts": {
+      "maxDuration": 15
+    },
+    "src/app/api/auth/sync-user/route.ts": {
+      "maxDuration": 20
+    },
+    "src/app/api/webhooks/stripe/route.ts": {
+      "maxDuration": 25
+    },
+    "src/app/actions/checkoutActions.ts": {
+      "maxDuration": 10
+    },
+    "src/app/api/queue/process/route.ts": {
+      "maxDuration": 30
+    },
+    "src/app/api/admin/migrate/route.ts": {
+      "maxDuration": 60
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/queue/process",
+      "schedule": "0 0 * * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap-0.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml"
+        }
+      ]
+    },
+    {
+      "source": "/_next/static/:all*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/:path*.(png|jpg|jpeg|gif|webp|svg|ico|woff|woff2)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/about-us",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/pittsburgh-for-sale-dirt-bikes",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/ko/:page",
+      "destination": "/:page",
+      "permanent": true
+    },
+    {
+      "source": "/ar/:page",
+      "destination": "/:page",
+      "permanent": true
+    },
+    {
+      "source": "/vi/:page",
+      "destination": "/:page",
+      "permanent": true
+    }
+  ]
+}

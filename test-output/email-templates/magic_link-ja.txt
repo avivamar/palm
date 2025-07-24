@@ -1,0 +1,8 @@
+Rolittマジックリンク
+
+Continue: https://rolitt.com/auth/magic?token=magic_1752393321615
+
+Email: test@example.com
+Site: https://rolitt.com
+
+© 2024 Rolitt. All rights reserved.

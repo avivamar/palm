@@ -1,0 +1,48 @@
+# Railway NIXPACKS 配置 - Next.js 环境变量优化版
+
+[phases.setup]
+nixPkgs = [
+  'nodejs_20',
+  'npm-9_x'
+]
+
+# 安装依赖
+[phases.install]
+cmds = [ 'npm ci --omit=dev --no-audit --no-fund' ]
+
+# 构建阶段 - 解决 Next.js 环境变量问题
+[phases.build]
+dependsOn = [ "install" ]
+cmds = [
+  # 🎯 关键：将 Railway 运行时变量映射到 Next.js 构建时变量
+  'echo "Setting up Next.js environment variables for build..."',
+  'export NEXT_PUBLIC_SUPABASE_URL=$SUPABASE_URL',
+  'export NEXT_PUBLIC_SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY',
+  'export NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=$STRIPE_PUBLISHABLE_KEY',
+  'export NEXT_PUBLIC_APP_URL=$RAILWAY_PUBLIC_DOMAIN',
+
+  # 调试：输出环境变量状态
+  'echo "Build-time env check:"',
+  'echo "NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL:0:20}..."',
+  'echo "NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY:0:20}..."',
+
+  # 执行构建
+  'npm run build',
+
+  # 确保启动脚本有执行权限
+  'chmod +x scripts/railway-start.sh'
+]
+
+[start]
+cmd = 'npm start'
+
+# 环境变量配置
+[variables]
+NODE_ENV = 'production'
+NEXT_TELEMETRY_DISABLED = '1'
+PORT = '3000'
+
+# 构建配置
+[build]
+cache = false
+timeout = 1800

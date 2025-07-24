@@ -1,0 +1,39 @@
+{
+  "name": "@rolitt/shopify",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shopify integration package for Rolitt platform",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:unit": "vitest run --run src/**/*.test.ts",
+    "test:integration": "vitest run --run src/**/*.integration.test.ts",
+    "test:e2e": "vitest run --run src/**/*.e2e.test.ts",
+    "test:performance": "vitest run --run src/**/*performance*.test.ts",
+    "test:all": "npm run test:unit && npm run test:integration && npm run test:e2e"
+  },
+  "peerDependencies": {
+    "next": "^15.0.0",
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "@shopify/admin-api-client": "^1.0.1",
+    "@shopify/shopify-api": "^11.3.0",
+    "drizzle-orm": "^0.40.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "@vitest/coverage-v8": "^2.0.0",
+    "typescript": "5.7.3",
+    "vitest": "^2.0.0"
+  }
+}

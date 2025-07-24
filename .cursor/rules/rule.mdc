@@ -1,0 +1,368 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+[
+  {
+    "name": "rolitt 品牌",
+    "description": "针对 Next.js 15 项目的配置，使用 Tailwind CSS、TypeScript、shadcn/ui、国际化及动画库的开发规范",
+    "version": "1.1.0",
+    "rules": [
+      {
+        "name": "项目结构",
+        "description": "遵循 Next.js App Router 结构并进行国际化组织",
+        "pattern": "**/*",
+        "recommendations": [
+          "使用 app 目录作为 App Router 组件的根目录",
+          "将多语言内容放在 app/[lang] 目录中，实现国际化",
+          "使用 TypeScript 编写并导出所有组件",
+          "将可复用的组件放在 components/ 目录，子目录命名统一",
+          "工具函数和共享逻辑存放在 lib/ 目录",
+          "所有类型定义集中管理，可放在 types/ 目录或就近放置",
+          "保持统一的目录层级，遵循约定式结构，利于团队协作和维护",
+          "项目的设计和开发是健壮的，代码可读性强，可维护性高，且具有良好的扩展性和可复用性",
+          "代码质量保证：使用 ESLint 及 Prettier 进行代码格式化和静态分析",
+          "使用 Storybook 进行组件开发和文档演示",
+          "使用 React Query 进行数据管理，避免重复请求和状态管理",
+          "项目使用 npm 包管理，确保依赖项的一致性和可重复性，本地开发环境可以用 cnpm 替代 npm"
+        ]
+      },
+      {
+    "name": "代码开发流程规范",
+    "description": "严格的代码开发五步流程，确保代码质量和安全性",
+    "pattern": "**/*.{tsx,ts,jsx,js,css,md}",
+    "recommendations": [
+      "明确任务范围：在写代码前，先分析任务，明确目标",
+      "制定清晰的计划，列出需要修改的函数、模块或组件，并说明原因",
+      "只有在计划清晰且经过深思熟虑后，才开始写代码",
+      "精准定位代码修改点：确定需要修改的具体文件和代码行",
+      "避免无关文件的改动，若涉及多个文件，需明确说明每个文件的改动理由",
+      "除非任务明确要求，否则不创建新抽象或重构代码",
+      "最小化、隔离化的代码改动：只编写任务直接所需的代码",
+      "避免添加不必要的日志、注释、测试、待办事项或错误处理",
+      "不要进行'顺手'的额外修改，确保新代码不干扰现有功能",
+      "严格检查代码：检查代码的正确性、是否符合任务范围，以及是否会引发副作用",
+      "确保代码与现有代码风格一致，防止破坏已有功能",
+      "评估改动是否会影响下游系统",
+      "清晰交付成果：总结改动的具体内容和原因",
+      "列出所有修改的文件及其具体变更",
+      "说明任何假设或潜在风险，供他人审查",
+      "核心原则：不即兴发挥，严格按照任务要求执行，不随意创新",
+      "不过度设计：避免复杂化，只做必要的工作",
+      "严格测试：确保新代码的功能正常，没有引入新的问题",
+      "严格代码审查：新代码需经过严格的代码审查，确保质量和安全性",
+      "代码中凡是对外展示的部分，必须用英文，无法多语言处理的也一律用英文，代码中不允许出现中文和中文标点符号！代码注释和说明用中文",
+      "按功能组织开发，而不是按类型组织开发",
+      "不偏离规则：始终遵循这套流程，确保代码安全、可靠"
+    ]
+  },
+      {
+        "name": "样式规范",
+        "description": "使用 Tailwind CSS，配合品牌色及 shadcn/ui 组件库进行统一的样式管理",
+        "pattern": "**/*.css,**/*.tsx,**/*.jsx",
+        "recommendations": [
+          "在 tailwind.config.js 中添加品牌主色 #EBFF7F 并配置主题",
+          "遵循 shadcn/ui 组件的最佳实践，保持 UI 一致性",
+          "在 globals.css 中定义 CSS 变量管理主题值和品牌色",
+          "优先使用 Tailwind 的工具类代替自定义 CSS",
+          "保证良好的响应式设计和多设备兼容性",
+          "使用 dark: 前缀在 Tailwind 中支持暗色模式",
+          "为所有样式变更记录必要的变更文档"
+        ]
+      },
+      {
+        "name": "国际化",
+        "description": "支持多语言，确保网站在全球范围内可用",
+        "pattern": "**/*",
+        "recommendations": [
+          "使用 Next.js 的内置国际化和 App Router 进行多语言路由",
+          "在 app/[lang] 目录中按语言划分页面",
+          "将翻译内容存放在 src/locales/{lang}/*.json 文件中",
+          "使用 next-intl 管理多语言资源",
+          "在项目中添加语言切换器组件，放置于全局布局 header 中",
+          "所有文案内容均应外部化，避免硬编码",
+          "在 SEO 层面增加 hreflang 标签，确保搜索引擎正确识别多语言",
+          "确保所有链接的 href 属性都包含 lang 属性，如 /es/about",
+          "src/app/[locale]下面的文件和代码中，尽量不要出现硬编码的内容，如果非要有，也必须是英文",
+          "确保我们以后添加其他语言支持的时候改动尽量少的代码和配置的地方"
+        ]
+      },
+      {
+        "name": "shadcn/ui 集成",
+        "description": "正确集成和使用 shadcn/ui 组件库，保持统一的 UI 风格",
+        "pattern": "**/*.tsx,**/*.jsx,**/*.css",
+        "recommendations": [
+          "参考官方文档 https://ui.shadcn.com/docs/installation 进行配置",
+          "运行 `npx shadcn-ui@latest init` 进行初始化",
+          "使用 `npx shadcn-ui@latest add [component-name]` 按需添加组件",
+          "将 shadcn/ui 组件放置在 components/ui/ 目录，并保持一致命名",
+          "在 globals.css 中自定义主题并使用品牌色 #EBFF7F",
+          "在 Storybook 中为自定义组件编写演示文档",
+          "记录组件的使用方式及变更日志"
+        ]
+      },
+      {
+        "name": "动画实现",
+        "description": "使用 Framer Motion 和 MagicUI 实现流畅的动效",
+        "pattern": "**/*.tsx,**/*.jsx",
+        "recommendations": [
+          "使用 `npm install framer-motion` 安装 Framer Motion",
+          "在 lib/animations.ts 中集中管理可复用的动画配置",
+          "使用 motion 组件为元素添加动画",
+          "在页面间切换时使用 AnimatePresence 实现过渡动画",
+          "为常用组件设计动画模板并复用",
+          "使用 MagicUI 增强交互体验，提升用户感知",
+          "尊重用户减少动画的偏好，使用 useReducedMotion 进行处理"
+        ]
+      },
+      {
+        "name": "SEO 优化",
+        "description": "全站 SEO 最佳实践",
+        "pattern": "**/*.tsx,**/*.jsx,**/*.ts,**/*.js",
+        "recommendations": [
+          "使用 Next.js Metadata API 设置页面元信息",
+          "动态内容使用 generateMetadata 进行生成",
+          "正确设置 Open Graph 和 Twitter Card 元数据",
+          "使用 next-sitemap 生成 sitemap.xml 和 robots.txt",
+          "保证 HTML 结构语义化，保持 heading 层级合理",
+          "使用 next/image 优化图片，包含 alt 文本",
+          "为多语言页面设置 hreflang 标签"
+        ]
+      },
+      {
+        "name": "路由规范",
+        "description": "保持整洁的 URL 结构和 SEO 友好",
+        "pattern": "app/**/*",
+        "recommendations": [
+          "URL 命名使用描述性 kebab-case 格式",
+          "多语言页面使用 /en/、/fr/ 等前缀",
+          "避免过深的 URL 结构，保持可读性和 SEO",
+          "动态内容页使用动态路由",
+          "保持多语言路由结构一致",
+          "每种语言都提供 404 页面和错误处理页面"
+        ]
+      },
+      {
+        "name": "数据库集成",
+        "description": "Drizzle ORM 使用规范",
+        "pattern": "**/*.ts,**/*.js",
+        "recommendations": [
+          "在 db/schema 目录中创建数据模型",
+          "严格按照 Drizzle ORM 官方文档进行配置",
+          "使用 .env 文件存储数据库连接字符串，避免泄露",
+          "所有数据库变更使用迁移脚本进行版本管理",
+          "封装数据库操作在独立的 repository 或 service 中",
+          "为数据库操作编写单元测试，保证稳定性"
+        ]
+      },
+      {
+        "name": "代码质量",
+        "description": "保持高质量、可维护的代码标准",
+        "pattern": "**/*.tsx,**/*.ts,**/*.jsx,**/*.js",
+        "recommendations": [
+          "使用 ESLint 和 Prettier 进行代码风格统一",
+          "使用 Vitest、Testing Library 和 Playwright 进行测试",
+          "复杂逻辑必须添加注释，便于后期维护",
+          "为所有可复用组件编写 Storybook stories",
+          "严格遵循 commitlint 规范，保持提交历史清晰",
+          "TypeScript 推荐不使用 any 类型（除非特别需要，也一定要做注释和标记）",
+          "每次 PR 前进行代码审查（Code Review）"
+        ]
+      },
+      {
+        "name": "性能优化",
+        "description": "基于 Vercel Commerce 最佳实践的性能优化规范",
+        "pattern": "**/*",
+        "recommendations": [
+          "服务端渲染：优先使用 Server Components 减少客户端 JS 体积",
+          "图片优化：使用 next/image 实现响应式图片和懒加载",
+          "字体优化：使用 next/font 提高字体加载性能和 CLS 指标",
+          "代码分割：为客户端组件使用 React.lazy 和 Suspense 实现按需加载",
+          "脚本优化：使用 next/script 优化第三方脚本的加载策略",
+          "缓存策略：实现多层缓存 - 浏览器缓存、CDN 缓存、API 缓存",
+          "数据获取：使用 SWR 或 React Query 实现智能数据缓存和重新验证",
+          "乐观更新：购物车操作使用乐观更新提升用户体验",
+          "预加载：对关键路由和资源实现预加载策略",
+          "Bundle 分析：定期使用 @next/bundle-analyzer 分析和优化包大小",
+          "Core Web Vitals：持续监控 LCP、FID、CLS 指标并优化",
+          "渐进式加载：实现骨架屏和渐进式内容加载",
+          "API 优化：使用 GraphQL fragments 减少数据传输量",
+          "静态生成：对产品页面使用 ISR 实现静态生成和增量更新"
+        ]
+      },
+      {
+        "name": "无障碍性",
+        "description": "确保网站对所有用户友好，符合 WCAG 标准",
+        "pattern": "**/*.tsx,**/*.jsx",
+        "recommendations": [
+          "全站使用语义化 HTML 元素",
+          "在必要时使用 ARIA 属性辅助屏幕阅读器",
+          "品牌色 #EBFF7F 的使用需保证足够的对比度",
+          "确保所有交互元素均可通过键盘访问",
+          "为交互元素添加明显的焦点样式",
+          "至少满足 WCAG 2.1 AA 标准"
+        ]
+      },
+      {
+        "name": "分析工具集成规范",
+        "description": "基于 Google 最佳实践的分析工具集成指导原则",
+        "pattern": "src/components/analytics/**/*.tsx, src/libs/firebase/config.ts, src/lib/analytics/**/*.ts, src/app/[locale]/layout.tsx, .env*.local",
+        "recommendations": [
+          "将 Firebase Analytics 作为核心分析工具之一，与 Google Analytics 协同工作，用于事件跟踪和用户行为分析。",
+          "必须使用 Next.js Script 组件加载所有第三方分析脚本",
+          "根据脚本重要性选择合适的 strategy: beforeInteractive（关键脚本）、afterInteractive（重要分析脚本如 GA、Clarity）、lazyOnload（营销脚本如 Meta Pixel、TikTok Pixel）",
+          "组件架构：AnalyticsProvider.tsx 作为统一提供者，services/ 目录存放各分析服务组件，hooks/ 目录存放分析相关 Hook",
+          "性能优化：最小化 First Load JS，使用动态导入，非关键脚本延迟 3 秒加载，定期使用 @next/bundle-analyzer 分析包大小",
+          "环境变量管理：所有分析工具配置通过 Env.ts 统一管理，确保类型安全",
+          "条件加载：实现基于环境和用户偏好的条件加载机制",
+          "错误处理：为所有分析脚本添加错误处理和降级方案",
+          "开发流程：先分析再实施，渐进式优化，持续监控 Core Web Vitals 指标"
+        ]
+      },
+      {
+        "name": "CI/CD 流程",
+        "description": "持续集成和持续部署的流程和规范",
+        "pattern": ".github/workflows/**/*.yml, .gitlab-ci.yml",
+        "recommendations": [
+          "为项目配置 GitHub Actions 或 GitLab CI 流水线",
+          "包含自动化测试、Lint、Build 和部署步骤",
+          "在合并 PR 前强制执行测试和 Lint",
+          "配置 preview 环境便于功能预览",
+          "保证主分支的构建和部署自动化"
+        ]
+      },
+      {
+        "name": "安全性",
+        "description": "保障网站和用户数据的安全",
+        "pattern": "**/*.ts,**/*.tsx,**/*.js,**/*.jsx",
+        "recommendations": [
+          "避免在客户端暴露敏感信息，使用 .env 文件管理机密",
+          "定期进行依赖包安全扫描，及时修补漏洞",
+          "对于 API 请求，进行输入校验和输出过滤",
+          "合理配置 Content Security Policy (CSP)",
+          "使用 HTTPS 保障数据传输安全"
+        ]
+      }
+    ],
+    "settings": {
+      "importOrder": [
+        "^(react|next)(.*)$",
+        "^@/components/(.*)$",
+        "^@/lib/(.*)$",
+        "^@/styles/(.*)$",
+        "^@/(.*)$",
+        "^[./]"
+      ],
+      "componentStructure": [
+        "imports",
+        "types",
+        "component",
+        "exports"
+      ],
+      "preferredQuotes": "single",
+      "indentSize": 4,
+      "maxLineLength": 80,
+      "preferredLanguage": "typescript"
+    }
+  },
+  {
+    "name": "页面开发要求",
+    "description": "规范每个页面的开发模式、结构以及与数据交互的模式",
+    "pattern": "app/**/*.{tsx,ts,jsx,js}",
+    "recommendations": [
+      "每个页面都必须使用 TypeScript，并定义清晰的 Props 类型",
+      "合理选择布局组件（layout.tsx）统一页面结构",
+      "使用 Suspense 和 loading.tsx 处理页面级的加载状态",
+      "复杂的逻辑组件可拆分成独立模块，避免文件过长",
+      "数据请求优先使用服务器组件进行 SSR 或 SSG 渲染",
+      "对于需要用户交互的模块，封装为 Client Component（'use client'）",
+      "必要时进行代码拆分，避免页面体积过大"
+      "在使用 Next.js 的 generateMetadata 函数时，始终记得导入 Metadata 类型,可以考虑在 ESLint 配置中添加相关规则来检测缺失的类型导入,在开发过程中定期运行 npm run build 来及早发现类型错误"
+    ]
+  },
+  {
+    "name": "渲染模式要求",
+    "description": "明确 SSR、SSG、ISR、CSR 等渲染模式的使用场景及要求",
+    "pattern": "app/**/*.{tsx,ts,jsx,js}",
+    "recommendations": [
+      "对 SEO 友好的页面必须优先考虑 SSR 或 SSG",
+      "频繁更新的数据可使用 ISR 或 SWR 客户端请求",
+      "对于需要用户登录或鉴权的页面，可采用 SSR 并结合 Session/Cookie",
+      "静态页面优先考虑 SSG（减少服务器负载）",
+      "纯交互型模块（例如动态动画）可采用 CSR（use client）",
+      "禁止无必要的全局客户端渲染，避免性能损失",
+      "在 PR 中明确说明选择的渲染模式及理由"
+    ]
+  },
+  {
+    "name": "代码质量",
+    "description": "保持高质量、可维护的代码标准，严格的类型定义",
+    "pattern": "**/*.tsx,**/*.ts,**/*.jsx,**/*.js",
+    "recommendations": [
+      "使用 ESLint 和 Prettier 进行代码风格统一",
+      "使用 Vitest、Testing Library 和 Playwright 进行测试",
+      "复杂逻辑必须添加注释，便于后期维护",
+      "所有可复用组件必须在 Storybook 中编写 stories",
+      "严格遵循 commitlint 规范，保持提交历史清晰",
+      "TypeScript 严格模式，禁止 any 类型（除非绝对必要，并需加注释）",
+      "组件 Props 必须定义显式的接口类型",
+      "组件或函数必须明确返回类型，避免隐式推导导致的问题",
+      "模块导出时尽量使用命名导出，避免默认导出带来的可维护性问题",
+      "每次 PR 前进行 Code Review，保证代码质量"
+    ]
+  },
+  {
+    "name": "Cloudflare 部署",
+    "description": "使用 @opennextjs/cloudflare 进行 Cloudflare Workers 部署的规范",
+    "pattern": "**/*",
+    "recommendations": [
+      "使用 @opennextjs/cloudflare 替代 @cloudflare/next-on-pages 进行部署",
+      "支持 Node.js runtime，无需为每个页面添加 edge runtime 配置",
+      "使用 npx opennextjs-cloudflare 命令构建 Cloudflare Workers 版本",
+      "确保 wrangler.toml 配置正确，启用 nodejs_compat 兼容模式",
+      "部署前先使用 npx wrangler pages dev .worker-next/ 进行本地测试",
+      "保持与 Vercel 部署的兼容性，@opennextjs/cloudflare 不影响标准构建",
+      "定期更新 @opennextjs/cloudflare 版本以获得最新功能和修复",
+      "在 CI/CD 中分别配置 Vercel 和 Cloudflare 的构建流程"
+    ]
+  },
+  {
+    "name": "Firebase Auth 企业级安全集成",
+    "description": "安全优先的 Firebase Auth 企业级认证系统集成规范",
+    "pattern": "src/components/auth/**/*.tsx, src/libs/firebase/**/*.ts, src/libs/security/**/*.ts, src/libs/rbac/**/*.ts, src/libs/audit/**/*.ts, app/(auth)/**/*.tsx, src/contexts/**/*.tsx",
+    "recommendations": [
+      "使用 Firebase Auth 作为唯一认证系统，确保企业级安全标准",
+      "遵循零信任架构原则，每个请求都需验证身份和权限",
+      "实现最小权限原则，用户只能访问必需的资源和功能",
+      "在 src/libs/Env.ts 中安全管理 Firebase 配置，使用 .env*.local 文件管理不同环境的密钥，并移除所有 Clerk 配置",
+      "实现多因素认证（MFA），支持 SMS、TOTP、邮箱验证",
+      "建立完整的会话安全管理，包括 token 轮换和设备指纹识别",
+      "构建基于角色的访问控制（RBAC）系统，支持细粒度权限管理",
+      "实现实时威胁检测，包括异常登录、暴力破解、账户接管检测",
+      "建立完整的审计日志系统，记录所有用户行为和系统事件",
+      "确保 GDPR 合规，实现数据可携带权和遗忘权",
+      "遵循 PCI DSS 标准，确保支付数据安全",
+      "实现数据加密策略，对敏感字段进行加密存储",
+      "使用 Firestore Security Rules 进行数据访问控制",
+      "建立密钥轮换机制，定期更新加密密钥",
+      "实现错误处理和安全告警系统",
+      "支持多种认证方式：邮箱密码、Google OAuth、企业 SSO",
+      "创建专用的 (auth) 路由组，与营销页面完全分离",
+      "在 src/components/auth/ 中创建安全的认证组件",
+      "在 src/libs/firebase/ 中实现客户端和服务端配置",
+      "在 src/libs/security/ 中实现威胁检测和安全响应",
+      "在 src/libs/rbac/ 中实现权限控制引擎",
+      "在 src/libs/audit/ 中实现合规审计系统",
+      "确保所有组件采用移动优先的响应式设计",
+      "使用正确的 Firebase Auth TypeScript 类型，严格模式",
+      "实现路由守卫和中间件保护敏感页面",
+      "遵循现有的 next-intl 国际化模式",
+      "与现有设计系统和 UI 规范保持一致",
+      "用户中心（Dashboard）及管理后台应使用项目现有技术栈（Next.js, Tailwind CSS, shadcn/ui）进行开发，以保证技术统一和UI一致性。",
+      "所有用户认证后的页面（用户中心、设置等）应放置在 `src/app/[locale]/(auth)/` 路由组中，以实现独立的布局和路由保护。",
+      "严格遵循关注点分离原则：Firebase配置集中在 `src/libs/firebase`，业务逻辑封装在服务层（如 `src/libs/integration`），UI组件仅调用服务，不直接与 Firebase SDK 交互。",
+      "参考完整集成文档：docs/firebase-auth-integration.md"
+    ]
+  }
+]

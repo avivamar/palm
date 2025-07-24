@@ -1,0 +1,11 @@
+{
+  "required": "{field} is required",
+  "minLength": "{field} must be at least {min} characters",
+  "maxLength": "{field} must be no more than {max} characters",
+  "invalid": "Please enter a valid {field}",
+  "invalidEmail": "Please enter a valid email address",
+  "invalidPhone": "Please enter a valid phone number",
+  "emailCheckError": "Unable to verify email address",
+  "validationError": "Validation failed. Please try again.",
+  "valid": "{field} is valid"
+}

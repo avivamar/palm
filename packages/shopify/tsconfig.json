@@ -1,0 +1,23 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "rootDir": "./src",
+    "paths": {
+      "@/*": ["../../src/*"],
+      "@rolitt/shared/*": ["../shared/src/*"],
+      "@/components/ui/*": ["../../src/components/ui/*"],
+      "@/lib/*": ["../../src/lib/*"]
+    },
+    "types": ["node"],
+    "outDir": "./dist"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "examples"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "folders": [
+    {
+      "name": "🏠 Root",
+      "path": "."
+    },
+    {
+      "name": "📦 Admin Package", 
+      "path": "./packages/admin"
+    },
+    {
+      "name": "🔧 Shared Package",
+      "path": "./packages/shared"
+    }
+  ],
+  "settings": {
+    "typescript.preferences.enabled": true,
+    "typescript.suggest.autoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "files.associations": {
+      "*.tsx": "typescriptreact"
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/dist": true,
+      "**/build": true
+    },
+    "files.watcherExclude": {
+      "**/node_modules/**": true,
+      "**/.next/**": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "bradlc.vscode-tailwindcss",
+      "ms-vscode.vscode-typescript-next",
+      "esbenp.prettier-vscode",
+      "dbaeumer.vscode-eslint"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Admin: Type Check",
+        "type": "shell",
+        "command": "npm run admin:check",
+        "group": "build",
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": {
+          "pattern": {
+            "regexp": "^(.*):(\\d+):(\\d+)\\s*-\\s*(error|warning|info)\\s*(.*):\\s*(.*)$",
+            "file": 1,
+            "line": 2,
+            "column": 3,
+            "severity": 4,
+            "code": 5,
+            "message": 6
+          }
+        }
+      },
+      {
+        "label": "Admin: Validate Package",
+        "type": "shell", 
+        "command": "npm run admin:validate",
+        "group": "build"
+      },
+      {
+        "label": "Admin: Development Server",
+        "type": "shell",
+        "command": "npm run dev",
+        "group": "build",
+        "isBackground": true
+      }
+    ]
+  }
+}

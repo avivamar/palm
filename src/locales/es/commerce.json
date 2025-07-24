@@ -1,0 +1,551 @@
+{
+  "Payment": {
+    "Success": {
+      "title": "¡Pago Exitoso!",
+      "message": "¡Gracias por tu reserva anticipada! Hemos recibido tu pago y tu Compañía IA Rolitt está un paso más cerca de ti. Se ha enviado un email de confirmación a tu bandeja de entrada.",
+      "button_back_home": "Volver al Inicio",
+      "support_message": "Si tienes alguna pregunta, puedes contactar a nuestro equipo de soporte:"
+    },
+    "Cancel": {
+      "title": "Pago Cancelado",
+      "message": "Parece que has cancelado el pago. No te preocupes, tu reserva anticipada está guardada. Puedes completar tu compra en cualquier momento haciendo clic en el botón de abajo.",
+      "button_try_again": "Intentar de Nuevo"
+    },
+    "Button": {
+      "pay": "Pagar Ahora"
+    },
+    "Status": {
+      "processing": "Procesando..."
+    },
+    "SuccessPage": {
+      "title": "¡Reserva Anticipada Exitosa!",
+      "description": "Gracias por tu compra. Se te ha enviado un email de confirmación.",
+      "support_message": "Si tienes alguna pregunta, por favor contacta a nuestro equipo de soporte.",
+      "back_to_home": "Volver a la Página Principal"
+    },
+    "CancelPage": {
+      "title": "Pago Cancelado",
+      "description": "Tu proceso de pago no se completó. Tu carrito ha sido guardado.",
+      "support_message": "Si tienes problemas, por favor contacta a nuestro equipo de soporte.",
+      "try_again": "Intentar de Nuevo",
+      "back_to_home": "Volver a la Página Principal"
+    }
+  },
+  "PreOrder": {
+    "progress": {
+      "steps": {
+        "product": {
+          "title": "Producto",
+          "description": "Elige tu compañía"
+        },
+        "details": {
+          "title": "Detalles",
+          "description": "Información personal"
+        },
+        "payment": {
+          "title": "Pago",
+          "description": "Envío y pago"
+        },
+        "confirmation": {
+          "title": "Completo",
+          "description": "Pedido confirmado"
+        }
+      },
+      "currentStep": "Paso {step} de {total}: {stepName}"
+    },
+    "Hero": {
+      "title": "Sé de los Primeros en Experimentar el Futuro de la Compañía IA",
+      "description": "Reserva tu Compañía IA Rolitt hoy y únete a la próxima generación de tecnología interactiva.",
+      "cta": "Reservar Ahora",
+      "limited_time_text": "✨ Reserva Limitada, Descuento para Compradores Anticipados",
+      "features": {
+        "innovation": {
+          "icon": "🚀",
+          "text": "Tecnología Innovadora"
+        },
+        "quality": {
+          "icon": "💎",
+          "text": "Calidad Premium"
+        },
+        "limited": {
+          "icon": "🌟",
+          "text": "Edición Limitada"
+        },
+        "fast_delivery": {
+          "icon": "⚡",
+          "text": "Entrega Rápida"
+        }
+      },
+      "colors": {
+        "honey_khaki": "Caqui Miel",
+        "sakura_pink": "Rosa Sakura",
+        "healing_green": "Verde Sanador",
+        "moonlight_grey": "Gris Luz de Luna"
+      }
+    },
+    "Features": {
+      "title": "Características Revolucionarias de IA",
+      "description": "Experimenta la perfecta combinación de tecnología de vanguardia e inteligencia emocional.",
+      "ai": {
+        "title": "IA Avanzada",
+        "description": "Impulsada por modelos de lenguaje de última generación para conversaciones naturales"
+      },
+      "conversation": {
+        "title": "Conversaciones Naturales",
+        "description": "Participa en diálogos significativos con tu compañía IA"
+      },
+      "emotion": {
+        "title": "Inteligencia Emocional",
+        "description": "Reconoce y responde a tu estado emocional"
+      },
+      "magic": {
+        "title": "Momentos Mágicos",
+        "description": "Crea experiencias interactivas inolvidables"
+      }
+    },
+    "Timeline": {
+      "title": "Viaje del Producto",
+      "description": "Sigue nuestro viaje desde la reserva hasta la entrega",
+      "preOrder": {
+        "date": "Ahora",
+        "title": "Fase de Reserva",
+        "description": "Asegura tu precio de comprador anticipado y sé de los primeros en recibir tu compañía IA"
+      },
+      "production": {
+        "date": "Q2 2024",
+        "title": "Fase de Producción",
+        "description": "Tu compañía IA está siendo cuidadosamente elaborada con la última tecnología"
+      },
+      "shipping": {
+        "date": "Q3 2024",
+        "title": "Fase de Envío",
+        "description": "Tu compañía IA está preparada para la entrega con embalaje premium"
+      },
+      "delivery": {
+        "date": "Q3 2024",
+        "title": "Entrega",
+        "description": "Tu compañía IA llega a tu puerta, lista para convertirse en tu nuevo mejor amigo"
+      }
+    },
+    "Pricing": {
+      "title": "Oferta Especial para Compradores Anticipados",
+      "description": "Oferta por tiempo limitado para nuestro primer lote de compañías IA",
+      "earlyBird": {
+        "title": "Precio para Compradores Anticipados",
+        "price": "$259.00",
+        "description": "Ahorra $40 del precio regular"
+      },
+      "features": {
+        "ai": "Capacidades avanzadas de IA con actualizaciones regulares",
+        "battery": "Batería de larga duración",
+        "connectivity": "Conectividad Wi-Fi y Bluetooth perfecta",
+        "updates": "Actualizaciones de software gratis de por vida",
+        "support": "Soporte al cliente 24/7"
+      },
+      "cta": "Reservar Ahora",
+      "colors": {
+        "honey_khaki": "Caqui Miel",
+        "sakura_pink": "Rosa Sakura",
+        "healing_green": "Verde Sanador",
+        "moonlight_grey": "Gris Luz de Luna"
+      }
+    },
+    "FAQ": {
+      "title": "Preguntas Frecuentes",
+      "description": "Encuentra respuestas a preguntas comunes sobre reservas, envíos y beneficios exclusivos.",
+      "tabs": {
+        "shipping": "Envíos",
+        "refund": "Reembolsos y Pedidos",
+        "perks": "Beneficios Exclusivos"
+      },
+      "faqs": {
+        "shipping": [
+          {
+            "question": "¿Cuándo se enviará mi reserva anticipada?",
+            "answer": "Todas las reservas anticipadas se enviarán en el orden en que fueron realizadas. Se espera que el primer lote se envíe a mediados de agosto de 2025. Recibirás una notificación por email una vez que tu pedido se envíe."
+          },
+          {
+            "question": "¿Recibiré información de seguimiento?",
+            "answer": "Sí, una vez que tu pedido se envíe, te mandaremos un email con información de seguimiento para que puedas monitorear el progreso de tu paquete."
+          }
+        ],
+        "refund": [
+          {
+            "question": "¿Puedo obtener un reembolso por mi reserva anticipada?",
+            "answer": "Puedes solicitar un reembolso completo dentro de 7 días del pago si el producto aún no se ha enviado. Una vez enviado, no se aceptan reembolsos."
+          },
+          {
+            "question": "¿Puedo cambiar mi dirección de envío?",
+            "answer": "Sí, puedes modificar tu dirección de envío sin costo antes de que el producto se envíe. Por favor contáctanos lo antes posible para hacer cambios."
+          }
+        ],
+        "perks": [
+          {
+            "question": "¿Qué regalos exclusivos reciben los clientes de reserva anticipada?",
+            "answer": "• Tarjeta numerada de edición limitada\n• Carta de agradecimiento de la marca\n• Accesorio de bufanda o bolsa pequeña"
+          },
+          {
+            "question": "¿Obtengo cobertura de garantía?",
+            "answer": "Los productos Rolitt vienen con una garantía de un año. Cualquier daño no humano puede ser reemplazado o reparado sin costo."
+          }
+        ]
+      }
+    },
+    "CTA": {
+      "title": "¿Listo para Unirte al Futuro?",
+      "description": "Reserva tu compañía IA hoy y sé de los primeros en experimentar el futuro de la compañía."
+    },
+    "Form": {
+      "name": {
+        "label": "Nombre Completo",
+        "placeholder": "Ingresa tu nombre completo"
+      },
+      "email": {
+        "label": "Dirección de Email",
+        "placeholder": "Ingresa tu dirección de email"
+      },
+      "quantity": {
+        "label": "Cantidad",
+        "placeholder": "Ingresa la cantidad"
+      },
+      "submit": "Reservar Ahora",
+      "submitting": "Procesando...",
+      "success": {
+        "title": "¡Reserva Anticipada Exitosa!",
+        "description": "Gracias por tu reserva anticipada. Te enviaremos actualizaciones sobre el estado de tu pedido."
+      },
+      "error": {
+        "title": "Error",
+        "description": "Hubo un error procesando tu reserva anticipada. Por favor intenta de nuevo."
+      }
+    },
+    "ProductSelection": {
+      "title": "Reservar Ahora",
+      "description": "Selecciona tu color favorito y sé el primero en obtenerlo.",
+      "color_label": "Color",
+      "email_label": "Email",
+      "email_placeholder": "Ingresa tu email",
+      "no_products_title": "Productos No Disponibles",
+      "no_products_description": "Lo sentimos, pero no hay productos disponibles para reserva anticipada en este momento. Por favor vuelve más tarde.",
+      "go_to_payment_button": "Proceder al Pago",
+      "continue_to_checkout": "Continuar al Pago"
+    },
+    "Realtime": {
+      "stockAlert": "¡Solo quedan {count} unidades en stock!",
+      "countdownTitle": "La Oferta para Compradores Anticipados Termina En",
+      "hours": "Horas",
+      "minutes": "Minutos",
+      "seconds": "Segundos",
+      "countdownDescription": "¡No te pierdas el precio especial!",
+      "liveActivityTitle": "Actividad en Vivo",
+      "activityOrder": "Alguien de {location} acaba de hacer una reserva anticipada",
+      "activityView": "Alguien de {location} está viendo esta página",
+      "justNow": "Justo ahora",
+      "minutesAgo": "hace {minutes}m",
+      "limitedStock": "⚡ Stock Limitado - ¡Solo quedan 47 unidades!",
+      "earlyBirdEnding": "🔥 ¡Los precios para compradores anticipados terminan en 24 horas!",
+      "freeShipping": "🚚 ¡Envío gratis mundial para reservas anticipadas!",
+      "socialProof": "🎉 ¡{count} personas ya han hecho su reserva anticipada!",
+      "socialProofLabel": "Clientes Satisfechos",
+      "socialProofText": "¡Únete a miles de clientes satisfechos en todo el mundo!"
+    }
+  },
+  "Testimonials": {
+    "title": "Lo Que Dicen Nuestros Adoptadores Tempranos",
+    "rating": "⭐⭐⭐⭐⭐ Calificado 4.9/5 por nuestros usuarios beta",
+    "video1": "Vista Previa Video 1",
+    "video2": "Vista Previa Video 2",
+    "video3": "Vista Previa Video 3"
+  },
+  "SocialProof": {
+    "title": "Confianza de Miles",
+    "description": "Únete a nuestra creciente comunidad de adoptadores tempranos que creen en el futuro de la compañía IA",
+    "testimonialsTitle": "Lo Que Dicen los Adoptadores Tempranos",
+    "pressTitle": "Cobertura de Prensa"
+  },
+  "PaymentSuccess": {
+    "title": "¡Pago Exitoso!",
+    "message": "¡Gracias por tu reserva anticipada! Hemos recibido tu pago y tu Compañía IA Rolitt está un paso más cerca de ti. Se ha enviado un email de confirmación a tu bandeja de entrada.",
+    "button_back_home": "Volver al Inicio",
+    "support_message": "Si tienes alguna pregunta, puedes contactar a nuestro equipo de soporte:"
+  },
+  "PaymentCancel": {
+    "title": "Pago Cancelado",
+    "message": "Parece que has cancelado el pago. No te preocupes, tu reserva anticipada está guardada. Puedes completar tu compra en cualquier momento haciendo clic en el botón de abajo.",
+    "button_try_again": "Intentar de Nuevo"
+  },
+  "preOrder": {
+    "hero": {
+      "title": "Sé de los Primeros en Experimentar el Futuro de la Compañía IA",
+      "description": "Reserva tu Compañía IA Rolitt hoy y únete a la próxima generación de tecnología interactiva.",
+      "cta": "Reservar Ahora",
+      "limited_time_text": "✨ Reserva Limitada, Descuento para Compradores Anticipados",
+      "features": {
+        "innovation": {
+          "icon": "🚀",
+          "text": "Tecnología Innovadora"
+        },
+        "quality": {
+          "icon": "💎",
+          "text": "Calidad Premium"
+        },
+        "limited": {
+          "icon": "🌟",
+          "text": "Edición Limitada"
+        },
+        "fast_delivery": {
+          "icon": "⚡",
+          "text": "Entrega Rápida"
+        }
+      },
+      "urgency_banner": "Tiempo Limitado: Ahorra $70",
+      "benefits": {
+        "save_money": "Ahorra $70",
+        "free_shipping": "Envío Gratis",
+        "limited_stock": "Stock Limitado"
+      },
+      "trust_indicators": {
+        "money_back": "Devolución de Dinero 30 Días",
+        "warranty": "Garantía 1 Año",
+        "rating": "Calificación 4.9/5"
+      },
+      "colors": {
+        "honey_khaki": "Caqui Miel",
+        "sakura_pink": "Rosa Sakura",
+        "healing_green": "Verde Sanador",
+        "moonlight_grey": "Gris Luz de Luna"
+      }
+    },
+    "features": {
+      "title": "Características Revolucionarias de IA",
+      "description": "Experimenta la perfecta combinación de tecnología de vanguardia e inteligencia emocional.",
+      "ai": {
+        "title": "IA Avanzada",
+        "description": "Impulsada por modelos de lenguaje de última generación para conversaciones naturales"
+      },
+      "conversation": {
+        "title": "Conversaciones Naturales",
+        "description": "Participa en diálogos significativos con tu compañía IA"
+      },
+      "emotion": {
+        "title": "Inteligencia Emocional",
+        "description": "Reconoce y responde a tu estado emocional"
+      },
+      "magic": {
+        "title": "Momentos Mágicos",
+        "description": "Crea experiencias interactivas inolvidables"
+      }
+    },
+    "timeline": {
+      "title": "Viaje del Producto",
+      "description": "Sigue nuestro viaje desde la reserva hasta la entrega",
+      "preOrder": {
+        "date": "Ahora",
+        "title": "Fase de Reserva",
+        "description": "Asegura tu precio de comprador anticipado y sé de los primeros en recibir tu compañía IA"
+      },
+      "production": {
+        "date": "Q2 2024",
+        "title": "Fase de Producción",
+        "description": "Tu compañía IA está siendo cuidadosamente elaborada con la última tecnología"
+      },
+      "shipping": {
+        "date": "Q3 2024",
+        "title": "Fase de Envío",
+        "description": "Tu compañía IA está preparada para la entrega con embalaje premium"
+      },
+      "delivery": {
+        "date": "Q3 2024",
+        "title": "Entrega",
+        "description": "Tu compañía IA llega a tu puerta, lista para convertirse en tu nuevo mejor amigo"
+      }
+    },
+    "pricing": {
+      "title": "Oferta Especial para Compradores Anticipados",
+      "description": "Oferta por tiempo limitado para nuestro primer lote de compañías IA",
+      "earlyBird": {
+        "title": "Precio para Compradores Anticipados",
+        "price": "$259.00",
+        "description": "Ahorra $40 del precio regular"
+      },
+      "features": {
+        "ai": "Capacidades avanzadas de IA con actualizaciones regulares",
+        "battery": "Batería de larga duración",
+        "connectivity": "Conectividad Wi-Fi y Bluetooth perfecta",
+        "updates": "Actualizaciones de software gratis de por vida",
+        "support": "Soporte al cliente 24/7"
+      },
+      "cta": "Reservar Ahora",
+      "colors": {
+        "honey_khaki": "Caqui Miel",
+        "sakura_pink": "Rosa Sakura",
+        "healing_green": "Verde Sanador",
+        "moonlight_grey": "Gris Luz de Luna"
+      }
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "description": "Encuentra respuestas a preguntas comunes sobre reservas, envíos y beneficios exclusivos.",
+      "tabs": {
+        "shipping": "Envíos",
+        "refund": "Reembolsos y Pedidos",
+        "perks": "Beneficios Exclusivos"
+      },
+      "faqs": {
+        "shipping": [
+          {
+            "question": "¿Cuándo se enviará mi reserva anticipada?",
+            "answer": "Todas las reservas anticipadas se enviarán en el orden en que fueron realizadas. Se espera que el primer lote se envíe a mediados de agosto de 2025. Recibirás una notificación por email una vez que tu pedido se envíe."
+          },
+          {
+            "question": "¿Recibiré información de seguimiento?",
+            "answer": "Sí, una vez que tu pedido se envíe, te mandaremos un email con información de seguimiento para que puedas monitorear el progreso de tu paquete."
+          }
+        ],
+        "refund": [
+          {
+            "question": "¿Puedo obtener un reembolso por mi reserva anticipada?",
+            "answer": "Puedes solicitar un reembolso completo dentro de 7 días del pago si el producto aún no se ha enviado. Una vez enviado, no se aceptan reembolsos."
+          },
+          {
+            "question": "¿Puedo cambiar mi dirección de envío?",
+            "answer": "Sí, puedes modificar tu dirección de envío sin costo antes de que el producto se envíe. Por favor contáctanos lo antes posible para hacer cambios."
+          }
+        ],
+        "perks": [
+          {
+            "question": "¿Qué regalos exclusivos reciben los clientes de reserva anticipada?",
+            "answer": "• Tarjeta numerada de edición limitada\n• Carta de agradecimiento de la marca\n• Accesorio de bufanda o bolsa pequeña"
+          },
+          {
+            "question": "¿Obtengo cobertura de garantía?",
+            "answer": "Los productos Rolitt vienen con una garantía de un año. Cualquier daño no humano puede ser reemplazado o reparado sin costo."
+          }
+        ]
+      }
+    },
+    "cta": {
+      "title": "¿Listo para Unirte al Futuro?",
+      "description": "Reserva tu compañía IA hoy y sé de los primeros en experimentar el futuro de la compañía."
+    },
+    "form": {
+      "personalInfo": "Información Personal",
+      "personalInfoDescription": "Cuéntanos sobre ti para personalizar tu experiencia",
+      "shippingInfo": "Información de Envío",
+      "shippingInfoDescription": "¿Dónde debemos enviar tu Compañía IA Rolitt?",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "email": "Dirección de Correo Electrónico",
+      "phone": "Número de Teléfono",
+      "address": "Dirección",
+      "city": "Ciudad",
+      "state": "Estado/Provincia",
+      "postalCode": "Código Postal",
+      "country": "País",
+      "previous": "Anterior",
+      "continue": "Continuar",
+      "complete": "Completar Pedido",
+      "name": {
+        "label": "Nombre Completo",
+        "placeholder": "Ingresa tu nombre completo"
+      },
+      "quantity": {
+        "label": "Cantidad",
+        "placeholder": "Ingresa la cantidad"
+      },
+      "submit": "Reservar Ahora",
+      "submitting": "Procesando...",
+      "success": {
+        "title": "¡Reserva Anticipada Exitosa!",
+        "description": "Gracias por tu reserva anticipada. Te enviaremos actualizaciones sobre el estado de tu pedido."
+      },
+      "error": {
+        "title": "Error",
+        "description": "Hubo un error procesando tu reserva anticipada. Por favor intenta de nuevo."
+      }
+    },
+    "security": {
+      "title": "Pago Seguro",
+      "description": "Tu información de pago está encriptada y segura",
+      "processing": "El procesamiento típicamente toma de 2-3 segundos"
+    },
+    "pricing": {
+      "includesTax": "Incluye todos los impuestos y tarifas"
+    },
+    "product_selection": {
+      "title": "Reservar Ahora",
+      "description": "Selecciona tu color favorito y sé el primero en obtenerlo.",
+      "color_label": "Color",
+      "email_label": "Email",
+      "email_placeholder": "Ingresa tu email",
+      "no_products_title": "Productos No Disponibles",
+      "no_products_description": "Lo sentimos, pero no hay productos disponibles para reserva anticipada en este momento. Por favor vuelve más tarde.",
+      "go_to_payment_button": "Proceder al Pago",
+      "continue_to_checkout": "Continuar al Pago",
+      "pay_now": "Pagar Ahora",
+      "processing": "Procesando...",
+      "secure_payment": "Pago seguro vía Stripe • Serás redirigido para un checkout seguro"
+    },
+    "realtime": {
+      "stockAlert": "¡Solo quedan {count} unidades en stock!",
+      "countdownTitle": "La Oferta para Compradores Anticipados Termina En",
+      "hours": "Horas",
+      "minutes": "Minutos",
+      "seconds": "Segundos",
+      "countdownDescription": "¡No te pierdas el precio especial!",
+      "liveActivityTitle": "Actividad en Vivo",
+      "activityOrder": "Alguien de {location} acaba de hacer una reserva anticipada",
+      "activityView": "Alguien de {location} está viendo esta página",
+      "justNow": "Justo ahora",
+      "minutesAgo": "hace {minutes}m",
+      "limitedStock": "⚡ Stock Limitado - ¡Solo quedan 47 unidades!",
+      "earlyBirdEnding": "🔥 ¡Los precios para compradores anticipados terminan en 24 horas!",
+      "freeShipping": "🚚 ¡Envío gratis mundial para reservas anticipadas!",
+      "socialProof": "🎉 ¡{count} personas ya han hecho su reserva anticipada!",
+      "socialProofLabel": "Clientes Satisfechos",
+      "socialProofText": "¡Únete a miles de clientes satisfechos en todo el mundo!"
+    }
+  },
+  "PreOrderTestimonials": {
+    "title": "Lo Que Dicen Nuestros Adoptadores Tempranos",
+    "rating": "⭐⭐⭐⭐⭐ Calificado 4.9/5 por nuestros usuarios beta",
+    "video1": "Vista Previa Video 1",
+    "video2": "Vista Previa Video 2",
+    "video3": "Vista Previa Video 3"
+  },
+  "VideoSection": {
+    "badge": "Demo del Producto",
+    "title": "Ve Rolitt en Acción",
+    "description": "Descubre las características y experiencia de usuario de la Compañía IA Rolitt a través de video",
+    "youtube_link_text": "¿Quieres saber más? Visita nuestro",
+    "youtube_channel": "canal de YouTube",
+    "youtube_link_suffix": "para ver más contenido de video"
+  },
+  "PreOrderSocialProof": {
+    "title": "Confianza de Miles",
+    "description": "Únete a nuestra creciente comunidad de adoptadores tempranos que creen en el futuro de la compañía IA",
+    "testimonialsTitle": "Lo Que Dicen los Adoptadores Tempranos",
+    "pressTitle": "Cobertura de Prensa"
+  },
+  "payment": {
+    "button": {
+      "pay": "Pagar Ahora"
+    },
+    "status": {
+      "processing": "Procesando..."
+    },
+    "success": {
+      "title": "¡Reserva Anticipada Exitosa!",
+      "description": "Gracias por tu compra. Se te ha enviado un email de confirmación.",
+      "support_message": "Si tienes alguna pregunta, por favor contacta a nuestro equipo de soporte.",
+      "back_to_home": "Volver a la Página Principal"
+    },
+    "cancel": {
+      "title": "Pago Cancelado",
+      "description": "Tu proceso de pago no se completó. Tu carrito ha sido guardado.",
+      "support_message": "Si tienes problemas, por favor contacta a nuestro equipo de soporte.",
+      "try_again": "Intentar de Nuevo",
+      "back_to_home": "Volver a la Página Principal"
+    }
+  }
+}

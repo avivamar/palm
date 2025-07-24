@@ -1,0 +1,995 @@
+{
+  "RootLayout": {
+    "home_link": "ホーム",
+    "about_link": "会社概要",
+    "counter_link": "カウンター",
+    "portfolio_link": "ポートフォリオ",
+    "sign_in_link": "ログイン",
+    "sign_up_link": "新規登録"
+  },
+  "BaseTemplate": {
+    "description": "Rolitt AIコンパニオンを今すぐ予約して、次世代のインタラクティブテクノロジーの一員になりましょう。",
+    "made_with": "<author>Rolitt</author>で作成"
+  },
+  "Index": {
+    "meta_title": "Rolitt – あなたの知的な感情AIコンパニオン",
+    "meta_description": "Rolittをご紹介します。あなたの知的な感情コンパニオンです！先進的なAI技術により、Rolittはあなたの日常生活に喜び、サポート、そして冒険をもたらします。AIコンパニオンシップの無限の可能性を探索しましょう！",
+    "meta_keywords": "Rolitt, AIコンパニオン, スマートロボット, 感情サポートロボット, 家族向けコンパニオンロボット, AIロボット, スマートホームロボット, 感情認識ロボット, 音声インタラクションロボット, パーソナルアシスタントロボット, 未来技術ロボット, 革新的ロボット, ロボット技術, ロボット開発, ロボットアプリケーション, ロボットソリューション, ロボット学習, インタラクティブロボット, ロボット安全性, ロボットプライバシー保護, 感情コンピューティングロボット, 自然言語処理ロボット, 機械学習ロボット, エンドツーエンド暗号化ロボット",
+    "meta_og_title": "Rolitt - AIコンパニオンシップの再定義",
+    "meta_og_description": "あなたの感情を理解し、生活に喜びをもたらすAIコンパニオン、Rolittをご体験ください。Rolittは単なるスマートアシスタントではなく、あなたの感情パートナーです。",
+    "meta_og_image_alt": "Rolitt AIコンパニオン - あなたの知的な感情サポート",
+    "meta_twitter_title": "Rolitt：知的な感情コンパニオンシップの新時代を開く",
+    "meta_twitter_description": "あなたの感情を感じ取り、ニーズに合わせて適応するAIコンパニオン、Rolittをご紹介します。テクノロジーで毎日を温かく。",
+    "product_name": "Rolitt 知的な感情AIコンパニオン",
+    "product_description": "Rolittは、感情認識、自然言語処理、機械学習技術を組み合わせた次世代AIコンパニオンで、思いやりのある感情サポートと知的なインタラクションを提供します。",
+    "sponsors_title": "パートナー企業"
+  },
+  "Counter": {
+    "meta_title": "カウンター",
+    "meta_description": "データベース操作の例",
+    "loading_counter": "カウンターを読み込み中...",
+    "security_powered_by": "セキュリティ、ボット検出、レート制限は以下により提供"
+  },
+  "CounterForm": {
+    "presentation": "カウンターはデータベースに保存され、指定した値だけ増加します。",
+    "label_increment": "増加値",
+    "button_increment": "増加"
+  },
+  "CurrentCount": {
+    "count": "カウント: {count}"
+  },
+  "BlogShowcase": {
+    "title": "最新のインサイト",
+    "description": "AIコンパニオンシップとテクノロジーの最新トレンド、インサイト、イノベーションをご覧ください。",
+    "read_more": "続きを読む",
+    "view_all": "すべての投稿を見る"
+  },
+  "About": {
+    "meta_title": "Rolittについて | 私たちのストーリーとミッション",
+    "meta_description": "Rolittについて、私たちのミッション、ビジョン、そして革新的なAIコンパニオンを支えるチームについて詳しくご紹介します。",
+    "meta_og_image_alt": "Rolittチームとミッション",
+    "title": "Rolittについて",
+    "subtitle": "感情的なつながりを築き、生活を豊かにするAIコンパニオンを創造します",
+    "mission_title": "私たちのミッション",
+    "mission_description": "私たちのミッションはシンプルながら野心的です：テクノロジーと人間の精神の間のギャップを埋めること。Rolittでは、テクノロジーは個人的で意味のあるものだと考えています。私たちは、インタラクティブロボットやスマートリングなどのウェアラブルデバイスを通じて、人々の生活を深く個人的な方法で豊かにし、あらゆる瞬間にコンパニオンシップ、エンパワーメント、そして喜びをもたらすスマートコンパニオンを構築しています。",
+    "story_title": "私たちのストーリー",
+    "story_description": "Rolittは、単なる機能的なテクノロジー以上のものを創造したいという願いから生まれました。エンジニア、デザイナー、そして夢見る者たちのチームとして、私たちは一般的なテクノロジーとデザインの境界を超え、人々と真に繋がる何かをデザインしたいと考えました。すべては、人々の日常生活に温かさ、理解、そして友好的な存在を提供するために作られた私たちのコンパニオンロボットから始まりました。",
+    "approach_title": "私たちのアプローチ",
+    "approach_description": "Rolittでは、アプローチはシンプルです：人々と共鳴するテクノロジーを作ること。私たちがデザインするすべての製品は、この問いから始まります：どうすればこれをより人間らしく感じさせることができるか？あなたの日常のリズムをサポートするインテリジェントなウェアラブルから、本物の温かさで関わるAI搭載デバイスまで、私たちは日常生活に喜び、やすらぎ、そして意味をもたらすスマートハードウェアの構築に専念しています。",
+    "approach_description2": "私たちは、テクノロジーは単なるツールではなく、コンパニオンであるべきだと考えています。思いやりのあるデザイン、先進的なAI、そして直感的なインタラクションに焦点を当てることで、私たちは実用性と人間性の間のギャップを埋める新しいカテゴリーのデバイスを創造しています。Rolittは単なる革新ではなく、あなたが信頼し、繋がり、人生のどこにでも持っていける体験を創造することです。",
+    "value1_title": "革新：",
+    "value1_description": "私たちは、新しいテクノロジーの継続的な探索と実装を通じて、AIが達成できることの境界を押し広げることを目指しています。",
+    "value2_title": "共感：",
+    "value2_description": "私たちは、人間の感情とニーズを深く理解し、本物の感情サポートを提供するAIコンパニオンをデザインしています。",
+    "value3_title": "アクセシビリティ：",
+    "value3_description": "私たちは、あらゆる年齢や能力の人々にとって、テクノロジーをアクセス可能で使いやすいものにすることを約束します。",
+    "image_alt": "仕事に取り組むRolittチーム",
+    "team_subtitle": "Rolittを支える人々",
+    "team_title": "私たちのチーム",
+    "team_description": "私たちの多様なチームは、人工知能、ロボット工学、心理学、デザインの専門家を集め、技術的に進歩しつつも人間らしく魅力的なAIコンパニオンを創造しています。",
+    "member1_name": "アンナ・シュミット博士",
+    "member1_bio": "創業者兼CEOとして、アンナはAIとロボット工学の分野で15年以上の経験を持っています。彼女の感情AIへのビジョンがRolittを前進させています。",
+    "member2_name": "マイケル・ウェーバー",
+    "member2_bio": "CTOとして、マイケルはRolittの技術開発をリードし、AIシステムの革新性と信頼性を確保しています。",
+    "member3_name": "ソフィア・チェン博士",
+    "member3_bio": "研究責任者として、ソフィアは心理学とAIの専門知識を組み合わせ、Rolittの感情知能を向上させています。"
+  },
+  "Portfolio": {
+    "meta_title": "ポートフォリオ",
+    "meta_description": "ポートフォリオページへようこそ！",
+    "presentation": "ポートフォリオページへようこそ！ここでは、私の作品と成果を厳選してご紹介しています。このポートフォリオを通じて、私の専門知識、創造性、そしてあなたのプロジェクトにもたらすことができる価値をご覧いただけます。",
+    "portfolio_name": "ポートフォリオ {name}",
+    "error_reporting_powered_by": "エラー報告は以下により提供",
+    "coverage_powered_by": "コードカバレッジは以下により提供"
+  },
+  "PortfolioSlug": {
+    "meta_title": "ポートフォリオ {slug}",
+    "meta_description": "ポートフォリオ {slug} の説明",
+    "header": "ポートフォリオ {slug}",
+    "content": "企業イベント向けのプロモーション資料とブランディング要素のセットを作成しました。ロゴ、ポスター、バナー、デジタルアセットを含む視覚的に統一されたテーマを制作。クライアントのブランドアイデンティティを統合しながら、現代的な革新的なアプローチを注入。イベント参加者から好評を博し、参加者の関与度の向上とブランド認知度の向上につながる成功したイベントとなりました。",
+    "log_management_powered_by": "ログ管理は以下により提供"
+  },
+  "SignIn": {
+    "meta_title": "サインイン",
+    "meta_description": "ユーザーフレンドリーなログインプロセスでアカウントにシームレスにサインインしてください。",
+    "sign_in_title": "アカウントにサインイン",
+    "sign_in_alt": "Rolitt ロゴ",
+    "sign_in_footer": "メンバーではありませんか？",
+    "sign_in_footer_link": "14日間の無料トライアルを開始",
+    "google_button": "Google で続行",
+    "email_divider": "またはメールで続行",
+    "email_label": "メール",
+    "email_placeholder": "m@example.com",
+    "password_label": "パスワード",
+    "password_placeholder": "********",
+    "forgot_password_link": "パスワードをお忘れですか？",
+    "submit_button": "メールでサインイン",
+    "signup_prompt": "アカウントをお持ちでないですか？",
+    "signup_link": "サインアップ"
+  },
+  "SignUp": {
+    "meta_title": "サインアップ",
+    "meta_description": "直感的なサインアッププロセスを通じて簡単にアカウントを作成してください。",
+    "sign_up_title": "アカウントを作成",
+    "sign_up_alt": "Rolitt ロゴ",
+    "sign_up_footer": "すでにメンバーですか？",
+    "sign_up_footer_link": "こちらからサインイン",
+    "google_button": "Google で続行",
+    "email_divider": "またはメールで続行",
+    "email_label": "メール",
+    "email_placeholder": "m@example.com",
+    "password_label": "パスワード",
+    "password_placeholder": "********",
+    "confirm_password_label": "パスワード確認",
+    "confirm_password_placeholder": "********",
+    "submit_button": "メールでサインアップ",
+    "signin_prompt": "すでにアカウントをお持ちですか？",
+    "signin_link": "サインイン"
+  },
+  "Dashboard": {
+    "meta_title": "ダッシュボード",
+    "hello_message": "こんにちは、{email}さん！",
+    "alternative_message": "同じスタックを使用してSaaSをより速く構築したいですか？<url></url>をお試しください。"
+  },
+  "UserProfile": {
+    "meta_title": "ユーザープロフィール"
+  },
+  "DashboardLayout": {
+    "dashboard_link": "ダッシュボード",
+    "user_profile_link": "アカウント管理",
+    "sign_out": "ログアウト"
+  },
+  "Navbar": {
+    "auth": {
+      "signin": "ログイン",
+      "signup": "新規登録"
+    },
+    "timeline": "タイムライン",
+    "product": "製品",
+    "docs": "ドキュメント",
+    "blog": "ブログ",
+    "community": "コミュニティ",
+    "company": "会社",
+    "about": "会社概要",
+    "pre-order": "予約注文",
+    "solution": "ソリューション",
+    "partner": "パートナー",
+    "Rolittai": "Rolitt AI",
+    "services": "サービス",
+    "contact": "お問い合わせ",
+    "nav": {
+      "home": "ホーム",
+      "about": "会社概要",
+      "timeline": "タイムライン",
+      "solution": "ソリューション",
+      "partner": "パートナー",
+      "contact": "お問い合わせ",
+      "auth": {
+        "signin": "ログイン",
+        "signup": "新規登録"
+      }
+    }
+
+  },
+  "Hero": {
+    "follow_twitter": "TwitterでRolittをフォロー",
+    "title": "Yoyo: 新しい友情の形 - 先行アクセス受付中",
+    "description": "Rolitt：AIと温かさが出会う場所 – あなたの24時間365日の感情コンパニオン",
+    "primary_button": "今すぐ予約",
+    "secondary_button": "早期予約プラン",
+    "avatar": "世界中の5,000人以上の人々が私たちの革新を発見しています。"
+  },
+  "Features": {
+    "section_subtitle": "特徴",
+    "section_title": "Yoyoの可能性を最大限に引き出す",
+    "section_description": "テスターの92%が7日以内に気分が明るくなったと回答——アレルギー報告ゼロ。",
+    "feature1_title": "ムードデコーダー",
+    "feature1_description": "Yoyoをなでると、約0.5秒であなたの気分を音で返してくれます。",
+    "feature1_main_spec": "デュアルコアMCU＋6軸IMU搭載",
+    "feature1_detail_spec1": "45ms タッチ→サーボ応答",
+    "feature1_detail_spec2": "50音声ミニTTSライブラリ",
+    "feature2_title": "11:57 ポップアップ",
+    "feature2_description": "「ランチの時間だよ！」——Slackよりも先にお知らせ☺︎",
+    "feature2_main_spec": "クラウド感情プッシュ",
+    "feature2_detail_spec1": "iOS／Androidリマインダー",
+    "feature2_detail_spec2": "カスタマイズ可能な挨拶スクリプト",
+    "feature3_title": "金曜チャージで一週間持続",
+    "feature3_description": "金曜に充電→翌週木曜もまだ元気。",
+    "feature3_main_spec": "4000mAh 約7日間スタンバイ",
+    "feature3_detail_spec1": "YOYO HOME 5W Qiドック対応",
+    "feature3_detail_spec2": "スマートスリープ <10μA消費",
+    "feature4_title": "洗って、抱きしめて、また洗う",
+    "feature4_description": "思いきりハグして、カバーを洗って、またハグ——くしゃみ知らず。",
+    "feature4_main_spec": "医療グレードの洗えるぬいぐるみ素材",
+    "feature4_detail_spec1": "低アレルギー＆RoHS安全基準",
+    "feature4_detail_spec2": "1.2m落下テスト合格",
+    "feature5_title": "電車で注目の的",
+    "feature5_description": "ドアが開くとみんながスマホを構える：「それAIペット？」",
+    "feature5_main_spec": "180gの超軽量コア",
+    "feature5_detail_spec1": "マグセーフクリップ＆シェル",
+    "feature5_detail_spec2": "BLEで写真をすぐシェア",
+    "feature6_title": "おばあちゃんも笑顔ギフト",
+    "feature6_description": "手渡すと、おばあちゃんもTikTokライブのように大笑い。",
+    "feature6_main_spec": "家族アカウント機能",
+    "feature6_detail_spec1": "ギフトモードでプロフィール初期化",
+    "feature6_detail_spec2": "30日間お試し＆1年交換保証"
+  },
+  "FAQ": {
+    "meta_title": "よくある質問 | Rolitt",
+    "meta_description": "当社のロボットソリューション、技術、サービスに関する一般的な質問の回答をご覧ください。",
+    "meta_keywords": "ロボットFAQ、技術に関する質問、Rolittサポート、ロボットヘルプ",
+    "meta_og_title": "よくある質問 | Rolitt",
+    "meta_og_description": "当社のロボットソリューションとサービスに関する一般的な質問の回答を素早く簡単に見つけることができます。",
+    "meta_twitter_title": "よくある質問 | Rolitt",
+    "meta_twitter_description": "当社のロボットソリューションとサービスに関する一般的な質問の回答を素早く簡単に見つけることができます。",
+    "title": "よくある質問",
+    "subtitle": "当社の製品とサービスに関する最も一般的な質問の回答をご覧ください",
+    "question_1": "Rolittはどのようなロボットソリューションを提供していますか？",
+    "answer_1": "Rolittは、産業用自動化システム、医療支援ロボット、教育用ロボットプラットフォーム、ホームオートメーションソリューションなど、幅広いロボットソリューションを提供しています。各製品ラインは、当社のコアAIとロボット技術を活用しながら、異なるセクターの特定のニーズに対応するように設計されています。",
+    "question_2": "Rolittの技術を既存のシステムとどのように統合できますか？",
+    "answer_2": "当社のソリューションは、相互運用性を考慮して設計されています。包括的なAPI、ドキュメント、統合サポートを提供し、既存のインフラストラクチャとのシームレスな接続を確保します。当社の技術チームは、実装中にクライアントと密接に協力し、成功した統合と最小限の混乱を確保します。",
+    "question_3": "Rolittは購入後にどのようなサポートを提供していますか？",
+    "answer_3": "技術支援、メンテナンスサービス、ソフトウェアアップデート、トレーニングプログラムなど、包括的な購入後サポートを提供しています。当社のサポートパッケージは、基本的なトラブルシューティングから保証された応答時間を備えたフルサービスのメンテナンス契約まで、お客様の特定のニーズに合わせてカスタマイズできます。",
+    "question_4": "Rolittの技術は小規模企業に適していますか？",
+    "answer_4": "もちろんです！当社は、あらゆる規模の組織向けに設計されたソリューションを提供しています。小規模企業向けには、広範なインフラストラクチャや技術的専門知識を必要とせずに高度な機能を提供するスケーラブルなオプションを提供しています。当社のモジュラーアプローチにより、小規模から始めて、ニーズに応じて拡張できます。",
+    "question_5": "Rolittはロボットシステムのセキュリティをどのように確保していますか？",
+    "answer_5": "セキュリティはRolittの最優先事項です。暗号化された通信、安全な認証プロトコル、定期的なセキュリティアップデート、包括的な脆弱性テストなど、複数の保護層を実装しています。当社のシステムは、プライバシーを設計に組み込む原則に基づいて設計され、関連する業界標準と規制に準拠しています。",
+    "question_6": "Rolittの技術は競合他社とどのように異なりますか？",
+    "answer_6": "当社の主要な差別化要因は、ロボットシステムにより適応性の高い、インテリジェントな動作を可能にする独自のAI技術です。さらに、ユーザーフレンドリーなインターフェース、シームレスな統合機能、堅牢なセキュリティ機能に焦点を当てています。当社のソリューションは、多様な環境での信頼性とパフォーマンスを確保するために、広範な実世界テストを通じて開発されています。",
+    "still_have_questions": "まだ質問がありますか？お手伝いします！",
+    "contact_us_text": "お客様の特定のニーズに合わせた個別のサポートについては、当社のサポートチームにお問い合わせください。"
+  },
+  "CTA": {
+    "title": "この限定機会をお見逃しなく！",
+    "description": "Rolittをいち早くお迎えしましょう！早期予約特典は期間限定です。今すぐ予約して70ドルお得に。",
+    "button_text": "199ドルで予約する"
+  },
+  "Footer": {
+    "product": "製品",
+    "docs": "ドキュメント",
+    "blog": "ブログ",
+    "community": "コミュニティ",
+    "company": "会社",
+    "about": "会社概要",
+    "contact": "お問い合わせ",
+    "solution": "ソリューション",
+    "timeline": "タイムライン",
+    "pre-order": "先行予約",
+    "copyright": "© 2024 Rolitt Inc. Made with passion and love.",
+    "rights_reserved": "All rights reserved.",
+    "follow_us": "フォローする",
+    "about_us": "会社概要",
+    "partners": "パートナー",
+    "contact_us": "お問い合わせ",
+    "products": "製品",
+    "solutions": "ソリューション",
+    "features": "機能",
+    "refund_policy": "返金ポリシー",
+    "shipping_policy": "配送ポリシー",
+    "contact_information": "お問い合わせ情報",
+    "company_description": "Rolittは、感情認識、自然言語処理、機械学習技術を組み合わせ、思いやりのある感情サポートとインテリジェントなインタラクションを提供する次世代のAIパートナーです。",
+    "newsletter_title": "ニュースレターを購読",
+    "newsletter_description": "最新の製品、機能、お知らせを入手しましょう。",
+    "email_placeholder": "メールアドレスを入力",
+    "subscribe": "購読",
+    "policies": "ポリシー",
+    "privacy_policy": "プライバシーポリシー",
+    "terms_of_service": "利用規約"
+  },
+  "Timeline": {
+    "meta_title": "会社のタイムライン | 主要なマイルストーンとイベント",
+    "meta_description": "当社の歴史と将来のビジョンを形作った主要なマイルストーンとイベントを通じて、当社の旅を探索してください。",
+    "meta_og_image_alt": "会社のタイムライン視覚表現",
+    "title": "私たちの旅",
+    "description": "私たちの道を定義し、将来のビジョンを形作った主要な瞬間を発見してください。",
+    "event1": {
+      "date": "2023年11月",
+      "title": "アイデアの始まり",
+      "description": "創業者AVIVAが4歳の娘のために話すおもちゃを購入しました。かわいらしく見えましたが、彼はそれが単なるプラスチックのおもちゃだと感じました。インターネット業界での経験に触発され、AVIVAはAI搭載のロボットおもちゃを作ることを決意しました。"
+    },
+    "event2": {
+      "date": "2024年4月",
+      "title": "コアチームの結成",
+      "description": "AVIVAは、このような革新的な製品を作ることの課題を認識しました。彼は多くの業界専門家にインタビューを行い、情熱的なチームを結成しました。彼らは借りたオフィススペースでRolitt製品の開発を始めました。"
+    },
+    "event3": {
+      "date": "2024年6月-8月",
+      "title": "無数のイテレーション",
+      "description": "チームは組み込み開発、AI SaaS開発、アプリ、モデルのファインチューニング、構造設計、工業デザイン、ウェブサイトデザイン、PCB設計とはんだ付け、ハードウェアのデバッグなどに取り組みました。困難にもかかわらず、私たちの粘り強さにより、少なくとも5つの製品イテレーションが生まれました。"
+    },
+    "event4": {
+      "date": "2024年8月下旬",
+      "title": "プロトタイプの改良",
+      "description": "始めるのは大変ですが、Rolittチームはコミットメントを維持しました。8月下旬までに、私たちはプロトタイプを改良し、重要なマイルストーンを達成しました。"
+    },
+    "event5": {
+      "date": "2024年9月",
+      "title": "Rolittを世界に紹介",
+      "description": "プロトタイプが完成し、Rolittを紹介できることを嬉しく思います。今後も継続的な改善とイテレーションに取り組んでいきます。"
+    }
+  },
+  "PaymentSuccess": {
+    "title": "お支払い成功！",
+    "message": "ご予約いただきありがとうございます！お支払いを確認いたしました。Rolitt AIコンパニオンがあなたに一歩近づきました。確認メールが受信トレイに送信されました。",
+    "button_back_home": "ホームに戻る",
+    "support_message": "ご不明な点がございましたら、サポートチームまでお問い合わせください："
+  },
+  "PaymentCancel": {
+    "title": "お支払いがキャンセルされました",
+    "message": "お支払いをキャンセルされたようです。ご心配なく、ご予約は保存されています。下のボタンをクリックしていつでも購入を完了できます。",
+    "button_try_again": "再試行"
+  },
+  "Solution": {
+    "meta_title": "ロボットソリューション | あなたの会社",
+    "meta_description": "様々な業界を変革し、日常生活を向上させる革新的なロボットソリューションをご覧ください。",
+    "title": "当社のロボットソリューション",
+    "subtitle": "業界を変革し、日常生活を向上させる革新的な技術",
+    "solution1_title": "産業用自動化",
+    "solution1_description": "当社の産業用ロボットは製造プロセスを効率化し、コストを削減します。高度なセンサーとAI機能により、リアルタイムで変化する生産ニーズに適応します。",
+    "solution2_title": "医療支援",
+    "solution2_description": "医療専門家をサポートするために設計された当社の医療ロボットは、手術、患者ケア、リハビリテーションを支援します。重要な手順において精度と一貫性を提供します。",
+    "solution3_title": "教育用ロボット",
+    "solution3_description": "当社の教育用ロボットは、STEM科目の学習を魅力的でインタラクティブにします。学生の批判的思考、問題解決スキル、技術リテラシーの発達を支援します。",
+    "solution4_title": "ホームオートメーション",
+    "solution4_description": "日常のタスクを簡素化し、セキュリティを強化し、エネルギー効率を向上させるスマートホームロボット。既存のスマートホームシステムとシームレスに統合され、接続された生活体験を提供します。"
+  },
+  "Partner": {
+    "meta_title": "パートナーシップの機会 | Rolitt",
+    "meta_description": "Rolittとの戦略的パートナーシップの機会を探索し、AIコンパニオンシップとロボット工学の未来を共に創造しましょう。",
+    "meta_og_image_alt": "Rolittパートナーシップの機会",
+    "title": "Rolittとパートナーになる",
+    "subtitle": "革新的なテクノロジーを通じてAIコンパニオンシップを革新し、意味のあるつながりを創造するという私たちのミッションに参加しましょう",
+    "cta_button": "パートナーシップの機会を探索する",
+    "vision_title": "パートナーシップへの私たちのビジョン",
+    "vision_description": "Rolittでは、画期的な革新は協力によって生まれると信じています。人間のつながりを強化し、日常生活に喜びをもたらすテクノロジーの創造に情熱を持つ、先見の明のあるパートナーを求めています。",
+    "vision_description2": "次なる大きな機会を探している投資家、統合に興味のあるテクノロジープロバイダー、Rolittを新市場に導入したいディストリビューターなど、どのような立場であっても、共に価値を創造する方法を探ることを楽しみにしています。",
+    "vision_image_alt": "Rolittパートナーシップビジョン",
+    "current_partners_title": "私たちの大切なパートナー",
+    "partner1_name": "テックイノベート",
+    "partner1_description": "AIと機械学習ソリューションを専門とする先導的なテクノロジー革新企業。",
+    "partner2_name": "グローバルエデュ",
+    "partner2_description": "世界中の教室にテクノロジーをもたらすことに焦点を当てた教育機関。",
+    "partner3_name": "ヘルステックソリューションズ",
+    "partner3_description": "革新的なソリューションを通じて患者ケアを改善するヘルスケアテクノロジープロバイダー。",
+    "partner4_name": "スマートリビング",
+    "partner4_description": "現代の家族のためのインテリジェントな生活空間を創造するホームオートメーションの専門家。",
+    "visit_website": "ウェブサイトを訪問",
+    "partnership_types_title": "パートナーシップの機会",
+    "partnership_types_description": "Rolittとの協力方法は様々です。それぞれが相互の価値を創造し、AIコンパニオンシップ分野での革新を推進するように設計されています。",
+    "partnership_type1_title": "投資機会",
+    "partnership_type1_description": "投資家として参加し、AIコンパニオンシップの未来の一部になりましょう。急速に拡大する市場で、魅力的な投資機会と大きな成長可能性を提供しています。",
+    "partnership_type2_title": "カスタムソリューション",
+    "partnership_type2_description": "特定の業界やユースケースに合わせたAIコンパニオンソリューションの開発に協力しましょう。当社の柔軟なテクノロジーは、独自の要件に合わせて適応できます。",
+    "partnership_type3_title": "流通・小売",
+    "partnership_type3_description": "Rolitt製品のディストリビューターまたは小売業者になりましょう。当社のAIコンパニオンを世界中の新市場に導入するために、パートナーを探しています。",
+    "partnership_type4_title": "テクノロジー統合",
+    "partnership_type4_description": "あなたのテクノロジーをRolittと統合するか、当社のAI機能をあなたの製品に組み込みましょう。両方の製品を強化する協力的な革新にオープンです。",
+    "benefits_title": "当社とのパートナーシップのメリット",
+    "benefit1": "実証された市場アピールを持つ最先端のAIとロボット技術へのアクセス",
+    "benefit2": "2028年までに200億ドルに達すると予測される急速に成長するAIコンパニオン市場への参入機会",
+    "benefit3": "あなたのビジネス目標と能力に合わせた柔軟なパートナーシップモデル",
+    "benefit4": "成功した協力を確保するための専任パートナーシップサポートチーム",
+    "benefit5": "共同マーケティングの機会と共有ブランドの可視性",
+    "benefit6": "新製品開発とテクノロジー革新への早期アクセス",
+    "testimonials_title": "パートナーの声",
+    "testimonial_quote": "Rolittとのパートナーシップは、私たちのビジネスに革新的な変化をもたらしました。AIコンパニオンシップへの革新的なアプローチと品質へのコミットメントにより、お客様に卓越した価値を提供することができました。チームは迅速に対応し、創造的で、真に協力的です。",
+    "testimonial_name": "サラ・ジョンソン",
+    "testimonial_position": "テックイノベート 戦略的パートナーシップ担当副社長",
+    "become_partner_title": "パートナーシップの機会を探索する準備はできていますか？",
+    "become_partner_description": "共に価値を創造する方法について議論できることを楽しみにしています。Rolittとのパートナーシップの可能性について、今すぐお問い合わせください。",
+    "contact_us": "パートナーシップチームに連絡する"
+  },
+  "Contact": {
+    "meta_title": "お問い合わせ | Rolitt",
+    "meta_description": "Rolittチームにお問い合わせください。ご質問にお答えし、AIコンパニオンがあなたの生活をどのように向上させることができるかをお手伝いします。",
+    "meta_og_image_alt": "Rolittチームへのお問い合わせ",
+    "title": "お問い合わせ",
+    "subtitle": "お客様からのご連絡をお待ちしております。メッセージを送信していただければ、できるだけ早くご返信いたします。",
+    "form_title": "メッセージを送信",
+    "form_description": "以下のフォームにご記入いただければ、すぐにご連絡いたします。",
+    "first_name": "名",
+    "first_name_placeholder": "名を入力",
+    "last_name": "姓",
+    "last_name_placeholder": "姓を入力",
+    "email": "メールアドレス",
+    "email_placeholder": "メールアドレスを入力",
+    "subject": "件名",
+    "subject_placeholder": "どのようなご用件でしょうか？",
+    "message": "メッセージ",
+    "message_placeholder": "どのようにお手伝いできるかお知らせください...",
+    "cancel": "キャンセル",
+    "submit": "送信",
+    "submit_button": "送信",
+    "email_title": "メール",
+    "email_value": "support@Rolitt.com",
+    "phone_title": "電話",
+    "phone_value": "+1 (302) 444-2859",
+    "address_title": "住所",
+    "address_value": "1111B S Governors Ave STE 20948\nDover, DE, 19904, US",
+    "social_media_title": "フォローする",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "twitter": "Twitter",
+    "linkedin": "LinkedIn",
+    "youtube": "YouTube"
+  },
+  "LocaleSwitcher": {
+    "switchLocale": "{locale}に切り替える",
+    "label": "言語を変更",
+    "en": "英語",
+    "es": "スペイン語",
+    "ja": "日本語",
+    "zh-HK": "中国語（香港）"
+  },
+  "ThemeToggle": {
+    "light": "Light mode",
+    "dark": "Dark mode",
+    "system": "System mode",
+    "toggle": "Toggle theme"
+  },
+  "Terms": {
+    "meta_title": "Terms of Service | Rolitt",
+    "meta_description": "Read our terms of service to understand the rules and guidelines for using Rolitt's products and services.",
+    "title": "Terms of Service",
+    "last_updated": "Last updated: June 15, 2024",
+    "section1_title": "1. Acceptance of Terms",
+    "section1_content": "By accessing or using Rolitt's services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.",
+    "section2_title": "2. Use License",
+    "section2_content": "Permission is granted to temporarily use Rolitt's services for personal, non-commercial purposes. This license does not include: modifying or copying materials; using materials for commercial purposes; attempting to decompile or reverse engineer any software; removing any copyright or proprietary notations; or transferring materials to another person or 'mirroring' materials on any other server.",
+    "section3_title": "3. Disclaimer",
+    "section3_content": "Rolitt's services are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim all warranties, including without limitation implied warranties of merchantability and fitness for a particular purpose.",
+    "section4_title": "4. Limitations",
+    "section4_content": "In no event shall Rolitt or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use our services.",
+    "section5_title": "5. Revisions and Errata",
+    "section5_content": "The materials appearing on Rolitt's services could include technical, typographical, or photographic errors. We do not warrant that any of the materials are accurate, complete or current. We may make changes to the materials at any time without notice."
+  },
+  "Privacy": {
+    "meta_title": "Privacy Policy | Rolitt",
+    "meta_description": "Learn how Rolitt collects, uses, and protects your personal information through our privacy policy.",
+    "title": "Privacy Policy",
+    "last_updated": "Last updated: June 15, 2024",
+    "section1_title": "1. Information We Collect",
+    "section1_content": "We collect information you provide directly to us, such as when you create an account, contact us for support, or use our products. This may include your name, email address, phone number, and payment information. We also collect information automatically when you use our services, including log data, device information, and location information.",
+    "section2_title": "2. How We Use Your Information",
+    "section2_content": "We use the information we collect to provide, maintain, and improve our services; to process transactions; to send you technical notices and support messages; to communicate with you about products, services, and events; and to protect our services and users.",
+    "section3_title": "3. Information Sharing",
+    "section3_content": "We do not share your personal information with third parties except in limited circumstances, such as when you consent to the sharing, when it's necessary to complete a transaction or provide a service you've requested, or when required by law.",
+    "section4_title": "4. Your Choices",
+    "section4_content": "You can access, update, or delete your account information at any time through your account settings. You can also opt out of receiving promotional communications from us by following the instructions in those communications.",
+    "section5_title": "5. Security",
+    "section5_content": "We take reasonable measures to help protect your personal information from loss, theft, misuse, unauthorized access, disclosure, alteration, and destruction. However, no security system is impenetrable, and we cannot guarantee the security of our systems."
+  },
+  "NotFound": {
+    "meta_title": "ページが見つかりません | Rolitt",
+    "meta_description": "お探しのページは存在しないか、移動されました。",
+    "title": "ページが見つかりません",
+    "description": "お探しのページは存在しないか、移動されました。",
+    "back_home": "ホームに戻る"
+  },
+  "Error": {
+    "title": "エラーが発生しました！",
+    "description": "予期せぬエラーが発生しました。ご不便をおかけして申し訳ございません。",
+    "try_again": "再試行",
+    "back_home": "ホームに戻る"
+  },
+  "Newsletter": {
+    "email_placeholder": "Enter your email address",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing...",
+    "success_title": "Subscription Successful",
+    "success_message": "Thank you for subscribing! A welcome email has been sent to your inbox.",
+    "error_title": "Subscription Failed",
+    "error_message": "Sorry, an error occurred during the subscription process. Please try again later.",
+    "already_subscribed": "This email is already subscribed to our newsletter.",
+    "invalid_email_format": "Please enter a valid email address"
+  },
+  "CookieBanner": {
+    "description": "We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking 'Accept', you consent to our use of cookies.",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "MetaPixelTest": {
+    "title": "Meta Pixel Test Page",
+    "description": "This page is for testing Meta Pixel integration. Trigger events and check the log below.",
+    "pixelLoaded": "Meta Pixel loaded. ID: {id}",
+    "pixelNotInitialized": "Meta Pixel script loaded, but not initialized with an ID.",
+    "pixelIdError": "Error accessing Pixel ID from fbq. Fallback attempt in progress.",
+    "pixelLoadedEnv": "Meta Pixel ID from environment: {id}",
+    "pixelIdNotFound": "Meta Pixel ID not found in fbq state or environment variables.",
+    "fbqNotFound": "window.fbq (Meta Pixel) not found. Is it blocked or not loaded?",
+    "pixelActive": "Meta Pixel is Active. ID: {id}",
+    "pixelInactive": "Meta Pixel is Inactive or Not Loaded",
+    "eventSent": "Event Sent: {eventName} with params: {params}",
+    "customEventSent": "Custom Event Sent: {eventName} with params: {params}",
+    "purchaseEventSent": "Purchase Event Sent: Value: {value}, Currency: {currency}",
+    "addToCartEventSent": "AddToCart Event Sent: Name: {name}, Value: {value}, Currency: {currency}",
+    "sendViewContent": "Send ViewContent",
+    "sendAddToCart": "Send AddToCart",
+    "sendInitiateCheckout": "Send InitiateCheckout",
+    "sendPurchase": "Send Purchase",
+    "sendContact": "Send Contact",
+    "sendLead": "Send Lead",
+    "sendCompleteRegistration": "Send CompleteRegistration",
+    "sendCustomEvent": "Send Custom Event",
+    "sendSearchEvent": "Send Search Event",
+    "eventLogTitle": "Event Log",
+    "noEventsYet": "No events triggered yet."
+  },
+  "preOrder": {
+    "hero": {
+      "title": "AIコンパニオンシップの未来をいち早く体験しましょう",
+      "description": "Rolitt AIコンパニオンを今すぐ予約して、次世代のインタラクティブテクノロジーの一員になりましょう。",
+      "cta": "今すぐ予約"
+    },
+    "features": {
+      "title": "革新的なAI機能",
+      "description": "最先端のテクノロジーと感情知能の完璧な融合を体験してください。",
+      "ai": {
+        "title": "高度なAI",
+        "description": "自然な会話のための最新の言語モデルを搭載"
+      },
+      "conversation": {
+        "title": "自然な会話",
+        "description": "AIコンパニオンと意味のある対話を楽しむ"
+      },
+      "emotion": {
+        "title": "感情知能",
+        "description": "あなたの感情状態を認識し、それに応答"
+      },
+      "magic": {
+        "title": "マジックモーメント",
+        "description": "忘れられないインタラクティブな体験を創造"
+      }
+    },
+    "timeline": {
+      "title": "製品の旅",
+      "description": "予約から配達までの私たちの旅を追跡",
+      "preOrder": {
+        "date": "今すぐ",
+        "title": "予約フェーズ",
+        "description": "早期予約価格を確保し、AIコンパニオンをいち早く受け取る"
+      },
+      "production": {
+        "date": "2024年第2四半期",
+        "title": "生産フェーズ",
+        "description": "最新のテクノロジーでAIコンパニオンを丁寧に製造"
+      },
+      "shipping": {
+        "date": "2024年第3四半期",
+        "title": "出荷フェーズ",
+        "description": "プレミアムパッケージでAIコンパニオンを配達準備"
+      },
+      "delivery": {
+        "date": "2024年第3四半期",
+        "title": "配達",
+        "description": "AIコンパニオンがあなたの玄関先に到着し、新しい親友になる準備完了"
+      }
+    },
+    "pricing": {
+      "title": "早期予約特典",
+      "description": "最初のAIコンパニオンバッチの期間限定オファー",
+      "earlyBird": {
+        "title": "早期予約価格",
+        "price": "259.00ドル",
+        "description": "通常価格から40ドルお得"
+      },
+      "features": {
+        "ai": "定期的なアップデート付きの高度なAI機能",
+        "battery": "長時間バッテリー寿命",
+        "connectivity": "シームレスなWi-FiとBluetooth接続",
+        "updates": "生涯無料のソフトウェアアップデート",
+        "support": "24時間365日のカスタマーサポート"
+      },
+      "cta": "今すぐ予約",
+      "colors": {
+        "honey_khaki": "ハニーカーキ",
+        "sakura_pink": "桜ピンク",
+        "healing_green": "ヒーリンググリーン",
+        "moonlight_grey": "ムーンライトグレー"
+      }
+    },
+    "faq": {
+      "title": "よくある質問",
+      "description": "予約注文、配送、限定特典に関するよくある質問の回答をご覧ください。",
+      "tabs": {
+        "shipping": "配送",
+        "refund": "返金・注文",
+        "perks": "限定特典"
+      },
+      "faqs": {
+        "shipping": [
+          {
+            "question": "予約注文はいつ発送されますか？",
+            "answer": "すべての予約注文は注文順に発送されます。最初のバッチは2025年8月中旬に発送予定です。注文が発送されると、メールでお知らせします。"
+          },
+          {
+            "question": "追跡情報は受け取れますか？",
+            "answer": "はい、注文が発送されると、パッケージの進捗を追跡できる追跡情報をメールでお送りします。"
+          }
+        ],
+        "refund": [
+          {
+            "question": "予約注文の返金は可能ですか？",
+            "answer": "商品がまだ発送されていない場合、お支払いから7日以内であれば全額返金を申請できます。発送後は返金をお受けできません。"
+          },
+          {
+            "question": "配送先住所は変更できますか？",
+            "answer": "はい、商品発送前であれば無料で配送先住所を変更できます。変更をご希望の場合は、お早めにお問い合わせください。"
+          }
+        ],
+        "perks": [
+          {
+            "question": "予約注文のお客様が受け取る限定ギフトは何ですか？",
+            "answer": "• 限定ナンバリングカード\n• ブランドからの感謝状\n• スカーフまたは小さなバッグアクセサリー"
+          },
+          {
+            "question": "保証は付いていますか？",
+            "answer": "Rolitt製品には1年間の保証が付いています。人為的でない損傷については、無料で交換または修理いたします。"
+          }
+        ]
+      }
+    },
+    "cta": {
+      "title": "未来に参加する準備はできていますか？",
+      "description": "今すぐAIコンパニオンを予約して、コンパニオンシップの未来をいち早く体験しましょう。"
+    },
+    "form": {
+      "name": {
+        "label": "氏名",
+        "placeholder": "氏名を入力"
+      },
+      "email": {
+        "label": "メールアドレス",
+        "placeholder": "メールアドレスを入力"
+      },
+      "quantity": {
+        "label": "数量",
+        "placeholder": "数量を入力"
+      },
+      "submit": "今すぐ予約",
+      "submitting": "処理中...",
+      "success": {
+        "title": "予約完了！",
+        "description": "ご予約ありがとうございます。注文状況の更新をお送りします。"
+      },
+      "error": {
+        "title": "エラー",
+        "description": "予約処理中にエラーが発生しました。もう一度お試しください。"
+      }
+    },
+    "product_selection": {
+      "title": "今すぐ予約注文",
+      "description": "お好きな色を選んで、誰よりも早く手に入れましょう。",
+      "color_label": "色",
+      "email_label": "メールアドレス",
+      "email_placeholder": "メールアドレスを入力してください",
+      "no_products_title": "製品がありません",
+      "no_products_description": "申し訳ありませんが、現在予約注文可能な製品はありません。後ほどご確認ください。",
+      "go_to_payment_button": "支払いに進む"
+    },
+    "realtime": {
+      "stockAlert": "在庫残り {count} 個のみ！",
+      "countdownTitle": "早期予約特典終了まで",
+      "hours": "時間",
+      "minutes": "分",
+      "seconds": "秒",
+      "countdownDescription": "特別価格をお見逃しなく！",
+      "liveActivityTitle": "リアルタイム活動",
+      "activityOrder": "{location} からのユーザーが予約注文しました",
+      "activityView": "{location} からのユーザーがこのページを閲覧中",
+      "justNow": "たった今",
+      "minutesAgo": "{minutes} 分前",
+      "limitedStock": "⚡ 限定在庫 - 残り47個のみ！",
+      "earlyBirdEnding": "🔥 早期予約価格は24時間後に終了！",
+      "freeShipping": "🚚 予約注文で世界中送料無料！",
+      "socialProof": "🎉 すでに {count} 人が予約注文済み！",
+      "socialProofLabel": "満足顧客",
+      "socialProofText": "世界中の数千人の満足顧客に参加しましょう！"
+    }
+  },
+  "PreOrderTestimonials": {
+    "title": "初期テスターから大好評",
+    "rating": "⭐ 1,273人のユーザーから4.8/5の評価",
+    "video1": "動画1のプレースホルダー",
+    "video2": "動画2のプレースホルダー",
+    "video3": "動画3のプレースホルダー"
+  },
+  "VideoSection": {
+    "badge": "製品デモ",
+    "title": "Rolittの実際の動作をご覧ください",
+    "description": "動画でRolitt AIコンパニオンの機能と使用体験をご紹介します",
+    "youtube_link_text": "詳しく知りたいですか？私たちの",
+    "youtube_channel": "YouTubeチャンネル",
+    "youtube_link_suffix": "でより多くの動画コンテンツをご覧ください"
+  },
+  "PreOrderSocialProof": {
+    "title": "数千人に信頼されています",
+    "description": "AIコンパニオンシップの未来を信じる成長中の早期採用者コミュニティに参加しましょう",
+    "testimonialsTitle": "早期採用者の声",
+    "pressTitle": "メディア掲載"
+  },
+  "payment": {
+    "button": {
+      "pay": "今すぐ支払う"
+    },
+    "status": {
+      "processing": "処理中..."
+    },
+    "messages": {
+      "payment_intent_created": "支払い意図が正常に作成されました！",
+      "amount": "金額"
+    },
+    "errors": {
+      "payment_failed": "支払いに失敗しました"
+    },
+    "success": {
+      "title": "予約注文が完了しました！",
+      "description": "ご購入いただきありがとうございます。確認メールを送信しました。",
+      "support_message": "ご不明な点がございましたら、サポートチームまでお問い合わせください。",
+      "back_to_home": "ホームページに戻る"
+    },
+    "cancel": {
+      "title": "支払いがキャンセルされました",
+      "description": "支払い手続きが完了しませんでした。カートの内容は保存されています。",
+      "support_message": "問題が発生した場合は、サポートチームまでお問い合わせください。",
+      "try_again": "再試行",
+      "back_to_home": "ホームページに戻る"
+    }
+  },
+  "WebhookLogs": {
+    "title": "Webhook ログ管理",
+    "subtitle": "webhook イベントの監視と管理",
+    "stats": {
+      "total": "総ログ数",
+      "success": "成功",
+      "failed": "失敗",
+      "pending": "保留中"
+    },
+    "filters": {
+      "all": "すべてのステータス",
+      "success": "成功",
+      "failed": "失敗",
+      "pending": "保留中"
+    },
+    "table": {
+      "timestamp": "タイムスタンプ",
+      "event_type": "イベントタイプ",
+      "status": "ステータス",
+      "response_time": "応答時間",
+      "actions": "アクション",
+      "view_details": "詳細を表示"
+    },
+    "status": {
+      "success": "成功",
+      "failed": "失敗",
+      "pending": "保留中"
+    },
+    "loading": "読み込み中...",
+    "no_data": "webhook ログが見つかりません",
+    "error": "webhook ログの読み込みエラー",
+    "refresh": "更新"
+  },
+  "navigation": {
+    "dashboard": "ダッシュボード",
+    "orders": "注文",
+    "favorites": "お気に入り",
+    "billing": "請求",
+    "settings": "設定",
+    "profile": "プロフィール"
+  },
+  "header": {
+    "title": "管理パネル",
+    "description": "eコマースマーケティングシステムを管理",
+    "notifications": {
+      "label": "通知 ({count})",
+      "unread": "{count}件の未読通知"
+    },
+    "settings": {
+      "label": "設定"
+    },
+    "userMenu": {
+      "label": "ユーザーメニュー",
+      "admin": "管理者",
+      "myAccount": "マイアカウント",
+      "profile": "プロフィール",
+      "settings": "設定",
+      "signOut": "ログアウト"
+    }
+  },
+  "adminDashboard": {
+    "title": "管理ダッシュボード",
+    "description": "eコマースマーケティングシステムを管理",
+    "quickStats": {
+      "title": "クイック統計",
+      "totalUsers": "総ユーザー数",
+      "totalOrders": "総注文数",
+      "revenue": "収益",
+      "conversionRate": "コンバージョン率"
+    }
+  },
+  "monitoring": {
+    "title": "監視ダッシュボード",
+    "description": "システムヘルスとリアルタイム決済メトリクス",
+    "systemHealth": {
+      "title": "システムヘルス",
+      "healthy": "正常",
+      "warning": "警告",
+      "critical": "重要"
+    }
+  },
+  "users": {
+    "title": "ユーザー管理",
+    "description": "顧客アカウントと権限を管理",
+    "actions": {
+      "addUser": "ユーザーを追加"
+    }
+  },
+  "shopify": {
+    "title": "Shopify統合",
+    "description": "Shopifyストア統合を監視・管理",
+    "status": {
+      "connected": "接続済み",
+      "disconnected": "切断済み",
+      "healthy": "正常",
+      "warning": "警告",
+      "error": "エラー"
+    }
+  },
+  "scripts": {
+    "title": "スクリプト管理",
+    "description": "システムスクリプトとツールを一元管理",
+    "tabs": {
+      "overview": "概要",
+      "shopify": "Shopify",
+      "environment": "環境",
+      "deployment": "デプロイメント",
+      "scripts": "スクリプト"
+    }
+  },
+  "performanceDashboard": {
+    "title": "パフォーマンスダッシュボード",
+    "description": "システムパフォーマンスを監視し、ボトルネックを最適化",
+    "loading": "パフォーマンスメトリクスを読み込み中...",
+    "loadFailed": "パフォーマンスメトリクスの読み込みに失敗しました",
+    "retry": "再試行"
+  },
+  "Payment": {
+    "title": "支払い",
+    "description": "安全な支払い処理",
+    "loading": "支払い処理中...",
+    "success": "支払い成功",
+    "failed": "支払い失敗"
+  },
+  "PreOrder": {
+    "title": "予約注文",
+    "description": "今すぐ予約注文",
+    "button": "今すぐ予約注文",
+    "success": "予約注文が正常に完了しました"
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "edit": "編集",
+    "delete": "削除",
+    "view": "表示",
+    "add": "追加",
+    "remove": "削除",
+    "search": "検索",
+    "filter": "フィルター",
+    "all": "すべて",
+    "none": "なし",
+    "yes": "はい",
+    "no": "いいえ",
+    "confirm": "確認",
+    "back": "戻る",
+    "next": "次へ",
+    "close": "閉じる",
+    "submit": "送信"
+  },
+  "dashboard": {
+    "title": "ダッシュボード",
+    "welcome_back": "おかえりなさい、",
+    "welcome_message": "Rolittユーザーセンターへようこそ。AIコンパニオン体験をここで管理してください"
+  },
+  "billing": {
+    "title": "請求と支払い",
+    "description": "支払い方法と請求履歴を管理",
+    "current_plan": {
+      "title": "現在のプラン",
+      "description": "アクティブなサブスクリプションの詳細"
+    }
+  },
+  "orders": {
+    "title": "注文",
+    "description": "注文履歴を表示・管理",
+    "status": {
+      "all": "すべてのステータス",
+      "pending": "保留中",
+      "processing": "処理中",
+      "shipped": "発送済み",
+      "delivered": "配達済み",
+      "cancelled": "キャンセル済み"
+    }
+  },
+  "favorites": {
+    "title": "お気に入り",
+    "description": "保存したアイテムとウィッシュリスト",
+    "no_favorites": "お気に入りが見つかりません"
+  },
+  "settings": {
+    "title": "アカウント設定",
+    "description": "アカウント設定と環境設定を管理",
+    "save_success": "設定が正常に保存されました！",
+    "save_error": "設定の保存エラー"
+  },
+  "profile": {
+    "title": "ユーザープロフィール",
+    "description": "個人情報と環境設定を管理",
+    "edit_profile": "プロフィールを編集",
+    "save_success": "プロフィールが正常に更新されました！",
+    "save_error": "プロフィールの更新エラー"
+  },
+  "unauthorized": {
+    "title": "アクセス拒否",
+    "description": "このエリアにアクセスする権限がありません",
+    "message": "このページは管理者のみに制限されています。アクセス権があると思われる場合は、システム管理者にお問い合わせください。",
+    "backToDashboard": "ダッシュボードに戻る",
+    "backToHome": "ホームに戻る"
+  },
+  "Testimonials": {
+    "title": "早期採用者からの証言",
+    "rating": "⭐⭐⭐⭐⭐ ベータユーザーの評価は4.9/5",
+    "video1": "ビデオ1プレビュー",
+    "video2": "ビデオ2プレビュー",
+    "video3": "ビデオ3プレビュー"
+  },
+  "SocialProof": {
+    "title": "数千人に信頼されています",
+    "description": "AIコンパニオンの未来を信じる早期採用者の成長するコミュニティに参加してください",
+    "testimonialsTitle": "早期採用者からの証言",
+    "pressTitle": "プレス報道"
+  },
+  "VerifyEmail": {
+    "meta": {
+      "title": "メール認証",
+      "description": "登録プロセスを完了するためにメールアドレスを認証してください。"
+    },
+    "title": "メールを認証してください",
+    "description": "認証メールをあなたのアドレスに送信しました。メール内のリンクをクリックして登録を完了してください。",
+    "resend_button": "認証メールを再送信",
+    "success_message": "認証メールが再送信されました！",
+    "error_message": "認証メールの送信中にエラーが発生しました。後でもう一度お試しください。"
+  },
+  "ForgotPassword": {
+    "title": "パスワードをお忘れですか？",
+    "description": "下記にメールアドレスを入力してください。パスワードリセット用のリンクをお送りします。",
+    "email_label": "メールアドレス",
+    "email_placeholder": "name@example.com",
+    "email_error": "有効なメールアドレスを入力してください。",
+    "submit_button": "リセットリンクを送信"
+  },
+  "ResetPassword": {
+    "title": "パスワードをリセット",
+    "description": "パスワードをリセットするために、下記に新しいパスワードを入力してください。",
+    "new_password_label": "新しいパスワード",
+    "confirm_password_label": "新しいパスワードを確認",
+    "password_min_error": "パスワードは最低6文字である必要があります。",
+    "password_match_error": "パスワードが一致しません",
+    "invalid_link": "無効なパスワードリセットリンクです。",
+    "submit_button": "パスワードをリセット"
+  },
+  "Auth": {
+    "title": "認証",
+    "signIn": "ログイン",
+    "signUp": "新規登録",
+    "signOut": "ログアウト",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "confirmPassword": "パスワード確認",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "createAccount": "アカウントを作成",
+    "alreadyHaveAccount": "すでにアカウントをお持ちですか？",
+    "dontHaveAccount": "アカウントをお持ちでないですか？"
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "VerifyEmail": {
+    "meta": {
+      "title": "Verify Email",
+      "description": "Verify your email address to complete the registration process."
+    },
+    "title": "Verify your email",
+    "description": "We've sent a verification email to your address. Please click the link in the email to complete your registration.",
+    "resend_button": "Resend verification email",
+    "success_message": "Verification email resent!",
+    "error_message": "Error sending verification email. Please try again later."
+  },
+  "Auth": {
+    "Navbar": {
+      "signin": "Sign In",
+      "signup": "Sign Up",
+      "logout": "Logout"
+    },
+    "ForgotPassword": {
+      "title": "Forgot Password?",
+      "description": "Enter your email address below and we'll send you a link to reset your password.",
+      "email_label": "Email Address",
+      "email_placeholder": "name@example.com",
+      "email_error": "Please enter a valid email address.",
+      "submit_button": "Send Reset Link",
+      "success_message": "Password reset email sent! Please check your inbox and follow the instructions to reset your password.",
+      "error_not_configured": "Email service is not configured. Please contact support.",
+      "error_invalid_email": "Please enter a valid email address.",
+      "error_user_not_found": "No account found with this email address.",
+      "error_rate_limit": "Too many requests. Please wait a few minutes before trying again.",
+      "error_email_rate_limit": "Email rate limit exceeded. Please wait a few minutes before requesting another password reset email.",
+      "error_unexpected": "An unexpected error occurred. Please try again."
+    },
+    "SignIn": {
+      "meta": {
+        "title": "Sign In",
+        "description": "Sign in to your account seamlessly through our user-friendly login process."
+      },
+      "title": "Sign in to your account",
+      "alt": "Rolitt Logo",
+      "footer": "Not a member yet?",
+      "footer_link": "Sign up now to be one of our first members",
+      "google_button": "Continue with Google",
+      "email_divider": "or continue with email",
+      "email": {
+        "label": "Email",
+        "placeholder": "m@example.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "********"
+      },
+      "forgot_password_link": "Forgot password?",
+      "submit_button": "Sign in with email",
+      "signup": {
+        "prompt": "Don't have an account?",
+        "link": "Sign Up"
+      }
+    },
+    "SignUp": {
+      "meta": {
+        "title": "Sign Up",
+        "description": "Create your account easily through our intuitive registration process."
+      },
+      "title": "Create your account",
+      "alt": "Rolitt Logo",
+      "footer": "Already a member?",
+      "footer_link": "Sign in here",
+      "google_button": "Continue with Google",
+      "email_divider": "or continue with email",
+      "name": {
+        "label": "Full Name",
+        "placeholder": "John Doe"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "m@example.com"
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "********"
+      },
+      "submit_button": "Sign Up",
+      "signin": {
+        "prompt": "Already have an account?",
+        "link": "Sign In"
+      },
+      "terms": {
+        "prefix": "By clicking Sign Up, you agree to our",
+        "terms": "Terms of Service",
+        "and": "and",
+        "privacy": "Privacy Policy"
+      }
+    },
+    "VerifyEmail": {
+      "meta": {
+        "title": "Verify Email",
+        "description": "Verify your email address to complete the registration process."
+      },
+      "title": "Verify your email",
+      "description": "We've sent a verification email to your address. Please click the link in the email to complete your registration.",
+      "resend_button": "Resend verification email",
+      "success_message": "Verification email resent!",
+      "error_message": "Error sending verification email. Please try again later."
+    },
+    "ResetPassword": {
+      "meta": {
+        "title": "Reset Password",
+        "description": "Create a new password to regain access to your account."
+      },
+      "title": "Reset your password",
+      "description": "Please create a new password for your account.",
+      "password": {
+        "label": "New Password",
+        "placeholder": "********"
+      },
+      "confirm_password": {
+        "label": "Confirm Password",
+        "placeholder": "********"
+      },
+      "submit_button": "Reset Password",
+      "success_message": "Password successfully reset! You can now sign in with your new password.",
+      "error_message": "Error resetting password. Please try again later."
+    },
+    "EmailVerified": {
+      "meta": {
+        "title": "Email Verified",
+        "description": "Your email has been successfully verified."
+      },
+      "title": "Email Verified!",
+      "description": "Thank you for verifying your email address. Your account is now fully activated.",
+      "button": "Continue to Dashboard"
+    },
+    "Error": {
+      "default": "An error occurred. Please try again later.",
+      "expired_token": "Your token has expired or is invalid. Please request a new reset link.",
+      "invalid_credentials": "Invalid email or password. Please try again.",
+      "email_exists": "This email address is already in use. Please use a different email or try signing in.",
+      "weak_password": "Password is too weak. Please use at least 8 characters including letters, numbers, and special characters.",
+      "passwords_not_match": "Passwords don't match. Please ensure both password fields are identical.",
+      "user_not_found": "No user found with this email. Please check your email or create a new account.",
+      "verification_failed": "Email verification failed. Please try resending the verification email.",
+      "reset_failed": "Password reset failed. Please request a new reset link.",
+      "server_error": "Server error. Please try again later.",
+      "unauthorized": "Unauthorized access. Please sign in to continue."
+    },
+    "Success": {
+      "password_reset_email": "Password reset link sent to your email!",
+      "signup": "Sign up successful! Please check your email for verification.",
+      "signin": "Sign in successful!",
+      "signout": "You have been successfully signed out.",
+      "password_reset": "Password successfully reset!",
+      "email_verified": "Email successfully verified!"
+    }
+  },
+  "Dashboard": {
+    "meta_title": "Dashboard",
+    "hello_message": "Hello {email}!",
+    "alternative_message": "Want to build your SaaS faster using the same stack? Try <url></url>."
+  },
+  "DashboardLayout": {
+    "dashboard_link": "Dashboard",
+    "user_profile_link": "Manage your account",
+    "sign_out": "Sign out"
+  },
+  "ForgotPassword": {
+    "title": "Forgot Your Password?",
+    "description": "Enter your email address below and we'll send you a link to reset your password.",
+    "email_label": "Email Address",
+    "email_placeholder": "name@example.com",
+    "email_error": "Please enter a valid email address.",
+    "submit_button": "Send Reset Link",
+    "success_message": "Password reset email sent! Please check your inbox and follow the instructions to reset your password.",
+    "error_not_configured": "Email service is not configured. Please contact support.",
+    "error_invalid_email": "Please enter a valid email address.",
+    "error_user_not_found": "No account found with this email address.",
+    "error_rate_limit": "Too many requests. Please wait a few minutes before trying again.",
+    "error_email_rate_limit": "Email rate limit exceeded. Please wait a few minutes before requesting another password reset email.",
+    "error_unexpected": "An unexpected error occurred. Please try again."
+  },
+  "ResetPassword": {
+    "title": "Reset Your Password",
+    "description": "Enter your new password below to reset your password.",
+    "new_password_label": "New Password",
+    "confirm_password_label": "Confirm New Password",
+    "password_min_error": "Password must be at least 6 characters.",
+    "password_match_error": "Passwords don't match",
+    "invalid_link": "Invalid password reset link.",
+    "submit_button": "Reset Password"
+  },
+  "SignIn": {
+    "meta_title": "Sign in",
+    "meta_description": "Seamlessly sign in to your account with our user-friendly login process.",
+    "sign_in_title": "Sign in to your account",
+    "sign_in_footer": "Not a member?",
+    "sign_in_footer_link": "Sign up now to become one of our first members",
+    "google_button": "Continue with Google",
+    "email_divider": "or continue with email",
+    "email_label": "Email",
+    "email_placeholder": "m@example.com",
+    "password_label": "Password",
+    "password_placeholder": "********",
+    "forgot_password_link": "Forgot your password?",
+    "submit_button": "Sign In with Email",
+    "signup_prompt": "Don't have an account?",
+    "signup_link": "Sign Up"
+  },
+  "SignUp": {
+    "meta_title": "Sign up",
+    "meta_description": "Effortlessly create an account through our intuitive sign-up process.",
+    "sign_up_title": "Create your account",
+    "sign_up_footer": "Already a member?",
+    "sign_up_footer_link": "Sign in here",
+    "google_button": "Continue with Google",
+    "email_divider": "or continue with email",
+    "name_label": "Full Name",
+    "name_placeholder": "John Doe",
+    "email_label": "Email",
+    "email_placeholder": "m@example.com",
+    "password_label": "Password",
+    "password_placeholder": "********",
+    "confirm_password_label": "Confirm Password",
+    "confirm_password_placeholder": "********",
+    "submit_button": "Sign Up with Email",
+    "signin_prompt": "Already have an account?",
+    "signin_link": "Sign In"
+  },
+  "UserProfile": {
+    "meta_title": "User Profile | Rolitt",
+    "meta_description": "Manage your Rolitt user profile, preferences, and account information.",
+    "title": "User Profile",
+    "subtitle": "Manage your personal information and preferences",
+    "personal_info": {
+      "title": "Personal Information",
+      "description": "Update your basic personal information",
+      "name": {
+        "label": "Full Name",
+        "placeholder": "Your full name"
+      },
+      "email": {
+        "label": "Email Address",
+        "placeholder": "Your email"
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "Your phone number"
+      },
+      "bio": {
+        "label": "Bio",
+        "placeholder": "A brief introduction about yourself"
+      },
+      "save_button": "Save Changes"
+    },
+    "password": {
+      "title": "Change Password",
+      "description": "Update your password to protect your account",
+      "current_password": {
+        "label": "Current Password",
+        "placeholder": "Your current password"
+      },
+      "new_password": {
+        "label": "New Password",
+        "placeholder": "Your new password"
+      },
+      "confirm_password": {
+        "label": "Confirm New Password",
+        "placeholder": "Enter your new password again"
+      },
+      "save_button": "Update Password"
+    },
+    "preferences": {
+      "title": "Preferences",
+      "description": "Customize your Rolitt experience",
+      "language": {
+        "label": "Language",
+        "options": {
+          "en": "English",
+          "es": "Spanish",
+          "fr": "French",
+          "de": "German",
+          "ja": "Japanese",
+          "zh-HK": "Traditional Chinese"
+        }
+      },
+      "notifications": {
+        "label": "Notification Preferences",
+        "options": {
+          "all": "All Notifications",
+          "important": "Important Only",
+          "none": "No Notifications"
+        }
+      },
+      "theme": {
+        "label": "Interface Theme",
+        "options": {
+          "light": "Light",
+          "dark": "Dark",
+          "system": "System Default"
+        }
+      },
+      "save_button": "Save Preferences"
+    },
+    "account": {
+      "title": "Account Management",
+      "description": "Manage your account settings and subscriptions",
+      "subscription": {
+        "label": "Current Subscription",
+        "status": {
+          "active": "Active",
+          "inactive": "Inactive",
+          "pending": "Pending"
+        },
+        "plan": {
+          "free": "Free",
+          "basic": "Basic",
+          "premium": "Premium",
+          "enterprise": "Enterprise"
+        },
+        "manage_button": "Manage Subscription"
+      },
+      "data": {
+        "label": "Data & Privacy",
+        "export_button": "Export Data",
+        "delete_button": "Delete Account"
+      }
+    },
+    "success": {
+      "profile_updated": "Profile successfully updated!",
+      "password_updated": "Password successfully updated!",
+      "preferences_updated": "Preferences successfully updated!"
+    },
+    "error": {
+      "update_failed": "Update failed. Please try again later.",
+      "incorrect_password": "Current password is incorrect. Please try again.",
+      "passwords_not_match": "New passwords don't match. Please ensure both password fields are identical."
+    }
+  }
+}

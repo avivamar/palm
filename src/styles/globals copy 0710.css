@@ -1,0 +1,297 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 导入实时功能动画样式 */
+@import './realtime-animations.css';
+
+@layer base {
+  :root {
+    --brand-main: #c6c8fa;
+    --brand-main-light: #f0f1ff;
+    --brand-main-dark: #3a42b8;
+    --brand-accent: #ebff7f;
+    --brand-surface: #f8f9ff;
+    --brand: #ebff7f;
+    --brand-dark: #c6c8fa;
+    --brand-50: #f8f9ff;
+    --brand-100: #f0f1ff;
+    --brand-200: #e3e4ff;
+    --brand-300: #d1d3ff;
+    --brand-400: #bfc2ff;
+    --brand-500: #c6c8fa;
+    --brand-600: #9ba0f5;
+    --brand-700: #6f78f0;
+    --brand-800: #4e5beb;
+    --brand-900: #3a42b8;
+
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* 强制保留品牌相关的类名 */
+
+/* 全局平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 尊重用户的减少动画偏好 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* 增强CTA按钮动画效果 */
+@keyframes bounce-subtle {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-2px);
+  }
+  60% {
+    transform: translateY(-1px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-25deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-25deg);
+  }
+}
+
+/* Hero CTA优化动画 */
+@keyframes hero-pulse {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* CTA按钮特殊效果 */
+.cta-glow {
+  position: relative;
+}
+
+.cta-glow::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ebff7f, #c6c8fa, #ebff7f, #c6c8fa);
+  background-size: 400% 400%;
+  animation: gradient-shift 3s ease infinite;
+  border-radius: inherit;
+  z-index: -1;
+  filter: blur(4px);
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.light {
+  --brand-color: var(--brand);
+}
+
+.dark .brand-element {
+  color: var(--brand-dark);
+  text-shadow: 0 0 2px rgba(235, 255, 127, 0.2);
+}
+
+.dark .brand-button {
+  background-color: var(--brand-dark);
+  color: #1a1a1a;
+}
+
+.brand-button:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 0 2px rgba(235, 255, 127, 0.3);
+}
+
+.bg-brand-surface {
+  background-color: var(--brand-surface);
+}
+.bg-brand-accent {
+  background-color: var(--brand-accent);
+}
+.text-brand-accent {
+  color: var(--brand-accent);
+}
+.border-brand-accent {
+  border-color: var(--brand-accent);
+}
+
+.btn-brand-main {
+  background: var(--brand-main);
+  color: white;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(124, 136, 255, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+.btn-brand-main:hover {
+  background: var(--brand-main-dark);
+}
+
+.card-brand-main {
+  background: var(--brand-main-light);
+  color: var(--brand-main-dark);
+  border: 1px solid var(--brand-main);
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 10px rgba(124, 136, 255, 0.15);
+  padding: 1.25rem;
+  transition: all 0.3s ease-in-out;
+}
+.card-brand-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(124, 136, 255, 0.25);
+}
+
+.badge-brand-main {
+  display: inline-block;
+  background-color: var(--brand-main-light);
+  color: var(--brand-main-dark);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.link-brand-main {
+  color: var(--brand-main);
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.link-brand-main:hover {
+  color: var(--brand-main-dark);
+}
+
+.input-brand-main {
+  border: 1px solid var(--brand-main);
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem;
+  outline: none;
+  transition:
+    box-shadow 0.2s ease-in-out,
+    border-color 0.2s ease-in-out;
+}
+.input-brand-main:focus {
+  box-shadow: 0 0 0 3px rgba(124, 136, 255, 0.4);
+  border-color: var(--brand-main-dark);
+}
+
+/* 隐藏滚动条样式 - 用于 Aceternity UI Tabs 组件 */
+.no-visible-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-visible-scrollbar::-webkit-scrollbar {
+  display: none;
+}

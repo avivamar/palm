@@ -1,0 +1,1 @@
+export { useEmailManagementStore } from './email-store';

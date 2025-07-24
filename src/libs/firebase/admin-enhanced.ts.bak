@@ -1,0 +1,188 @@
+import type { App } from 'firebase-admin/app';
+import type { Auth } from 'firebase-admin/auth';
+import { credential } from 'firebase-admin';
+import { getApps, initializeApp } from 'firebase-admin/app';
+import { getAuth } from 'firebase-admin/auth';
+
+type FirebaseAdminConfig = {
+  projectId: string;
+  clientEmail: string;
+  privateKey: string;
+  databaseURL?: string;
+};
+
+type AdminInitResult = {
+  app: App | null;
+  auth: Auth | null;
+  error: string | null;
+  isConfigured: boolean;
+};
+
+class FirebaseAdminManager {
+  private static instance: FirebaseAdminManager;
+  private app: App | null = null;
+  private auth: Auth | null = null;
+  private isInitialized = false;
+  private initError: string | null = null;
+
+  private constructor() {}
+
+  static getInstance(): FirebaseAdminManager {
+    if (!FirebaseAdminManager.instance) {
+      FirebaseAdminManager.instance = new FirebaseAdminManager();
+    }
+    return FirebaseAdminManager.instance;
+  }
+
+  private validateConfig(): FirebaseAdminConfig | null {
+    const projectId = process.env.FIREBASE_PROJECT_ID;
+    const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+    const privateKey = process.env.FIREBASE_PRIVATE_KEY;
+
+    if (!projectId || !clientEmail || !privateKey) {
+      this.initError = 'Missing required Firebase Admin environment variables';
+      return null;
+    }
+
+    // 处理私钥中的换行符
+    const formattedPrivateKey = privateKey.replace(/\\n/g, '\n');
+
+    return {
+      projectId,
+      clientEmail,
+      privateKey: formattedPrivateKey,
+      databaseURL: process.env.FIREBASE_DATABASE_URL,
+    };
+  }
+
+  private async initializeFirebaseAdmin(): Promise<AdminInitResult> {
+    try {
+      // 检查是否已经初始化
+      if (this.isInitialized) {
+        return {
+          app: this.app,
+          auth: this.auth,
+          error: this.initError,
+          isConfigured: this.app !== null,
+        };
+      }
+
+      // 验证配置
+      const config = this.validateConfig();
+      if (!config) {
+        return {
+          app: null,
+          auth: null,
+          error: this.initError,
+          isConfigured: false,
+        };
+      }
+
+      // 检查是否已有应用实例
+      const existingApps = getApps();
+      if (existingApps.length > 0) {
+        const existingApp = existingApps[0];
+        if (existingApp) {
+          this.app = existingApp;
+          this.auth = getAuth(this.app);
+          this.isInitialized = true;
+          return {
+            app: this.app,
+            auth: this.auth,
+            error: null,
+            isConfigured: true,
+          };
+        }
+      }
+
+      // 初始化新的应用实例
+      this.app = initializeApp({
+        credential: credential.cert({
+          projectId: config.projectId,
+          clientEmail: config.clientEmail,
+          privateKey: config.privateKey,
+        }),
+        projectId: config.projectId,
+        databaseURL: config.databaseURL,
+      });
+
+      this.auth = getAuth(this.app);
+      this.isInitialized = true;
+
+      console.warn('Firebase Admin initialized successfully');
+
+      return {
+        app: this.app,
+        auth: this.auth,
+        error: null,
+        isConfigured: true,
+      };
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown Firebase Admin initialization error';
+      this.initError = errorMessage;
+      console.error('Firebase Admin initialization failed:', errorMessage);
+
+      return {
+        app: null,
+        auth: null,
+        error: errorMessage,
+        isConfigured: false,
+      };
+    }
+  }
+
+  async getAuth(): Promise<Auth | null> {
+    const result = await this.initializeFirebaseAdmin();
+    return result.auth;
+  }
+
+  async getApp(): Promise<App | null> {
+    const result = await this.initializeFirebaseAdmin();
+    return result.app;
+  }
+
+  async getInitResult(): Promise<AdminInitResult> {
+    return await this.initializeFirebaseAdmin();
+  }
+
+  isReady(): boolean {
+    return this.isInitialized && this.app !== null && this.auth !== null;
+  }
+
+  getError(): string | null {
+    return this.initError;
+  }
+
+  // 重置实例（主要用于测试）
+  reset(): void {
+    this.app = null;
+    this.auth = null;
+    this.isInitialized = false;
+    this.initError = null;
+  }
+}
+
+// 导出单例实例
+export const firebaseAdminManager = FirebaseAdminManager.getInstance();
+
+// 便捷函数
+export async function getFirebaseAdminAuth(): Promise<Auth | null> {
+  return await firebaseAdminManager.getAuth();
+}
+
+export async function getFirebaseAdminApp(): Promise<App | null> {
+  return await firebaseAdminManager.getApp();
+}
+
+export async function getFirebaseAdminStatus(): Promise<AdminInitResult> {
+  return await firebaseAdminManager.getInitResult();
+}
+
+// 向后兼容的导出
+export async function getFirebaseAdmin(): Promise<Auth | null> {
+  return await getFirebaseAdminAuth();
+}
+
+// 导出类型
+export type { AdminInitResult, FirebaseAdminConfig };
+export { FirebaseAdminManager };

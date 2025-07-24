@@ -1,0 +1,77 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Database
+*.db
+/generated/prisma
+
+# testing
+/coverage
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+# storybook
+storybook-static
+*storybook.log
+
+# build outputs
+/.next/
+/out/
+/.open-next/
+/build/
+/dist/
+.swc/
+
+# package managers
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+bun.lockb
+
+# environment and secrets
+.env*
+!.env.example
+!.env.multi-endpoint.example
+wrangler.toml
+.sentryclirc*
+sentry-debug-meta.properties
+supabase-ca.crt
+correct_firebase_env.txt
+firebase_fixed_config.json
+
+# misc
+.DS_Store
+*.pem
+Thumbs.db
+local/
+.vercel
+.wrangler/
+
+# demo and reference projects
+/Next-js-Boilerplate-main/
+/demo-next-store/
+/commerce/
+/vercel-commerce-reference/
+/commerceplate/
+
+# media files
+/public/videos/
+
+# Docker
+Dockerfile.dev
+packages/ai-core/.next/
+packages/admin/.next/
+packages/auth/.next/
+packages/ai-core/dist/
+packages/admin/dist/
+packages/auth/dist/
+packages/referral/dist/
+packages/image-upload/dist/
+packages/dist/
+packages/shopify/.env.example

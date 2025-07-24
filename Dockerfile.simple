@@ -1,0 +1,75 @@
+# Ultra-simple Railway Docker build
+FROM node:20-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install system dependencies in one layer
+RUN apk update && apk add --no-cache \
+    libc6-compat \
+    git \
+    dumb-init \
+    curl \
+    && rm -rf /var/cache/apk/*
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+ENV RAILWAY_ENVIRONMENT=1
+
+# Copy package files
+COPY package*.json ./
+COPY packages/admin/package.json ./packages/admin/
+COPY packages/shared/package.json ./packages/shared/
+COPY packages/shopify/package.json ./packages/shopify/
+COPY packages/email/package.json ./packages/email/
+
+# Set npm configuration for faster, more reliable installs
+RUN npm config set fetch-retry-mintimeout 20000 && \
+    npm config set fetch-retry-maxtimeout 120000 && \
+    npm config set fetch-timeout 300000
+
+# Install dependencies (including devDependencies for build)
+RUN npm ci --frozen-lockfile --no-audit --no-fund --prefer-offline
+
+# Copy source code
+COPY . .
+
+# Build the application directly without external script
+RUN echo "🚀 Starting Railway Docker build..." && \
+    echo "🧹 Cleaning up caches..." && \
+    rm -rf .next/cache/* 2>/dev/null || true && \
+    rm -rf node_modules/.cache 2>/dev/null || true && \
+    rm -rf /tmp/nextjs* 2>/dev/null || true && \
+    echo "🔨 Building packages..." && \
+    (npm run packages:build || echo "⚠️ No packages to build") && \
+    echo "🗄️ Generating Prisma client..." && \
+    (if [ -f "prisma/schema.prisma" ]; then npx prisma generate; fi) && \
+    echo "🏗️ Building Next.js application..." && \
+    npm run build && \
+    echo "🔍 Verifying build artifacts..." && \
+    (if [ ! -f ".next/standalone/server.js" ]; then echo "💥 Standalone server.js not found!" && exit 1; fi) && \
+    (if [ ! -d ".next/static" ]; then echo "💥 Static files not found!" && exit 1; fi) && \
+    echo "✅ Build completed successfully!"
+
+# Create non-root user
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
+
+# Set ownership
+RUN chown -R nextjs:nodejs /app
+
+# Switch to non-root user
+USER nextjs
+
+# Expose port
+EXPOSE 3000
+
+# Simple health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+  CMD curl -f http://localhost:3000/api/health || exit 1
+
+# Start application
+CMD ["dumb-init", "node", ".next/standalone/server.js"]

@@ -1,0 +1,338 @@
+{
+  "VerifyEmail": {
+    "meta": {
+      "title": "メール認証",
+      "description": "登録プロセスを完了するためにメールアドレスを認証してください。"
+    },
+    "title": "メールを認証してください",
+    "description": "認証メールをあなたのアドレスに送信しました。登録を完了するにはメール内のリンクをクリックしてください。",
+    "resend_button": "認証メールを再送信",
+    "success_message": "認証メールを再送信しました！",
+    "error_message": "認証メール送信中にエラーが発生しました。後でもう一度お試しください。"
+  },
+  "Auth": {
+    "Navbar": {
+      "signin": "ログイン",
+      "signup": "新規登録",
+      "logout": "ログアウト"
+    },
+    "ForgotPassword": {
+      "title": "パスワードをお忘れですか？",
+      "description": "下記にメールアドレスをご入力いただければ、パスワードリセット用のリンクをお送りいたします。",
+      "email_label": "メールアドレス",
+      "email_placeholder": "name@example.com",
+      "email_error": "有効なメールアドレスを入力してください。",
+      "submit_button": "リセットリンクを送信",
+      "success_message": "パスワードリセットメールを送信しました！受信トレイをご確認いただき、指示に従ってパスワードをリセットしてください。",
+      "error_not_configured": "メールサービスが設定されていません。サポートにお問い合わせください。",
+      "error_invalid_email": "有効なメールアドレスを入力してください。",
+      "error_user_not_found": "このメールアドレスのアカウントが見つかりません。",
+      "error_rate_limit": "リクエストが多すぎます。数分待ってから再度お試しください。",
+      "error_email_rate_limit": "メール送信頻度制限を超えました。数分待ってから別のパスワードリセットメールをリクエストしてください。",
+      "error_unexpected": "予期しないエラーが発生しました。もう一度お試しください。"
+    },
+    "SignIn": {
+      "meta": {
+        "title": "ログイン",
+        "description": "ユーザーフレンドリーなログインプロセスで、アカウントにシームレスにサインインしてください。"
+      },
+      "title": "アカウントにログイン",
+      "alt": "Rolittロゴ",
+      "footer": "まだメンバーではありませんか？",
+      "footer_link": "今すぐ登録して初期メンバーの一員になりましょう",
+      "google_button": "Googleで続行",
+      "email_divider": "またはメールアドレスで続行",
+      "email": {
+        "label": "メールアドレス",
+        "placeholder": "m@example.com"
+      },
+      "password": {
+        "label": "パスワード",
+        "placeholder": "********"
+      },
+      "forgot_password_link": "パスワードをお忘れですか？",
+      "submit_button": "メールアドレスでログイン",
+      "signup": {
+        "prompt": "アカウントをお持ちではありませんか？",
+        "link": "新規登録"
+      }
+    },
+    "SignUp": {
+      "meta": {
+        "title": "新規登録",
+        "description": "直感的な登録プロセスで簡単にアカウントを作成してください。"
+      },
+      "title": "アカウントを作成",
+      "alt": "Rolittロゴ",
+      "footer": "既にメンバーですか？",
+      "footer_link": "こちらからログイン",
+      "google_button": "Googleで続行",
+      "email_divider": "またはメールアドレスで続行",
+      "name": {
+        "label": "お名前",
+        "placeholder": "山田太郎"
+      },
+      "email": {
+        "label": "メールアドレス",
+        "placeholder": "m@example.com"
+      },
+      "password": {
+        "label": "パスワード",
+        "placeholder": "********"
+      },
+      "submit_button": "新規登録",
+      "signin": {
+        "prompt": "既にアカウントをお持ちですか？",
+        "link": "ログイン"
+      },
+      "terms": {
+        "prefix": "新規登録をクリックすることで、当社の",
+        "terms": "利用規約",
+        "and": "および",
+        "privacy": "プライバシーポリシー"
+      }
+    },
+    "VerifyEmail": {
+      "meta": {
+        "title": "メール認証",
+        "description": "登録プロセスを完了するためにメールアドレスを認証してください。"
+      },
+      "title": "メールアドレスを認証",
+      "description": "お客様のメールアドレスに認証メールをお送りしました。登録を完了するため、メール内のリンクをクリックしてください。",
+      "resend_button": "認証メールを再送信",
+      "success_message": "認証メールを再送信しました！",
+      "error_message": "認証メールの送信にエラーが発生しました。後でもう一度お試しください。"
+    },
+    "ResetPassword": {
+      "meta": {
+        "title": "パスワードリセット",
+        "description": "アカウントへのアクセスを回復するため、新しいパスワードを作成してください。"
+      },
+      "title": "パスワードをリセット",
+      "description": "アカウント用の新しいパスワードを作成してください。",
+      "password": {
+        "label": "新しいパスワード",
+        "placeholder": "********"
+      },
+      "confirm_password": {
+        "label": "パスワード確認",
+        "placeholder": "********"
+      },
+      "submit_button": "パスワードをリセット",
+      "success_message": "パスワードが正常にリセットされました！新しいパスワードでログインできます。",
+      "error_message": "パスワードリセット中にエラーが発生しました。後でもう一度お試しください。"
+    },
+    "EmailVerified": {
+      "meta": {
+        "title": "メール認証完了",
+        "description": "メールアドレスが正常に認証されました。"
+      },
+      "title": "メール認証完了！",
+      "description": "メールアドレスの認証をありがとうございます。アカウントが完全にアクティベートされました。",
+      "button": "ダッシュボードに進む"
+    },
+    "Error": {
+      "default": "エラーが発生しました。後でもう一度お試しください。",
+      "expired_token": "トークンの有効期限が切れているか、無効です。新しいリセットリンクをリクエストしてください。",
+      "invalid_credentials": "無効なメールアドレスまたはパスワードです。もう一度お試しください。",
+      "email_exists": "このメールアドレスは既に使用されています。別のメールアドレスを使用するか、ログインをお試しください。",
+      "weak_password": "パスワードが脆弱すぎます。文字、数字、特殊文字を含む8文字以上を使用してください。",
+      "passwords_not_match": "パスワードが一致しません。両方のパスワードフィールドが同一であることを確認してください。",
+      "user_not_found": "このメールアドレスのユーザーが見つかりません。メールアドレスを確認するか、新しいアカウントを作成してください。",
+      "verification_failed": "メール認証に失敗しました。認証メールの再送信をお試しください。",
+      "reset_failed": "パスワードリセットに失敗しました。新しいリセットリンクをリクエストしてください。",
+      "server_error": "サーバーエラーです。後でもう一度お試しください。",
+      "unauthorized": "未認証のアクセスです。続行するにはログインしてください。"
+    },
+    "Success": {
+      "password_reset_email": "パスワードリセットリンクをメールに送信しました！",
+      "signup": "新規登録が完了しました！認証のためメールをご確認ください。",
+      "signin": "ログインが完了しました！",
+      "signout": "正常にログアウトしました。",
+      "password_reset": "パスワードが正常にリセットされました！",
+      "email_verified": "メールアドレスが正常に認証されました！"
+    }
+  },
+  "Dashboard": {
+    "meta_title": "ダッシュボード",
+    "hello_message": "こんにちは、{email}さん！",
+    "alternative_message": "同じスタックを使用してSaaSをより迅速に構築したいですか？<url></url>をお試しください。"
+  },
+  "DashboardLayout": {
+    "dashboard_link": "ダッシュボード",
+    "user_profile_link": "アカウント管理",
+    "sign_out": "ログアウト"
+  },
+  "ForgotPassword": {
+    "title": "パスワードをお忘れですか？",
+    "description": "下記にメールアドレスをご入力いただければ、パスワードリセット用のリンクをお送りいたします。",
+    "email_label": "メールアドレス",
+    "email_placeholder": "name@example.com",
+    "email_error": "有効なメールアドレスを入力してください。",
+    "submit_button": "リセットリンクを送信",
+    "success_message": "パスワードリセットリンクをメールに送信しました！",
+    "error_not_configured": "パスワードリセット機能が設定されていません。管理者にお問い合わせください。",
+    "error_invalid_email": "有効なメールアドレスを入力してください。",
+    "error_user_not_found": "このメールアドレスのユーザーが見つかりません。メールアドレスを確認するか、新しいアカウントを作成してください。",
+    "error_rate_limit": "リクエストが多すぎます。しばらく待ってから再度お試しください。",
+    "error_email_rate_limit": "メール送信の制限に達しました。しばらく待ってから再度お試しください。",
+    "error_unexpected": "予期しないエラーが発生しました。後でもう一度お試しください。"
+  },
+  "ResetPassword": {
+    "title": "パスワードをリセット",
+    "description": "下記に新しいパスワードをご入力ください。",
+    "new_password_label": "新しいパスワード",
+    "confirm_password_label": "新しいパスワード確認",
+    "password_min_error": "パスワードは6文字以上である必要があります。",
+    "password_match_error": "パスワードが一致しません",
+    "invalid_link": "無効なパスワードリセットリンクです。",
+    "submit_button": "パスワードをリセット"
+  },
+  "SignIn": {
+    "meta_title": "ログイン",
+    "meta_description": "ユーザーフレンドリーなログインプロセスで、アカウントにシームレスにサインインしてください。",
+    "sign_in_title": "アカウントにログイン",
+    "sign_in_footer": "メンバーではありませんか？",
+    "sign_in_footer_link": "今すぐ登録して初期メンバーの一員になりましょう",
+    "google_button": "Googleで続行",
+    "email_divider": "またはメールアドレスで続行",
+    "email_label": "メールアドレス",
+    "email_placeholder": "m@example.com",
+    "password_label": "パスワード",
+    "password_placeholder": "********",
+    "forgot_password_link": "パスワードをお忘れですか？",
+    "submit_button": "メールアドレスでログイン",
+    "signup_prompt": "アカウントをお持ちではありませんか？",
+    "signup_link": "新規登録"
+  },
+  "SignUp": {
+    "meta_title": "新規登録",
+    "meta_description": "直感的な新規登録プロセスで簡単にアカウントを作成してください。",
+    "sign_up_title": "アカウントを作成",
+    "sign_up_footer": "既にメンバーですか？",
+    "sign_up_footer_link": "こちらからログイン",
+    "google_button": "Googleで続行",
+    "email_divider": "またはメールアドレスで続行",
+    "name_label": "お名前",
+    "name_placeholder": "山田太郎",
+    "email_label": "メールアドレス",
+    "email_placeholder": "m@example.com",
+    "password_label": "パスワード",
+    "password_placeholder": "********",
+    "confirm_password_label": "パスワード確認",
+    "confirm_password_placeholder": "********",
+    "submit_button": "メールアドレスで新規登録",
+    "signin_prompt": "既にアカウントをお持ちですか？",
+    "signin_link": "ログイン"
+  },
+  "UserProfile": {
+    "meta_title": "ユーザープロフィール | Rolitt",
+    "meta_description": "Rolittのユーザープロフィール、設定、アカウント情報を管理してください。",
+    "title": "ユーザープロフィール",
+    "subtitle": "個人情報と設定を管理",
+    "personal_info": {
+      "title": "個人情報",
+      "description": "基本的な個人情報を更新",
+      "name": {
+        "label": "お名前",
+        "placeholder": "お名前"
+      },
+      "email": {
+        "label": "メールアドレス",
+        "placeholder": "メールアドレス"
+      },
+      "phone": {
+        "label": "電話番号",
+        "placeholder": "電話番号"
+      },
+      "bio": {
+        "label": "自己紹介",
+        "placeholder": "ご自身について簡単にご紹介ください"
+      },
+      "save_button": "変更を保存"
+    },
+    "password": {
+      "title": "パスワード変更",
+      "description": "アカウントを保護するためパスワードを更新",
+      "current_password": {
+        "label": "現在のパスワード",
+        "placeholder": "現在のパスワード"
+      },
+      "new_password": {
+        "label": "新しいパスワード",
+        "placeholder": "新しいパスワード"
+      },
+      "confirm_password": {
+        "label": "新しいパスワード確認",
+        "placeholder": "新しいパスワードを再入力"
+      },
+      "save_button": "パスワードを更新"
+    },
+    "preferences": {
+      "title": "設定",
+      "description": "Rolittエクスペリエンスをカスタマイズ",
+      "language": {
+        "label": "言語",
+        "options": {
+          "en": "English",
+          "es": "Español",
+          "fr": "Français",
+          "de": "Deutsch",
+          "ja": "日本語",
+          "zh-HK": "繁體中文"
+        }
+      },
+      "notifications": {
+        "label": "通知設定",
+        "options": {
+          "all": "すべての通知",
+          "important": "重要な通知のみ",
+          "none": "通知なし"
+        }
+      },
+      "theme": {
+        "label": "インターフェーステーマ",
+        "options": {
+          "light": "ライト",
+          "dark": "ダーク",
+          "system": "システム標準"
+        }
+      },
+      "save_button": "設定を保存"
+    },
+    "account": {
+      "title": "アカウント管理",
+      "description": "アカウント設定とサブスクリプションを管理",
+      "subscription": {
+        "label": "現在のサブスクリプション",
+        "status": {
+          "active": "有効",
+          "inactive": "無効",
+          "pending": "保留中"
+        },
+        "plan": {
+          "free": "無料",
+          "basic": "ベーシック",
+          "premium": "プレミアム",
+          "enterprise": "エンタープライズ"
+        },
+        "manage_button": "サブスクリプション管理"
+      },
+      "data": {
+        "label": "データとプライバシー",
+        "export_button": "データをエクスポート",
+        "delete_button": "アカウントを削除"
+      }
+    },
+    "success": {
+      "profile_updated": "プロフィールが正常に更新されました！",
+      "password_updated": "パスワードが正常に更新されました！",
+      "preferences_updated": "設定が正常に更新されました！"
+    },
+    "error": {
+      "update_failed": "更新に失敗しました。後でもう一度お試しください。",
+      "incorrect_password": "現在のパスワードが間違っています。もう一度お試しください。",
+      "passwords_not_match": "新しいパスワードが一致しません。両方のパスワードフィールドが同一であることを確認してください。"
+    }
+  }
+}

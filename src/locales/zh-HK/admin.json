@@ -1,0 +1,281 @@
+{
+  "navigation": {
+    "title": "管理面板",
+    "dashboard": "儀表板",
+    "monitoring": "監控",
+    "users": "用戶",
+    "orders": "訂單",
+    "products": "產品",
+    "analytics": "分析",
+    "settings": "設置",
+    "scripts": "腳本管理",
+    "shopify": "Shopify",
+    "ai": "AI 管理",
+    "soon": "即將推出",
+    "version": "版本 {version}"
+  },
+  "header": {
+    "title": "管理儀表板",
+    "description": "管理您的電商營銷系統",
+    "notifications": {
+      "label": "通知 ({count})",
+      "unread": "{count} 條未讀通知"
+    },
+    "settings": {
+      "label": "設置"
+    },
+    "userMenu": {
+      "label": "用戶菜單",
+      "admin": "管理員",
+      "myAccount": "我的賬戶",
+      "profile": "個人資料",
+      "settings": "設置",
+      "signOut": "登出"
+    }
+  },
+  "dashboard": {
+    "title": "管理儀表板",
+    "description": "管理您的電商營銷系統",
+    "quickStats": {
+      "title": "快速統計",
+      "totalUsers": "總用戶數",
+      "totalOrders": "總訂單數",
+      "revenue": "收入",
+      "conversionRate": "轉換率"
+    },
+    "modules": {
+      "monitoring": {
+        "title": "監控",
+        "description": "查看系統健康狀況和支付指標",
+        "viewDashboard": "查看儀表板"
+      },
+      "users": {
+        "title": "用戶管理",
+        "description": "管理客戶賬戶和權限",
+        "comingSoon": "即將推出"
+      },
+      "orders": {
+        "title": "訂單管理",
+        "description": "跟蹤和管理客戶訂單",
+        "comingSoon": "即將推出"
+      },
+      "analytics": {
+        "title": "分析",
+        "description": "查看詳細報告和洞察",
+        "comingSoon": "即將推出"
+      }
+    }
+  },
+  "monitoring": {
+    "title": "監控儀表板",
+    "description": "實時系統健康狀況和支付指標",
+    "systemHealth": {
+      "title": "系統健康狀況",
+      "healthy": "健康",
+      "warning": "警告",
+      "critical": "嚴重"
+    },
+    "alerts": {
+      "title": "活躍警報",
+      "noAlerts": "沒有活躍警報",
+      "viewAll": "查看所有警報"
+    },
+    "metrics": {
+      "totalPayments": "總支付數",
+      "successfulPayments": "成功支付",
+      "failedPayments": "失敗支付",
+      "successRate": "成功率"
+    }
+  },
+  "users": {
+    "title": "用戶管理",
+    "description": "管理客戶賬戶和權限",
+    "actions": {
+      "addUser": "添加用戶"
+    },
+    "search": {
+      "placeholder": "通過郵箱或姓名搜索用戶..."
+    },
+    "table": {
+      "title": "所有用戶",
+      "description": "管理和查看所有註冊用戶",
+      "headers": {
+        "user": "用戶",
+        "role": "角色",
+        "status": "狀態",
+        "joined": "加入時間",
+        "lastLogin": "最後登錄"
+      },
+      "status": {
+        "verified": "已驗證",
+        "pending": "待驗證"
+      }
+    }
+  },
+  "shopify": {
+    "title": "Shopify 集成",
+    "description": "監控和管理您的 Shopify 商店集成",
+    "navigation": {
+      "overview": "概覽",
+      "orders": "訂單",
+      "products": "產品",
+      "webhooks": "Webhooks",
+      "health": "健康狀況",
+      "config": "配置"
+    },
+    "status": {
+      "connected": "已連接",
+      "disconnected": "已斷開",
+      "healthy": "健康",
+      "warning": "警告",
+      "error": "錯誤"
+    },
+    "metrics": {
+      "connectionStatus": "連接狀態",
+      "syncQueue": "同步隊列",
+      "ordersSynced": "已同步訂單",
+      "productsSynced": "已同步產品",
+      "successRate": "成功率",
+      "todaysActivity": "今日活動"
+    },
+    "sync": {
+      "pending": "待處理",
+      "processing": "處理中",
+      "completed": "已完成",
+      "failed": "失敗",
+      "abandoned": "已放棄",
+      "retryFailed": "重試失敗",
+      "syncSelected": "同步選中項",
+      "clearSelection": "清除選擇"
+    },
+    "config": {
+      "title": "配置",
+      "description": "管理您的 Shopify 集成設置",
+      "testConnection": "測試連接",
+      "saveChanges": "保存更改",
+      "basic": "基本",
+      "webhooks": "Webhooks",
+      "features": "功能",
+      "limits": "限制"
+    }
+  },
+  "scripts": {
+    "title": "腳本管理",
+    "description": "集中管理系統腳本和工具",
+    "health": {
+      "title": "系統健康狀態",
+      "description": "實時監控系統各組件的健康狀況"
+    },
+    "tabs": {
+      "overview": "概覽",
+      "shopify": "Shopify",
+      "environment": "環境",
+      "deployment": "部署",
+      "scripts": "腳本"
+    },
+    "overview": {
+      "coreScripts": "核心腳本",
+      "shopifyStatus": "Shopify 狀態",
+      "systemHealth": "系統健康",
+      "coreScriptsCount": "15個核心腳本可用",
+      "shopifyIntegrationStatus": "Shopify 集成狀態",
+      "systemOverallHealth": "系統整體健康狀態"
+    },
+    "statusLabels": {
+      "environmentValidation": "環境驗證",
+      "buildValidation": "建置驗證",
+      "stripeSync": "Stripe 同步",
+      "apiConnection": "API 連接",
+      "productSync": "產品同步",
+      "configValidation": "配置驗證",
+      "databaseConnection": "資料庫連接",
+      "redisCache": "Redis 快取",
+      "apiService": "API 服務"
+    },
+    "shopify": {
+      "title": "Shopify 集成管理",
+      "description": "管理 Shopify 相關的腳本和配置",
+      "managementDescription": "管理 Shopify 相關的腳本和配置，包括 API 連接、產品同步等。"
+    },
+    "environment": {
+      "title": "環境變量管理",
+      "description": "檢查和管理環境變量配置"
+    },
+    "deployment": {
+      "title": "部署工具",
+      "description": "管理構建、測試和部署流程"
+    },
+    "scripts": {
+      "title": "腳本執行",
+      "description": "執行和監控各種系統腳本"
+    }
+  },
+  "performanceDashboard": {
+    "title": "性能儀表板",
+    "description": "監控系統性能並優化瓶頸",
+    "loading": "正在加載性能指標...",
+    "loadFailed": "加載性能指標失敗",
+    "retry": "重試",
+    "autoRefresh": "自動刷新：",
+    "on": "開啟",
+    "off": "關閉",
+    "export": "導出",
+    "refresh": "刷新",
+    "tabs": {
+      "overview": "概覽",
+      "cache": "緩存",
+      "queries": "查詢",
+      "system": "系統",
+      "alerts": "警報"
+    },
+    "overview": {
+      "cacheHitRate": "緩存命中率",
+      "avgQueryTime": "平均查詢時間",
+      "systemStatus": "系統狀態",
+      "activeAlerts": "活躍警報"
+    },
+    "cacheStats": {
+      "hitRateTitle": "緩存命中率",
+      "hitRateDescription": "緩存命中的百分比",
+      "totalOperationsTitle": "總操作數",
+      "totalOperationsDescription": "執行的緩存操作",
+      "cacheHitsTitle": "緩存命中",
+      "cacheHitsDescription": "成功的緩存檢索",
+      "cacheMissesTitle": "緩存未命中",
+      "cacheMissesDescription": "失敗的緩存檢索"
+    },
+    "queryStats": {
+      "totalQueriesTitle": "總查詢數",
+      "totalQueriesDescription": "執行的查詢",
+      "averageTimeTitle": "平均時間",
+      "averageTimeDescription": "平均查詢執行時間",
+      "slowQueriesTitle": "慢查詢",
+      "slowQueriesDescription": "超過閾值的查詢",
+      "indexUsageTitle": "索引使用",
+      "indexUsageDescription": "活躍索引",
+      "slowQueriesCardTitle": "慢查詢",
+      "slowQueriesCardDescription": "超過性能閾值的查詢",
+      "mostFrequentQueriesCardTitle": "最頻繁查詢",
+      "mostFrequentQueriesCardDescription": "執行最頻繁的查詢",
+      "avg": "平均：",
+      "times": "次"
+    },
+    "systemHealth": {
+      "statusTitle": "系統狀態：",
+      "memoryUsage": "內存使用",
+      "cpuUsage": "CPU 使用",
+      "uptimeTitle": "運行時間",
+      "uptimeDescription": "系統運行時間",
+      "responseTimeTitle": "響應時間",
+      "responseTimeDescription": "平均響應時間"
+    },
+    "alerts": {
+      "noAlertsTitle": "沒有活躍警報",
+      "noAlertsDescription": "系統運行順暢",
+      "alertTitle": "{type} 警報",
+      "severityHigh": "高",
+      "severityMedium": "中",
+      "severityLow": "低"
+    }
+  }
+}

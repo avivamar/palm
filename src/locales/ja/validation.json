@@ -1,0 +1,11 @@
+{
+  "required": "{field}は必須です",
+  "minLength": "{field}は最低{min}文字である必要があります",
+  "maxLength": "{field}は{max}文字以内である必要があります",
+  "invalid": "有効な{field}を入力してください",
+  "invalidEmail": "有効なメールアドレスを入力してください",
+  "invalidPhone": "有効な電話番号を入力してください",
+  "emailCheckError": "メールアドレスを確認できませんでした",
+  "validationError": "検証に失敗しました。もう一度お試しください。",
+  "valid": "{field}は有効です"
+}

@@ -1,0 +1,293 @@
+{
+  "common": {
+    "loading": "読み込み中...",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "edit": "編集",
+    "delete": "削除",
+    "view": "表示",
+    "add": "追加",
+    "remove": "削除",
+    "search": "検索",
+    "filter": "フィルター",
+    "all": "すべて",
+    "none": "なし",
+    "yes": "はい",
+    "no": "いいえ",
+    "confirm": "確認",
+    "back": "戻る",
+    "next": "次へ",
+    "close": "閉じる",
+    "submit": "送信"
+  },
+  "navigation": {
+    "dashboard": "ダッシュボード",
+    "orders": "注文",
+    "favorites": "お気に入り",
+    "billing": "請求",
+    "settings": "設定",
+    "profile": "プロフィール"
+  },
+  "title": "ダッシュボード",
+  "hello_greeting": "こんにちは",
+  "welcome_back": "おかえりなさい、",
+  "welcome_message": "Rolittユーザーセンターへようこそ。こちらでAIコンパニオンの体験を管理できます",
+  "need_login": "サインインが必要です",
+  "please_login": "ユーザーセンターにアクセスするにはサインインしてください",
+  "sign_in_now": "今すぐサインイン",
+  "quick_stats": {
+    "account_status": "アカウント状態",
+    "verified": "認証済み",
+    "unverified": "未認証",
+    "email_verification": "メール認証状態",
+    "order_count": "注文数",
+    "total_orders": "総注文数",
+    "activity_level": "アクティビティ",
+    "new_user": "新規ユーザー",
+    "account_activity": "アカウントアクティビティレベル",
+    "notifications": "通知",
+    "unread_notifications": "未読通知"
+  },
+  "quick_actions": {
+    "title": "クイックアクション",
+    "personal_profile": "個人プロフィール",
+    "personal_profile_desc": "個人情報と設定を管理します",
+    "manage_profile": "プロフィール管理",
+    "browse_products": "商品を見る",
+    "browse_products_desc": "AIコンパニオンの商品とサービスをご覧ください",
+    "view_products": "商品を見る",
+    "account_settings": "アカウント設定",
+    "account_settings_desc": "アカウント設定とセキュリティオプションを設定します",
+    "setup_account": "アカウント設定"
+  },
+  "recent_activity": {
+    "title": "最近のアクティビティ",
+    "description": "アカウントアクティビティの記録",
+    "account_created": "アカウントが正常に作成されました",
+    "account_created_desc": "Rolittへようこそ！アカウントが正常に作成されました",
+    "recent": "最近",
+    "no_other_activity": "他のアクティビティ記録はありません",
+    "start_exploring": "探索を開始してより多くのアクティビティを見ましょう！"
+  },
+  "account_info": {
+    "title": "アカウント情報",
+    "description": "基本的なアカウント詳細",
+    "email_address": "メールアドレス",
+    "display_name": "表示名",
+    "not_set": "未設定",
+    "registration_time": "登録日時",
+    "last_login": "最終ログイン",
+    "unknown": "不明",
+    "first_login": "初回ログイン"
+  },
+  "quick_links": {
+    "title": "クイックリンク",
+    "description": "よく使う機能への素早いアクセス",
+    "my_orders": "マイ注文",
+    "favorites": "お気に入り",
+    "billing_management": "請求管理",
+    "customer_support": "カスタマーサポート"
+  },
+  "billing": {
+    "title": "請求と支払い",
+    "description": "支払い方法と請求履歴を管理します",
+    "current_plan": {
+      "title": "現在のプラン",
+      "description": "アクティブなサブスクリプションの詳細",
+      "pro_plan": "プロプラン",
+      "monthly_price": "$29.99/月",
+      "next_billing": "次回請求日: {date}",
+      "change_plan": "プラン変更",
+      "cancel_subscription": "サブスクリプションキャンセル"
+    },
+    "payment_methods": {
+      "title": "支払い方法",
+      "description": "保存された支払い方法を管理します",
+      "add_payment_method": "支払い方法を追加",
+      "add_payment_method_desc": "アカウントに新しい支払い方法を追加",
+      "card_number": "カード番号",
+      "cardholder_name": "カード名義人",
+      "expiry_month": "有効期限月",
+      "expiry_year": "有効期限年",
+      "cvv": "CVV",
+      "default": "デフォルト",
+      "expires": "有効期限 {month}/{year}",
+      "ending_in": "末尾 {last4}",
+      "set_default": "デフォルトに設定",
+      "remove": "削除",
+      "cancel": "キャンセル"
+    },
+    "billing_history": {
+      "title": "請求履歴",
+      "description": "過去の請求書と支払いを表示します",
+      "invoice_id": "請求書ID",
+      "date": "日付",
+      "amount": "金額",
+      "status": "状態",
+      "download": "ダウンロード",
+      "paid": "支払済み",
+      "pending": "保留中",
+      "overdue": "期限切れ"
+    },
+    "usage": {
+      "title": "今月の使用量",
+      "description": "今月の使用量統計",
+      "api_calls": "API呼び出し",
+      "storage": "ストレージ",
+      "bandwidth": "帯域幅",
+      "unlimited": "無制限"
+    }
+  },
+  "orders": {
+    "title": "注文",
+    "description": "注文履歴を表示・管理します",
+    "export_orders": "注文をエクスポート",
+    "search_placeholder": "注文IDまたは追跡番号で検索...",
+    "filter_by_status": "ステータスでフィルター",
+    "status": {
+      "all": "すべてのステータス",
+      "pending": "保留中",
+      "processing": "処理中",
+      "shipped": "発送済み",
+      "delivered": "配達済み",
+      "cancelled": "キャンセル済み"
+    },
+    "no_orders": "条件に一致する注文が見つかりません。",
+    "order_date": "注文日: {date}",
+    "items": "アイテム: {count}個",
+    "tracking": "追跡番号: {number}",
+    "view_details": "詳細を見る",
+    "summary": {
+      "title": "注文概要",
+      "description": "注文履歴の概要",
+      "total_orders": "総注文数",
+      "total_spent": "総支出",
+      "avg_order": "平均注文額",
+      "pending_orders": "保留中の注文"
+    }
+  },
+  "favorites": {
+    "title": "お気に入り",
+    "description": "保存されたアイテムとウィッシュリスト",
+    "items_count": "{total}件中{count}件のアイテム",
+    "search_placeholder": "お気に入りを検索...",
+    "category": "カテゴリー",
+    "all_categories": "すべてのカテゴリー",
+    "sort_by": "並び替え",
+    "sort_options": {
+      "newest": "新しい順",
+      "oldest": "古い順",
+      "price_low": "価格：安い順",
+      "price_high": "価格：高い順",
+      "name": "名前 A-Z"
+    },
+    "no_favorites": "お気に入りが見つかりません",
+    "no_favorites_search": "検索条件やフィルターを調整してみてください。",
+    "no_favorites_empty": "お気に入りにアイテムを追加すると、ここに表示されます。",
+    "browse_products": "商品を見る",
+    "in_stock": "在庫あり",
+    "out_of_stock": "在庫切れ",
+    "rating": "評価",
+    "add_to_cart": "カートに追加",
+    "remove_from_favorites": "お気に入りから削除",
+    "added_date": "{date}に追加",
+    "summary": {
+      "title": "お気に入り概要",
+      "description": "保存されたアイテムの概要",
+      "total_items": "総アイテム数",
+      "in_stock": "在庫あり",
+      "total_value": "総価値",
+      "on_sale": "セール中"
+    }
+  },
+  "settings": {
+    "title": "アカウント設定",
+    "description": "アカウント設定と設定を管理します",
+    "profile_info": {
+      "title": "プロフィール情報",
+      "description": "個人情報と表示設定を更新します",
+      "display_name": "表示名",
+      "display_name_placeholder": "表示名を入力してください",
+      "email_address": "メールアドレス",
+      "email_readonly": "メールアドレスは変更できません。必要な場合はサポートにお問い合わせください。"
+    },
+    "notifications": {
+      "title": "通知設定",
+      "description": "受信したい通知を選択してください",
+      "email_notifications": "メール通知",
+      "email_notifications_desc": "アカウントアクティビティに関する通知を受信",
+      "marketing_emails": "マーケティングメール",
+      "marketing_emails_desc": "新機能やプロモーションに関するメールを受信",
+      "security_alerts": "セキュリティアラート",
+      "security_alerts_desc": "セキュリティ関連のアクティビティに関するアラートを受信"
+    },
+    "security": {
+      "title": "セキュリティ",
+      "description": "アカウントのセキュリティとプライバシー設定を管理します",
+      "two_factor": "二要素認証",
+      "two_factor_desc": "アカウントにセキュリティの追加レイヤーを追加",
+      "enable_2fa": "2FAを有効にする",
+      "change_password": "パスワード変更",
+      "change_password_desc": "アカウントのパスワードを更新",
+      "update_password": "パスワードを更新",
+      "login_history": "ログイン履歴",
+      "login_history_desc": "最近のログインアクティビティを表示",
+      "view_history": "履歴を見る"
+    },
+    "danger_zone": {
+      "title": "危険なゾーン",
+      "description": "取り返しのつかない破壊的なアクション",
+      "delete_account": "アカウント削除",
+      "delete_account_desc": "アカウントとすべてのデータを完全に削除",
+      "delete_confirm": "本当にアカウントを削除しますか？この操作は元に戻せません。",
+      "delete_not_implemented": "アカウント削除はまだ実装されていません"
+    },
+    "save_success": "設定が正常に保存されました！",
+    "save_error": "設定の保存に失敗しました",
+    "delete_error": "アカウントの削除に失敗しました"
+  },
+  "profile": {
+    "title": "ユーザープロフィール",
+    "description": "個人情報と設定を管理します",
+    "edit_profile": "プロフィール編集",
+    "please_sign_in": "サインインしてください",
+    "need_sign_in": "プロフィールを表示するにはサインインが必要です",
+    "sign_in": "サインイン",
+    "verified": "認証済み",
+    "unverified": "未認証",
+    "member_since": "{date}からのメンバー",
+    "basic_info": {
+      "title": "基本情報",
+      "description": "基本的なプロフィール情報",
+      "display_name": "表示名",
+      "display_name_placeholder": "表示名を入力してください",
+      "email_address": "メールアドレス",
+      "bio": "プロフィール",
+      "bio_placeholder": "自己紹介をお書きください...",
+      "location": "所在地",
+      "location_placeholder": "お住まいの場所",
+      "phone": "電話番号",
+      "phone_placeholder": "電話番号",
+      "website": "ウェブサイト",
+      "website_placeholder": "ウェブサイトのURL"
+    },
+    "professional_info": {
+      "title": "職業情報",
+      "description": "お仕事と職業の詳細",
+      "company": "会社",
+      "company_placeholder": "会社名",
+      "job_title": "職種",
+      "job_title_placeholder": "職種"
+    },
+    "account_stats": {
+      "title": "アカウント統計",
+      "description": "アカウントアクティビティと統計",
+      "total_orders": "総注文数",
+      "total_spent": "総支出",
+      "member_since": "登録日",
+      "last_active": "最終アクティブ"
+    },
+    "save_success": "プロフィールが正常に更新されました！",
+    "save_error": "プロフィールの更新に失敗しました"
+  }
+}

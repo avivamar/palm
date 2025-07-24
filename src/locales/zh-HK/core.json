@@ -1,0 +1,168 @@
+{
+  "RootLayout": {
+    "meta_title": "Rolitt - 新一代人工智能伴侶",
+    "meta_description": "Rolitt 是支援您日常生活的下一代人工智能伴侶。"
+  },
+  "BaseTemplate": {
+    "skip_to_content": "跳至主要內容"
+  },
+  "CTA": {
+    "title": "準備好加入未來了嗎？",
+    "description": "立即預訂您的AI伴侶，成為首批體驗伴侶關係未來的人之一。",
+    "button_text": "立即預訂"
+  },
+  "Footer": {
+    "company": "公司",
+    "about": "關於我們",
+    "careers": "職業機會",
+    "press": "新聞稿",
+    "contact": "聯絡我們",
+    "products": "產品",
+    "features": "功能特色",
+    "pricing": "價格方案",
+    "roadmap": "發展路線圖",
+    "resources": "資源",
+    "blog": "部落格",
+    "docs": "文件",
+    "support": "支援",
+    "legal": "法律條款",
+    "terms": "服務條款",
+    "privacy": "隱私政策",
+    "cookies": "Cookie 政策",
+    "copyright": "© 2024 Rolitt Inc. Based on love, passion and sustained effort版權所有。",
+    "product": "產品",
+    "community": "社群",
+    "solution": "解決方案",
+    "pre-order": "預購",
+    "rights_reserved": "版權所有。",
+    "follow_us": "關注我們",
+    "about_us": "關於我們",
+    "partners": "合作夥伴",
+    "contact_us": "聯絡我們",
+    "solutions": "解決方案",
+    "refund_policy": "退款政策",
+    "shipping_policy": "運送政策",
+    "contact_information": "聯絡資訊",
+    "company_description": "Rolitt 是結合情感識別、自然語言處理和機器學習技術的下一代人工智能伴侶，提供富有同理心的情感支援和智能互動。",
+    "newsletter_title": "訂閱電子報",
+    "newsletter_description": "獲取我們最新產品、功能和公告的更新資訊。",
+    "email_placeholder": "輸入您的電子郵件",
+    "subscribe": "訂閱",
+    "policies": "政策",
+    "privacy_policy": "隱私政策",
+    "terms_of_service": "服務條款",
+    "timeline": "時間軸"
+  },
+
+  "Navbar": {
+    "auth": {
+      "signin": "登入",
+      "signup": "註冊"
+    },
+    "timeline": "時間軸",
+    "product": "產品",
+    "docs": "文件",
+    "blog": "部落格",
+    "community": "社群",
+    "company": "公司",
+    "about": "關於",
+    "pre-order": "預購",
+    "solution": "解決方案",
+    "partner": "合作夥伴",
+    "rolittai": "Rolitt AI",
+    "services": "服務",
+    "contact": "聯絡",
+    "nav": {
+      "home": "首頁",
+      "about": "關於",
+      "timeline": "時間軸",
+      "solution": "解決方案",
+      "partner": "合作夥伴",
+      "contact": "聯絡",
+      "auth": {
+        "signin": "登入",
+        "signup": "註冊"
+      }
+    },
+    "home": "首頁",
+    "portfolio": "作品集",
+    "dashboard": "儀表板",
+    "sign_in": "登入",
+    "sign_up": "註冊",
+    "sign_out": "登出",
+    "profile": "個人資料",
+    "settings": "設定",
+    "toggle_menu": "切換選單"
+  },
+
+  "LocaleSwitcher": {
+    "switchLocale": "切換至 {locale}",
+    "label": "更改語言",
+    "en": "English",
+    "es": "Spanish",
+    "ja": "Japanese",
+    "zh-HK": "繁體中文（香港）"
+  },
+  "ThemeToggle": {
+    "light": "淺色模式",
+    "dark": "深色模式",
+    "system": "系統模式",
+    "toggle": "切換主題"
+  },
+  "Newsletter": {
+    "email_placeholder": "輸入您的電子郵件地址",
+    "subscribe": "訂閱",
+    "subscribing": "訂閱中...",
+    "success_title": "訂閱完成",
+    "success_message": "感謝您的訂閱！我們已向您發送歡迎電子郵件。",
+    "error_title": "訂閱錯誤",
+    "error_message": "抱歉，訂閱過程中發生錯誤。請稍後再試。",
+    "already_subscribed": "此電子郵件地址已訂閱電子報。",
+    "invalid_email_format": "請輸入有效的電子郵件地址"
+  },
+  "CookieBanner": {
+    "description": "我們使用 Cookie 來改善您的瀏覽體驗、提供個人化內容並分析流量。點擊「接受」即表示您同意我們使用 Cookie。",
+    "accept": "接受",
+    "decline": "拒絕"
+  },
+  "MetaPixelTest": {
+    "title": "Meta Pixel 測試頁面",
+    "description": "此頁面用於測試 Meta Pixel 整合。觸發事件並查看下方的記錄。",
+    "pixelLoaded": "Meta Pixel 已載入。ID：{id}",
+    "pixelNotInitialized": "Meta Pixel 腳本已載入但未使用 ID 初始化。",
+    "pixelIdError": "從 fbq 存取 Pixel ID 時發生錯誤。嘗試使用備用方案。",
+    "pixelLoadedEnv": "來自環境變數的 Meta Pixel ID：{id}",
+    "pixelIdNotFound": "在 fbq 狀態或環境變數中找不到 Meta Pixel ID。",
+    "fbqNotFound": "找不到 window.fbq（Meta Pixel）。可能被阻擋或未載入。",
+    "pixelActive": "Meta Pixel 已啟用。ID：{id}",
+    "pixelInactive": "Meta Pixel 未啟用或未載入",
+    "eventSent": "事件已發送：{eventName} 參數：{params}",
+    "customEventSent": "自訂事件已發送：{eventName} 參數：{params}",
+    "purchaseEventSent": "購買事件已發送：價值：{value}，貨幣：{currency}",
+    "addToCartEventSent": "加入購物車事件已發送：產品：{name}，價值：{value}，貨幣：{currency}",
+    "sendViewContent": "發送查看內容",
+    "sendAddToCart": "發送加入購物車",
+    "sendInitiateCheckout": "發送開始結帳",
+    "sendPurchase": "發送購買",
+    "sendContact": "發送聯絡",
+    "sendLead": "發送潛在客戶",
+    "sendCompleteRegistration": "發送完成註冊",
+    "sendCustomEvent": "發送自訂事件",
+    "sendSearchEvent": "發送搜尋事件",
+    "eventLogTitle": "事件記錄",
+    "noEventsYet": "尚無事件。"
+  },
+  "NotFound": {
+    "meta_title": "找不到頁面 | Rolitt",
+    "meta_description": "您要找的頁面不存在或已被移動。",
+    "title": "找不到頁面",
+    "description": "您要找的頁面不存在或已被移動。",
+    "back_home": "返回首頁"
+  },
+  "Error": {
+    "title": "發生錯誤！",
+    "description": "發生意外錯誤。我們為造成的不便深表歉意。",
+    "try_again": "重試",
+    "back_home": "返回首頁"
+  }
+}

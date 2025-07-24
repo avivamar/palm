@@ -1,0 +1,150 @@
+import type { NextConfig } from 'next';
+import { resolve } from 'node:path';
+import createNextIntlPlugin from 'next-intl/plugin';
+
+// 导入环境变量验证 - 确保构建时验证所有必需的环境变量
+import './src/libs/Env';
+
+const withNextIntl = createNextIntlPlugin('./src/libs/i18n.ts');
+
+// 条件性导入 bundle analyzer，避免生产环境错误
+let bundleAnalyzer: (config: NextConfig) => NextConfig;
+try {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const withBundleAnalyzer = require('@next/bundle-analyzer');
+  bundleAnalyzer = withBundleAnalyzer({
+    enabled: process.env.ANALYZE === 'true',
+  });
+} catch {
+  // 如果 @next/bundle-analyzer 不可用，使用身份函数
+  bundleAnalyzer = (config: NextConfig) => config;
+}
+
+/** @type {import('next').NextConfig} */
+const nextConfig: NextConfig = {
+  eslint: {
+    dirs: ['.'],
+  },
+  poweredByHeader: false,
+  reactStrictMode: true,
+  serverExternalPackages: ['@electric-sql/pglite'],
+
+  // Cloudflare Pages 静态导出配置
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
+
+  // 图片优化配置
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000, // 1年缓存
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: 'default-src \'self\'; script-src \'none\'; sandbox;',
+    unoptimized: true, // Cloudflare Pages 需要
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.rolitt.com',
+        port: '',
+        pathname: '/**',
+      },
+      // Notion 图片支持
+      {
+        protocol: 'https',
+        hostname: 's3.us-west-2.amazonaws.com',
+        port: '',
+        pathname: '/secure.notion-static.com/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
+
+  // 添加缓存头配置
+  async headers() {
+    return [
+      // HTML页面缓存配置 - 允许bfcache
+      {
+        source: '/((?!_next|api|static).*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
+  },
+
+  // Required to support PostHog trailing slash API requests
+  skipTrailingSlashRedirect: true,
+
+  // Webpack配置 - 忽略OpenTelemetry警告和配置workspace包解析
+  webpack: (config) => {
+    // 忽略OpenTelemetry的动态导入警告
+    config.ignoreWarnings = [
+      ...(config.ignoreWarnings || []),
+      {
+        module: /node_modules\/@opentelemetry\/instrumentation/,
+        message: /Critical dependency: the request of a dependency is an expression/,
+      },
+      {
+        module: /node_modules\/@prisma\/instrumentation/,
+        message: /Critical dependency: the request of a dependency is an expression/,
+      },
+    ];
+
+    // 配置workspace包的模块解析
+    config.resolve = config.resolve || {};
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      // Shopify 包解析
+      '@rolitt/shopify': resolve(__dirname, 'packages/shopify/dist'),
+      '@rolitt/shopify/next': resolve(__dirname, 'packages/shopify/dist/next'),
+      // Admin 包解析 - 使用源代码而非编译后的代码
+      '@rolitt/admin': resolve(__dirname, 'packages/admin/src'),
+      '@rolitt/admin/components': resolve(__dirname, 'packages/admin/src/components'),
+      '@rolitt/admin/features': resolve(__dirname, 'packages/admin/src/features'),
+      '@rolitt/admin/stores': resolve(__dirname, 'packages/admin/src/stores'),
+      '@rolitt/admin/types': resolve(__dirname, 'packages/admin/src/types'),
+      // Shared 包解析
+      '@rolitt/shared': resolve(__dirname, 'packages/shared/src'),
+      '@rolitt/shared/ui': resolve(__dirname, 'packages/shared/src/ui'),
+      '@rolitt/shared/utils': resolve(__dirname, 'packages/shared/src/utils'),
+      '@rolitt/shared/types': resolve(__dirname, 'packages/shared/src/types'),
+    };
+
+    // 在服务器端排除 PostHog 客户端库
+    if (!config.externals) {
+      config.externals = [];
+    }
+
+    if (Array.isArray(config.externals)) {
+      config.externals.push({
+        'posthog-js': 'globalThis',
+        'posthog-js/react': 'globalThis',
+      });
+    }
+
+    return config;
+  },
+};
+
+export default withNextIntl(bundleAnalyzer(nextConfig));

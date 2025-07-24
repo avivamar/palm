@@ -1,0 +1,9 @@
+{
+  "unauthorized": {
+    "title": "拒绝访问",
+    "description": "您没有权限访问此区域",
+    "message": "此页面仅限管理员访问。如果您认为您应该有访问权限，请联系您的系统管理员。",
+    "backToDashboard": "返回仪表板",
+    "backToHome": "返回首页"
+  }
+}
