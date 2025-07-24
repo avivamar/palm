@@ -1,5 +1,5 @@
 # 多阶段 Docker 构建 - 解决 Railway 缓存问题
-FROM node:20-alpine AS base
+FROM node:24-alpine AS base
 
 # 安装必要的系统依赖
 RUN apk add --no-cache libc6-compat
@@ -25,7 +25,7 @@ COPY . .
 RUN npm run build
 
 # === 生产阶段 ===
-FROM node:20-alpine AS runner
+FROM node:24-alpine AS runner
 
 WORKDIR /app
 
