@@ -21,7 +21,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "openai": "^4.0.0",
+    "openai": "^5.10.2",
     "@anthropic-ai/sdk": "^0.24.0",
     "@google/generative-ai": "^0.2.0",
     "@upstash/redis": "^1.31.0",
