@@ -1,211 +1,225 @@
-# Rolitt 项目变更日志
+# Palm AI 项目开发日志
 
-此目录记录项目的重要变更历史，用于追踪开发进展和技术决策。
+> 基于 Next.js 15 + TypeScript 的现代化 AI 手相分析系统开发记录
 
-## 📁 目录结构
+## 📋 项目概述
+
+Palm AI 是一个完整的 SaaS 级别手相分析平台，集成了先进的图像处理、AI 分析、支付系统和用户管理功能。项目采用 Monorepo 架构，实现了从图像上传到 PDF 报告生成的完整业务流程。
+
+### 🎯 核心功能
+- **AI 手相分析**：基于计算机视觉的线条识别和特征提取
+- **双层分析模式**：60秒快速分析 + 完整深度分析
+- **智能转化系统**：个性化升级提示和 A/B 测试优化
+- **多格式报告**：JSON、HTML、PDF 三种格式导出
+- **支付集成**：Stripe 支付和升级订阅流程
+- **实时进度追踪**：WebSocket 式状态更新
+
+### 🏗️ 技术架构
+- **前端框架**：Next.js 15.3.4 + React 19.0.0
+- **后端技术**：PostgreSQL + Drizzle ORM + Redis 缓存
+- **认证系统**：Supabase Auth (主) + Firebase Auth (备)
+- **支付系统**：Stripe API 2025-06-30.basil
+- **图像处理**：Sharp + 计算机视觉算法
+- **报告生成**：Puppeteer PDF 生成
+- **部署平台**：Railway (主) + Vercel + Cloudflare Workers
+
+### 🚀 商业模式
+- **免费增值**：快速分析免费，完整分析 $9.99
+- **即时转化**：智能个性化升级提示
+- **用户留存**：历史报告查看和重新分析
+- **数据驱动**：完整的商业指标收集和优化
+
+## 📁 项目结构
 
 ```
-log/
-├── README.md                    # 本说明文档
-├── CHANGELOG_TEMPLATE.md        # 变更记录模板
-└── YYYY-MM-DD-HH-MM-description.md    # 具体的变更记录
+palm/
+├── packages/palm/                    # 核心 Palm AI 包
+│   ├── src/
+│   │   ├── engine.ts                # 主分析引擎
+│   │   ├── config/                  # 配置管理
+│   │   ├── processors/              # 图像和特征处理
+│   │   ├── generators/              # 报告生成器
+│   │   ├── optimizers/              # 转化优化器
+│   │   ├── utils/                   # 缓存和工具
+│   │   └── types/                   # TypeScript 类型定义
+│   └── package.json
+├── src/
+│   ├── app/
+│   │   ├── api/palm/               # Palm API 端点
+│   │   │   ├── sessions/           # 会话管理
+│   │   │   ├── analysis/           # 分析处理
+│   │   │   ├── reports/            # 报告生成
+│   │   │   ├── upgrade/            # 支付升级
+│   │   │   └── webhooks/           # Stripe 回调
+│   │   └── [locale]/palm/          # 前端页面
+│   │       ├── analysis/           # 分析页面
+│   │       └── results/[sessionId]/# 结果页面
+│   ├── components/palm/            # Palm UI 组件
+│   │   ├── PalmAnalysisFlow.tsx    # 完整分析流程
+│   │   ├── PalmProgressIndicator.tsx # 实时进度显示
+│   │   ├── PalmResultDisplay.tsx   # 结果展示组件
+│   │   └── PalmUploadForm.tsx      # 图像上传表单
+│   └── libs/
+│       └── pdf-generator.ts        # PDF 报告生成器
+└── log/                           # 项目开发日志
 ```
 
-## 📝 日志记录规范
+## 🔄 开发阶段
 
-### 1. 文件命名规范
-- 格式: `YYYY-MM-DD-HH-MM-brief-description.md`
-- 示例: `2025-07-02-22-05-dashboard-internationalization.md`
+### P0 阶段：核心基础设施 ✅
+**目标**：修复导入错误，建立基础架构
+- 修复 engine.ts 导入问题，创建缺失目录
+- 实现转化优化器 (ConversionOptimizer)
+- 构建多层缓存管理器 (CacheManager)
+- 开发指标收集系统 (MetricsCollector)
+- 创建核心 API 端点
 
-#### 🚀 自动化创建（推荐）
-为避免时间格式错误，建议使用自动化脚本：
+### P1 阶段：前端集成与支付 ✅
+**目标**：完整的用户交互流程
+- 实现完整分析流程组件
+- 集成实时进度追踪
+- 构建结果展示和下载功能
+- 集成 Stripe 支付系统
+- 实现升级支付流程
 
+### P2 阶段：高级功能优化 ✅
+**目标**：生产级别的性能和功能
+- 集成真实 Redis 缓存
+- 实现基于 Sharp 的图像处理
+- 升级特征提取算法
+- 构建 Puppeteer PDF 生成系统
+
+## 📊 关键指标
+
+### 性能指标
+- **分析速度**：快速分析 < 60秒
+- **图像处理**：支持 10MB 图像，自动优化
+- **缓存命中率**：多层缓存设计，目标 80%+
+- **API 响应时间**：< 300ms (不含分析处理)
+
+### 商业指标
+- **转化率优化**：个性化升级提示
+- **用户体验**：实时进度反馈
+- **留存机制**：历史报告查看
+- **收入模式**：免费增值 + 一次性付费
+
+### 技术指标
+- **代码覆盖率**：TypeScript 100% 类型安全
+- **错误处理**：完整的边界和回退机制
+- **监控完整性**：健康检查 + 指标收集
+- **扩展性**：Monorepo + 微服务架构
+
+## 🚀 部署与运维
+
+### 环境配置
+```env
+# 核心数据库
+DATABASE_URL="postgresql://..."
+REDIS_URL="redis://..."
+
+# 认证系统
+NEXT_PUBLIC_SUPABASE_URL="https://..."
+NEXT_PUBLIC_SUPABASE_ANON_KEY="eyJ..."
+
+# 支付系统
+STRIPE_SECRET_KEY="sk_..."
+STRIPE_WEBHOOK_SECRET="whsec_..."
+
+# AI 服务
+OPENAI_API_KEY="sk-..."
+```
+
+### 部署命令
 ```bash
-# 使用完整脚本（推荐）
-./scripts/create-log.sh "brief-description"
+# 安装依赖
+npm install
 
-# 使用简化别名
-./scripts/log.sh "brief-description"
+# 数据库迁移
+npm run db:migrate
 
-# 示例
-./scripts/log.sh "api-timeout-handling-optimization"
+# 构建项目
+npm run build
+
+# 启动生产服务
+npm run start
 ```
 
-脚本会自动：
-- ✅ 生成正确的时间戳格式
-- ✅ 创建标准的日志模板
-- ✅ 检查文件是否已存在
-- ✅ 提供清晰的操作反馈
-
-#### 📅 手动创建时间格式
-如需手动创建，请使用以下命令获取准确时间：
+### 健康检查
 ```bash
-date +"%Y-%m-%d-%H-%M"
-# 或者
-date --date='TZ="Asia/Shanghai" now' +"%Y-%m-%dT%H:%M:%S%:z"
+# API 健康检查
+curl -f $APP_URL/api/health
+
+# Palm 系统检查
+curl -f $APP_URL/api/palm/health
+
+# Webhook 状态检查
+curl -f $APP_URL/api/palm/webhooks/health
 ```
-### 2. 记录时机
-以下情况需要创建变更日志:
-- ✅ 重要功能开发完成
-- ✅ 重大 Bug 修复
-- ✅ 架构重构或优化
-- ✅ 国际化、性能优化等专项工作
-- ✅ 数据库 Schema 变更
-- ✅ 依赖包重大升级
-- ✅ 部署配置变更
 
-### 3. 记录内容要求
-- **完整性**: 记录所有相关文件的变更
-- **准确性**: 确保技术细节的准确性
-- **可读性**: 使用清晰的结构和说明
-- **可追溯**: 包含验证结果和相关链接
+## 🔧 开发工具
 
-## 🔧 创建日志文件
-
-### 方法一：自动化脚本（推荐）
-
+### 核心脚本
 ```bash
-# 快速创建日志文件
-./scripts/log.sh "your-description-here"
-
-# 完整版本（包含更多反馈信息）
-./scripts/create-log.sh "your-description-here"
+npm run dev              # 开发服务器
+npm run build           # 生产构建
+npm run test            # 运行测试
+npm run lint            # 代码检查
+npm run db:generate     # 生成数据库迁移
+npm run db:migrate      # 执行数据库迁移
 ```
 
-**脚本优势：**
-- 🕒 自动生成准确的时间戳
-- 📝 使用标准模板创建文件
-- ✅ 自动检查文件重复
-- 🎯 减少人为错误
+### Palm 专用脚本
+```bash
+npm run palm:dev        # Palm 包开发模式
+npm run palm:test       # Palm 功能测试
+npm run palm:validate   # Palm 系统验证
+```
 
-### 方法二：手动创建
+## 📈 未来规划
 
-1. 复制 `CHANGELOG_TEMPLATE.md`
-2. 重命名为对应日期和描述
-3. 填写所有相关章节
-4. 进行技术审核
+### 短期目标 (1-3个月)
+- [ ] 集成更多 AI 模型提升分析准确性
+- [ ] 实现多语言报告生成 (中文、英文、日文、西班牙文)
+- [ ] 添加移动端专用优化
+- [ ] 实现用户评价和反馈系统
 
-**注意：** 手动创建时请确保时间格式正确，建议使用自动化脚本避免错误。
+### 中期目标 (3-6个月)
+- [ ] 开发订阅制付费模式
+- [ ] 集成机器学习模型训练
+- [ ] 实现实时协作分析
+- [ ] 构建商业智能仪表板
 
-## 📊 变更类型分类
+### 长期目标 (6-12个月)
+- [ ] 开放 API 平台
+- [ ] 多平台客户端 (iOS、Android)
+- [ ] 企业级部署解决方案
+- [ ] AI 模型自主训练平台
 
-| 类型 | 说明 | 示例 |
-|------|------|------|
-| 功能开发 | 新功能的开发和实现 | 支付系统、用户认证 |
-| Bug修复 | 问题修复和错误处理 | 类型错误、逻辑问题 |
-| 性能优化 | 性能改进和优化 | 加载速度、包大小 |
-| 重构 | 代码结构优化 | 组件重构、架构调整 |
-| 国际化 | 多语言支持相关 | 翻译文件、i18n 改造 |
-| 文档更新 | 文档和注释更新 | README、API 文档 |
+## 📚 相关文档
 
-## 🎯 日志审核流程
+- [CHANGELOG.md](./CHANGELOG_TEMPLATE.md) - 详细变更日志
+- [项目需求文档](../palm.md) - 完整需求规格
+- [技术规范](../CLAUDE.md) - 开发规范和架构指南
+- [API 文档](../docs/api.md) - 接口说明 (待补充)
+- [部署指南](../docs/deployment.md) - 部署说明 (待补充)
 
-### 1. 自我检查
-- [ ] 所有修改的文件都已记录
-- [ ] 技术实现描述准确完整
-- [ ] 验证结果真实有效
-- [ ] 后续计划清晰明确
+## 🤝 贡献指南
 
-### 2. 技术审核
-- [ ] 代码变更是否合理
-- [ ] 是否符合项目规范
-- [ ] 是否存在技术风险
-- [ ] 文档是否准确完整
+1. **代码风格**：遵循 CLAUDE.md 开发规范
+2. **提交规范**：使用 Conventional Commits
+3. **测试要求**：新功能必须包含测试
+4. **文档更新**：同步更新相关文档
+5. **性能考虑**：确保不影响核心性能指标
 
-### 3. 归档管理
-- [ ] 文件命名规范正确
-- [ ] 内容结构完整清晰
-- [ ] 相关链接有效可用
-- [ ] 版本控制信息准确
+## 📝 许可证
 
-## 🗂️ 最新变更记录
-
-### 2025-07-16
-- **00:07** - [安全性能优化实现](2025-07-16-00-07-57-security-performance-optimization-implementation.md) - 全系统安全性和性能优化，8个关键步骤完整实现
-- **00:07** - [变更记录](2025-07-16-00-07-security-performance-optimization-changelog.md) - 详细的变更记录和统计数据
+本项目采用 MIT 许可证 - 详见 [LICENSE](../LICENSE) 文件
 
 ---
 
-## 📊 统计指标
+**开发团队**: Rolitt AI Team  
+**项目开始**: 2025-01-25  
+**当前版本**: v1.0.0  
+**最后更新**: 2025-01-25
 
-### 开发活跃度
-- 月度变更次数
-- 代码行数变化
-- 功能模块覆盖度
-- 技术债务趋势
-
-### 质量指标
-- Bug 修复频率
-- 性能优化效果
-- 测试覆盖率变化
-- 用户体验改善
-
-## 🔍 查找和检索
-
-### 按时间查找
-```bash
-# 查看某月的所有变更
-ls log/2024-12-*
-
-# 查看最近的变更
-ls -t log/*.md | head -5
-```
-
-### 按类型查找
-```bash
-# 查找国际化相关变更
-grep -l "国际化\|i18n" log/*.md
-
-# 查找性能优化相关变更
-grep -l "性能优化\|performance" log/*.md
-```
-
-### 内容搜索
-```bash
-# 搜索特定技术关键词
-grep -r "Firebase" log/
-grep -r "Stripe" log/
-grep -r "TypeScript" log/
-```
-
-## 📚 最佳实践
-
-### 1. 及时记录
-- 变更完成后立即记录
-- 趁记忆清晰时填写详细信息
-- 包含完整的技术上下文
-
-### 2. 结构化写作
-- 使用模板确保一致性
-- 分层次组织信息
-- 突出重点和关键决策
-
-### 3. 量化描述
-- 提供具体的数字指标
-- 对比变更前后的差异
-- 记录性能和质量改善
-
-### 4. 前瞻性思考
-- 记录潜在风险和注意事项
-- 提供后续优化建议
-- 考虑长期维护需求
-
-## 🔗 相关资源
-
-- [项目开发规范](.cursorrules)
-- [Git 提交规范](../docs/git-conventions.md)
-- [代码审查流程](../docs/code-review.md)
-- [部署指南](../DEPLOYMENT_GUIDE.md)
-
-## 📞 联系方式
-
-如有问题或建议，请:
-- 提交 GitHub Issue
-- 联系项目维护团队
-- 参与技术讨论会议
-
----
-
-**文档版本**: v1.0
-**创建时间**: 2024-12-19
-**维护团队**: Rolitt 开发团队
+> 🎯 商业价值优先，技术服务业务 - 每一个技术决策都有明确的商业回报

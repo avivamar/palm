@@ -43,6 +43,13 @@
       "when": 1753024145771,
       "tag": "0005_common_mandrill",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1753362658263,
+      "tag": "0006_vengeful_power_man",
+      "breakpoints": true
     }
   ]
 }

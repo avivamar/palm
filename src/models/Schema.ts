@@ -351,3 +351,122 @@ export const subscriptionUsageSchema = pgTable('subscription_usage', {
   resetAtIdx: index('idx_usage_reset_at').on(table.resetAt),
   subscriptionIdIdx: index('idx_usage_subscription_id').on(table.subscriptionId),
 }));
+
+// Palm AI Analysis Tables
+export const palmAnalysisStatusEnum = pgEnum('palm_analysis_status', ['pending', 'processing', 'completed', 'failed', 'expired']);
+export const palmReportTypeEnum = pgEnum('palm_report_type', ['quick', 'full', 'premium']);
+export const palmHandTypeEnum = pgEnum('palm_hand_type', ['left', 'right', 'both']);
+
+// Palm analysis sessions
+export const palmAnalysisSessionsSchema = pgTable('palm_analysis_sessions', {
+  id: text('id').primaryKey(), // Nanoid generated
+  userId: text('user_id').references(() => usersSchema.id, { onDelete: 'set null', onUpdate: 'cascade' }),
+  imageId: integer('image_id').references(() => userImagesSchema.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
+  status: palmAnalysisStatusEnum('status').default('pending').notNull(),
+  handType: palmHandTypeEnum('hand_type').notNull(),
+  
+  // User birth information for astrological analysis
+  birthDate: date('birth_date', { mode: 'date' }),
+  birthTime: text('birth_time'), // HH:MM format
+  birthLocation: text('birth_location'),
+  
+  // Analysis results
+  palmFeatures: jsonb('palm_features'), // Extracted palm features (lines, mounts, shapes)
+  quickReportId: text('quick_report_id'),
+  fullReportId: text('full_report_id'),
+  
+  // Processing metadata
+  processingStartedAt: timestamp('processing_started_at', { withTimezone: true, mode: 'date' }),
+  processingCompletedAt: timestamp('processing_completed_at', { withTimezone: true, mode: 'date' }),
+  errorMessage: text('error_message'),
+  retryCount: integer('retry_count').default(0),
+  
+  // Business metrics
+  conversionStep: text('conversion_step').default('uploaded'), // uploaded, quick_viewed, payment_initiated, payment_completed
+  paymentIntentId: text('payment_intent_id'),
+  
+  createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'date' }).defaultNow(),
+}, table => ({
+  userIdIdx: index('idx_palm_sessions_user_id').on(table.userId),
+  statusIdx: index('idx_palm_sessions_status').on(table.status),
+  createdAtIdx: index('idx_palm_sessions_created_at').on(table.createdAt),
+  imageIdIdx: index('idx_palm_sessions_image_id').on(table.imageId),
+  conversionStepIdx: index('idx_palm_sessions_conversion').on(table.conversionStep),
+}));
+
+// Palm reading reports
+export const palmReportsSchema = pgTable('palm_reports', {
+  id: text('id').primaryKey(), // Nanoid generated
+  sessionId: text('session_id').notNull().references(() => palmAnalysisSessionsSchema.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
+  userId: text('user_id').references(() => usersSchema.id, { onDelete: 'set null', onUpdate: 'cascade' }),
+  reportType: palmReportTypeEnum('report_type').notNull(),
+  
+  // Report content
+  title: text('title').notNull(),
+  summary: text('summary').notNull(),
+  personalityAnalysis: jsonb('personality_analysis'),
+  healthAnalysis: jsonb('health_analysis'),
+  careerAnalysis: jsonb('career_analysis'),
+  relationshipAnalysis: jsonb('relationship_analysis'),
+  fortuneAnalysis: jsonb('fortune_analysis'),
+  
+  // Full report exclusive content
+  detailedAnalysis: jsonb('detailed_analysis'), // Palmistry, astrology, numerology, tarot
+  recommendations: jsonb('recommendations'),
+  futureInsights: jsonb('future_insights'),
+  compatibilityAnalysis: jsonb('compatibility_analysis'),
+  dailyGuidance: jsonb('daily_guidance'),
+  monthlyForecast: jsonb('monthly_forecast'),
+  yearlyOutlook: jsonb('yearly_outlook'),
+  
+  // Report metadata
+  confidence: decimal('confidence', { precision: 3, scale: 2 }), // 0.00 to 1.00
+  language: text('language').default('en'),
+  version: text('version').default('1.0'),
+  
+  // Access control
+  isPaid: boolean('is_paid').default(false),
+  accessExpiresAt: timestamp('access_expires_at', { withTimezone: true, mode: 'date' }),
+  viewCount: integer('view_count').default(0),
+  lastViewedAt: timestamp('last_viewed_at', { withTimezone: true, mode: 'date' }),
+  
+  createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'date' }).defaultNow(),
+}, table => ({
+  sessionIdIdx: index('idx_palm_reports_session_id').on(table.sessionId),
+  userIdIdx: index('idx_palm_reports_user_id').on(table.userId),
+  reportTypeIdx: index('idx_palm_reports_type').on(table.reportType),
+  isPaidIdx: index('idx_palm_reports_is_paid').on(table.isPaid),
+  createdAtIdx: index('idx_palm_reports_created_at').on(table.createdAt),
+  accessExpiresIdx: index('idx_palm_reports_access_expires').on(table.accessExpiresAt),
+}));
+
+// Palm analysis feedback and ratings
+export const palmFeedbackSchema = pgTable('palm_feedback', {
+  id: serial('id').primaryKey(),
+  sessionId: text('session_id').notNull().references(() => palmAnalysisSessionsSchema.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
+  userId: text('user_id').references(() => usersSchema.id, { onDelete: 'set null', onUpdate: 'cascade' }),
+  reportId: text('report_id').references(() => palmReportsSchema.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
+  
+  // Feedback data
+  rating: integer('rating').notNull(), // 1-5 stars
+  accuracy: integer('accuracy'), // 1-5 scale
+  usefulness: integer('usefulness'), // 1-5 scale
+  satisfaction: integer('satisfaction'), // 1-5 scale
+  
+  // Text feedback
+  comment: text('comment'),
+  improvements: text('improvements'),
+  
+  // Feedback metadata
+  feedbackType: text('feedback_type').default('general'), // general, accuracy, technical
+  isPublic: boolean('is_public').default(false),
+  
+  createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull(),
+}, table => ({
+  sessionIdIdx: index('idx_palm_feedback_session_id').on(table.sessionId),
+  userIdIdx: index('idx_palm_feedback_user_id').on(table.userId),
+  ratingIdx: index('idx_palm_feedback_rating').on(table.rating),
+  createdAtIdx: index('idx_palm_feedback_created_at').on(table.createdAt),
+}));

@@ -35,6 +35,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       admin: (await import(`../locales/${locale}/admin.json`)).default,
       ...(await import(`../locales/${locale}/unauthorized.json`)).default,
       ...(await import(`../locales/${locale}/validation.json`)).default,
+      palm: (await import(`../locales/${locale}/palm.json`)).default,
     },
   };
 });

@@ -54,8 +54,8 @@ Palm AI 是一个基于手掌图像 + 个人出生信息（日期、时辰）分
 ⸻
 
 🧱 项目目标
-	•	利用掌纹分析和 AI 模型提供创新的“命理 + 健康 + 个性”评估服务
-	•	使用 OpenAI / Claude / Gemini 等大模型提升内容生成质量与信任感
+	•	利用掌纹分析和 AI 模型提供创新的“命理 + 健康 + 个性”评估服务@packages/palm
+	•	使用 OpenAI / Claude / Gemini 等大模型提升内容生成质量与信任感 @packages/ai-core
 	•	以 简版报告免费 + 完整报告付费 模式，快速转化付费用户
 	•	强化订阅与分享裂变机制，实现用户留存与增长闭环
 
@@ -65,17 +65,17 @@ Palm AI 是一个基于手掌图像 + 个人出生信息（日期、时辰）分
 
 [1] 用户访问落地页
      ↓
-[2] 上传手掌照片 + 填写生日信息
+[2] 上传手掌照片(@packages/image-upload) + 填写生日信息
      ↓
-[3] 触发 AI 生成简版报告（60s 内完成）
+[3] 触发 AI(@packages/ai-core) 生成简版报告（60s 内完成）
      ↓
 [4] 吸引用户点击 “查看更多” → 售卖完整版报告
      ↓
-[5] 支付 $9.9 / $19.9 解锁完整版 PDF 或 Web 报告
+[5] 支付(stripe)  $19.9 解锁完整版 Web 报告
      ↓
 [6] 引导订阅（月/年付）查看每日掌纹变化 + 生活指引
      ↓
-[7] 用户推荐好友获赠报告积分（Referral）
+[7] 用户推荐好友获赠报告积分（@packages/referral）
 
 
 ⸻
@@ -83,13 +83,13 @@ Palm AI 是一个基于手掌图像 + 个人出生信息（日期、时辰）分
 📦 产品核心模块
 
 模块	功能描述
-🖐️ 手掌图像上传模块	上传并预处理手掌图像（前端或后端 base64）
+🖐️ 手掌图像上传模块@packages/image-upload	上传并预处理手掌图像（前端或后端 base64）
 📅 出生信息输入	年月日+时辰/时区输入，增强模型分析可信度
-🤖 AI 报告生成器	使用大模型生成个性化报告（OpenAI/Claude/Gemini）
-💳 报告售卖系统	Stripe Checkout 集成，单次解锁或订阅
-📤 报告下载模块	支持 PDF 报告导出、邮件发送或 Web 查看
-🧭 用户仪表盘	查看历史分析、订阅状态、个性建议
-📢 Referral 系统	用户推荐朋友可解锁更多报告积分
+🤖 AI 报告生成器@packages/ai-core	使用大模型生成个性化报告（OpenAI/Claude/Gemini）
+💳 报告售卖系统@packages/payments	Stripe Checkout 集成，单次解锁或订阅
+📤 报告下载模块	支持邮件发送@packages/email或 Web 查看
+🧭 用户仪表盘	增加查看历史分析、订阅状态、个性建议
+📢 Referral 系统@packages/referral	用户推荐朋友可解锁更多报告积分
 📧 邮件营销	Klaviyo 营销触达 + 自动续费提醒
 
 
@@ -157,7 +157,7 @@ PDF 报告	react-pdf or Puppeteer + Tailwind 风格	导出完整视觉风格报�
 🇺🇸 English	美国/英国/加拿大主力市场
 🇯🇵 日本語	日本市场：掌纹分析 + 东方命理融合
 🇨🇳 中文（简/繁）	港澳台、新加坡、东南亚华人市场
-🇰🇷 韩语（规划中）	可探索韩语掌纹学市场
+🇰🇷 es 西班牙语（规划中）	可探索西班牙语掌纹学市场
 
 
 ⸻
@@ -173,7 +173,7 @@ PDF 报告	react-pdf or Puppeteer + Tailwind 风格	导出完整视觉风格报�
 📌 项目节奏建议
 
 时间	里程碑
-Week 1	Prompt 设计 + AI 接入模块完成
+Week 1	Prompt 设计 + AI 接入模块完成 packages/ai-core 已经完成大部分功能
 Week 2	上传分析 + 简版报告输出上线
 Week 3	支付系统 + 完整报告售卖页上线
 Week 4	SEO 落地页 + TikTok 广告上线

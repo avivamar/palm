@@ -1,0 +1,57 @@
+{
+  "name": "@rolitt/palm",
+  "version": "1.0.0",
+  "description": "Palm AI core analysis package for hand palm reading and personalized report generation",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "palm-reading",
+    "ai-analysis",
+    "hand-analysis",
+    "personalized-reports",
+    "feature-extraction",
+    "image-processing"
+  ],
+  "author": "Rolitt Team",
+  "license": "MIT",
+  "dependencies": {
+    "@rolitt/ai-core": "file:../ai-core",
+    "@rolitt/shared": "file:../shared",
+    "zod": "^3.22.4",
+    "sharp": "^0.33.2",
+    "canvas": "^2.11.2",
+    "opencv4nodejs": "^5.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "typescript": "^5.3.3",
+    "tsup": "^8.0.1",
+    "vitest": "^1.2.0",
+    "@vitest/coverage-v8": "^1.2.0",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

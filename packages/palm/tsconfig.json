@@ -1,25 +1,30 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "composite": true,
-    "baseUrl": "./src",
+    "outDir": "./dist",
     "rootDir": "./src",
-    "paths": {
-      "@/*": ["*"]
-    },
     "declaration": true,
     "declarationMap": true,
-    "outDir": "./dist",
     "sourceMap": true,
-    "noEmit": false
+    "composite": true,
+    "incremental": true,
+    "tsBuildInfoFile": "./dist/.tsbuildinfo"
   },
   "include": [
     "src/**/*"
   ],
   "exclude": [
-    "node_modules",
     "dist",
+    "node_modules",
     "**/*.test.ts",
     "**/*.test.tsx"
+  ],
+  "references": [
+    {
+      "path": "../ai-core"
+    },
+    {
+      "path": "../shared"
+    }
   ]
 }
