@@ -3,96 +3,60 @@
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "rootDirectory": ".",
   "functions": {
-    "src/app/api/auth/callback/route.ts": {
-      "maxDuration": 15
-    },
-    "src/app/api/auth/sync-user/route.ts": {
-      "maxDuration": 20
-    },
-    "src/app/api/webhooks/stripe/route.ts": {
-      "maxDuration": 25
-    },
-    "src/app/actions/checkoutActions.ts": {
-      "maxDuration": 10
-    },
-    "src/app/api/queue/process/route.ts": {
+    "app/api/auth/[...nextauth]/route.ts": {
       "maxDuration": 30
     },
-    "src/app/api/admin/migrate/route.ts": {
-      "maxDuration": 60
+    "app/api/stripe/webhook/route.ts": {
+      "maxDuration": 30
+    },
+    "app/api/klaviyo/webhook/route.ts": {
+      "maxDuration": 30
+    },
+    "app/api/cron/daily-report/route.ts": {
+      "maxDuration": 300
     }
   },
   "crons": [
     {
-      "path": "/api/queue/process",
-      "schedule": "0 0 * * *"
+      "path": "/api/cron/daily-report",
+      "schedule": "0 9 * * *"
     }
   ],
   "headers": [
     {
-      "source": "/sitemap.xml",
+      "source": "/(.*)",
       "headers": [
         {
-          "key": "Content-Type",
-          "value": "application/xml"
-        }
-      ]
-    },
-    {
-      "source": "/sitemap-0.xml",
-      "headers": [
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
         {
-          "key": "Content-Type",
-          "value": "application/xml"
-        }
-      ]
-    },
-    {
-      "source": "/_next/static/:all*",
-      "headers": [
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
         {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/:path*.(png|jpg|jpeg|gif|webp|svg|ico|woff|woff2)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
         }
       ]
     }
   ],
   "redirects": [
     {
-      "source": "/about-us",
-      "destination": "/about",
-      "permanent": true
+      "source": "/dashboard",
+      "destination": "/en/dashboard",
+      "permanent": false
     },
     {
-      "source": "/pittsburgh-for-sale-dirt-bikes",
-      "destination": "/",
-      "permanent": true
+      "source": "/login",
+      "destination": "/en/login",
+      "permanent": false
     },
     {
-      "source": "/ko/:page",
-      "destination": "/:page",
-      "permanent": true
-    },
-    {
-      "source": "/ar/:page",
-      "destination": "/:page",
-      "permanent": true
-    },
-    {
-      "source": "/vi/:page",
-      "destination": "/:page",
-      "permanent": true
+      "source": "/register",
+      "destination": "/en/register",
+      "permanent": false
     }
   ]
 }
