@@ -1,5 +1,4 @@
 import { AILogger } from '@rolitt/ai-core';
-import { PalmConfig } from '../config';
 import { 
   ImageData, 
   PalmFeatures, 
@@ -23,7 +22,7 @@ import sharp from 'sharp';
 export class FeatureExtractor {
   private logger: AILogger;
 
-  constructor(private config: PalmConfig, logger?: AILogger) {
+  constructor(logger?: AILogger) {
     this.logger = logger || AILogger.getInstance();
   }
 
@@ -87,25 +86,25 @@ export class FeatureExtractor {
       
       const lines: PalmLines = {
         lifeLine: {
-          points: this.detectLifeLine(imageData),
+          points: await this.detectLifeLine(imageData),
           length: 0,
           depth: 0,
           clarity: 0
         },
         headLine: {
-          points: this.detectHeadLine(imageData),
+          points: await this.detectHeadLine(imageData),
           length: 0,
           depth: 0,
           clarity: 0
         },
         heartLine: {
-          points: this.detectHeartLine(imageData),
+          points: await this.detectHeartLine(imageData),
           length: 0,
           depth: 0,
           clarity: 0
         },
         fateLine: {
-          points: this.detectFateLine(imageData),
+          points: await this.detectFateLine(imageData),
           length: 0,
           depth: 0,
           clarity: 0
@@ -113,7 +112,7 @@ export class FeatureExtractor {
       };
 
       // 计算线条属性
-        for (const [lineName, line] of Object.entries(lines)) {
+        for (const [, line] of Object.entries(lines)) {
           if (line && line.points) {
             line.length = this.calculateLineLength(line.points);
             line.depth = this.calculateLineDepth(line.points, imageData);
@@ -326,19 +325,23 @@ export class FeatureExtractor {
   private calculateLineLength(points: Array<{ x: number; y: number }>): number {
     let length = 0;
     for (let i = 1; i < points.length; i++) {
-      const dx = points[i].x - points[i-1].x;
-      const dy = points[i].y - points[i-1].y;
+      const currentPoint = points[i];
+      const prevPoint = points[i-1];
+      if (!currentPoint || !prevPoint) continue;
+      
+      const dx = currentPoint.x - prevPoint.x;
+      const dy = currentPoint.y - prevPoint.y;
       length += Math.sqrt(dx * dx + dy * dy);
     }
     return length;
   }
 
-  private calculateLineDepth(points: Array<{ x: number; y: number }>, imageData: ImageData): number {
+  private calculateLineDepth(_points: Array<{ x: number; y: number }>, _imageData: ImageData): number {
     // 简化实现 - 返回模拟深度值
     return Math.random() * 0.8 + 0.2;
   }
 
-  private calculateLineClarity(points: Array<{ x: number; y: number }>, imageData: ImageData): number {
+  private calculateLineClarity(_points: Array<{ x: number; y: number }>, _imageData: ImageData): number {
     // 简化实现 - 返回模拟清晰度值
     return Math.random() * 0.9 + 0.1;
   }
@@ -362,19 +365,19 @@ export class FeatureExtractor {
     return 'psychic';
   }
 
-  private calculateFlexibility(imageData: ImageData): number {
+  private calculateFlexibility(_imageData: ImageData): number {
     // 简化实现 - 返回模拟柔韧性值
     return Math.random() * 0.8 + 0.2;
   }
 
-  private calculateFingerLength(imageData: ImageData, finger: string): number {
+  private calculateFingerLength(imageData: ImageData, _finger: string): number {
     // 简化实现 - 基于图像尺寸估算手指长度
     const baseLength = imageData.height * 0.3;
     const variation = Math.random() * 0.4 + 0.8; // 0.8-1.2 的变化
     return baseLength * variation;
   }
 
-  private determineFingerTip(imageData: ImageData, finger: string): 'square' | 'conic' | 'spatulate' {
+  private determineFingerTip(_imageData: ImageData, _finger: string): 'square' | 'conic' | 'spatulate' {
     const types: ('square' | 'conic' | 'spatulate')[] = ['square', 'conic', 'spatulate'];
     const randomIndex = Math.floor(Math.random() * types.length);
     return types[randomIndex] || 'square'; // 确保不返回undefined
@@ -503,7 +506,7 @@ export class FeatureExtractor {
           const pixelIndex = y * width + x;
           const intensity = data[pixelIndex];
           
-          if (intensity > maxIntensity && intensity > 128) { // 阈值128
+          if (intensity && intensity > maxIntensity && intensity > 128) { // 阈值128
             maxIntensity = intensity;
             bestY = y;
           }
@@ -613,10 +616,12 @@ export class FeatureExtractor {
       const localT = srcIndex - lowIndex;
 
       if (lowIndex === highIndex) {
-        interpolated.push(points[lowIndex]);
+        const point = points[lowIndex];
+        if (point) interpolated.push(point);
       } else {
         const lowPoint = points[lowIndex];
         const highPoint = points[highIndex];
+        if (!lowPoint || !highPoint) continue;
         
         interpolated.push({
           x: lowPoint.x + (highPoint.x - lowPoint.x) * localT,
@@ -637,13 +642,16 @@ export class FeatureExtractor {
     const smoothed: Array<{ x: number; y: number }> = [];
     
     // 保留第一个点
-    smoothed.push(points[0]);
+    const firstPoint = points[0];
+    if (firstPoint) smoothed.push(firstPoint);
 
     // 对中间点进行平滑
     for (let i = 1; i < points.length - 1; i++) {
       const prev = points[i - 1];
       const curr = points[i];
       const next = points[i + 1];
+      
+      if (!prev || !curr || !next) continue;
 
       smoothed.push({
         x: (prev.x + curr.x + next.x) / 3,
@@ -652,7 +660,8 @@ export class FeatureExtractor {
     }
 
     // 保留最后一个点
-    smoothed.push(points[points.length - 1]);
+    const lastPoint = points[points.length - 1];
+    if (lastPoint) smoothed.push(lastPoint);
 
     return smoothed;
   }
@@ -675,7 +684,7 @@ export class FeatureExtractor {
       const features = await this.extract(testImageData);
       
       // 检查特征是否有效
-      return features.confidence > 0 && features.lines && features.shape && features.fingers;
+      return features.confidence > 0 && !!features.lines && !!features.shape && !!features.fingers;
     } catch (error) {
       this.logger.error('Feature extractor health check failed', { error });
       return false;

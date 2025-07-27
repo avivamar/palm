@@ -147,17 +147,14 @@ export async function GET(request: NextRequest) {
       .select({
         id: palmAnalysisSessionsSchema.id,
         status: palmAnalysisSessionsSchema.status,
-        handType: palmAnalysisSessionsSchema.handType,
+        analysisType: palmAnalysisSessionsSchema.analysisType,
         conversionStep: palmAnalysisSessionsSchema.conversionStep,
         createdAt: palmAnalysisSessionsSchema.createdAt,
         updatedAt: palmAnalysisSessionsSchema.updatedAt,
-        imageUrl: userImagesSchema.url,
+        leftHandImageUrl: palmAnalysisSessionsSchema.leftHandImageUrl,
+        rightHandImageUrl: palmAnalysisSessionsSchema.rightHandImageUrl,
       })
       .from(palmAnalysisSessionsSchema)
-      .leftJoin(
-        userImagesSchema,
-        eq(palmAnalysisSessionsSchema.imageId, userImagesSchema.id)
-      )
       .where(eq(palmAnalysisSessionsSchema.userId, user.uid))
       .orderBy(palmAnalysisSessionsSchema.createdAt);
 

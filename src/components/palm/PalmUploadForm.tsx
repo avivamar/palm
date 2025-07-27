@@ -7,8 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
 import { Upload, Camera, X, Loader2, Hand, Video } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
@@ -93,7 +91,7 @@ export function PalmUploadForm({ onSubmit, isLoading = false }: PalmUploadFormPr
         "image/jpeg": [".jpeg", ".jpg"],
         "image/png": [".png"],
         "image/webp": [".webp"],
-      },
+      } as any,
       multiple: false,
       disabled: isLoading,
     });
@@ -135,9 +133,12 @@ export function PalmUploadForm({ onSubmit, isLoading = false }: PalmUploadFormPr
 
     try {
       const submitData: PalmAnalysisFormData = {
-        ...formData,
+        analysisType: formData.analysisType || "quick",
         leftHandImage: leftHand.file || undefined,
         rightHandImage: rightHand.file || undefined,
+        birthDate: formData.birthDate,
+        birthTime: formData.birthTime,
+        birthLocation: formData.birthLocation,
       };
       
       await onSubmit(submitData as PalmAnalysisFormData);

@@ -1,6 +1,6 @@
-import { Logger } from '@rolitt/shared';
+import { AILogger, type Logger } from '@rolitt/ai-core';
 import { PalmConfig } from '../config';
-import { CacheKey, CacheEntry } from '../types';
+import { CacheEntry } from '../types';
 import crypto from 'crypto';
 import Redis from 'ioredis';
 
@@ -26,7 +26,7 @@ export class CacheManager {
   };
 
   constructor(private config: PalmConfig, logger?: Logger) {
-    this.logger = logger || new Logger('CacheManager');
+    this.logger = logger || new AILogger();
     this.memoryCache = new Map();
     this.cacheStats = {
       hits: 0,
@@ -62,7 +62,6 @@ export class CacheManager {
 
       this.redis = new Redis(redisUrl, {
         maxRetriesPerRequest: 3,
-        retryDelayOnFailover: 100,
         connectTimeout: 10000,
         commandTimeout: 5000,
         lazyConnect: true,
@@ -74,7 +73,7 @@ export class CacheManager {
       });
 
       this.redis.on('error', (error) => {
-        this.logger.error('Redis连接错误:', error);
+        this.logger.error('Redis连接错误:', { error: error.message });
         // 不设置为null，允许自动重连
       });
 
@@ -87,7 +86,7 @@ export class CacheManager {
       });
 
     } catch (error) {
-      this.logger.error('Redis初始化失败:', error);
+      this.logger.error('Redis初始化失败:', { error: error instanceof Error ? error.message : String(error) });
       this.redis = null;
     }
   }
@@ -253,7 +252,7 @@ export class CacheManager {
       await this.setToMemory(testKey, testValue, 10);
       const retrieved = await this.getFromMemory(testKey);
       
-      if (!retrieved || retrieved.test !== true) {
+      if (!retrieved || (retrieved as any).test !== true) {
         return false;
       }
 
@@ -515,8 +514,11 @@ export class CacheManager {
       // 清理 25% 的缓存
       const toRemove = Math.ceil(entries.length * 0.25);
       for (let i = 0; i < toRemove; i++) {
-        this.memoryCache.delete(entries[i].key);
-        this.cacheStats.evictions++;
+        const entry = entries[i];
+        if (entry) {
+          this.memoryCache.delete(entry.key);
+          this.cacheStats.evictions++;
+        }
       }
 
       this.logger.info('Cache eviction completed', { 

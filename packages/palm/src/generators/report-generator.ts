@@ -1,5 +1,5 @@
-import { AIManager } from '@rolitt/ai-core';
-import { Logger } from '@rolitt/shared';
+import { AIManager, AILogger } from '@rolitt/ai-core';
+import { type Logger } from '@rolitt/ai-core';
 import { PalmConfig } from '../config';
 import { 
   PalmFeatures, 
@@ -26,7 +26,7 @@ export class ReportGenerator {
 
   constructor(private config: PalmConfig, aiManager?: AIManager, logger?: Logger) {
     this.aiManager = aiManager || new AIManager(config.aiServices);
-    this.logger = logger || new Logger('ReportGenerator');
+    this.logger = logger || AILogger.getInstance();
   }
 
   /**
@@ -39,6 +39,7 @@ export class ReportGenerator {
   ): Promise<QuickReport> {
     try {
       const startTime = Date.now();
+      this.logger.info('Starting quick report generation', { analysisId });
 
       // 并行生成各个维度的分析
       const [personality, health, career, relationship, fortune] = await Promise.all([
@@ -71,8 +72,18 @@ export class ReportGenerator {
         }
       };
 
+      this.logger.info('Quick report generation completed', { 
+        analysisId, 
+        processingTime 
+      });
+
       return report;
     } catch (error) {
+      this.logger.error('Quick report generation failed', { 
+        analysisId, 
+        error: error instanceof Error ? error.message : String(error)
+      });
+      
       throw new ReportGenerationError(
         `简版报告生成失败: ${error instanceof Error ? error.message : String(error)}`
       );
@@ -88,6 +99,9 @@ export class ReportGenerator {
     analysisId: string
   ): Promise<FullReport> {
     try {
+      const startTime = Date.now();
+      this.logger.info('Starting full report generation', { analysisId });
+
       // 基于简版报告扩展，使用虚拟特征数据
       const virtualFeatures = this.extractFeaturesFromReport(quickReport);
       
@@ -101,6 +115,8 @@ export class ReportGenerator {
         this.generateYearlyOutlook(virtualFeatures, userInfo)
       ]);
 
+      const processingTime = Date.now() - startTime;
+
       const fullReport: FullReport = {
         ...quickReport,
         detailedAnalysis,
@@ -112,8 +128,18 @@ export class ReportGenerator {
         yearlyOutlook
       };
 
+      this.logger.info('Full report generation completed', { 
+        analysisId, 
+        processingTime 
+      });
+
       return fullReport;
     } catch (error) {
+      this.logger.error('Full report generation failed', { 
+        analysisId, 
+        error: error instanceof Error ? error.message : String(error)
+      });
+      
       throw new ReportGenerationError(
         `完整版报告生成失败: ${error instanceof Error ? error.message : String(error)}`
       );
@@ -130,8 +156,8 @@ export class ReportGenerator {
     const prompt = this.buildPersonalityPrompt(features, userInfo);
     
     const response = await this.aiManager.generateText(prompt, undefined, {
-      maxTokens: 500,
-      temperature: 0.7,
+      maxTokens: this.config.aiServices.maxTokens || 500,
+      temperature: this.config.aiServices.temperature || 0.7,
       userId: `user_${Date.now()}`
     });
 
@@ -148,8 +174,8 @@ export class ReportGenerator {
     const prompt = this.buildHealthPrompt(features, userInfo);
     
     const response = await this.aiManager.generateText(prompt, undefined, {
-      maxTokens: 400,
-      temperature: 0.6,
+      maxTokens: this.config.aiServices.maxTokens || 400,
+      temperature: this.config.aiServices.temperature || 0.6,
       userId: `user_${Date.now()}`
     });
 
@@ -166,8 +192,8 @@ export class ReportGenerator {
     const prompt = this.buildCareerPrompt(features, userInfo);
     
     const response = await this.aiManager.generateText(prompt, undefined, {
-      maxTokens: 450,
-      temperature: 0.7,
+      maxTokens: this.config.aiServices.maxTokens || 450,
+      temperature: this.config.aiServices.temperature || 0.7,
       userId: `user_${Date.now()}`
     });
 
@@ -391,19 +417,103 @@ export class ReportGenerator {
     const guidance = [];
     const today = new Date();
     
+    // 基于手掌特征生成个性化指导
+    const baseGuidance = this.getPersonalizedGuidance(features);
+    const luckyElements = this.getLuckyElements(features, userInfo);
+    
     for (let i = 0; i < 7; i++) {
       const date = new Date(today);
       date.setDate(today.getDate() + i);
       
       guidance.push({
         date,
-        guidance: `第${i + 1}天：专注于内心平静，保持积极态度`,
-        luckyNumbers: [Math.floor(Math.random() * 9) + 1, Math.floor(Math.random() * 9) + 1],
-        luckyColors: ['蓝色', '绿色']
+        guidance: `第${i + 1}天：${baseGuidance[i % baseGuidance.length]}`,
+        luckyNumbers: luckyElements.numbers.slice(i * 2, (i * 2) + 2),
+        luckyColors: luckyElements.colors.slice(i % luckyElements.colors.length, (i % luckyElements.colors.length) + 2)
       });
     }
     
     return guidance;
+  }
+
+  private getPersonalizedGuidance(features: PalmFeatures): string[] {
+    const guidance = [];
+    
+    // 基于生命线特征
+    if (features.lines.lifeLine.clarity > 0.7) {
+      guidance.push('专注于长远目标，您的坚持会带来回报');
+    } else {
+      guidance.push('保持内心平静，倾听直觉的声音');
+    }
+    
+    // 基于智慧线特征
+    if (features.lines.headLine.length > 0.8) {
+      guidance.push('运用您的分析能力，做出明智决策');
+    } else {
+      guidance.push('相信直觉，有时简单的选择更有效');
+    }
+    
+    // 基于感情线特征
+    if (features.lines.heartLine.clarity > 0.6) {
+      guidance.push('表达您的情感，加深人际关系');
+    } else {
+      guidance.push('给自己一些独处时间，反思内心需求');
+    }
+    
+    // 基于手掌形状
+    if (features.shape.type === 'square') {
+      guidance.push('发挥您的实用主义，专注于具体行动');
+    } else {
+      guidance.push('拥抱创造力，尝试新的可能性');
+    }
+    
+    return guidance;
+  }
+
+  private getLuckyElements(features: PalmFeatures, userInfo: UserInfo): { numbers: number[]; colors: string[] } {
+    const numbers = [];
+    const colors = [];
+    
+    // 基于生命线生成幸运数字
+    const lifeLineScore = Math.floor(features.lines.lifeLine.clarity * 10);
+    numbers.push(lifeLineScore || 1);
+    
+    // 基于智慧线生成幸运数字
+    const headLineScore = Math.floor(features.lines.headLine.length * 10);
+    numbers.push(headLineScore || 2);
+    
+    // 基于感情线生成幸运数字
+    const heartLineScore = Math.floor(features.lines.heartLine.clarity * 10);
+    numbers.push(heartLineScore || 3);
+    
+    // 基于出生月份生成数字
+    numbers.push(userInfo.birthDate.getMonth() + 1);
+    
+    // 补充随机数字到14个
+    while (numbers.length < 14) {
+      numbers.push(Math.floor(Math.random() * 9) + 1);
+    }
+    
+    // 基于手掌特征选择幸运颜色
+    if (features.lines.lifeLine.clarity > 0.7) {
+      colors.push('红色', '橙色');
+    } else {
+      colors.push('蓝色', '紫色');
+    }
+    
+    if (features.shape.flexibility > 0.6) {
+      colors.push('绿色', '黄色');
+    } else {
+      colors.push('白色', '银色');
+    }
+    
+    if (features.lines.heartLine.depth > 0.5) {
+      colors.push('粉色', '玫瑰金');
+    } else {
+      colors.push('灰色', '黑色');
+    }
+    
+    return { numbers, colors };
   }
 
   /**
@@ -411,10 +521,15 @@ export class ReportGenerator {
    */
   private async generateMonthlyForecast(
     features: PalmFeatures,
-    userInfo: UserInfo
+    _userInfo: UserInfo,
   ): Promise<Array<{ month: number; year: number; forecast: string; opportunities: string[]; challenges: string[] }>> {
     const forecast = [];
     const currentDate = new Date();
+    
+    // 基于手掌特征生成个性化预测
+    const personalizedForecasts = this.getPersonalizedMonthlyForecasts(features);
+    const opportunities = this.getMonthlyOpportunities(features);
+    const challenges = this.getMonthlyChallenges(features);
     
     for (let i = 0; i < 12; i++) {
       const month = ((currentDate.getMonth() + i) % 12) + 1;
@@ -423,13 +538,77 @@ export class ReportGenerator {
       forecast.push({
         month,
         year,
-        forecast: `${month}月将是充满机遇的月份`,
-        opportunities: ['事业发展', '人际关系'],
-        challenges: ['时间管理', '压力控制']
+        forecast: personalizedForecasts[i % personalizedForecasts.length] || `${month}月将是充满机遇的月份`,
+        opportunities: opportunities[i % opportunities.length] || ['事业发展', '人际关系'],
+        challenges: challenges[i % challenges.length] || ['时间管理', '压力控制'],
       });
     }
     
     return forecast;
+  }
+
+  private getPersonalizedMonthlyForecasts(features: PalmFeatures): string[] {
+    const forecasts = [];
+    
+    if (features.lines.lifeLine.clarity > 0.7) {
+      forecasts.push('本月将是稳步前进的时期，您的努力会得到认可');
+    } else {
+      forecasts.push('本月适合内省和规划，为未来做好准备');
+    }
+    
+    if (features.lines.headLine.length > 0.8) {
+      forecasts.push('智慧和分析能力将为您带来突破性进展');
+    } else {
+      forecasts.push('直觉和创意思维将指引您找到新方向');
+    }
+    
+    if (features.shape.flexibility > 0.6) {
+      forecasts.push('适应性强的您将在变化中找到机遇');
+    } else {
+      forecasts.push('坚持既定方向将为您带来稳定收获');
+    }
+    
+    return forecasts;
+  }
+
+  private getMonthlyOpportunities(features: PalmFeatures): string[][] {
+    const opportunities = [];
+    
+    if (features.lines.heartLine.clarity > 0.6) {
+      opportunities.push(['人际关系发展', '团队合作机会']);
+    } else {
+      opportunities.push(['个人成长', '技能提升']);
+    }
+    
+    if (features.shape.type === 'square') {
+      opportunities.push(['项目管理', '实务操作']);
+    } else {
+      opportunities.push(['创意表达', '艺术发展']);
+    }
+    
+    opportunities.push(['学习新知', '拓展视野']);
+    
+    return opportunities;
+  }
+
+  private getMonthlyChallenges(features: PalmFeatures): string[][] {
+    const challenges = [];
+    
+    if (features.lines.lifeLine.depth < 0.5) {
+      challenges.push(['体力管理', '健康关注']);
+    } else {
+      challenges.push(['过度劳累', '工作平衡']);
+    }
+    
+    if (features.lines.headLine.clarity < 0.6) {
+      challenges.push(['决策困难', '信息过载']);
+    } else {
+      challenges.push(['过度分析', '行动迟缓']);
+    }
+    
+    challenges.push(['时间管理', '优先级设定']);
+    
+    return challenges;
   }
 
   /**
@@ -437,20 +616,65 @@ export class ReportGenerator {
    */
   private async generateYearlyOutlook(
     features: PalmFeatures,
-    userInfo: UserInfo
+    _userInfo: UserInfo,
   ): Promise<{ year: number; overview: string; quarters: Array<{ quarter: number; focus: string; opportunities: string[] }> }> {
     const currentYear = new Date().getFullYear();
     
+    // 基于手掌特征生成个性化年度展望
+    const overview = this.getPersonalizedYearlyOverview(features);
+    const quarters = this.getPersonalizedQuarters(features);
+    
     return {
       year: currentYear + 1,
-      overview: '明年将是转变和成长的一年',
-      quarters: [
-        { quarter: 1, focus: '新开始', opportunities: ['学习新技能', '建立新关系'] },
-        { quarter: 2, focus: '稳定发展', opportunities: ['事业进步', '财务增长'] },
-        { quarter: 3, focus: '收获成果', opportunities: ['项目完成', '目标达成'] },
-        { quarter: 4, focus: '总结规划', opportunities: ['经验总结', '未来规划'] }
-      ]
+      overview,
+      quarters,
     };
+  }
+
+  private getPersonalizedYearlyOverview(features: PalmFeatures): string {
+    if (features.lines.lifeLine.clarity > 0.8 && features.lines.headLine.length > 0.7) {
+      return '明年将是突破性成长的一年，您的智慧和坚持将带来显著成果';
+    } else if (features.shape.flexibility > 0.7) {
+      return '明年将是适应和转变的一年，灵活性将成为您的最大优势';
+    } else if (features.lines.heartLine.clarity > 0.6) {
+      return '明年将是情感丰富和人际关系发展的一年';
+    } else {
+      return '明年将是内在成长和自我发现的一年';
+    }
+  }
+
+  private getPersonalizedQuarters(features: PalmFeatures): Array<{ quarter: number; focus: string; opportunities: string[] }> {
+    const quarters = [];
+    
+    // 第一季度
+    if (features.lines.lifeLine.clarity > 0.7) {
+      quarters.push({ quarter: 1, focus: '稳固基础', opportunities: ['建立长期目标', '制定详细计划'] });
+    } else {
+      quarters.push({ quarter: 1, focus: '探索可能', opportunities: ['尝试新方向', '开拓视野'] });
+    }
+    
+    // 第二季度
+    if (features.lines.headLine.length > 0.8) {
+      quarters.push({ quarter: 2, focus: '智慧运用', opportunities: ['分析决策', '战略规划'] });
+    } else {
+      quarters.push({ quarter: 2, focus: '直觉引导', opportunities: ['创意发挥', '灵感捕捉'] });
+    }
+    
+    // 第三季度
+    if (features.shape.flexibility > 0.6) {
+      quarters.push({ quarter: 3, focus: '灵活应变', opportunities: ['适应变化', '抓住机遇'] });
+    } else {
+      quarters.push({ quarter: 3, focus: '坚持执行', opportunities: ['专注目标', '稳步推进'] });
+    }
+    
+    // 第四季度
+    if (features.lines.heartLine.clarity > 0.6) {
+      quarters.push({ quarter: 4, focus: '情感收获', opportunities: ['深化关系', '分享成果'] });
+    } else {
+      quarters.push({ quarter: 4, focus: '内在总结', opportunities: ['反思成长', '规划未来'] });
+    }
+    
+    return quarters;
   }
 
   // 辅助方法 - 构建提示词
@@ -565,7 +789,7 @@ export class ReportGenerator {
     };
   }
 
-  private generatePersonalizedMessage(features: PalmFeatures, userInfo: UserInfo): string {
+  private generatePersonalizedMessage(features: PalmFeatures, _userInfo: UserInfo): string {
     const confidence = features.confidence;
     
     if (confidence > 0.8) {

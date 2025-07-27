@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PalmPageProps): Promise<Metad
 }
 
 export default async function PalmPage({ params }: PalmPageProps) {
-  const { locale } = await params;
+  const { locale: _locale } = await params;
   
   return (
     <main className="min-h-screen">

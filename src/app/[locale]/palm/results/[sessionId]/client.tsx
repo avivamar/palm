@@ -147,10 +147,7 @@ export default function PalmResultsClient() {
           </div>
 
           <PalmProgressIndicator
-            sessionId={sessionId}
-            analysisType={session.analysisType}
-            onComplete={() => fetchSession()}
-            onError={(error) => toast.error(error)}
+            session={{ ...session, sessionId }}
           />
 
           {/* 分析期间的提示 */}
@@ -254,9 +251,8 @@ export default function PalmResultsClient() {
 
         {/* 分析结果展示 */}
         <PalmResultDisplay
-          sessionId={sessionId}
-          analysisData={session.analysisResult}
-          canUpgrade={session.analysisType === 'quick'}
+          result={session.analysisResult}
+          analysisType={session.analysisType}
         />
 
         {/* 快速分析的升级提示 */}

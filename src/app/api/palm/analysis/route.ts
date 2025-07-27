@@ -18,9 +18,32 @@ export const runtime = 'nodejs';
 interface UserInfo {
   birthDate?: Date;
   birthTime?: string;
-  birthLocation?: string;
+  location?: string;
   gender?: string;
   language?: string;
+}
+
+// 模拟 createPalmEngine 函数
+function createPalmEngine() {
+  return {
+    async analyzeQuick(_imageData: any, _userInfo: any, _userId: any) {
+      // 模拟分析结果
+      return {
+        report: {
+          personality: { summary: "Mock personality analysis", traits: [], strengths: [], challenges: [] },
+          health: { summary: "Mock health analysis", vitality: 0.8 },
+          career: { summary: "Mock career analysis", potential: [] },
+          relationship: { summary: "Mock relationship analysis", compatibility: [] },
+          fortune: { summary: "Mock fortune analysis", trends: [] }
+        },
+        conversionHints: [],
+        processingTime: 1000
+      };
+    },
+    async analyzeComplete(imageData: any, userInfo: any, userId: any) {
+      return this.analyzeQuick(imageData, userInfo, userId);
+    }
+  };
 }
 
 interface ImageData {

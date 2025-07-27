@@ -11,8 +11,8 @@
 export { PalmAnalysisEngine, createPalmEngine } from './engine';
 
 // 配置系统
+export type { PalmConfig } from './config';
 export { 
-  PalmConfig, 
   defaultConfig, 
   getConfig, 
   loadConfigFromEnv, 
@@ -24,7 +24,8 @@ export {
 export * from './types';
 
 // 处理器
-export { ImageProcessor, ProcessedImage } from './processors/image-processor';
+export type { ProcessedImage } from './processors/image-processor';
+export { ImageProcessor } from './processors/image-processor';
 export { FeatureExtractor } from './processors/feature-extractor';
 
 // 生成器
@@ -165,17 +166,18 @@ export {
 } from './types';
 
 // 健康检查函数
-export async function checkPalmHealth(config?: Partial<PalmConfig>): Promise<{
+export async function checkPalmHealth(config?: Partial<import('./config').PalmConfig>): Promise<{
   status: 'healthy' | 'degraded' | 'unhealthy';
   components: Record<string, boolean>;
   timestamp: Date;
 }> {
   try {
+    const { createPalmEngine } = await import('./engine');
     const engine = createPalmEngine(config);
     const health = await engine.getHealthStatus();
     
     return {
-      status: health.status,
+      status: health.status as 'healthy' | 'degraded' | 'unhealthy',
       components: health.services,
       timestamp: health.timestamp
     };

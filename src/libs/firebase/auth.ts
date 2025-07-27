@@ -28,7 +28,11 @@ export async function auth(request: NextRequest): Promise<AuthUser | null> {
     
     // For development, we'll extract user info from the token payload (not secure for production)
     try {
-      const payload = JSON.parse(atob(idToken.split('.')[1]));
+      const tokenParts = idToken.split('.');
+      if (tokenParts.length < 2 || !tokenParts[1]) {
+        return null;
+      }
+      const payload = JSON.parse(atob(tokenParts[1]));
       return {
         uid: payload.user_id || payload.sub,
         email: payload.email || null,

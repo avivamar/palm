@@ -72,7 +72,6 @@ export function PalmProgressIndicator({ session, onCancel }: PalmProgressIndicat
     }
 
     const totalEstimatedTime = ANALYSIS_STEPS.reduce((sum, step) => sum + step.estimatedTime, 0);
-    let currentProgress = 0;
     let currentTime = 0;
 
     const interval = setInterval(() => {
@@ -84,12 +83,15 @@ export function PalmProgressIndicator({ session, onCancel }: PalmProgressIndicat
       let newStepIndex = 0;
       
       for (let i = 0; i < ANALYSIS_STEPS.length; i++) {
-        accumulatedTime += ANALYSIS_STEPS[i].estimatedTime;
-        if (currentTime < accumulatedTime) {
-          newStepIndex = i;
-          break;
+        const step = ANALYSIS_STEPS[i];
+        if (step) {
+          accumulatedTime += step.estimatedTime;
+          if (currentTime < accumulatedTime) {
+            newStepIndex = i;
+            break;
+          }
+          newStepIndex = ANALYSIS_STEPS.length - 1;
         }
-        newStepIndex = ANALYSIS_STEPS.length - 1;
       }
 
       setCurrentStepIndex(newStepIndex);
@@ -175,7 +177,6 @@ export function PalmProgressIndicator({ session, onCancel }: PalmProgressIndicat
           {ANALYSIS_STEPS.map((step, index) => {
             const isCurrentStep = index === currentStepIndex && !isCompleted && !isFailed;
             const isCompletedStep = index < currentStepIndex || isCompleted;
-            const isPendingStep = index > currentStepIndex && !isCompleted;
 
             return (
               <div

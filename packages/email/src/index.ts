@@ -14,15 +14,24 @@
  * - Comprehensive testing suite
  */
 
-// Configuration
-export * from './config';
+// Configuration types (from ./types, not ./config)
+export {
+  BRAND_CONFIG,
+  SUPPORTED_LOCALES,
+  DEFAULT_LOCALE,
+  EMAIL_STYLES,
+  EMAIL_TEMPLATE_CONFIG,
+  getEnvironmentConfig
+} from './config';
 
 // Supabase integration
-export * from './supabase-integration';
-
+export type { SupabaseEmailConfig } from './supabase-integration';
 export {
-  type SupabaseEmailConfig,
   SupabaseEmailTemplateGenerator,
+  createSupabaseEmailGenerator,
+  supabaseEmailGenerator,
+  generateSupabaseEmailTemplate,
+  generateSupabaseDashboardTemplate
 } from './supabase-integration';
 
 // Template system - specific exports to avoid conflicts
@@ -37,13 +46,24 @@ export {
 export { EmailTemplateManager as EmailTemplateManagerImpl } from './templates/template-manager';
 
 // Core types
-export * from './types';
+export type * from './types';
 
 // Re-export commonly used functions for convenience
 // (already exported above)
 
 // Utilities
-export * from './utils';
+export {
+  replaceTemplateVariables,
+  generateInlineStyles,
+  createEmailLayout,
+  createEmailHeader,
+  createEmailFooter,
+  createOTPBlock,
+  createButton,
+  validateEmailTemplate,
+  htmlToText,
+  getTextDirection
+} from './utils';
 
 // Note: Only export functions that actually exist in utils
 // export {

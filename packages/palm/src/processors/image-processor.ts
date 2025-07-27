@@ -53,8 +53,6 @@ export class ImageProcessor {
       let sharpInstance = sharp(imageData.buffer);
       const processingSteps: string[] = [];
 
-      // 获取图像元数据
-      const metadata = await sharpInstance.metadata();
       
       // 1. 格式标准化
       if (imageData.mimeType !== 'image/jpeg') {

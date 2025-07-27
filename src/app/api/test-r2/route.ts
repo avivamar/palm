@@ -8,7 +8,7 @@ import { createR2Client } from '@rolitt/image-upload';
 
 export const runtime = 'nodejs';
 
-export async function GET(request: NextRequest) {
+export async function GET(_request: NextRequest) {
   try {
     console.log('=== R2 Configuration Test Started ===');
     
@@ -100,7 +100,7 @@ export async function GET(request: NextRequest) {
         },
         publicUrlFormat,
       },
-      recommendations: []
+      recommendations: [] as string[]
     };
     
     // 添加建议

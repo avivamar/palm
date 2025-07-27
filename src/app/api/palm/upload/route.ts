@@ -372,8 +372,8 @@ export async function GET(request: NextRequest) {
 
     // 4. 过滤和格式化结果
     const filteredSessions = sessions
-      .filter(session => status === 'all' || session.status === status)
-      .map(session => ({
+      .filter((session: any) => status === 'all' || session.status === status)
+      .map((session: any) => ({
         ...session,
         hasLeftHand: !!session.hasLeftHand,
         hasRightHand: !!session.hasRightHand,

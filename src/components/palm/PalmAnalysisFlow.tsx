@@ -281,9 +281,18 @@ function StepIndicator({
 // API 调用函数
 async function createAnalysisSession(formData: PalmAnalysisFormData) {
   const apiFormData = new FormData();
-  apiFormData.append('image', formData.image);
+  
+  // Add images based on what's available
+  if (formData.leftHandImage) {
+    apiFormData.append('leftHandImage', formData.leftHandImage);
+  }
+  if (formData.rightHandImage) {
+    apiFormData.append('rightHandImage', formData.rightHandImage);
+  }
+  
   apiFormData.append('data', JSON.stringify({
-    handType: formData.handType,
+    handType: formData.leftHandImage && formData.rightHandImage ? 'both' : 
+              formData.leftHandImage ? 'left' : 'right',
     analysisType: formData.analysisType,
     birthDate: formData.birthDate,
     birthTime: formData.birthTime,

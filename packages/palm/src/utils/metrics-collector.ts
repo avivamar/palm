@@ -1,4 +1,4 @@
-import { Logger } from '@rolitt/shared';
+import { AILogger, type Logger } from '@rolitt/ai-core';
 import { PalmConfig } from '../config';
 
 /**
@@ -32,7 +32,7 @@ export class MetricsCollector {
   };
 
   constructor(private config: PalmConfig, logger?: Logger) {
-    this.logger = logger || new Logger('MetricsCollector');
+    this.logger = logger || new AILogger();
     this.metrics = {
       analyses: [],
       processingTimes: [],
@@ -378,7 +378,7 @@ export class MetricsCollector {
    */
   private initDailyStats(): DailyStats {
     return {
-      date: new Date().toISOString().split('T')[0],
+      date: new Date().toISOString().split('T')[0] || new Date().toISOString().substring(0, 10),
       totalAnalyses: 0,
       successfulAnalyses: 0,
       totalConversions: 0,
@@ -421,7 +421,7 @@ export class MetricsCollector {
   /**
    * 更新实时统计
    */
-  private updateRealTimeStats(type?: string, metric?: any): void {
+  private updateRealTimeStats(_type?: string, _metric?: any): void {
     try {
       const now = new Date();
       const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000);
@@ -530,7 +530,7 @@ export class MetricsCollector {
         case 'conversion':
           // 检查转化率
           const recentConversions = this.getRecentMetrics(this.metrics.conversions, 3600000);
-          const recentSessions = this.getRecentMetrics(this.metrics.userSessions, 3600000);
+          const recentSessions = this.metrics.userSessions.filter(s => s.startTime >= new Date(Date.now() - 3600000));
           
           if (recentSessions.length > 10) { // 至少有10个会话才检查
             const conversionRate = recentConversions.filter(c => c.action === 'purchase').length / recentSessions.length;

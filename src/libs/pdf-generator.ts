@@ -4,6 +4,7 @@
  */
 
 import puppeteer from 'puppeteer';
+import type { Browser } from 'puppeteer';
 
 export interface PalmReportData {
   title: string;
@@ -58,7 +59,7 @@ export interface PalmReportData {
  * 生成手相分析PDF报告
  */
 export async function generatePalmPDFReport(data: PalmReportData): Promise<Buffer> {
-  let browser: puppeteer.Browser | null = null;
+  let browser: Browser | null = null;
 
   try {
     // 启动浏览器
@@ -111,7 +112,7 @@ export async function generatePalmPDFReport(data: PalmReportData): Promise<Buffe
       `
     });
 
-    return pdfBuffer;
+    return Buffer.from(pdfBuffer);
 
   } catch (error) {
     console.error('PDF generation failed:', error);

@@ -9,7 +9,6 @@ import {
   Clock, 
   Shield, 
   RefreshCw, 
-  CreditCard,
   ChevronDown,
   ChevronUp
 } from 'lucide-react';

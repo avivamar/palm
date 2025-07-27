@@ -337,10 +337,8 @@ export function validateConfig(config: PalmConfig): void {
  */
 export function getConfig(override?: Partial<PalmConfig>): PalmConfig {
   const envConfig = loadConfigFromEnv();
-  const finalConfig = mergeConfig(
-    defaultConfig,
-    mergeConfig(envConfig, override || {})
-  );
+  const mergedEnvConfig = mergeConfig(defaultConfig, envConfig);
+  const finalConfig = mergeConfig(mergedEnvConfig, override || {});
   
   validateConfig(finalConfig);
   return finalConfig;

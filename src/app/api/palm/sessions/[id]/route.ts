@@ -14,8 +14,8 @@ import { eq } from 'drizzle-orm';
 export const runtime = 'nodejs';
 
 export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
+  _request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // 1. 验证用户认证
@@ -30,7 +30,7 @@ export async function GET(
     }
 
     const user = session.user;
-    const sessionId = params.id;
+    const { id: sessionId } = await params;
 
     // 2. 获取分析会话详情
     const db = await getSafeDB();
@@ -40,7 +40,6 @@ export async function GET(
         id: palmAnalysisSessionsSchema.id,
         userId: palmAnalysisSessionsSchema.userId,
         status: palmAnalysisSessionsSchema.status,
-        handType: palmAnalysisSessionsSchema.handType,
         analysisType: palmAnalysisSessionsSchema.analysisType,
         birthDate: palmAnalysisSessionsSchema.birthDate,
         birthTime: palmAnalysisSessionsSchema.birthTime,
@@ -54,15 +53,15 @@ export async function GET(
         
         // 图像信息
         imageUrl: userImagesSchema.url,
-        imageFilename: userImagesSchema.filename,
+        imageFilename: userImagesSchema.fileName,
         imageSize: userImagesSchema.fileSize,
         imageMimeType: userImagesSchema.mimeType,
-        imageUploadedAt: userImagesSchema.uploadedAt,
+        imageUploadedAt: userImagesSchema.createdAt,
       })
       .from(palmAnalysisSessionsSchema)
       .leftJoin(
         userImagesSchema,
-        eq(palmAnalysisSessionsSchema.imageId, userImagesSchema.id)
+        eq(palmAnalysisSessionsSchema.leftHandImageUrl, userImagesSchema.url)
       )
       .where(eq(palmAnalysisSessionsSchema.id, parseInt(sessionId)))
       .limit(1);
@@ -145,7 +144,7 @@ export async function GET(
 // 更新分析会话
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // 1. 验证用户认证
@@ -160,7 +159,7 @@ export async function PATCH(
     }
 
     const user = session.user;
-    const sessionId = params.id;
+    const { id: sessionId } = await params;
 
     // 2. 解析请求数据
     const body = await request.json();
@@ -265,8 +264,8 @@ export async function PATCH(
 
 // 删除分析会话
 export async function DELETE(
-  request: NextRequest,
-  { params }: { params: { id: string } }
+  _request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // 1. 验证用户认证
@@ -281,7 +280,7 @@ export async function DELETE(
     }
 
     const user = session.user;
-    const sessionId = params.id;
+    const { id: sessionId } = await params;
 
     // 2. 获取分析会话
     const db = await getSafeDB();

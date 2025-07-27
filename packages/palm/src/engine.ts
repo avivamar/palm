@@ -1,19 +1,15 @@
-import { AIManager } from '@rolitt/ai-core';
-import { Logger } from '@rolitt/shared';
-import {
-  UserInfo,
+import { AIManager, AILogger } from '@rolitt/ai-core';
+import type {
+  ConversionHints,
+  FullReport,
   ImageData,
   PalmFeatures,
   QuickReport,
-  FullReport,
-  AnalysisResult,
-  ConversionHints,
-  PalmAnalysisError,
-  ImageProcessingError,
-  FeatureExtractionError,
-  ReportGenerationError,
+  UserInfo,
 } from './types';
-import { PalmConfig, getConfig } from './config';
+import { PalmAnalysisError } from './types';
+import type { PalmConfig } from './config';
+import { getConfig } from './config';
 import { ImageProcessor } from './processors/image-processor';
 import { FeatureExtractor } from './processors/feature-extractor';
 import { ReportGenerator } from './generators/report-generator';
@@ -27,7 +23,7 @@ import { MetricsCollector } from './utils/metrics-collector';
  */
 export class PalmAnalysisEngine {
   private config: PalmConfig;
-  private logger: Logger;
+  private logger: AILogger;
   private aiManager: AIManager;
   private imageProcessor: ImageProcessor;
   private featureExtractor: FeatureExtractor;
@@ -38,7 +34,7 @@ export class PalmAnalysisEngine {
 
   constructor(config?: Partial<PalmConfig>) {
     this.config = getConfig(config);
-    this.logger = new Logger('PalmAnalysisEngine');
+    this.logger = AILogger.getInstance();
     
     // 初始化核心组件
     this.aiManager = new AIManager({
@@ -48,7 +44,7 @@ export class PalmAnalysisEngine {
     });
     
     this.imageProcessor = new ImageProcessor(this.config, this.logger);
-    this.featureExtractor = new FeatureExtractor(this.config, this.logger);
+    this.featureExtractor = new FeatureExtractor(this.logger);
     this.reportGenerator = new ReportGenerator(this.config, this.aiManager, this.logger);
     this.conversionOptimizer = new ConversionOptimizer(this.config, this.logger);
     this.cacheManager = new CacheManager(this.config, this.logger);
@@ -100,6 +96,7 @@ export class PalmAnalysisEngine {
         processingTime,
         success: true,
         userId,
+        timestamp: new Date(),
       });
       
       return result;
@@ -119,6 +116,7 @@ export class PalmAnalysisEngine {
         success: false,
         userId,
         error: error instanceof Error ? error.message : 'Unknown error',
+        timestamp: new Date(),
       });
       
       throw error;
@@ -178,6 +176,7 @@ export class PalmAnalysisEngine {
         processingTime,
         success: true,
         userId,
+        timestamp: new Date(),
       });
       
       return fullReport;
@@ -207,7 +206,7 @@ export class PalmAnalysisEngine {
       ] = await Promise.all([
         this.imageProcessor.healthCheck(),
         this.featureExtractor.healthCheck(),
-        this.aiManager.healthCheck(),
+        this.aiManager.getAllProvidersHealth().then(health => Object.values(health).every(Boolean)),
         this.cacheManager.healthCheck(),
       ]);
 
@@ -271,7 +270,16 @@ export class PalmAnalysisEngine {
       const processedImage = await this.imageProcessor.process(imageData);
       
       // 3. 提取特征
-      palmFeatures = await this.featureExtractor.extract(processedImage);
+      // 将 ProcessedImage 转换为 ImageData 格式
+      const imageDataForExtraction: ImageData = {
+        buffer: processedImage.buffer,
+        mimeType: 'image/jpeg', // 处理后的图像都是 JPEG 格式
+        size: processedImage.metadata.processedSize,
+        width: processedImage.width,
+        height: processedImage.height,
+      };
+      
+      palmFeatures = await this.featureExtractor.extract(imageDataForExtraction);
       
       // 缓存特征
       await this.cacheManager.set(

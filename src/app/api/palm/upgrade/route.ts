@@ -195,7 +195,7 @@ export async function GET(request: NextRequest) {
         userId: palmAnalysisSessionsSchema.userId,
         analysisType: palmAnalysisSessionsSchema.analysisType,
         status: palmAnalysisSessionsSchema.status,
-        metadata: palmAnalysisSessionsSchema.metadata,
+        imageMetadata: palmAnalysisSessionsSchema.imageMetadata,
       })
       .from(palmAnalysisSessionsSchema)
       .where(eq(palmAnalysisSessionsSchema.id, parseInt(sessionId)))

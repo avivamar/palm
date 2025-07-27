@@ -154,7 +154,6 @@ export async function GET(request: NextRequest) {
         id: palmAnalysisSessionsSchema.id,
         status: palmAnalysisSessionsSchema.status,
         analysisType: palmAnalysisSessionsSchema.analysisType,
-        handType: palmAnalysisSessionsSchema.handType,
         processingTime: palmAnalysisSessionsSchema.processingTime,
         createdAt: palmAnalysisSessionsSchema.createdAt,
         completedAt: palmAnalysisSessionsSchema.completedAt,
@@ -167,8 +166,8 @@ export async function GET(request: NextRequest) {
 
     // 4. 过滤和格式化结果
     const filteredReports = reports
-      .filter(report => status === 'all' || report.status === status)
-      .map(report => ({
+      .filter((report: any) => status === 'all' || report.status === status)
+      .map((report: any) => ({
         ...report,
         hasResult: !!report.hasResult,
         downloadable: report.status === 'completed' && !!report.hasResult,
