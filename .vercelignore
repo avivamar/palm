@@ -1,0 +1,12 @@
+# Ignore build outputs in packages
+packages/*/.next
+packages/*/dist
+packages/*/.turbo
+packages/*/coverage
+packages/*/.cache
+packages/*/node_modules
+
+# But don't ignore source files
+!packages/*/src
+!packages/*/package.json
+!packages/*/tsconfig.json
