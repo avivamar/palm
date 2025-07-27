@@ -116,6 +116,7 @@
     "@radix-ui/react-switch": "^1.2.5",
     "@radix-ui/react-tabs": "^1.1.12",
     "@radix-ui/react-toast": "^1.2.6",
+    "@rolitt/admin": "file:packages/admin",
     "@rolitt/ai-core": "file:packages/ai-core",
     "@rolitt/email": "file:packages/email",
     "@rolitt/image-upload": "file:packages/image-upload",
