@@ -6,7 +6,14 @@ packages/*/coverage
 packages/*/.cache
 packages/*/node_modules
 
-# But don't ignore source files
+# Ignore admin package completely for Vercel deployment
+packages/admin
+
+# But don't ignore source files for other packages
 !packages/*/src
 !packages/*/package.json
 !packages/*/tsconfig.json
+
+# Re-ignore admin package files
+packages/admin/package.json
+packages/admin/tsconfig.json

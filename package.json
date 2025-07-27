@@ -13,7 +13,7 @@
     "dev:next": "NODE_OPTIONS='--inspect' next dev",
     "dev": "npx dotenv-cli -e .env -- next dev",
     "build": "NEXT_TELEMETRY_DISABLED=1 next build --no-lint",
-    "build:vercel": "npm run packages:build && NEXT_TELEMETRY_DISABLED=1 next build --no-lint",
+    "build:vercel": "NEXT_TELEMETRY_DISABLED=1 next build --no-lint",
     "build:standalone": "RAILWAY_ENVIRONMENT= next build --no-lint",
     "build:railway": "bash scripts/railway-safe-build.sh",
     "clean:cache": "rm -rf node_modules/.cache .next/cache",
