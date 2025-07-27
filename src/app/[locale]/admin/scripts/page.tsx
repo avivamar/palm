@@ -3,9 +3,11 @@
  * Following .cursorrules rule #299: "每个页面都必须使用 TypeScript，并定义清晰的 Props 类型"
  */
 
-import type { CoreScriptsData, ShopifyStatus, SystemHealthData } from '@rolitt/admin';
-import { Scripts } from '@rolitt/admin';
 import { getTranslations } from 'next-intl/server';
+
+import type { CoreScriptsData, ShopifyStatus, SystemHealthData } from '../../../../../packages/admin/src';
+import { Scripts } from '../../../../../packages/admin/src';
+
 import { fetchCoreScriptsStatus, fetchShopifyStatus, fetchSystemHealth } from '@/libs/admin/health-api';
 
 // Force dynamic rendering for admin scripts page

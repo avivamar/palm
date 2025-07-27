@@ -3,9 +3,11 @@
  * Following .cursorrules rule #299: "每个页面都必须使用 TypeScript，并定义清晰的 Props 类型"
  */
 
-import { Monitoring } from '@rolitt/admin';
 import { getTranslations } from 'next-intl/server';
+
 import { getPaymentHealthStatus, getPaymentMetrics } from '@/libs/monitoring/payment-monitor';
+
+import { Monitoring } from '../../../../../packages/admin/src';
 
 // Force dynamic rendering for admin monitoring page
 export const dynamic = 'force-dynamic';

@@ -3,9 +3,11 @@
  * Following .cursorrules rule #299: "每个页面都必须使用 TypeScript，并定义清晰的 Props 类型"
  */
 
-import type { User } from '@rolitt/admin';
-import { Users } from '@rolitt/admin';
 import { getTranslations } from 'next-intl/server';
+
+import type { User } from '../../../../../packages/admin/src';
+import { Users } from '../../../../../packages/admin/src';
+
 import { fetchUsers } from '@/libs/admin/users-api';
 
 // Force dynamic rendering for admin users page
