@@ -6,19 +6,22 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Upload, Camera, Sparkles, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { PalmAnalysisForm } from './PalmAnalysisForm';
 
 export function PalmHeroSection() {
   const [isHovered, setIsHovered] = useState(false);
+  const [showAnalysisForm, setShowAnalysisForm] = useState(false);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden palm-page-bg">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 via-blue-600/10 to-indigo-600/10" />
       <div className="absolute top-20 left-10 w-32 h-32 bg-purple-400/20 rounded-full blur-xl animate-pulse" />
       <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-400/20 rounded-full blur-xl animate-pulse delay-1000" />
       
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="palm-container relative z-10">
+        {!showAnalysisForm ? (
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -89,12 +92,13 @@ export function PalmHeroSection() {
             >
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="palm-btn palm-btn-primary palm-btn-lg"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
+                onClick={() => setShowAnalysisForm(true)}
               >
                 <Upload className={`w-5 h-5 mr-2 transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`} />
-                Start My Free Reading
+                开始免费手相分析
                 <motion.span
                   className="ml-2"
                   animate={{ x: isHovered ? 5 : 0 }}
@@ -105,7 +109,7 @@ export function PalmHeroSection() {
               </Button>
               
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                👉 No signup needed · Private & Secure
+                👉 无需注册 · 隐私安全 · 免费基础报告
               </p>
             </motion.div>
           </motion.div>
@@ -170,7 +174,46 @@ export function PalmHeroSection() {
               </div>
             </Card>
           </motion.div>
-        </div>
+          </div>
+        ) : (
+          // 分析表单
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="text-center mb-8">
+              <motion.h2
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-3xl md:text-4xl font-bold mb-4 palm-fade-in"
+              >
+                开始您的免费手相分析
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-lg text-gray-600 dark:text-gray-300"
+              >
+                上传您的手掌照片，获得个性化的AI分析报告
+              </motion.p>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="palm-card p-8"
+            >
+              <PalmAnalysisForm 
+                onBack={() => setShowAnalysisForm(false)}
+                embedded={true}
+              />
+            </motion.div>
+          </motion.div>
+        )}
       </div>
     </section>
   );

@@ -357,33 +357,39 @@ export const palmAnalysisStatusEnum = pgEnum('palm_analysis_status', ['pending',
 export const palmReportTypeEnum = pgEnum('palm_report_type', ['quick', 'full', 'premium']);
 export const palmHandTypeEnum = pgEnum('palm_hand_type', ['left', 'right', 'both']);
 
-// Palm analysis sessions
+// Palm analysis sessions - 支持双手图片分析
 export const palmAnalysisSessionsSchema = pgTable('palm_analysis_sessions', {
-  id: text('id').primaryKey(), // Nanoid generated
+  id: serial('id').primaryKey(),
   userId: text('user_id').references(() => usersSchema.id, { onDelete: 'set null', onUpdate: 'cascade' }),
-  imageId: integer('image_id').references(() => userImagesSchema.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
-  status: palmAnalysisStatusEnum('status').default('pending').notNull(),
-  handType: palmHandTypeEnum('hand_type').notNull(),
   
-  // User birth information for astrological analysis
+  // 双手图片支持
+  leftHandImageUrl: text('left_hand_image_url'), // 左手图片URL
+  rightHandImageUrl: text('right_hand_image_url'), // 右手图片URL
+  imageMetadata: jsonb('image_metadata'), // 图片元数据 (尺寸、格式等)
+  
+  status: palmAnalysisStatusEnum('status').default('pending').notNull(),
+  analysisType: palmReportTypeEnum('analysis_type').default('quick').notNull(), // quick 或 complete
+  
+  // 用户出生信息用于占星分析
   birthDate: date('birth_date', { mode: 'date' }),
   birthTime: text('birth_time'), // HH:MM format
   birthLocation: text('birth_location'),
   
-  // Analysis results
-  palmFeatures: jsonb('palm_features'), // Extracted palm features (lines, mounts, shapes)
-  quickReportId: text('quick_report_id'),
-  fullReportId: text('full_report_id'),
+  // 分析结果
+  palmFeatures: jsonb('palm_features'), // 提取的手掌特征 (线条、手掌形状等)
+  analysisResult: jsonb('analysis_result'), // 完整分析结果
+  processingTime: integer('processing_time'), // 处理时间(毫秒)
   
-  // Processing metadata
+  // 处理元数据
   processingStartedAt: timestamp('processing_started_at', { withTimezone: true, mode: 'date' }),
-  processingCompletedAt: timestamp('processing_completed_at', { withTimezone: true, mode: 'date' }),
+  completedAt: timestamp('completed_at', { withTimezone: true, mode: 'date' }),
   errorMessage: text('error_message'),
   retryCount: integer('retry_count').default(0),
   
-  // Business metrics
+  // 业务指标
   conversionStep: text('conversion_step').default('uploaded'), // uploaded, quick_viewed, payment_initiated, payment_completed
   paymentIntentId: text('payment_intent_id'),
+  upgradedAt: timestamp('upgraded_at', { withTimezone: true, mode: 'date' }), // 升级到完整分析的时间
   
   createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull(),
   updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'date' }).defaultNow(),
@@ -391,7 +397,7 @@ export const palmAnalysisSessionsSchema = pgTable('palm_analysis_sessions', {
   userIdIdx: index('idx_palm_sessions_user_id').on(table.userId),
   statusIdx: index('idx_palm_sessions_status').on(table.status),
   createdAtIdx: index('idx_palm_sessions_created_at').on(table.createdAt),
-  imageIdIdx: index('idx_palm_sessions_image_id').on(table.imageId),
+  analysisTypeIdx: index('idx_palm_sessions_analysis_type').on(table.analysisType),
   conversionStepIdx: index('idx_palm_sessions_conversion').on(table.conversionStep),
 }));
 

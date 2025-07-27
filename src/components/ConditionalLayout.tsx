@@ -13,9 +13,12 @@ export function ConditionalLayout({ children }: ConditionalLayoutProps) {
 
   // Check if current path is admin route
   const isAdminRoute = pathname.includes('/admin');
+  
+  // Check if current path is palm route (should not include header/footer)
+  const isPalmRoute = pathname.includes('/palm');
 
-  if (isAdminRoute) {
-    // Admin routes: no navbar/footer, just children
+  if (isAdminRoute || isPalmRoute) {
+    // Admin routes and Palm routes: no navbar/footer, just children
     return <>{children}</>;
   }
 

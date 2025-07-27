@@ -1,0 +1,172 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "palm_analysis_sessions": {
+      "name": "palm_analysis_sessions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "left_hand_image_url": {
+          "name": "left_hand_image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "right_hand_image_url": {
+          "name": "right_hand_image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "image_metadata": {
+          "name": "image_metadata",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "palm_analysis_status",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'pending'"
+        },
+        "analysis_type": {
+          "name": "analysis_type",
+          "type": "palm_report_type",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'quick'"
+        },
+        "birth_date": {
+          "name": "birth_date",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "birth_time": {
+          "name": "birth_time",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "birth_location": {
+          "name": "birth_location",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "palm_features": {
+          "name": "palm_features",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "analysis_result": {
+          "name": "analysis_result",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "processing_time": {
+          "name": "processing_time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "processing_started_at": {
+          "name": "processing_started_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "completed_at": {
+          "name": "completed_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "error_message": {
+          "name": "error_message",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "retry_count": {
+          "name": "retry_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 0
+        },
+        "conversion_step": {
+          "name": "conversion_step",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'uploaded'"
+        },
+        "payment_intent_id": {
+          "name": "payment_intent_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "upgraded_at": {
+          "name": "upgraded_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "idx_palm_sessions_user_id": {
+          "name": "idx_palm_sessions_user_id",
+          "columns": ["user_id"]
+        },
+        "idx_palm_sessions_status": {
+          "name": "idx_palm_sessions_status",
+          "columns": ["status"]
+        },
+        "idx_palm_sessions_created_at": {
+          "name": "idx_palm_sessions_created_at",
+          "columns": ["created_at"]
+        },
+        "idx_palm_sessions_analysis_type": {
+          "name": "idx_palm_sessions_analysis_type",
+          "columns": ["analysis_type"]
+        },
+        "idx_palm_sessions_conversion": {
+          "name": "idx_palm_sessions_conversion",
+          "columns": ["conversion_step"]
+        }
+      }
+    }
+  }
+}

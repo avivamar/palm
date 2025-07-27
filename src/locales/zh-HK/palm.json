@@ -9,15 +9,19 @@
     "twitter_description": "通过尖端AI手掌分析发现您的命运。上传您的手掌，解锁个性化洞察。"
   },
   "hero": {
-    "title": "AI手相分析，解锁您的未来",
-    "subtitle": "先进人工智能与古老手相智慧的完美结合",
-    "description": "上传您的手掌照片，输入生日，发现关于您的爱情生活、职业道路、健康状况和独特性格特征的个性化洞察。",
-    "upload_step": "上传手掌照片",
-    "birthday_step": "输入生日",
-    "analysis_step": "AI分析",
-    "report_step": "获取报告",
-    "cta_button": "开始免费分析",
-    "trust_badge": "全球50,000+用户信赖"
+    "badge": "AI驱动手相分析",
+    "title": "如果您的手掌能揭示您的{highlight}、活力和命運會如何？",
+    "highlight": "性格",
+    "subtitle": {
+      "upload": "上傳您的手掌照片。",
+      "birth": "輸入您的出生日期。",
+      "report": "獲得由AI、占星術和手相學驅動的免費個性化報告。"
+    },
+    "cta": "開始免費手相分析",
+    "privacy": "無需註冊 · 隱私安全",
+    "analyzing": "AI正在分析手掌紋路...",
+    "start_analysis": "開始您的免費手相分析",
+    "analysis_subtitle": "上傳您的手掌照片，獲得個性化的AI分析報告"
   },
   "how_it_works": {
     "title": "Palm AI 如何工作",
@@ -180,19 +184,143 @@
     "languages_title": "支持语言",
     "languages_list": "中文、英文、日文、西班牙文"
   },
+  "form": {
+    "title": "AI手相分析",
+    "description": "上傳清晰的手掌照片，通過古老的掌相學藝術結合現代AI技術，獲得關於您的性格、人生和未來可能性的個性化洞察。",
+    "backButton": "返回首頁",
+    "steps": {
+      "upload": "上傳手掌照片",
+      "analysis": "AI智能分析",
+      "insights": "獲得洞察",
+      "analysisDescription": "先進的AI技術分析您的手掌線條和特徵",
+      "insightsDescription": "獲得關於您性格和未來的詳細洞察報告"
+    },
+    "upload": {
+      "title": "上傳手掌照片",
+      "description": "上傳清晰的手掌照片開始您的個性化解讀。左手代表天賦和潛力，右手代表現實和發展。",
+      "leftHand": "左手",
+      "rightHand": "右手",
+      "camera": "拍照",
+      "capturing": "拍攝中...",
+      "dragDrop": "在此放置圖片",
+      "upload": "上傳{hand}照片",
+      "clickSelect": "拖拽或點擊選擇",
+      "fileTypes": "支持：JPEG、PNG、WebP（最大10MB）",
+      "preview": "{hand}預覽",
+      "fileInfo": "{name}（{size} MB）",
+      "validation": {
+        "minOneHand": "請至少上傳一隻手的照片"
+      }
+    },
+    "tips": {
+      "title": "拍攝建議",
+      "lighting": "光線充足，避免陰影",
+      "position": "手掌平攤，五指自然分開",
+      "orientation": "手掌朝上，垂直拍攝",
+      "recommendation": "至少上傳一隻手，推薦雙手對比分析"
+    },
+    "analysisType": {
+      "title": "分析類型",
+      "free": "免費基礎分析",
+      "experience": "立即體驗",
+      "description": "獲得基礎手相解讀，完成後可升級到完整版報告"
+    },
+    "birthInfo": {
+      "title": "出生信息（可選 - 提高分析準確性）",
+      "birthDate": "出生日期",
+      "birthTime": "出生時間",
+      "birthLocation": "出生地點",
+      "locationPlaceholder": "城市，國家（例如：香港，中國）"
+    },
+    "submit": {
+      "button": "開始手相分析",
+      "loading": "正在啟動分析...",
+      "privacy": "開始免費分析，無需註冊登錄"
+    },
+    "freemium": {
+      "title": "免費體驗模式",
+      "description": "您將獲得免費的基礎手相分析報告。如需更詳細的分析和個性化建議，可在結果頁面升級到完整版報告。",
+      "features": {
+        "personality": "基礎性格特質",
+        "lines": "主要手相線條",
+        "fortune": "簡要運勢解讀"
+      }
+    }
+  },
+  "results": {
+    "title": "您的手相分析報告",
+    "subtitle": {
+      "quick": "快速分析報告 - 基於AI技術的專業解讀",
+      "complete": "完整分析報告 - 基於AI技術的專業解讀"
+    },
+    "processing": {
+      "title": "AI正在分析您的手相",
+      "subtitle": "請稍候，我們正在為您生成專業的手相分析報告",
+      "analyzing": "分析中...",
+      "description": "我們的AI正在分析您的手掌線條、形狀和特徵。{type}分析通常需要{time}。",
+      "quick": "快速",
+      "complete": "完整",
+      "quickTime": "60秒",
+      "completeTime": "3-5分鐘"
+    },
+    "auth": {
+      "createAccount": "創建賬戶保存您的分析結果",
+      "loginBenefit": "登錄後可以保存分析歷史，隨時查看您的手相報告。",
+      "loginButton": "立即登錄",
+      "saveResults": "登錄保存您的分析結果",
+      "saveDescription": "創建免費賬戶，永久保存您的手相分析報告"
+    },
+    "upgrade": {
+      "title": "解鎖完整分析報告",
+      "description": "升級到完整報告，獲得更深入的分析和個性化建議",
+      "features": {
+        "title": "完整報告包含：",
+        "personality": "詳細的性格特質分析",
+        "health": "深入的健康洞察",
+        "career": "事業發展建議",
+        "love": "感情運勢解讀"
+      },
+      "extras": {
+        "title": "額外功能：",
+        "pdf": "PDF報告下載",
+        "lifetime": "終身訪問權限",
+        "updates": "定期更新解讀",
+        "guidance": "專業建議指導"
+      },
+      "price": "$19.9",
+      "priceDescription": "一次性付費，終身訪問",
+      "upgradeButton": "立即升級",
+      "processing": "正在處理..."
+    },
+    "actions": {
+      "analyzeAgain": "再次分析",
+      "viewHistory": "查看歷史"
+    },
+    "errors": {
+      "notFound": "會話未找到",
+      "notFoundDescription": "無法找到該分析會話，請重新開始分析。",
+      "failed": "分析失敗",
+      "failedDescription": "很抱歉，分析過程中出現了錯誤。請重新嘗試。",
+      "loadFailed": "獲取分析結果失敗"
+    }
+  },
   "common": {
-    "loading": "加载中...",
-    "error": "发生错误",
-    "try_again": "重试",
+    "loading": "正在加載分析結果...",
+    "restartAnalysis": "重新開始分析",
+    "success": "照片上傳成功！正在啟動分析...",
+    "uploadFailed": "上傳失敗，請重試",
+    "minOneHand": "請至少上傳一隻手的照片",
+    "error": "發生錯誤",
+    "try_again": "重試",
     "back": "返回",
     "next": "下一步",
-    "continue": "继续",
+    "continue": "繼續",
     "cancel": "取消",
     "save": "保存",
-    "close": "关闭",
+    "close": "關閉",
     "learn_more": "了解更多",
-    "get_started": "开始使用",
-    "read_more": "阅读更多",
+    "get_started": "開始使用",
+    "read_more": "閱讀更多",
     "view_all": "查看全部"
   }
 }

@@ -11,6 +11,9 @@ import { getSafeDB } from '@/libs/DB';
 import { palmAnalysisSessionsSchema } from '@/models/Schema';
 import { eq } from 'drizzle-orm';
 
+// 使用 Node.js runtime 以支持 Supabase
+export const runtime = 'nodejs';
+
 // 临时移除 palm 包导入，直接定义类型
 interface UserInfo {
   birthDate?: Date;

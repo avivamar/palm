@@ -9,15 +9,19 @@
     "twitter_description": "Discover your destiny through cutting-edge AI palm analysis. Upload your palm and unlock personalized insights."
   },
   "hero": {
-    "title": "Unlock Your Future with AI Palm Reading",
-    "subtitle": "Advanced artificial intelligence meets ancient palmistry wisdom",
-    "description": "Upload your palm photo, enter your birth date, and discover personalized insights about your love life, career path, health, and unique personality traits.",
-    "upload_step": "Upload Palm Photo",
-    "birthday_step": "Enter Birth Date",
-    "analysis_step": "AI Analysis",
-    "report_step": "Get Your Report",
-    "cta_button": "Start Free Reading",
-    "trust_badge": "Trusted by 50,000+ users worldwide"
+    "badge": "AI-Powered Palm Reading",
+    "title": "What if your palm could reveal your {highlight}, energy, and fate?",
+    "highlight": "personality",
+    "subtitle": {
+      "upload": "Upload your palm.",
+      "birth": "Enter your birth date.",
+      "report": "Get a FREE personalized report powered by AI, astrology, and palmistry."
+    },
+    "cta": "Start My Free Reading",
+    "privacy": "No signup needed · Private & Secure",
+    "analyzing": "AI analyzing palm patterns...",
+    "start_analysis": "Start Your Free Palm Analysis",
+    "analysis_subtitle": "Upload your palm photos to get a personalized AI analysis report"
   },
   "how_it_works": {
     "title": "How Palm AI Works",
@@ -180,8 +184,132 @@
     "languages_title": "Support Languages",
     "languages_list": "English, Spanish, Chinese, Japanese"
   },
+  "form": {
+    "title": "AI Palm Reading Analysis",
+    "description": "Upload clear palm photos and get personalized insights about your personality, life, and future possibilities through the ancient art of palmistry combined with modern AI technology.",
+    "backButton": "Back to Home",
+    "steps": {
+      "upload": "Upload Palm Photos",
+      "analysis": "AI Smart Analysis",
+      "insights": "Get Insights",
+      "analysisDescription": "Advanced AI technology analyzes your palm lines and features",
+      "insightsDescription": "Get detailed insight reports about your personality and future"
+    },
+    "upload": {
+      "title": "Upload Palm Photos",
+      "description": "Upload clear palm photos to start your personalized reading. Left hand represents talent and potential, right hand represents reality and development.",
+      "leftHand": "Left Hand",
+      "rightHand": "Right Hand",
+      "camera": "Take Photo",
+      "capturing": "Capturing...",
+      "dragDrop": "Drop image here",
+      "upload": "Upload {hand} photo",
+      "clickSelect": "Drag or click to select",
+      "fileTypes": "Support: JPEG, PNG, WebP (Max 10MB)",
+      "preview": "{hand} preview",
+      "fileInfo": "{name} ({size} MB)",
+      "validation": {
+        "minOneHand": "Please upload at least one hand photo"
+      }
+    },
+    "tips": {
+      "title": "Photography Tips",
+      "lighting": "Adequate lighting, avoid shadows",
+      "position": "Palm flat, fingers naturally spread",
+      "orientation": "Palm facing up, shoot vertically",
+      "recommendation": "Upload at least one hand, recommend both for comparison"
+    },
+    "analysisType": {
+      "title": "Analysis Type",
+      "free": "Free Basic Analysis",
+      "experience": "Try Now",
+      "description": "Get basic palm reading, upgrade to full report after completion"
+    },
+    "birthInfo": {
+      "title": "Birth Information (Optional - Improves accuracy)",
+      "birthDate": "Birth Date",
+      "birthTime": "Birth Time",
+      "birthLocation": "Birth Location",
+      "locationPlaceholder": "City, Country (e.g., New York, USA)"
+    },
+    "submit": {
+      "button": "Start Palm Analysis",
+      "loading": "Starting analysis...",
+      "privacy": "Start free analysis, no registration required"
+    },
+    "freemium": {
+      "title": "Free Experience Mode",
+      "description": "You will receive a free basic palm reading report. For more detailed analysis and personalized advice, you can upgrade to the full version on the results page.",
+      "features": {
+        "personality": "Basic personality traits",
+        "lines": "Main palm lines",
+        "fortune": "Brief fortune reading"
+      }
+    }
+  },
+  "results": {
+    "title": "Your Palm Reading Report",
+    "subtitle": {
+      "quick": "Quick Analysis Report - Professional AI-powered interpretation",
+      "complete": "Complete Analysis Report - Professional AI-powered interpretation"
+    },
+    "processing": {
+      "title": "AI is analyzing your palm",
+      "subtitle": "Please wait, we are generating a professional palm reading report for you",
+      "analyzing": "Analyzing...",
+      "description": "Our AI is analyzing your palm lines, shapes and features. {type} analysis usually takes {time}.",
+      "quick": "Quick",
+      "complete": "Complete",
+      "quickTime": "60 seconds",
+      "completeTime": "3-5 minutes"
+    },
+    "auth": {
+      "createAccount": "Create account to save your analysis results",
+      "loginBenefit": "After logging in, you can save analysis history and view your palm reports anytime.",
+      "loginButton": "Login Now",
+      "saveResults": "Login to save your analysis results",
+      "saveDescription": "Create a free account to permanently save your palm reading report"
+    },
+    "upgrade": {
+      "title": "Unlock Complete Analysis Report",
+      "description": "Upgrade to the complete report for deeper analysis and personalized advice",
+      "features": {
+        "title": "Complete report includes:",
+        "personality": "Detailed personality trait analysis",
+        "health": "In-depth health insights",
+        "career": "Career development advice",
+        "love": "Love fortune interpretation"
+      },
+      "extras": {
+        "title": "Additional features:",
+        "pdf": "PDF report download",
+        "lifetime": "Lifetime access",
+        "updates": "Regular interpretation updates",
+        "guidance": "Professional guidance advice"
+      },
+      "price": "$19.9",
+      "priceDescription": "One-time payment, lifetime access",
+      "upgradeButton": "Upgrade Now",
+      "processing": "Processing..."
+    },
+    "actions": {
+      "analyzeAgain": "Analyze Again",
+      "viewHistory": "View History"
+    },
+    "errors": {
+      "notFound": "Session not found",
+      "notFoundDescription": "Cannot find this analysis session, please start a new analysis.",
+      "failed": "Analysis failed",
+      "failedDescription": "Sorry, an error occurred during analysis. Please try again.",
+      "loadFailed": "Failed to get analysis results"
+    }
+  },
   "common": {
-    "loading": "Loading...",
+    "loading": "Loading analysis results...",
+    "restartAnalysis": "Start New Analysis",
+    "success": "Photo uploaded successfully! Starting analysis...",
+    "uploadFailed": "Upload failed, please try again",
+    "minOneHand": "Please upload at least one hand photo",
     "error": "An error occurred",
     "try_again": "Try Again",
     "back": "Back",

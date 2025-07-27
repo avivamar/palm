@@ -14,6 +14,7 @@ import { cn } from '@/lib/utils';
 import { routing } from '@/libs/i18nRouting';
 import { fontSans } from '@/styles/fonts';
 import '@/styles/globals.css';
+import '@/styles/palm.css';
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -112,6 +113,7 @@ async function getLocalMessages(locale: string) {
       admin: (await import(`@/locales/${locale}/admin.json`)).default,
       ...(await import(`@/locales/${locale}/unauthorized.json`)).default,
       ...(await import(`@/locales/${locale}/validation.json`)).default,
+      palm: (await import(`@/locales/${locale}/palm.json`)).default,
     };
   } catch {
     notFound();

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/libs/firebase/auth";
-import { db } from "@/libs/DB";
+import { getSafeDB } from "@/libs/DB";
 import { palmAnalysisSessionsSchema, userImagesSchema } from "@/models/Schema";
 import { nanoid } from "nanoid";
 import { z } from "zod";
@@ -69,6 +69,7 @@ export async function POST(request: NextRequest) {
     });
 
     // Save image to database
+    const db = await getSafeDB();
     const [savedImage] = await db
       .insert(userImagesSchema)
       .values({
@@ -141,6 +142,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get user's analysis sessions
+    const db = await getSafeDB();
     const sessions = await db
       .select({
         id: palmAnalysisSessionsSchema.id,

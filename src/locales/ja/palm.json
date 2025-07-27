@@ -9,15 +9,19 @@
     "twitter_description": "最先端のAI手のひら分析であなたの運命を発見しましょう。手のひらをアップロードして、パーソナライズされた洞察を解き明かしましょう。"
   },
   "hero": {
-    "title": "AI手相分析、あなたの未来を解き明かす",
-    "subtitle": "先進的なAIと古代の手相学の知恵が出会う場所",
-    "description": "手のひらの写真をアップロードし、誕生日を入力して、あなたの恋愛生活、キャリアパス、健康状態、ユニークな性格特性についてのパーソナライズされた洞察を発見しましょう。",
-    "upload_step": "手のひら写真をアップロード",
-    "birthday_step": "誕生日を入力",
-    "analysis_step": "AI分析",
-    "report_step": "レポートを取得",
-    "cta_button": "無料リーディングを開始",
-    "trust_badge": "世界中の50,000+ユーザーに信頼されています"
+    "badge": "AI駆動手相分析",
+    "title": "あなたの手のひらが{highlight}、エネルギー、運命を明かすとしたら？",
+    "highlight": "性格",
+    "subtitle": {
+      "upload": "手のひらをアップロード。",
+      "birth": "誕生日を入力。",
+      "report": "AI、占星術、手相学による無料パーソナライズレポートを取得。"
+    },
+    "cta": "無料手相分析を開始",
+    "privacy": "登録不要 · プライベート＆セキュア",
+    "analyzing": "AIが手のひらパターンを分析中...",
+    "start_analysis": "無料手相分析を開始",
+    "analysis_subtitle": "手のひら写真をアップロードしてパーソナライズされたAI分析レポートを取得"
   },
   "how_it_works": {
     "title": "Palm AIの仕組み",
@@ -180,8 +184,132 @@
     "languages_title": "サポート言語",
     "languages_list": "日本語、英語、中国語、スペイン語"
   },
+  "form": {
+    "title": "AI手相分析",
+    "description": "鮮明な手のひら写真をアップロードし、古代の手相学の芸術と現代のAI技術を組み合わせて、あなたの性格、人生、未来の可能性についてパーソナライズされた洞察を得ましょう。",
+    "backButton": "ホームに戻る",
+    "steps": {
+      "upload": "手のひら写真をアップロード",
+      "analysis": "AIスマート分析",
+      "insights": "洞察を得る",
+      "analysisDescription": "先進的なAI技術があなたの手のひらの線と特徴を分析",
+      "insightsDescription": "あなたの性格と未来について詳細な洞察レポートを取得"
+    },
+    "upload": {
+      "title": "手のひら写真をアップロード",
+      "description": "パーソナライズされた分析を開始するため、鮮明な手のひら写真をアップロードしてください。左手は才能と潜在能力を、右手は現実と発展を表します。",
+      "leftHand": "左手",
+      "rightHand": "右手",
+      "camera": "写真を撮る",
+      "capturing": "撮影中...",
+      "dragDrop": "ここに画像をドロップ",
+      "upload": "{hand}の写真をアップロード",
+      "clickSelect": "ドラッグまたはクリックして選択",
+      "fileTypes": "対応: JPEG、PNG、WebP（最大10MB）",
+      "preview": "{hand}プレビュー",
+      "fileInfo": "{name}（{size} MB）",
+      "validation": {
+        "minOneHand": "少なくとも片手の写真をアップロードしてください"
+      }
+    },
+    "tips": {
+      "title": "撮影のコツ",
+      "lighting": "十分な明るさで、影を避ける",
+      "position": "手のひらを平らにし、指を自然に広げる",
+      "orientation": "手のひらを上向きにして垂直に撮影",
+      "recommendation": "少なくとも片手をアップロード、比較分析のため両手を推奨"
+    },
+    "analysisType": {
+      "title": "分析タイプ",
+      "free": "無料基本分析",
+      "experience": "今すぐ体験",
+      "description": "基本的な手相分析を受け、完了後に完全版レポートにアップグレード可能"
+    },
+    "birthInfo": {
+      "title": "誕生情報（任意 - 精度が向上します）",
+      "birthDate": "誕生日",
+      "birthTime": "誕生時刻",
+      "birthLocation": "出生地",
+      "locationPlaceholder": "市、国（例：東京、日本）"
+    },
+    "submit": {
+      "button": "手相分析を開始",
+      "loading": "分析を開始中...",
+      "privacy": "無料分析を開始、登録不要"
+    },
+    "freemium": {
+      "title": "無料体験モード",
+      "description": "無料の基本手相分析レポートを受け取ります。より詳細な分析とパーソナライズされたアドバイスについては、結果ページで完全版にアップグレードできます。",
+      "features": {
+        "personality": "基本的な性格特性",
+        "lines": "主要な手相線",
+        "fortune": "簡単な運勢占い"
+      }
+    }
+  },
+  "results": {
+    "title": "あなたの手相分析レポート",
+    "subtitle": {
+      "quick": "クイック分析レポート - AI技術による専門的解釈",
+      "complete": "完全分析レポート - AI技術による専門的解釈"
+    },
+    "processing": {
+      "title": "AIがあなたの手相を分析中",
+      "subtitle": "お待ちください、専門的な手相分析レポートを生成しています",
+      "analyzing": "分析中...",
+      "description": "私たちのAIがあなたの手のひらの線、形状、特徴を分析しています。{type}分析は通常{time}かかります。",
+      "quick": "クイック",
+      "complete": "完全",
+      "quickTime": "60秒",
+      "completeTime": "3-5分"
+    },
+    "auth": {
+      "createAccount": "分析結果を保存するためアカウントを作成",
+      "loginBenefit": "ログイン後、分析履歴を保存していつでも手相レポートを確認できます。",
+      "loginButton": "今すぐログイン",
+      "saveResults": "分析結果を保存するためログイン",
+      "saveDescription": "無料アカウントを作成して手相分析レポートを永続的に保存"
+    },
+    "upgrade": {
+      "title": "完全分析レポートのロック解除",
+      "description": "より深い分析とパーソナライズされたアドバイスのため完全レポートにアップグレード",
+      "features": {
+        "title": "完全レポートに含まれるもの：",
+        "personality": "詳細な性格特性分析",
+        "health": "深い健康洞察",
+        "career": "キャリア発展アドバイス",
+        "love": "恋愛運勢解釈"
+      },
+      "extras": {
+        "title": "追加機能：",
+        "pdf": "PDFレポートダウンロード",
+        "lifetime": "生涯アクセス権",
+        "updates": "定期的な解釈更新",
+        "guidance": "専門的なガイダンスアドバイス"
+      },
+      "price": "$19.9",
+      "priceDescription": "一回限りの支払い、生涯アクセス",
+      "upgradeButton": "今すぐアップグレード",
+      "processing": "処理中..."
+    },
+    "actions": {
+      "analyzeAgain": "再度分析",
+      "viewHistory": "履歴を表示"
+    },
+    "errors": {
+      "notFound": "セッションが見つかりません",
+      "notFoundDescription": "この分析セッションを見つけることができません。新しい分析を開始してください。",
+      "failed": "分析に失敗しました",
+      "failedDescription": "申し訳ございませんが、分析中にエラーが発生しました。再度お試しください。",
+      "loadFailed": "分析結果の取得に失敗しました"
+    }
+  },
   "common": {
-    "loading": "読み込み中...",
+    "loading": "分析結果を読み込み中...",
+    "restartAnalysis": "新しい分析を開始",
+    "success": "写真アップロード成功！分析を開始中...",
+    "uploadFailed": "アップロードに失敗しました。再度お試しください",
+    "minOneHand": "少なくとも片手の写真をアップロードしてください",
     "error": "エラーが発生しました",
     "try_again": "再試行",
     "back": "戻る",

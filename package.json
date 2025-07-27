@@ -1,8 +1,8 @@
 {
-  "name": "rolitt-official",
+  "name": "deepknows-official",
   "version": "1.0.0",
   "private": true,
-  "author": "Rolitt",
+  "author": "Deepknows",
   "workspaces": [
     "packages/*"
   ],

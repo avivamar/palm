@@ -10,7 +10,10 @@ import { createServerClient } from '@/libs/supabase/config';
 import { getSafeDB } from '@/libs/DB';
 import { palmAnalysisSessionsSchema } from '@/models/Schema';
 import { eq } from 'drizzle-orm';
-import { createStripeSession } from '@rolitt/payments';
+import Stripe from 'stripe';
+
+// 使用 Node.js runtime 以支持 Supabase
+export const runtime = 'nodejs';
 
 // Request validation schema
 const UpgradeRequestSchema = z.object({
@@ -87,12 +90,25 @@ export async function POST(request: NextRequest) {
     }
 
     // 8. 创建支付会话
-    const paymentData = {
-      amount: 999, // $9.99 in cents
-      currency: 'usd',
-      productName: 'Palm Reading - Complete Analysis Upgrade',
-      productDescription: `Upgrade session ${validatedData.sessionId} from quick to complete analysis`,
-      customerEmail: user.email || '',
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      apiVersion: '2025-06-30.basil',
+    });
+
+    const stripeSession = await stripe.checkout.sessions.create({
+      mode: 'payment',
+      payment_method_types: ['card'],
+      line_items: [{
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'Palm Reading - Complete Analysis Upgrade',
+            description: `Upgrade your palm reading from quick to complete analysis`,
+          },
+          unit_amount: 1990, // $19.90 in cents
+        },
+        quantity: 1,
+      }],
+      customer_email: user.email || '',
       metadata: {
         type: 'palm_upgrade',
         sessionId: validatedData.sessionId,
@@ -100,14 +116,12 @@ export async function POST(request: NextRequest) {
         upgradeType: validatedData.upgradeType,
         originalAnalysisType: validatedData.currentAnalysisType,
       },
-      successUrl: `${request.nextUrl.origin}/palm/results/${validatedData.sessionId}?upgraded=true`,
-      cancelUrl: `${request.nextUrl.origin}/palm/results/${validatedData.sessionId}?upgrade_cancelled=true`,
-    };
+      success_url: `${request.nextUrl.origin}/palm/results/${validatedData.sessionId}?upgraded=true`,
+      cancel_url: `${request.nextUrl.origin}/palm/results/${validatedData.sessionId}?upgrade_cancelled=true`,
+    });
 
-    const stripeSession = await createStripeSession(paymentData);
-
-    if (!stripeSession.success || !stripeSession.url) {
-      throw new Error(stripeSession.error || 'Failed to create payment session');
+    if (!stripeSession.url) {
+      throw new Error('Failed to create payment session');
     }
 
     // 9. 记录升级意图（可选 - 用于分析）
@@ -117,7 +131,7 @@ export async function POST(request: NextRequest) {
         metadata: JSON.stringify({
           ...JSON.parse(analysisSession.metadata || '{}'),
           upgradeInitiated: new Date().toISOString(),
-          stripeSessionId: stripeSession.sessionId,
+          stripeSessionId: stripeSession.id,
         }),
       })
       .where(eq(palmAnalysisSessionsSchema.id, parseInt(validatedData.sessionId)));
@@ -125,7 +139,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       paymentUrl: stripeSession.url,
-      sessionId: stripeSession.sessionId,
+      sessionId: stripeSession.id,
       message: 'Payment session created successfully',
     });
 

@@ -9,15 +9,19 @@
     "twitter_description": "Descubre tu destino con análisis de palma IA de vanguardia. Sube tu palma y desbloquea insights personalizados."
   },
   "hero": {
-    "title": "Análisis de Quiromancia IA, Desbloquea tu Futuro",
-    "subtitle": "Donde la IA avanzada se encuentra con la sabiduría ancestral de la quiromancia",
-    "description": "Sube una foto de tu palma, ingresa tu fecha de nacimiento y descubre insights personalizados sobre tu vida amorosa, trayectoria profesional, salud y rasgos únicos de personalidad.",
-    "upload_step": "Subir Foto de Palma",
-    "birthday_step": "Ingresar Fecha de Nacimiento",
-    "analysis_step": "Análisis IA",
-    "report_step": "Obtener Reporte",
-    "cta_button": "Comenzar Lectura Gratuita",
-    "trust_badge": "Confiado por 50,000+ usuarios globalmente"
+    "badge": "Quiromancia Impulsada por IA",
+    "title": "¿Y si tu palma pudiera revelar tu {highlight}, energía y destino?",
+    "highlight": "personalidad",
+    "subtitle": {
+      "upload": "Sube tu palma.",
+      "birth": "Ingresa tu fecha de nacimiento.",
+      "report": "Obtén un reporte personalizado GRATUITO impulsado por IA, astrología y quiromancia."
+    },
+    "cta": "Comenzar Mi Lectura Gratuita",
+    "privacy": "No requiere registro · Privado y Seguro",
+    "analyzing": "IA analizando patrones de palma...",
+    "start_analysis": "Comienza Tu Análisis de Palma Gratuito",
+    "analysis_subtitle": "Sube fotos de tu palma para obtener un reporte de análisis IA personalizado"
   },
   "how_it_works": {
     "title": "Cómo Funciona Palm AI",

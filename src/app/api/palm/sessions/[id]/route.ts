@@ -10,6 +10,9 @@ import { getSafeDB } from '@/libs/DB';
 import { palmAnalysisSessionsSchema, userImagesSchema } from '@/models/Schema';
 import { eq } from 'drizzle-orm';
 
+// 使用 Node.js runtime 以支持 Supabase
+export const runtime = 'nodejs';
+
 export async function GET(
   request: NextRequest,
   { params }: { params: { id: string } }

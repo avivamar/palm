@@ -13,9 +13,27 @@ export class R2Client {
 
   constructor(config: ImageUploadConfig) {
     this.config = config;
+    // Clean the endpoint by removing bucket name if it exists at the end
+    let cleanEndpoint = config.endpoint;
+    if (cleanEndpoint.endsWith(`/${config.bucket}`)) {
+      cleanEndpoint = cleanEndpoint.replace(`/${config.bucket}`, '');
+    }
+    
+    // Ensure endpoint starts with https://
+    if (!cleanEndpoint.startsWith('http')) {
+      cleanEndpoint = `https://${cleanEndpoint}`;
+    }
+    
+    console.log('R2 Client Config:', {
+      region: config.region,
+      originalEndpoint: config.endpoint,
+      cleanEndpoint,
+      bucket: config.bucket,
+    });
+    
     this.client = new S3Client({
       region: config.region,
-      endpoint: config.endpoint,
+      endpoint: cleanEndpoint,
       credentials: {
         accessKeyId: config.accessKeyId,
         secretAccessKey: config.secretAccessKey,
@@ -66,7 +84,8 @@ export class R2Client {
    * 构建公共访问URL
    */
   getPublicUrl(key: string): string {
-    return `${this.config.endpoint}/${this.config.bucket}/${key}`;
+    // Use the standard R2 public URL format
+    return `https://${this.config.bucket}.r2.dev/${key}`;
   }
 }
 
@@ -74,6 +93,14 @@ export class R2Client {
  * 创建R2客户端实例
  */
 export function createR2Client(): R2Client {
+  console.log('Creating R2 Client with environment variables:', {
+    bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME ? 'SET' : 'MISSING',
+    region: process.env.CLOUDFLARE_R2_REGION ? 'SET' : 'MISSING',
+    accessKey: process.env.CLOUDFLARE_R2_ACCESS_KEY_ID ? 'SET' : 'MISSING',
+    secretKey: process.env.CLOUDFLARE_R2_SECRET_ACCESS_KEY ? 'SET' : 'MISSING',
+    endpoint: process.env.CLOUDFLARE_R2_ENDPOINT ? 'SET' : 'MISSING',
+  });
+
   const config: ImageUploadConfig = {
     bucket: process.env.CLOUDFLARE_R2_BUCKET_NAME || '',
     region: process.env.CLOUDFLARE_R2_REGION || 'auto',
@@ -92,11 +119,25 @@ export function createR2Client(): R2Client {
     'CLOUDFLARE_R2_ENDPOINT',
   ];
 
+  const missingVars = [];
   for (const envVar of requiredEnvVars) {
     if (!process.env[envVar]) {
-      throw new Error(`Missing required environment variable: ${envVar}`);
+      missingVars.push(envVar);
     }
   }
+
+  if (missingVars.length > 0) {
+    const errorMsg = `Missing required environment variables: ${missingVars.join(', ')}`;
+    console.error('R2 Client creation failed:', errorMsg);
+    throw new Error(errorMsg);
+  }
+
+  console.log('R2 Client configuration:', {
+    bucket: config.bucket,
+    region: config.region,
+    endpoint: config.endpoint,
+    endpointHasBucket: config.endpoint.includes(config.bucket),
+  });
 
   return new R2Client(config);
 }

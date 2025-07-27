@@ -1,0 +1,736 @@
+/**
+ * Palm AI 手相分析系统 - 全局样式
+ * 用于统一控制 Palm 相关组件的 UI 样式
+ */
+
+/* ==========================================================================
+   颜色变量定义
+   ========================================================================== */
+:root {
+  /* Palm 主题色 */
+  --palm-primary: #667eea;
+  --palm-primary-dark: #5a6fd8;
+  --palm-primary-light: #7c94ed;
+  
+  /* Palm 渐变色 */
+  --palm-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --palm-gradient-light: linear-gradient(135deg, #7c94ed 0%, #8e5bb8 100%);
+  
+  /* Palm 辅助色 */
+  --palm-purple: #764ba2;
+  --palm-blue: #667eea;
+  --palm-gold: #ffd700;
+  --palm-pink: #ff6b9d;
+  
+  /* 状态色 */
+  --palm-success: #10b981;
+  --palm-warning: #f59e0b;
+  --palm-error: #ef4444;
+  --palm-info: #3b82f6;
+  
+  /* 灰度色 */
+  --palm-gray-50: #f9fafb;
+  --palm-gray-100: #f3f4f6;
+  --palm-gray-200: #e5e7eb;
+  --palm-gray-300: #d1d5db;
+  --palm-gray-400: #9ca3af;
+  --palm-gray-500: #6b7280;
+  --palm-gray-600: #4b5563;
+  --palm-gray-700: #374151;
+  --palm-gray-800: #1f2937;
+  --palm-gray-900: #111827;
+  
+  /* 阴影 */
+  --palm-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --palm-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --palm-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --palm-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --palm-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* 动画时长 */
+  --palm-duration-fast: 150ms;
+  --palm-duration-normal: 300ms;
+  --palm-duration-slow: 500ms;
+}
+
+/* 暗色模式 */
+[data-theme="dark"], .dark {
+  --palm-gray-50: #1f2937;
+  --palm-gray-100: #374151;
+  --palm-gray-200: #4b5563;
+  --palm-gray-300: #6b7280;
+  --palm-gray-400: #9ca3af;
+  --palm-gray-500: #d1d5db;
+  --palm-gray-600: #e5e7eb;
+  --palm-gray-700: #f3f4f6;
+  --palm-gray-800: #f9fafb;
+  --palm-gray-900: #ffffff;
+}
+
+/* ==========================================================================
+   基础布局类
+   ========================================================================== */
+
+/* 容器 */
+.palm-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.palm-container-sm {
+  max-width: 640px;
+}
+
+.palm-container-md {
+  max-width: 768px;
+}
+
+.palm-container-lg {
+  max-width: 1024px;
+}
+
+.palm-container-xl {
+  max-width: 1280px;
+}
+
+/* 背景渐变 */
+.palm-bg-gradient {
+  background: var(--palm-gradient);
+}
+
+.palm-bg-gradient-light {
+  background: var(--palm-gradient-light);
+}
+
+.palm-bg-gradient-radial {
+  background: radial-gradient(circle at center, var(--palm-primary) 0%, var(--palm-purple) 100%);
+}
+
+/* 页面背景 */
+.palm-page-bg {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  min-height: 100vh;
+}
+
+.palm-page-bg-dark {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+/* ==========================================================================
+   卡片组件
+   ========================================================================== */
+
+.palm-card {
+  background: white;
+  border-radius: 0.75rem;
+  box-shadow: var(--palm-shadow);
+  border: 1px solid var(--palm-gray-200);
+  transition: all var(--palm-duration-normal) ease;
+}
+
+.palm-card:hover {
+  box-shadow: var(--palm-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.palm-card-dark {
+  background: var(--palm-gray-800);
+  border-color: var(--palm-gray-700);
+}
+
+.palm-card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--palm-gray-200);
+}
+
+.palm-card-content {
+  padding: 1.5rem;
+}
+
+.palm-card-footer {
+  padding: 1.5rem;
+  border-top: 1px solid var(--palm-gray-200);
+}
+
+/* ==========================================================================
+   按钮组件
+   ========================================================================== */
+
+.palm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all var(--palm-duration-fast) ease;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  white-space: nowrap;
+}
+
+.palm-btn:focus-visible {
+  outline: 2px solid var(--palm-primary);
+  outline-offset: 2px;
+}
+
+.palm-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 按钮尺寸 */
+.palm-btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.palm-btn-md {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.palm-btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+/* 按钮样式 */
+.palm-btn-primary {
+  background: var(--palm-gradient);
+  color: white;
+}
+
+.palm-btn-primary:hover {
+  background: var(--palm-gradient-light);
+  transform: translateY(-1px);
+  box-shadow: var(--palm-shadow-lg);
+}
+
+.palm-btn-secondary {
+  background: transparent;
+  color: var(--palm-primary);
+  border: 2px solid var(--palm-primary);
+}
+
+.palm-btn-secondary:hover {
+  background: var(--palm-primary);
+  color: white;
+}
+
+.palm-btn-outline {
+  background: transparent;
+  color: var(--palm-gray-700);
+  border: 1px solid var(--palm-gray-300);
+}
+
+.palm-btn-outline:hover {
+  background: var(--palm-gray-50);
+  border-color: var(--palm-gray-400);
+}
+
+.palm-btn-ghost {
+  background: transparent;
+  color: var(--palm-gray-600);
+}
+
+.palm-btn-ghost:hover {
+  background: var(--palm-gray-100);
+  color: var(--palm-gray-800);
+}
+
+/* ==========================================================================
+   输入组件
+   ========================================================================== */
+
+.palm-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--palm-gray-300);
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all var(--palm-duration-fast) ease;
+  background: white;
+}
+
+.palm-input:focus {
+  outline: none;
+  border-color: var(--palm-primary);
+  box-shadow: 0 0 0 3px rgb(102 126 234 / 0.1);
+}
+
+.palm-input::placeholder {
+  color: var(--palm-gray-400);
+}
+
+.palm-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.palm-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+/* ==========================================================================
+   上传区域
+   ========================================================================== */
+
+.palm-upload-area {
+  border: 2px dashed var(--palm-gray-300);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  text-align: center;
+  transition: all var(--palm-duration-normal) ease;
+  cursor: pointer;
+  background: var(--palm-gray-50);
+}
+
+.palm-upload-area:hover {
+  border-color: var(--palm-primary);
+  background: rgb(102 126 234 / 0.05);
+}
+
+.palm-upload-area.drag-active {
+  border-color: var(--palm-primary);
+  background: rgb(102 126 234 / 0.1);
+}
+
+.palm-upload-preview {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: var(--palm-gray-100);
+}
+
+.palm-upload-remove {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgb(239 68 68 / 0.9);
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all var(--palm-duration-fast) ease;
+}
+
+.palm-upload-remove:hover {
+  background: rgb(239 68 68);
+}
+
+/* ==========================================================================
+   进度指示器
+   ========================================================================== */
+
+.palm-progress {
+  width: 100%;
+  height: 0.5rem;
+  background: var(--palm-gray-200);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.palm-progress-bar {
+  height: 100%;
+  background: var(--palm-gradient);
+  border-radius: 9999px;
+  transition: width var(--palm-duration-normal) ease;
+}
+
+.palm-progress-ring {
+  transform: rotate(-90deg);
+}
+
+.palm-progress-ring circle {
+  stroke-linecap: round;
+  transition: stroke-dashoffset var(--palm-duration-normal) ease;
+}
+
+/* ==========================================================================
+   步骤指示器
+   ========================================================================== */
+
+.palm-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.palm-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.palm-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--palm-gray-300);
+  z-index: -1;
+}
+
+.palm-step-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--palm-gray-200);
+  color: var(--palm-gray-500);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  transition: all var(--palm-duration-normal) ease;
+}
+
+.palm-step.active .palm-step-icon {
+  background: var(--palm-gradient);
+  color: white;
+}
+
+.palm-step.completed .palm-step-icon {
+  background: var(--palm-success);
+  color: white;
+}
+
+.palm-step-label {
+  font-size: 0.875rem;
+  color: var(--palm-gray-600);
+  text-align: center;
+}
+
+.palm-step.active .palm-step-label {
+  color: var(--palm-primary);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   通知提示
+   ========================================================================== */
+
+.palm-alert {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.palm-alert-info {
+  background: rgb(59 130 246 / 0.1);
+  border-color: rgb(59 130 246 / 0.2);
+  color: #1e40af;
+}
+
+.palm-alert-success {
+  background: rgb(16 185 129 / 0.1);
+  border-color: rgb(16 185 129 / 0.2);
+  color: #047857;
+}
+
+.palm-alert-warning {
+  background: rgb(245 158 11 / 0.1);
+  border-color: rgb(245 158 11 / 0.2);
+  color: #92400e;
+}
+
+.palm-alert-error {
+  background: rgb(239 68 68 / 0.1);
+  border-color: rgb(239 68 68 / 0.2);
+  color: #dc2626;
+}
+
+.palm-alert-icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.125rem;
+}
+
+/* ==========================================================================
+   结果展示
+   ========================================================================== */
+
+.palm-result-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--palm-gray-200);
+  margin-bottom: 1.5rem;
+}
+
+.palm-result-tab {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: transparent;
+  color: var(--palm-gray-600);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all var(--palm-duration-fast) ease;
+}
+
+.palm-result-tab:hover {
+  color: var(--palm-primary);
+}
+
+.palm-result-tab.active {
+  color: var(--palm-primary);
+  border-bottom-color: var(--palm-primary);
+  font-weight: 500;
+}
+
+.palm-result-section {
+  margin-bottom: 2rem;
+}
+
+.palm-result-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--palm-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--palm-primary);
+}
+
+.palm-result-section-icon {
+  width: 2rem;
+  height: 2rem;
+  background: var(--palm-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.25rem;
+}
+
+.palm-result-summary {
+  background: linear-gradient(135deg, var(--palm-gray-50) 0%, #e2e8f0 100%);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--palm-primary);
+}
+
+.palm-result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.palm-result-item {
+  background: white;
+  border: 1px solid var(--palm-gray-200);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: var(--palm-shadow-sm);
+}
+
+.palm-result-item h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+  color: var(--palm-primary);
+}
+
+.palm-result-list {
+  list-style: none;
+  padding: 0;
+}
+
+.palm-result-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--palm-gray-100);
+  position: relative;
+  padding-left: 1.25rem;
+}
+
+.palm-result-list li:last-child {
+  border-bottom: none;
+}
+
+.palm-result-list li::before {
+  content: '●';
+  color: var(--palm-primary);
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+}
+
+/* ==========================================================================
+   活力指数
+   ========================================================================== */
+
+.palm-vitality-score {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.palm-vitality-number {
+  font-size: 3rem;
+  font-weight: bold;
+  background: var(--palm-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: block;
+}
+
+.palm-vitality-label {
+  font-size: 1.125rem;
+  color: var(--palm-gray-600);
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   动画效果
+   ========================================================================== */
+
+@keyframes palmFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes palmSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes palmPulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes palmSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.palm-fade-in {
+  animation: palmFadeIn var(--palm-duration-normal) ease;
+}
+
+.palm-slide-in {
+  animation: palmSlideIn var(--palm-duration-normal) ease;
+}
+
+.palm-pulse {
+  animation: palmPulse 2s infinite;
+}
+
+.palm-spin {
+  animation: palmSpin 1s linear infinite;
+}
+
+/* ==========================================================================
+   响应式设计
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .palm-container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  .palm-card-header,
+  .palm-card-content,
+  .palm-card-footer {
+    padding: 1rem;
+  }
+  
+  .palm-result-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .palm-steps {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .palm-step:not(:last-child)::after {
+    display: none;
+  }
+  
+  .palm-result-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .palm-result-tab {
+    flex-shrink: 0;
+  }
+}
+
+/* ==========================================================================
+   打印样式
+   ========================================================================== */
+
+@media print {
+  .palm-btn,
+  .palm-upload-area,
+  .palm-upload-remove {
+    display: none !important;
+  }
+  
+  .palm-card {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .palm-page-bg {
+    background: white !important;
+  }
+  
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
