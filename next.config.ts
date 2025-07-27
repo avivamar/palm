@@ -1,14 +1,22 @@
 import type { NextConfig } from 'next';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
-import bundleAnalyzer from '@next/bundle-analyzer';
 import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/libs/i18n.ts');
 
-const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-});
+// Bundle analyzer 只在需要时加载
+let withBundleAnalyzer = (config: NextConfig) => config;
+if (process.env.ANALYZE === 'true') {
+  try {
+    const bundleAnalyzer = require('@next/bundle-analyzer');
+    withBundleAnalyzer = bundleAnalyzer({
+      enabled: true,
+    });
+  } catch (e) {
+    console.warn('Bundle analyzer not available in production build');
+  }
+}
 
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
