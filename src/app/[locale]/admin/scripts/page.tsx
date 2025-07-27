@@ -5,8 +5,8 @@
 
 import { getTranslations } from 'next-intl/server';
 
-import type { CoreScriptsData, ShopifyStatus, SystemHealthData } from '../../../../../packages/admin/src';
-import { Scripts } from '../../../../../packages/admin/src';
+import type { CoreScriptsData, ShopifyStatus, SystemHealthData } from '@rolitt/admin';
+import { Scripts } from '@rolitt/admin';
 
 import { fetchCoreScriptsStatus, fetchShopifyStatus, fetchSystemHealth } from '@/libs/admin/health-api';
 

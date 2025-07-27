@@ -5,8 +5,8 @@
 
 import { getTranslations } from 'next-intl/server';
 
-import type { User } from '../../../../../packages/admin/src';
-import { Users } from '../../../../../packages/admin/src';
+import type { User } from '@rolitt/admin';
+import { Users } from '@rolitt/admin';
 
 import { fetchUsers } from '@/libs/admin/users-api';
 

@@ -5,9 +5,9 @@
 
 import { getTranslations } from 'next-intl/server';
 
-import { getPaymentHealthStatus, getPaymentMetrics } from '@/libs/monitoring/payment-monitor';
+import { Monitoring } from '@rolitt/admin';
 
-import { Monitoring } from '../../../../../packages/admin/src';
+import { getPaymentHealthStatus, getPaymentMetrics } from '@/libs/monitoring/payment-monitor';
 
 // Force dynamic rendering for admin monitoring page
 export const dynamic = 'force-dynamic';
