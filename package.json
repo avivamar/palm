@@ -53,6 +53,7 @@
     "serve-storybook": "run-s storybook:*",
     "test-storybook:ci": "start-server-and-test serve-storybook http://127.0.0.1:6006 test-storybook",
     "prepare": "node -e \"console.log('Prepare script executed')\"",
+    "postinstall": "npm list @rolitt/admin || true",
     "setup": "npm run prisma:generate",
     "dev:shadcn-ui": "npx shadcn-ui@latest add",
     "preview": "CLOUDFLARE_BUILD=true npx @opennextjs/cloudflare build && ./scripts/optimize-cloudflare-build.sh && wrangler pages dev .open-next/static --compatibility-date=2024-01-01 --port=3000",
