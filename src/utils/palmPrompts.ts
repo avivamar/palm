@@ -35,7 +35,7 @@ Please analyze the following aspects with a warm, encouraging, and professional 
 4. **Fate Line**: If present, analyze career development potential
 5. **Hand Shape**: Palm shape, finger proportions - personality indicators
 
-Output in JSON format with cultural context appropriate for Western audiences:
+IMPORTANT: Respond ONLY with valid JSON. Do not include any explanatory text before or after the JSON. Start directly with { and end with }. Use this exact JSON format with cultural context appropriate for Western audiences:
 
 {
   "personality_analysis": {
@@ -117,7 +117,7 @@ function getJapanesePrompt(data: PalmPromptData): string {
 4. **運命線**: 存在する場合、キャリア発展の可能性
 5. **手の形**: 手のひらの形、指の比率 - 性格的特徴
 
-日本の文化的背景に配慮したJSON形式で出力してください：
+重要：有効なJSONのみで応答してください。JSONの前後に説明文を含めないでください。直接{で始まり}で終わる形式で、以下の日本の文化的背景に配慮したJSON形式で出力してください：
 
 {
   "personality_analysis": {
@@ -199,7 +199,7 @@ Analiza los siguientes aspectos con un tono cálido, alentador y profesional:
 4. **Línea del Destino**: Si está presente, analiza el potencial de desarrollo profesional
 5. **Forma de la Mano**: Forma de la palma, proporciones de los dedos
 
-Responde en formato JSON con contexto cultural apropiado para audiencias latinas:
+IMPORTANTE: Responde ÚNICAMENTE con JSON válido. No incluyas texto explicativo antes o después del JSON. Comienza directamente con { y termina con }. Usa este formato JSON exacto con contexto cultural apropiado para audiencias latinas:
 
 {
   "personality_analysis": {
@@ -281,7 +281,7 @@ function getChinesePrompt(data: PalmPromptData): string {
 4. **事業線**：如存在，分析其對事業發展的影響
 5. **手型特徵**：手掌形狀、手指長度比例 - 反映性格特點
 
-請用符合華人文化背景的JSON格式輸出：
+重要：請僅以有效的JSON格式回應。請勿在JSON前後包含任何說明文字。直接以{開始並以}結束。請使用以下符合華人文化背景的JSON格式：
 
 {
   "personality_analysis": {
