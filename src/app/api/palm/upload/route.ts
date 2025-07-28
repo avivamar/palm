@@ -13,7 +13,6 @@ import { palmAnalysisSessionsSchema } from '@/models/Schema';
 import sharp from 'sharp';
 import { eq } from 'drizzle-orm';
 import { createR2Client } from '@rolitt/image-upload';
-import { nanoid } from 'nanoid';
 
 // 使用 Node.js runtime 以支持 Supabase
 export const runtime = 'nodejs';

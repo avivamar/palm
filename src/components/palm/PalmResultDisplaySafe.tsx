@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,11 +16,8 @@ import {
   Activity,
   DollarSign,
   Star,
-  Lock,
-  Clock,
   TrendingUp
 } from "lucide-react";
-import { toast } from "sonner";
 
 interface SafePalmResultProps {
   result: any; // 完全宽松的类型，内部安全处理
@@ -29,10 +25,6 @@ interface SafePalmResultProps {
 }
 
 export default function PalmResultDisplaySafe({ result, analysisType }: SafePalmResultProps) {
-  const [isSharing, setIsSharing] = useState(false);
-  const [isDownloading, setIsDownloading] = useState(false);
-  const [isUpgrading, setIsUpgrading] = useState(false);
-
   // 完全安全的数据提取
   const safeGet = (obj: any, path: string, defaultValue: any = '') => {
     try {
@@ -44,7 +36,6 @@ export default function PalmResultDisplaySafe({ result, analysisType }: SafePalm
 
   // 安全获取数据
   const report = result?.report || {};
-  const conversionHints = result?.conversionHints || {};
   const isQuickReport = analysisType === 'quick';
 
   // 如果没有基本数据，显示加载状态

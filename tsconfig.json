@@ -123,6 +123,7 @@
     "**/test-*.ts",
     "./Next-js-Boilerplate-main/**/*",
     "./vercel-commerce-reference/**/*",
+    "./packages/*/dist/**/*",
     "drizzle.config.ts",
     "commitlint.config.ts",
     "checkly.config.ts",

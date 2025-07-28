@@ -12,7 +12,7 @@ import { palmAnalysisSessionsSchema } from '@/models/Schema';
 import { eq } from 'drizzle-orm';
 // 临时移除AI核心包导入，等待修复
 // import { PromptLoader } from '@rolitt/ai-core';
-import type { UserInfo, ImageData } from '@rolitt/palm';
+import type { UserInfo } from '@rolitt/palm';
 import { getPalmAnalysisPrompt } from '@/utils/palmPrompts';
 
 // 使用 Node.js runtime 以支持 Supabase
@@ -215,13 +215,12 @@ const AnalysisRequestSchema = z.object({
 export async function POST(request: NextRequest) {
   try {
     // 0. 从请求中获取语言环境
-    const url = new URL(request.url);
     const referer = request.headers.get('referer') || '';
     
     // 从 referer 中提取语言路径 (/en/, /ja/, /es/, /zh-HK/)
     let locale = 'en'; // 默认英语
     const localeMatch = referer.match(/\/([a-z]{2}(?:-[A-Z]{2})?)\//);
-    if (localeMatch) {
+    if (localeMatch && localeMatch[1]) {
       locale = localeMatch[1];
     }
     
@@ -310,39 +309,12 @@ export async function POST(request: NextRequest) {
       language: 'en', // 默认值，实际项目中从用户偏好获取
     };
 
-    // 8. 获取真实图像数据
-    let imageData: ImageData | null = null;
-    
-    // 从左手或右手图片URL获取图像数据
+    // 8. 获取图像URL用于OpenAI分析
     const imageUrl = analysisSession.leftHandImageUrl || analysisSession.rightHandImageUrl;
     if (!imageUrl) {
       return NextResponse.json(
         { error: 'No image found for analysis' },
         { status: 400 }
-      );
-    }
-
-    try {
-      // 下载图像
-      const imageResponse = await fetch(imageUrl);
-      if (!imageResponse.ok) {
-        throw new Error(`Failed to fetch image: ${imageResponse.status}`);
-      }
-      
-      const buffer = Buffer.from(await imageResponse.arrayBuffer());
-      
-      imageData = {
-        buffer,
-        mimeType: 'image/jpeg',
-        size: buffer.length,
-        width: 800, // 默认处理后的尺寸
-        height: 800,
-      };
-    } catch (error) {
-      console.error('Failed to download image:', error);
-      return NextResponse.json(
-        { error: 'Failed to download image for analysis' },
-        { status: 500 }
       );
     }
 
@@ -559,7 +531,8 @@ export async function POST(request: NextRequest) {
             id: `analysis_${Date.now()}`,
             createdAt: new Date().toISOString(),
             language: locale, // 使用检测到的语言
-            processingTime: Date.now() - startTime
+            processingTime: Date.now() - startTime,
+            userId: userId
           }
         },
         conversionHints: {
