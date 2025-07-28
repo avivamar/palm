@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Loader2, X, Eye, Brain, FileText, Sparkles } from "lucide-react";
+import LottieAnimation from "@/components/ui/LottieAnimation";
 
 interface AnalysisSession {
   sessionId: string;
@@ -155,13 +156,27 @@ export function PalmProgressIndicator({ session, onCancel }: PalmProgressIndicat
       </CardHeader>
 
       <CardContent className="space-y-6">
-        {/* 主要进度条 */}
-        <div className="space-y-2">
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Overall Progress</span>
-            <span className="font-medium">{Math.round(progress)}%</span>
+        {/* Lottie动画和进度条 */}
+        <div className="flex flex-col items-center space-y-4">
+          {/* 动画区域 */}
+          <div className="w-24 h-24">
+            <LottieAnimation
+              src="/logoloading.lottie"
+              fallbackVideoSrc="/logoloading.webm"
+              loop={true}
+              autoplay={true}
+              className="w-full h-full"
+            />
           </div>
-          <Progress value={progress} className="h-2" />
+          
+          {/* 进度条 */}
+          <div className="w-full space-y-2">
+            <div className="flex justify-between text-sm">
+              <span className="text-muted-foreground">分析进度</span>
+              <span className="font-medium">{Math.round(progress)}%</span>
+            </div>
+            <Progress value={progress} className="h-2" />
+          </div>
         </div>
 
         {/* 时间信息 */}

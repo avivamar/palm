@@ -6,6 +6,7 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
+import { v4 as uuidv4 } from 'uuid';
 import { createServerClient } from '@/libs/supabase/config';
 import { getSafeDB } from '@/libs/DB';
 import { palmAnalysisSessionsSchema } from '@/models/Schema';
@@ -171,10 +172,10 @@ export async function POST(request: NextRequest) {
     const { data: { session } } = await supabase.auth.getSession();
     const user = session?.user; // 用户可能未登录
 
-    // 生成会话ID
-    const sessionId = nanoid();
+    // 2. 生成安全的会话ID (UUID)
+    const sessionId = uuidv4();
 
-    // 2. 解析 FormData
+    // 3. 解析 FormData
     const formData = await request.formData();
     const leftHandFile = formData.get('leftHandImage') as File | null;
     const rightHandFile = formData.get('rightHandImage') as File | null;
@@ -256,6 +257,7 @@ export async function POST(request: NextRequest) {
     const db = await getSafeDB();
     
     const sessionData = {
+      sessionId, // 使用之前生成的UUID会话ID
       userId: user?.id || null, // 用户ID可选
       status: 'pending' as const,
       analysisType: validatedData.analysisType,
@@ -293,7 +295,7 @@ export async function POST(request: NextRequest) {
         'Authorization': request.headers.get('Authorization') || '',
       },
       body: JSON.stringify({
-        sessionId: createdSession.id.toString(),
+        sessionId: createdSession.sessionId, // 使用UUID而不是数字ID
         analysisType: validatedData.analysisType,
       }),
     }).catch(error => {
@@ -303,7 +305,7 @@ export async function POST(request: NextRequest) {
     // 7. 返回会话信息
     return NextResponse.json({
       success: true,
-      sessionId: createdSession.id,
+      sessionId: createdSession.sessionId, // 返回UUID而不是数字ID
       status: createdSession.status,
       analysisType: createdSession.analysisType,
       hasLeftHand: !!processedImages.leftHand,

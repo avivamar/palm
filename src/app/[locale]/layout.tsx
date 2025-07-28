@@ -100,23 +100,66 @@ export const metadata: Metadata = {
 };
 
 async function getLocalMessages(locale: string) {
-  try {
-    // 加载拆分的多语言文件
-    return {
-      ...(await import(`@/locales/${locale}/business.json`)).default,
-      dashboard: (await import(`@/locales/${locale}/dashboard.json`)).default,
-      ...(await import(`@/locales/${locale}/commerce.json`)).default,
-      ...(await import(`@/locales/${locale}/core.json`)).default,
-      ...(await import(`@/locales/${locale}/legal.json`)).default,
-      ...(await import(`@/locales/${locale}/pages.json`)).default,
-      ...(await import(`@/locales/${locale}/user.json`)).default,
-      admin: (await import(`@/locales/${locale}/admin.json`)).default,
-      ...(await import(`@/locales/${locale}/unauthorized.json`)).default,
-      ...(await import(`@/locales/${locale}/validation.json`)).default,
-      palm: (await import(`@/locales/${locale}/palm.json`)).default,
-    };
-  } catch {
-    notFound();
+  // 使用直接静态导入避免动态导入的 webpack 问题
+  switch (locale) {
+    case 'en':
+      return {
+        ...(await import('@/locales/en/business.json')).default,
+        dashboard: (await import('@/locales/en/dashboard.json')).default,
+        ...(await import('@/locales/en/commerce.json')).default,
+        ...(await import('@/locales/en/core.json')).default,
+        ...(await import('@/locales/en/legal.json')).default,
+        ...(await import('@/locales/en/pages.json')).default,
+        ...(await import('@/locales/en/user.json')).default,
+        admin: (await import('@/locales/en/admin.json')).default,
+        ...(await import('@/locales/en/unauthorized.json')).default,
+        ...(await import('@/locales/en/validation.json')).default,
+        palm: (await import('@/locales/en/palm.json')).default,
+      };
+    case 'es':
+      return {
+        ...(await import('@/locales/es/business.json')).default,
+        dashboard: (await import('@/locales/es/dashboard.json')).default,
+        ...(await import('@/locales/es/commerce.json')).default,
+        ...(await import('@/locales/es/core.json')).default,
+        ...(await import('@/locales/es/legal.json')).default,
+        ...(await import('@/locales/es/pages.json')).default,
+        ...(await import('@/locales/es/user.json')).default,
+        admin: (await import('@/locales/es/admin.json')).default,
+        ...(await import('@/locales/es/unauthorized.json')).default,
+        ...(await import('@/locales/es/validation.json')).default,
+        palm: (await import('@/locales/es/palm.json')).default,
+      };
+    case 'ja':
+      return {
+        ...(await import('@/locales/ja/business.json')).default,
+        dashboard: (await import('@/locales/ja/dashboard.json')).default,
+        ...(await import('@/locales/ja/commerce.json')).default,
+        ...(await import('@/locales/ja/core.json')).default,
+        ...(await import('@/locales/ja/legal.json')).default,
+        ...(await import('@/locales/ja/pages.json')).default,
+        ...(await import('@/locales/ja/user.json')).default,
+        admin: (await import('@/locales/ja/admin.json')).default,
+        ...(await import('@/locales/ja/unauthorized.json')).default,
+        ...(await import('@/locales/ja/validation.json')).default,
+        palm: (await import('@/locales/ja/palm.json')).default,
+      };
+    case 'zh-HK':
+      return {
+        ...(await import('@/locales/zh-HK/business.json')).default,
+        dashboard: (await import('@/locales/zh-HK/dashboard.json')).default,
+        ...(await import('@/locales/zh-HK/commerce.json')).default,
+        ...(await import('@/locales/zh-HK/core.json')).default,
+        ...(await import('@/locales/zh-HK/legal.json')).default,
+        ...(await import('@/locales/zh-HK/pages.json')).default,
+        ...(await import('@/locales/zh-HK/user.json')).default,
+        admin: (await import('@/locales/zh-HK/admin.json')).default,
+        ...(await import('@/locales/zh-HK/unauthorized.json')).default,
+        ...(await import('@/locales/zh-HK/validation.json')).default,
+        palm: (await import('@/locales/zh-HK/palm.json')).default,
+      };
+    default:
+      notFound();
   }
 }
 

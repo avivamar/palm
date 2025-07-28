@@ -37,7 +37,8 @@ export type PromptCategory
     | 'customer-service'
     | 'content'
     | 'marketing'
-    | 'support';
+    | 'support'
+    | 'palm';
 
 export type PromptStats = {
   totalPrompts: number;

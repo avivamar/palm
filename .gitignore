@@ -73,5 +73,6 @@ packages/admin/dist/
 packages/auth/dist/
 packages/referral/dist/
 packages/image-upload/dist/
+packages/palm/dist/
 packages/dist/
 packages/shopify/.env.example

@@ -84,7 +84,15 @@ export class R2Client {
    * 构建公共访问URL
    */
   getPublicUrl(key: string): string {
-    // Use the standard R2 public URL format
+    // Use custom public URL if provided, otherwise fallback to standard R2 format
+    const publicUrl = process.env.CLOUDFLARE_R2_PUBLIC_URL;
+    if (publicUrl) {
+      // Remove trailing slash from public URL if exists
+      const cleanPublicUrl = publicUrl.replace(/\/$/, '');
+      return `${cleanPublicUrl}/${key}`;
+    }
+    
+    // Fallback to standard R2 public URL format
     return `https://${this.config.bucket}.r2.dev/${key}`;
   }
 }

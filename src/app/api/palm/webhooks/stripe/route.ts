@@ -10,24 +10,7 @@ import Stripe from 'stripe';
 import { getSafeDB } from '@/libs/DB';
 import { palmAnalysisSessionsSchema } from '@/models/Schema';
 import { eq } from 'drizzle-orm';
-// 临时移除 palm 包导入，使用模拟实现
-// import { PalmEngine } from '@packages/palm';
-
-// 模拟 PalmEngine 类
-class PalmEngine {
-  reportGenerator = {
-    async generateFullReport(_quickReport: any, _userInfo: any, _sessionId: any) {
-      // 模拟完整分析结果
-      return {
-        personality: { summary: "Enhanced personality analysis", traits: [], strengths: [], challenges: [] },
-        health: { summary: "Enhanced health analysis", vitality: 0.9 },
-        career: { summary: "Enhanced career analysis", potential: [] },
-        relationship: { summary: "Enhanced relationship analysis", compatibility: [] },
-        fortune: { summary: "Enhanced fortune analysis", trends: [] }
-      };
-    }
-  };
-}
+import { createPalmEngine } from '@rolitt/palm';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-06-30.basil',
@@ -123,7 +106,12 @@ async function handleUpgradePayment(session: Stripe.Checkout.Session) {
     }
 
     // 4. 生成完整分析
-    const palmEngine = new PalmEngine();
+    const palmEngine = createPalmEngine({
+      aiServices: {
+        primaryProvider: process.env.PALM_AI_PRIMARY_PROVIDER as 'openai' | 'claude' | 'gemini' || 'openai',
+      }
+    });
+    
     const userInfo = {
       birthDate: analysisSession.birthDate ? new Date(analysisSession.birthDate) : new Date(),
       birthTime: analysisSession.birthTime || undefined,
@@ -132,11 +120,11 @@ async function handleUpgradePayment(session: Stripe.Checkout.Session) {
       language: 'en' as const,
     };
 
-    // 使用报告生成器从快速报告生成完整报告
-    const fullReport = await palmEngine.reportGenerator.generateFullReport(
+    // 使用真实的AI引擎生成完整报告
+    const fullReport = await palmEngine.analyzeComplete(
       quickAnalysisResult.report || quickAnalysisResult,
       userInfo,
-      sessionId
+      userId
     );
 
     // 5. 更新数据库记录

@@ -1,4 +1,4 @@
-import { AILogger, type Logger } from '@rolitt/ai-core';
+import { Logger } from '@rolitt/shared';
 import { PalmConfig } from '../config';
 import { 
   QuickReport, 
@@ -21,7 +21,7 @@ export class ConversionOptimizer {
   private logger: Logger;
 
   constructor(private config: PalmConfig, logger?: Logger) {
-    this.logger = logger || new AILogger();
+    this.logger = logger || new Logger('ConversionOptimizer');
   }
 
   /**
@@ -262,6 +262,8 @@ export class ConversionOptimizer {
    * 选择突出显示的维度
    */
   private selectHighlightedDimensions(quickReport: QuickReport): string[] {
+    const dimensions = [];
+    
     // 基于内容长度和质量选择最佳维度
     const dimensionScores = [
       { name: 'personality', score: quickReport.personality.summary.length },
@@ -316,9 +318,9 @@ export class ConversionOptimizer {
     
     let cumulative = 0;
     for (let i = 0; i < variants.length; i++) {
-      cumulative += (trafficSplit[i] || 0) * 100;
+      cumulative += trafficSplit[i] * 100;
       if (bucket < cumulative) {
-        return this.getStrategyForVariant(variants[i] || 'control');
+        return this.getStrategyForVariant(variants[i]);
       }
     }
     

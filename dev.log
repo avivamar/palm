@@ -1,16 +1,1034 @@
 
-> rolitt-official@1.0.0 dev
+> deepknows-official@1.0.0 dev
 > npx dotenv-cli -e .env -- next dev
 
-   ▲ Next.js 15.3.5
+ ⚠ Warning: Found multiple lockfiles. Selecting /Users/aviva/pnpm-lock.yaml.
+   Consider removing the lockfiles at:
+   * /Users/aviva/github/avivamar/palm/package-lock.json
+
+   ▲ Next.js 15.4.4
    - Local:        http://localhost:3000
-   - Network:      http://192.168.31.89:3000
+   - Network:      http://192.168.5.5:3000
    - Environments: .env.local
 
  ✓ Starting...
-(node:65262) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
-(Use `node --trace-warnings ...` to show where the warning was created)
- ✓ Compiled /instrumentation in 102ms (20 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled /instrumentation in 107ms (20 modules)
 Instrumentation registered (minimal implementation)
- ✓ Ready in 2s
+ ✓ Ready in 6.9s
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 714ms (268 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+[RateLimiter] Redis temporarily disabled for stability
+[RateLimiter] Redis temporarily disabled for stability
+Instrumentation registered (minimal implementation)
+ ○ Compiling /[locale]/palm ...
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (108kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ✓ Compiled /[locale]/palm in 7.5s (2706 modules)
+ ✓ Compiled in 1016ms (1073 modules)
+ GET /ja/palm 200 in 9401ms
+ ○ Compiling /api/palm/upload ...
+ ✓ Compiled /api/palm/upload in 1424ms (3291 modules)
+Starting R2 upload for left hand, session: Y0eGOSpIDZtzP6Ge5S4xY
+Environment variables check: {
+  bucket: 'SET',
+  region: 'SET',
+  accessKey: 'SET',
+  secretKey: 'SET',
+  endpoint: 'SET'
+}
+Creating R2 Client with environment variables: {
+  bucket: 'SET',
+  region: 'SET',
+  accessKey: 'SET',
+  secretKey: 'SET',
+  endpoint: 'SET'
+}
+R2 Client configuration: {
+  bucket: 'palm',
+  region: 'auto',
+  endpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  endpointHasBucket: false
+}
+R2 Client Config: {
+  region: 'auto',
+  originalEndpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  cleanEndpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  bucket: 'palm'
+}
+R2 Upload Config: {
+  bucket: 'palm',
+  region: 'auto',
+  endpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  filename: 'palm-sessions/Y0eGOSpIDZtzP6Ge5S4xY/left-hand-1753694805296.jpg',
+  bufferSize: 44779
+}
+Generating presigned URL...
+Generated presigned URL data: {
+  url: 'https://palm.2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com/palm-sessions/Y0eGOSpIDZtzP6Ge5S4xY/left-hand-1753694805296.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dc0b4c3d4ea380298b891096969d3fee%2F20250728%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250728T092645Z&X-Amz-Expires=3600&X-Amz-Signature=6a21a7b4c7633c17ed27657c87511b39ed5a4fa20bbed889c3bac827f335060f&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject',
+  key: 'palm-sessions/Y0eGOSpIDZtzP6Ge5S4xY/left-hand-1753694805296.jpg'
+}
+Starting upload to presigned URL...
+Upload response details: {
+  status: 200,
+  statusText: 'OK',
+  headers: {
+    'cf-ray': '96635641edc5b851-LAX',
+    connection: 'keep-alive',
+    'content-length': '0',
+    'content-type': 'text/plain;charset=UTF-8',
+    date: 'Mon, 28 Jul 2025 09:26:47 GMT',
+    etag: '"ace29f04d4e9cb88884d721135e119c0"',
+    server: 'cloudflare',
+    vary: 'Accept-Encoding',
+    'x-amz-checksum-crc64nvme': '58J83CcPnFQ=',
+    'x-amz-version-id': '7e67afa4da92efead149cb7424914c86'
+  }
+}
+Generated public URL using R2Client: https://cdn.thepalmistry.life/palm-sessions/Y0eGOSpIDZtzP6Ge5S4xY/left-hand-1753694805296.jpg
+Public URL test: { status: 200, accessible: true }
+Starting R2 upload for right hand, session: Y0eGOSpIDZtzP6Ge5S4xY
+Environment variables check: {
+  bucket: 'SET',
+  region: 'SET',
+  accessKey: 'SET',
+  secretKey: 'SET',
+  endpoint: 'SET'
+}
+Creating R2 Client with environment variables: {
+  bucket: 'SET',
+  region: 'SET',
+  accessKey: 'SET',
+  secretKey: 'SET',
+  endpoint: 'SET'
+}
+R2 Client configuration: {
+  bucket: 'palm',
+  region: 'auto',
+  endpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  endpointHasBucket: false
+}
+R2 Client Config: {
+  region: 'auto',
+  originalEndpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  cleanEndpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  bucket: 'palm'
+}
+R2 Upload Config: {
+  bucket: 'palm',
+  region: 'auto',
+  endpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  filename: 'palm-sessions/Y0eGOSpIDZtzP6Ge5S4xY/right-hand-1753694808488.jpg',
+  bufferSize: 44779
+}
+Generating presigned URL...
+Generated presigned URL data: {
+  url: 'https://palm.2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com/palm-sessions/Y0eGOSpIDZtzP6Ge5S4xY/right-hand-1753694808488.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dc0b4c3d4ea380298b891096969d3fee%2F20250728%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250728T092648Z&X-Amz-Expires=3600&X-Amz-Signature=c23e5037510f48333e3e7eceb5cba7331222d14291790099e40d66cdcfda8233&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject',
+  key: 'palm-sessions/Y0eGOSpIDZtzP6Ge5S4xY/right-hand-1753694808488.jpg'
+}
+Starting upload to presigned URL...
+Upload response details: {
+  status: 200,
+  statusText: 'OK',
+  headers: {
+    'cf-ray': '9663564a6e6db851-LAX',
+    connection: 'keep-alive',
+    'content-length': '0',
+    'content-type': 'text/plain;charset=UTF-8',
+    date: 'Mon, 28 Jul 2025 09:26:48 GMT',
+    etag: '"ace29f04d4e9cb88884d721135e119c0"',
+    server: 'cloudflare',
+    vary: 'Accept-Encoding',
+    'x-amz-checksum-crc64nvme': '58J83CcPnFQ=',
+    'x-amz-version-id': '7e67afa4d55781f146b5c14b1973be76'
+  }
+}
+Generated public URL using R2Client: https://cdn.thepalmistry.life/palm-sessions/Y0eGOSpIDZtzP6Ge5S4xY/right-hand-1753694808488.jpg
+Public URL test: { status: 200, accessible: true }
+[DB] Initializing PostgreSQL (Vercel: false)...
+[DB] Using config: { timeout: 30, max: 20, prepare: true }
+(node:76820) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[DB] PostgreSQL version: 17.4
+[DB] ✅ PostgreSQL connection test passed
+[DB] ✅ PostgreSQL connected successfully
+ POST /api/palm/upload 200 in 13742ms
+ ○ Compiling /api/palm/analysis ...
+ ✓ Compiled /api/palm/analysis in 1129ms (3594 modules)
+[DB] Initializing PostgreSQL (Vercel: false)...
+[DB] Using config: { timeout: 30, max: 20, prepare: true }
+[DB] PostgreSQL version: 17.4
+[DB] ✅ PostgreSQL connection test passed
+[DB] ✅ PostgreSQL connected successfully
+Palm analysis error: Error [ConfigurationError]: Configuration error: Invalid configuration: Required, Required
+    at new AIManager (packages/ai-core/src/core/manager.ts:59:14)
+    at new PalmAnalysisEngine (packages/palm/src/engine.ts:40:21)
+    at createPalmEngine (packages/palm/src/engine.ts:329:9)
+    at POST (src/app/api/palm/analysis/route.ts:141:40)
+  57 |     } catch (error) {
+  58 |       if (error instanceof z.ZodError) {
+> 59 |         throw new ConfigurationError(`Invalid configuration: ${error.errors.map(e => e.message).join(', ')}`);
+     |              ^
+  60 |       }
+  61 |       throw error;
+  62 |     } {
+  code: 'CONFIGURATION_ERROR',
+  provider: undefined,
+  cause: undefined
+}
+ POST /api/palm/analysis 500 in 8847ms
+ ○ Compiling /api/palm/sessions/[id] ...
+ ✓ Compiled /api/palm/sessions/[id] in 786ms (3596 modules)
+[DB] Initializing PostgreSQL (Vercel: false)...
+[DB] Using config: { timeout: 30, max: 20, prepare: true }
+[DB] PostgreSQL version: 17.4
+[DB] ✅ PostgreSQL connection test passed
+[DB] ✅ PostgreSQL connected successfully
+ GET /api/palm/sessions/3 200 in 4563ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+   Reload env: .env.local
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 478ms (1712 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1699ms (1074 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 261ms (1336 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 414ms (1074 modules)
+ ○ Compiling /api/palm/analysis ...
+ ✓ Compiled /api/palm/analysis in 816ms (632 modules)
+[DB] Initializing PostgreSQL (Vercel: false)...
+[DB] Using config: { timeout: 30, max: 20, prepare: true }
+[DB] PostgreSQL version: 17.4
+[DB] ✅ PostgreSQL connection test passed
+[DB] ✅ PostgreSQL connected successfully
+ POST /api/palm/analysis 400 in 6648ms
+ ✓ Compiled /api/palm/sessions/[id] in 198ms (634 modules)
+[DB] Initializing PostgreSQL (Vercel: false)...
+[DB] Using config: { timeout: 30, max: 20, prepare: true }
+[DB] PostgreSQL version: 17.4
+[DB] ✅ PostgreSQL connection test passed
+[DB] ✅ PostgreSQL connected successfully
+ GET /api/palm/sessions/3 200 in 2830ms
+ ✓ Compiled /api/palm/upload in 412ms (1011 modules)
+Starting R2 upload for left hand, session: QEQqKZuHPVCQJIGIsKsMz
+Environment variables check: {
+  bucket: 'SET',
+  region: 'SET',
+  accessKey: 'SET',
+  secretKey: 'SET',
+  endpoint: 'SET'
+}
+Creating R2 Client with environment variables: {
+  bucket: 'SET',
+  region: 'SET',
+  accessKey: 'SET',
+  secretKey: 'SET',
+  endpoint: 'SET'
+}
+R2 Client configuration: {
+  bucket: 'palm',
+  region: 'auto',
+  endpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  endpointHasBucket: false
+}
+R2 Client Config: {
+  region: 'auto',
+  originalEndpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  cleanEndpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  bucket: 'palm'
+}
+R2 Upload Config: {
+  bucket: 'palm',
+  region: 'auto',
+  endpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  filename: 'palm-sessions/QEQqKZuHPVCQJIGIsKsMz/left-hand-1753695013364.jpg',
+  bufferSize: 44779
+}
+Generating presigned URL...
+Generated presigned URL data: {
+  url: 'https://palm.2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com/palm-sessions/QEQqKZuHPVCQJIGIsKsMz/left-hand-1753695013364.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dc0b4c3d4ea380298b891096969d3fee%2F20250728%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250728T093013Z&X-Amz-Expires=3600&X-Amz-Signature=df92bc1311e9c43c4917dc8e450407f1081fcf3b5235716bfcd1ba20c9ba42b8&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject',
+  key: 'palm-sessions/QEQqKZuHPVCQJIGIsKsMz/left-hand-1753695013364.jpg'
+}
+Starting upload to presigned URL...
+Upload response details: {
+  status: 200,
+  statusText: 'OK',
+  headers: {
+    'cf-ray': '96635b6d7ed18404-LAX',
+    connection: 'keep-alive',
+    'content-length': '0',
+    'content-type': 'text/plain;charset=UTF-8',
+    date: 'Mon, 28 Jul 2025 09:30:19 GMT',
+    etag: '"ace29f04d4e9cb88884d721135e119c0"',
+    server: 'cloudflare',
+    vary: 'Accept-Encoding',
+    'x-amz-checksum-crc64nvme': '58J83CcPnFQ=',
+    'x-amz-version-id': '7e67afa19f59d74ff1da6b05c8612b13'
+  }
+}
+Generated public URL using R2Client: https://cdn.thepalmistry.life/palm-sessions/QEQqKZuHPVCQJIGIsKsMz/left-hand-1753695013364.jpg
+Public URL test: { status: 200, accessible: true }
+Starting R2 upload for right hand, session: QEQqKZuHPVCQJIGIsKsMz
+Environment variables check: {
+  bucket: 'SET',
+  region: 'SET',
+  accessKey: 'SET',
+  secretKey: 'SET',
+  endpoint: 'SET'
+}
+Creating R2 Client with environment variables: {
+  bucket: 'SET',
+  region: 'SET',
+  accessKey: 'SET',
+  secretKey: 'SET',
+  endpoint: 'SET'
+}
+R2 Client configuration: {
+  bucket: 'palm',
+  region: 'auto',
+  endpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  endpointHasBucket: false
+}
+R2 Client Config: {
+  region: 'auto',
+  originalEndpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  cleanEndpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  bucket: 'palm'
+}
+R2 Upload Config: {
+  bucket: 'palm',
+  region: 'auto',
+  endpoint: 'https://2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com',
+  filename: 'palm-sessions/QEQqKZuHPVCQJIGIsKsMz/right-hand-1753695020339.jpg',
+  bufferSize: 44779
+}
+Generating presigned URL...
+Generated presigned URL data: {
+  url: 'https://palm.2fc5a27543499b104d29c62f3f766d6d.r2.cloudflarestorage.com/palm-sessions/QEQqKZuHPVCQJIGIsKsMz/right-hand-1753695020339.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=dc0b4c3d4ea380298b891096969d3fee%2F20250728%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20250728T093020Z&X-Amz-Expires=3600&X-Amz-Signature=b46504488ffa9c9b2f1b92680f11a9779e49e20f06f243769a8b94b115d5f0a7&X-Amz-SignedHeaders=host&x-amz-checksum-crc32=AAAAAA%3D%3D&x-amz-sdk-checksum-algorithm=CRC32&x-id=PutObject',
+  key: 'palm-sessions/QEQqKZuHPVCQJIGIsKsMz/right-hand-1753695020339.jpg'
+}
+Starting upload to presigned URL...
+Upload response details: {
+  status: 200,
+  statusText: 'OK',
+  headers: {
+    'cf-ray': '96635b76abb18404-LAX',
+    connection: 'keep-alive',
+    'content-length': '0',
+    'content-type': 'text/plain;charset=UTF-8',
+    date: 'Mon, 28 Jul 2025 09:30:20 GMT',
+    etag: '"ace29f04d4e9cb88884d721135e119c0"',
+    server: 'cloudflare',
+    vary: 'Accept-Encoding',
+    'x-amz-checksum-crc64nvme': '58J83CcPnFQ=',
+    'x-amz-version-id': '7e67afa199a1b1c9a67ed231d99b4bc3'
+  }
+}
+Generated public URL using R2Client: https://cdn.thepalmistry.life/palm-sessions/QEQqKZuHPVCQJIGIsKsMz/right-hand-1753695020339.jpg
+Public URL test: { status: 200, accessible: true }
+[DB] Initializing PostgreSQL (Vercel: false)...
+[DB] Using config: { timeout: 30, max: 20, prepare: true }
+[DB] PostgreSQL version: 17.4
+[DB] ✅ PostgreSQL connection test passed
+[DB] ✅ PostgreSQL connected successfully
+ POST /api/palm/upload 200 in 15359ms
+Palm analysis error: Error [ConfigurationError]: Configuration error: Invalid configuration: Required
+    at new AIManager (packages/ai-core/src/core/manager.ts:59:14)
+    at POST (src/app/api/palm/analysis/route.ts:173:22)
+  57 |     } catch (error) {
+  58 |       if (error instanceof z.ZodError) {
+> 59 |         throw new ConfigurationError(`Invalid configuration: ${error.errors.map(e => e.message).join(', ')}`);
+     |              ^
+  60 |       }
+  61 |       throw error;
+  62 |     } {
+  code: 'CONFIGURATION_ERROR',
+  provider: undefined,
+  cause: undefined
+}
+ POST /api/palm/analysis 500 in 4788ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 761ms (2085 modules)
+ ⨯ TypeError: __webpack_require__.a is not a function
+    at __webpack_exec__ (.next/server/app/api/palm/analysis/route.js:457:39)
+    at <unknown> (.next/server/app/api/palm/analysis/route.js:458:325)
+    at <unknown> (.next/server/app/api/palm/analysis/route.js:458:47)
+    at Object.<anonymous> (.next/server/app/api/palm/analysis/route.js:461:3) {
+  page: '/api/palm/analysis'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1069ms (2398 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/pages/_document.js:72:39)
+    at <unknown> (.next/server/pages/_document.js:73:83)
+    at <unknown> (.next/server/pages/_document.js:73:47)
+    at Object.<anonymous> (.next/server/pages/_document.js:76:3)
+ POST /api/palm/analysis 500 in 2363ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 597ms (2035 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 662ms (2035 modules)
+ ⨯ TypeError: __webpack_require__.a is not a function
+    at __webpack_exec__ (.next/server/app/api/palm/analysis/route.js:754:39)
+    at <unknown> (.next/server/app/api/palm/analysis/route.js:755:971)
+    at <unknown> (.next/server/app/api/palm/analysis/route.js:755:47)
+    at Object.<anonymous> (.next/server/app/api/palm/analysis/route.js:758:3) {
+  page: '/api/palm/analysis'
+}
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_exec__ (.next/server/pages/_document.js:72:39)
+    at <unknown> (.next/server/pages/_document.js:73:83)
+    at <unknown> (.next/server/pages/_document.js:73:47)
+    at Object.<anonymous> (.next/server/pages/_document.js:76:3)
+ POST /api/palm/analysis 500 in 332ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1011ms (1798 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 718ms (1798 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⨯ ./src/app/api/palm/analysis/route.ts
+Error:   [31mx[0m Expected unicode escape
+     ,-[[36;1;4m/Users/aviva/github/avivamar/palm/src/app/api/palm/analysis/route.ts[0m:214:1]
+ [2m211[0m |       const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+ [2m212[0m |         method: 'POST',
+ [2m213[0m |         headers: {
+ [2m214[0m |           'Authorization': \`Bearer \${openaiApiKey}\`,
+     : [35;1m                           ^[0m
+ [2m215[0m |           'Content-Type': 'application/json',
+ [2m216[0m |         },
+ [2m217[0m |         body: JSON.stringify({
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/api/palm/analysis/route.ts
+ POST /api/palm/analysis 500 in 45ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⨯ ./src/app/api/palm/analysis/route.ts
+Error:   [31mx[0m Expected unicode escape
+     ,-[[36;1;4m/Users/aviva/github/avivamar/palm/src/app/api/palm/analysis/route.ts[0m:244:1]
+ [2m241[0m |       if (!openaiResponse.ok) {
+ [2m242[0m |         const errorText = await openaiResponse.text();
+ [2m243[0m |         console.error('OpenAI API error:', errorText);
+ [2m244[0m |         throw new Error(\`OpenAI API failed: \${openaiResponse.status}\`);
+     : [35;1m                        ^[0m
+ [2m245[0m |       }
+ [2m246[0m | 
+ [2m247[0m |       const aiResponse = await openaiResponse.json();
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./src/app/api/palm/analysis/route.ts
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 730ms (1798 modules)
+[DB] Initializing PostgreSQL (Vercel: false)...
+[DB] Using config: { timeout: 30, max: 20, prepare: true }
+[DB] PostgreSQL version: 17.4
+[DB] ✅ PostgreSQL connection test passed
+[DB] ✅ PostgreSQL connected successfully
+ POST /api/palm/analysis 400 in 2838ms
+ ○ Compiling /api/palm/sessions/[id] ...
+ ✓ Compiled /api/palm/sessions/[id] in 664ms (579 modules)
+[DB] Initializing PostgreSQL (Vercel: false)...
+[DB] Using config: { timeout: 30, max: 20, prepare: true }
+ ⨯ Failed to generate static paths for /api/palm/sessions/[id]:
+[Error: Cannot find module './vendor-chunks/@supabase.js'
+Require stack:
+- /Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js
+- /Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions/[id]/route.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/require.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/load-components.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/build/utils.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Failed to generate static paths for /api/palm/sessions/[id]:
+[Error: Cannot find module './vendor-chunks/@supabase.js'
+Require stack:
+- /Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js
+- /Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions/[id]/route.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/require.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/load-components.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/build/utils.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[DB] PostgreSQL version: 17.4
+[DB] ✅ PostgreSQL connection test passed
+[DB] ✅ PostgreSQL connected successfully
+ GET /api/palm/sessions/4 200 in 7142ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1895ms (1327 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 742ms (1220 modules)
+ ✓ Compiled /api/palm/analysis in 205ms (491 modules)
+[DB] Initializing PostgreSQL (Vercel: false)...
+[DB] Using config: { timeout: 30, max: 20, prepare: true }
+[DB] PostgreSQL version: 17.4
+[DB] ✅ PostgreSQL connection test passed
+[DB] ✅ PostgreSQL connected successfully
+ POST /api/palm/analysis 400 in 4375ms
+ ✓ Compiled /api/palm/sessions/[id] in 300ms (493 modules)
+ ⨯ TypeError: Cannot read properties of undefined (reading 'call')
+    at eval (webpack-internal:///(rsc)/./src/libs/supabase/config.ts:9:71)
+    at <unknown> (rsc)/./src/libs/supabase/config.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions/[id]/route.js:65:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions/[id]/route.ts:10:79)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions/[id]/route.ts:1:21)
+    at <unknown> (rsc)/./src/app/api/palm/sessions/[id]/route.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions/[id]/route.js:43:1) {
+  type: 'TypeError',
+  page: '/api/palm/sessions/4'
+}
+ ✓ Compiled /_error in 287ms (1786 modules)
+ GET /api/palm/sessions/4 500 in 1800ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 2.2s (2054 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 2s (2018 modules)
+ GET /api/palm/sessions/4 404 in 2384ms
+ ⨯ TypeError: Cannot read properties of undefined (reading 'call')
+    at eval (webpack-internal:///(rsc)/./src/libs/supabase/config.ts:9:71)
+    at <unknown> (rsc)/./src/libs/supabase/config.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions/[id]/route.js:65:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions/[id]/route.ts:10:79)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions/[id]/route.ts:1:21)
+    at <unknown> (rsc)/./src/app/api/palm/sessions/[id]/route.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions/[id]/route.js:43:1) {
+  type: 'TypeError',
+  page: '/api/palm/sessions/4'
+}
+ GET /api/palm/sessions/4 500 in 1012ms
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (108kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/Users/aviva/github/avivamar/palm/.next/cache/webpack/edge-server-development/2.pack.gz_' -> '/Users/aviva/github/avivamar/palm/.next/cache/webpack/edge-server-development/2.pack.gz'
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1277ms (1327 modules)
+ ○ Compiling /api/palm/analysis ...
+ ✓ Compiled /api/palm/analysis in 923ms (491 modules)
+[DB] Initializing PostgreSQL (Vercel: false)...
+[DB] Using config: { timeout: 30, max: 20, prepare: true }
+[DB] PostgreSQL version: 17.4
+[DB] ✅ PostgreSQL connection test passed
+[DB] ✅ PostgreSQL connected successfully
+Starting AI analysis with OpenAI directly...
+Starting OpenAI analysis...
+AI analysis completed
+Failed to parse AI response: SyntaxError: Unexpected token '抱', "抱歉，我无法分析手相"... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at POST (src/app/api/palm/analysis/route.ts:267:28)
+  265 |       try {
+  266 |         const responseText = aiResponse.choices[0]?.message?.content || '{}';
+> 267 |         palmAnalysis = JSON.parse(responseText);
+      |                            ^
+  268 |       } catch (parseError) {
+  269 |         console.error('Failed to parse AI response:', parseError);
+  270 |         palmAnalysis = {
+ POST /api/palm/analysis 200 in 18450ms
+ ○ Compiling /api/palm/sessions/[id] ...
+ ✓ Compiled /api/palm/sessions/[id] in 553ms (493 modules)
+ ⨯ TypeError: Cannot read properties of undefined (reading 'call')
+    at eval (webpack-internal:///(rsc)/./src/libs/supabase/config.ts:9:71)
+    at <unknown> (rsc)/./src/libs/supabase/config.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions/[id]/route.js:65:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions/[id]/route.ts:10:79)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions/[id]/route.ts:1:21)
+    at <unknown> (rsc)/./src/app/api/palm/sessions/[id]/route.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions/[id]/route.js:43:1) {
+  type: 'TypeError',
+  page: '/api/palm/sessions/4'
+}
+ ✓ Compiled /_error in 264ms (1786 modules)
+ GET /api/palm/sessions/4 500 in 2204ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+   Reload env: .env.local
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1728ms (1581 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1785ms (1220 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+[RateLimiter] Redis temporarily disabled for stability
+[RateLimiter] Redis temporarily disabled for stability
+Instrumentation registered (minimal implementation)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1810ms (1581 modules)
+ ○ Compiling /api/palm/sessions-direct/[id] ...
+ ✓ Compiled /api/palm/sessions-direct/[id] in 1438ms (1577 modules)
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at eval (webpack-internal:///(rsc)/./src/models/Schema.ts:37:77)
+    at <unknown> (rsc)/./src/models/Schema.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions-direct/[id]/route.js:65:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions-direct/[id]/route.ts:9:72)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions-direct/[id]/route.ts:1:21)
+    at <unknown> (rsc)/./src/app/api/palm/sessions-direct/[id]/route.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions-direct/[id]/route.js:43:1) {
+  type: 'TypeError',
+  page: '/api/palm/sessions-direct/4'
+}
+webpack-internal://nextjs/webpack-runtime.js:1
+// This source was generated by Next.js based off of the generated Webpack runtime.
+^
+
+
+TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (/Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js:25:42)
+    at eval (webpack-internal:///(rsc)/./src/libs/DB.ts:8:76)
+    at __webpack_require__.a (/Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js:94:13)
+    at eval (webpack-internal:///(rsc)/./src/libs/DB.ts:1:21)
+    at (rsc)/./src/libs/DB.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions-direct/[id]/route.js:54:1)
+    at __webpack_require__ (/Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js:25:42)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions-direct/[id]/route.ts:8:66)
+    at __webpack_require__.a (/Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js:94:13)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions-direct/[id]/route.ts:1:21)
+    at (rsc)/./src/app/api/palm/sessions-direct/[id]/route.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions-direct/[id]/route.js:43:1)
+
+Node.js v23.9.0
+ ✓ Compiled /_error in 332ms (1664 modules)
+ GET /api/palm/sessions-direct/4 500 in 2674ms
+ ⨯ TypeError: __webpack_modules__[moduleId] is not a function
+    at eval (webpack-internal:///(rsc)/./src/models/Schema.ts:37:77)
+    at <unknown> (rsc)/./src/models/Schema.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions-direct/[id]/route.js:65:1)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions-direct/[id]/route.ts:9:72)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions-direct/[id]/route.ts:1:21)
+    at <unknown> (rsc)/./src/app/api/palm/sessions-direct/[id]/route.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions-direct/[id]/route.js:43:1) {
+  type: 'TypeError',
+  page: '/api/palm/sessions-direct/4'
+}
+webpack-internal://nextjs/webpack-runtime.js:1
+// This source was generated by Next.js based off of the generated Webpack runtime.
+^
+
+
+TypeError: __webpack_modules__[moduleId] is not a function
+    at __webpack_require__ (/Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js:25:42)
+    at eval (webpack-internal:///(rsc)/./src/libs/DB.ts:8:76)
+    at __webpack_require__.a (/Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js:94:13)
+    at eval (webpack-internal:///(rsc)/./src/libs/DB.ts:1:21)
+    at (rsc)/./src/libs/DB.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions-direct/[id]/route.js:54:1)
+    at __webpack_require__ (/Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js:25:42)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions-direct/[id]/route.ts:8:66)
+    at __webpack_require__.a (/Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js:94:13)
+    at eval (webpack-internal:///(rsc)/./src/app/api/palm/sessions-direct/[id]/route.ts:1:21)
+    at (rsc)/./src/app/api/palm/sessions-direct/[id]/route.ts (/Users/aviva/github/avivamar/palm/.next/server/app/api/palm/sessions-direct/[id]/route.js:43:1)
+
+Node.js v23.9.0
+ GET /api/palm/sessions-direct/4 500 in 635ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1783ms (1220 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ○ Compiling /[locale]/palm ...
+ ⚠ ./src/app/[locale]/layout.tsx
+Critical dependency: the request of a dependency is an expression
+
+Import trace for requested module:
+./src/app/[locale]/layout.tsx
+Failed to load locale file: @/locales/en/business.json Error: Cannot find module '@/locales/en/business.json'
+    at <unknown> (.next/server/app/[locale]/palm/page.js:141:11)
+    at async safeImport (src/app/[locale]/layout.tsx:107:23)
+    at async getLocalMessages (src/app/[locale]/layout.tsx:128:8)
+    at async RootLayout (src/app/[locale]/layout.tsx:178:19)
+  105 |     const safeImport = async (path: string) => {
+  106 |       try {
+> 107 |         const module = await import(path);
+      |                       ^
+  108 |         return module?.default || {};
+  109 |       } catch (error) {
+  110 |         console.warn(`Failed to load locale file: ${path}`, error); {
+  code: 'MODULE_NOT_FOUND'
+}
+Failed to load locale file: @/locales/en/dashboard.json Error: Cannot find module '@/locales/en/dashboard.json'
+    at <unknown> (.next/server/app/[locale]/palm/page.js:141:11)
+    at async safeImport (src/app/[locale]/layout.tsx:107:23)
+    at async getLocalMessages (src/app/[locale]/layout.tsx:128:8)
+    at async RootLayout (src/app/[locale]/layout.tsx:178:19)
+  105 |     const safeImport = async (path: string) => {
+  106 |       try {
+> 107 |         const module = await import(path);
+      |                       ^
+  108 |         return module?.default || {};
+  109 |       } catch (error) {
+  110 |         console.warn(`Failed to load locale file: ${path}`, error); {
+  code: 'MODULE_NOT_FOUND'
+}
+Failed to load locale file: @/locales/en/commerce.json Error: Cannot find module '@/locales/en/commerce.json'
+    at <unknown> (.next/server/app/[locale]/palm/page.js:141:11)
+    at async safeImport (src/app/[locale]/layout.tsx:107:23)
+    at async getLocalMessages (src/app/[locale]/layout.tsx:128:8)
+    at async RootLayout (src/app/[locale]/layout.tsx:178:19)
+  105 |     const safeImport = async (path: string) => {
+  106 |       try {
+> 107 |         const module = await import(path);
+      |                       ^
+  108 |         return module?.default || {};
+  109 |       } catch (error) {
+  110 |         console.warn(`Failed to load locale file: ${path}`, error); {
+  code: 'MODULE_NOT_FOUND'
+}
+Failed to load locale file: @/locales/en/core.json Error: Cannot find module '@/locales/en/core.json'
+    at <unknown> (.next/server/app/[locale]/palm/page.js:141:11)
+    at async safeImport (src/app/[locale]/layout.tsx:107:23)
+    at async getLocalMessages (src/app/[locale]/layout.tsx:128:8)
+    at async RootLayout (src/app/[locale]/layout.tsx:178:19)
+  105 |     const safeImport = async (path: string) => {
+  106 |       try {
+> 107 |         const module = await import(path);
+      |                       ^
+  108 |         return module?.default || {};
+  109 |       } catch (error) {
+  110 |         console.warn(`Failed to load locale file: ${path}`, error); {
+  code: 'MODULE_NOT_FOUND'
+}
+Failed to load locale file: @/locales/en/legal.json Error: Cannot find module '@/locales/en/legal.json'
+    at <unknown> (.next/server/app/[locale]/palm/page.js:141:11)
+    at async safeImport (src/app/[locale]/layout.tsx:107:23)
+    at async getLocalMessages (src/app/[locale]/layout.tsx:128:8)
+    at async RootLayout (src/app/[locale]/layout.tsx:178:19)
+  105 |     const safeImport = async (path: string) => {
+  106 |       try {
+> 107 |         const module = await import(path);
+      |                       ^
+  108 |         return module?.default || {};
+  109 |       } catch (error) {
+  110 |         console.warn(`Failed to load locale file: ${path}`, error); {
+  code: 'MODULE_NOT_FOUND'
+}
+Failed to load locale file: @/locales/en/pages.json Error: Cannot find module '@/locales/en/pages.json'
+    at <unknown> (.next/server/app/[locale]/palm/page.js:141:11)
+    at async safeImport (src/app/[locale]/layout.tsx:107:23)
+    at async getLocalMessages (src/app/[locale]/layout.tsx:128:8)
+    at async RootLayout (src/app/[locale]/layout.tsx:178:19)
+  105 |     const safeImport = async (path: string) => {
+  106 |       try {
+> 107 |         const module = await import(path);
+      |                       ^
+  108 |         return module?.default || {};
+  109 |       } catch (error) {
+  110 |         console.warn(`Failed to load locale file: ${path}`, error); {
+  code: 'MODULE_NOT_FOUND'
+}
+Failed to load locale file: @/locales/en/user.json Error: Cannot find module '@/locales/en/user.json'
+    at <unknown> (.next/server/app/[locale]/palm/page.js:141:11)
+    at async safeImport (src/app/[locale]/layout.tsx:107:23)
+    at async getLocalMessages (src/app/[locale]/layout.tsx:128:8)
+    at async RootLayout (src/app/[locale]/layout.tsx:178:19)
+  105 |     const safeImport = async (path: string) => {
+  106 |       try {
+> 107 |         const module = await import(path);
+      |                       ^
+  108 |         return module?.default || {};
+  109 |       } catch (error) {
+  110 |         console.warn(`Failed to load locale file: ${path}`, error); {
+  code: 'MODULE_NOT_FOUND'
+}
+Failed to load locale file: @/locales/en/admin.json Error: Cannot find module '@/locales/en/admin.json'
+    at <unknown> (.next/server/app/[locale]/palm/page.js:141:11)
+    at async safeImport (src/app/[locale]/layout.tsx:107:23)
+    at async getLocalMessages (src/app/[locale]/layout.tsx:128:8)
+    at async RootLayout (src/app/[locale]/layout.tsx:178:19)
+  105 |     const safeImport = async (path: string) => {
+  106 |       try {
+> 107 |         const module = await import(path);
+      |                       ^
+  108 |         return module?.default || {};
+  109 |       } catch (error) {
+  110 |         console.warn(`Failed to load locale file: ${path}`, error); {
+  code: 'MODULE_NOT_FOUND'
+}
+Failed to load locale file: @/locales/en/unauthorized.json Error: Cannot find module '@/locales/en/unauthorized.json'
+    at <unknown> (.next/server/app/[locale]/palm/page.js:141:11)
+    at async safeImport (src/app/[locale]/layout.tsx:107:23)
+    at async getLocalMessages (src/app/[locale]/layout.tsx:128:8)
+    at async RootLayout (src/app/[locale]/layout.tsx:178:19)
+  105 |     const safeImport = async (path: string) => {
+  106 |       try {
+> 107 |         const module = await import(path);
+      |                       ^
+  108 |         return module?.default || {};
+  109 |       } catch (error) {
+  110 |         console.warn(`Failed to load locale file: ${path}`, error); {
+  code: 'MODULE_NOT_FOUND'
+}
+Failed to load locale file: @/locales/en/validation.json Error: Cannot find module '@/locales/en/validation.json'
+    at <unknown> (.next/server/app/[locale]/palm/page.js:141:11)
+    at async safeImport (src/app/[locale]/layout.tsx:107:23)
+    at async getLocalMessages (src/app/[locale]/layout.tsx:128:8)
+    at async RootLayout (src/app/[locale]/layout.tsx:178:19)
+  105 |     const safeImport = async (path: string) => {
+  106 |       try {
+> 107 |         const module = await import(path);
+      |                       ^
+  108 |         return module?.default || {};
+  109 |       } catch (error) {
+  110 |         console.warn(`Failed to load locale file: ${path}`, error); {
+  code: 'MODULE_NOT_FOUND'
+}
+Failed to load locale file: @/locales/en/palm.json Error: Cannot find module '@/locales/en/palm.json'
+    at <unknown> (.next/server/app/[locale]/palm/page.js:141:11)
+    at async safeImport (src/app/[locale]/layout.tsx:107:23)
+    at async getLocalMessages (src/app/[locale]/layout.tsx:128:8)
+    at async RootLayout (src/app/[locale]/layout.tsx:178:19)
+  105 |     const safeImport = async (path: string) => {
+  106 |       try {
+> 107 |         const module = await import(path);
+      |                       ^
+  108 |         return module?.default || {};
+  109 |       } catch (error) {
+  110 |         console.warn(`Failed to load locale file: ${path}`, error); {
+  code: 'MODULE_NOT_FOUND'
+}
+Error: MISSING_MESSAGE: Could not resolve `palm.hero` in messages for locale `en`.
+    at PalmHeroSection (src/components/palm/PalmHeroSection.tsx:15:28)
+  13 |   const [isHovered, setIsHovered] = useState(false);
+  14 |   const [showAnalysisForm, setShowAnalysisForm] = useState(false);
+> 15 |   const t = useTranslations('palm.hero');
+     |                            ^
+  16 |
+  17 |   return (
+  18 |     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden palm-page-bg"> {
+  code: 'MISSING_MESSAGE',
+  originalMessage: 'Could not resolve `palm.hero` in messages for locale `en`.'
+}
+ GET /palm 200 in 3883ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled /[locale]/palm in 1088ms (2926 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ GET /palm 200 in 740ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ○ Compiling /[locale]/palm/results/[sessionId] ...
+ ✓ Compiled /[locale]/palm/results/[sessionId] in 950ms (2952 modules)
+ GET /palm/results/4 200 in 1767ms
+ ✓ Compiled in 2.4s (1345 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1353ms (1238 modules)
+ ○ Compiling /api/palm/upload ...
+ ✓ Compiled /api/palm/upload in 1134ms (868 modules)
+ POST /api/palm/upload 400 in 1435ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ○ Compiling /[locale]/palm/results/[sessionId] ...
+ ✓ Compiled /[locale]/palm/results/[sessionId] in 727ms (1899 modules)
+ GET /palm/results/4 200 in 1417ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 4.4s (1345 modules)
+ ✓ Compiled in 1558ms (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 2.9s (1230 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 7.3s (1238 modules)
+ ✓ Compiled in 3.6s (1331 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1628ms (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 2.5s (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1437ms (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1388ms (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1143ms (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 765ms (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 799ms (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ○ Compiling /[locale]/palm/results/[sessionId] ...
+ ✓ Compiled /[locale]/palm/results/[sessionId] in 1951ms (1278 modules)
+ GET /palm/results/db039b19-8d38-4416-9c59-216092a9c5be 200 in 2986ms
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1913ms (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1055ms (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 805ms (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ○ Compiling /[locale]/palm ...
+ ✓ Compiled /[locale]/palm in 1653ms (1706 modules)
+ ⨯ [Error: ENOENT: no such file or directory, open '/Users/aviva/github/avivamar/palm/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/aviva/github/avivamar/palm/.next/routes-manifest.json',
+  page: '/en/palm'
+}
+ ⨯ Failed to generate static paths for /[locale]/palm:
+[Error: Cannot find module './vendor-chunks/@opentelemetry.js'
+Require stack:
+- /Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js
+- /Users/aviva/github/avivamar/palm/.next/server/app/[locale]/palm/page.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/require.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/load-components.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/build/utils.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ⨯ Failed to generate static paths for /[locale]/palm:
+[Error: Cannot find module './vendor-chunks/@opentelemetry.js'
+Require stack:
+- /Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js
+- /Users/aviva/github/avivamar/palm/.next/server/app/[locale]/palm/page.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/require.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/load-components.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/build/utils.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/dev/static-paths-worker.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/compiled/jest-worker/processChild.js] {
+  type: 'Error',
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 815ms (3017 modules)
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- /Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js
+- /Users/aviva/github/avivamar/palm/.next/server/pages/_document.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/require.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/load-components.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/build/utils.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/build/swc/options.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/build/swc/index.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/config.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/next.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/pages/_document.js:1:378)
+    at Object.<anonymous> (.next/server/pages/_document.js:1:425) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open '/Users/aviva/github/avivamar/palm/.next/routes-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/aviva/github/avivamar/palm/.next/routes-manifest.json',
+  page: '/en/palm'
+}
+ ⨯ Error: Cannot find module './8548.js'
+Require stack:
+- /Users/aviva/github/avivamar/palm/.next/server/webpack-runtime.js
+- /Users/aviva/github/avivamar/palm/.next/server/pages/_document.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/require.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/load-components.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/build/utils.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/build/swc/options.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/build/swc/index.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/build/next-config-ts/transpile-config.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/config.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/next.js
+- /Users/aviva/github/avivamar/palm/node_modules/next/dist/server/lib/start-server.js
+    at <unknown> (.next/server/pages/_document.js:1:378)
+    at Object.<anonymous> (.next/server/pages/_document.js:1:425) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+[Error: ENOENT: no such file or directory, open '/Users/aviva/github/avivamar/palm/.next/fallback-build-manifest.json'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/aviva/github/avivamar/palm/.next/fallback-build-manifest.json'
+}
+ GET /palm 500 in 3754ms
+ GET /palm 500 in 299ms
+[Error: ENOENT: no such file or directory, stat '/Users/aviva/github/avivamar/palm/.next/cache/webpack/client-development/3.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/aviva/github/avivamar/palm/.next/cache/webpack/client-development/3.pack.gz'
+}
+ ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/aviva/github/avivamar/palm/.next/cache/webpack/client-development/3.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/aviva/github/avivamar/palm/.next/cache/webpack/client-development/3.pack.gz'
+}
+ ⨯ unhandledRejection:  [Error: ENOENT: no such file or directory, stat '/Users/aviva/github/avivamar/palm/.next/cache/webpack/client-development/3.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/aviva/github/avivamar/palm/.next/cache/webpack/client-development/3.pack.gz'
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/aviva/github/avivamar/palm/.next/cache/webpack/client-development/3.pack.gz'
+[Error: ENOENT: no such file or directory, stat '/Users/aviva/github/avivamar/palm/.next/cache/webpack/server-development/21.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/aviva/github/avivamar/palm/.next/cache/webpack/server-development/21.pack.gz'
+}
+ ⨯ unhandledRejection: [Error: ENOENT: no such file or directory, stat '/Users/aviva/github/avivamar/palm/.next/cache/webpack/server-development/21.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/aviva/github/avivamar/palm/.next/cache/webpack/server-development/21.pack.gz'
+}
+ ⨯ unhandledRejection:  [Error: ENOENT: no such file or directory, stat '/Users/aviva/github/avivamar/palm/.next/cache/webpack/server-development/21.pack.gz'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: '/Users/aviva/github/avivamar/palm/.next/cache/webpack/server-development/21.pack.gz'
+}
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, stat '/Users/aviva/github/avivamar/palm/.next/cache/webpack/server-development/21.pack.gz'
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 6.1s (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ⚠ You are using an experimental edge runtime, the API might change.
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack from /Users/aviva/github/avivamar/palm/.next/cache/webpack/client-development.pack.gz failed: TypeError: Cannot read properties of undefined (reading 'hasStartTime')
+ ✓ Compiled in 2.8s (1238 modules)
+ ⚠ You are using an experimental edge runtime, the API might change.
+ ✓ Compiled in 1641ms (1238 modules)
 [?25h

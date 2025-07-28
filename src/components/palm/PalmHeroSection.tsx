@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -11,6 +12,7 @@ import { PalmAnalysisForm } from './PalmAnalysisForm';
 export function PalmHeroSection() {
   const [isHovered, setIsHovered] = useState(false);
   const [showAnalysisForm, setShowAnalysisForm] = useState(false);
+  const t = useTranslations('palm.hero');
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden palm-page-bg">
@@ -36,9 +38,9 @@ export function PalmHeroSection() {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center gap-2 mb-6"
             >
-              <Badge variant="secondary" className="bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300">
+              <Badge variant="secondary" className="bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300" suppressHydrationWarning>
                 <Sparkles className="w-3 h-3 mr-1" />
-                AI-Powered Palm Reading
+                {t('badge')}
               </Badge>
             </motion.div>
 
@@ -48,10 +50,11 @@ export function PalmHeroSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent leading-tight"
+              suppressHydrationWarning
             >
-              What if your palm could reveal your{' '}
+              {t('titleBefore')}
               <span className="relative">
-                personality
+                {t('highlight')}
                 <motion.div
                   className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full"
                   initial={{ scaleX: 0 }}
@@ -59,7 +62,7 @@ export function PalmHeroSection() {
                   transition={{ delay: 1, duration: 0.8 }}
                 />
               </span>
-              , energy, and fate?
+              {t('titleAfter')}
             </motion.h1>
 
             {/* Subtitle */}
@@ -71,15 +74,15 @@ export function PalmHeroSection() {
             >
               <div className="flex items-center justify-center lg:justify-start gap-2">
                 <Camera className="w-5 h-5 text-purple-500" />
-                <span>Upload your palm.</span>
+                <span>{t('subtitle.upload')}</span>
               </div>
               <div className="flex items-center justify-center lg:justify-start gap-2">
                 <Sparkles className="w-5 h-5 text-blue-500" />
-                <span>Enter your birth date.</span>
+                <span>{t('subtitle.birth')}</span>
               </div>
               <div className="flex items-center justify-center lg:justify-start gap-2">
                 <Zap className="w-5 h-5 text-indigo-500" />
-                <span>Get a FREE personalized report powered by AI, astrology, and palmistry.</span>
+                <span>{t('subtitle.report')}</span>
               </div>
             </motion.div>
 
@@ -98,7 +101,7 @@ export function PalmHeroSection() {
                 onClick={() => setShowAnalysisForm(true)}
               >
                 <Upload className={`w-5 h-5 mr-2 transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`} />
-                开始免费手相分析
+                {t('cta')}
                 <motion.span
                   className="ml-2"
                   animate={{ x: isHovered ? 5 : 0 }}
@@ -109,7 +112,7 @@ export function PalmHeroSection() {
               </Button>
               
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                👉 无需注册 · 隐私安全 · 免费基础报告
+                {t('privacy')}
               </p>
             </motion.div>
           </motion.div>
@@ -169,7 +172,7 @@ export function PalmHeroSection() {
                   transition={{ delay: 2 }}
                   className="text-center text-sm text-gray-600 dark:text-gray-400 mt-4"
                 >
-                  AI analyzing palm patterns...
+                  {t('analyzing')}
                 </motion.p>
               </div>
             </Card>
@@ -189,7 +192,7 @@ export function PalmHeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-3xl md:text-4xl font-bold mb-4 palm-fade-in"
               >
-                开始您的免费手相分析
+                {t('start_analysis')}
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: -10 }}
@@ -197,7 +200,7 @@ export function PalmHeroSection() {
                 transition={{ delay: 0.1 }}
                 className="text-lg text-gray-600 dark:text-gray-300"
               >
-                上传您的手掌照片，获得个性化的AI分析报告
+                {t('analysis_subtitle')}
               </motion.p>
             </div>
 

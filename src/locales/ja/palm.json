@@ -11,6 +11,8 @@
   "hero": {
     "badge": "AI駆動手相分析",
     "title": "あなたの手のひらが{highlight}、エネルギー、運命を明かすとしたら？",
+    "titleBefore": "あなたの手のひらが",
+    "titleAfter": "、エネルギー、運命を明かすとしたら？",
     "highlight": "性格",
     "subtitle": {
       "upload": "手のひらをアップロード。",

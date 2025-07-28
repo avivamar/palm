@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from 'next-intl';
 import { PalmUploadForm, PalmAnalysisFormData } from "./PalmUploadForm";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
@@ -15,6 +16,7 @@ interface PalmAnalysisFormProps {
 export function PalmAnalysisForm({ onBack, embedded = false }: PalmAnalysisFormProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const t = useTranslations('palm');
 
   const handleSubmit = async (formData: PalmAnalysisFormData) => {
     setIsLoading(true);
@@ -52,18 +54,18 @@ export function PalmAnalysisForm({ onBack, embedded = false }: PalmAnalysisFormP
       const data = await response.json();
       
       if (!response.ok) {
-        throw new Error(data.error || '上传失败');
+        throw new Error(data.error || t('common.uploadFailed'));
       }
       
       // 显示成功消息
-      toast.success('照片上传成功！正在启动分析...');
+      toast.success(t('common.success'));
       
       // 跳转到结果页面
       router.push(`/palm/results/${data.sessionId}`);
       
     } catch (error) {
       console.error('Upload error:', error);
-      toast.error(error instanceof Error ? error.message : '上传失败，请重试');
+      toast.error(error instanceof Error ? error.message : t('common.uploadFailed'));
     } finally {
       setIsLoading(false);
     }
@@ -81,7 +83,7 @@ export function PalmAnalysisForm({ onBack, embedded = false }: PalmAnalysisFormP
             className="palm-btn palm-btn-ghost"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
-            返回首页
+            {t('form.backButton')}
           </Button>
         </div>
       )}
@@ -99,15 +101,15 @@ export function PalmAnalysisForm({ onBack, embedded = false }: PalmAnalysisFormP
             <div className="text-green-600 dark:text-green-400 mt-0.5">🎁</div>
             <div className="space-y-2">
               <p className="text-sm font-medium text-green-800 dark:text-green-200">
-                免费体验模式
+                {t('form.freemium.title')}
               </p>
               <p className="text-sm text-green-700 dark:text-green-300">
-                您将获得免费的基础手相分析报告。如需更详细的分析和个性化建议，可在结果页面升级到完整版报告。
+                {t('form.freemium.description')}
               </p>
               <div className="flex items-center gap-4 text-xs text-green-600 dark:text-green-400">
-                <span>✓ 基础性格特质</span>
-                <span>✓ 主要手相线条</span>
-                <span>✓ 简要运势解读</span>
+                <span>✓ {t('form.freemium.features.personality')}</span>
+                <span>✓ {t('form.freemium.features.lines')}</span>
+                <span>✓ {t('form.freemium.features.fortune')}</span>
               </div>
             </div>
           </div>

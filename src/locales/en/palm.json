@@ -11,6 +11,8 @@
   "hero": {
     "badge": "AI-Powered Palm Reading",
     "title": "What if your palm could reveal your {highlight}, energy, and fate?",
+    "titleBefore": "What if your palm could reveal your ",
+    "titleAfter": ", energy, and fate?",
     "highlight": "personality",
     "subtitle": {
       "upload": "Upload your palm.",

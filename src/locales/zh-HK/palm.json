@@ -11,6 +11,8 @@
   "hero": {
     "badge": "AI驱动手相分析",
     "title": "如果您的手掌能揭示您的{highlight}、活力和命運會如何？",
+    "titleBefore": "如果您的手掌能揭示您的",
+    "titleAfter": "、活力和命運會如何？",
     "highlight": "性格",
     "subtitle": {
       "upload": "上傳您的手掌照片。",

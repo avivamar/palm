@@ -86,8 +86,22 @@ export function PalmResultDisplay({
   const [isDownloading, setIsDownloading] = useState(false);
   const [isUpgrading, setIsUpgrading] = useState(false);
 
-  const { report, conversionHints } = result;
+  // 安全地解构 result，提供默认值
+  const report = result?.report;
+  const conversionHints = result?.conversionHints;
   const isQuickReport = analysisType === 'quick';
+
+  // 如果没有分析结果，显示加载状态
+  if (!result || !report) {
+    return (
+      <div className="flex items-center justify-center p-8">
+        <div className="text-center">
+          <RefreshCw className="h-8 w-8 animate-spin mx-auto mb-4 text-muted-foreground" />
+          <p className="text-muted-foreground">Loading analysis results...</p>
+        </div>
+      </div>
+    );
+  }
 
   // 格式化处理时间
   const formatProcessingTime = (ms: number) => {

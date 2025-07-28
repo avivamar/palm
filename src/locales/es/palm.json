@@ -11,6 +11,8 @@
   "hero": {
     "badge": "Quiromancia Impulsada por IA",
     "title": "¿Y si tu palma pudiera revelar tu {highlight}, energía y destino?",
+    "titleBefore": "¿Y si tu palma pudiera revelar tu ",
+    "titleAfter": ", energía y destino?",
     "highlight": "personalidad",
     "subtitle": {
       "upload": "Sube tu palma.",
@@ -208,6 +210,65 @@
     "submit": "Enviar",
     "submitting": "Enviando...",
     "confirm": "Confirmar",
-    "reset": "Restablecer"
+    "reset": "Restablecer",
+    "loading": "Cargando resultados del análisis...",
+    "restartAnalysis": "Comenzar nuevo análisis"
+  },
+  "results": {
+    "title": "Tu reporte de lectura de palma",
+    "subtitle": {
+      "quick": "Reporte de análisis rápido - Interpretación profesional con IA",
+      "complete": "Reporte de análisis completo - Interpretación profesional con IA"
+    },
+    "processing": {
+      "title": "IA está analizando tu palma",
+      "subtitle": "Por favor espera, estamos generando un reporte profesional de lectura de palma para ti",
+      "analyzing": "Analizando...",
+      "description": "Nuestra IA está analizando las líneas, formas y características de tu palma. El análisis {type} generalmente toma {time}.",
+      "quick": "rápido",
+      "complete": "completo",
+      "quickTime": "60 segundos",
+      "completeTime": "3-5 minutos"
+    },
+    "auth": {
+      "createAccount": "Crea una cuenta para guardar tus resultados de análisis",
+      "loginBenefit": "Después de iniciar sesión, puedes guardar el historial de análisis y ver tus reportes de palma en cualquier momento.",
+      "loginButton": "Iniciar sesión ahora",
+      "saveResults": "Inicia sesión para guardar tus resultados de análisis",
+      "saveDescription": "Crea una cuenta gratuita para guardar permanentemente tu reporte de lectura de palma"
+    },
+    "upgrade": {
+      "title": "Desbloquear reporte de análisis completo",
+      "description": "Actualiza al reporte completo para un análisis más profundo y consejos personalizados",
+      "features": {
+        "title": "El reporte completo incluye:",
+        "personality": "Análisis detallado de rasgos de personalidad",
+        "health": "Insights profundos de salud",
+        "career": "Consejos de desarrollo de carrera",
+        "love": "Interpretación de fortuna amorosa"
+      },
+      "extras": {
+        "title": "Características adicionales:",
+        "pdf": "Descarga de reporte PDF",
+        "lifetime": "Acceso de por vida",
+        "updates": "Actualizaciones regulares de interpretación",
+        "guidance": "Consejos de orientación profesional"
+      },
+      "price": "$19.9",
+      "priceDescription": "Pago único, acceso de por vida",
+      "upgradeButton": "Actualizar ahora",
+      "processing": "Procesando..."
+    },
+    "actions": {
+      "analyzeAgain": "Analizar de nuevo",
+      "viewHistory": "Ver historial"
+    },
+    "errors": {
+      "notFound": "Sesión no encontrada",
+      "notFoundDescription": "No se puede encontrar esta sesión de análisis, por favor comienza un nuevo análisis.",
+      "failed": "Análisis falló",
+      "failedDescription": "Lo siento, ocurrió un error durante el análisis. Por favor intenta de nuevo.",
+      "loadFailed": "Error al obtener resultados del análisis"
+    }
   }
 }

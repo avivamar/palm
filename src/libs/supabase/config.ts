@@ -5,8 +5,8 @@ import { createBrowserClient, createServerClient as createSSRServerClient } from
 export const isSupabaseConfigured = Boolean(
   process.env.NEXT_PUBLIC_SUPABASE_URL
   && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  && !process.env.NEXT_PUBLIC_SUPABASE_URL.includes('build-placeholder')
-  && !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY.includes('build_time_placeholder'),
+  && !process.env.NEXT_PUBLIC_SUPABASE_URL?.includes('build-placeholder')
+  && !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.includes('build_time_placeholder'),
 );
 
 // 构建时检查

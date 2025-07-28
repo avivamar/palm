@@ -360,6 +360,7 @@ export const palmHandTypeEnum = pgEnum('palm_hand_type', ['left', 'right', 'both
 // Palm analysis sessions - 支持双手图片分析
 export const palmAnalysisSessionsSchema = pgTable('palm_analysis_sessions', {
   id: serial('id').primaryKey(),
+  sessionId: varchar('session_id', { length: 36 }).unique().notNull(), // UUID 会话ID
   userId: text('user_id').references(() => usersSchema.id, { onDelete: 'set null', onUpdate: 'cascade' }),
   
   // 双手图片支持

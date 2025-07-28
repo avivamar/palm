@@ -7,7 +7,7 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { createServerClient } from '@/libs/supabase/config';
 import { getSafeDB } from '@/libs/DB';
-import { palmAnalysisSessionsSchema, userImagesSchema } from '@/models/Schema';
+import { palmAnalysisSessionsSchema } from '@/models/Schema';
 import { eq } from 'drizzle-orm';
 
 // 使用 Node.js runtime 以支持 Supabase
@@ -18,18 +18,11 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    // 1. 验证用户认证
+    // 1. 检查用户认证（可选）
     const supabase = await createServerClient();
-    const { data: { session }, error: authError } = await supabase.auth.getSession();
+    const { data: { session } } = await supabase.auth.getSession();
+    const user = session?.user; // 用户可能未登录
 
-    if (authError || !session?.user) {
-      return NextResponse.json(
-        { error: 'Authentication required' },
-        { status: 401 }
-      );
-    }
-
-    const user = session.user;
     const { id: sessionId } = await params;
 
     // 2. 获取分析会话详情
@@ -38,6 +31,7 @@ export async function GET(
       .select({
         // 分析会话信息
         id: palmAnalysisSessionsSchema.id,
+        sessionId: palmAnalysisSessionsSchema.sessionId,
         userId: palmAnalysisSessionsSchema.userId,
         status: palmAnalysisSessionsSchema.status,
         analysisType: palmAnalysisSessionsSchema.analysisType,
@@ -51,19 +45,13 @@ export async function GET(
         completedAt: palmAnalysisSessionsSchema.completedAt,
         updatedAt: palmAnalysisSessionsSchema.updatedAt,
         
-        // 图像信息
-        imageUrl: userImagesSchema.url,
-        imageFilename: userImagesSchema.fileName,
-        imageSize: userImagesSchema.fileSize,
-        imageMimeType: userImagesSchema.mimeType,
-        imageUploadedAt: userImagesSchema.createdAt,
+        // 双手图像信息 - 直接从sessions表获取
+        leftHandImageUrl: palmAnalysisSessionsSchema.leftHandImageUrl,
+        rightHandImageUrl: palmAnalysisSessionsSchema.rightHandImageUrl,
+        imageMetadata: palmAnalysisSessionsSchema.imageMetadata,
       })
       .from(palmAnalysisSessionsSchema)
-      .leftJoin(
-        userImagesSchema,
-        eq(palmAnalysisSessionsSchema.leftHandImageUrl, userImagesSchema.url)
-      )
-      .where(eq(palmAnalysisSessionsSchema.id, parseInt(sessionId)))
+      .where(eq(palmAnalysisSessionsSchema.sessionId, sessionId))
       .limit(1);
 
     if (!analysisSession) {
@@ -73,31 +61,31 @@ export async function GET(
       );
     }
 
-    // 3. 验证会话归属
-    if (analysisSession.userId !== user.id) {
+    // 3. 验证会话归属（如果用户已登录）
+    if (user && analysisSession.userId && analysisSession.userId !== user.id) {
       return NextResponse.json(
         { error: 'Unauthorized access to analysis session' },
         { status: 403 }
       );
     }
 
-    // 4. 解析分析结果
-    let parsedResult = null;
-    if (analysisSession.analysisResult) {
-      try {
-        parsedResult = JSON.parse(analysisSession.analysisResult);
-      } catch (parseError) {
-        console.error('Failed to parse analysis result:', parseError);
-      }
+    // 4. 对于未登录用户，只允许访问没有用户ID的会话
+    if (!user && analysisSession.userId) {
+      return NextResponse.json(
+        { error: 'Authentication required for this session' },
+        { status: 401 }
+      );
     }
 
-    // 5. 构建响应数据
+    // 5. 获取分析结果 (Drizzle + JSONB 自动解析)
+    const parsedResult = analysisSession.analysisResult;
+
+    // 6. 构建响应数据
     const response = {
       success: true,
       session: {
-        id: analysisSession.id,
+        id: analysisSession.sessionId,
         status: analysisSession.status,
-        handType: analysisSession.handType,
         analysisType: analysisSession.analysisType,
         
         // 用户输入信息
@@ -107,17 +95,23 @@ export async function GET(
           birthLocation: analysisSession.birthLocation,
         },
         
-        // 图像信息
-        image: analysisSession.imageUrl ? {
-          url: analysisSession.imageUrl,
-          filename: analysisSession.imageFilename,
-          size: analysisSession.imageSize,
-          mimeType: analysisSession.imageMimeType,
-          uploadedAt: analysisSession.imageUploadedAt,
-        } : null,
+        // 双手图像信息
+        images: {
+          leftHand: analysisSession.leftHandImageUrl ? {
+            url: analysisSession.leftHandImageUrl,
+          } : null,
+          rightHand: analysisSession.rightHandImageUrl ? {
+            url: analysisSession.rightHandImageUrl,
+          } : null,
+          metadata: analysisSession.imageMetadata ? 
+            (typeof analysisSession.imageMetadata === 'string' 
+              ? JSON.parse(analysisSession.imageMetadata) 
+              : analysisSession.imageMetadata) : null,
+        },
         
         // 分析结果
         result: parsedResult,
+        analysisResult: parsedResult,
         
         // 处理信息
         processingTime: analysisSession.processingTime,
@@ -177,7 +171,7 @@ export async function PATCH(
     const [analysisSession] = await db
       .select()
       .from(palmAnalysisSessionsSchema)
-      .where(eq(palmAnalysisSessionsSchema.id, parseInt(sessionId)))
+      .where(eq(palmAnalysisSessionsSchema.sessionId, sessionId))
       .limit(1);
 
     if (!analysisSession) {
@@ -213,7 +207,7 @@ export async function PATCH(
             errorMessage: 'Cancelled by user',
             updatedAt: new Date(),
           })
-          .where(eq(palmAnalysisSessionsSchema.id, parseInt(sessionId)));
+          .where(eq(palmAnalysisSessionsSchema.sessionId, sessionId));
 
         return NextResponse.json({
           success: true,
@@ -239,7 +233,7 @@ export async function PATCH(
             completedAt: null,
             updatedAt: new Date(),
           })
-          .where(eq(palmAnalysisSessionsSchema.id, parseInt(sessionId)));
+          .where(eq(palmAnalysisSessionsSchema.sessionId, sessionId));
 
         return NextResponse.json({
           success: true,
@@ -287,7 +281,7 @@ export async function DELETE(
     const [analysisSession] = await db
       .select()
       .from(palmAnalysisSessionsSchema)
-      .where(eq(palmAnalysisSessionsSchema.id, parseInt(sessionId)))
+      .where(eq(palmAnalysisSessionsSchema.sessionId, sessionId))
       .limit(1);
 
     if (!analysisSession) {
@@ -312,7 +306,7 @@ export async function DELETE(
         status: 'deleted',
         updatedAt: new Date(),
       })
-      .where(eq(palmAnalysisSessionsSchema.id, parseInt(sessionId)));
+      .where(eq(palmAnalysisSessionsSchema.sessionId, sessionId));
 
     return NextResponse.json({
       success: true,
