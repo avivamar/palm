@@ -197,6 +197,17 @@
     "learn_more": "Aprender más",
     "get_started": "Comenzar",
     "read_more": "Leer más",
-    "view_all": "Ver todo"
+    "view_all": "Ver todo",
+    "success": "¡Éxito!",
+    "uploadFailed": "La carga falló, por favor intenta de nuevo",
+    "upload": "Cargar",
+    "uploading": "Cargando...",
+    "download": "Descargar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "submit": "Enviar",
+    "submitting": "Enviando...",
+    "confirm": "Confirmar",
+    "reset": "Restablecer"
   }
 }
