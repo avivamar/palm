@@ -1,4 +1,5 @@
-import { AIManager, AILogger } from '@rolitt/ai-core';
+// 暂时注释 AI Core 导入，修复部署问题
+// import { AIManager, AILogger } from '@rolitt/ai-core';
 import type {
   ConversionHints,
   FullReport,
@@ -13,7 +14,7 @@ import { getConfig } from './config';
 import { ImageProcessor } from './processors/image-processor';
 import { FeatureExtractor } from './processors/feature-extractor';
 import { ReportGenerator } from './generators/report-generator';
-import { ConversionOptimizer } from './optimizers/conversion-optimizer';
+// import { ConversionOptimizer } from './optimizers/conversion-optimizer';
 import { CacheManager } from './utils/cache-manager';
 import { MetricsCollector } from './utils/metrics-collector';
 

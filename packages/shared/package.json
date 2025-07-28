@@ -31,6 +31,14 @@
     "./hooks": {
       "types": "./dist/hooks/index.d.ts",
       "import": "./dist/hooks/index.js"
+    },
+    "./hooks/client": {
+      "types": "./dist/hooks/client.d.ts",
+      "import": "./dist/hooks/client.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
     }
   },
   "main": "dist/index.js",

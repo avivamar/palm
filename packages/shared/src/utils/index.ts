@@ -51,3 +51,6 @@ export function debounce<T extends (...args: any[]) => any>(
 export function generateId(prefix = 'id'): string {
   return `${prefix}-${Math.random().toString(36).substr(2, 9)}`;
 }
+
+// Export logger
+export { Logger } from './logger';

@@ -15,8 +15,8 @@ export * from './ui';
 // Export business component types
 export * from './components';
 
-// Export hooks
-export * from './hooks';
-
 // Export contracts
 export * from './contracts';
+
+// Client-side exports - separate entry to avoid issues with server-side imports
+export { useAsync, useDebounce, useLocalStorage, usePrevious } from './hooks';

@@ -1,4 +1,4 @@
-import { Logger } from '@rolitt/shared';
+import { Logger } from '@rolitt/shared/server';
 import { PalmConfig } from '../config';
 import { 
   QuickReport, 

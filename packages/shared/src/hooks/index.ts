@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Shared React hooks following .cursorrules best practices
  */

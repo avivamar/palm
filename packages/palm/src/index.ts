@@ -31,8 +31,8 @@ export { FeatureExtractor } from './processors/feature-extractor';
 // 生成器
 export { ReportGenerator } from './generators/report-generator';
 
-// 优化器
-export { ConversionOptimizer } from './optimizers/conversion-optimizer';
+// 优化器 - 暂时禁用，修复部署问题
+// export { ConversionOptimizer } from './optimizers/conversion-optimizer';
 
 // 工具类
 export { CacheManager } from './utils/cache-manager';
