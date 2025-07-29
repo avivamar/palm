@@ -1,24 +1,24 @@
-import { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { 
+import {
+  PalmContactSection,
+  PalmFAQSection,
+  PalmFeaturesSection,
   PalmHeroSection,
   PalmHowItWorksSection,
-  PalmFeaturesSection,
   PalmPricingSection,
-  PalmFAQSection,
-  PalmContactSection
 } from '@/components/palm';
 
-interface PalmPageProps {
+type PalmPageProps = {
   params: Promise<{
     locale: string;
   }>;
-}
+};
 
 export async function generateMetadata({ params }: PalmPageProps): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'palm.meta' });
-  
+
   return {
     title: t('title'),
     description: t('description'),
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PalmPageProps): Promise<Metad
       title: t('title'),
       description: t('description'),
       type: 'website',
-      locale: locale,
+      locale,
     },
     twitter: {
       card: 'summary_large_image',
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: PalmPageProps): Promise<Metad
 
 export default async function PalmPage({ params }: PalmPageProps) {
   const { locale: _locale } = await params;
-  
+
   return (
     <main className="min-h-screen">
       <PalmHeroSection />
