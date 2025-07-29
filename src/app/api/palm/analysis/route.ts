@@ -13,7 +13,7 @@ import { eq } from 'drizzle-orm';
 // 临时移除AI核心包导入，等待修复
 // import { PromptLoader } from '@rolitt/ai-core';
 import type { UserInfo } from '@rolitt/palm';
-import { getPalmAnalysisPrompt } from '@/utils/palmPrompts';
+// import { getPalmAnalysisPrompt } from '@/utils/palmPrompts'; // 已替换为专业手相分析提示词
 
 // 使用 Node.js runtime 以支持 Supabase
 export const runtime = 'nodejs';
@@ -335,13 +335,27 @@ export async function POST(request: NextRequest) {
     const startTime = Date.now();
 
     try {
-      // 使用多语言提示词系统
-      const analysisPrompt = getPalmAnalysisPrompt(locale, {
-        birthDate: userInfo.birthDate?.toISOString().split('T')[0] || 'Not provided',
-        birthTime: userInfo.birthTime || 'Not provided',
-        birthLocation: userInfo.location || 'Not provided',
-        analysisType: validatedData.analysisType === 'quick' ? 'Quick Analysis' : 'Complete Analysis'
-      });
+      // 构建符合analysis.md标准的专业手相分析提示词
+      // 基于 packages/ai-core/src/prompts/palm/analysis.md 的中医手诊标准
+      const professionalPrompt = `你是一名融合中医手诊、反射区学与现代健康管理的 AI 分析师。
+
+请遵循以下规则生成报告：
+1. 用温和、专业口吻；避免"诊断"式断言，多使用"可能""倾向"。
+2. 分析这张手相图片，重点关注：
+   - 四大主纹：生命线、智慧线、感情线、事业线
+   - 八卦区域：离区(心脏)、坎区(肾脏)、震区(肝胆)、兑区(肺大肠)、乾区(大肠脾)、坤区(生殖泌尿)、巽区(脾胰)、艮区(胃鼻咽)
+   - 反射区特征：手掌各区域的纹理、颜色、凸起等特征
+3. 输出标准JSON结构，包含：
+   - overall_insight: 总体洞察(≤3句)
+   - major_lines: 四大主纹分析
+   - health_zones: 八卦区健康分析
+   - reflex_points: 反射区特征分析
+   - lifestyle_tips: 生活建议(≤60字)
+4. 语言：${locale === 'zh-HK' ? '繁体中文' : locale === 'ja' ? '日语' : locale === 'es' ? '西班牙语' : '英语'}
+5. 用户信息：出生日期${userInfo.birthDate?.toISOString().split('T')[0]}，出生时间${userInfo.birthTime}，出生地${userInfo.location}
+6. 在lifestyle_tips末尾自然融入：完整版将详细解锁你未来90天的情感与事业关键节点。
+
+请严格按照JSON格式输出，不要包含任何解释文字：`;
 
       console.log('Starting OpenAI analysis...');
       console.log('Image URL for OpenAI:', imageUrl);
@@ -374,7 +388,7 @@ export async function POST(request: NextRequest) {
               content: [
                 {
                   type: 'text',
-                  text: analysisPrompt
+                  text: professionalPrompt
                 },
                 {
                   type: 'image_url',
@@ -399,7 +413,13 @@ export async function POST(request: NextRequest) {
         // 如果是复杂提示词失败，尝试使用简化版本
         if (openaiResponse.status === 400) {
           console.log('Trying with simplified prompt...');
-          const simplePrompt = `Please analyze this palm image and provide insights in JSON format. Focus on personality traits, career guidance, and relationship insights. Output must be valid JSON starting with { and ending with }.`;
+          const simplePrompt = `Please analyze this palm image focusing on major palm lines and health zones. Provide insights in JSON format with:
+- overall_insight: brief summary (max 3 sentences)  
+- major_lines: analysis of life, head, heart, fate lines
+- health_zones: health insights from palm areas
+- lifestyle_tips: practical advice (max 60 words)
+
+Output valid JSON only, no explanatory text:`;
           
           const retryResponse = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
@@ -469,12 +489,64 @@ export async function POST(request: NextRequest) {
         palmAnalysis = getFallbackAnalysis(locale);
       }
 
-      // 构建分析结果 - 使用新的详细数据结构
+      // 构建分析结果 - 遵循 analysis.md 专业手相分析标准
       analysisResult = {
         report: {
           id: `analysis_${Date.now()}`,
           type: validatedData.analysisType,
-          // 新的详细分析结构
+          // Overall Insight - 总体洞察
+          overall_insight: palmAnalysis.overall_insight || "您的手相显示出较好的生命力和清晰的思维线条，整体健康状况良好，具有稳定的情感表达能力。",
+          
+          // Major Lines - 四大主纹分析
+          major_lines: palmAnalysis.major_lines || {
+            life_line: {
+              length: "中长",
+              depth: "较深",
+              direction: "正常弧度",
+              interpretation: "生命力旺盛，体质较好，注意劳逸结合"
+            },
+            head_line: {
+              curve: "略微下弯",
+              length: "中等长度",
+              clarity: "清晰",
+              interpretation: "思维敏捷，理性与感性并重，决策能力强"
+            },
+            heart_line: {
+              origin: "食指与中指间",
+              curve: "自然弧度",
+              depth: "中等深度",
+              interpretation: "情感丰富，重视人际关系，具有同理心"
+            },
+            fate_line: {
+              exists: true,
+              clarity: "较为清晰",
+              direction: "垂直向上",
+              interpretation: "事业发展稳定，具有明确的人生目标"
+            }
+          },
+          
+          // Health Zones - 八卦区健康分析
+          health_zones: palmAnalysis.health_zones || {
+            heart_zone: "心脏功能良好，注意情绪管理",
+            kidney_zone: "肾脏功能正常，保持充足休息",
+            liver_zone: "肝胆功能稳定，注意饮食清淡",
+            lung_zone: "呼吸系统健康，适度运动有益",
+            spleen_zone: "脾胃功能良好，规律饮食",
+            reproductive_zone: "内分泌平衡，注意作息规律"
+          },
+          
+          // Reflex Points - 反射区特征分析  
+          reflex_points: palmAnalysis.reflex_points || {
+            head_area: "思维活跃，注意用脑过度",
+            digestive_area: "消化功能正常，保持饮食规律",
+            respiratory_area: "呼吸道健康，适合户外运动",
+            circulatory_area: "血液循环良好，注意保暖"
+          },
+          
+          // Lifestyle Tips - 生活建议
+          lifestyle_tips: palmAnalysis.lifestyle_tips || "建议保持规律作息，适度运动，注意情绪调节。完整版将详细解锁你未来90天的情感与事业关键节点。",
+          
+          // 保持原有结构以兼容前端显示
           personality_analysis: palmAnalysis.personality_analysis || {
             core_traits: ["坚韧不拔", "富有创造力", "善于思考"],
             behavioral_patterns: ["注重细节", "重视关系", "追求完美"],

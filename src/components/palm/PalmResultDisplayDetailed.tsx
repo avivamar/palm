@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -33,6 +34,7 @@ interface DetailedPalmResultProps {
 export default function PalmResultDisplayDetailed({ result, analysisType }: DetailedPalmResultProps) {
   const [isSharing, setIsSharing] = useState(false);
   const [isDownloading, setIsDownloading] = useState(false);
+  const t = useTranslations('palm.results');
 
   // 安全的数据提取函数
   const safeGet = (obj: any, path: string, defaultValue: any = '') => {
@@ -55,17 +57,17 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
     try {
       if (navigator.share) {
         await navigator.share({
-          title: '我的手相分析结果',
-          text: '我刚刚完成了一次专业的手相分析，发现了很多有趣的洞察！',
+          title: t('share.title'),
+          text: t('share.text'),
           url: window.location.href,
         });
       } else {
         await navigator.clipboard.writeText(window.location.href);
-        toast.success('链接已复制到剪贴板');
+        toast.success(t('share.copied'));
       }
     } catch (error) {
       console.error('Share failed:', error);
-      toast.error('分享失败，请重试');
+      toast.error(t('share.failed'));
     } finally {
       setIsSharing(false);
     }
@@ -78,10 +80,10 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
     
     try {
       // 这里可以实现 PDF 生成逻辑
-      toast.success('PDF 生成功能即将推出');
+      toast.success(t('download.comingSoon'));
     } catch (error) {
       console.error('Download failed:', error);
-      toast.error('下载失败，请重试');
+      toast.error(t('download.failed'));
     } finally {
       setIsDownloading(false);
     }
@@ -100,64 +102,79 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
               className="w-full h-full"
             />
           </div>
-          <p className="text-muted-foreground">正在加载分析结果...</p>
+          <p className="text-muted-foreground">{t('common.loading')}</p>
         </CardContent>
       </Card>
     );
   }
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6">
-      {/* 分析概览卡片 */}
-      <Card className="border-2 border-primary/20">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl flex items-center justify-center gap-2">
-            <Star className="h-6 w-6 text-primary" />
-            您的专业手相分析报告
+    <div className="max-w-6xl mx-auto space-y-8 palm-results-container">
+      {/* 分析概览卡片 - 突出显示 */}
+      <Card className="border-2 border-primary/30 shadow-lg bg-gradient-to-r from-primary/5 to-primary/10">
+        <CardHeader className="text-center pb-8">
+          <div className="mb-4">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
+              <Star className="h-8 w-8 text-primary" />
+            </div>
+          </div>
+          <CardTitle className="text-3xl font-bold mb-3 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            {t('title')}
           </CardTitle>
-          <CardDescription>
-            {isQuickReport ? '快速版分析' : '完整版分析'} · 
-            置信度: {Math.round((safeGet(report, 'analysis_metadata.confidence_level', 0.85) * 100))}%
-          </CardDescription>
-          <div className="flex justify-center gap-2 mt-4">
-            <Button onClick={handleShare} disabled={isSharing} variant="outline" size="sm">
+          <div className="space-y-2">
+            <CardDescription className="text-lg">
+              {isQuickReport ? t('subtitle.quick') : t('subtitle.complete')}
+            </CardDescription>
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 dark:bg-green-900/30 rounded-full">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-green-700 dark:text-green-300">
+                {t('confidence')}: {Math.round((safeGet(report, 'analysis_metadata.confidence_level', 0.85) * 100))}%
+              </span>
+            </div>
+          </div>
+          <div className="flex justify-center gap-3 mt-6">
+            <Button onClick={handleShare} disabled={isSharing} variant="outline" size="sm" className="hover:scale-105 transition-transform">
               <Share2 className="h-4 w-4 mr-2" />
-              {isSharing ? '分享中...' : '分享结果'}
+              {isSharing ? t('actions.sharing') : t('actions.share')}
             </Button>
-            <Button onClick={handleDownload} disabled={isDownloading} variant="outline" size="sm">
+            <Button onClick={handleDownload} disabled={isDownloading} variant="outline" size="sm" className="hover:scale-105 transition-transform">
               <Download className="h-4 w-4 mr-2" />
-              {isDownloading ? '生成中...' : '下载PDF'}
+              {isDownloading ? t('actions.downloading') : t('actions.downloadPDF')}
             </Button>
           </div>
         </CardHeader>
       </Card>
 
-      {/* 性格分析 */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <User className="h-5 w-5 text-blue-600" />
-            性格特质分析
-          </CardTitle>
-          <CardDescription>深入了解您的核心性格特征和行为模式</CardDescription>
-        </CardHeader>
+      {/* 主要分析内容区域 */}
+      <div className="grid gap-8">
+        {/* 性格分析 */}
+        <Card className="border-l-4 border-l-blue-500 hover:shadow-md transition-shadow">
+          <CardHeader className="bg-gradient-to-r from-blue-50/50 to-transparent dark:from-blue-950/20">
+            <CardTitle className="flex items-center gap-3 text-xl">
+              <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                <User className="h-6 w-6 text-blue-600" />
+              </div>
+              {t('sections.personality.title')}
+            </CardTitle>
+            <CardDescription className="text-base mt-2">{t('sections.personality.description')}</CardDescription>
+          </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <h4 className="font-medium mb-2">核心特质</h4>
+            <h4 className="font-medium mb-2">{t('sections.personality.coreTraits')}</h4>
             <div className="flex flex-wrap gap-2">
               {safeGet(report, 'personality_analysis.core_traits', []).slice(0, isQuickReport ? 2 : 5).map((trait: string, index: number) => (
                 <Badge key={index} variant="secondary">{trait}</Badge>
               ))}
               {isQuickReport && safeGet(report, 'personality_analysis.core_traits', []).length > 2 && (
                 <Badge variant="outline" className="border-dashed border-amber-400 text-amber-600">
-                  +{safeGet(report, 'personality_analysis.core_traits', []).length - 2} 更多特质 🔒
+                  +{safeGet(report, 'personality_analysis.core_traits', []).length - 2} {t('sections.personality.moreTraits')} 🔒
                 </Badge>
               )}
             </div>
           </div>
           
           <div>
-            <h4 className="font-medium mb-2">行为模式</h4>
+            <h4 className="font-medium mb-2">{t('sections.personality.behaviorPatterns')}</h4>
             <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
               {safeGet(report, 'personality_analysis.behavioral_patterns', []).slice(0, isQuickReport ? 1 : 5).map((pattern: string, index: number) => (
                 <li key={index}>{pattern}</li>
@@ -165,7 +182,7 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
               {isQuickReport && (
                 <li className="text-amber-600 font-medium">
                   <Lock className="h-3 w-3 inline mr-1" />
-                  还有 {Math.max(0, safeGet(report, 'personality_analysis.behavioral_patterns', []).length - 1)} 个深度行为模式等你解锁...
+                  {t('sections.personality.moreBehaviors', { count: Math.max(0, safeGet(report, 'personality_analysis.behavioral_patterns', []).length - 1) })}
                 </li>
               )}
             </ul>
@@ -173,16 +190,16 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
 
           {!isQuickReport && (
             <div>
-              <h4 className="font-medium mb-2">沟通风格</h4>
+              <h4 className="font-medium mb-2">{t('sections.personality.communicationStyle')}</h4>
               <p className="text-sm text-muted-foreground">
-                {safeGet(report, 'personality_analysis.communication_style', '暂无数据')}
+                {safeGet(report, 'personality_analysis.communication_style', t('common.noData'))}
               </p>
             </div>
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <h4 className="font-medium mb-2 text-green-600">优势特长</h4>
+              <h4 className="font-medium mb-2 text-green-600">{t('sections.personality.strengths')}</h4>
               <ul className="list-disc list-inside space-y-1 text-sm">
                 {safeGet(report, 'personality_analysis.strengths', []).slice(0, isQuickReport ? 2 : 5).map((strength: string, index: number) => (
                   <li key={index} className="text-green-700">{strength}</li>
@@ -190,13 +207,13 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
                 {isQuickReport && safeGet(report, 'personality_analysis.strengths', []).length > 2 && (
                   <li className="text-amber-600 font-medium text-xs">
                     <Lock className="h-3 w-3 inline mr-1" />
-                    解锁查看全部 {safeGet(report, 'personality_analysis.strengths', []).length} 项优势
+                    {t('sections.personality.unlockStrengths', { count: safeGet(report, 'personality_analysis.strengths', []).length })}
                   </li>
                 )}
               </ul>
             </div>
             <div>
-              <h4 className="font-medium mb-2 text-orange-600">成长空间</h4>
+              <h4 className="font-medium mb-2 text-orange-600">{t('sections.personality.growthAreas')}</h4>
               <ul className="list-disc list-inside space-y-1 text-sm">
                 {safeGet(report, 'personality_analysis.development_areas', []).slice(0, isQuickReport ? 1 : 5).map((area: string, index: number) => (
                   <li key={index} className="text-orange-700">{area}</li>
@@ -204,7 +221,7 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
                 {isQuickReport && (
                   <li className="text-amber-600 font-medium text-xs">
                     <Crown className="h-3 w-3 inline mr-1" />
-                    专业成长建议需要解锁完整版
+                    {t('sections.personality.upgradeProfessionalAdvice')}
                   </li>
                 )}
               </ul>
@@ -215,48 +232,49 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
             <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/20 dark:to-indigo-950/20 p-4 rounded-lg border border-blue-200">
               <div className="flex items-center gap-2 mb-2">
                 <Brain className="h-4 w-4 text-blue-600" />
-                <span className="font-medium text-blue-800">AI深度洞察</span>
+                <span className="font-medium text-blue-800">{t('sections.personality.aiInsights')}</span>
                 <Lock className="h-3 w-3 text-amber-500" />
               </div>
               <p className="text-sm text-blue-700 leading-relaxed">
-                根据您的手相特征，我们发现了一些<strong>独特的性格密码</strong>和<strong>潜在天赋</strong>。
-                这些深层洞察将帮助您更好地了解自己的内在动机、决策模式，以及在人际关系中的表现方式...
+                {t('sections.personality.aiInsightsDescription')}
               </p>
               <div className="mt-2 text-xs text-blue-600 bg-white/50 px-2 py-1 rounded inline-block">
-                完整版包含 12+ 项深度性格分析
+                {t('sections.personality.fullVersionFeatures')}
               </div>
             </div>
           )}
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
-      {/* 人生路径分析 */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Target className="h-5 w-5 text-purple-600" />
-            人生路径指引
-          </CardTitle>
-          <CardDescription>探索您的人生使命和重要发展阶段</CardDescription>
-        </CardHeader>
+        {/* 人生路径分析 */}
+        <Card className="border-l-4 border-l-purple-500 hover:shadow-md transition-shadow">
+          <CardHeader className="bg-gradient-to-r from-purple-50/50 to-transparent dark:from-purple-950/20">
+            <CardTitle className="flex items-center gap-3 text-xl">
+              <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
+                <Target className="h-6 w-6 text-purple-600" />
+              </div>
+              {t('sections.lifePath.title')}
+            </CardTitle>
+            <CardDescription className="text-base mt-2">{t('sections.lifePath.description')}</CardDescription>
+          </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <h4 className="font-medium mb-2">人生使命</h4>
+            <h4 className="font-medium mb-2">{t('sections.lifePath.purpose')}</h4>
             <p className="text-sm bg-purple-50 dark:bg-purple-950/30 p-3 rounded-lg">
-              {safeGet(report, 'life_path_analysis.life_purpose', '暂无数据')}
+              {safeGet(report, 'life_path_analysis.life_purpose', t('common.noData'))}
             </p>
           </div>
 
           <div>
-            <h4 className="font-medium mb-3">重要人生阶段</h4>
+            <h4 className="font-medium mb-3">{t('sections.lifePath.majorPhases')}</h4>
             <div className="space-y-3">
               {safeGet(report, 'life_path_analysis.major_life_phases', []).map((phase: any, index: number) => (
                 <div key={index} className="border-l-4 border-purple-400 pl-4">
                   <h5 className="font-medium text-purple-700">{phase.period}</h5>
                   <p className="text-sm text-muted-foreground mb-1">{phase.focus}</p>
                   <div className="text-xs text-muted-foreground">
-                    <span className="inline-block mr-4">挑战: {phase.challenges}</span>
-                    <span>机遇: {phase.opportunities}</span>
+                    <span className="inline-block mr-4">{t('sections.lifePath.challenges')}: {phase.challenges}</span>
+                    <span>{t('sections.lifePath.opportunities')}: {phase.opportunities}</span>
                   </div>
                 </div>
               ))}
@@ -264,28 +282,30 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
           </div>
 
           <div>
-            <h4 className="font-medium mb-2">人生课题</h4>
+            <h4 className="font-medium mb-2">{t('sections.lifePath.lessons')}</h4>
             <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
               {safeGet(report, 'life_path_analysis.life_lessons', []).map((lesson: string, index: number) => (
                 <li key={index}>{lesson}</li>
               ))}
             </ul>
           </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
-      {/* 事业财运 */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Briefcase className="h-5 w-5 text-green-600" />
-            事业发展与财运
-          </CardTitle>
-          <CardDescription>了解您的职业天赋和财富积累模式</CardDescription>
-        </CardHeader>
+        {/* 事业财运 */}
+        <Card className="border-l-4 border-l-green-500 hover:shadow-md transition-shadow">
+          <CardHeader className="bg-gradient-to-r from-green-50/50 to-transparent dark:from-green-950/20">
+            <CardTitle className="flex items-center gap-3 text-xl">
+              <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                <Briefcase className="h-6 w-6 text-green-600" />
+              </div>
+              {t('sections.career.title')}
+            </CardTitle>
+            <CardDescription className="text-base mt-2">{t('sections.career.description')}</CardDescription>
+          </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <h4 className="font-medium mb-2">职业天赋领域</h4>
+            <h4 className="font-medium mb-2">{t('sections.career.aptitudes')}</h4>
             <div className="flex flex-wrap gap-2">
               {safeGet(report, 'career_fortune.career_aptitude', []).slice(0, isQuickReport ? 2 : 6).map((aptitude: string, index: number) => (
                 <Badge key={index} variant="outline" className="border-green-500 text-green-700">{aptitude}</Badge>
@@ -293,7 +313,7 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
               {isQuickReport && safeGet(report, 'career_fortune.career_aptitude', []).length > 2 && (
                 <Badge variant="outline" className="border-dashed border-amber-400 text-amber-600">
                   <Lock className="h-3 w-3 mr-1" />
-                  +{safeGet(report, 'career_fortune.career_aptitude', []).length - 2} 专业领域
+                  +{safeGet(report, 'career_fortune.career_aptitude', []).length - 2} {t('sections.career.moreFields')}
                 </Badge>
               )}
             </div>
@@ -301,34 +321,34 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <h4 className="font-medium mb-2">领导潜力</h4>
+              <h4 className="font-medium mb-2">{t('sections.career.leadership')}</h4>
               {isQuickReport ? (
                 <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-950/20 dark:to-emerald-950/20 p-3 rounded-lg border border-green-200">
-                  <p className="text-sm text-green-700 mb-2">🌟 您具有天生的领导特质</p>
+                  <p className="text-sm text-green-700 mb-2">🌟 {t('sections.career.leadershipPreview')}</p>
                   <div className="flex items-center gap-2 text-xs text-amber-600">
                     <Crown className="h-3 w-3" />
-                    详细领导力分析需要解锁
+                    {t('sections.career.leadershipUpgrade')}
                   </div>
                 </div>
               ) : (
                 <p className="text-sm text-muted-foreground">
-                  {safeGet(report, 'career_fortune.leadership_potential', '暂无数据')}
+                  {safeGet(report, 'career_fortune.leadership_potential', t('common.noData'))}
                 </p>
               )}
             </div>
             <div>
-              <h4 className="font-medium mb-2">创业倾向</h4>
+              <h4 className="font-medium mb-2">{t('sections.career.entrepreneurship')}</h4>
               {isQuickReport ? (
                 <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/20 dark:to-cyan-950/20 p-3 rounded-lg border border-blue-200">
-                  <p className="text-sm text-blue-700 mb-2">💼 具备创业精神和商业敏感度</p>
+                  <p className="text-sm text-blue-700 mb-2">💼 {t('sections.career.entrepreneurshipPreview')}</p>
                   <div className="flex items-center gap-2 text-xs text-amber-600">
                     <Lock className="h-3 w-3" />
-                    专业创业指导在完整版
+                    {t('sections.career.entrepreneurshipUpgrade')}
                   </div>
                 </div>
               ) : (
                 <p className="text-sm text-muted-foreground">
-                  {safeGet(report, 'career_fortune.entrepreneurship', '暂无数据')}
+                  {safeGet(report, 'career_fortune.entrepreneurship', t('common.noData'))}
                 </p>
               )}
             </div>
@@ -338,12 +358,11 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
             <div className="bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-950/20 dark:to-amber-950/20 p-4 rounded-lg border border-yellow-200">
               <div className="flex items-center gap-2 mb-2">
                 <DollarSign className="h-4 w-4 text-yellow-600" />
-                <span className="font-medium text-yellow-800">财富密码预览</span>
+                <span className="font-medium text-yellow-800">{t('sections.career.wealthPreview')}</span>
                 <Lock className="h-3 w-3 text-amber-500" />
               </div>
               <p className="text-sm text-yellow-700 leading-relaxed mb-2">
-                从您的手相来看，您拥有<strong>稳健的财富积累能力</strong>。特别是在30岁后，
-                您的事业将迎来重要转折点，收入有望实现质的飞跃...
+                {t('sections.career.wealthDescription')}
               </p>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div className="bg-white/50 px-2 py-1 rounded">💰 最佳投资时机</div>
@@ -377,21 +396,23 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
               </div>
             </div>
           )}
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
-      {/* 感情关系 */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Heart className="h-5 w-5 text-pink-600" />
-            情感关系洞察
-          </CardTitle>
-          <CardDescription>探索您在爱情、家庭和社交中的表现</CardDescription>
-        </CardHeader>
+        {/* 感情关系 */}
+        <Card className="border-l-4 border-l-pink-500 hover:shadow-md transition-shadow">
+          <CardHeader className="bg-gradient-to-r from-pink-50/50 to-transparent dark:from-pink-950/20">
+            <CardTitle className="flex items-center gap-3 text-xl">
+              <div className="p-2 bg-pink-100 dark:bg-pink-900/30 rounded-lg">
+                <Heart className="h-6 w-6 text-pink-600" />
+              </div>
+              {t('sections.relationship.title')}
+            </CardTitle>
+            <CardDescription className="text-base mt-2">{t('sections.relationship.description')}</CardDescription>
+          </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <h4 className="font-medium mb-2">理想伴侣特质</h4>
+            <h4 className="font-medium mb-2">{t('sections.relationship.idealPartner')}</h4>
             <div className="flex flex-wrap gap-2">
               {safeGet(report, 'relationship_insights.love_compatibility.ideal_partner_traits', []).map((trait: string, index: number) => (
                 <Badge key={index} variant="outline" className="border-pink-500 text-pink-700">{trait}</Badge>
@@ -401,21 +422,21 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <h4 className="font-medium mb-2">爱的表达方式</h4>
+              <h4 className="font-medium mb-2">{t('sections.relationship.loveExpression')}</h4>
               <p className="text-sm text-muted-foreground">
-                {safeGet(report, 'relationship_insights.love_compatibility.love_expression', '暂无数据')}
+                {safeGet(report, 'relationship_insights.love_compatibility.love_expression', t('common.noData'))}
               </p>
             </div>
             <div>
-              <h4 className="font-medium mb-2">承诺态度</h4>
+              <h4 className="font-medium mb-2">{t('sections.relationship.commitment')}</h4>
               <p className="text-sm text-muted-foreground">
-                {safeGet(report, 'relationship_insights.love_compatibility.commitment_style', '暂无数据')}
+                {safeGet(report, 'relationship_insights.love_compatibility.commitment_style', t('common.noData'))}
               </p>
             </div>
           </div>
 
           <div>
-            <h4 className="font-medium mb-2">关系挑战</h4>
+            <h4 className="font-medium mb-2">{t('sections.relationship.challenges')}</h4>
             <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground">
               {safeGet(report, 'relationship_insights.love_compatibility.relationship_challenges', []).map((challenge: string, index: number) => (
                 <li key={index}>{challenge}</li>
@@ -657,6 +678,7 @@ export default function PalmResultDisplayDetailed({ result, analysisType }: Deta
           </CardContent>
         </Card>
       )}
+      </div>
     </div>
   );
 }

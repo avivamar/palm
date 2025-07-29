@@ -294,9 +294,77 @@
       "upgradeButton": "今すぐアップグレード",
       "processing": "処理中..."
     },
+    "confidence": "信頼度",
+    "share": {
+      "title": "私の手相分析結果",
+      "text": "私は専門的な手相分析を完了し、多くの興味深い洞察を発見しました！",
+      "copied": "リンクがクリップボードにコピーされました",
+      "failed": "シェアに失敗しました。再度お試しください"
+    },
+    "download": {
+      "comingSoon": "PDF生成機能が間もなく利用可能になります",
+      "failed": "ダウンロードに失敗しました。再度お試しください"
+    },
     "actions": {
+      "share": "結果をシェア",
+      "sharing": "シェア中...",
+      "downloadPDF": "PDFダウンロード",
+      "downloading": "生成中...",
       "analyzeAgain": "再度分析",
       "viewHistory": "履歴を表示"
+    },
+    "sections": {
+      "personality": {
+        "title": "性格特性分析",
+        "description": "あなたの核となる性格特徴と行動パターンを深く理解します",
+        "coreTraits": "核となる特性",
+        "moreTraits": "その他の特性",
+        "behaviorPatterns": "行動パターン",
+        "moreBehaviors": "あと{count}個の深い行動パターンがロック解除を待っています...",
+        "communicationStyle": "コミュニケーションスタイル",
+        "strengths": "強みと才能",
+        "unlockStrengths": "全{count}個の強みをロック解除して表示",
+        "growthAreas": "成長の機会",
+        "upgradeProfessionalAdvice": "専門的な成長アドバイスは完全版で解除されます",
+        "aiInsights": "AI深層洞察",
+        "aiInsightsDescription": "あなたの手相の特徴から、私たちは<strong>独特の性格コード</strong>と<strong>潜在的な才能</strong>を発見しました。この深層洞察は、あなたの内なる動機、意思決定パターン、人間関係での表現方法をより深く理解するのに役立ちます...",
+        "fullVersionFeatures": "完全版には12+の深度性格分析が含まれています"
+      },
+      "lifePath": {
+        "title": "人生の道筋ガイダンス",
+        "description": "あなたの人生の使命と重要な発展段階を探索します",
+        "purpose": "人生の使命",
+        "majorPhases": "重要な人生段階",
+        "challenges": "挑戦",
+        "opportunities": "機会",
+        "lessons": "人生の課題"
+      },
+      "career": {
+        "title": "キャリア発展と財運",
+        "description": "あなたの職業的才能と富の蓄積パターンを理解します",
+        "aptitudes": "職業的才能分野",
+        "moreFields": "専門分野",
+        "leadership": "リーダーシップの潜在能力",
+        "leadershipPreview": "あなたは生来のリーダーシップ特性を持っています",
+        "leadershipUpgrade": "詳細なリーダーシップ分析の解除が必要です",
+        "entrepreneurship": "起業の傾向",
+        "entrepreneurshipPreview": "起業家精神とビジネスの敏感度を備えています",
+        "entrepreneurshipUpgrade": "専門的な起業ガイダンスは完全版にあります",
+        "wealthPreview": "財富の秘密プレビュー",
+        "wealthDescription": "あなたの手相から見ると、<strong>安定した富の蓄積能力</strong>を持っています。特に30歳以降、あなたのキャリアは重要な転換点を迎え、収入の質的な飛躍が期待できます..."
+      },
+      "relationship": {
+        "title": "感情関係の洞察",
+        "description": "恋愛、家族、社交での表現を探求します",
+        "idealPartner": "理想的なパートナーの特性",
+        "loveExpression": "愛の表現方法",
+        "commitment": "コミットメント態度",
+        "challenges": "関係の課題"
+      },
+      "health": {
+        "title": "健康養生指導",
+        "description": "あなたの体質特徴と養生建議を理解します"
+      }
     },
     "errors": {
       "notFound": "セッションが見つかりません",
@@ -308,6 +376,7 @@
   },
   "common": {
     "loading": "分析結果を読み込み中...",
+    "noData": "データがありません",
     "restartAnalysis": "新しい分析を開始",
     "success": "写真アップロード成功！分析を開始中...",
     "uploadFailed": "アップロードに失敗しました。再度お試しください",
