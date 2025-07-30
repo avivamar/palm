@@ -10,7 +10,14 @@
     "build": "tsc",
     "check-types": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix"
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "test": "ts-node scripts/test-providers.ts",
+    "validate": "ts-node -e \"import { printConfigReport } from './src/utils/env-validation'; printConfigReport();\"",
+    "migrate": "ts-node scripts/migration-helper.ts",
+    "migrate:list": "ts-node scripts/simple-migration.ts list",
+    "migrate:step": "ts-node scripts/migration-helper.ts step",
+    "migrate:full": "ts-node scripts/migration-helper.ts migrate",
+    "migrate:dry-run": "ts-node scripts/simple-migration.ts dry-run"
   },
   "peerDependencies": {
     "next": "^15.2.0",
@@ -21,8 +28,12 @@
     "stripe": "^18.2.1",
     "zod": "^3.25.58"
   },
+  "optionalDependencies": {
+    "braintree": "^3.23.0"
+  },
   "devDependencies": {
     "@types/node": "^22.13.5",
-    "typescript": "5.7.3"
+    "typescript": "5.7.3",
+    "ts-node": "^10.9.2"
   }
 }

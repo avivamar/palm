@@ -12,7 +12,19 @@ export type { SubscriptionManagerProps } from './components/SubscriptionManager'
 export { SubscriptionPlans } from './components/SubscriptionPlans';
 export type { SubscriptionPlansProps } from './components/SubscriptionPlans';
 
-// Stripe services
+// Multi-provider payment services
+export { PaymentService } from './services/PaymentService';
+export type { PaymentServiceConfig } from './services/PaymentService';
+
+// Payment providers
+export { PaymentProviderManager } from './providers';
+export type { ExtendedPaymentConfig } from './providers';
+export { StripeProvider } from './providers/stripe';
+export { CreemProvider } from './providers/creem';
+export { PaddleProvider } from './providers/paddle';
+export { BraintreeProvider } from './providers/braintree';
+
+// Legacy Stripe services (for backward compatibility)
 export { StripeCheckoutService } from './features/stripe/StripeCheckoutService';
 export {
   getAllPlans,

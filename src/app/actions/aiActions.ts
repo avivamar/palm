@@ -1,15 +1,7 @@
 'use server';
 
-import {
-  AIManager,
-  ChatService,
-  ClaudeService,
-  GeminiService,
-  OpenAIEnhancedService,
-  PromptLoader,
-  createOpenAIConfigFromEnv,
-  validateOpenAIConfig,
-} from '@rolitt/ai-core';
+// 使用 Palm 包的专用 AI 服务替代 ai-core 包
+import { PalmAIService, PalmPromptManager } from '@rolitt/palm';
 import { z } from 'zod';
 
 // Environment validation
@@ -21,112 +13,54 @@ const envSchema = z.object({
   REDIS_TOKEN: z.string().optional(),
 });
 
-let aiManager: AIManager | null = null;
-let chatService: ChatService | null = null;
+let palmAIService: PalmAIService | null = null;
+let palmPromptManager: PalmPromptManager | null = null;
 
-// Initialize AI services
-async function initializeAI() {
-  if (aiManager) {
-    return { aiManager, chatService };
+// Initialize Palm AI services
+async function initializePalmAI() {
+  if (palmAIService) {
+    return { palmAIService, palmPromptManager };
   }
 
   try {
     const env = envSchema.parse(process.env);
 
-    // Create AI manager with available providers
-    const providers: Record<string, any> = {};
-
-    // Try to create enhanced OpenAI config from environment
-    const openaiEnhancedConfig = createOpenAIConfigFromEnv();
-    if (openaiEnhancedConfig) {
-      const validation = validateOpenAIConfig(openaiEnhancedConfig);
-      if (validation.valid) {
-        providers.openai = openaiEnhancedConfig;
-        console.log(`OpenAI multi-endpoint config loaded with ${openaiEnhancedConfig.endpoints.length} endpoints`);
-        
-        if (validation.warnings.length > 0) {
-          console.warn('OpenAI config warnings:', validation.warnings);
-        }
-      } else {
-        console.error('OpenAI enhanced config validation failed:', validation.errors);
-        // Fallback to legacy config
-        if (env.OPENAI_API_KEY) {
-          providers.openai = {
-            apiKey: env.OPENAI_API_KEY,
-            model: 'gpt-4-turbo-preview',
-          };
-          console.log('Using legacy OpenAI config as fallback');
-        }
-      }
-    } else if (env.OPENAI_API_KEY) {
-      // Use legacy single endpoint config
-      providers.openai = {
+    // Initialize Palm AI Service with available providers
+    const config = {
+      openai: {
         apiKey: env.OPENAI_API_KEY,
-        model: 'gpt-4-turbo-preview',
-      };
-      console.log('Using legacy OpenAI config');
-    }
-
-    if (env.ANTHROPIC_API_KEY) {
-      providers.claude = {
+        model: 'gpt-4o-mini',
+      },
+      anthropic: env.ANTHROPIC_API_KEY ? {
         apiKey: env.ANTHROPIC_API_KEY,
         model: 'claude-3-5-sonnet-20241022',
-      };
-    }
-
-    if (env.GOOGLE_AI_API_KEY) {
-      providers.gemini = {
+      } : undefined,
+      google: env.GOOGLE_AI_API_KEY ? {
         apiKey: env.GOOGLE_AI_API_KEY,
         model: 'gemini-1.5-pro-latest',
-      };
-    }
+      } : undefined,
+    };
 
-    if (Object.keys(providers).length === 0) {
+    // Remove undefined providers
+    const cleanConfig = Object.fromEntries(
+      Object.entries(config).filter(([_, value]) => value !== undefined)
+    );
+
+    if (Object.keys(cleanConfig).length === 0) {
       throw new Error('No AI providers configured. Please add API keys to environment variables.');
     }
 
-    const config = {
-      providers,
-      defaultProvider: Object.keys(providers)[0] as any,
-      cache: {
-        enabled: !!env.REDIS_URL,
-        ttl: 3600,
-      },
-      rateLimit: {
-        enabled: true,
-        maxRequests: 100,
-        windowMs: 60000,
-      },
-    };
+    palmAIService = new PalmAIService(cleanConfig);
+    palmPromptManager = new PalmPromptManager();
 
-    aiManager = new AIManager(config);
-
-    // Register available services
-    if (providers.openai) {
-      // Use enhanced service which supports both legacy and multi-endpoint configs
-      await aiManager.registerService('openai', new OpenAIEnhancedService());
-    }
-
-    if (providers.claude) {
-      await aiManager.registerService('claude', new ClaudeService());
-    }
-
-    if (providers.gemini) {
-      await aiManager.registerService('gemini', new GeminiService());
-    }
-
-    // Initialize chat service
-    chatService = new ChatService(aiManager);
-
-    console.log('AI services initialized successfully', {
-      providers: Object.keys(providers),
-      defaultProvider: config.defaultProvider,
+    console.log('Palm AI services initialized successfully', {
+      providers: Object.keys(cleanConfig),
     });
 
-    return { aiManager, chatService };
+    return { palmAIService, palmPromptManager };
   } catch (error) {
-    console.error('Failed to initialize AI services:', error);
-    throw new Error('AI service initialization failed');
+    console.error('Failed to initialize Palm AI services:', error);
+    throw new Error('Palm AI service initialization failed');
   }
 }
 
@@ -154,10 +88,10 @@ const promptInputSchema = z.object({
   userId: z.string().optional(),
 });
 
-// Main AI chat action
+// Main AI chat action using Palm AI Service
 export async function handleAIChat(formData: FormData) {
   try {
-    const { aiManager } = await initializeAI();
+    const { palmAIService } = await initializePalmAI();
 
     // Parse and validate input
     const input = chatInputSchema.parse({
@@ -181,17 +115,17 @@ export async function handleAIChat(formData: FormData) {
       throw new Error('Invalid last message');
     }
 
-    // Generate response using AI manager - use simple text generation for now
-    const response = await aiManager.generateResponse(
-      lastMessage.content,
-      input.provider,
-      {
+    // Generate response using Palm AI Service
+    const response = await palmAIService.generateChatResponse({
+      messages: input.messages,
+      provider: input.provider as any,
+      options: {
         temperature: input.temperature,
         maxTokens: input.maxTokens,
-        locale: input.locale,
+        locale: input.locale as any,
         userId: input.userId,
       },
-    );
+    });
 
     const responseTime = Date.now() - startTime;
 
@@ -202,7 +136,6 @@ export async function handleAIChat(formData: FormData) {
         provider: response.provider,
         model: response.model,
         usage: response.usage,
-        cached: response.cached,
         responseTime,
       },
     };
@@ -215,14 +148,10 @@ export async function handleAIChat(formData: FormData) {
   }
 }
 
-// Stream chat action
+// Stream chat action using Palm AI Service
 export async function handleStreamChat(formData: FormData) {
   try {
-    const { chatService } = await initializeAI();
-
-    if (!chatService) {
-      throw new Error('Chat service not available');
-    }
+    const { palmAIService } = await initializePalmAI();
 
     // Parse and validate input
     const input = chatInputSchema.parse({
@@ -234,28 +163,26 @@ export async function handleStreamChat(formData: FormData) {
       userId: formData.get('userId') || undefined,
     });
 
-    // This would typically return a stream, but Server Actions don't support streaming responses
-    // For now, we'll use the regular chat method
-    const result = await chatService.chat({
+    // Use Palm AI Service for streaming chat
+    const result = await palmAIService.generateChatResponse({
       messages: input.messages,
-      provider: input.provider,
+      provider: input.provider as any,
       options: {
         temperature: input.temperature,
         maxTokens: input.maxTokens,
-        locale: input.locale,
+        locale: input.locale as any,
         userId: input.userId,
+        streaming: true, // Enable streaming if supported
       },
     });
 
     return {
       success: true,
       data: {
-        sessionId: result.sessionId,
-        content: result.message.content,
+        content: result.content,
         provider: result.provider,
         model: result.model,
         usage: result.usage,
-        cached: result.cached,
       },
     };
   } catch (error) {
@@ -267,10 +194,10 @@ export async function handleStreamChat(formData: FormData) {
   }
 }
 
-// Prompt-based generation action
+// Prompt-based generation action using Palm AI Service
 export async function generateFromPrompt(formData: FormData) {
   try {
-    const { aiManager } = await initializeAI();
+    const { palmAIService, palmPromptManager } = await initializePalmAI();
 
     // Parse and validate input
     const input = promptInputSchema.parse({
@@ -286,20 +213,24 @@ export async function generateFromPrompt(formData: FormData) {
       userId: formData.get('userId') || undefined,
     });
 
-    // Load prompt template
-    const prompt = await PromptLoader.loadPrompt(
+    // Load prompt template using Palm Prompt Manager
+    const prompt = await palmPromptManager!.loadPrompt(
       input.category,
       input.name,
-      input.locale,
+      input.locale as any,
       input.variables,
     );
 
-    // Generate response
-    const response = await aiManager.generateResponse(prompt, input.provider, {
-      temperature: input.temperature,
-      maxTokens: input.maxTokens,
-      locale: input.locale,
-      userId: input.userId,
+    // Generate response using Palm AI Service
+    const response = await palmAIService.generateTextResponse({
+      prompt,
+      provider: input.provider as any,
+      options: {
+        temperature: input.temperature,
+        maxTokens: input.maxTokens,
+        locale: input.locale as any,
+        userId: input.userId,
+      },
     });
 
     return {
@@ -309,7 +240,6 @@ export async function generateFromPrompt(formData: FormData) {
         provider: response.provider,
         model: response.model,
         usage: response.usage,
-        cached: response.cached,
         promptUsed: {
           category: input.category,
           name: input.name,
@@ -326,7 +256,7 @@ export async function generateFromPrompt(formData: FormData) {
   }
 }
 
-// Product recommendation action
+// Product recommendation action using Palm AI Service
 export async function generateProductRecommendation(formData: FormData) {
   const userId = formData.get('userId') as string;
   const locale = (formData.get('locale') as string) || 'en';
@@ -334,9 +264,9 @@ export async function generateProductRecommendation(formData: FormData) {
   const budgetRange = formData.get('budgetRange') as string;
 
   try {
-    const { aiManager } = await initializeAI();
+    const { palmAIService, palmPromptManager } = await initializePalmAI();
 
-    const prompt = await PromptLoader.loadPrompt(
+    const prompt = await palmPromptManager!.loadPrompt(
       'ecommerce',
       'recommendation',
       locale as any,
@@ -350,17 +280,21 @@ export async function generateProductRecommendation(formData: FormData) {
       },
     );
 
-    const recommendation = await aiManager.generateText(prompt, 'claude', {
-      temperature: 0.7,
-      maxTokens: 800,
-      locale: locale as any,
-      userId,
+    const response = await palmAIService.generateTextResponse({
+      prompt,
+      provider: 'openai',
+      options: {
+        temperature: 0.7,
+        maxTokens: 800,
+        locale: locale as any,
+        userId,
+      },
     });
 
     return {
       success: true,
       data: {
-        recommendation,
+        recommendation: response.content,
         userId,
         locale,
         generatedAt: new Date().toISOString(),
@@ -375,7 +309,7 @@ export async function generateProductRecommendation(formData: FormData) {
   }
 }
 
-// Customer support action
+// Customer support action using Palm AI Service
 export async function handleCustomerSupport(formData: FormData) {
   const userType = formData.get('userType') as string;
   const issueCategory = formData.get('issueCategory') as string;
@@ -384,9 +318,9 @@ export async function handleCustomerSupport(formData: FormData) {
   const question = formData.get('question') as string;
 
   try {
-    const { aiManager } = await initializeAI();
+    const { palmAIService, palmPromptManager } = await initializePalmAI();
 
-    const prompt = await PromptLoader.loadPrompt(
+    const prompt = await palmPromptManager!.loadPrompt(
       'customer-service',
       'support',
       locale as any,
@@ -399,19 +333,18 @@ export async function handleCustomerSupport(formData: FormData) {
       },
     );
 
-    // Create conversation with system prompt and user question
     // Create a full prompt by combining system and user messages
     const fullPrompt = `${prompt}\n\nUser: ${question}`;
 
-    const response = await aiManager.generateResponse(
-      fullPrompt,
-      'claude',
-      {
+    const response = await palmAIService.generateTextResponse({
+      prompt: fullPrompt,
+      provider: 'openai',
+      options: {
         temperature: 0.6,
         maxTokens: 1000,
         locale: locale as any,
       },
-    );
+    });
 
     return {
       success: true,
@@ -433,20 +366,19 @@ export async function handleCustomerSupport(formData: FormData) {
   }
 }
 
-// Health check action
+// Health check action using Palm AI Service
 export async function checkAIHealth() {
   try {
-    const { aiManager } = await initializeAI();
+    const { palmAIService } = await initializePalmAI();
 
-    const health = await aiManager.getAllProvidersHealth();
-    const availableProviders = aiManager.getAvailableProviders();
+    const health = await palmAIService.checkHealth();
 
     return {
       success: true,
       data: {
         status: 'healthy',
-        providers: health,
-        availableProviders,
+        providers: health.providers,
+        availableProviders: health.availableProviders,
         timestamp: new Date().toISOString(),
       },
     };

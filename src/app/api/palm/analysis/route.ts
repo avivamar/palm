@@ -10,9 +10,7 @@ import { createServerClient } from '@/libs/supabase/config';
 import { getSafeDB } from '@/libs/DB';
 import { palmAnalysisSessionsSchema } from '@/models/Schema';
 import { eq } from 'drizzle-orm';
-// 临时移除AI核心包导入，等待修复
-// import { PromptLoader } from '@rolitt/ai-core';
-import type { UserInfo } from '@rolitt/palm';
+import { PalmAIService, type UserInfo } from '@rolitt/palm';
 // import { getPalmAnalysisPrompt } from '@/utils/palmPrompts'; // 已替换为专业手相分析提示词
 
 // 使用 Node.js runtime 以支持 Supabase
@@ -319,7 +317,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 9. 创建真实的 Palm 分析引擎
-    // 首先检查所需的环境变量
+    // 优先使用 Palm AI Service，回退到直接 OpenAI API
     const openaiApiKey = process.env.OPENAI_API_KEY;
     if (!openaiApiKey) {
       console.error('Missing OPENAI_API_KEY environment variable');
@@ -329,7 +327,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('Starting AI analysis with OpenAI directly...');
+    console.log('Starting AI analysis...');
     
     let analysisResult;
     const startTime = Date.now();

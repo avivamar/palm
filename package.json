@@ -88,7 +88,16 @@
     "ai:test": "npm run test --workspace=@rolitt/ai-core",
     "ai:validate": "npm run type-check --workspace=@rolitt/ai-core && npm run lint --workspace=@rolitt/ai-core",
     "ai:test-multi": "npx tsx scripts/test-multi-endpoint.ts",
-    "ai:health": "curl -X POST http://localhost:3000/api/ai/health || echo 'AI health check failed'"
+    "ai:health": "curl -X POST http://localhost:3000/api/ai/health || echo 'AI health check failed'",
+    "payments:dev": "npm run dev --workspace=@rolitt/payments",
+    "payments:build": "npm run build --workspace=@rolitt/payments",
+    "payments:test": "npm run test --workspace=@rolitt/payments",
+    "payments:validate": "npm run validate --workspace=@rolitt/payments",
+    "migrate:payments": "npm run migrate --workspace=@rolitt/payments",
+    "migrate:list": "npm run migrate:list --workspace=@rolitt/payments",
+    "migrate:step": "npm run migrate:step --workspace=@rolitt/payments",
+    "migrate:full": "npm run migrate:full --workspace=@rolitt/payments",
+    "migrate:dry-run": "npm run migrate:dry-run --workspace=@rolitt/payments"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.56.0",
@@ -121,6 +130,7 @@
     "@rolitt/ai-core": "file:packages/ai-core",
     "@rolitt/email": "file:packages/email",
     "@rolitt/image-upload": "file:packages/image-upload",
+    "@rolitt/payments": "file:packages/payments",
     "@rolitt/referral": "file:packages/referral",
     "@rolitt/shared": "file:packages/shared",
     "@rolitt/shopify": "file:packages/shopify",
