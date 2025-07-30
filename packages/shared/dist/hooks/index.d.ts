@@ -1,6 +1,6 @@
 export declare function useAsync<T, E = string>(asyncFunction: () => Promise<T>, immediate?: boolean): {
     execute: () => Promise<T>;
-    status: "pending" | "idle" | "success" | "error";
+    status: "error" | "pending" | "idle" | "success";
     data: T | null;
     error: E | null;
     isLoading: boolean;

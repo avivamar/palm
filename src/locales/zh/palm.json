@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "title": "Palm AI - 人工智能手相分析",
+    "description": "通过AI驱动的手相分析发现你的未来。上传手相照片，输入出生日期，获得关于爱情、事业、健康和性格的个性化洞察。",
+    "keywords": "手相分析, AI手相学, 算命, 占星术, 性格分析, 未来预测, 手相解读, AI占卜",
+    "og_title": "Palm AI - 通过AI手相分析解锁你的未来",
+    "og_description": "体验先进AI技术的手相学未来。获得准确的手相分析结合占星洞察。",
+    "twitter_title": "Palm AI - AI驱动的手相分析与算命",
+    "twitter_description": "通过尖端AI手相分析发现你的命运。上传手相解锁个性化洞察。"
+  },
+  "hero": {
+    "badge": "AI驱动手相分析",
+    "title": "感到困顿或失调？你的双手已经知道原因",
+    "titleBefore": "感到困顿或失调？你的",
+    "titleAfter": "已经知道原因",
+    "highlight": "双手",
+    "subtitle": {
+      "upload": "上传你的手相。",
+      "birth": "输入你的出生日期。",
+      "report": "获得由AI、占星术和手相学驱动的免费个性化报告。"
+    },
+    "cta": "开始我的免费分析",
+    "privacy": "无需注册 · 私密安全",
+    "analyzing": "AI正在分析手相模式...",
+    "start_analysis": "开始你的免费手相分析",
+    "analysis_subtitle": "上传手相照片获得个性化AI分析报告"
+  }
+}

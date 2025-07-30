@@ -10,10 +10,10 @@
   },
   "hero": {
     "badge": "AI-Powered Palm Reading",
-    "title": "What if your palm could reveal your {highlight}, energy, and fate?",
-    "titleBefore": "What if your palm could reveal your ",
-    "titleAfter": ", energy, and fate?",
-    "highlight": "personality",
+    "title": "Feeling stuck or out of sync? Your {highlight} already know why",
+    "titleBefore": "Feeling stuck or out of sync? Your ",
+    "titleAfter": " already know why",
+    "highlight": "hands",
     "subtitle": {
       "upload": "Upload your palm.",
       "birth": "Enter your birth date.",

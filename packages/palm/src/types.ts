@@ -307,3 +307,51 @@ export class AIServiceError extends PalmAnalysisError {
     this.name = 'AIServiceError';
   }
 }
+
+// Palm AI 分析相关类型
+export interface MajorLineDetail {
+  length?: string;
+  depth?: string;
+  direction?: string;
+  branch?: string;
+  island?: string;
+  rootStyle?: string;
+  curve?: string;
+  end?: string;
+  exists?: boolean;
+  origin?: string;
+  continuity?: string;
+  interpretation?: string;
+}
+
+export interface PalmAnalysisInput {
+  birthDate?: string;  // "1995-07-28"
+  birthTime?: string;  // "14:30"
+  abnormalZones?: { area: string; mark?: string }[];
+  abnormalReflexPoints?: { point: string; feature?: string }[];
+  majorLines?: {
+    lifeLine?: MajorLineDetail;
+    headLine?: MajorLineDetail;
+    heartLine?: MajorLineDetail;
+    fateLine?: MajorLineDetail;
+  };
+  lang?: "zh" | "en" | "ja";
+}
+
+export interface PalmAnalysisOutput {
+  overallInsight: string;
+  majorLines: {
+    lifeLine?: MajorLineDetail;
+    headLine?: MajorLineDetail;
+    heartLine?: MajorLineDetail;
+    fateLine?: MajorLineDetail;
+  };
+  details: Array<{
+    type: 'zone' | 'reflex';
+    name: string;
+    description: string;
+    suggestion: string;
+  }>;
+  lifestyleTips: string;
+  lang: string;
+}

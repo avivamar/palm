@@ -1,0 +1,66 @@
+[
+  {
+    "area": "离区",
+    "english": "Heart Zone",
+    "japanese": "心ゾーン",
+    "organ": ["心脏", "小肠"],
+    "commonMarks": ["十字纹", "米字纹"],
+    "issues": ["心悸", "胸闷", "情绪波动"]
+  },
+  {
+    "area": "坎区",
+    "english": "Kidney Zone",
+    "japanese": "腎ゾーン",
+    "organ": ["肾脏", "膀胱"],
+    "commonMarks": ["米字纹", "井字纹"],
+    "issues": ["水肿", "腰膝乏力", "夜尿多"]
+  },
+  {
+    "area": "震区",
+    "english": "Liver/Gallbladder Zone",
+    "japanese": "肝胆ゾーン",
+    "organ": ["肝", "胆"],
+    "commonMarks": ["三角纹", "星纹"],
+    "issues": ["情绪抑郁", "脂肪代谢差"]
+  },
+  {
+    "area": "兑区",
+    "english": "Lung/Colon Zone",
+    "japanese": "肺大腸ゾーン",
+    "organ": ["肺", "大肠"],
+    "commonMarks": ["圆点纹", "叉纹"],
+    "issues": ["呼吸道敏感", "便秘", "易感冒"]
+  },
+  {
+    "area": "乾区",
+    "english": "Large Intestine/Spleen Zone",
+    "japanese": "大腸脾ゾーン",
+    "organ": ["大肠", "脾"],
+    "commonMarks": ["十字纹", "口字纹"],
+    "issues": ["脾胃虚弱", "吸收不良"]
+  },
+  {
+    "area": "坤区",
+    "english": "Reproductive/Urinary Zone",
+    "japanese": "生殖泌尿ゾーン",
+    "organ": ["生殖系统", "泌尿"],
+    "commonMarks": ["米字纹", "叉纹"],
+    "issues": ["内分泌失衡", "月经/前列腺问题"]
+  },
+  {
+    "area": "巽区",
+    "english": "Spleen/Pancreas Zone",
+    "japanese": "脾膵ゾーン",
+    "organ": ["脾", "胰"],
+    "commonMarks": ["十字纹"],
+    "issues": ["血糖波动", "脾虚乏力"]
+  },
+  {
+    "area": "艮区",
+    "english": "Stomach/Nasopharynx Zone",
+    "japanese": "胃鼻咽ゾーン",
+    "organ": ["脾胃", "鼻咽"],
+    "commonMarks": ["口字纹", "叉纹"],
+    "issues": ["过敏性鼻炎", "消化功能弱"]
+  }
+]

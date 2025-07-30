@@ -10,10 +10,10 @@
   },
   "hero": {
     "badge": "Quiromancia Impulsada por IA",
-    "title": "¿Y si tu palma pudiera revelar tu {highlight}, energía y destino?",
-    "titleBefore": "¿Y si tu palma pudiera revelar tu ",
-    "titleAfter": ", energía y destino?",
-    "highlight": "personalidad",
+    "title": "¿Te sientes atascado o desincronizado? Tus manos ya saben por qué",
+    "titleBefore": "¿Te sientes atascado o desincronizado? ",
+    "titleAfter": " ya saben por qué",
+    "highlight": "Tus manos",
     "subtitle": {
       "upload": "Sube tu palma.",
       "birth": "Ingresa tu fecha de nacimiento.",

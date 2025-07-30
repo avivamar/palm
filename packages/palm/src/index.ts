@@ -165,6 +165,31 @@ export {
   AIServiceError
 } from './types';
 
+// AI 服务导出
+export {
+  PalmAIService,
+  type PalmAIServiceConfig,
+  loadPalmPrompt,
+  buildSystemPrompt,
+  getScenarioPrompt,
+  getLanguageEnhancement,
+  getPromptVersion,
+  pickHook,
+  getHookByIndex,
+  getAllHooks,
+  palmBaguaData,
+  palmReflexData,
+  getBaguaZone,
+  getReflexPoint,
+  getAllBaguaZoneNames,
+  getAllReflexPointNames,
+  getBaguaZoneTranslation,
+  getReflexPointTranslation,
+  type BaguaZone,
+  type ReflexPoint,
+  type PalmPromptConfig
+} from './ai';
+
 // 健康检查函数
 export async function checkPalmHealth(config?: Partial<import('./config').PalmConfig>): Promise<{
   status: 'healthy' | 'degraded' | 'unhealthy';

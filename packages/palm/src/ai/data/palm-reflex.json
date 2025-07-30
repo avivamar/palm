@@ -1,0 +1,198 @@
+[
+  {
+    "point": "头区",
+    "english": "Head Zone",
+    "japanese": "頭ゾーン",
+    "location": "食指掌指关节下方",
+    "issues": ["头痛", "眩晕", "注意力下降"]
+  },
+  {
+    "point": "眼区",
+    "english": "Eye Zone",
+    "japanese": "目ゾーン",
+    "location": "中指掌指关节下方",
+    "issues": ["视疲劳", "干涩", "视力波动"]
+  },
+  {
+    "point": "咽喉区",
+    "english": "Throat Zone",
+    "japanese": "咽喉ゾーン",
+    "location": "无名指掌指关节下方",
+    "issues": ["咽痛", "扁桃体炎"]
+  },
+  {
+    "point": "心脏区",
+    "english": "Heart Reflex",
+    "japanese": "心臓反射区",
+    "location": "中指掌根偏左",
+    "issues": ["心悸", "胸闷", "心率不齐"]
+  },
+  {
+    "point": "肺区",
+    "english": "Lung Reflex",
+    "japanese": "肺反射区",
+    "location": "食指掌根偏左",
+    "issues": ["咳嗽", "哮喘", "易感冒"]
+  },
+  {
+    "point": "胃底区",
+    "english": "Fundus Reflex",
+    "japanese": "胃底反射区",
+    "location": "大鱼际下缘",
+    "issues": ["胃胀", "反酸", "消化慢"]
+  },
+  {
+    "point": "幽门区",
+    "english": "Pylorus Reflex",
+    "japanese": "幽門反射区",
+    "location": "大鱼际中央",
+    "issues": ["胃寒", "食欲差"]
+  },
+  {
+    "point": "肝区",
+    "english": "Liver Reflex",
+    "japanese": "肝反射区",
+    "location": "小鱼际掌根",
+    "issues": ["油脂代谢差", "情绪易怒"]
+  },
+  {
+    "point": "胆囊区",
+    "english": "Gallbladder Reflex",
+    "japanese": "胆嚢反射区",
+    "location": "小鱼际中央",
+    "issues": ["胆汁分泌差", "胁肋胀痛"]
+  },
+  {
+    "point": "胰腺区",
+    "english": "Pancreas Reflex",
+    "japanese": "膵臓反射区",
+    "location": "拇指下内侧",
+    "issues": ["血糖波动", "甜食偏好"]
+  },
+  {
+    "point": "脾区",
+    "english": "Spleen Reflex",
+    "japanese": "脾反射区",
+    "location": "拇指掌根外侧",
+    "issues": ["免疫力低", "湿气重"]
+  },
+  {
+    "point": "十二指肠区",
+    "english": "Duodenum Reflex",
+    "japanese": "十二指腸区",
+    "location": "掌心中下部靠大鱼际",
+    "issues": ["腹胀", "消化不良"]
+  },
+  {
+    "point": "小肠区",
+    "english": "Small Intestine Reflex",
+    "japanese": "小腸区",
+    "location": "掌心中央偏右",
+    "issues": ["吸收不良", "腹泻"]
+  },
+  {
+    "point": "大肠区",
+    "english": "Large Intestine Reflex",
+    "japanese": "大腸区",
+    "location": "掌心中央偏左",
+    "issues": ["便秘", "胀气"]
+  },
+  {
+    "point": "盲肠区",
+    "english": "Cecum Reflex",
+    "japanese": "盲腸区",
+    "location": "掌心右下",
+    "issues": ["阑尾炎风险", "右下腹胀痛"]
+  },
+  {
+    "point": "直肠区",
+    "english": "Rectum Reflex",
+    "japanese": "直腸区",
+    "location": "掌心左下",
+    "issues": ["痔疮", "排便困难"]
+  },
+  {
+    "point": "肾区",
+    "english": "Kidney Reflex",
+    "japanese": "腎反射区",
+    "location": "掌根中央",
+    "issues": ["腰酸", "水肿", "疲惫"]
+  },
+  {
+    "point": "肾上腺区",
+    "english": "Adrenal Reflex",
+    "japanese": "副腎区",
+    "location": "肾区上方",
+    "issues": ["易紧张", "激素失衡"]
+  },
+  {
+    "point": "膀胱区",
+    "english": "Bladder Reflex",
+    "japanese": "膀胱区",
+    "location": "掌根中央偏下",
+    "issues": ["频尿", "排尿不畅"]
+  },
+  {
+    "point": "生殖区",
+    "english": "Reproductive Reflex",
+    "japanese": "生殖区",
+    "location": "掌根小鱼际下",
+    "issues": ["内分泌失调", "性功能低下"]
+  },
+  {
+    "point": "腰椎区",
+    "english": "Lumbar Spine Reflex",
+    "japanese": "腰椎区",
+    "location": "掌缘小鱼际外侧",
+    "issues": ["腰痛", "坐骨神经痛"]
+  },
+  {
+    "point": "胸椎区",
+    "english": "Thoracic Spine Reflex",
+    "japanese": "胸椎区",
+    "location": "掌缘中部",
+    "issues": ["背痛", "呼吸浅"]
+  },
+  {
+    "point": "颈椎区",
+    "english": "Cervical Spine Reflex",
+    "japanese": "頸椎区",
+    "location": "掌缘拇指下",
+    "issues": ["颈椎僵硬", "头晕"]
+  },
+  {
+    "point": "肩区",
+    "english": "Shoulder Reflex",
+    "japanese": "肩区",
+    "location": "无名指掌骨外侧",
+    "issues": ["肩酸", "活动受限"]
+  },
+  {
+    "point": "膈肌区",
+    "english": "Diaphragm Reflex",
+    "japanese": "横隔膜区",
+    "location": "掌心横向中线",
+    "issues": ["呼吸浅", "紧张感"]
+  },
+  {
+    "point": "甲状腺区",
+    "english": "Thyroid Reflex",
+    "japanese": "甲状腺区",
+    "location": "拇指掌节纹上方",
+    "issues": ["怕冷", "易胖", "情绪波动"]
+  },
+  {
+    "point": "脾门区",
+    "english": "Cardia Reflex",
+    "japanese": "噴門区",
+    "location": "大鱼际根部上方",
+    "issues": ["胃食管反流", "吞咽不适"]
+  },
+  {
+    "point": "三焦区",
+    "english": "Triple Burner",
+    "japanese": "三焦区",
+    "location": "掌心正中垂线",
+    "issues": ["循环差", "代谢慢"]
+  }
+]

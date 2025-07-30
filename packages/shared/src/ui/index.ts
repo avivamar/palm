@@ -1,15 +1,17 @@
 /**
- * Shared UI type definitions and re-exports
+ * Shared UI Components and type definitions
  * Following .cursorrules rule #104: "将 shadcn/ui 组件放置在 components/ui/ 目录"
  *
- * Note: This file provides type definitions for UI components.
- * The actual components are imported from the main app during runtime.
+ * Components are organized with fine-grained exports for optimal tree-shaking
  */
 
 import * as React from 'react';
 
 // Re-export utility function
 export { cn } from '../utils';
+
+// Re-export all UI components for batch imports (use individual imports for better tree-shaking)
+export * from './components';
 
 // Common UI component props interfaces
 export type SharedUIProps = {

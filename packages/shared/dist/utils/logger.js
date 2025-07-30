@@ -23,7 +23,8 @@ export class Logger {
         console.error(this.formatMessage('error', message, context));
     }
     debug(message, context) {
-        if (process.env.NODE_ENV === 'development') {
+        var _a;
+        if (typeof process !== 'undefined' && ((_a = process.env) === null || _a === void 0 ? void 0 : _a.NODE_ENV) === 'development') {
             console.debug(this.formatMessage('debug', message, context));
         }
     }

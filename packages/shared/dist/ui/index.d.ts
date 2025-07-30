@@ -1,5 +1,6 @@
 import * as React from 'react';
 export { cn } from '../utils';
+export * from './components';
 export type SharedUIProps = {
     className?: string;
     children?: React.ReactNode;
