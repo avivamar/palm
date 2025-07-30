@@ -50,6 +50,18 @@
     "./ui/static-accordion": "./src/ui/components/static-accordion.tsx",
     "./ui/static-button": "./src/ui/components/static-button.tsx",
     "./ui/lottie-animation": "./src/ui/components/LottieAnimation.tsx",
+    "./ui/tooltip": "./src/ui/components/tooltip.tsx",
+    "./ui/popover": "./src/ui/components/popover.tsx",
+    "./ui/breadcrumb": "./src/ui/components/breadcrumb.tsx",
+    "./ui/pagination": "./src/ui/components/pagination.tsx",
+    "./ui/command": "./src/ui/components/command.tsx",
+    "./ui/sheet": "./src/ui/components/sheet.tsx",
+    "./ui/shimmer-button": "./src/ui/components/shimmer-button.tsx",
+    "./ui/animated-beam": "./src/ui/components/animated-beam.tsx",
+    "./ui/sparkles-text": "./src/ui/components/sparkles-text.tsx",
+    "./ui/orbiting-circles": "./src/ui/components/orbiting-circles.tsx",
+    "./ui/ripple": "./src/ui/components/ripple.tsx",
+    "./ui/meteors": "./src/ui/components/meteors.tsx",
     "./types": {
       "types": "./dist/types/index.d.ts"
     },
@@ -76,7 +88,13 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "type-check": "tsc --noEmit",
-    "lint": "eslint src --ext .ts,.tsx"
+    "lint": "eslint src --ext .ts,.tsx",
+    "manage-components": "ts-node scripts/manage-components.ts",
+    "components:report": "npm run manage-components report",
+    "components:validate": "npm run manage-components validate",
+    "components:sync": "npm run manage-components sync",
+    "components:deps": "npm run manage-components deps",
+    "components:create": "npm run manage-components create"
   },
   "peerDependencies": {
     "next": ">=14.0.0",
@@ -101,6 +119,9 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.5",
+    "@radix-ui/react-tooltip": "^1.0.7",
+    "@radix-ui/react-popover": "^1.0.7",
+    "cmdk": "^0.2.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "lucide-react": "^0.323.0",
@@ -116,6 +137,8 @@
   "devDependencies": {
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
     "typescript": "^5.0.0"
   }
 }

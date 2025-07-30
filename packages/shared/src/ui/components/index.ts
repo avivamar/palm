@@ -51,3 +51,54 @@ export {
   DialogClose
 } from './dialog';
 export { Slider } from './slider';
+export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip';
+export { Popover, PopoverContent, PopoverTrigger } from './popover';
+export {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from './breadcrumb';
+export {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from './pagination';
+export {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from './command';
+export {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetOverlay,
+  SheetPortal,
+  SheetTitle,
+  SheetTrigger,
+} from './sheet';
+
+// Animation Components
+export { ShimmerButton } from './shimmer-button';
+export { AnimatedBeam } from './animated-beam';
+export { SparklesText } from './sparkles-text';
+export { default as OrbitingCircles } from './orbiting-circles';
+export { Ripple } from './ripple';
+export { Meteors } from './meteors';
