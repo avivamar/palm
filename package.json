@@ -171,7 +171,7 @@
     "isomorphic-dompurify": "^2.26.0",
     "klaviyo-api": "^18.0.0",
     "libphonenumber-js": "^1.12.9",
-    "lucide-react": "^0.482.0",
+    "lucide-react": "^0.535.0",
     "nanoid": "^5.1.5",
     "next": "^15.2.0",
     "next-intl": "^4.3.4",

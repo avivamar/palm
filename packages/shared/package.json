@@ -124,7 +124,7 @@
     "cmdk": "^0.2.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "lucide-react": "^0.323.0",
+    "lucide-react": "^0.535.0",
     "lottie-react": "^2.4.1",
     "next": "^14.0.0",
     "react": "^19.0.0",
