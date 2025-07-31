@@ -105,7 +105,7 @@
     "backup:check": "ls -la ./backups/ && echo 'Backup files listed above'"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.56.0",
+    "@anthropic-ai/sdk": "^0.57.0",
     "@electric-sql/pglite": "^0.2.17",
     "@formatjs/intl-localematcher": "^0.6.1",
     "@google/generative-ai": "^0.24.1",
