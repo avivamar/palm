@@ -17,7 +17,7 @@ BIMI是最新的邮件品牌标准，支持在邮件客户端直接显示品牌l
 ```dns
 # 记录类型: TXT
 # 主机名: default._bimi.rolitt.com
-# 记录值: v=BIMI1; l=https://rolitt.com/assets/logo/bimi-logo.svg; a=https://rolitt.com/assets/certificates/vmc.pem
+# 记录值: v=BIMI1; l=https://rolitt.com/assets/logo/bimi-palmlogo.svg; a=https://rolitt.com/assets/certificates/vmc.pem
 ```
 
 3. **获取VMC证书** (可选但推荐)
@@ -94,7 +94,7 @@ mkdir -p public/assets/logo/
 # 使用Cloudflare或其他CDN
 # 确保logo链接稳定可访问
 https://rolitt.com/assets/images/email/logo.png
-https://rolitt.com/assets/logo/bimi-logo.svg
+https://rolitt.com/assets/logo/bimi-palmlogo.svg
 ```
 
 ### 3. 配置各平台

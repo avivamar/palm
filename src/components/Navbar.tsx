@@ -34,7 +34,7 @@ export function Navbar() {
           <Link href="/" className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 hover:scale-105">
             <div className="relative w-32 h-12">
               <Image
-                src="/logo.svg"
+                src="/palmlogo.svg"
                 alt="Rolitt"
                 width={480}
                 height={165}

@@ -127,16 +127,16 @@
     "lucide-react": "^0.323.0",
     "lottie-react": "^2.4.1",
     "next": "^14.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-hook-form": "^7.50.1",
     "sonner": "^1.4.3",
     "tailwind-merge": "^2.0.0",
     "@hookform/resolvers": "^3.3.4"
   },
   "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.0",
     "@types/node": "^20.0.0",
     "ts-node": "^10.9.0",
     "typescript": "^5.0.0"

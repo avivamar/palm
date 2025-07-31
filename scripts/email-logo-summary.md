@@ -5,7 +5,7 @@
 ### ✅ 当前状态
 - **BIMI DNS记录**: 已配置 ✅
 - **Logo文件**: 可通过 `https://cdn.rolitt.com/rolitt-logo-yellow-background.svg` 访问 ✅
-- **本地Logo**: `public/rolittlogo.svg` 已准备好 ✅
+- **本地Logo**: `public/rolittpalmlogo.svg` 已准备好 ✅
 
 ## 🚀 立即实施方案
 
@@ -40,8 +40,8 @@
 2. **设置组织Logo**
    ```
    路径: Organization → Branding → Logo
-   操作: 上传 public/rolittlogo.svg 或使用URL
-   URL: https://rolitt.com/rolittlogo.svg
+   操作: 上传 public/rolittpalmlogo.svg 或使用URL
+   URL: https://rolitt.com/rolittpalmlogo.svg
    ```
 
 3. **配置邮件签名**
@@ -196,7 +196,7 @@
 curl -I https://cdn.rolitt.com/rolitt-logo-yellow-background.svg
 
 # 检查本地logo
-curl -I https://rolitt.com/rolittlogo.svg
+curl -I https://rolitt.com/rolittpalmlogo.svg
 ```
 
 ## 📊 预期效果时间线

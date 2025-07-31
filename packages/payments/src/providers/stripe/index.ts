@@ -189,8 +189,8 @@ export class StripeProvider implements PaymentProvider {
         id: subscription.id,
         customerId: subscription.customer as string,
         status: subscription.status,
-        currentPeriodStart: new Date(subscription.current_period_start * 1000),
-        currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+        currentPeriodStart: new Date((subscription as any).current_period_start * 1000),
+        currentPeriodEnd: new Date((subscription as any).current_period_end * 1000),
         metadata: subscription.metadata,
       };
     } catch (error) {
@@ -208,7 +208,7 @@ export class StripeProvider implements PaymentProvider {
         // 获取当前订阅以更新价格
         const currentSub = await this.stripe.subscriptions.retrieve(subscriptionId);
         updateData.items = [{
-          id: currentSub.items.data[0].id,
+          id: currentSub.items?.data[0]?.id,
           price: updates.priceId,
           quantity: updates.quantity || 1,
         }];
@@ -220,8 +220,8 @@ export class StripeProvider implements PaymentProvider {
         id: subscription.id,
         customerId: subscription.customer as string,
         status: subscription.status,
-        currentPeriodStart: new Date(subscription.current_period_start * 1000),
-        currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+        currentPeriodStart: new Date((subscription as any).current_period_start * 1000),
+        currentPeriodEnd: new Date((subscription as any).current_period_end * 1000),
         metadata: subscription.metadata,
       };
     } catch (error) {
@@ -239,8 +239,8 @@ export class StripeProvider implements PaymentProvider {
         id: subscription.id,
         customerId: subscription.customer as string,
         status: subscription.status,
-        currentPeriodStart: new Date(subscription.current_period_start * 1000),
-        currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+        currentPeriodStart: new Date((subscription as any).current_period_start * 1000),
+        currentPeriodEnd: new Date((subscription as any).current_period_end * 1000),
         metadata: subscription.metadata,
       };
     } catch (error) {

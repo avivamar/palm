@@ -11,9 +11,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     '', // Home page
     '/about',
-    '/timeline',
-    '/solution',
-    '/partner',
     '/contact',
     '/contact-information',
     '/faq',
@@ -21,7 +18,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/terms',
     '/refund-policy',
     '/shipping',
-    '/pre-order',
     '/blog', // Blog main page
   ];
 

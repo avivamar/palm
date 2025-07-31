@@ -5,9 +5,9 @@ import { cn } from '@rolitt/shared/utils';
 
 export interface AnimatedBeamProps {
   className?: string;
-  containerRef: React.RefObject<HTMLElement>;
-  fromRef: React.RefObject<HTMLElement>;
-  toRef: React.RefObject<HTMLElement>;
+  containerRef: React.RefObject<HTMLElement | null>;
+  fromRef: React.RefObject<HTMLElement | null>;
+  toRef: React.RefObject<HTMLElement | null>;
   curvature?: number;
   reverse?: boolean;
   pathColor?: string;
@@ -44,7 +44,7 @@ export const AnimatedBeam = forwardRef<SVGSVGElement, AnimatedBeamProps>(
       endXOffset = 0,
       endYOffset = 0,
     },
-    ref
+    _ref
   ) => {
     const id = useId();
     const svgRef = useRef<SVGSVGElement>(null);
@@ -64,8 +64,6 @@ export const AnimatedBeam = forwardRef<SVGSVGElement, AnimatedBeamProps>(
         const rectA = fromRef.current.getBoundingClientRect();
         const rectB = toRef.current.getBoundingClientRect();
 
-        const svgWidth = containerRect.width;
-        const svgHeight = containerRect.height;
         const svgX = containerRect.left;
         const svgY = containerRect.top;
 

@@ -32,7 +32,12 @@ export class PaddleProvider implements PaymentProvider {
   
   private vendorId: string;
   private vendorAuthCode: string;
-  private publicKey: string;
+  private publicKey: string; // 供前端集成使用
+  
+  // Getter for public key (used by frontend integration)
+  get clientPublicKey(): string {
+    return this.publicKey;
+  }
   private baseUrl: string;
 
   constructor(config: PaddleConfig) {
@@ -263,10 +268,10 @@ export class PaddleProvider implements PaymentProvider {
     }
   }
 
-  async validateWebhook(payload: string, signature: string): Promise<WebhookEvent> {
+  async validateWebhook(payload: string, _signature: string): Promise<WebhookEvent> {
     try {
       // Paddle webhook 验证逻辑
-      const crypto = await import('crypto');
+      // const crypto = await import('crypto'); // TODO: 实现签名验证
       const data = JSON.parse(payload);
       
       // Paddle 使用不同的验证方式，需要根据实际 API 调整

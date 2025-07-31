@@ -3,8 +3,6 @@
  * Re-exports from shared package with admin-specific customizations
  */
 
-import React from 'react';
-
 // Import UI components from shared package
 export {
   Button,

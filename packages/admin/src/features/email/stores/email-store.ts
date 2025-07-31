@@ -27,7 +27,7 @@ const initialBrandConfig: BrandConfig = {
   companyName: 'Rolitt',
   brandName: 'Rolitt',
   primaryColor: '#EBFF7F',
-  logoUrl: 'https://rolitt.com/logo.svg',
+  logoUrl: 'https://rolitt.com/palmlogo.svg',
   websiteUrl: 'https://rolitt.com',
   supportEmail: 'support@rolitt.com',
   socialLinks: {

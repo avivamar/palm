@@ -19,14 +19,14 @@ export interface PalmPromptConfig {
 /**
  * 加载手相分析主 prompt
  */
-export async function loadPalmPrompt(config?: PalmPromptConfig): Promise<string> {
+export async function loadPalmPrompt(_config?: PalmPromptConfig): Promise<string> {
   try {
     const promptPath = join(__dirname, 'prompts', 'analysis.md');
     const promptContent = readFileSync(promptPath, 'utf-8');
     
     // 提取系统提示词部分
     const systemPromptMatch = promptContent.match(/```markdown\n([\s\S]*?)\n```/);
-    if (systemPromptMatch) {
+    if (systemPromptMatch && systemPromptMatch[1]) {
       return systemPromptMatch[1].trim();
     }
     

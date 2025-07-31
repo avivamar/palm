@@ -4,8 +4,8 @@
  * 用于验证配置和测试各个供应商的功能
  */
 
-import { getPaymentService, checkPaymentHealth } from '../src/services/PaymentServiceFactory';
-import { printConfigReport } from '../src/utils/env-validation';
+import { getPaymentService, checkPaymentHealth } from '../src/services/PaymentServiceFactory.js';
+import { printConfigReport } from '../src/utils/env-validation.js';
 
 interface TestResult {
   provider: string;

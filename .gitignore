@@ -76,3 +76,24 @@ packages/image-upload/dist/
 packages/palm/dist/
 packages/dist/
 packages/shopify/.env.example
+
+# TypeScript build cache
+*.tsbuildinfo
+packages/*/*.tsbuildinfo
+
+# Database backups and test files
+/backups/
+/backup-test/
+migrations/backup/
+migrations/backup_*.sql
+
+# Test output and temporary files
+/test-output/
+/palmpage/
+/av-*.svg
+*.dump
+*.dump.gz
+
+# Simple scripts and temporary files
+packages/*/scripts/simple-*.js
+packages/*/scripts/temp-*.js

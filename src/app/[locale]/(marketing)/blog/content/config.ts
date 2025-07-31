@@ -63,7 +63,7 @@ export const blogConfig = {
       organization: {
         name: 'Rolitt Inc.',
         url: 'https://www.rolitt.com',
-        logo: 'https://www.rolitt.com/logo.svg',
+        logo: 'https://www.rolitt.com/palmlogo.svg',
         sameAs: [
           'https://twitter.com/rolittai',
           'https://linkedin.com/company/rolitt',

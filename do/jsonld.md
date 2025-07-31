@@ -61,7 +61,7 @@ export function OrganizationJsonLd(): ReactNode {
     'legalName': 'Rolitt Inc.',
     'description': 'Global leader in AI-powered emotional companion solutions, specializing in smart plush toys with advanced machine learning capabilities.',
     'url': 'https://www.rolitt.com',
-    'logo': 'https://www.rolitt.com/logo/rolitt-ai-companion-logo.svg',
+    'logo': 'https://www.rolitt.com/logo/rolitt-ai-companion-palmlogo.svg',
     'foundingDate': '2024-03-01',
     'founders': [
       {

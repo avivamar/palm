@@ -9,7 +9,7 @@
 ### 1. Logo文件准备
 ```bash
 # 确保logo文件已准备好
-public/assets/logo/bimi-logo.svg     # BIMI用SVG格式
+public/assets/logo/bimi-palmlogo.svg     # BIMI用SVG格式
 public/assets/images/email/logo.png  # 邮件模板用PNG格式
 ```
 

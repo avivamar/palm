@@ -7,9 +7,8 @@ import { PaymentProviderManager, ExtendedPaymentConfig } from '../providers';
 import { StripeProvider } from '../providers/stripe';
 import { CreemProvider } from '../providers/creem';
 import { PaddleProvider } from '../providers/paddle';
-import { BraintreeProvider } from '../providers/braintree';
+// BraintreeProvider imported conditionally for server-side use only
 import type {
-  PaymentProvider,
   UserProfile,
   PaymentCustomer,
   CustomerData,
@@ -57,10 +56,13 @@ export class PaymentService {
       this.providerManager.registerProvider('paddle', paddleProvider);
     }
 
-    // 初始化 Braintree
-    if (providers.braintree) {
-      const braintreeProvider = new BraintreeProvider(providers.braintree);
-      this.providerManager.registerProvider('braintree', braintreeProvider);
+    // 初始化 Braintree (server-side only)
+    if (providers.braintree && typeof window === 'undefined') {
+      // Dynamically import Braintree provider only on server-side
+      import('../providers/braintree/server').then(({ BraintreeProvider }) => {
+        const braintreeProvider = new BraintreeProvider(providers.braintree!);
+        this.providerManager.registerProvider('braintree', braintreeProvider);
+      }).catch(console.error);
     }
 
     // 设置默认供应商
@@ -270,14 +272,14 @@ export class PaymentService {
     try {
       const paymentIntent = await this.createPaymentIntent(request, selectedProvider);
       return {
-        provider: selectedProvider,
+        provider: selectedProvider!,
         paymentIntent
       };
     } catch (error) {
       // 如果首选供应商失败，尝试下一个
       if (candidateProviders.length > 1) {
         const fallbackProvider = candidateProviders.find(p => p !== selectedProvider);
-        if (fallbackProvider) {
+        if (fallbackProvider && fallbackProvider.length > 0) {
           const paymentIntent = await this.createPaymentIntent(request, fallbackProvider);
           return {
             provider: fallbackProvider,

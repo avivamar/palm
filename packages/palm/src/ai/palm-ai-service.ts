@@ -37,23 +37,15 @@ export class PalmAIService {
     const analysisContext = this.buildAnalysisContext(input);
     
     try {
-      const response = await this.aiManager.generateCompletion({
-        provider: 'openai',
-        model: this.config.defaultModel,
-        messages: [
-          {
-            role: 'system',
-            content: systemPrompt,
-          },
-          {
-            role: 'user',
-            content: analysisContext,
-          },
-        ],
-        temperature: this.config.temperature,
-        maxTokens: this.config.maxTokens,
-        responseFormat: { type: 'json_object' },
-      });
+      const fullPrompt = `${systemPrompt}\n\nUser Input:\n${analysisContext}\n\nPlease respond in JSON format.`;
+      const response = await this.aiManager.generateResponse(
+        fullPrompt,
+        'openai',
+        {
+          temperature: this.config.temperature,
+          maxTokens: this.config.maxTokens,
+        }
+      );
 
       const result = this.parseAIResponse(response, input.lang);
       return this.enhanceWithHook(result, input.lang);

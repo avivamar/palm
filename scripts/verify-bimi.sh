@@ -68,7 +68,7 @@ check_logo_accessibility() {
     logo_url=$(echo "$bimi_record" | sed -n 's/.*l=\([^;]*\).*/\1/p')
     
     if [ -z "$logo_url" ]; then
-        logo_url="https://$DOMAIN/assets/logo/bimi-logo.svg"
+        logo_url="https://$DOMAIN/assets/logo/bimi-palmlogo.svg"
         echo -e "${YELLOW}⚠️  从BIMI记录获取URL失败，使用默认URL${NC}"
     fi
     

@@ -28,16 +28,16 @@ export function JsonLd({ data }: JsonLdProps): ReactNode {
 export function OrganizationJsonLd({ lang = 'en' }: { lang?: Language }): ReactNode {
   const localizedContent: LocalizedOrganization = {
     name: {
-      'en': 'Rolitt Inc.',
-      'es': 'Rolitt Inc.',
-      'ja': 'Rolitt Inc',
-      'zh-HK': 'Rolitt Inc.',
+      'en': 'The Palmistry Life',
+      'es': 'The Palmistry Life',
+      'ja': 'The Palmistry Life',
+      'zh-HK': 'The Palmistry Life',
     },
     description: {
-      'en': 'Global leader in AI-powered emotional companion solutions, specializing in smart plush toys with advanced machine learning capabilities.',
-      'es': 'Líder global en soluciones de compañía emocional impulsadas por IA, especializado en juguetes de peluche inteligentes con capacidades avanzadas de aprendizaje automático.',
-      'ja': '感情認識と機械学習技術を備えたスマートなAIコンパニオンのグローバルリーダー',
-      'zh-HK': '全球領先的AI情感陪伴解決方案供應商，專注於具有先進機器學習能力的智能毛絨玩具',
+      'en': 'Professional palmistry and chiromancy services - Learn palm reading, palmistry lines, and hand analysis',
+      'es': 'Servicios profesionales de quiromancia y palmistry - Aprende lectura de palmas, líneas de palmistry y análisis de manos',
+      'ja': 'プロの手相占いと手相学サービス - 手相占い、手相線、手の分析を学ぶ',
+      'zh-HK': '專業手相學和手相占卜服務 - 學習手相占卜、手相線條和手部分析',
     },
   };
 
@@ -47,38 +47,27 @@ export function OrganizationJsonLd({ lang = 'en' }: { lang?: Language }): ReactN
     '@language': lang,
     'name': localizedContent.name[lang],
     'description': localizedContent.description[lang],
-    'url': 'https://www.rolitt.com',
-    'logo': 'https://www.rolitt.com/logo.svg',
-    'foundingDate': '2024',
-    'address': {
-      '@type': 'PostalAddress',
-      'streetAddress': '1111B S Governors Ave STE 20948',
-      'addressLocality': 'Dover',
-      'addressRegion': 'DE',
-      'postalCode': '19904',
-      'addressCountry': 'US',
-    },
-    'sameAs': [
-      'https://x.com/Rolittai',
-      'https://www.facebook.com/profile.php?id=61560959570699',
-      'https://www.linkedin.com/company/rolitt',
-      'https://www.instagram.com/rolittrobot/',
-      'https://www.youtube.com/@RolittRobot',
-      'https://github.com/rolittai',
-    ],
-    'contactPoint': {
-      '@type': 'ContactPoint',
-      'telephone': '+1 (302) 444-2859',
-      'contactType': 'customer service',
-      'email': 'support@rolitt.com',
-      'availableLanguage': ['English', 'Japanese', 'Chinese', 'Spanish'],
-      'areaServed': ['United States', 'Japan', 'China', 'Spain', 'United Kingdom', 'Canada', 'Australia', 'Germany', 'France', 'Singapore'],
-    },
+    'url': 'https://www.thepalmistry.life/',
     'knowsAbout': [
-      'Artificial Intelligence',
-      'Emotional Computing',
-      'Machine Learning',
-      'Natural Language Processing',
+      'chiromancy palmistry',
+      'palmistry',
+      'face palmistry',
+      'palmistry lines',
+      'palmistry hand',
+      'palmistry palm reading',
+      'how to read palm lines palmistry guide',
+      'palmistry chiromancy',
+      'palmistry how to',
+      'palmistry chart',
+      'palmistry guide',
+      'palmistry lines reading',
+      'heart line palmistry',
+      'palmistry crosses',
+      'palmistry free reading',
+      'palmistry heart line reading',
+      'palmistry near me',
+      'palmistry life line',
+      'palmistry meaning',
     ],
   };
 
@@ -89,57 +78,68 @@ export function OrganizationJsonLd({ lang = 'en' }: { lang?: Language }): ReactN
 export function ProductJsonLd({ lang = 'en' }: { lang?: Language }): ReactNode {
   const localizedContent = {
     name: {
-      'en': 'Rolitt AI Companion - Smart Emotional Plush Toy',
-      'es': 'Rolitt Compañero AI - Juguete de Peluche Emocional Inteligente',
-      'ja': 'Rolitt AIコンパニオン - スマート感情認識ぬいぐるみ',
-      'zh-HK': 'Rolitt AI伴侶 - 智能情感識別毛絨玩具',
+      'en': 'Professional Palmistry Reading Service',
+      'es': 'Servicio Profesional de Lectura de Palmas',
+      'ja': 'プロの手相占いサービス',
+      'zh-HK': '專業手相占卜服務',
     },
     description: {
-      'en': 'Rolitt is a next-generation AI companion that combines emotional recognition, natural language processing, and machine learning technologies. Designed for both adults seeking emotional connection and children\'s educational development.',
-      'es': 'Rolitt es un compañero de IA de próxima generación que combina reconocimiento emocional, procesamiento de lenguaje natural y tecnologías de aprendizaje automático. Diseñado tanto para adultos que buscan conexión emocional como para el desarrollo educativo de los niños.',
-      'ja': 'Rolittは、感情認識、自然言語処理、機械学習技術を組み合わせた次世代のAIコンパニオンです。感情的なつながりを求める大人と子供の教育発達の両方のために設計されています。',
-      'zh-HK': 'Rolitt是一款結合情感識別、自然語言處理和機器學習技術的下一代AI伴侶。專為尋求情感連接的成人和兒童教育發展而設計。',
+      'en': 'Expert palmistry and chiromancy analysis - Learn to read palm lines, understand palmistry charts, and discover your life path through professional palm reading',
+      'es': 'Análisis experto de quiromancia y palmistry - Aprende a leer las líneas de las palmas, entiende los gráficos de palmistry y descubre tu camino de vida',
+      'ja': '専門的な手相占いと手相学分析 - 手相線の読み方を学び、手相チャートを理解し、プロの手相占いで人生の道筋を発見',
+      'zh-HK': '專業手相學和手相占卜分析 - 學習解讀手相線條，理解手相圖表，通過專業手相占卜發現人生道路',
+    },
+    serviceType: {
+      'en': 'Palmistry and Chiromancy Services',
+      'es': 'Servicios de Quiromancia y Palmistry',
+      'ja': '手相占いと手相学サービス',
+      'zh-HK': '手相學和手相占卜服務',
     },
   };
 
   const data = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': 'Service',
     '@language': lang,
     'name': localizedContent.name[lang],
-    'image': [
-      'https://www.rolitt.com/app/rolitt-app-mockup.png',
-      'https://www.rolitt.com/images/rolitt-ai-plush-toy.png',
-    ],
     'description': localizedContent.description[lang],
-    'brand': {
-      '@type': 'Brand',
-      'name': 'Rolitt',
-      'description': 'Pioneer in AI-powered emotional companion technology',
+    'serviceType': localizedContent.serviceType[lang],
+    'provider': {
+      '@type': 'Organization',
+      'name': 'The Palmistry Life',
+      'url': 'https://www.thepalmistry.life/',
     },
-    'offers': {
-      '@type': 'Offer',
-      'priceCurrency': 'USD',
-      'price': '299.99',
-      'availability': 'https://schema.org/PreOrder',
-      'url': `https://www.rolitt.com/${lang}/pre-order`,
-      'itemCondition': 'https://schema.org/NewCondition',
-      'priceValidUntil': '2025-12-31',
+    'areaServed': 'Worldwide',
+    'hasOfferCatalog': {
+      '@type': 'OfferCatalog',
+      'name': 'Palmistry Services',
+      'itemListElement': [
+        {
+          '@type': 'Offer',
+          'itemOffered': {
+            '@type': 'Service',
+            'name': 'Palm Lines Reading',
+            'description': 'Professional analysis of heart line, life line, and head line palmistry',
+          },
+        },
+        {
+          '@type': 'Offer',
+          'itemOffered': {
+            '@type': 'Service',
+            'name': 'Chiromancy Analysis',
+            'description': 'Complete palmistry chart interpretation and hand analysis',
+          },
+        },
+        {
+          '@type': 'Offer',
+          'itemOffered': {
+            '@type': 'Service',
+            'name': 'Palmistry Guide',
+            'description': 'Learn how to read palm lines with our comprehensive palmistry guide',
+          },
+        },
+      ],
     },
-    'aggregateRating': {
-      '@type': 'AggregateRating',
-      'ratingValue': '4.8',
-      'bestRating': '5',
-      'worstRating': '1',
-      'reviewCount': '150',
-    },
-    'keywords': 'AI plush toy, smart emotional companion, interactive stuffed animal, customizable smart plush doll',
-    'feature': [
-      'Real-time emotion recognition',
-      'Multilingual conversation support',
-      'Child-safe privacy protection',
-      'Machine learning adaptation',
-    ],
   };
 
   return <JsonLd data={data} />;
@@ -160,7 +160,7 @@ export function BreadcrumbJsonLd({
     '@type': 'ListItem',
     'position': index + 1,
     'name': typeof item.name === 'string' ? item.name : item.name[lang],
-    'item': item.url.includes('://') ? item.url : `https://www.rolitt.com/${lang}${item.url}`,
+    'item': item.url.includes('://') ? item.url : item.url,
   }));
 
   const data = {
@@ -237,11 +237,8 @@ export function ArticleJsonLd({
     },
     'publisher': {
       '@type': 'Organization',
-      'name': 'Rolitt',
-      'logo': {
-        '@type': 'ImageObject',
-        'url': 'https://www.rolitt.com/rolittlogo.svg',
-      },
+      'name': 'The Palmistry Life',
+      'url': 'https://www.thepalmistry.life/',
     },
   };
 
@@ -259,13 +256,9 @@ export function TechnicalArticleJsonLd({
     image: string;
     datePublished: string;
     dateModified: string;
-    author: {
-      name: string;
-      jobTitle?: string;
-    };
-    proficiencyLevel?: string;
-    dependencies?: string;
+    author: string;
     keywords?: string;
+    difficulty?: 'Beginner' | 'Intermediate' | 'Advanced';
   };
   lang?: Language;
 }): ReactNode {
@@ -279,83 +272,62 @@ export function TechnicalArticleJsonLd({
     'datePublished': article.datePublished,
     'dateModified': article.dateModified,
     ...(article.keywords && { keywords: article.keywords }),
-    ...(article.proficiencyLevel && { proficiencyLevel: article.proficiencyLevel }),
-    ...(article.dependencies && { dependencies: article.dependencies }),
+    ...(article.difficulty && { proficiencyLevel: article.difficulty }),
     'author': {
       '@type': 'Person',
-      'name': article.author.name,
-      ...(article.author.jobTitle && { jobTitle: article.author.jobTitle }),
+      'name': article.author,
     },
     'publisher': {
       '@type': 'Organization',
-      'name': 'Rolitt',
-      'logo': {
-        '@type': 'ImageObject',
-        'url': 'https://www.rolitt.com/rolittlogo.svg',
-      },
+      'name': 'The Palmistry Life',
+      'url': 'https://www.thepalmistry.life/',
     },
   };
 
   return <JsonLd data={data} />;
 }
 
-// 本地企业结构化数据（支持多语言）
-export function LocalBusinessJsonLd({ lang = 'en' }: { lang?: Language }): ReactNode {
-  const localizedContent = {
-    name: {
-      'en': 'Rolitt Inc.',
-      'es': 'Rolitt Inc.',
-      'ja': 'Rolitt Inc',
-      'zh-HK': 'Rolitt Inc.',
-    },
+// 本地商业结构化数据（支持多语言）
+export function LocalBusinessJsonLd({
+  business,
+  lang = 'en',
+}: {
+  business: {
+    name: LocalizedContent;
+    description: LocalizedContent;
+    serviceType: LocalizedContent;
   };
-
+  lang?: Language;
+}): ReactNode {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     '@language': lang,
-    'name': localizedContent.name[lang],
-    'image': 'https://www.rolitt.com/rolittlogo.svg',
-    'address': {
-      '@type': 'PostalAddress',
-      'streetAddress': '1111B S Governors Ave STE 20948',
-      'addressLocality': 'Dover',
-      'addressRegion': 'DE',
-      'postalCode': '19904',
-      'addressCountry': 'US',
-    },
-    'geo': {
-      '@type': 'GeoCoordinates',
-      'latitude': '39.449889',
-      'longitude': '-75.716742',
-    },
-    'url': `https://www.rolitt.com/${lang}`,
-    'telephone': '+1 (302) 444-2859',
-    'openingHoursSpecification': [
-      {
-        '@type': 'OpeningHoursSpecification',
-        'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-        'opens': '09:00',
-        'closes': '16:00',
-      },
-    ],
+    'name': business.name[lang],
+    'description': business.description[lang],
+    'serviceType': business.serviceType[lang],
   };
 
   return <JsonLd data={data} />;
 }
 
 // 搜索框结构化数据（支持多语言）
-export function SearchBoxJsonLd({ lang = 'en' }: { lang?: Language }): ReactNode {
+export function SearchBoxJsonLd({
+  searchUrl,
+  lang = 'en',
+}: {
+  searchUrl: string;
+  lang?: Language;
+}): ReactNode {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@language': lang,
-    'url': `https://www.rolitt.com/${lang}`,
     'potentialAction': {
       '@type': 'SearchAction',
       'target': {
         '@type': 'EntryPoint',
-        'urlTemplate': `https://www.rolitt.com/${lang}/search?q={search_term_string}`,
+        'urlTemplate': searchUrl,
       },
       'query-input': 'required name=search_term_string',
     },
@@ -364,7 +336,7 @@ export function SearchBoxJsonLd({ lang = 'en' }: { lang?: Language }): ReactNode
   return <JsonLd data={data} />;
 }
 
-// 活动结构化数据（支持多语言）
+// 事件结构化数据（支持多语言）
 export function EventJsonLd({
   event,
   lang = 'en',
@@ -374,9 +346,7 @@ export function EventJsonLd({
     description: LocalizedContent;
     startDate: string;
     endDate: string;
-    location: LocalizedContent;
-    image: string;
-    keywords?: string;
+    eventType: LocalizedContent;
   };
   lang?: Language;
 }): ReactNode {
@@ -388,24 +358,12 @@ export function EventJsonLd({
     'description': event.description[lang],
     'startDate': event.startDate,
     'endDate': event.endDate,
-    ...(event.keywords && { keywords: event.keywords }),
-    'location': {
-      '@type': 'Place',
-      'name': event.location[lang],
-      'address': {
-        '@type': 'PostalAddress',
-        'streetAddress': '1111B S Governors Ave STE 20948',
-        'addressLocality': 'Dover',
-        'addressRegion': 'DE',
-        'postalCode': '19904',
-        'addressCountry': 'US',
-      },
-    },
-    'image': event.image,
+    'eventAttendanceMode': 'https://schema.org/OnlineEventAttendanceMode',
+    'eventStatus': 'https://schema.org/EventScheduled',
     'organizer': {
       '@type': 'Organization',
-      'name': 'Rolitt',
-      'url': `https://www.rolitt.com/${lang}`,
+      'name': 'The Palmistry Life',
+      'url': 'https://www.thepalmistry.life/',
     },
   };
 

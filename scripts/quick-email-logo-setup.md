@@ -18,12 +18,12 @@
    ```
 
 2. **上传Logo文件**
-   - 使用您的 `public/rolittlogo.svg` 文件
+   - 使用您的 `public/rolittpalmlogo.svg` 文件
    - 或转换为PNG格式 (推荐150x150px)
 
 3. **设置邮件签名**
    ```html
-   <img src="https://rolitt.com/rolittlogo.svg"
+   <img src="https://rolitt.com/rolittpalmlogo.svg"
         alt="Rolitt"
         width="120"
         style="max-width: 120px;">
@@ -38,14 +38,14 @@
 
 2. **编辑邮件模板**
    - 添加图片块
-   - 上传logo文件或使用URL: `https://rolitt.com/rolittlogo.svg`
+   - 上传logo文件或使用URL: `https://rolitt.com/rolittpalmlogo.svg`
    - 设置最大宽度: 150px
 
 #### Amazon SES (事务邮件)
 ```html
 <!-- 在邮件模板中添加 -->
 <div style="text-align: center; padding: 20px;">
-    <img src="https://rolitt.com/rolittlogo.svg"
+    <img src="https://rolitt.com/rolittpalmlogo.svg"
          alt="Rolitt"
          style="max-width: 150px; height: auto;">
 </div>
@@ -68,8 +68,8 @@
    ```
 
 2. **如果文件不可访问，上传到主域名**
-   - 将 `public/assets/logo/bimi-logo.svg` 上传到网站
-   - 确保可通过 `https://rolitt.com/assets/logo/bimi-logo.svg` 访问
+   - 将 `public/assets/logo/bimi-palmlogo.svg` 上传到网站
+   - 确保可通过 `https://rolitt.com/assets/logo/bimi-palmlogo.svg` 访问
 
 ## 🛠️ 立即行动计划
 
@@ -114,7 +114,7 @@
     <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
             <td align="center" style="padding: 20px; background-color: #f8f9fa;">
-                <img src="https://rolitt.com/rolittlogo.svg"
+                <img src="https://rolitt.com/rolittpalmlogo.svg"
                      alt="Rolitt"
                      width="150"
                      height="auto"
@@ -143,7 +143,7 @@
 <table cellpadding="0" cellspacing="0" border="0">
     <tr>
         <td>
-            <img src="https://rolitt.com/rolittlogo.svg"
+            <img src="https://rolitt.com/rolittpalmlogo.svg"
                  alt="Rolitt"
                  width="100"
                  style="display: block; max-width: 100px;">

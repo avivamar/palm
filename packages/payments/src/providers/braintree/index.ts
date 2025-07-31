@@ -162,7 +162,7 @@ export class BraintreeProvider implements PaymentProvider {
     }
   }
 
-  async confirmPayment(paymentId: string, paymentMethod: string): Promise<PaymentResult> {
+  async confirmPayment(_paymentId: string, paymentMethod: string): Promise<PaymentResult> {
     try {
       // 在 Braintree 中，确认支付实际上是执行交易
       const result = await this.gateway.transaction.sale({

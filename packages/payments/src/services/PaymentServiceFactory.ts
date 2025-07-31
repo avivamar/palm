@@ -45,19 +45,19 @@ export class PaymentServiceFactory {
     const providers: ExtendedPaymentConfig = {} as ExtendedPaymentConfig;
 
     // 配置 Stripe (总是可用)
-    providers.stripe = getProviderConfig('stripe', envConfig);
+    providers.stripe = getProviderConfig('stripe', envConfig) as any;
 
     // 配置其他供应商 (如果可用)
     if (availableProviders.includes('creem')) {
-      providers.creem = getProviderConfig('creem', envConfig);
+      providers.creem = getProviderConfig('creem', envConfig) as any;
     }
 
     if (availableProviders.includes('paddle')) {
-      providers.paddle = getProviderConfig('paddle', envConfig);
+      providers.paddle = getProviderConfig('paddle', envConfig) as any;
     }
 
     if (availableProviders.includes('braintree')) {
-      providers.braintree = getProviderConfig('braintree', envConfig);
+      providers.braintree = getProviderConfig('braintree', envConfig) as any;
     }
 
     const defaultConfig: PaymentServiceConfig = {

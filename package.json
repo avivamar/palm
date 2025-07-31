@@ -97,7 +97,12 @@
     "migrate:list": "npm run migrate:list --workspace=@rolitt/payments",
     "migrate:step": "npm run migrate:step --workspace=@rolitt/payments",
     "migrate:full": "npm run migrate:full --workspace=@rolitt/payments",
-    "migrate:dry-run": "npm run migrate:dry-run --workspace=@rolitt/payments"
+    "migrate:dry-run": "npm run migrate:dry-run --workspace=@rolitt/payments",
+    "backup:database": "npx tsx scripts/database-export.ts",
+    "backup:database:full": "BACKUP_DIR=./backups npx tsx scripts/database-export.ts",
+    "backup:supabase": "npx tsx scripts/supabase-backup.ts",
+    "backup:restore": "npx tsx scripts/supabase-restore.ts",
+    "backup:check": "ls -la ./backups/ && echo 'Backup files listed above'"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.56.0",

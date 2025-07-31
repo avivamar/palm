@@ -1,8 +1,0 @@
-Confirm Your Rolitt Account
-
-Continue: https://rolitt.com/auth/confirm?token=conf_1752393321612
-
-Email: test@example.com
-Site: https://rolitt.com
-
-© 2024 Rolitt. All rights reserved.

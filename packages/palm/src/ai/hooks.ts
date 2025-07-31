@@ -32,7 +32,7 @@ export const hooks = {
  */
 export function pickHook(lang: "zh" | "en" | "ja" = "zh"): string {
   const arr = hooks[lang] || hooks.zh;
-  return arr[Math.floor(Math.random() * arr.length)];
+  return arr[Math.floor(Math.random() * arr.length)] || arr[0] || "完整版将详细解锁你未来 90 天的情感与事业关键节点。";
 }
 
 /**
@@ -40,7 +40,7 @@ export function pickHook(lang: "zh" | "en" | "ja" = "zh"): string {
  */
 export function getHookByIndex(lang: "zh" | "en" | "ja" = "zh", index: number): string {
   const arr = hooks[lang] || hooks.zh;
-  return arr[index % arr.length];
+  return arr[index % arr.length] || arr[0] || "完整版将详细解锁你未来 90 天的情感与事业关键节点。";
 }
 
 /**

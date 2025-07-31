@@ -10,7 +10,7 @@ import { createServerClient } from '@/libs/supabase/config';
 import { getSafeDB } from '@/libs/DB';
 import { palmAnalysisSessionsSchema } from '@/models/Schema';
 import { eq } from 'drizzle-orm';
-import { PalmAIService, type UserInfo } from '@rolitt/palm';
+import { type UserInfo } from '@rolitt/palm';
 // import { getPalmAnalysisPrompt } from '@/utils/palmPrompts'; // 已替换为专业手相分析提示词
 
 // 使用 Node.js runtime 以支持 Supabase

@@ -4,14 +4,7 @@
 
 import { z } from 'zod';
 
-// 单个供应商配置验证
-const StripeConfigSchema = z.object({
-  publishableKey: z.string().startsWith('pk_'),
-  secretKey: z.string().startsWith('sk_'),
-  webhookSecret: z.string().startsWith('whsec_'),
-  apiVersion: z.string().default('2025-06-30.basil'),
-});
-
+// 单个供应商配置验证 
 const CreemConfigSchema = z.object({
   apiKey: z.string().startsWith('ck_'),
   publicKey: z.string().startsWith('pk_'),

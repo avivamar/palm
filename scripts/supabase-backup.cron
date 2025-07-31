@@ -1,0 +1,26 @@
+# Supabase 数据库自动备份计划
+# 
+# 使用方法:
+# 1. 编辑crontab: crontab -e
+# 2. 添加以下行（根据需要调整路径）
+#
+# 格式: 分 时 日 月 星期 命令
+
+# 每天凌晨2点执行Supabase数据备份
+0 2 * * * cd /path/to/palm && npm run backup:supabase >> /var/log/supabase-backup.log 2>&1
+
+# 每周日凌晨3点执行完整备份并清理旧备份
+0 3 * * 0 cd /path/to/palm && npm run backup:supabase:full >> /var/log/supabase-backup.log 2>&1
+
+# 每12小时执行一次备份（高频备份）
+0 */12 * * * cd /path/to/palm && npm run backup:supabase >> /var/log/supabase-backup.log 2>&1
+
+# 每天早上9点检查备份健康状态
+0 9 * * * cd /path/to/palm && npm run backup:check >> /var/log/supabase-backup.log 2>&1
+
+# 备注:
+# - 确保项目路径正确 (/path/to/palm)
+# - 确保环境变量已正确设置
+# - 建议将日志输出到专门的日志文件
+# - 定期检查备份是否成功执行
+# - 考虑设置备份文件的云存储同步

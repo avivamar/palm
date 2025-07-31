@@ -25,3 +25,4 @@
 
 1. 在 `src/config/colors.ts` 中将对应颜色的 `enabled` 设置为 `false`
 2. 运行 `npm run sync-colors` 同步配置
+

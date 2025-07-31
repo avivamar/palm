@@ -1,6 +1,6 @@
 'use client';
 
-import React, { CSSProperties, ReactElement, useEffect, useMemo, useState } from 'react';
+import React, { CSSProperties, useEffect, useMemo, useState } from 'react';
 import { cn } from '@rolitt/shared/utils';
 
 interface Sparkle {

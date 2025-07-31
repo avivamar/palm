@@ -140,7 +140,7 @@ export function generateBlogJsonLd({
       'name': blogConfig.title,
       'logo': {
         '@type': 'ImageObject',
-        'url': `${blogConfig.url}/logo.svg`,
+        'url': `${blogConfig.url}/palmlogo.svg`,
       },
     },
     'image': {

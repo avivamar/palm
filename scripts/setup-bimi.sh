@@ -44,7 +44,7 @@ check_logo_files() {
         echo -e "${GREEN}✅ 找到SVG logo: public/rolittlogoofBIMI.svg${NC}"
         
         # 检查文件大小
-        size=$(stat -f%z "public/rolittlogoofBIMI.svg" 2>/dev/null || stat -c%s "public/rolittlogo.svg" 2>/dev/null)
+        size=$(stat -f%z "public/rolittlogoofBIMI.svg" 2>/dev/null || stat -c%s "public/rolittpalmlogo.svg" 2>/dev/null)
         size_kb=$((size / 1024))
         
         echo "   文件大小: ${size_kb}KB"
@@ -73,9 +73,9 @@ create_bimi_logo() {
     mkdir -p public/assets/logo/
     
     # 复制并优化logo
-    if [ -f "public/rolittlogo.svg" ]; then
-        cp "public/rolittlogo.svg" "public/assets/logo/bimi-logo.svg"
-        echo -e "${GREEN}✅ 创建BIMI logo: public/assets/logo/bimi-logo.svg${NC}"
+    if [ -f "public/rolittpalmlogo.svg" ]; then
+        cp "public/rolittpalmlogo.svg" "public/assets/logo/bimi-palmlogo.svg"
+        echo -e "${GREEN}✅ 创建BIMI logo: public/assets/logo/bimi-palmlogo.svg${NC}"
         
         # 检查是否需要优化
         echo -e "${YELLOW}💡 BIMI Logo优化建议:${NC}"
@@ -98,7 +98,7 @@ add_bimi_record() {
     
     # BIMI记录内容
     # 注意：这里使用基础BIMI记录，不包含VMC证书
-    BIMI_CONTENT="v=BIMI1; l=https://$DOMAIN/assets/logo/bimi-logo.svg;"
+    BIMI_CONTENT="v=BIMI1; l=https://$DOMAIN/assets/logo/bimi-palmlogo.svg;"
     
     echo -e "${YELLOW}BIMI记录内容:${NC}"
     echo "$BIMI_CONTENT"
@@ -163,7 +163,7 @@ verify_bimi() {
     
     # 检查logo文件可访问性
     echo -e "${YELLOW}检查Logo文件可访问性:${NC}"
-    logo_url="https://$DOMAIN/assets/logo/bimi-logo.svg"
+    logo_url="https://$DOMAIN/assets/logo/bimi-palmlogo.svg"
     
     if command -v curl >/dev/null 2>&1; then
         http_status=$(curl -s -o /dev/null -w "%{http_code}" "$logo_url")
@@ -188,8 +188,8 @@ show_next_steps() {
     echo "========================================"
     echo ""
     echo -e "${YELLOW}1. 上传Logo文件到网站${NC}"
-    echo "   - 将 public/assets/logo/bimi-logo.svg 上传到网站"
-    echo "   - 确保可通过 https://$DOMAIN/assets/logo/bimi-logo.svg 访问"
+    echo "   - 将 public/assets/logo/bimi-palmlogo.svg 上传到网站"
+    echo "   - 确保可通过 https://$DOMAIN/assets/logo/bimi-palmlogo.svg 访问"
     echo ""
     echo -e "${YELLOW}2. 等待DNS传播${NC}"
     echo "   - BIMI DNS记录需要15-30分钟传播"

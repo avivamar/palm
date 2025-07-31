@@ -141,7 +141,12 @@
       "Bash(DATABASE_URL='postgres://postgres.kyuzzfvhukbkcvivsebm:a0wmOg6LfUESDe2r@aws-0-us-west-1.pooler.supabase.com:6543/postgres?sslmode=require&supa=base-pooler.x' node -e \"\nconst postgres = require(''postgres'');\nconst sql = postgres(process.env.DATABASE_URL, { max: 1 });\n(async () => {\n  try {\n    const sessions = await sql\\`SELECT id, session_id, status FROM palm_analysis_sessions ORDER BY created_at DESC LIMIT 3\\`;\n    console.log(''Recent sessions:'');\n    sessions.forEach(s => console.log(\\`ID: ${s.id}, SessionID: ${s.session_id}, Status: ${s.status}\\`));\n    await sql.end();\n  } catch(error) {\n    console.error(''Database error:'', error.message);\n    process.exit(1);\n  }\n})();\")",
       "Bash(DATABASE_URL='postgres://postgres.kyuzzfvhukbkcvivsebm:a0wmOg6LfUESDe2r@aws-0-us-west-1.pooler.supabase.com:6543/postgres?sslmode=require&supa=base-pooler.x' node -e \"\nconst postgres = require(''postgres'');\nconst sql = postgres(process.env.DATABASE_URL, { max: 1 });\n(async () => {\n  try {\n    const sessions = await sql\\`SELECT session_id, status, analysis_result FROM palm_analysis_sessions WHERE session_id = ''3991d660-f5a0-4845-896c-b5e7f6c8bda6''\\`;\n    const session = sessions[0];\n    console.log(''Session status:'', session.status);\n    console.log(''Analysis result type:'', typeof session.analysis_result);\n    console.log(''Analysis result length:'', session.analysis_result ? session.analysis_result.length : ''null'');\n    console.log(''First 200 chars:'', session.analysis_result ? session.analysis_result.substring(0, 200) : ''null'');\n    await sql.end();\n  } catch(error) {\n    console.error(''Error:'', error.message);\n  }\n})();\")",
       "Bash(if [ -f \"$file\" ])",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "Bash(ts-node:*)",
+      "Bash(do echo \"=== $pkg ===\")",
+      "Bash(npm view:*)",
+      "Bash(python3:*)",
+      "Bash(export DATABASE_URL=\"postgres://postgres.kyuzzfvhukbkcvivsebm:a0wmOg6LfUESDe2r@aws-0-us-west-1.pooler.supabase.com:6543/postgres?sslmode=require&supa=base-pooler.x\")"
     ],
     "deny": []
   }

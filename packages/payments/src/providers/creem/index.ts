@@ -31,7 +31,12 @@ export class CreemProvider implements PaymentProvider {
   readonly version = '1.0.0';
   
   private apiKey: string;
-  private publicKey: string;
+  private publicKey: string; // 供前端集成使用
+  
+  // Getter for public key (used by frontend integration)
+  get clientPublicKey(): string {
+    return this.publicKey;
+  }
   private webhookSecret: string;
   private baseUrl: string;
 

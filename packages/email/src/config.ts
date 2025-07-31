@@ -9,7 +9,7 @@ import type { BrandConfig, SupportedLocale } from './types';
 export const BRAND_CONFIG: BrandConfig = {
   brandName: 'Rolitt',
   primaryColor: '#EBFF7F', // Rolitt 品牌主色
-  logoUrl: 'https://rolitt.com/logo.svg',
+  logoUrl: 'https://rolitt.com/palmlogo.svg',
   websiteUrl: 'https://rolitt.com',
   supportEmail: 'support@rolitt.com',
   socialLinks: {
@@ -163,7 +163,7 @@ export const getEnvironmentConfig = () => {
     isDevelopment,
     siteUrl,
     logoUrl: isDevelopment
-      ? `${siteUrl}/logo.svg`
+      ? `${siteUrl}/palmlogo.svg`
       : BRAND_CONFIG.logoUrl,
     websiteUrl: isDevelopment
       ? siteUrl

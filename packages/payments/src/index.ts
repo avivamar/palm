@@ -15,6 +15,9 @@ export type { SubscriptionPlansProps } from './components/SubscriptionPlans';
 // Multi-provider payment services
 export { PaymentService } from './services/PaymentService';
 export type { PaymentServiceConfig } from './services/PaymentService';
+export { getPaymentService, PaymentServiceFactory } from './services/PaymentServiceFactory';
+export { paymentAnalytics, PaymentAnalytics } from './services/PaymentAnalytics';
+export type { PaymentMetrics, PaymentEvent } from './services/PaymentAnalytics';
 
 // Payment providers
 export { PaymentProviderManager } from './providers';
@@ -22,7 +25,9 @@ export type { ExtendedPaymentConfig } from './providers';
 export { StripeProvider } from './providers/stripe';
 export { CreemProvider } from './providers/creem';
 export { PaddleProvider } from './providers/paddle';
-export { BraintreeProvider } from './providers/braintree';
+// Braintree provider - server-side only due to Node.js dependencies
+// Import from './providers/braintree/server' for server-side use
+export type { BraintreeConfig } from './providers/braintree';
 
 // Legacy Stripe services (for backward compatibility)
 export { StripeCheckoutService } from './features/stripe/StripeCheckoutService';

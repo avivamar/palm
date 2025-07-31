@@ -101,11 +101,12 @@ export class PaymentProviderManager {
     error?: string;
   }> {
     const providerName = name || this.defaultProvider!;
-    const provider = this.getProvider(providerName);
-
+    
     try {
-      // 通过创建一个测试客户来检查健康状态
-      // 这里可以实现更精细的健康检查逻辑
+      // 验证provider是否存在和可用
+      this.getProvider(providerName);
+      
+      // 简单的健康检查 - 验证provider可以被获取
       return {
         provider: providerName,
         status: 'healthy'
@@ -124,4 +125,4 @@ export class PaymentProviderManager {
 export * from './stripe';
 export * from './creem';
 export * from './paddle';
-export * from './braintree';
+// Braintree exported separately due to server-side only requirement

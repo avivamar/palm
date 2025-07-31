@@ -7,7 +7,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+// import { execSync } from 'child_process'; // 保留以供将来使用
 
 const COMPONENTS_DIR = path.join(__dirname, '../src/ui/components');
 const PACKAGE_JSON_PATH = path.join(__dirname, '../package.json');
@@ -60,17 +60,24 @@ class ComponentManager {
     
     let match;
     while ((match = exportRegex.exec(content)) !== null) {
-      const exportList = match[1]
-        .split(',')
-        .map(exp => exp.trim().split(' as ')[0].trim())
-        .filter(exp => exp && !exp.startsWith('type'));
-      exports.push(...exportList);
+      if (match[1]) {
+        const exportList = match[1]
+          .split(',')
+          .map(exp => {
+            const parts = exp.trim().split(' as ');
+            return parts[0] ? parts[0].trim() : '';
+          })
+          .filter(exp => exp && !exp.startsWith('type'));
+        exports.push(...exportList);
+      }
     }
 
     // Also check for individual exports
     const individualExportRegex = /export\s+(?:const|function|class)\s+(\w+)/g;
     while ((match = individualExportRegex.exec(content)) !== null) {
-      exports.push(match[1]);
+      if (match[1]) {
+        exports.push(match[1]);
+      }
     }
 
     return [...new Set(exports)];
@@ -86,7 +93,7 @@ class ComponentManager {
     let match;
     while ((match = importRegex.exec(content)) !== null) {
       const dep = match[1];
-      if (!dep.startsWith('.') && !dep.startsWith('@rolitt/')) {
+      if (dep && !dep.startsWith('.') && !dep.startsWith('@rolitt/')) {
         dependencies.push(dep);
       }
     }
@@ -107,7 +114,7 @@ class ComponentManager {
     console.log(`Radix Components: ${this.components.filter(c => c.hasRadixDependency).length}`);
     
     console.log(`\n🏗️  Components by Category:`);
-    const categories = {
+    const categories: Record<string, string[]> = {
       'Form Controls': ['button', 'input', 'textarea', 'select', 'radio-group', 'switch', 'slider'],
       'Layout': ['card', 'separator', 'tabs', 'sheet', 'dialog'],
       'Navigation': ['breadcrumb', 'pagination', 'command'],
