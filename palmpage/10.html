@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>ThePalmistryLife • 财富潜力分析中</title>
+
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  /* 圆环长度 = 2πr = 2π40 ≈ 251 */
+  .progress-ring__circle{
+    stroke-dasharray: 251;
+    stroke-dashoffset: 251;
+    transition: stroke-dashoffset .3s linear;
+  }
+</style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-center
+             bg-gradient-to-br from-[#5E4BFB] via-[#6C63FF] to-[#9C6BFF] text-white">
+
+  <!-- 顶部导航（可留空） -->
+  <header class="absolute top-4 left-4">
+    <img src="img/logo.svg" class="h-6" alt="ThePalmistryLife">
+  </header>
+
+  <!-- 统计说明 -->
+  <p class="text-center px-6 leading-snug">
+    我们已帮助 <span id="counter" class="font-bold">0</span> 位用户发现财富机会！<br>
+    <span class="text-xs text-white/70">
+      *平均投资收益率提升3.7% | 截至 <span id="today"></span>
+    </span>
+  </p>
+
+  <!-- SVG 圆环 -->
+  <div class="relative mt-10 w-40 h-40">
+    <svg width="100%" height="100%">
+      <circle cx="50%" cy="50%" r="40" stroke="#ffffff30" stroke-width="8" fill="none"/>
+      <circle id="ring" cx="50%" cy="50%" r="40"
+              class="progress-ring__circle"
+              stroke="#ffffff" stroke-width="8" fill="none"
+              stroke-linecap="round"/>
+    </svg>
+    <span id="percent"
+          class="absolute inset-0 flex items-center justify-center text-xl font-semibold">0 %</span>
+  </div>
+
+  <!-- 状态文字 -->
+  <p id="status" class="mt-8 text-sm text-white/80">正在计算您的财富指数…</p>
+
+<script>
+  /* ---------- 动态社证明数字 ---------- */
+  const targetCount = 847_293; // 财富分析用户数
+  const counterEl = document.getElementById('counter');
+  let cur = 0;
+  const countStep = Math.ceil(targetCount / 120); // 2 秒滚完
+  const countTimer = setInterval(()=>{
+    cur += countStep;
+    if(cur >= targetCount){ cur = targetCount; clearInterval(countTimer); }
+    counterEl.textContent = cur.toLocaleString();
+  }, 16);
+
+  /* ---------- 今日日期 ---------- */
+  const todayEl = document.getElementById('today');
+  todayEl.textContent = new Date().toLocaleDateString('zh-CN');
+
+  /* ---------- 进度环动画 ---------- */
+  const ring = document.getElementById('ring');
+  const pct  = document.getElementById('percent');
+  const total = 251; // 圆周长
+  let p = 0;
+  const timer = setInterval(()=>{
+    p += 1;                     // 实际可替换为真实生成进度
+    ring.style.strokeDashoffset = total - total * (p / 100);
+    pct.textContent = `${p} %`;
+    if(p >= 100){
+      clearInterval(timer);
+      document.getElementById('status').textContent = '财富分析完成，正在生成报告…';
+      setTimeout(()=>location.href='/wealth-report', 1000); // 下一步
+    }
+  }, 30); // 0 →100 共 3 秒
+</script>
+</body>
+</html>

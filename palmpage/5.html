@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ThePalmistryLife • 分析进度里程碑</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 品牌紫自定义 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: "#7C3AED"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* 星尘缩放淡出动画 */
+    @keyframes pop {
+      0%   { transform: scale(0.4); opacity: 0; }
+      60%  { transform: scale(1);   opacity: 1; }
+      100% { transform: scale(1.1); opacity: 0; }
+    }
+    
+    /* 成功动画 */
+    @keyframes success {
+      0%   { transform: scale(0.8); opacity: 0; }
+      50%  { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .success-icon {
+      animation: success 0.6s ease-out;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-600 flex justify-center">
+  <main class="w-full max-w-[412px] px-4 pb-16 text-white">
+    <!-- Logo -->
+    <header class="py-4 flex justify-center">
+      <img src="img/logo-white.svg" alt="ThePalmistryLife" class="h-7" />
+    </header>
+
+    <!-- Progress -->
+    <div class="relative w-full h-2 bg-white/30 rounded-full mb-8">
+      <div class="h-full w-[100%] bg-white rounded-full transition-all"></div>
+      <span class="absolute right-0 -top-6 text-xs text-white/70">分析完成!</span>
+    </div>
+
+    <!-- Success Icon -->
+    <div class="flex justify-center mb-6">
+      <div class="success-icon w-24 h-24 bg-white/20 rounded-full flex items-center justify-center">
+        <span class="text-5xl">✨</span>
+      </div>
+    </div>
+
+    <!-- Title -->
+    <section class="text-center space-y-3 mb-8">
+      <h1 class="text-2xl font-bold text-white">
+        太棒了！你的财富潜力正在解析中
+      </h1>
+      <p class="text-white/80 leading-snug text-lg">
+        🎯 AI 已收集到关键信息<br/>
+        📊 个性化报告生成中...
+      </p>
+      <div class="mt-4 text-sm text-yellow-300 font-medium animate-pulse">
+        ⏱️ 预计完成时间：30秒
+      </div>
+    </section>
+
+    <!-- Progress Animation -->
+    <div class="mb-8">
+      <div class="bg-white/20 rounded-full p-4">
+        <div class="text-center space-y-2">
+          <div id="analysisText" class="text-white/90 font-medium">分析掌纹特征...</div>
+          <div class="w-full bg-white/30 rounded-full h-2">
+            <div id="progressBar" class="bg-gradient-to-r from-yellow-400 to-green-400 h-2 rounded-full transition-all duration-1000" style="width: 20%"></div>
+          </div>
+          <div id="progressPercent" class="text-white/70 text-sm">20%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fake Analysis Steps -->
+    <div class="space-y-3 mb-8 text-sm">
+      <div id="step1" class="flex items-center opacity-100">
+        <span class="text-green-400 mr-2">✓</span>
+        <span class="text-white/80">基础信息收集完成</span>
+      </div>
+      <div id="step2" class="flex items-center opacity-50">
+        <span class="text-yellow-400 mr-2">⏳</span>
+        <span class="text-white/60">掌纹模式识别中...</span>
+      </div>
+      <div id="step3" class="flex items-center opacity-30">
+        <span class="text-gray-400 mr-2">○</span>
+        <span class="text-white/40">财富潜力计算中...</span>
+      </div>
+      <div id="step4" class="flex items-center opacity-30">
+        <span class="text-gray-400 mr-2">○</span>
+        <span class="text-white/40">个性化建议生成中...</span>
+      </div>
+    </div>
+
+    <!-- Continue CTA -->
+    <button
+      id="continueBtn"
+      class="w-full h-14 rounded-xl bg-white text-violet-600 text-lg font-semibold shadow-md hover:bg-gray-100 transition disabled:opacity-40 disabled:cursor-not-allowed"
+      disabled
+    >
+      <span id="buttonText">分析中... 请稍候</span>
+    </button>
+
+    <!-- Legal & location -->
+    <p class="mt-6 text-center text-[10px] leading-snug text-white/50 px-4">
+      分析完成后，您将获得完整的财富潜力报告
+    </p>
+  </main>
+
+  <script>
+    // 模拟分析进度
+    const steps = [
+      { text: "分析掌纹特征...", progress: 20 },
+      { text: "识别财富纹路...", progress: 45 },
+      { text: "计算投资潜力...", progress: 70 },
+      { text: "生成个性化建议...", progress: 85 },
+      { text: "准备您的报告...", progress: 100 }
+    ];
+    
+    const analysisText = document.getElementById('analysisText');
+    const progressBar = document.getElementById('progressBar');
+    const progressPercent = document.getElementById('progressPercent');
+    const continueBtn = document.getElementById('continueBtn');
+    const buttonText = document.getElementById('buttonText');
+    
+    let currentStep = 0;
+    
+    // 更新分析步骤状态
+    function updateStepStatus(stepIndex, status) {
+      const stepEl = document.getElementById(`step${stepIndex + 1}`);
+      if (!stepEl) return;
+      
+      const icon = stepEl.querySelector('span:first-child');
+      const text = stepEl.querySelector('span:last-child');
+      
+      switch(status) {
+        case 'active':
+          stepEl.style.opacity = '1';
+          icon.textContent = '⏳';
+          icon.className = 'text-yellow-400 mr-2';
+          text.className = 'text-white/80';
+          break;
+        case 'completed':
+          stepEl.style.opacity = '1';
+          icon.textContent = '✓';
+          icon.className = 'text-green-400 mr-2';
+          text.className = 'text-white/80';
+          break;
+      }
+    }
+    
+    // 进度动画
+    function animateProgress() {
+      if (currentStep >= steps.length) {
+        // 分析完成
+        buttonText.textContent = '查看我的财富报告 →';
+        continueBtn.disabled = false;
+        continueBtn.classList.remove('bg-white', 'text-violet-600');
+        continueBtn.classList.add('bg-gradient-to-r', 'from-yellow-400', 'to-green-400', 'text-white');
+        return;
+      }
+      
+      const step = steps[currentStep];
+      
+      // 更新文本和进度条
+      analysisText.textContent = step.text;
+      progressBar.style.width = step.progress + '%';
+      progressPercent.textContent = step.progress + '%';
+      
+      // 更新步骤状态
+      if (currentStep > 0) {
+        updateStepStatus(currentStep - 1, 'completed');
+      }
+      updateStepStatus(currentStep, 'active');
+      
+      currentStep++;
+      
+      // 继续下一步
+      setTimeout(animateProgress, Math.random() * 2000 + 1500); // 1.5-3.5秒随机间隔
+    }
+    
+    // 开始动画
+    setTimeout(animateProgress, 1000);
+    
+    // 继续按钮点击事件
+    continueBtn.addEventListener('click', () => {
+      if (!continueBtn.disabled) {
+        console.log('跳转到财富报告页面');
+        // location.href = '/wealth-report';
+      }
+    });
+    
+    // 添加一些随机的"正在处理"效果
+    setInterval(() => {
+      if (currentStep < steps.length) {
+        const dots = analysisText.textContent.match(/\.+$/);
+        if (dots) {
+          const baseText = analysisText.textContent.replace(/\.+$/, '');
+          const newDots = dots[0].length >= 3 ? '.' : dots[0] + '.';
+          analysisText.textContent = baseText + newDots;
+        }
+      }
+    }, 500);
+  </script>
+</body>
+</html>

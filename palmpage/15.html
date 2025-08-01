@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ThePalmistryLife • AI正在解析你的财富密码</title>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* 扫描框四角 */
+.corner{
+  width:32px;height:32px;border:3px solid #7C3AED;position:absolute;
+}
+.corner.tl{left:0;top:0;border-right:none;border-bottom:none}
+.corner.tr{right:0;top:0;border-left:none;border-bottom:none}
+.corner.bl{left:0;bottom:0;border-right:none;border-top:none}
+.corner.br{right:0;bottom:0;border-left:none;border-top:none}
+
+/* 横向扫描线 */
+@keyframes slide {
+  0%{transform:translateX(-100%)} 100%{transform:translateX(100%)}
+}
+.scan-line{
+  position:absolute;left:0;right:0;top:50%;height:2px;
+  background:#a78bfa;opacity:.7;animation:slide 2.5s linear infinite;
+}
+
+/* SVG 手纹动画 - 0.8s 画完 */
+.hand-line{
+  stroke-width:4;fill:none;stroke-linecap:round;stroke-dasharray:400;
+  stroke-dashoffset:400;animation:draw .8s forwards ease-in-out;
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+</style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-center bg-white text-gray-800">
+
+<!-- 预览卡片 -->
+<div class="w-[320px] rounded-3xl shadow-xl p-6 relative">
+
+  <!-- 扫描框包裹层 -->
+  <div class="relative mx-auto w-60 h-60 overflow-hidden rounded-xl">
+    <!-- 用户手掌示例图（换成上传后的 blob URL 即可） -->
+    <img src="img/demohand.png" alt="hand" class="w-full h-full object-cover">
+
+    <!-- 指尖标记（示例坐标 x,y, 可改 js 循环渲染） -->
+    <template id="dotTpl">
+      <div class="absolute -translate-x-2 -translate-y-2 w-4 h-4 rounded-full"></div>
+    </template>
+    <script>
+      // 示例五指 tips xy
+      const tips=[{x:90,y:60,c:'#8b5cf6'},
+                  {x:123,y:40,c:'#4f46e5'},
+                  {x:159,y:45,c:'#0ea5e9'},
+                  {x:190,y:65,c:'#10b981'},
+                  {x:215,y:95,c:'#f59e0b'}];
+      const box=document.currentScript.parentElement;
+      tips.forEach(t=>{
+        const dot=box.querySelector('#dotTpl').content.firstElementChild.cloneNode();
+        dot.style.cssText+=`left:${t.x}px;top:${t.y}px;background:${t.c}`;
+        box.appendChild(dot);
+      });
+    </script>
+
+    <!-- SVG 掌纹示例 -->
+    <svg class="absolute inset-0 w-full h-full">
+      <polyline points="120,190 145,150 180,130" class="hand-line" stroke="#8b5cf6" style="animation-delay:.1s"/>
+      <polyline points="100,200 128,170 165,160" class="hand-line" stroke="#4f46e5" style="animation-delay:.2s"/>
+      <polyline points="95,215 135,205 175,195"  class="hand-line" stroke="#0ea5e9" style="animation-delay:.3s"/>
+      <polyline points="110,230 150,230 185,225" class="hand-line" stroke="#10b981" style="animation-delay:.4s"/>
+      <polyline points="140,245 165,255 190,260" class="hand-line" stroke="#f59e0b" style="animation-delay:.5s"/>
+    </svg>
+
+    <!-- 四角 + 扫描线 -->
+    <div class="corner tl"></div><div class="corner tr"></div>
+    <div class="corner bl"></div><div class="corner br"></div>
+    <div class="scan-line"></div>
+  </div>
+
+  <!-- 文案 -->
+  <h2 class="mt-6 text-lg font-bold text-violet-600">🤖 AI正在解析您的财富潜力密码</h2>
+  <p class="mt-2 text-sm text-gray-600 leading-relaxed">
+    📊 正在分析您的掌纹投资特征、财富增长机会和风险承受能力...<br/>
+    🔮 预计发现 3-5 个高收益投资机会和 2-3 个财富增长策略
+  </p>
+</div>
+
+</body>
+</html>

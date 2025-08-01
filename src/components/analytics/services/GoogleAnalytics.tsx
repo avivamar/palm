@@ -36,9 +36,4 @@ export const trackPageView = (url: string) => {
   }
 };
 
-// 类型声明
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-  }
-}
+// 类型声明已在 @types/gtag 中定义

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ThePalmistryLife - 探索你的未来</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand': '#EBFF7F',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* 自定义渐变背景 */
+    .gradient-bg {
+      background: linear-gradient(180deg, #6C3BFF 0%, #3D0DA9 100%);
+    }
+    
+    /* 淡入淡出动画 */
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      20%, 80% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
+    
+    .text-animation {
+      animation: fadeInOut 1.2s ease-in-out;
+      animation-fill-mode: both;
+    }
+    
+    /* 防止页面滚动 */
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="gradient-bg flex justify-center">
+  <div class="w-[390px] mx-auto">
+  <!-- 主容器 -->
+  <div class="min-h-screen flex items-center justify-center p-4">
+    <!-- 文字显示区域 -->
+    <div class="text-center max-w-2xl mx-auto">
+      <div id="textContainer" class="text-lg sm:text-xl md:text-2xl font-medium text-white leading-relaxed">
+        <!-- 动态文字将在这里显示 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 地理位置显示 -->
+  <div class="fixed bottom-4 left-4 text-white/60 text-xs" id="location">
+    定位中...
+  </div>
+
+  <script>
+    // 文字内容数组
+    const messages = [
+      '你的手掌正在<b class="text-yellow-300">诉说着独特的故事</b>',
+      '每一条掌纹都蕴含着<span class="text-emerald-300">深刻的智慧</span>',
+      '爱情线揭示了你的<b class="text-yellow-300">情感密码</b>',
+      '事业线指引着你的<span class="text-emerald-300">人生方向</span>',
+      '生命线展现了你的<b class="text-yellow-300">内在力量</b>',
+      '智慧线解读着你的<span class="text-emerald-300">思维模式</span>',
+      '<span class="text-rose-300">准备好了吗？</span>让我们一起<b class="text-yellow-300">探索你的未来</b>',
+      '你的<span class="text-emerald-300">专属手相报告</span>即将为你<b class="text-yellow-300">揭晓答案</b>'
+    ];
+
+    let currentIndex = 0;
+    const textContainer = document.getElementById('textContainer');
+
+    function showNextMessage() {
+      if (currentIndex < messages.length) {
+        // 清空容器
+        textContainer.innerHTML = '';
+        
+        // 创建新的文字元素
+        const messageElement = document.createElement('div');
+        messageElement.innerHTML = messages[currentIndex];
+        messageElement.className = 'text-animation';
+        
+        // 添加到容器
+        textContainer.appendChild(messageElement);
+        
+        currentIndex++;
+        
+        // 1秒后显示下一个（加快节奏）
+        setTimeout(showNextMessage, 1000);
+      } else {
+        // 所有文字显示完毕，跳转到下一页
+        setTimeout(() => {
+          window.location.href = '18.html';
+        }, 500);
+      }
+    }
+
+    // 页面加载完成后开始动画
+    document.addEventListener('DOMContentLoaded', function() {
+      // 开始文字动画
+      showNextMessage();
+      
+      // 安全机制：8秒后强制跳转
+      setTimeout(() => {
+        window.location.href = '18.html';
+      }, 8000);
+    });
+
+    // 地理位置功能
+    function updateLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            const lat = position.coords.latitude.toFixed(2);
+            const lon = position.coords.longitude.toFixed(2);
+            document.getElementById('location').textContent = `${lat}, ${lon}`;
+          },
+          function(error) {
+            document.getElementById('location').textContent = '位置获取失败';
+          }
+        );
+      } else {
+        document.getElementById('location').textContent = '不支持定位';
+      }
+    }
+
+    // 初始化地理位置
+    updateLocation();
+  </script>
+  </div>
+</body>
+</html>

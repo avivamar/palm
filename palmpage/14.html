@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ThePalmistryLife • 分析结果</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 品牌紫自定义 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: "#7C3AED"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* 圆环进度条动画 */
+    .progress-ring {
+      stroke-dasharray: 377; /* 2πr (r=60) ≈ 377 */
+      stroke-dashoffset: 377;
+      transition: stroke-dashoffset 0.8s ease-in-out;
+    }
+    
+    /* 步骤完成动画 */
+    .step-completed {
+      animation: stepComplete 0.5s ease-in-out;
+    }
+    
+    @keyframes stepComplete {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gray-50 flex justify-center items-center">
+  <!-- 背景遮罩 -->
+  <div class="fixed inset-0 bg-black/40 z-40"></div>
+  
+  <!-- 主要内容容器 -->
+  <main class="relative z-50 w-full max-w-[380px] mx-4">
+    <!-- 结果弹窗 -->
+    <div class="bg-white rounded-3xl shadow-2xl p-6 relative">
+      <!-- 关闭按钮 -->
+      <button 
+        onclick="closeModal()" 
+        class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+
+      <!-- 标题 -->
+      <h1 class="text-xl font-bold text-gray-800 text-center mb-8 pr-8">
+        探究你手上的独特故事
+      </h1>
+
+      <!-- 圆形进度条 -->
+      <div class="flex justify-center mb-8">
+        <div class="relative w-32 h-32">
+          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 160 160">
+            <!-- 背景圆环 -->
+            <circle 
+              cx="80" 
+              cy="80" 
+              r="60" 
+              stroke="#e5e7eb" 
+              stroke-width="12" 
+              fill="none"
+            />
+            <!-- 进度圆环 -->
+            <circle 
+              id="progressRing"
+              cx="80" 
+              cy="80" 
+              r="60" 
+              stroke="#7c3aed" 
+              stroke-width="12" 
+              fill="none"
+              class="progress-ring"
+              stroke-linecap="round"
+            />
+          </svg>
+          <!-- 百分比文字 -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <span id="progressText" class="text-2xl font-bold text-violet-600">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 分析步骤列表 -->
+      <div class="space-y-3">
+        <!-- 分析你的掌纹 - 已完成 -->
+        <div class="step-item flex items-center p-3 rounded-xl bg-violet-100 border-2 border-violet-200">
+          <div class="w-6 h-6 bg-violet-600 rounded-full flex items-center justify-center mr-3">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <span class="text-violet-700 font-medium">分析你的掌纹</span>
+        </div>
+
+        <!-- 研究你的手指 - 已完成 -->
+        <div class="step-item flex items-center p-3 rounded-xl bg-violet-100 border-2 border-violet-200">
+          <div class="w-6 h-6 bg-violet-600 rounded-full flex items-center justify-center mr-3">
+            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <span class="text-violet-700 font-medium">研究你的手指</span>
+        </div>
+
+        <!-- 突出优势和潜能 - 进行中 -->
+        <div class="step-item flex items-center p-3 rounded-xl bg-gray-50 border-2 border-gray-200">
+          <div class="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center mr-3">
+            <div class="w-2 h-2 bg-white rounded-full"></div>
+          </div>
+          <span class="text-gray-500 font-medium">突出优势和潜能</span>
+        </div>
+
+        <!-- 识别性格特征 - 待处理 -->
+        <div class="step-item flex items-center p-3 rounded-xl bg-gray-50 border-2 border-gray-200">
+          <div class="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center mr-3">
+            <div class="w-2 h-2 bg-white rounded-full"></div>
+          </div>
+          <span class="text-gray-500 font-medium">识别性格特征</span>
+        </div>
+      </div>
+
+      <!-- 底部提示 -->
+      <div class="mt-6 text-center">
+        <p class="text-sm text-gray-500">
+          正在深度分析您的手相特征...
+        </p>
+        <div class="mt-2 flex justify-center">
+          <div class="flex space-x-1">
+            <div class="w-2 h-2 bg-violet-400 rounded-full animate-bounce"></div>
+            <div class="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+            <div class="w-2 h-2 bg-violet-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 地理位置显示 -->
+    <p class="mt-4 text-center text-xs text-gray-400">
+      <span id="location">检测位置中…</span>&nbsp;节点
+    </p>
+  </main>
+
+  <script>
+    // 进度动画
+    let currentProgress = 0;
+    const targetProgress = 38;
+    const progressRing = document.getElementById('progressRing');
+    const progressText = document.getElementById('progressText');
+    const totalLength = 377; // 圆周长度
+
+    // 初始化进度条
+    progressRing.style.strokeDashoffset = totalLength;
+
+    // 动画到目标进度
+    function animateProgress() {
+      const increment = 2;
+      const interval = setInterval(() => {
+        currentProgress += increment;
+        if (currentProgress >= targetProgress) {
+          currentProgress = targetProgress;
+          clearInterval(interval);
+        }
+        
+        // 更新圆环
+        const offset = totalLength - (totalLength * currentProgress / 100);
+        progressRing.style.strokeDashoffset = offset;
+        
+        // 更新文字
+        progressText.textContent = `${currentProgress}%`;
+      }, 50);
+    }
+
+    // 页面加载后开始动画
+    window.addEventListener('load', () => {
+      setTimeout(animateProgress, 500);
+    });
+
+    // 关闭弹窗
+    function closeModal() {
+      // 添加关闭动画
+      document.querySelector('main').style.transform = 'scale(0.95)';
+      document.querySelector('main').style.opacity = '0';
+      
+      setTimeout(() => {
+        // 可以跳转到其他页面或隐藏弹窗
+        // location.href = '/dashboard';
+        alert('分析已取消');
+      }, 300);
+    }
+
+    // 模拟继续分析进度（可选）
+    setTimeout(() => {
+      if (currentProgress >= targetProgress) {
+        // 可以继续到下一步或跳转到结果页面
+        console.log('分析进度达到38%，可以继续下一步');
+      }
+    }, 3000);
+
+    // 获取地理位置显示
+    fetch("https://ipapi.co/json/")
+      .then(r => r.json())
+      .then(d => {
+        const locationEl = document.getElementById('location');
+        if (locationEl) {
+          locationEl.textContent = `${d.country_name || ""} ${d.region || ""}`;
+        }
+      })
+      .catch(() => {
+        const locationEl = document.getElementById('location');
+        if (locationEl) {
+          locationEl.textContent = "全球";
+        }
+      });
+  </script>
+</body>
+</html>

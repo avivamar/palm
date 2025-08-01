@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ThePalmistryLife • 邮箱验证</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 品牌紫自定义 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: "#7C3AED"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* 输入框聚焦动画 */
+    .input-focus {
+      transition: all 0.3s ease;
+    }
+    
+    .input-focus:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(124, 58, 237, 0.15);
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-gray-50 flex justify-center">
+  <div class="w-[390px] mx-auto">
+  <!-- 顶部导航 -->
+  <header class="flex items-center justify-between p-4">
+    <!-- 返回按钮 -->
+    <button onclick="goBack()" class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-800 transition-colors">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <!-- 中间的 N 标识 -->
+    <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+      <span class="text-gray-600 font-medium">N</span>
+    </div>
+
+    <!-- 菜单按钮 -->
+    <button class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-800 transition-colors">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </header>
+
+  <!-- 主要内容容器 -->
+  <main class="px-6 py-8">
+    <!-- 标题文案 -->
+    <div class="text-center mb-12">
+      <h1 class="text-lg text-gray-700 leading-relaxed mb-4">
+        准备好深入了解你的爱情、生活和性格了吗？
+      </h1>
+      <p class="text-base text-gray-600 leading-relaxed">
+        只需*输入你的邮箱，这样我们就不会丢失你的信息
+      </p>
+    </div>
+
+    <!-- 邮箱输入表单 -->
+    <form onsubmit="handleSubmit(event)" class="space-y-6">
+      <!-- 邮箱输入框 -->
+      <div class="relative">
+        <input 
+          type="email" 
+          id="email"
+          placeholder="burnmylin@gmail.com"
+          class="input-focus w-full px-4 py-4 text-base border-2 border-gray-200 rounded-2xl focus:border-violet-400 focus:outline-none bg-white"
+          required
+        />
+      </div>
+
+      <!-- 提交按钮 -->
+      <button 
+        type="submit"
+        class="w-full bg-violet-600 hover:bg-violet-700 text-white font-medium py-4 px-6 rounded-2xl transition-all duration-200 transform hover:scale-[1.02] active:scale-[0.98]"
+      >
+        继续
+      </button>
+    </form>
+
+    <!-- 底部说明文字 -->
+    <div class="mt-8 text-center">
+      <p class="text-sm text-gray-500 leading-relaxed">
+        *我们只会平台发送分析结果，我们不会向你发送任何营销邮件，也不会将你的邮箱分享给第三方。
+      </p>
+    </div>
+
+    <!-- 法律声明 -->
+    <div class="mt-12 text-center">
+      <p class="text-xs text-gray-400">
+        继续即表示您同意我们的
+        <a href="#" class="text-violet-600 hover:underline">服务条款</a>
+        和
+        <a href="#" class="text-violet-600 hover:underline">隐私政策</a>
+      </p>
+    </div>
+  </main>
+
+  <!-- 地理位置显示 -->
+  <footer class="fixed bottom-4 left-0 right-0 text-center">
+    <p class="text-xs text-gray-400">
+      <span id="location">检测位置中…</span>&nbsp;节点
+    </p>
+  </footer>
+
+  <script>
+    // 返回上一页
+    function goBack() {
+      // 可以跳转到上一个页面
+      // history.back();
+      console.log('返回上一页');
+    }
+
+    // 表单提交处理
+    function handleSubmit(event) {
+      event.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      
+      // 简单的邮箱验证
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (!emailRegex.test(email)) {
+        alert('请输入有效的邮箱地址');
+        return;
+      }
+
+      // 显示加载状态
+      const submitBtn = event.target.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = '处理中...';
+      submitBtn.disabled = true;
+
+      // 模拟提交过程
+      setTimeout(() => {
+        console.log('邮箱已提交:', email);
+        
+        // 可以跳转到下一页或显示成功消息
+        alert('邮箱验证成功！');
+        
+        // 恢复按钮状态
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        
+        // 跳转到下一页（可选）
+        // location.href = '/next-page';
+      }, 2000);
+    }
+
+    // 邮箱输入框实时验证
+    document.getElementById('email').addEventListener('input', function(e) {
+      const email = e.target.value;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (email && emailRegex.test(email)) {
+        e.target.classList.add('border-green-400');
+        e.target.classList.remove('border-red-400');
+      } else if (email) {
+        e.target.classList.add('border-red-400');
+        e.target.classList.remove('border-green-400');
+      } else {
+        e.target.classList.remove('border-green-400', 'border-red-400');
+      }
+    });
+
+    // 获取地理位置显示
+    fetch("https://ipapi.co/json/")
+      .then(r => r.json())
+      .then(d => {
+        const locationEl = document.getElementById('location');
+        if (locationEl) {
+          locationEl.textContent = `${d.country_name || ""} ${d.region || ""}`;
+        }
+      })
+      .catch(() => {
+        const locationEl = document.getElementById('location');
+        if (locationEl) {
+          locationEl.textContent = "全球";
+        }
+      });
+  </script>
+  </div>
+</body>
+</html>

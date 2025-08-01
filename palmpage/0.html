@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>ThePalmistryLife • 3分钟发现你的财富天赋密码</title>
+    <script defer>
+      document.addEventListener('DOMContentLoaded', () => {
+        // 动态更新今日分析人数
+        const dailyCountEl = document.getElementById('dailyCount');
+        let num = 486;
+        setInterval(() => {
+          num += Math.floor(Math.random() * 5);
+          dailyCountEl.textContent = num.toLocaleString();
+        }, 1800);
+        
+        // 动态稀缺性显示
+        const freeSlotsEl = document.getElementById('freeSlots');
+        const updateFreeSlots = () => {
+          const hour = new Date().getHours();
+          const base = hour < 12 ? 47 : 23; // 上午显示更多名额
+          const random = Math.floor(Math.random() * 8) + 1;
+          const slots = Math.max(base - random, 3); // 最少保持3个
+          freeSlotsEl.textContent = `仅剩 ${slots} 个免费名额`;
+        };
+        
+        updateFreeSlots();
+        setInterval(updateFreeSlots, 30000); // 每30秒更新一次
+        
+        // 添加实时活动通知（可选）
+        setTimeout(() => {
+          const notification = document.createElement('div');
+          notification.className = 'fixed bottom-4 left-4 right-4 bg-white text-gray-800 p-3 rounded-lg shadow-lg text-sm animate-bounce';
+          notification.innerHTML = '🔔 刚刚有用户在北京完成了分析';
+          document.body.appendChild(notification);
+          setTimeout(() => notification.remove(), 5000);
+        }, 8000);
+      });
+    </script>
+    <style>
+      /* 扫描渐变：左→右 4s 无限 */
+      @keyframes sweep {
+        0%   { transform: translateX(-100%); }
+        60%  { transform: translateX(100%); }
+        100% { transform: translateX(100%); }
+      }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="min-h-screen bg-gray-50 flex justify-center">
+    <main class="w-[390px] mx-auto px-4 pb-16">
+      <!-- Logo -->
+      <header class="py-4 flex justify-center">
+        <img src="img/logo.svg" alt="ThePalmistryLife" class="h-7" />
+      </header>
+
+      <!-- Social proof -->
+      <div class="grid grid-cols-2 gap-3">
+        <div
+          class="flex flex-col items-center rounded-xl border-2 border-violet-500 py-2 text-xs"
+        >
+          <span class="font-bold text-violet-600">准确率 97.3%</span>
+          <span class="text-gray-500">68.9万+用户验证</span>
+        </div>
+
+        <div
+          class="flex flex-col items-center rounded-xl border-2 border-violet-500 py-2 text-xs"
+        >
+          <span class="font-bold text-violet-600"
+            ><span id="dailyCount">486</span> 人</span
+          >
+          <span class="text-gray-500">今日已分析</span>
+        </div>
+      </div>
+
+      <!-- Hand visual -->
+      <div
+        class="relative mt-6 overflow-hidden rounded-2xl shadow-lg aspect-[4/3]"
+      >
+        <img
+          src="img/demohand.png"
+          alt="Palm Upload"
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+        <!-- sweeping gradient -->
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent backdrop-blur-sm"
+          style="animation:sweep 4s infinite linear"
+        ></div>
+      </div>
+
+      <!-- Headings -->
+      <section class="mt-8 text-center space-y-1">
+        <h1 class="text-2xl font-bold text-violet-600">
+          3分钟发现你的财富天赋密码
+        </h1>
+        <h2 class="text-lg font-semibold text-gray-800">
+          每天限定100人免费体验 · 已有689,234人改变财富轨迹
+        </h2>
+      </section>
+
+      <!-- Feature pills -->
+      <div
+        class="mt-6 flex justify-between text-violet-600 text-xs font-medium"
+      >
+        <div class="flex flex-col items-center gap-1">
+          <span>✓</span>
+          <span>完全免费</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <span>✓</span>
+          <span>1分钟出结果</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+          <span>✓</span>
+          <span>隐私保护</span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <button
+        class="mt-7 w-full h-14 rounded-xl bg-violet-600 text-white text-lg font-semibold shadow-md hover:bg-violet-500 transition"
+        onclick="location.href='1.html'"
+      >
+        立即发现我的财富密码 →
+      </button>
+      <p class="mt-1 text-center text-[11px] text-gray-600">
+        <span id="freeSlots">仅剩 23 个免费名额</span> · 完成分析仅需3分钟
+      </p>
+
+      <!-- Legal & location -->
+      <p
+        class="mt-6 text-center text-[10px] leading-snug text-gray-400 px-4"
+      >
+        继续即代表您同意我们的
+        <a href="/privacy" class="underline">隐私政策</a>、
+        <a href="/terms" class="underline">服务条款</a> 与追踪技术的使用。
+      </p>
+      <p class="mt-2 text-center text-[10px] text-gray-400">
+        {{location}}&nbsp;节点
+      </p>
+    </main>
+  </body>
+</html>

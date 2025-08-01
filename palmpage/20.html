@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专属财富指导报告 - 特殊价格仅限今日 - ThePalmistryLife</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary-color: #8b5cf6;
+            --primary-light: #a78bfa;
+            --primary-dark: #7c3aed;
+            --accent-color: #f59e0b;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f3f4f6;
+            --border-color: #e5e7eb;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            color: var(--text-primary);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+        
+        .countdown {
+            font-weight: 700;
+            color: var(--danger-color);
+            background: rgba(239, 68, 68, 0.1);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .discount-badge {
+            background: linear-gradient(135deg, var(--danger-color) 0%, #dc2626 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-block;
+            animation: badge-pulse 2s ease-in-out infinite;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+        
+        @keyframes badge-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .price-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.1), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
+        }
+        
+        .cta-button:active {
+            transform: translateY(0);
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .benefit-item:last-child {
+            border-bottom: none;
+        }
+        
+        .benefit-icon {
+            width: 24px;
+            height: 24px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .urgency-text {
+            color: var(--danger-color);
+            font-weight: 600;
+            animation: urgency-blink 2s ease-in-out infinite;
+        }
+        
+        @keyframes urgency-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .final-offer {
+            background: #ffffff;
+            border: 2px solid #f59e0b;
+            border-radius: 16px;
+            padding: 16px;
+            margin: 16px 0;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.15);
+        }
+        
+        .final-offer::before {
+            content: '🎁';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--accent-color);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen p-4">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-6">
+            <button onclick="history.back()" class="text-gray-600 hover:text-purple-600 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <div class="text-2xl">🎯</div>
+            <div class="w-6"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="max-w-md mx-auto">
+            <!-- Title Section -->
+            <div class="text-center mb-4">
+                <div class="text-4xl mb-2">💝</div>
+                <h1 class="text-2xl font-bold text-purple-600 mb-2">您的专属财富报告已准备就绪</h1>
+                <p class="text-gray-600 text-lg mb-2">解锁您的投资天赋，发现财富增长机会</p>
+                <p class="text-sm text-gray-500">七天无条件退款保障，零风险体验</p>
+            </div>
+
+            <!-- Final Offer Card -->
+            <div class="final-offer mb-4">
+                <div class="text-center">
+                    <div class="discount-badge mb-3">
+                        💰 限时特价：原价197美元，今日仅19美元
+                    </div>
+                    <div class="mb-3">
+                        <div class="text-sm text-gray-500 mb-1">专业财富顾问服务：</div>
+                        <div class="text-lg text-gray-700 line-through mb-1">通常价格 $197美元</div>
+                        <div class="text-sm text-gray-500 mb-2">为您节省 $178美元 (折扣90%)</div>
+                    </div>
+                    <div class="mb-2">
+                        <div class="text-sm text-gray-500 mb-1">今日特价：</div>
+                        <div class="text-3xl font-bold text-purple-600">$19美元</div>
+                        <div class="text-sm text-green-600 font-medium">仅限前100名用户</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Price Card -->
+            <div class="price-card card-shadow mb-4">
+                <div class="relative z-10">
+                    <div class="text-center mb-4">
+                        <div class="text-lg font-semibold text-gray-800 mb-2">获取您的专属财富报告</div>
+                        <div class="countdown mb-3" id="countdown">2:00</div>
+                        <div class="text-sm text-gray-500 mb-3">
+                            包含个性化投资建议和财富增长策略
+                        </div>
+                    </div>
+
+                    <!-- Benefits List -->
+                    <div class="space-y-1 mb-4">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <span class="text-purple-600 text-sm">✓</span>
+                            </div>
+                            <span class="text-sm text-gray-700">个性化投资组合建议（价值$67）</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <span class="text-purple-600 text-sm">✓</span>
+                            </div>
+                            <span class="text-sm text-gray-700">风险管理和资产配置指导（价值$49）</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <span class="text-purple-600 text-sm">✓</span>
+                            </div>
+                            <span class="text-sm text-gray-700">市场时机和投资机会提醒（价值$81）</span>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <span class="text-purple-600 text-sm">✓</span>
+                            </div>
+                            <span class="text-sm text-gray-700">VIP财富顾问服务支持（价值$97）</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Button - Fixed at bottom -->
+            <div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200 z-50">
+                <div class="max-w-md mx-auto">
+                    <button class="cta-button w-full py-4 px-6 rounded-xl text-white font-semibold text-lg" onclick="handleFinalPayment()">
+                        立即获取财富报告 ($19) →
+                    </button>
+                </div>
+            </div>
+
+            <!-- Spacer for fixed button -->
+            <div class="h-20"></div>
+
+            <!-- Trust Indicators -->
+            <div class="text-center text-xs text-gray-500 leading-relaxed mb-4">
+                💰 总价值$294的专业财富服务，今日仅需$19。这是一个限时特价。
+                <br><br>
+                ✅ 7天无条件退款保障，如果不满意，点击一下即可退款。
+                <br><br>
+                🔥 仅限前100名用户，后续将恢复原价$197。现在就是最佳时机！
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 倒计时功能
+        let timeLeft = 2 * 60; // 2分钟
+        
+        function updateCountdown() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            const countdownElement = document.getElementById('countdown');
+            
+            if (countdownElement) {
+                countdownElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+            }
+            
+            if (timeLeft > 0) {
+                timeLeft--;
+            } else {
+                // 时间到了，显示温馨提示
+                if (countdownElement) {
+                    countdownElement.textContent = '优惠仍然有效';
+                    countdownElement.style.color = '#10b981';
+                }
+            }
+        }
+        
+        // 每秒更新倒计时
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // 立即执行一次
+        
+        // 处理最终付款
+        function handleFinalPayment() {
+            // 显示处理动画
+            const button = event.target;
+            const originalText = button.textContent;
+            
+            button.disabled = true;
+            button.textContent = '处理中...';
+            button.style.opacity = '0.7';
+            
+            // 模拟处理过程
+            setTimeout(() => {
+                // 这里可以跳转到支付页面或成功页面
+                window.location.href = 'payment.html';
+            }, 2000);
+        }
+        
+        // 页面加载动画
+        document.addEventListener('DOMContentLoaded', function() {
+            // 添加页面加载动画
+            const elements = document.querySelectorAll('.price-card, .final-offer, .cta-button');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    el.style.transition = 'all 0.6s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>

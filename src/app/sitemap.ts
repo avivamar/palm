@@ -10,15 +10,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Define routes shared across all locales
   const routes = [
     '', // Home page
-    '/about',
     '/contact',
     '/contact-information',
-    '/faq',
     '/privacy',
     '/terms',
     '/refund-policy',
     '/shipping',
-    '/blog', // Blog main page
   ];
 
   // Generate sitemap entries for each route in each locale

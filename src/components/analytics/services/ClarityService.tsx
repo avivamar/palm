@@ -53,9 +53,4 @@ export const trackClarityEvent = (eventName: string) => {
   }
 };
 
-// 类型声明
-declare global {
-  interface Window {
-    clarity: any;
-  }
-}
+// 类型声明已在 src/types/clarity-js.d.ts 中定义

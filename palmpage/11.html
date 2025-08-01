@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>ThePalmistryLife • 掌纹优先级</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex justify-center">
+  <main
+    class="w-full max-w-[412px] min-h-screen px-6 pt-6 pb-20
+           bg-white text-gray-900"
+    x-data="{selected:''}"
+  >
+    <!-- Logo -->
+    <img src="img/logo.svg"
+         class="h-6 mx-auto mb-6 select-none" alt="ThePalmistryLife">
+
+    <!-- Progress bar (90 %) -->
+    <div class="relative w-full max-w-[340px] h-1.5 mx-auto bg-violet-100 rounded-full">
+      <div class="h-full w-[90%] bg-violet-500 rounded-full"></div>
+      <span class="absolute right-0 -top-6 text-xs text-gray-500">Step 11 / 12</span>
+    </div>
+
+    <!-- Title -->
+    <h1 class="mt-10 text-2xl font-bold leading-snug">
+      你最想先深入解析<br>哪一条掌纹？
+    </h1>
+
+    <!-- Options -->
+    <div class="mt-8 w-full max-w-[360px] space-y-4">
+      <template
+        x-for="opt in [
+          {id:'heart',   txt:'感情线（Heart Line）'},
+          {id:'head',    txt:'头脑线（Head Line）'},
+          {id:'life',    txt:'生命线（Life Line）'},
+          {id:'fate',    txt:'命运线（Fate Line）'},
+          {id:'marriage',txt:'婚姻线（Marriage Line）'}
+        ]" :key="opt.id">
+        <button
+          class="line-btn"
+          @click="select(opt.id)"
+          :class="selected===opt.id && 'active'"
+          x-text="opt.txt">
+        </button>
+      </template>
+    </div>
+
+    <!-- Continue -->
+    <button
+      class="fixed bottom-6 left-1/2 -translate-x-1/2
+             w-[360px] h-12 rounded-xl bg-violet-600 text-white font-semibold
+             shadow-md disabled:opacity-40 transition"
+      :disabled="!selected"
+      @click="submit()"
+    >
+      继续 →
+    </button>
+  </main>
+
+  <!-- 共用样式 -->
+  <style>
+    .line-btn{
+      @apply w-full h-14 rounded-xl bg-gray-100
+             text-base font-medium text-left pl-4 pr-3
+             border-2 border-transparent transition active:scale-95;
+    }
+    .line-btn.active{
+      @apply bg-violet-50 border-violet-600 shadow;
+    }
+  </style>
+
+  <!-- Alpine.js 交互（React 版请换 useState） -->
+  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <script>
+    function select(id){ this.selected = id; }
+    function submit(){
+      // TODO: 保存到 Zustand / 发送 API
+      console.log('Priority line:', this.selected);
+      window.location.href = '/step12-upload';  // 跳到最后拍照或付费墙
+    }
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('selected', () => ({selected:'', select, submit}));
+    });
+  </script>
+</body>
+</html>

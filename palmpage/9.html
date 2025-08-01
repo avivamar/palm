@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ThePalmistryLife • 出生地点</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 品牌紫自定义 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: "#7C3AED"
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="min-h-screen bg-gray-50 flex justify-center">
+  <main class="w-full max-w-[412px] px-4 pb-16">
+    <!-- Logo -->
+    <header class="py-4 flex justify-center">
+      <img src="img/logo.svg" alt="ThePalmistryLife" class="h-7" />
+    </header>
+
+    <!-- Progress -->
+    <div class="relative w-full h-2 bg-gray-200 rounded-full mb-8">
+      <div class="h-full w-[90%] bg-violet-500 rounded-full transition-all"></div>
+      <span class="absolute right-0 -top-6 text-xs text-gray-500">Step 9 / 10</span>
+    </div>
+
+    <!-- Title -->
+    <section class="text-center space-y-3 mb-8">
+      <h1 class="text-2xl font-bold text-gray-800">你的出生地点是？</h1>
+      <p class="text-gray-600 leading-snug">
+        准确的出生地点对生成精确的星盘至关重要
+      </p>
+    </section>
+
+    <!-- Location Input -->
+    <div class="space-y-4 mb-8">
+      <!-- 搜索输入框 -->
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 12.414a6 6 0 111.414-1.414l4.243 4.243a1 1 0 01-1.414 1.414z"></path>
+          </svg>
+        </div>
+        <input
+          type="text"
+          id="locationInput"
+          placeholder="输入城市名称，如：北京、上海、纽约..."
+          class="w-full pl-12 pr-4 py-4 text-lg border-2 border-gray-200 rounded-xl focus:border-violet-500 focus:outline-none transition bg-white"
+          autocomplete="off"
+        />
+        <!-- 加载指示器 -->
+        <div id="loadingIndicator" class="absolute inset-y-0 right-0 pr-4 flex items-center hidden">
+          <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-violet-500"></div>
+        </div>
+      </div>
+
+      <!-- 搜索结果列表 -->
+      <div id="searchResults" class="hidden space-y-2 max-h-64 overflow-y-auto">
+        <!-- 动态生成的搜索结果 -->
+      </div>
+
+      <!-- 选中的地点显示 -->
+      <div id="selectedLocation" class="hidden">
+        <div class="p-4 bg-violet-50 border-2 border-violet-600 rounded-xl">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <div class="w-10 h-10 bg-violet-100 rounded-full flex items-center justify-center mr-3">
+                <svg class="h-5 w-5 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 12.414a6 6 0 111.414-1.414l4.243 4.243a1 1 0 01-1.414 1.414z"></path>
+                </svg>
+              </div>
+              <div>
+                <div id="selectedLocationName" class="font-semibold text-gray-800"></div>
+                <div id="selectedLocationDetails" class="text-sm text-gray-600"></div>
+              </div>
+            </div>
+            <button id="clearSelection" class="text-gray-400 hover:text-gray-600">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 提示信息 -->
+      <div class="text-center text-sm text-gray-500">
+        <p>💡 提示：输入您出生的具体城市名称</p>
+        <p class="mt-1">我们需要准确的经纬度来计算星盘</p>
+      </div>
+    </div>
+
+    <!-- Continue CTA -->
+    <button
+      id="continueBtn"
+      class="w-full h-14 rounded-xl bg-violet-400 text-white text-lg font-semibold shadow-md hover:bg-violet-500 transition disabled:opacity-40 disabled:cursor-not-allowed"
+      disabled
+    >
+      继续 →
+    </button>
+
+    <!-- Legal & location -->
+    <p class="mt-6 text-center text-[10px] leading-snug text-gray-400 px-4">
+      继续即代表您同意我们的
+      <a href="/privacy" class="underline">隐私政策</a>、
+      <a href="/terms" class="underline">服务条款</a> 与追踪技术的使用。
+    </p>
+    <p class="mt-2 text-center text-[10px] text-gray-400">
+      <span id="currentLocation">检测当前位置中…</span>&nbsp;节点
+    </p>
+  </main>
+
+  <script>
+    let searchTimeout;
+    let selectedLocationData = null;
+
+    // DOM 元素
+    const locationInput = document.getElementById('locationInput');
+    const searchResults = document.getElementById('searchResults');
+    const selectedLocation = document.getElementById('selectedLocation');
+    const selectedLocationName = document.getElementById('selectedLocationName');
+    const selectedLocationDetails = document.getElementById('selectedLocationDetails');
+    const clearSelection = document.getElementById('clearSelection');
+    const continueBtn = document.getElementById('continueBtn');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+
+    // 地点搜索功能（使用 OpenStreetMap Nominatim API）
+    async function searchLocations(query) {
+      if (query.length < 2) {
+        searchResults.classList.add('hidden');
+        return;
+      }
+
+      try {
+        loadingIndicator.classList.remove('hidden');
+        
+        // 使用 Nominatim API 进行地点搜索
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=8&addressdetails=1&accept-language=zh-CN,zh,en`
+        );
+        
+        const data = await response.json();
+        displaySearchResults(data);
+        
+      } catch (error) {
+        console.error('搜索地点时出错:', error);
+        searchResults.innerHTML = '<div class="p-4 text-center text-gray-500">搜索出错，请重试</div>';
+        searchResults.classList.remove('hidden');
+      } finally {
+        loadingIndicator.classList.add('hidden');
+      }
+    }
+
+    // 显示搜索结果
+    function displaySearchResults(results) {
+      if (results.length === 0) {
+        searchResults.innerHTML = '<div class="p-4 text-center text-gray-500">未找到相关地点</div>';
+        searchResults.classList.remove('hidden');
+        return;
+      }
+
+      const resultsHTML = results.map(result => {
+        const displayName = result.display_name;
+        const shortName = result.name || displayName.split(',')[0];
+        const country = result.address?.country || '';
+        const state = result.address?.state || result.address?.province || '';
+        
+        return `
+          <button 
+            class="location-result w-full p-3 text-left bg-white border border-gray-200 rounded-lg hover:border-violet-400 hover:bg-violet-50 transition"
+            data-location='${JSON.stringify(result)}'
+          >
+            <div class="font-medium text-gray-800">${shortName}</div>
+            <div class="text-sm text-gray-600">${country}${state ? ', ' + state : ''}</div>
+            <div class="text-xs text-gray-400 mt-1">${displayName}</div>
+          </button>
+        `;
+      }).join('');
+
+      searchResults.innerHTML = resultsHTML;
+      searchResults.classList.remove('hidden');
+
+      // 绑定点击事件
+      document.querySelectorAll('.location-result').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const locationData = JSON.parse(btn.dataset.location);
+          selectLocation(locationData);
+        });
+      });
+    }
+
+    // 选择地点
+    function selectLocation(locationData) {
+      selectedLocationData = locationData;
+      
+      const shortName = locationData.name || locationData.display_name.split(',')[0];
+      const country = locationData.address?.country || '';
+      const state = locationData.address?.state || locationData.address?.province || '';
+      
+      selectedLocationName.textContent = shortName;
+      selectedLocationDetails.textContent = `${country}${state ? ', ' + state : ''} (${parseFloat(locationData.lat).toFixed(4)}, ${parseFloat(locationData.lon).toFixed(4)})`;
+      
+      // 显示选中的地点，隐藏搜索结果
+      selectedLocation.classList.remove('hidden');
+      searchResults.classList.add('hidden');
+      locationInput.value = shortName;
+      
+      // 启用继续按钮
+      continueBtn.disabled = false;
+      continueBtn.classList.remove('bg-violet-400');
+      continueBtn.classList.add('bg-violet-600');
+
+      // 保存选择到全局变量
+      window.birthLocation = {
+        name: shortName,
+        fullName: locationData.display_name,
+        latitude: parseFloat(locationData.lat),
+        longitude: parseFloat(locationData.lon),
+        country: country,
+        state: state,
+        raw: locationData
+      };
+    }
+
+    // 清除选择
+    clearSelection.addEventListener('click', () => {
+      selectedLocationData = null;
+      selectedLocation.classList.add('hidden');
+      locationInput.value = '';
+      locationInput.focus();
+      
+      // 禁用继续按钮
+      continueBtn.disabled = true;
+      continueBtn.classList.remove('bg-violet-600');
+      continueBtn.classList.add('bg-violet-400');
+      
+      window.birthLocation = null;
+    });
+
+    // 输入框事件监听
+    locationInput.addEventListener('input', (e) => {
+      const query = e.target.value.trim();
+      
+      // 如果有选中的地点且输入值改变，清除选择
+      if (selectedLocationData && query !== selectedLocationData.name) {
+        selectedLocation.classList.add('hidden');
+        selectedLocationData = null;
+        continueBtn.disabled = true;
+        continueBtn.classList.remove('bg-violet-600');
+        continueBtn.classList.add('bg-violet-400');
+        window.birthLocation = null;
+      }
+      
+      // 防抖搜索
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        searchLocations(query);
+      }, 300);
+    });
+
+    // 点击输入框外部隐藏搜索结果
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#locationInput') && !e.target.closest('#searchResults')) {
+        searchResults.classList.add('hidden');
+      }
+    });
+
+    // 继续按钮点击事件
+    continueBtn.addEventListener('click', () => {
+      if (window.birthLocation) {
+        console.log('选中的出生地点:', window.birthLocation);
+        // 这里可以添加导航到下一步的逻辑
+        // location.href = '/step10-upload';
+      }
+    });
+
+    // 获取当前位置显示
+    fetch("https://ipapi.co/json/")
+      .then(r => r.json())
+      .then(d => {
+        const currentLocationEl = document.getElementById('currentLocation');
+        if (currentLocationEl) {
+          currentLocationEl.textContent = `${d.country_name || ""} ${d.region || ""}`;
+        }
+      })
+      .catch(() => {
+        const currentLocationEl = document.getElementById('currentLocation');
+        if (currentLocationEl) {
+          currentLocationEl.textContent = "";
+        }
+      });
+  </script>
+</body>
+</html>

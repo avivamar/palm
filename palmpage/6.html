@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+  <title>ThePalmistryLife • 出生日期</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex justify-center">
+  <main
+    class="w-full max-w-[412px] min-h-screen px-6 pt-6 pb-20
+           bg-white text-gray-900"
+  >
+    <!-- LOGO -->
+    <img src="img/logo.svg" class="h-6 mx-auto mb-6 select-none" alt="ThePalmistryLife" />
+
+    <!-- PROGRESS -->
+    <div class="relative w-full max-w-[340px] h-1.5 mx-auto bg-violet-100 rounded-full">
+      <div class="h-full w-[88%] bg-violet-500 rounded-full"></div>
+      <span class="absolute right-0 -top-6 text-xs text-gray-500">Step 6 / 7</span>
+    </div>
+
+    <!-- TITLE -->
+    <h1 class="mt-10 text-2xl font-bold leading-snug">
+      您的出生日期是？
+    </h1>
+
+    <!-- FORM -->
+    <form id="dobForm" class="mt-8 space-y-5">
+      <!-- DATE SECTION -->
+      <div class="space-y-4">
+        <h3 class="text-sm font-medium text-gray-700">出生日期</h3>
+        
+        <div class="grid grid-cols-3 gap-3">
+          <!-- YEAR -->
+          <div class="relative">
+            <select id="year" class="dob-select" required>
+              <option value="" disabled selected hidden>年份</option>
+            </select>
+            <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+
+          <!-- MONTH -->
+          <div class="relative">
+            <select id="month" class="dob-select" required>
+              <option value="" disabled selected hidden>月份</option>
+              <option value="1">1月</option><option value="2">2月</option>
+              <option value="3">3月</option><option value="4">4月</option>
+              <option value="5">5月</option><option value="6">6月</option>
+              <option value="7">7月</option><option value="8">8月</option>
+              <option value="9">9月</option><option value="10">10月</option>
+              <option value="11">11月</option><option value="12">12月</option>
+            </select>
+            <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+
+          <!-- DAY -->
+          <div class="relative">
+            <select id="day" class="dob-select" required>
+              <option value="" disabled selected hidden>日</option>
+            </select>
+            <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIME SECTION -->
+      <div class="space-y-4">
+        <h3 class="text-sm font-medium text-gray-700">出生时刻（可选）</h3>
+        
+        <div class="grid grid-cols-2 gap-3">
+          <!-- HOUR -->
+          <div class="relative">
+            <select id="hour" class="dob-select">
+              <option value="">小时</option>
+            </select>
+            <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+
+          <!-- MINUTE -->
+          <div class="relative">
+            <select id="minute" class="dob-select">
+              <option value="">分钟</option>
+            </select>
+            <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </div>
+        </div>
+
+        <!-- TIME HELPER TEXT -->
+        <p class="text-xs text-gray-500">
+          <span class="inline-flex items-center">
+            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            准确的出生时刻有助于更精准的分析
+          </span>
+        </p>
+      </div>
+
+      <!-- CONTINUE -->
+      <button
+        id="continueBtn"
+        type="submit"
+        class="w-full h-12 rounded-xl bg-violet-600 text-white font-semibold shadow-md
+               disabled:opacity-40 hover:bg-violet-700 active:scale-[0.98] transition-all duration-200"
+        disabled
+      >
+        下一个 →
+      </button>
+    </form>
+  </main>
+
+  <!-- 组件共用样式 -->
+  <style>
+    .dob-select {
+      @apply w-full h-12 rounded-xl bg-white border border-gray-200
+             text-base pl-4 pr-10 appearance-none
+             transition-all duration-200
+             hover:border-violet-400 hover:shadow-sm
+             focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-200;
+    }
+    
+    .dob-select:has(option:checked:not([value=""])) {
+      @apply bg-violet-50 border-violet-400;
+    }
+    
+    /* 美化滚动条 */
+    .dob-select::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    .dob-select::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    
+    .dob-select::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 4px;
+    }
+    
+    .dob-select::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  </style>
+
+  <!-- 交互脚本：启用按钮 & 简单校验 -->
+  <script>
+    const form = document.getElementById('dobForm');
+    const btn  = document.getElementById('continueBtn');
+    const yearSelect = document.getElementById('year');
+    const monthSelect = document.getElementById('month');
+    const daySelect = document.getElementById('day');
+    const hourSelect = document.getElementById('hour');
+    const minuteSelect = document.getElementById('minute');
+
+    // 动态生成年份选项
+    const currentYear = new Date().getFullYear();
+    for (let y = currentYear; y >= 1920; y--) {
+      const option = document.createElement('option');
+      option.value = y;
+      option.textContent = y + '年';
+      yearSelect.appendChild(option);
+    }
+
+    // 动态生成小时选项
+    for (let h = 0; h < 24; h++) {
+      const option = document.createElement('option');
+      option.value = h;
+      option.textContent = h.toString().padStart(2, '0') + '时';
+      hourSelect.appendChild(option);
+    }
+
+    // 动态生成分钟选项
+    for (let m = 0; m < 60; m += 5) { // 5分钟间隔
+      const option = document.createElement('option');
+      option.value = m;
+      option.textContent = m.toString().padStart(2, '0') + '分';
+      minuteSelect.appendChild(option);
+    }
+
+    // 动态更新日期选项
+    function updateDays() {
+      const year = parseInt(yearSelect.value);
+      const month = parseInt(monthSelect.value);
+      const selectedDay = daySelect.value;
+      
+      // 清空现有选项
+      daySelect.innerHTML = '<option value="" disabled selected hidden>日</option>';
+      
+      if (year && month) {
+        // 获取该月的天数
+        const daysInMonth = new Date(year, month, 0).getDate();
+        
+        for (let d = 1; d <= daysInMonth; d++) {
+          const option = document.createElement('option');
+          option.value = d;
+          option.textContent = d + '日';
+          daySelect.appendChild(option);
+        }
+        
+        // 恢复之前选择的日期（如果仍然有效）
+        if (selectedDay && selectedDay <= daysInMonth) {
+          daySelect.value = selectedDay;
+        }
+      } else {
+        // 默认31天
+        for (let d = 1; d <= 31; d++) {
+          const option = document.createElement('option');
+          option.value = d;
+          option.textContent = d + '日';
+          daySelect.appendChild(option);
+        }
+      }
+    }
+
+    // 初始化日期选项
+    updateDays();
+
+    // 监听年份和月份变化
+    yearSelect.addEventListener('change', updateDays);
+    monthSelect.addEventListener('change', updateDays);
+
+    // 表单验证
+    form.addEventListener('input', () => {
+      const hasRequiredFields = yearSelect.value && monthSelect.value && daySelect.value;
+      btn.disabled = !hasRequiredFields;
+      
+      // 更新按钮样式
+      if (hasRequiredFields) {
+        btn.classList.add('hover:bg-violet-700');
+      } else {
+        btn.classList.remove('hover:bg-violet-700');
+      }
+    });
+
+    // 添加选中效果
+    [yearSelect, monthSelect, daySelect, hourSelect, minuteSelect].forEach(select => {
+      select.addEventListener('change', function() {
+        if (this.value) {
+          this.classList.add('bg-violet-50', 'border-violet-400');
+        } else {
+          this.classList.remove('bg-violet-50', 'border-violet-400');
+        }
+      });
+    });
+
+    // 表单提交
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      
+      // 收集数据
+      const birthData = {
+        year: yearSelect.value,
+        month: monthSelect.value.padStart(2, '0'),
+        day: daySelect.value.padStart(2, '0'),
+        hour: hourSelect.value || null,
+        minute: minuteSelect.value || null
+      };
+      
+      // 格式化日期时间
+      let datetime = `${birthData.year}-${birthData.month}-${birthData.day}`;
+      if (birthData.hour !== null && birthData.minute !== null) {
+        datetime += ` ${birthData.hour.padStart(2, '0')}:${birthData.minute.padStart(2, '0')}`;
+      }
+      
+      console.log('Birth DateTime:', datetime);
+      console.log('Birth Data:', birthData);
+      
+      // TODO: 保存到状态管理或发送到后端
+      // 进入下一步
+      window.location.href = '/step7-upload';
+    });
+  </script>
+</body>
+</html>

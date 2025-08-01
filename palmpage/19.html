@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命密码已解锁 - 专属投资方案</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --text-light: #9ca3af;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f9fafb;
+            --border-color: #e5e7eb;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-secondary);
+            min-height: 100vh;
+            color: var(--text-primary);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+        }
+        
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .card-shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .countdown {
+            font-weight: 700;
+            color: var(--warning-color);
+            background: rgba(245, 158, 11, 0.1);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(99, 102, 241, 0.15);
+            border-color: var(--primary-light);
+        }
+        
+        .price-highlight {
+            background: var(--success-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            display: inline-block;
+        }
+        
+        .cta-button {
+            background: var(--primary-color);
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+        
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+        }
+        
+        .cta-button:active {
+            transform: translateY(0);
+        }
+        
+        .icon-container {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success-color);
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .benefit-item {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .benefit-dot {
+            width: 4px;
+            height: 4px;
+            background: var(--text-light);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="w-[390px] mx-auto min-h-screen" style="background-color: var(--bg-secondary);">
+        <!-- Header -->
+        <div class="flex justify-between items-center p-4" style="background-color: var(--bg-primary);">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center icon-container">
+                <span class="text-sm font-bold">🔮</span>
+            </div>
+            <span style="color: var(--text-secondary);" class="text-sm">user@mail.com</span>
+        </div>
+
+        <!-- Success Banner -->
+        <div class="gradient-bg text-white p-6 mx-4 mt-4 rounded-2xl card-shadow-lg">
+            <div class="flex items-center gap-3 mb-3">
+                <span class="text-2xl">🎉</span>
+                <h1 class="text-xl font-bold">您的生命密码已解锁！</h1>
+            </div>
+            <p class="text-indigo-100 leading-relaxed">
+                恭喜！您即将成为那1%真正了解自己的人。再 <span class="countdown" id="countdown">30</span> 秒，改变一生的洞见将永远离开您。
+            </p>
+        </div>
+
+        <!-- Investment Plan Card -->
+        <div class="mx-4 mt-6 rounded-2xl p-6 card-shadow-lg" style="background-color: var(--bg-primary);">
+            <div class="flex items-center gap-2 mb-4">
+                <div class="status-dot"></div>
+                <h2 class="text-lg font-semibold" style="color: var(--text-primary);">您的专属投资方案（7天完整权限）</h2>
+            </div>
+            
+            <div class="text-center mb-6">
+                <div class="text-4xl font-bold mb-2" style="color: var(--primary-color);">$5</div>
+                <div style="color: var(--text-secondary);" class="mb-4">启动投资</div>
+                <div class="price-highlight mb-4">已节省 $8.67</div>
+                
+                <div class="space-y-3">
+                    <div class="flex items-center justify-center gap-3">
+                        <span class="benefit-dot"></span>
+                        <span class="benefit-item">低于运营成本 $13.7</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-3">
+                        <span class="benefit-dot"></span>
+                        <span class="benefit-item">7天内随时退款，零风险</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-3">
+                        <span class="benefit-dot"></span>
+                        <span class="benefit-item">限时优惠，仅此一次</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Life Transformation Preview -->
+        <div class="mx-4 mt-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-2xl">🔮</span>
+                <h3 class="text-lg font-semibold" style="color: var(--text-primary);">您即将获得的生命转变</h3>
+            </div>
+            <p style="color: var(--text-secondary);" class="text-sm leading-relaxed mb-6">
+                每一项洞察，都可能改写您的人生轨迹
+            </p>
+
+            <!-- Feature Cards -->
+            <div class="space-y-4">
+                <!-- Health System -->
+                <div class="feature-card rounded-xl p-4">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <span class="text-red-500 text-lg">🏥</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold mb-2" style="color: var(--text-primary);">健康预警系统</h4>
+                            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                                提前3-6个月预测健康风险，让您抢在疾病之前采取行动
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emotional Code -->
+                <div class="feature-card rounded-xl p-4">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-pink-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <span class="text-pink-500 text-lg">💖</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold mb-2" style="color: var(--text-primary);">情感密码解译</h4>
+                            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                                揭示您在关系中的隐藏模式，修复那些反复出现的情感困扰
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Career Breakthrough -->
+                <div class="feature-card rounded-xl p-4">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <span class="text-blue-500 text-lg">🚀</span>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold mb-2" style="color: var(--text-primary);">事业突破密码</h4>
+                            <p class="text-sm leading-relaxed" style="color: var(--text-secondary);">
+                                发现您的天赋优势区域，找到真正适合您的成功路径
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="fixed bottom-0 left-0 right-0 p-4" style="background-color: var(--bg-primary); border-top: 1px solid var(--border-color);">
+            <button class="cta-button w-full py-4 rounded-2xl text-white font-semibold text-lg">
+                立即支付 $5 · 解锁报告
+            </button>
+        </div>
+
+        <!-- Bottom Padding -->
+        <div class="h-24"></div>
+    </div>
+
+    <script>
+        // Countdown Timer
+        let timeLeft = 30;
+        const countdownElement = document.getElementById('countdown');
+        
+        function updateCountdown() {
+            countdownElement.textContent = timeLeft;
+            if (timeLeft > 0) {
+                timeLeft--;
+                setTimeout(updateCountdown, 1000);
+            } else {
+                countdownElement.textContent = '0';
+                countdownElement.classList.add('pulse-animation');
+            }
+        }
+        
+        // Start countdown
+        updateCountdown();
+        
+        // Add click handler for CTA button
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            // Add payment logic here
+            console.log('Payment initiated for $5');
+        });
+        
+        // Add hover effects for feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = '#fafafa';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = '#ffffff';
+            });
+        });
+    </script>
+</body>
+</html>

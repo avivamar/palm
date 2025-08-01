@@ -13,8 +13,12 @@ export function MetaPixel({ pixelId }: MetaPixelProps) {
 
   useEffect(() => {
     // 路由变化时追踪页面浏览
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'PageView');
+    if (typeof window !== 'undefined' && window.fbq && typeof window.fbq === 'function') {
+      try {
+        window.fbq('track', 'PageView');
+      } catch (error) {
+        console.warn('Meta Pixel tracking error:', error);
+      }
     }
   }, [pathname]);
 
@@ -47,8 +51,12 @@ export function MetaPixel({ pixelId }: MetaPixelProps) {
             
             if (!window._fbPixelIds.has('${pixelId}')) {
               window._fbPixelIds.add('${pixelId}');
-              fbq('init', '${pixelId}');
-              fbq('track', 'PageView');
+              try {
+                fbq('init', '${pixelId}');
+                fbq('track', 'PageView');
+              } catch (error) {
+                console.warn('Meta Pixel init error:', error);
+              }
             }
           `,
         }}
@@ -88,11 +96,4 @@ export const trackMetaConversion = (eventName: string, value?: number, currency 
   }
 };
 
-// 类型声明
-declare global {
-  interface Window {
-    fbq: any;
-    _fbq?: any;
-    _fbPixelIds?: Set<string>;
-  }
-}
+// Meta Pixel 类型声明已在其他地方定义

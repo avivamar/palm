@@ -89,7 +89,6 @@ migrations/backup_*.sql
 
 # Test output and temporary files
 /test-output/
-/palmpage/
 /av-*.svg
 *.dump
 *.dump.gz

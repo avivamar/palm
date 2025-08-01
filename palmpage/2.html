@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ThePalmistryLife • 你的内在能量决定财富流向</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- 品牌紫自定义 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: "#7C3AED"
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="min-h-screen bg-gray-50 flex justify-center">
+  <main class="w-[390px] mx-auto px-6 py-8 space-y-8">
+    <!-- Logo -->
+    <header class="py-4 flex justify-center">
+      <img src="img/logo.svg" alt="ThePalmistryLife" class="h-7" />
+    </header>
+
+    <!-- Progress -->
+    <div class="relative w-full h-2 bg-gray-200 rounded-full mb-8">
+      <div class="h-full w-[40%] bg-violet-500 rounded-full transition-all"></div>
+      <span class="absolute right-0 -top-6 text-xs text-gray-500">Step 2 / 5</span>
+    </div>
+
+    <!-- Title -->
+    <section class="text-center space-y-3 mb-8">
+      <h1 class="text-2xl font-bold text-violet-600">你的内在能量决定财富流向</h1>
+      <p class="text-gray-600 leading-snug">
+        🔹 <span class="font-medium text-blue-600">阳性能量</span>善于主动创造财富 <br />
+        🔸 <span class="font-medium text-pink-600">阴性能量</span>擅长直觉投资获利
+      </p>
+      <div class="mt-3 text-sm text-orange-600 font-medium animate-pulse">
+        🔔 刚刚有用户选择了阳性能量，发现了3个投资机会
+      </div>
+    </section>
+
+    <!-- Options -->
+    <div class="grid grid-cols-3 gap-3 mb-8">
+      <!-- 阳性 -->
+      <button
+        data-value="masculine"
+        class="energy-card group flex flex-col items-center py-4 rounded-xl border-2 border-transparent bg-white shadow hover:border-violet-400 transition"
+      >
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-2">
+          <span class="text-2xl">⚡</span>
+        </div>
+        <span class="font-medium text-gray-800">阳性</span>
+      </button>
+
+      <!-- 平衡 -->
+      <button 
+        data-value="balanced" 
+        class="energy-card group flex flex-col items-center py-4 rounded-xl border-2 border-transparent bg-white shadow hover:border-violet-400 transition"
+      >
+        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-2">
+          <span class="text-2xl">⚖️</span>
+        </div>
+        <span class="font-medium text-gray-800">平衡</span>
+      </button>
+
+      <!-- 阴性 -->
+      <button 
+        data-value="feminine" 
+        class="energy-card group flex flex-col items-center py-4 rounded-xl border-2 border-transparent bg-white shadow hover:border-violet-400 transition"
+      >
+        <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-2">
+          <span class="text-2xl">🌙</span>
+        </div>
+        <span class="font-medium text-gray-800">阴性</span>
+      </button>
+    </div>
+
+    <!-- Continue CTA -->
+    <button
+      id="continueBtn"
+      class="w-full h-14 rounded-xl bg-violet-400 text-white text-lg font-semibold shadow-md hover:bg-violet-500 transition disabled:opacity-40 disabled:cursor-not-allowed"
+      disabled
+    >
+      继续 →
+    </button>
+
+    <!-- Legal & location -->
+    <p class="mt-6 text-center text-[10px] leading-snug text-gray-400 px-4">
+      继续即代表您同意我们的
+      <a href="/privacy" class="underline">隐私政策</a>、
+      <a href="/terms" class="underline">服务条款</a> 与追踪技术的使用。
+    </p>
+    <p class="mt-2 text-center text-[10px] text-gray-400">
+      {{location}}&nbsp;节点
+    </p>
+  </main>
+
+  <script>
+    // 能量选择交互
+    document.querySelectorAll('.energy-card').forEach(btn => {
+      btn.addEventListener('click', e => {
+        // 移除所有选中状态
+        document.querySelectorAll('.energy-card').forEach(b => {
+          b.classList.remove('border-violet-600', 'bg-violet-50');
+          b.classList.add('border-transparent', 'bg-white');
+        });
+        
+        // 添加选中状态
+        btn.classList.remove('border-transparent', 'bg-white');
+        btn.classList.add('border-violet-600', 'bg-violet-50');
+        
+        // 启用继续按钮
+        const continueBtn = document.getElementById('continueBtn');
+        continueBtn.disabled = false;
+        continueBtn.classList.remove('bg-violet-400');
+        continueBtn.classList.add('bg-violet-600');
+
+        // 保存选择
+        window.energyChoice = btn.dataset.value;
+      });
+    });
+
+    // 继续按钮点击事件
+    document.getElementById('continueBtn').onclick = () => {
+      if (window.energyChoice) {
+        // 这里可以添加导航逻辑
+        console.log('Selected energy type:', window.energyChoice);
+        // location.href = '/step3-upload';
+      }
+    };
+
+    // 可选：获取用户粗略地理位置显示
+    fetch("https://ipapi.co/json/")
+      .then(r => r.json())
+      .then(d => {
+        const locationEl = document.querySelector('p:last-child');
+        if (locationEl) {
+          locationEl.innerHTML = `${d.country_name || ""} ${d.region || ""}&nbsp;节点`;
+        }
+      })
+      .catch(() => {
+        // 静默处理错误
+      });
+  </script>
+</body>
+</html>

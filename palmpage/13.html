@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ThePalmistryLife • 拍摄左手掌</title>
+
+<!-- Tailwind CDN（生产请改本地编译） -->
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex justify-center">
+<main class="w-full max-w-[412px] min-h-screen px-6 pt-6 pb-24 bg-white text-gray-900">
+
+  <!-- Logo & Progress -->
+  <img src="img/logo.svg" class="h-6 mx-auto mb-6 select-none" alt="ThePalmistryLife">
+  <div class="relative w-full max-w-[340px] h-1.5 mx-auto bg-violet-100 rounded-full">
+    <div class="h-full w-[98%] bg-violet-500 rounded-full"></div>
+    <span class="absolute right-0 -top-6 text-xs text-gray-500">Step 13 / 14</span>
+  </div>
+
+  <!-- Title -->
+  <h1 class="mt-8 text-2xl font-bold leading-snug">
+    按照说明拍摄左手掌照片
+  </h1>
+
+  <!-- Illustration -->
+  <section class="mt-6">
+    <div class="bg-green-50 rounded-2xl p-6 flex items-center gap-4">
+      <img src="img/pose-correct.png" class="w-28" alt="正确示范">
+      <div class="text-green-600 font-semibold text-lg">✅ 正确</div>
+    </div>
+
+    <div class="mt-4 bg-red-50 rounded-2xl p-4 flex justify-center gap-3">
+      <img src="img/pose-wrong1.png" class="w-16 opacity-60" alt="错误姿势">
+      <img src="img/pose-wrong2.png" class="w-16 opacity-60" alt="错误姿势">
+      <img src="img/pose-wrong3.png" class="w-16 opacity-60" alt="错误姿势">
+    </div>
+  </section>
+
+  <!-- Actions -->
+  <div class="mt-10 space-y-4">
+    <button
+      onclick="pickFile()"
+      class="w-full h-12 rounded-xl border border-violet-300 text-violet-600 font-medium active:scale-95 transition">
+      从相册上传
+    </button>
+
+    <button
+      onclick="openCamera()"
+      class="relative w-full h-14 flex items-center justify-center
+             rounded-xl bg-violet-600 text-white text-lg font-semibold shadow-lg
+             active:scale-95 transition">
+      立即拍照
+    </button>
+  </div>
+
+  <!-- Privacy -->
+  <div class="mt-10 flex gap-2 text-[12px] text-gray-500">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 11c1.38 0 2.5-1.12 2.5-2.5S13.38 6 12 6 9.5 7.12 9.5 8.5 10.62 11 12 11z"/>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 11v9m-6 0h12a2 2 0 002-2v-5a7 7 0 10-14 0v5a2 2 0 002 2z"/>
+    </svg>
+    <p>照片仅用于本次分析并经端到端加密。查看 <a href="/privacy" class="underline">隐私政策</a>。</p>
+  </div>
+</main>
+
+<!-- 简易交互 -->
+<script>
+function openCamera(){
+  if(navigator.mediaDevices){
+    navigator.mediaDevices.getUserMedia({video:true})
+      .then(s=>{s.getTracks().forEach(t=>t.stop()); location.href='/scan-progress';})
+      .catch(pickFile);
+  }else pickFile();
+}
+
+function pickFile(){
+  const input=document.createElement('input'); input.type='file'; input.accept='image/*';
+  input.onchange=e=>{
+    if(e.target.files.length){
+      // TODO: 上传文件再跳转
+      alert('已选择图片，上传中…');
+      location.href='/scan-progress';
+    }
+  };
+  input.click();
+}
+</script>
+</body>
+</html>
