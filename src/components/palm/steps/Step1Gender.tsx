@@ -95,7 +95,7 @@ export default function Step1Gender({
             onClick={() => handleGenderSelect('male')}
             className="group relative w-36 sm:w-40 aspect-[3/4] rounded-3xl overflow-hidden shadow hover:shadow-lg transition"
           >
-            <img src="/img/male.svg" alt="male" className="absolute inset-0 w-full h-full object-cover"/>
+            <img src="/palm/img/male.svg" alt="male" className="absolute inset-0 w-full h-full object-cover"/>
             <div className="absolute inset-0 bg-gradient-to-t from-brand/80 via-brand/50 to-transparent"></div>
             <span className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center text-white font-medium text-lg">
               男性
@@ -112,7 +112,7 @@ export default function Step1Gender({
             onClick={() => handleGenderSelect('female')}
             className="group relative w-36 sm:w-40 aspect-[3/4] rounded-3xl overflow-hidden shadow hover:shadow-lg transition"
           >
-            <img src="/img/female.svg" alt="female" className="absolute inset-0 w-full h-full object-cover"/>
+            <img src="/palm/img/female.svg" alt="female" className="absolute inset-0 w-full h-full object-cover"/>
             <div className="absolute inset-0 bg-gradient-to-t from-pink-500/80 via-pink-500/50 to-transparent"></div>
             <span className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center text-white font-medium text-lg">
               女性

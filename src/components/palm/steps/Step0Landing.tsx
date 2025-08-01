@@ -106,7 +106,7 @@ export default function Step0Landing({
           className="relative mt-6 overflow-hidden rounded-2xl shadow-lg aspect-[4/3]"
         >
           <img
-            src="/img/demohand.png"
+            src="/palm/img/demohand.png"
             alt="Palm Upload"
             className="absolute inset-0 h-full w-full object-cover"
           />

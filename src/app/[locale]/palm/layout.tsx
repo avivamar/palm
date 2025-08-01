@@ -19,9 +19,7 @@ export default async function PalmLayout({
   return (
     <PalmProvider locale={locale}>
       <div className="min-h-screen bg-gray-50">
-        <div className="w-full max-w-[390px] mx-auto">
-          {children}
-        </div>
+        {children}
         <PalmAnalytics />
       </div>
     </PalmProvider>
