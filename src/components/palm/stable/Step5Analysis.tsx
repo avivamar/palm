@@ -76,6 +76,11 @@ export default function Step5Analysis({ locale, searchParams: _searchParams }: S
     if (currentStep >= steps.length) {
       // 分析完成
       setIsComplete(true)
+      // 3-5秒后自动跳转到下一步
+      const redirectDelay = Math.random() * 2000 + 3000 // 3-5秒随机延迟
+      setTimeout(() => {
+        window.location.href = `/${locale}/palm/stable/6`
+      }, redirectDelay)
       return
     }
     
@@ -140,7 +145,7 @@ export default function Step5Analysis({ locale, searchParams: _searchParams }: S
         <main className="w-full max-w-[412px] px-4 pb-16 text-white">
           {/* Logo */}
           <header className="py-4 flex justify-center">
-            <img src="/palm/img/logo-white.svg" alt="ThePalmistryLife" className="h-7" />
+            <img src="/palm/img/logo.svg" alt="ThePalmistryLife" className="h-7" />
           </header>
 
           {/* Progress */}

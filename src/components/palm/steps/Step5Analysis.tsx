@@ -83,10 +83,11 @@ export default function Step5Analysis({
         profileComplete: 100
       })
       
-      // 自动跳转到下一步（3秒后）
+      // 自动跳转到下一步（3-5秒后）
+      const redirectDelay = Math.random() * 2000 + 3000 // 3-5秒随机延迟
       setTimeout(() => {
         goToNextStep()
-      }, 3000)
+      }, redirectDelay)
       return
     }
     
@@ -150,7 +151,7 @@ export default function Step5Analysis({
       <main className="w-full max-w-[412px] px-4 pb-16 text-white">
         {/* Logo */}
         <header className="py-4 flex justify-center">
-          <img src="/img/logo-white.svg" alt="ThePalmistryLife" className="h-7" />
+          <img src="/palm/img/logo.svg" alt="ThePalmistryLife" className="h-7" />
         </header>
 
         {/* Progress */}
