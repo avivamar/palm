@@ -40,28 +40,64 @@ export default function Step5Analysis({ locale, searchParams: _searchParams }: S
   // }
 
   useEffect(() => {
+    let animationTimeout: NodeJS.Timeout
+    
+    const runAnimation = (step: number) => {
+      if (step >= steps.length) {
+        // 分析完成
+        setIsComplete(true)
+        // 3-5秒后自动跳转到下一步
+        const redirectDelay = Math.random() * 2000 + 3000 // 3-5秒随机延迟
+        setTimeout(() => {
+          window.location.href = `/${locale}/palm/stable/6`
+        }, redirectDelay)
+        return
+      }
+      
+      const currentStepData = steps[step]
+      if (!currentStepData) {
+        return
+      }
+      
+      // 更新文本和进度条
+      setAnalysisText(currentStepData.text)
+      setProgress(currentStepData.progress)
+      
+      // 更新步骤状态
+      if (step > 0) {
+        updateStepStatus(step - 1, 'completed')
+      }
+      updateStepStatus(step, 'active')
+      
+      setCurrentStep(step + 1)
+      
+      // 继续下一步
+      animationTimeout = setTimeout(() => {
+        runAnimation(step + 1)
+      }, Math.random() * 2000 + 1500) // 1.5-3.5秒随机间隔
+    }
+    
     // 开始动画
     const timer = setTimeout(() => {
-      animateProgress()
+      runAnimation(0)
     }, 1000)
     
     // 添加随机的"正在处理"效果
     const dotsInterval = setInterval(() => {
-      if (currentStep < steps.length) {
-        setAnalysisText(prev => {
-          const baseText = prev.replace(/\.+$/, '')
-          const dots = prev.match(/\.+$/)
-          const newDots = dots && dots[0].length >= 3 ? '.' : (dots ? dots[0] + '.' : '.')
-          return baseText + newDots
-        })
-      }
+      setAnalysisText(prev => {
+        const baseText = prev.replace(/\.+$/, '')
+        const dots = prev.match(/\.+$/)
+        const newDots = dots && dots[0].length >= 3 ? '.' : (dots ? dots[0] + '.' : '.')
+        return baseText + newDots
+      })
     }, 500)
     
     return () => {
       clearTimeout(timer)
+      clearTimeout(animationTimeout)
       clearInterval(dotsInterval)
     }
-  }, [])
+  }, [locale])
   
   const updateStepStatus = (stepIndex: number, status: 'active' | 'completed') => {
     setStepStatuses(prev => prev.map((step, index) => {
@@ -72,38 +108,6 @@ export default function Step5Analysis({ locale, searchParams: _searchParams }: S
     }))
   }
   
-  const animateProgress = () => {
-    if (currentStep >= steps.length) {
-      // 分析完成
-      setIsComplete(true)
-      // 3-5秒后自动跳转到下一步
-      const redirectDelay = Math.random() * 2000 + 3000 // 3-5秒随机延迟
-      setTimeout(() => {
-        window.location.href = `/${locale}/palm/stable/6`
-      }, redirectDelay)
-      return
-    }
-    
-    const step = steps[currentStep]
-    if (!step) {
-      return
-    }
-    
-    // 更新文本和进度条
-    setAnalysisText(step.text)
-    setProgress(step.progress)
-    
-    // 更新步骤状态
-    if (currentStep > 0) {
-      updateStepStatus(currentStep - 1, 'completed')
-    }
-    updateStepStatus(currentStep, 'active')
-    
-    setCurrentStep(prev => prev + 1)
-    
-    // 继续下一步
-    setTimeout(animateProgress, Math.random() * 2000 + 1500) // 1.5-3.5秒随机间隔
-  }
   
   const getStepIcon = (status: string) => {
     switch(status) {

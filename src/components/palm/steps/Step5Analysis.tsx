@@ -51,69 +51,72 @@ export default function Step5Analysis({
       }
     })
     
+    let animationTimeout: NodeJS.Timeout
+    
+    const runAnimation = (step: number) => {
+      if (step >= steps.length) {
+        // 分析完成
+        setIsComplete(true)
+        trackEvent('palm_analysis_complete', { 
+          duration: steps.length * 2000,
+          profileComplete: 100
+        })
+        
+        // 自动跳转到下一步（3-5秒后）
+        const redirectDelay = Math.random() * 2000 + 3000 // 3-5秒随机延迟
+        setTimeout(() => {
+          goToNextStep()
+        }, redirectDelay)
+        return
+      }
+      
+      const currentStepData = steps[step]
+      
+      // 更新文本和进度条
+      if (currentStepData) {
+        setAnalysisText(currentStepData.text)
+        setProgress(currentStepData.progress)
+      }
+      
+      // 更新步骤状态
+      setStepStatuses(prev => prev.map((s, index) => {
+        if (index < step) {
+          return { ...s, status: 'completed' }
+        } else if (index === step) {
+          return { ...s, status: 'active' }
+        }
+        return s
+      }))
+      
+      setCurrentStep(step + 1)
+      
+      // 继续下一步
+      animationTimeout = setTimeout(() => {
+        runAnimation(step + 1)
+      }, Math.random() * 2000 + 1500) // 1.5-3.5秒随机间隔
+    }
+    
     // 开始分析动画
     const startAnimation = setTimeout(() => {
-      animateProgress()
+      runAnimation(0)
     }, 1000)
     
     // 添加点点点动画效果
     const dotsInterval = setInterval(() => {
-      if (currentStep < steps.length) {
-        setAnalysisText(prev => {
-          const baseText = prev.replace(/\.+$/, '')
-          const dots = prev.match(/\.+$/)
-          const newDots = dots && dots[0].length >= 3 ? '.' : (dots ? dots[0] + '.' : '.')
-          return baseText + newDots
-        })
-      }
+      setAnalysisText(prev => {
+        const baseText = prev.replace(/\.+$/, '')
+        const dots = prev.match(/\.+$/)
+        const newDots = dots && dots[0].length >= 3 ? '.' : (dots ? dots[0] + '.' : '.')
+        return baseText + newDots
+      })
     }, 500)
     
     return () => {
       clearTimeout(startAnimation)
+      clearTimeout(animationTimeout)
       clearInterval(dotsInterval)
     }
-  }, [userData])
-  
-  const animateProgress = () => {
-    if (currentStep >= steps.length) {
-      // 分析完成
-      setIsComplete(true)
-      trackEvent('palm_analysis_complete', { 
-        duration: steps.length * 2000,
-        profileComplete: 100
-      })
-      
-      // 自动跳转到下一步（3-5秒后）
-      const redirectDelay = Math.random() * 2000 + 3000 // 3-5秒随机延迟
-      setTimeout(() => {
-        goToNextStep()
-      }, redirectDelay)
-      return
-    }
-    
-    const step = steps[currentStep]
-    
-    // 更新文本和进度条
-    if (step) {
-      setAnalysisText(step.text)
-      setProgress(step.progress)
-    }
-    
-    // 更新步骤状态
-    setStepStatuses(prev => prev.map((s, index) => {
-      if (index < currentStep) {
-        return { ...s, status: 'completed' }
-      } else if (index === currentStep) {
-        return { ...s, status: 'active' }
-      }
-      return s
-    }))
-    
-    setCurrentStep(prev => prev + 1)
-    
-    // 继续下一步
-    setTimeout(animateProgress, Math.random() * 2000 + 1500) // 1.5-3.5秒随机间隔
-  }
+  }, [userData, goToNextStep, trackEvent])
   
   const handleContinue = () => {
     if (isComplete) {

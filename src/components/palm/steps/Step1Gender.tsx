@@ -30,11 +30,15 @@ export default function Step1Gender({
     
     // 获取用户粗略地理位置显示
     fetch("https://ipapi.co/json/")
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) throw new Error('Failed to fetch location')
+        return r.json()
+      })
       .then(d => {
         setCurrentLocation(`${d.country_name || ""} ${d.region || ""}`)
       })
-      .catch(() => {
+      .catch((error) => {
+        console.warn('Location fetch failed:', error)
         setCurrentLocation("")
       })
   }, [experiments])
