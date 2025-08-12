@@ -1,7 +1,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
-import React, { createContext, use, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type AnimationContextType = {
   prefersReducedMotion: boolean;
@@ -55,7 +55,7 @@ export function AnimationProvider({ children }: AnimationProviderProps) {
   }, []);
 
   return (
-    <AnimationContext
+    <AnimationContext.Provider
       value={{
         prefersReducedMotion,
         isFirstVisit,
@@ -63,12 +63,12 @@ export function AnimationProvider({ children }: AnimationProviderProps) {
       }}
     >
       {children}
-    </AnimationContext>
+    </AnimationContext.Provider>
   );
 }
 
 export function useAnimation() {
-  const context = use(AnimationContext);
+  const context = useContext(AnimationContext);
   if (context === undefined) {
     throw new Error('useAnimation must be used within an AnimationProvider');
   }
