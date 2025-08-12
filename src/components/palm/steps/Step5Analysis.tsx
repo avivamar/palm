@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
 
@@ -20,6 +20,8 @@ export default function Step5Analysis({
   const [progress, setProgress] = useState(20)
   const [analysisText, setAnalysisText] = useState('分析掌纹特征...')
   const [isComplete, setIsComplete] = useState(false)
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const currentStepRef = useRef(0)
   
   const steps = [
     { text: "分析掌纹特征...", progress: 20 },
@@ -49,9 +51,14 @@ export default function Step5Analysis({
       }
     })
     
-    let animationTimeout: NodeJS.Timeout
-    
     const runAnimation = (step: number) => {
+      // 清除之前的timeout
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current)
+      }
+      
+      currentStepRef.current = step
+      
       if (step >= steps.length) {
         // 分析完成
         setIsComplete(true)
@@ -62,7 +69,7 @@ export default function Step5Analysis({
         
         // 自动跳转到下一步（3-5秒后）
         const redirectDelay = Math.random() * 2000 + 3000 // 3-5秒随机延迟
-        setTimeout(() => {
+        animationTimeoutRef.current = setTimeout(() => {
           goToNextStep()
         }, redirectDelay)
         return
@@ -86,9 +93,8 @@ export default function Step5Analysis({
         return s
       }))
       
-      
       // 继续下一步
-      animationTimeout = setTimeout(() => {
+      animationTimeoutRef.current = setTimeout(() => {
         runAnimation(step + 1)
       }, Math.random() * 2000 + 1500) // 1.5-3.5秒随机间隔
     }
@@ -110,7 +116,9 @@ export default function Step5Analysis({
     
     return () => {
       clearTimeout(startAnimation)
-      clearTimeout(animationTimeout)
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current)
+      }
       clearInterval(dotsInterval)
     }
   }, [userData, goToNextStep, trackEvent])

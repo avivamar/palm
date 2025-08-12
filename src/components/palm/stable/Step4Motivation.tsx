@@ -94,7 +94,7 @@ export default function Step4Motivation({ locale }: Step4Props) {
         </section>
 
         {/* Options */}
-        <form
+        <StableFormClient
           action={handleMultiSelectForm.bind(null, locale, 4, 'motivations')}
           className="space-y-3 mb-8"
         >
@@ -136,7 +136,7 @@ export default function Step4Motivation({ locale }: Step4Props) {
           >
             继续 →
           </button>
-        </form>
+        </StableFormClient>
 
         {/* Legal & location */}
         <p className="mt-6 text-center text-[10px] leading-snug text-gray-400 px-4">
