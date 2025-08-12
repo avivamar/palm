@@ -104,6 +104,19 @@ export default function Step5Analysis({
       runAnimation(0)
     }, 1000)
     
+    // 添加故障保护机制 - 如果15秒内还没完成，强制完成
+    const failsafeTimeout = setTimeout(() => {
+      if (!isComplete && currentStepRef.current < steps.length) {
+        console.warn('Animation stuck, forcing completion')
+        setIsComplete(true)
+        setProgress(100)
+        setAnalysisText('分析完成！')
+        setTimeout(() => {
+          goToNextStep()
+        }, 2000)
+      }
+    }, 15000)
+    
     // 添加点点点动画效果
     const dotsInterval = setInterval(() => {
       setAnalysisText(prev => {
@@ -116,6 +129,7 @@ export default function Step5Analysis({
     
     return () => {
       clearTimeout(startAnimation)
+      clearTimeout(failsafeTimeout)
       if (animationTimeoutRef.current) {
         clearTimeout(animationTimeoutRef.current)
       }
