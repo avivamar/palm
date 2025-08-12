@@ -8,12 +8,14 @@ import { useRouter } from 'next/navigation'
 interface Step13Props {
   userData: PalmUserData
   updateUserData: (data: Partial<PalmUserData>) => void
+  goToNextStep: () => void
   trackEvent: (type: string, data?: any) => void
   sessionId: string
 }
 
 export default function Step13Capture({ 
   updateUserData,
+  goToNextStep,
   trackEvent, 
   sessionId
 }: Step13Props) {
@@ -41,8 +43,8 @@ export default function Step13Capture({
           timestamp: Date.now()
         })
         
-        // Navigate to scan progress
-        router.push(`/${sessionId}/palm/scan-progress`)
+        // Navigate to next step (scan progress)
+        goToNextStep()
         
       } catch (error) {
         trackEvent('palm_camera_capture_denied', { 
@@ -80,7 +82,7 @@ export default function Step13Capture({
           // Simulate upload
           setTimeout(() => {
             updateUserData({ palmCaptureImage: selectedFile.name })
-            router.push(`/${sessionId}/palm/scan-progress`)
+            goToNextStep()
           }, 1500)
         }
       }

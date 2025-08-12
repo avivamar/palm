@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 interface Step12Props {
   userData: PalmUserData
   updateUserData: (data: Partial<PalmUserData>) => void
+  goToNextStep: () => void
   trackEvent: (type: string, data?: any) => void
   experiments: Record<string, string>
   sessionId: string
@@ -15,6 +16,7 @@ interface Step12Props {
 
 export default function Step12Upload({ 
   updateUserData,
+  goToNextStep,
   trackEvent, 
   sessionId
 }: Step12Props) {
@@ -45,8 +47,8 @@ export default function Step12Upload({
           timestamp: Date.now()
         })
         
-        // Navigate to camera capture page
-        router.push(`/${sessionId}/palm/capture`)
+        // Navigate to next step (capture)
+        goToNextStep()
         
       } catch (error) {
         trackEvent('palm_camera_denied', { 
@@ -87,8 +89,8 @@ export default function Step12Upload({
             trackEvent('palm_upload_complete', { 
               fileName: selectedFile.name
             })
-            // Navigate to results/payment page
-            router.push(`/${sessionId}/palm/results`)
+            // Navigate to next step (capture/scan)
+            goToNextStep()
           }, 2000)
         }
       }

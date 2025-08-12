@@ -130,8 +130,8 @@ export default function Step18PricingSelection({
         paymentType: 'life-code-investment'
       })
       
-      // 导航到支付页面或下一步
-      router.push(`/${sessionId}/palm/payment?amount=${selectedPrice}&type=life-code-investment`)
+      // 导航到下一步
+      goToNextStep()
     }, 3000)
   }
   

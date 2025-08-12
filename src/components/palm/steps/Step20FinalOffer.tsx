@@ -16,6 +16,7 @@ interface Step20Props {
 
 export default function Step20FinalOffer({ 
   updateUserData,
+  goToNextStep,
   trackEvent, 
   sessionId
 }: Step20Props) {
@@ -85,8 +86,11 @@ export default function Step20FinalOffer({
         timestamp: Date.now()
       })
       
-      // 跳转到支付页面
-      router.push(`/${sessionId}/palm/payment`)
+      // 由于这是最后一步，可以跳转到支付页面或完成页面
+      // 这里应该跳转到实际的支付系统，而不是下一步
+      // 暂时注释掉，实际项目中需要集成真实支付
+      // router.push('/checkout')
+      console.log('Final offer accepted, should integrate with payment system')
     }, 2000)
   }
   
