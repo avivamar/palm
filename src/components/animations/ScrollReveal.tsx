@@ -69,7 +69,7 @@ export function ScrollReveal({
 
   return (
     <motion.div
-      ref={ref}
+      ref={ref as React.RefObject<HTMLDivElement>}
       initial="hidden"
       animate={controls}
       variants={selectedVariants}
