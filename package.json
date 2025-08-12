@@ -1,8 +1,8 @@
 {
-  "name": "deepknows-official",
+  "name": "ThePalmistryLife",
   "version": "1.0.0",
   "private": true,
-  "author": "Deepknows",
+  "author": "ThePalmistryLife",
   "workspaces": [
     "packages/*"
   ],

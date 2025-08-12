@@ -479,7 +479,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     confirmPasswordReset,
   };
 
-  return <AuthContext value={value}>{children}</AuthContext>;
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
 // Custom hook to consume the context

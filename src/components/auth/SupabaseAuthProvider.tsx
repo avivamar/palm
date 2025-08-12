@@ -160,9 +160,9 @@ export function SupabaseAuthProvider({ children }: { children: React.ReactNode }
   };
 
   return (
-    <SupabaseAuthContext value={value}>
+    <SupabaseAuthContext.Provider value={value}>
       {children}
-    </SupabaseAuthContext>
+    </SupabaseAuthContext.Provider>
   );
 }
 
