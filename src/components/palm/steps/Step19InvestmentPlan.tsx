@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
-// import { useRouter } from 'next/navigation' // Removed unused import
 
 interface Step19Props {
   userData: PalmUserData
@@ -11,7 +10,6 @@ interface Step19Props {
   goToNextStep: () => void
   trackEvent: (type: string, data?: any) => void
   experiments: Record<string, string>
-  sessionId: string
 }
 
 interface FeatureCard {
@@ -28,7 +26,6 @@ export default function Step19InvestmentPlan({
   trackEvent, 
   goToNextStep
 }: Step19Props) {
-  // const router = useRouter() // Removed unused router
   const [timeLeft, setTimeLeft] = useState(30)
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false)
   

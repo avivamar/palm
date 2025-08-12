@@ -8,17 +8,13 @@ import { useRouter } from 'next/navigation'
 interface Step20Props {
   userData: PalmUserData
   updateUserData: (data: Partial<PalmUserData>) => void
-  goToNextStep: () => void
   trackEvent: (type: string, data?: any) => void
   experiments: Record<string, string>
-  sessionId: string
 }
 
 export default function Step20FinalOffer({ 
   updateUserData,
-  goToNextStep,
-  trackEvent, 
-  sessionId
+  trackEvent
 }: Step20Props) {
   const router = useRouter()
   const [timeLeft, setTimeLeft] = useState(2 * 60) // 2分钟

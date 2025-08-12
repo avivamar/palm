@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
-import { useRouter } from 'next/navigation'
 
 interface Step12Props {
   userData: PalmUserData
@@ -17,10 +16,8 @@ interface Step12Props {
 export default function Step12Upload({ 
   updateUserData,
   goToNextStep,
-  trackEvent, 
-  sessionId
+  trackEvent
 }: Step12Props) {
-  const router = useRouter()
   const [isUploading, setIsUploading] = useState(false)
   
   useEffect(() => {

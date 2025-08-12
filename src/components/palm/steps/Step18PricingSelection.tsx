@@ -28,7 +28,7 @@ interface PriceOption {
 export default function Step18PricingSelection({ 
   updateUserData,
   trackEvent, 
-  sessionId
+  goToNextStep
 }: Step18Props) {
   const router = useRouter()
   const [selectedPrice, setSelectedPrice] = useState(16.37)

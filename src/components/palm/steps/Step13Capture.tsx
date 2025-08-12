@@ -3,23 +3,19 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
-import { useRouter } from 'next/navigation'
 
 interface Step13Props {
   userData: PalmUserData
   updateUserData: (data: Partial<PalmUserData>) => void
   goToNextStep: () => void
   trackEvent: (type: string, data?: any) => void
-  sessionId: string
 }
 
 export default function Step13Capture({ 
   updateUserData,
   goToNextStep,
-  trackEvent, 
-  sessionId
+  trackEvent
 }: Step13Props) {
-  const router = useRouter()
   const [isUploading, setIsUploading] = useState(false)
   
   useEffect(() => {

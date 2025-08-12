@@ -11,7 +11,6 @@ interface Step5Props {
 }
 
 export default function Step5Analysis({ locale, searchParams: _searchParams }: Step5Props) {
-  const [currentStep, setCurrentStep] = useState(0)
   const [analysisText, setAnalysisText] = useState('分析掌纹特征...')
   const [progress, setProgress] = useState(20)
   const [isComplete, setIsComplete] = useState(false)
@@ -69,7 +68,6 @@ export default function Step5Analysis({ locale, searchParams: _searchParams }: S
       }
       updateStepStatus(step, 'active')
       
-      setCurrentStep(step + 1)
       
       // 继续下一步
       animationTimeout = setTimeout(() => {

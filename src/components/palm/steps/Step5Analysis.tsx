@@ -10,7 +10,6 @@ interface Step5Props {
   goToNextStep: () => void
   trackEvent: (type: string, data?: any) => void
   experiments: Record<string, string>
-  sessionId: string
 }
 
 export default function Step5Analysis({ 
@@ -18,7 +17,6 @@ export default function Step5Analysis({
   trackEvent, 
   goToNextStep
 }: Step5Props) {
-  const [currentStep, setCurrentStep] = useState(0)
   const [progress, setProgress] = useState(20)
   const [analysisText, setAnalysisText] = useState('分析掌纹特征...')
   const [isComplete, setIsComplete] = useState(false)
@@ -88,7 +86,6 @@ export default function Step5Analysis({
         return s
       }))
       
-      setCurrentStep(step + 1)
       
       // 继续下一步
       animationTimeout = setTimeout(() => {

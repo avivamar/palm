@@ -11,7 +11,6 @@ interface Step16Props {
   goToNextStep: () => void
   trackEvent: (type: string, data?: any) => void
   experiments: Record<string, string>
-  sessionId: string
 }
 
 export default function Step16EmailVerification({ 
