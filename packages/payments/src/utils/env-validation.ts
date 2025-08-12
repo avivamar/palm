@@ -176,7 +176,7 @@ export function getProviderConfig(provider: string, envConfig: PaymentEnvConfig)
         publishableKey: envConfig.STRIPE_PUBLISHABLE_KEY,
         secretKey: envConfig.STRIPE_SECRET_KEY,
         webhookSecret: envConfig.STRIPE_WEBHOOK_SECRET,
-        apiVersion: '2025-06-30.basil',
+        apiVersion: '2025-07-30.basil',
       };
       
     case 'creem':

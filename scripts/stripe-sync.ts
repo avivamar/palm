@@ -22,7 +22,7 @@ config({ path: '.env.local' });
 
 // Stripe 实例
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-06-30.basil' as any,
+  apiVersion: '2025-07-30.basil' as any,
 });
 
 // 产品颜色配置

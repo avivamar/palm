@@ -36,7 +36,7 @@ export class StripePaymentProvider implements PaymentProvider {
       throw new PaymentError('Stripe secret key is required', 'MISSING_CONFIG', 'stripe');
     }
 
-    this.stripe = new Stripe(Env.STRIPE_SECRET_KEY, { apiVersion: '2025-06-30.basil' as any, typescript: true });
+    this.stripe = new Stripe(Env.STRIPE_SECRET_KEY, { apiVersion: '2025-07-30.basil' as any, typescript: true });
   }
 
   async createCustomer(user: UserProfile): Promise<PaymentCustomer> {

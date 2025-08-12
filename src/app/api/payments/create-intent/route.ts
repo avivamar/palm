@@ -29,7 +29,7 @@ const isBuildTime = process.env.NEXT_PHASE === 'phase-production-build'
 
 // 只在运行时创建 Stripe 实例
 const stripe = !isBuildTime && process.env.STRIPE_SECRET_KEY ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2025-06-30.basil' as any,
+  apiVersion: '2025-07-30.basil' as any,
   timeout: 8000, // 8秒超时
 }) : null;
 

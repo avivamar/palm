@@ -146,7 +146,7 @@ function createStripeInstance(): Stripe {
   }
 
   return new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: '2025-06-30.basil' as any,
+    apiVersion: '2025-07-30.basil' as any,
     typescript: true,
     timeout: 8000, // 8 second timeout
     maxNetworkRetries: 0, // We handle retries ourselves

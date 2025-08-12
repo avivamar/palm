@@ -10,7 +10,7 @@ import { handlePaymentError, PaymentError } from '../../libs/errors';
 export class StripeCheckoutService {
   private stripe: Stripe;
 
-  constructor(secretKey: string, apiVersion: string = '2025-06-30.basil') {
+  constructor(secretKey: string, apiVersion: string = '2025-07-30.basil') {
     this.stripe = new Stripe(secretKey, {
       apiVersion: apiVersion as any,
       typescript: true,

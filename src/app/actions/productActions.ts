@@ -14,7 +14,7 @@ if (!isBuildTime && !process.env.STRIPE_SECRET_KEY) {
 // 在构建时或没有 STRIPE_SECRET_KEY 时，创建一个 null stripe 实例
 const stripe = !isBuildTime && process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: '2025-06-30.basil' as any,
+    apiVersion: '2025-07-30.basil' as any,
     typescript: true,
   })
   : null;

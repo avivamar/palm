@@ -19,7 +19,7 @@ export class SubscriptionService {
   private checkoutService: StripeCheckoutService;
   private stripe: Stripe;
 
-  constructor(secretKey: string, apiVersion: string = '2025-06-30.basil') {
+  constructor(secretKey: string, apiVersion: string = '2025-07-30.basil') {
     this.checkoutService = new StripeCheckoutService(secretKey, apiVersion);
     this.stripe = new Stripe(secretKey, {
       apiVersion: apiVersion as any,
