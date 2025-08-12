@@ -1,46 +1,15 @@
 import type { VariantProps } from 'class-variance-authority';
 import * as ToastPrimitives from '@radix-ui/react-toast';
 import * as React from 'react';
-declare const ToastProvider: import("react").FC<ToastPrimitives.ToastProviderProps>;
-declare const ToastViewport: {
-    ({ ref, className, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitives.Viewport> & {
-        ref?: React.RefObject<React.ElementRef<typeof ToastPrimitives.Viewport> | null>;
-    }): React.JSX.Element;
-    displayName: string | undefined;
-};
-declare const toastVariants: (props?: ({
+declare const ToastProvider: React.FC<ToastPrimitives.ToastProviderProps>;
+declare const ToastViewport: React.ForwardRefExoticComponent<Omit<ToastPrimitives.ToastViewportProps & React.RefAttributes<HTMLOListElement>, "ref"> & React.RefAttributes<HTMLOListElement>>;
+declare const Toast: React.ForwardRefExoticComponent<Omit<ToastPrimitives.ToastProps & React.RefAttributes<HTMLLIElement>, "ref"> & VariantProps<(props?: ({
     variant?: "default" | "destructive" | null | undefined;
-} & import("class-variance-authority/types").ClassProp) | undefined) => string;
-declare const Toast: {
-    ({ ref, className, variant, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitives.Root> & VariantProps<typeof toastVariants> & {
-        ref?: React.RefObject<React.ElementRef<typeof ToastPrimitives.Root> | null>;
-    }): React.JSX.Element;
-    displayName: string | undefined;
-};
-declare const ToastAction: {
-    ({ ref, className, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitives.Action> & {
-        ref?: React.RefObject<React.ElementRef<typeof ToastPrimitives.Action> | null>;
-    }): React.JSX.Element;
-    displayName: string | undefined;
-};
-declare const ToastClose: {
-    ({ ref, className, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitives.Close> & {
-        ref?: React.RefObject<React.ElementRef<typeof ToastPrimitives.Close> | null>;
-    }): React.JSX.Element;
-    displayName: string | undefined;
-};
-declare const ToastTitle: {
-    ({ ref, className, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitives.Title> & {
-        ref?: React.RefObject<React.ElementRef<typeof ToastPrimitives.Title> | null>;
-    }): React.JSX.Element;
-    displayName: string | undefined;
-};
-declare const ToastDescription: {
-    ({ ref, className, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitives.Description> & {
-        ref?: React.RefObject<React.ElementRef<typeof ToastPrimitives.Description> | null>;
-    }): React.JSX.Element;
-    displayName: string | undefined;
-};
+} & import("class-variance-authority/types").ClassProp) | undefined) => string> & React.RefAttributes<HTMLLIElement>>;
+declare const ToastAction: React.ForwardRefExoticComponent<Omit<ToastPrimitives.ToastActionProps & React.RefAttributes<HTMLButtonElement>, "ref"> & React.RefAttributes<HTMLButtonElement>>;
+declare const ToastClose: React.ForwardRefExoticComponent<Omit<ToastPrimitives.ToastCloseProps & React.RefAttributes<HTMLButtonElement>, "ref"> & React.RefAttributes<HTMLButtonElement>>;
+declare const ToastTitle: React.ForwardRefExoticComponent<Omit<ToastPrimitives.ToastTitleProps & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
+declare const ToastDescription: React.ForwardRefExoticComponent<Omit<ToastPrimitives.ToastDescriptionProps & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
 type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>;
 type ToastActionElement = React.ReactElement<typeof ToastAction>;
 export { Toast, ToastAction, type ToastActionElement, ToastClose, ToastDescription, type ToastProps, ToastProvider, ToastTitle, ToastViewport, };

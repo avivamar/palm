@@ -163,7 +163,7 @@ export const AnimatedBeam = forwardRef<SVGSVGElement, AnimatedBeamProps>(
           }}
         />
 
-        <style jsx>{`
+        <style>{`
           @keyframes beam {
             to {
               stroke-dashoffset: -40;

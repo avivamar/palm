@@ -2,7 +2,7 @@ import type * as LabelPrimitive from '@radix-ui/react-label';
 import type { ControllerProps, FieldPath, FieldValues } from 'react-hook-form';
 import { Slot } from '@radix-ui/react-slot';
 import * as React from 'react';
-declare const Form: <TFieldValues extends FieldValues, TContext = any, TTransformedValues = TFieldValues>(props: import("react-hook-form").FormProviderProps<TFieldValues, TContext, TTransformedValues>) => import("react").JSX.Element;
+declare const Form: <TFieldValues extends FieldValues, TContext = any, TTransformedValues = TFieldValues>(props: import("react-hook-form").FormProviderProps<TFieldValues, TContext, TTransformedValues>) => React.JSX.Element;
 declare const FormField: <TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>({ ...props }: ControllerProps<TFieldValues, TName>) => React.JSX.Element;
 declare const useFormField: () => {
     invalid: boolean;
@@ -10,8 +10,8 @@ declare const useFormField: () => {
     isTouched: boolean;
     isValidating: boolean;
     error?: import("react-hook-form").FieldError;
-    id: any;
-    name: any;
+    id: string;
+    name: string;
     formItemId: string;
     formDescriptionId: string;
     formMessageId: string;

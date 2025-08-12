@@ -295,9 +295,9 @@ export function AuthProvider({ children, config }: AuthProviderProps) {
   };
 
   return (
-    <AuthContext value={contextValue}>
+    <AuthContext.Provider value={contextValue}>
       {children}
-    </AuthContext>
+    </AuthContext.Provider>
   );
 }
 

@@ -61,7 +61,7 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
         {/* content */}
         <div className="z-20">{children}</div>
 
-        <style jsx>{`
+        <style>{`
           @keyframes slide {
             to {
               transform: translate(calc(100cqw - 100%), 0);

@@ -1,0 +1,1 @@
+{"version":3,"file":"ripple.d.ts","sourceRoot":"","sources":["../../../src/ui/components/ripple.tsx"],"names":[],"mappings":"AAEA,OAAO,KAAK,MAAM,OAAO,CAAC;AAG1B,UAAU,WAAW;IACnB,cAAc,CAAC,EAAE,MAAM,CAAC;IACxB,iBAAiB,CAAC,EAAE,MAAM,CAAC;IAC3B,UAAU,CAAC,EAAE,MAAM,CAAC;IACpB,SAAS,CAAC,EAAE,MAAM,CAAC;CACpB;AAED,QAAA,MAAM,MAAM,yCAyDV,CAAC;AAEH,OAAO,EAAE,MAAM,EAAE,CAAC"}

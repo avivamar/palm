@@ -23,20 +23,20 @@ const alertVariants = cva('relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 
         variant: 'default',
     },
 });
-const Alert = (_a) => {
-    var { ref, className, variant } = _a, props = __rest(_a, ["ref", "className", "variant"]);
+const Alert = React.forwardRef((_a, ref) => {
+    var { className, variant } = _a, props = __rest(_a, ["className", "variant"]);
     return (<div ref={ref} role="alert" className={cn(alertVariants({ variant }), className)} {...props}/>);
-};
+});
 Alert.displayName = 'Alert';
-const AlertTitle = (_a) => {
-    var { ref, className } = _a, props = __rest(_a, ["ref", "className"]);
+const AlertTitle = React.forwardRef((_a, ref) => {
+    var { className } = _a, props = __rest(_a, ["className"]);
     return (<h5 ref={ref} className={cn('mb-1 font-medium leading-none tracking-tight', className)} {...props}/>);
-};
+});
 AlertTitle.displayName = 'AlertTitle';
-const AlertDescription = (_a) => {
-    var { ref, className } = _a, props = __rest(_a, ["ref", "className"]);
+const AlertDescription = React.forwardRef((_a, ref) => {
+    var { className } = _a, props = __rest(_a, ["className"]);
     return (<div ref={ref} className={cn('text-sm [&_p]:leading-relaxed', className)} {...props}/>);
-};
+});
 AlertDescription.displayName = 'AlertDescription';
 export { Alert, AlertDescription, AlertTitle };
 //# sourceMappingURL=alert.jsx.map

@@ -31,7 +31,7 @@ export const Meteors = ({ number = 20, className }: MeteorsProps) => {
         ></span>
       ))}
 
-      <style jsx>{`
+      <style>{`
         @keyframes meteor-effect {
           0% {
             transform: rotate(215deg) translateX(0);

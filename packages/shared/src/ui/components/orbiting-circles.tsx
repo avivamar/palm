@@ -56,7 +56,7 @@ export default function OrbitingCircles({
         {children}
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes orbit {
           0% {
             transform: rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg);

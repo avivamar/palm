@@ -52,7 +52,7 @@ const Ripple = React.memo(function Ripple({
         );
       })}
 
-      <style jsx>{`
+      <style>{`
         @keyframes ripple {
           0%, 100% {
             transform: translate(-50%, -50%) scale(1);

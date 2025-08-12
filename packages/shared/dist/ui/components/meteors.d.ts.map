@@ -1,0 +1,1 @@
+{"version":3,"file":"meteors.d.ts","sourceRoot":"","sources":["../../../src/ui/components/meteors.tsx"],"names":[],"mappings":"AAGA,OAAO,KAAK,MAAM,OAAO,CAAC;AAE1B,UAAU,YAAY;IACpB,MAAM,CAAC,EAAE,MAAM,CAAC;IAChB,SAAS,CAAC,EAAE,MAAM,CAAC;CACpB;AAED,eAAO,MAAM,OAAO,0BAAgC,YAAY,sBA2C/D,CAAC"}

@@ -19,14 +19,14 @@ const Form = FormProvider;
 const FormFieldContext = React.createContext({});
 const FormField = (_a) => {
     var props = __rest(_a, []);
-    return (<FormFieldContext value={{ name: props.name }}>
+    return (<FormFieldContext.Provider value={{ name: props.name }}>
       <Controller {...props}/>
-    </FormFieldContext>);
+    </FormFieldContext.Provider>);
 };
 const FormItemContext = React.createContext({});
 const useFormField = () => {
-    const fieldContext = React.use(FormFieldContext);
-    const itemContext = React.use(FormItemContext);
+    const fieldContext = React.useContext(FormFieldContext);
+    const itemContext = React.useContext(FormItemContext);
     const { getFieldState, formState } = useFormContext();
     const fieldState = getFieldState(fieldContext.name, formState);
     if (!fieldContext) {
@@ -38,9 +38,9 @@ const useFormField = () => {
 function FormItem(_a) {
     var { className } = _a, props = __rest(_a, ["className"]);
     const id = React.useId();
-    return (<FormItemContext value={{ id }}>
+    return (<FormItemContext.Provider value={{ id }}>
       <div data-slot="form-item" className={cn('grid gap-2', className)} {...props}/>
-    </FormItemContext>);
+    </FormItemContext.Provider>);
 }
 function FormLabel(_a) {
     var { className } = _a, props = __rest(_a, ["className"]);
