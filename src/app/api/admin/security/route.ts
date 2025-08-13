@@ -8,6 +8,9 @@ import type { AdminUser } from '@/middleware/admin-auth';
 import { NextResponse } from 'next/server';
 // import { cacheManager } from '@/libs/cache-manager';
 import { dataCleanupService } from '@/libs/data-cleanup';
+
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
 import { getSecurityConfig, securityMonitor } from '@/libs/security-monitor';
 import { logAdminAction, withAdminAuth } from '@/middleware/admin-auth';
 

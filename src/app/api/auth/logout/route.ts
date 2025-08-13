@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { createServerClient } from '@/libs/supabase/config';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 export async function POST() {
   try {
     // 使用 Supabase 进行登出

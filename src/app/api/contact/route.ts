@@ -3,6 +3,9 @@ import { Client } from '@notionhq/client';
 import { NextResponse } from 'next/server';
 import { ContactValidation } from '@/validations/ContactValidation';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // 超时配置
 const TIMEOUT_CONFIG = {
   notionApi: 8000, // 8秒 - Notion API调用

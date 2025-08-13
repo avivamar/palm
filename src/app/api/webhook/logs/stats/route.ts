@@ -3,6 +3,8 @@ import { NextResponse } from 'next/server';
 import { getDB } from '@/libs/DB';
 import { preordersSchema, webhookLogsSchema } from '@/models/Schema';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {

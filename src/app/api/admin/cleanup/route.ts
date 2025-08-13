@@ -9,6 +9,9 @@ import { NextResponse } from 'next/server';
 import { dataCleanupService, getCleanupStatsAPI, runDataCleanupAPI } from '@/libs/data-cleanup';
 import { withAdminAuth } from '@/middleware/admin-auth';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 async function handleGET(_request: NextRequest, _user: AdminUser) {
   try {
     // Get cleanup statistics

@@ -8,6 +8,9 @@ import type { AdminUser } from '@/middleware/admin-auth';
 import { and, eq, gte, sql } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 import { getDB } from '@/libs/DB';
+
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
 import { logAdminAction, withAdminAuth } from '@/middleware/admin-auth';
 import { preordersSchema, usersSchema } from '@/models/Schema';
 // import { cacheApiResponse } from '@/libs/cache-manager';

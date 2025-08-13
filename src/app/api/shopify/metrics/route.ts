@@ -6,6 +6,9 @@ import type { NextRequest } from 'next/server';
 import { shopifyMetrics } from '@rolitt/shopify/monitoring/metrics';
 import { NextResponse } from 'next/server';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 export async function GET(request: NextRequest) {
   try {
     console.log('[API] 📊 Fetching Shopify metrics...');

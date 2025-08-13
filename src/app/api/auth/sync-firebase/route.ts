@@ -6,6 +6,9 @@ import { getSafeDB } from '@/libs/DB';
 import { securityMiddleware } from '@/middleware/security/unified-security';
 import { usersSchema } from '@/models/Schema';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 export async function POST(request: NextRequest) {
   return securityMiddleware(request, async () => {
     try {

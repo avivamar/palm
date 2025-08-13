@@ -25,6 +25,9 @@ import {
 import { securityMiddleware } from '@/middleware/security/unified-security';
 import { preordersSchema, webhookLogsSchema } from '@/models/Schema';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // 超时配置
 const TIMEOUT_CONFIG = {
   webhookProcessing: 25000, // 25秒 - Vercel函数超时前的安全边界

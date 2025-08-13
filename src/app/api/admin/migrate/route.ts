@@ -4,6 +4,9 @@ import { NextResponse } from 'next/server';
 
 import { getDB } from '@/libs/DB';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 /**
  * 🗄️ 数据库迁移 API
  * 仅在生产环境中手动运行迁移

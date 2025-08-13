@@ -9,6 +9,9 @@ import { sql } from 'drizzle-orm';
 import { checkDatabaseHealth } from '@/libs/db-optimization';
 import { adminAuth } from '@/libs/adminAuth';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 export async function GET(request: NextRequest) {
   try {
     // 验证管理员权限

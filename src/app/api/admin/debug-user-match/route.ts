@@ -4,6 +4,9 @@ import { getDB } from '@/libs/DB';
 import { createServerClient, isSupabaseConfigured } from '@/libs/supabase/config';
 import { usersSchema } from '@/models/Schema';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 export async function GET() {
   try {
     if (!isSupabaseConfigured) {

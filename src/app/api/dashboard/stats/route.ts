@@ -11,6 +11,8 @@ import { getDB } from '@/libs/DB';
 import { createServerClient, isSupabaseConfigured } from '@/libs/supabase/config';
 import { preordersSchema } from '@/models/Schema';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
 

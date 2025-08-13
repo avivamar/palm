@@ -6,6 +6,9 @@ import { logger } from '@/libs/Logger';
 import { counterSchema } from '@/models/Schema';
 import { CounterValidation } from '@/validations/CounterValidation';
 
+// Use Node.js runtime for database operations
+export const runtime = 'nodejs';
+
 export const PUT = async (request: Request) => {
   const json = await request.json();
   const parse = CounterValidation.safeParse(json);

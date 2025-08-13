@@ -7,6 +7,9 @@ import { NextResponse } from 'next/server';
 import { readdirSync, statSync, existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 const BACKUP_DIR = process.env.BACKUP_DIR || './backups';
 
 export async function GET() {

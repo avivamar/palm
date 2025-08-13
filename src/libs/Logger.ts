@@ -39,9 +39,22 @@ function getDefaultConfig(): LoggerConfig {
 
 // 创建 Pino 实例
 function createPinoLogger(config: LoggerConfig) {
+  // 在 Vercel 环境中使用简化配置避免 worker 线程问题
+  if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+    return pino({
+      level: config.level,
+      base: {
+        service: config.service,
+        environment: config.environment,
+        version: config.version,
+      },
+      // 生产环境使用默认序列化，避免 transport targets
+    });
+  }
+
   const targets: any[] = [];
 
-  // 控制台输出
+  // 控制台输出 (仅开发环境)
   if (config.enableConsole) {
     targets.push({
       target: 'pino-pretty',
@@ -54,7 +67,7 @@ function createPinoLogger(config: LoggerConfig) {
     });
   }
 
-  // Logtail 输出
+  // Logtail 输出 (仅开发环境)
   if (config.enableLogtail && config.logtailToken) {
     targets.push({
       target: '@logtail/pino',

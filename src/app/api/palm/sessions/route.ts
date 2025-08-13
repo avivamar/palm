@@ -7,6 +7,9 @@ import { z } from "zod";
 import { put } from "@vercel/blob";
 import { eq } from "drizzle-orm";
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // Request validation schema
 const CreateSessionSchema = z.object({
   handType: z.enum(["left", "right", "both"]),

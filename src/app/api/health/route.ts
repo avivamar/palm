@@ -1,6 +1,9 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 export async function GET(request: NextRequest) {
   const isRailwayHealthCheck = request.headers.get('user-agent')?.includes('Railway');
 

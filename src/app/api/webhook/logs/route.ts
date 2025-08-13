@@ -4,6 +4,9 @@ import { NextResponse } from 'next/server';
 import { getDB } from '@/libs/DB';
 import { webhookLogsSchema } from '@/models/Schema';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // 有效的 webhook 状态枚举值
 const VALID_WEBHOOK_STATUSES = ['success', 'failed', 'pending', 'retry'] as const;
 type ValidWebhookStatus = typeof VALID_WEBHOOK_STATUSES[number];

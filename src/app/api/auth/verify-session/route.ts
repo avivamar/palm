@@ -4,6 +4,9 @@ import { getUserRole, getUserRoleByEmail } from '@/app/actions/userActions';
 import { createServerClient } from '@/libs/supabase/config';
 import { securityMiddleware } from '@/middleware/security/unified-security';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 export async function POST(request: NextRequest) {
   return securityMiddleware(request, async () => {
     try {

@@ -1,6 +1,9 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // 超时配置
 const TIMEOUT_CONFIG = {
   dataProcessing: 3000, // 3秒 - 数据处理

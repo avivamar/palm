@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { getSafeDB } from '@/libs/DB';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {

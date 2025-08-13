@@ -5,6 +5,9 @@
 
 import { createShopifyApiRoute } from '@rolitt/shopify';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // 创建 Shopify API 路由处理器
 const handlers = createShopifyApiRoute({
   // 可选：覆盖环境变量配置

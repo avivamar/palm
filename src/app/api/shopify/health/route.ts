@@ -1,6 +1,8 @@
 import { ShopifyClient } from '@rolitt/shopify';
 import { NextResponse } from 'next/server';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
 // Force dynamic rendering for health check
 export const dynamic = 'force-dynamic';
 

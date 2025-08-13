@@ -5,6 +5,9 @@
 
 import { NextResponse } from 'next/server';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // 健康检查函数
 async function checkDatabase(): Promise<{
   status: 'healthy' | 'warning' | 'error';

@@ -6,6 +6,8 @@ import { getDB } from '@/libs/DB';
 import { createServerClient, isSupabaseConfigured } from '@/libs/supabase/config';
 import { usersSchema } from '@/models/Schema';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 // POST: 生成图片上传的预签名URL

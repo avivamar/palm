@@ -1,0 +1,15 @@
+#!/bin/bash
+# Pre-commit hook to ensure runtime declarations are present
+
+echo "🔍 Checking API routes for runtime declarations..."
+
+# 运行runtime验证脚本
+npm run verify-runtime
+
+if [ $? -ne 0 ]; then
+    echo "❌ Runtime declaration check failed!"
+    echo "Please ensure all API routes that use Node.js features have 'export const runtime = \"nodejs\";'"
+    exit 1
+fi
+
+echo "✅ Runtime declaration check passed!"

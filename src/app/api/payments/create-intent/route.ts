@@ -5,6 +5,9 @@ import Stripe from 'stripe';
 import { createServerClient } from '@/libs/supabase/config';
 import { securityMiddleware } from '@/middleware/security/unified-security';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // 超时配置
 const TIMEOUT_CONFIG = {
   adminInit: 8000, // 8秒

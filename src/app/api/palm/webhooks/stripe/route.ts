@@ -10,6 +10,10 @@ import Stripe from 'stripe';
 import { getSafeDB } from '@/libs/DB';
 import { palmAnalysisSessionsSchema } from '@/models/Schema';
 import { eq } from 'drizzle-orm';
+
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // 暂时注释Palm引擎导入，修复部署问题
 // import { createPalmEngine } from '@rolitt/palm';
 

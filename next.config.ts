@@ -35,6 +35,11 @@ const nextConfig: NextConfig = {
     // Railway 内存优化：减少并发构建进程
     // workerThreads: false,
     // cpus: 1,
+    // Vercel 环境禁用 worker 线程避免模块缺失问题
+    ...(process.env.VERCEL && {
+      workerThreads: false,
+      cpus: 1,
+    }),
     // 其他实验性功能可以在这里添加
   },
 

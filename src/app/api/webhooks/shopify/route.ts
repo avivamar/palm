@@ -12,6 +12,9 @@ import { getDB } from '@/libs/DB';
 import { WebhookLogger } from '@/libs/webhook-logger';
 import { preordersSchema } from '@/models/Schema';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // Shopify webhook events we handle
 const SUPPORTED_EVENTS = [
   'orders/create',

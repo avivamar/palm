@@ -7,6 +7,8 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { createServerClient, isSupabaseConfigured } from '@/libs/supabase/config';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
 // Force dynamic rendering
 export const dynamic = 'force-dynamic';
 

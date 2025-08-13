@@ -4,6 +4,8 @@ import { getDB } from '@/libs/DB';
 import { createServerClient, isSupabaseConfigured } from '@/libs/supabase/config';
 import { referralsSchema, usersSchema } from '@/models/Schema';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 // GET: Fetch user referral statistics

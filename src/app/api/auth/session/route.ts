@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { createServerClient } from '@/libs/supabase/config';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 export async function GET() {
   console.log('Session API called at:', new Date().toISOString());
 

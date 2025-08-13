@@ -11,6 +11,9 @@ import { getSafeDB } from '@/libs/DB';
 import { palmAnalysisSessionsSchema } from '@/models/Schema';
 import { eq } from 'drizzle-orm';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // Request validation schema
 const ReportRequestSchema = z.object({
   sessionId: z.string(),

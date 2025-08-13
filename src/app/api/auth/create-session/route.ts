@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // 这个API路由之前用于创建Firebase会话，现在已经迁移到Supabase
 // 保留以保持向后兼容性，但返回不支持的错误
 

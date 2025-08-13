@@ -8,6 +8,9 @@ import { hasAdminPermission, logAdminAction } from '@/middleware/admin-auth';
 import { securityMiddleware } from '@/middleware/security/unified-security';
 import { usersSchema } from '@/models/Schema';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 async function handleGET(request: NextRequest, user: AdminUser) {
   try {
     // Log admin action for audit

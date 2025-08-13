@@ -7,6 +7,9 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { getQueueStats, processQueueTasks } from '@/libs/redis-queue';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 // 在Vercel上作为定时任务运行，或者手动触发
 export async function POST(request: NextRequest) {
   try {

@@ -3,6 +3,9 @@ import { NextResponse } from 'next/server';
 import { buildUrl, debugOAuthRedirect } from '@/libs/env-utils';
 import { createServerClient } from '@/libs/supabase/config';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const code = searchParams.get('code');

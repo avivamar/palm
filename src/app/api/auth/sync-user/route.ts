@@ -4,6 +4,9 @@ import { syncUserToDatabase } from '@/app/actions/userActions';
 import { createServerClient } from '@/libs/supabase/config';
 import { securityMiddleware } from '@/middleware/security/unified-security';
 
+// Add runtime declaration for Node.js compatibility
+export const runtime = 'nodejs';
+
 /**
  * 专用于用户同步的 API 端点
  * 这个端点可以被前端异步调用，避免阻塞登录流程
