@@ -31,7 +31,6 @@ export default function PalmLineVisualization({
   height = 400
 }: PalmLineVisualizationProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const imageRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
     if (!canvasRef.current || !imageUrl) return
@@ -62,58 +61,91 @@ export default function PalmLineVisualization({
   }, [imageUrl, palmLines, landmarks])
 
   const drawLandmarks = (ctx: CanvasRenderingContext2D, landmarks: any[], width: number, height: number) => {
-    // Draw hand landmarks
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)'
-    ctx.lineWidth = 1
+    // Draw hand landmarks with improved visibility
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.7)'
+    ctx.lineWidth = 1.5
 
-    // Draw connections between landmarks
-    const connections = [
-      [0, 1], [1, 2], [2, 3], [3, 4], // Thumb
-      [0, 5], [5, 6], [6, 7], [7, 8], // Index
-      [5, 9], [9, 10], [10, 11], [11, 12], // Middle
-      [9, 13], [13, 14], [14, 15], [15, 16], // Ring
-      [13, 17], [17, 18], [18, 19], [19, 20], // Pinky
+    // MediaPipe hand landmark connections - anatomically correct
+    const connections: [number, number][] = [
+      // Thumb
+      [0, 1], [1, 2], [2, 3], [3, 4],
+      // Index finger
+      [0, 5], [5, 6], [6, 7], [7, 8],
+      // Middle finger  
+      [5, 9], [9, 10], [10, 11], [11, 12],
+      // Ring finger
+      [9, 13], [13, 14], [14, 15], [15, 16],
+      // Pinky finger
+      [13, 17], [17, 18], [18, 19], [19, 20],
+      // Palm connections
       [0, 17] // Wrist to pinky base
     ]
 
+    // Draw connections with proper coordinate transformation
     connections.forEach(([start, end]) => {
-      if (landmarks[start] && landmarks[end]) {
+      const startPoint = landmarks[start]
+      const endPoint = landmarks[end]
+      if (startPoint && endPoint) {
         ctx.beginPath()
-        ctx.moveTo(landmarks[start].x * width, landmarks[start].y * height)
-        ctx.lineTo(landmarks[end].x * width, landmarks[end].y * height)
+        ctx.moveTo(transformX(startPoint.x, width), transformY(startPoint.y, height))
+        ctx.lineTo(transformX(endPoint.x, width), transformY(endPoint.y, height))
         ctx.stroke()
       }
     })
 
-    // Draw landmark points
-    landmarks.forEach((landmark, index) => {
+    // Draw landmark points with labels for debugging
+    landmarks.forEach((landmark) => {
+      const x = transformX(landmark.x, width)
+      const y = transformY(landmark.y, height)
+      
       ctx.beginPath()
-      ctx.arc(landmark.x * width, landmark.y * height, 3, 0, 2 * Math.PI)
+      ctx.arc(x, y, 3, 0, 2 * Math.PI)
       ctx.fill()
     })
   }
 
+  // Coordinate transformation functions for accurate positioning
+  const transformX = (normalizedX: number, canvasWidth: number): number => {
+    return normalizedX * canvasWidth
+  }
+
+  const transformY = (normalizedY: number, canvasHeight: number): number => {
+    return normalizedY * canvasHeight
+  }
+
   const drawPalmLines = (ctx: CanvasRenderingContext2D, lines: PalmLines, width: number, height: number) => {
-    // 生命线 - 绿色
+    // 设置阴影效果，让线条更清晰
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.3)'
+    ctx.shadowBlur = 2
+    ctx.shadowOffsetX = 1
+    ctx.shadowOffsetY = 1
+
+    // 生命线 - 绿色（Life Line）
     if (lines.lifeLine) {
-      drawCurvedLine(ctx, lines.lifeLine, width, height, '#4ADE80', '生命线')
+      drawCurvedLine(ctx, lines.lifeLine, width, height, '#10B981', '生命线', 4)
     }
 
-    // 心线（感情线） - 红色
+    // 感情线 - 红色（Heart Line）
     if (lines.heartLine) {
-      drawCurvedLine(ctx, lines.heartLine, width, height, '#F87171', '感情线')
+      drawCurvedLine(ctx, lines.heartLine, width, height, '#EF4444', '感情线', 4)
     }
 
-    // 头线（智慧线） - 蓝色
+    // 智慧线 - 蓝色（Head Line）
     if (lines.headLine) {
-      drawCurvedLine(ctx, lines.headLine, width, height, '#60A5FA', '智慧线')
+      drawCurvedLine(ctx, lines.headLine, width, height, '#3B82F6', '智慧线', 4)
     }
 
-    // 命运线 - 紫色
+    // 命运线 - 紫色（Fate Line）
     if (lines.fateLine) {
-      drawCurvedLine(ctx, lines.fateLine, width, height, '#C084FC', '命运线')
+      drawCurvedLine(ctx, lines.fateLine, width, height, '#8B5CF6', '命运线', 3)
     }
+
+    // 重置阴影
+    ctx.shadowColor = 'transparent'
+    ctx.shadowBlur = 0
+    ctx.shadowOffsetX = 0
+    ctx.shadowOffsetY = 0
   }
 
   const drawCurvedLine = (
@@ -122,44 +154,74 @@ export default function PalmLineVisualization({
     width: number,
     height: number,
     color: string,
-    label: string
+    label: string,
+    lineWidth: number = 3
   ) => {
+    // 设置线条样式
     ctx.strokeStyle = color
-    ctx.lineWidth = 3
+    ctx.lineWidth = lineWidth
     ctx.lineCap = 'round'
     ctx.lineJoin = 'round'
     
-    // Draw bezier curve through points
+    // 使用变换后的坐标绘制贝塞尔曲线
     ctx.beginPath()
-    ctx.moveTo(line.start.x * width, line.start.y * height)
+    const startX = transformX(line.start.x, width)
+    const startY = transformY(line.start.y, height)
+    ctx.moveTo(startX, startY)
     
     if (line.curve && line.curve.length > 0) {
-      // Use quadratic bezier curves for smooth lines
-      for (let i = 0; i < line.curve.length; i++) {
-        const cp = line.curve[i]
-        const next = i < line.curve.length - 1 ? line.curve[i + 1] : line.end
+      // 使用三次贝塞尔曲线创建更平滑的线条
+      if (line.curve.length >= 2 && line.curve[0] && line.curve[1]) {
+        const cp1X = transformX(line.curve[0].x, width)
+        const cp1Y = transformY(line.curve[0].y, height)
+        const cp2X = transformX(line.curve[1].x, width)
+        const cp2Y = transformY(line.curve[1].y, height)
+        const endX = transformX(line.end.x, width)
+        const endY = transformY(line.end.y, height)
         
-        ctx.quadraticCurveTo(
-          cp.x * width,
-          cp.y * height,
-          next.x * width,
-          next.y * height
-        )
+        ctx.bezierCurveTo(cp1X, cp1Y, cp2X, cp2Y, endX, endY)
+      } else if (line.curve[0]) {
+        // 单个控制点的二次贝塞尔曲线
+        const cpX = transformX(line.curve[0].x, width)
+        const cpY = transformY(line.curve[0].y, height)
+        const endX = transformX(line.end.x, width)
+        const endY = transformY(line.end.y, height)
+        
+        ctx.quadraticCurveTo(cpX, cpY, endX, endY)
       }
     } else {
-      // Direct line if no curve points
-      ctx.lineTo(line.end.x * width, line.end.y * height)
+      // 直线连接（无控制点）
+      const endX = transformX(line.end.x, width)
+      const endY = transformY(line.end.y, height)
+      ctx.lineTo(endX, endY)
     }
     
     ctx.stroke()
     
-    // Draw label
+    // 绘制标签，使用更好的定位
     ctx.fillStyle = color
-    ctx.font = 'bold 12px sans-serif'
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'
-    ctx.shadowBlur = 3
-    ctx.fillText(label, line.start.x * width, line.start.y * height - 5)
-    ctx.shadowBlur = 0
+    ctx.font = 'bold 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
+    ctx.textAlign = 'start'
+    ctx.textBaseline = 'bottom'
+    
+    // 在起点附近显示标签，但避免重叠
+    const labelX = startX + 5
+    const labelY = startY - 8
+    
+    // 添加文字背景，提高可读性
+    const textMetrics = ctx.measureText(label)
+    const padding = 4
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+    ctx.fillRect(
+      labelX - padding, 
+      labelY - textMetrics.actualBoundingBoxAscent - padding,
+      textMetrics.width + padding * 2,
+      textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent + padding * 2
+    )
+    
+    // 绘制文字
+    ctx.fillStyle = color
+    ctx.fillText(label, labelX, labelY)
   }
 
   return (

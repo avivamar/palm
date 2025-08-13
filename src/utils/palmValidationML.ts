@@ -217,13 +217,6 @@ function analyzePalmVisibility(landmarks: any[]): {
   const RING_TIP = 16;
   const PINKY_TIP = 20;
   
-  // Palm line detection points based on MediaPipe landmarks
-  const THUMB_MCP = 2;  // 拇指掌指关节
-  const INDEX_MCP = 5;  // 食指掌指关节
-  const MIDDLE_MCP = 9; // 中指掌指关节
-  const RING_MCP = 13;  // 无名指掌指关节
-  const PINKY_MCP = 17; // 小指掌指关节
-  
   // Calculate distances between finger tips (spread indicator)
   const fingerTips = [
     landmarks[THUMB_TIP],
@@ -298,55 +291,83 @@ function calculateMLConfidence(
 
 /**
  * Calculate palm lines based on MediaPipe landmarks
- * 基于MediaPipe地标计算掌纹线位置
+ * 基于MediaPipe地标和掌纹学原理精确计算掌纹线位置
+ * 
+ * 参考掌纹学标准：
+ * - 生命线：从拇指和食指间的虎口开始，围绕拇指球的弧形线
+ * - 感情线：从小指下方的掌边开始，横向延伸到食指或中指下方
+ * - 智慧线：从生命线起点或略高位置开始，横向延伸穿过手掌
+ * - 命运线：从手腕中央垂直向上延伸到中指下方
  */
 function calculatePalmLines(landmarks: any[]): PalmLines {
-  // MediaPipe 21个关键点索引
-  const WRIST = 0;
-  const THUMB_CMC = 1;
-  const THUMB_MCP = 2;
-  const THUMB_IP = 3;
-  const THUMB_TIP = 4;
-  const INDEX_MCP = 5;
-  const INDEX_PIP = 6;
-  const INDEX_DIP = 7;
-  const INDEX_TIP = 8;
-  const MIDDLE_MCP = 9;
-  const MIDDLE_PIP = 10;
-  const MIDDLE_DIP = 11;
-  const MIDDLE_TIP = 12;
-  const RING_MCP = 13;
-  const RING_PIP = 14;
-  const RING_DIP = 15;
-  const RING_TIP = 16;
-  const PINKY_MCP = 17;
-  const PINKY_PIP = 18;
-  const PINKY_DIP = 19;
-  const PINKY_TIP = 20;
+  // MediaPipe 21个关键点索引 - 只定义使用到的点
+  const WRIST = 0;           // 手腕点
+  const THUMB_CMC = 1;       // 拇指腕掌关节
+  const THUMB_MCP = 2;       // 拇指掌指关节  
+  const INDEX_MCP = 5;       // 食指掌指关节
+  const MIDDLE_MCP = 9;      // 中指掌指关节
+  const MIDDLE_PIP = 10;     // 中指近端指间关节
+  const RING_MCP = 13;       // 无名指掌指关节
+  const PINKY_MCP = 17;      // 小指掌指关节
 
-  // 生命线：从拇指和食指之间开始，环绕拇指球到手腕
-  const lifeLineStart = interpolatePoint(landmarks[THUMB_MCP], landmarks[INDEX_MCP], 0.3);
-  const lifeLineMid1 = interpolatePoint(landmarks[THUMB_CMC], landmarks[THUMB_MCP], 0.5);
-  const lifeLineMid2 = interpolatePoint(landmarks[THUMB_CMC], landmarks[WRIST], 0.4);
-  const lifeLineEnd = interpolatePoint(landmarks[WRIST], landmarks[THUMB_CMC], 0.2);
+  // 计算手掌几何中心和尺寸用于相对定位
+  const palmCenter = calculatePalmCenter(landmarks);
+  const palmHeight = calculatePalmHeight(landmarks);
+
+  // === 生命线 (Life Line) ===
+  // 起点：拇指和食指间的虎口位置（解剖学准确位置）
+  const lifeLineStart = interpolatePoint(landmarks[THUMB_MCP], landmarks[INDEX_MCP], 0.4);
   
-  // 心线（感情线）：从小指下方开始，横贯手掌上部
-  const heartLineStart = interpolatePoint(landmarks[PINKY_MCP], landmarks[RING_MCP], 0.5);
-  const heartLineMid1 = interpolatePoint(landmarks[RING_MCP], landmarks[MIDDLE_MCP], 0.5);
+  // 中间控制点：沿着拇指球弧形路径
+  const thumbBallCenter = interpolatePoint(landmarks[THUMB_CMC], landmarks[WRIST], 0.3);
+  const lifeLineMid1 = createArcPoint(lifeLineStart, thumbBallCenter, landmarks[WRIST], 0.3);
+  const lifeLineMid2 = createArcPoint(lifeLineStart, thumbBallCenter, landmarks[WRIST], 0.6);
+  
+  // 终点：手腕内侧，通常在手腕正中偏拇指侧
+  const lifeLineEnd = interpolatePoint(landmarks[WRIST], landmarks[THUMB_CMC], 0.15);
+
+  // === 感情线 (Heart Line) ===
+  // 起点：小指下方掌边，基于手掌宽度的相对位置
+  const heartLineStart = createPalmEdgePoint(landmarks[PINKY_MCP], landmarks[WRIST], 0.8);
+  
+  // 中间点：跟随手指掌指关节下方的自然弧线
+  const heartLineMid1 = interpolatePoint(landmarks[RING_MCP], landmarks[PINKY_MCP], 0.3);
+  heartLineMid1.y = landmarks[RING_MCP].y + palmHeight * 0.08; // 略高于掌指关节
+  
   const heartLineMid2 = interpolatePoint(landmarks[MIDDLE_MCP], landmarks[INDEX_MCP], 0.5);
-  const heartLineEnd = interpolatePoint(landmarks[INDEX_MCP], landmarks[THUMB_MCP], 0.7);
+  heartLineMid2.y = landmarks[MIDDLE_MCP].y + palmHeight * 0.06;
   
-  // 头线（智慧线）：从生命线起点开始，横贯手掌中部
-  const headLineStart = lifeLineStart; // 与生命线起点相同
-  const headLineMid1 = interpolatePoint(landmarks[INDEX_MCP], landmarks[MIDDLE_MCP], 0.4);
-  const headLineMid2 = interpolatePoint(landmarks[MIDDLE_MCP], landmarks[RING_MCP], 0.4);
-  const headLineEnd = interpolatePoint(landmarks[RING_MCP], landmarks[PINKY_MCP], 0.3);
+  // 终点：通常延伸到食指下方或食指中指之间
+  const heartLineEnd = interpolatePoint(landmarks[INDEX_MCP], landmarks[MIDDLE_MCP], 0.3);
+  heartLineEnd.y = landmarks[INDEX_MCP].y + palmHeight * 0.05;
+
+  // === 智慧线 (Head Line) ===
+  // 起点：与生命线共同起点或略微分离
+  const headLineStart = interpolatePoint(lifeLineStart, landmarks[INDEX_MCP], 0.1);
   
-  // 命运线（可选）：从手腕中部向中指延伸
+  // 中间点：横向穿过手掌中央，遵循自然弧度
+  const headLineMid1 = interpolatePoint(landmarks[INDEX_MCP], landmarks[MIDDLE_MCP], 0.7);
+  headLineMid1.y = palmCenter.y + palmHeight * 0.05; // 略低于手掌中心
+  
+  const headLineMid2 = interpolatePoint(landmarks[MIDDLE_MCP], landmarks[RING_MCP], 0.5);
+  headLineMid2.y = palmCenter.y + palmHeight * 0.08;
+  
+  // 终点：延伸到手掌外侧边缘，通常在中指或无名指下方
+  const headLineEnd = interpolatePoint(landmarks[RING_MCP], landmarks[PINKY_MCP], 0.2);
+  headLineEnd.y = palmCenter.y + palmHeight * 0.1;
+
+  // === 命运线 (Fate Line) ===
+  // 起点：手腕中央
   const fateLineStart = landmarks[WRIST];
-  const fateLineMid = interpolatePoint(landmarks[WRIST], landmarks[MIDDLE_MCP], 0.5);
-  const fateLineEnd = interpolatePoint(landmarks[MIDDLE_MCP], landmarks[MIDDLE_PIP], 0.2);
   
+  // 中间点：垂直向上延伸，穿过手掌中心
+  const fateLineMid = interpolatePoint(landmarks[WRIST], landmarks[MIDDLE_MCP], 0.6);
+  fateLineMid.x = palmCenter.x; // 确保垂直对齐
+  
+  // 终点：中指下方
+  const fateLineEnd = interpolatePoint(landmarks[MIDDLE_MCP], landmarks[MIDDLE_PIP], 0.15);
+  fateLineEnd.x = palmCenter.x;
+
   return {
     lifeLine: {
       start: lifeLineStart,
@@ -372,7 +393,61 @@ function calculatePalmLines(landmarks: any[]): PalmLines {
 }
 
 /**
- * Interpolate between two points
+ * 计算手掌几何中心
+ */
+function calculatePalmCenter(landmarks: any[]): Point2D {
+  // 使用四个掌指关节的中心作为手掌中心
+  const mcpPoints = [landmarks[5], landmarks[9], landmarks[13], landmarks[17]]; // INDEX, MIDDLE, RING, PINKY MCP
+  let centerX = 0, centerY = 0;
+  
+  mcpPoints.forEach(point => {
+    centerX += point.x;
+    centerY += point.y;
+  });
+  
+  return {
+    x: centerX / mcpPoints.length,
+    y: centerY / mcpPoints.length
+  };
+}
+
+
+/**
+ * 计算手掌高度
+ */
+function calculatePalmHeight(landmarks: any[]): number {
+  // 从手腕到掌指关节的距离
+  const wrist = landmarks[0];
+  const palmCenter = calculatePalmCenter(landmarks);
+  return Math.abs(palmCenter.y - wrist.y);
+}
+
+/**
+ * 创建弧形路径点
+ * 用于生成自然的弧形掌纹线
+ */
+function createArcPoint(start: Point2D, center: Point2D, end: Point2D, t: number): Point2D {
+  // 使用二次贝塞尔曲线的控制点算法
+  const p1 = interpolatePoint(start, center, t);
+  const p2 = interpolatePoint(center, end, t);
+  return interpolatePoint(p1, p2, t);
+}
+
+/**
+ * 创建手掌边缘点
+ * 用于在手掌边缘定位掌纹线起始点
+ */
+function createPalmEdgePoint(mcpPoint: any, wristPoint: any, ratio: number): Point2D {
+  // 基于掌指关节和手腕的位置计算边缘点
+  const basePoint = interpolatePoint(mcpPoint, wristPoint, 0.2);
+  return {
+    x: mcpPoint.x + (mcpPoint.x - wristPoint.x) * 0.1, // 略微向外延伸到掌边
+    y: basePoint.y + (mcpPoint.y - wristPoint.y) * ratio
+  };
+}
+
+/**
+ * 线性插值计算两点间的中间点
  */
 function interpolatePoint(p1: any, p2: any, t: number): Point2D {
   return {
@@ -380,6 +455,7 @@ function interpolatePoint(p1: any, p2: any, t: number): Point2D {
     y: p1.y + (p2.y - p1.y) * t
   };
 }
+
 
 /**
  * Alternative: Use TensorFlow.js with a custom hand detection model
