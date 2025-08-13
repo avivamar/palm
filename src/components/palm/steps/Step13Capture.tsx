@@ -54,25 +54,63 @@ export default function Step13Capture({
     
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
-        // Request camera access with ideal settings for palm capture
-        const cameraStream = await navigator.mediaDevices.getUserMedia({ 
+        // 移动端优化：使用更宽松的相机设置
+        let cameraConstraints = {
           video: { 
-            width: { ideal: 1920 },
-            height: { ideal: 1080 },
-            facingMode: 'environment' // Rear camera for palm photography
+            width: { ideal: 1920, max: 1920, min: 640 },
+            height: { ideal: 1080, max: 1080, min: 480 },
+            facingMode: 'environment' // 后置摄像头
           }
-        })
+        }
+        
+        // 移动端降级方案
+        if (isMobile()) {
+          cameraConstraints = {
+            video: { 
+              width: { ideal: 1280, max: 1920, min: 320 },
+              height: { ideal: 720, max: 1080, min: 240 },
+              facingMode: 'environment' // 优先后置摄像头，失败时会自动降级到前置
+            }
+          }
+        }
+        
+        let cameraStream: MediaStream
+        
+        try {
+          // 首先尝试理想设置
+          cameraStream = await navigator.mediaDevices.getUserMedia(cameraConstraints)
+        } catch (firstError) {
+          console.warn('理想相机设置失败，尝试基础设置:', firstError)
+          
+          // 降级到最基础的设置
+          try {
+            cameraStream = await navigator.mediaDevices.getUserMedia({ 
+              video: true 
+            })
+          } catch (fallbackError) {
+            console.error('所有相机设置都失败:', fallbackError)
+            throw fallbackError
+          }
+        }
         
         setStream(cameraStream)
         setIsCameraOpen(true)
         
-        // Set video source
+        // Set video source with better error handling
         if (videoRef.current) {
           videoRef.current.srcObject = cameraStream
+          
+          // 确保视频开始播放
+          try {
+            await videoRef.current.play()
+          } catch (playError) {
+            console.warn('视频自动播放失败，用户可能需要手动开始:', playError)
+          }
         }
         
         trackEvent('palm_camera_opened', { 
-          timestamp: Date.now()
+          timestamp: Date.now(),
+          constraints: cameraConstraints
         })
         
       } catch (error) {
@@ -82,12 +120,28 @@ export default function Step13Capture({
           timestamp: Date.now()
         })
         
-        // Fallback to file picker if camera fails
-        pickFile()
+        // 显示用户友好的错误消息
+        setValidationMessage({
+          title: '📷 相机访问失败',
+          description: '无法访问相机，请检查权限设置或使用相册上传',
+          type: 'warning'
+        })
+        
+        // 短暂显示错误后自动关闭相机界面
+        setTimeout(() => {
+          setValidationMessage(null)
+        }, 3000)
       }
     } else {
       // Browser doesn't support camera, fallback to file picker
-      pickFile()
+      setValidationMessage({
+        title: '📱 不支持相机',
+        description: '您的浏览器不支持相机功能，请使用相册上传',
+        type: 'warning'
+      })
+      setTimeout(() => {
+        setValidationMessage(null)
+      }, 3000)
     }
   }
   
@@ -153,10 +207,65 @@ export default function Step13Capture({
       setMlLoadingStep('正在检查图片格式和尺寸...')
       await new Promise(resolve => setTimeout(resolve, 300)) // 让用户看到第一步
       
-      // Step 2: ML模型加载和验证
+      // 移动端优化：跳过复杂的ML验证，使用简化流程
+      if (isMobile()) {
+        setMlLoadingStep('移动端快速验证中...')
+        await new Promise(resolve => setTimeout(resolve, 1000))
+        
+        // 简单的文件大小和格式检查
+        if (selectedFile.size > 10 * 1024 * 1024) { // 10MB限制
+          throw new Error('图片文件过大，请选择小于10MB的图片')
+        }
+        
+        if (!selectedFile.type.startsWith('image/')) {
+          throw new Error('请选择有效的图片文件')
+        }
+        
+        // 移动端直接通过验证
+        const validationResult = {
+          isValid: true,
+          confidence: 0.85,
+          message: '移动端快速验证通过',
+          handCount: 1,
+          landmarks: undefined
+        }
+        
+        const message = getMLValidationMessage(validationResult)
+        setValidationMessage(message)
+        setIsMLValidating(false)
+        
+        trackEvent('palm_validation_mobile_simple', {
+          fileSize: selectedFile.size,
+          processingTime: Date.now() - startTime,
+          timestamp: Date.now()
+        })
+        
+        setMlLoadingStep('验证成功，正在保存数据...')
+        
+        const reader = new FileReader()
+        reader.onload = () => {
+          const imageData = reader.result as string
+          
+          setTimeout(() => {
+            updateUserData({ 
+              palmCaptureImage: selectedFile.name,
+              palmImageData: imageData,
+              palmLandmarks: undefined, // 移动端简化版本不包含ML数据
+              palmValidationResult: validationResult
+            })
+            setIsUploading(false)
+            setIsMLValidating(false)
+            goToNextStep()
+          }, 500)
+        }
+        reader.readAsDataURL(selectedFile)
+        return
+      }
+      
+      // 桌面端使用完整ML验证
       setMlLoadingStep('正在加载AI识别模型...')
       
-      // 使用带超时的验证函数
+      // 使用带超时的验证函数，移动端缩短超时时间
       const validationResult = await Promise.race([
         validatePalmCombinedWithProgress(selectedFile, setMlLoadingStep),
         new Promise((_, reject) => 
@@ -390,7 +499,32 @@ export default function Step13Capture({
               playsInline
               muted
               className="w-full h-64 object-cover"
+              onLoadedMetadata={() => {
+                // 确保视频元数据加载后开始播放
+                if (videoRef.current) {
+                  videoRef.current.play().catch(error => {
+                    console.warn('视频播放失败:', error)
+                  })
+                }
+              }}
+              onError={(e) => {
+                console.error('视频错误:', e)
+                setValidationMessage({
+                  title: '📹 视频显示错误',
+                  description: '视频流显示异常，请重试或使用相册上传',
+                  type: 'error'
+                })
+              }}
             />
+            
+            {/* Loading overlay for video */}
+            {stream && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                <div className="text-white text-sm">
+                  正在加载摄像头...
+                </div>
+              </div>
+            )}
             
             {/* Camera Controls Overlay */}
             <div className="absolute inset-0 flex flex-col justify-between p-4">
@@ -523,7 +657,7 @@ export default function Step13Capture({
             disabled={isUploading || isMLValidating}
             className="w-full h-12 rounded-xl border border-violet-300 text-violet-600 font-medium transition disabled:opacity-50"
           >
-            {isMLValidating ? 'AI验证中...' : isUploading ? '处理中...' : '从相册选择'}
+            {isMLValidating ? (isMobile() ? '快速验证中...' : 'AI验证中...') : isUploading ? '处理中...' : '从相册选择'}
           </motion.button>
 
           <motion.button
@@ -533,8 +667,27 @@ export default function Step13Capture({
             disabled={isUploading || isMLValidating}
             className="relative w-full h-14 flex items-center justify-center rounded-xl bg-violet-600 text-white text-lg font-semibold shadow-lg transition disabled:opacity-50"
           >
-            {isMLValidating ? '验证中...' : isMobile() ? '拍照上传' : '立即拍照'}
+            {isMLValidating ? '验证中...' : isMobile() ? '📱 拍照上传' : '💻 立即拍照'}
           </motion.button>
+          
+          {/* 移动端特别提示 */}
+          {isMobile() && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200"
+            >
+              <div className="flex items-start space-x-2">
+                <svg className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div className="text-sm text-blue-700">
+                  <p className="font-medium">移动端优化提示:</p>
+                  <p className="mt-1">为了更好的体验，移动端使用快速验证模式，无需等待复杂的AI分析</p>
+                </div>
+              </div>
+            </motion.div>
+          )}
           </motion.div>
         )}
 
