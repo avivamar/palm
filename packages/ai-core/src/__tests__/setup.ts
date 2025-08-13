@@ -23,10 +23,10 @@ vi.mock('ioredis', () => {
 });
 
 // Mock environment variables for testing
-process.env.NODE_ENV = 'test';
-process.env.OPENAI_API_KEY = 'test-openai-key';
-process.env.ANTHROPIC_API_KEY = 'test-anthropic-key';
-process.env.GOOGLE_AI_API_KEY = 'test-google-key';
+(process.env as any).NODE_ENV = 'test';
+(process.env as any).OPENAI_API_KEY = 'test-openai-key';
+(process.env as any).ANTHROPIC_API_KEY = 'test-anthropic-key';
+(process.env as any).GOOGLE_AI_API_KEY = 'test-google-key';
 
 // Global test timeout
 vi.setConfig({ testTimeout: 10000 });

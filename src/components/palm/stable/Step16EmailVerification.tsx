@@ -1,6 +1,9 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import { PalmStepConfig } from '@/libs/palm/config'
-import { handlePalmFormSubmission } from '@/app/[locale]/palm/stable/actions'
-import { StableFormClient } from './StableFormClient'
+import { useRouter } from 'next/navigation'
 
 interface Step16Props {
   locale: string
@@ -9,89 +12,201 @@ interface Step16Props {
 }
 
 export default function Step16EmailVerification({ locale }: Step16Props) {
+  const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [emailValid, setEmailValid] = useState<boolean | null>(null)
+  const [currentLocation, setCurrentLocation] = useState('检测位置中…')
+  
+  useEffect(() => {
+    console.log('Step 16 Email Verification view tracked')
+    
+    // 获取地理位置
+    fetch("https://ipapi.co/json/")
+      .then(r => r.json())
+      .then(d => {
+        setCurrentLocation(`${d.country_name || ""} ${d.region || ""}`)
+      })
+      .catch(() => {
+        setCurrentLocation("全球")
+      })
+  }, [])
+  
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+  
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newEmail = e.target.value
+    setEmail(newEmail)
+    
+    if (newEmail) {
+      setEmailValid(validateEmail(newEmail))
+    } else {
+      setEmailValid(null)
+    }
+    
+    console.log('Email input changed:', { emailLength: newEmail.length, isValid: validateEmail(newEmail) })
+  }
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!validateEmail(email)) {
+      console.log('Invalid email:', email)
+      return
+    }
+    
+    setIsSubmitting(true)
+    
+    console.log('Email submitted:', email)
+    
+    // 模拟邮箱验证过程
+    setTimeout(() => {
+      console.log('Email verified:', email)
+      setIsSubmitting(false)
+      router.push(`/${locale}/palm/stable/17`)
+    }, 2000)
+  }
+  
+  const goBack = () => {
+    console.log('Going back from email verification')
+    router.back()
+  }
+  
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-600 to-purple-600 flex justify-center">
-      <main className="w-full max-w-[412px] px-4 pb-20 text-white">
-        <header className="py-4 flex justify-center">
-          <img src="/img/logo-white.svg" alt="ThePalmistryLife" className="h-7" />
-        </header>
-
-        <div className="relative w-full h-2 bg-white/30 rounded-full mb-8">
-          <div className="h-full w-[100%] bg-white rounded-full transition-all"></div>
-          <span className="absolute right-0 -top-6 text-xs text-white/70">即将完成!</span>
-        </div>
-
-        <section className="text-center mb-8">
-          <div className="w-24 h-24 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center">
-            <span className="text-5xl">🎉</span>
-          </div>
-          <h1 className="text-2xl font-bold text-white mb-3">
-            你的财富分析已经完成！
-          </h1>
-          <p className="text-white/80 leading-relaxed">
-            输入邮箱地址，立即获取你的专属财富分析报告
-          </p>
-        </section>
-
-        <form 
-          action={handlePalmFormSubmission.bind(null, locale, 16)}
-          className="space-y-6"
+    <div className="min-h-screen bg-gray-50 flex justify-center">
+      <div className="w-[390px] mx-auto">
+        {/* 顶部导航 */}
+        <motion.header 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex items-center justify-between p-4"
         >
-          <div className="bg-white/10 rounded-2xl p-6">
-            <label className="block text-sm font-medium text-white/90 mb-2">
-              邮箱地址
-            </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="请输入你的邮箱地址"
-              className="w-full px-4 py-3 bg-white text-gray-900 border border-gray-300 rounded-xl focus:ring-2 focus:ring-violet-300 focus:border-transparent"
-              required
-            />
-            <p className="mt-2 text-xs text-white/70">
-              我们将立即发送你的个性化财富分析报告
-            </p>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full h-14 bg-yellow-500 text-gray-900 text-lg font-bold rounded-xl hover:bg-yellow-400 transition-colors shadow-lg"
+          {/* 返回按钮 */}
+          <button 
+            onClick={goBack}
+            className="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-800 transition-colors"
           >
-            📧 立即获取我的财富报告
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
           </button>
-        </form>
 
-        <div className="mt-8 bg-white/10 rounded-2xl p-4">
-          <h3 className="text-white font-semibold mb-2">🎁 你将获得：</h3>
-          <div className="space-y-2 text-sm text-white/80">
-            <div className="flex items-center">
-              <span className="text-green-400 mr-2">✓</span>
-              <span>个性化财富潜力分析</span>
-            </div>
-            <div className="flex items-center">
-              <span className="text-green-400 mr-2">✓</span>
-              <span>最佳投资时机指导</span>
-            </div>
-            <div className="flex items-center">
-              <span className="text-green-400 mr-2">✓</span>
-              <span>风险管理建议</span>
-            </div>
-            <div className="flex items-center">
-              <span className="text-green-400 mr-2">✓</span>
-              <span>专属财富增长路径</span>
-            </div>
+          {/* 中间的 N 标识 */}
+          <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+            <span className="text-gray-600 font-medium">N</span>
           </div>
-        </div>
 
-        <p className="mt-4 text-center text-xs text-white/60 leading-relaxed px-4">
-          继续即代表您同意我们的
-          <a href="/privacy" className="underline">隐私政策</a>、
-          <a href="/terms" className="underline">服务条款</a>
-          与追踪技术的使用。
-        </p>
-      </main>
+          {/* 菜单按钮 */}
+          <button className="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-800 transition-colors">
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </motion.header>
 
-      <StableFormClient />
+        {/* 主要内容容器 */}
+        <main className="px-6 py-8">
+          {/* 标题文案 */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-center mb-12"
+          >
+            <h1 className="text-lg text-gray-700 leading-relaxed mb-4">
+              准备好深入了解你的爱情、生活和性格了吗？
+            </h1>
+            <p className="text-base text-gray-600 leading-relaxed">
+              只需*输入你的邮箱，这样我们就不会丢失你的信息
+            </p>
+          </motion.div>
+
+          {/* 邮箱输入表单 */}
+          <motion.form 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            onSubmit={handleSubmit} 
+            className="space-y-6"
+          >
+            {/* 邮箱输入框 */}
+            <div className="relative">
+              <input 
+                type="email" 
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="burnmylin@gmail.com"
+                className={`w-full px-4 py-4 text-base border-2 rounded-2xl focus:outline-none bg-white transition-all duration-300 focus:transform focus:-translate-y-0.5 focus:shadow-lg ${
+                  emailValid === null 
+                    ? 'border-gray-200 focus:border-violet-400' 
+                    : emailValid 
+                      ? 'border-green-400 focus:border-green-500' 
+                      : 'border-red-400 focus:border-red-500'
+                }`}
+                required
+              />
+            </div>
+
+            {/* 提交按钮 */}
+            <motion.button 
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              type="submit"
+              disabled={isSubmitting || !validateEmail(email)}
+              className={`w-full font-medium py-4 px-6 rounded-2xl transition-all duration-200 ${
+                isSubmitting || !validateEmail(email)
+                  ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
+                  : 'bg-violet-600 hover:bg-violet-700 text-white'
+              }`}
+            >
+              {isSubmitting ? '处理中...' : '继续'}
+            </motion.button>
+          </motion.form>
+
+          {/* 底部说明文字 */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="mt-8 text-center"
+          >
+            <p className="text-sm text-gray-500 leading-relaxed">
+              *我们只会平台发送分析结果，我们不会向你发送任何营销邮件，也不会将你的邮箱分享给第三方。
+            </p>
+          </motion.div>
+
+          {/* 法律声明 */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="mt-12 text-center"
+          >
+            <p className="text-xs text-gray-400">
+              继续即表示您同意我们的
+              <a href="/terms" className="text-violet-600 hover:underline">服务条款</a>
+              和
+              <a href="/privacy" className="text-violet-600 hover:underline">隐私政策</a>
+            </p>
+          </motion.div>
+        </main>
+
+        {/* 地理位置显示 */}
+        <motion.footer 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.0 }}
+          className="fixed bottom-4 left-0 right-0 text-center"
+        >
+          <p className="text-xs text-gray-400">
+            <span>{currentLocation}</span>&nbsp;节点
+          </p>
+        </motion.footer>
+      </div>
     </div>
   )
 }

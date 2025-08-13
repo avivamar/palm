@@ -1,5 +1,9 @@
-import Link from 'next/link'
+'use client'
+
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import { PalmStepConfig } from '@/libs/palm/config'
+import { useRouter } from 'next/navigation'
 
 interface Step13Props {
   locale: string
@@ -8,68 +12,172 @@ interface Step13Props {
 }
 
 export default function Step13Capture({ locale }: Step13Props) {
+  const router = useRouter()
+  const [isUploading, setIsUploading] = useState(false)
+  
+  useEffect(() => {
+    console.log('Step 13 Capture view tracked')
+  }, [])
+  
+  const openCamera = async () => {
+    console.log('Camera capture attempt')
+    
+    if (navigator.mediaDevices) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true })
+        stream.getTracks().forEach(track => track.stop())
+        
+        console.log('Camera capture success')
+        
+        // Navigate to next step (scan progress)
+        router.push(`/${locale}/palm/stable/14`)
+        
+      } catch (error) {
+        console.log('Camera capture denied, fallback to file picker')
+        pickFile()
+      }
+    } else {
+      pickFile()
+    }
+  }
+  
+  const pickFile = () => {
+    console.log('File picker attempt')
+    
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = 'image/*'
+    input.onchange = (e) => {
+      const files = (e.target as HTMLInputElement).files
+      if (files && files.length > 0) {
+        const selectedFile = files[0]
+        if (selectedFile) {
+          setIsUploading(true)
+          
+          console.log('File picker success:', selectedFile.name)
+          
+          // Simulate upload
+          setTimeout(() => {
+            router.push(`/${locale}/palm/stable/14`)
+          }, 1500)
+        }
+      }
+    }
+    input.click()
+  }
+  
   return (
-    <div className="min-h-screen bg-gray-900 flex justify-center">
-      <main className="w-full max-w-[412px] px-4 pb-20">
-        <header className="py-4 text-center">
-          <div className="relative w-full h-2 bg-white/30 rounded-full mb-2">
-            <div className="h-full w-[100%] bg-white rounded-full transition-all"></div>
+    <div className="flex justify-center">
+      <main className="w-full max-w-[412px] min-h-screen px-6 pt-6 pb-24 bg-white text-gray-900">
+        {/* Logo & Progress */}
+        <motion.img 
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          src="/palm/img/logo.svg" 
+          className="h-6 mx-auto mb-6 select-none" 
+          alt="ThePalmistryLife" 
+        />
+        
+        <motion.div 
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative w-full max-w-[340px] h-1.5 mx-auto bg-violet-100 rounded-full"
+        >
+          <div className="h-full w-[98%] bg-violet-500 rounded-full"></div>
+          <span className="absolute right-0 -top-6 text-xs text-gray-500">Step 13 / 14</span>
+        </motion.div>
+
+        {/* Title */}
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-8 text-2xl font-bold leading-snug"
+        >
+          按照说明拍摄左手掌照片
+        </motion.h1>
+
+        {/* Illustration */}
+        <motion.section 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-6"
+        >
+          <div className="bg-green-50 rounded-2xl p-6 flex items-center gap-4">
+            <img src="palm/img/pose-correct.png" className="w-28" alt="正确示范" />
+            <div className="text-green-600 font-semibold text-lg">✅ 正确</div>
           </div>
-          <span className="text-xs text-white/70">Step 13 / 21</span>
-        </header>
 
-        <section className="text-center mb-8 text-white">
-          <h1 className="text-2xl font-bold mb-3">
-            拍照你的手掌
-          </h1>
-          <p className="text-white/80 leading-relaxed">
-            按照指引拍照，确保掌纹清晰可见
-          </p>
-        </section>
-
-        {/* 模拟相机界面 */}
-        <div className="relative bg-black rounded-2xl overflow-hidden mb-8" style={{aspectRatio: '3/4'}}>
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
-            <div className="text-center text-white/60">
-              <div className="w-16 h-16 mx-auto mb-4 border-2 border-white/30 rounded-full flex items-center justify-center">
-                <span className="text-2xl">📷</span>
-              </div>
-              <p className="text-sm">相机预览</p>
-              <p className="text-xs mt-1">将手掌放在画面中央</p>
-            </div>
+          <div className="mt-4 bg-red-50 rounded-2xl p-4 flex justify-center gap-3">
+            <img src="/palm/img/pose-wrong1.png" className="w-16 opacity-60" alt="错误姿势" />
+            <img src="/palm/img/pose-wrong2.png" className="w-16 opacity-60" alt="错误姿势" />
+            <img src="/palm/img/pose-wrong3.png" className="w-16 opacity-60" alt="错误姿势" />
           </div>
-          
-          {/* 对焦框 */}
-          <div className="absolute inset-4 border-2 border-green-400 rounded-xl opacity-60"></div>
-        </div>
+        </motion.section>
 
-        {/* 操作按钮 */}
-        <div className="flex justify-center items-center space-x-8 mb-8">
-          <button className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-white">
-            🖼️
-          </button>
-          
-          <Link
-            href={`/${locale}/palm/stable/14`}
-            className="w-20 h-20 bg-white rounded-full flex items-center justify-center text-2xl hover:bg-gray-200 transition-colors shadow-lg"
+        {/* Actions */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-10 space-y-4"
+        >
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={pickFile}
+            disabled={isUploading}
+            className="w-full h-12 rounded-xl border border-violet-300 text-violet-600 font-medium transition"
           >
-            📷
-          </Link>
-          
-          <button className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center text-white">
-            🔄
-          </button>
-        </div>
+            {isUploading ? '上传中...' : '从相册上传'}
+          </motion.button>
 
-        {/* 提示 */}
-        <div className="bg-white/10 rounded-xl p-4">
-          <h4 className="font-semibold text-white mb-2">📝 拍照技巧</h4>
-          <ul className="text-sm text-white/80 space-y-1">
-            <li>• 手掌平整向上，五指张开</li>
-            <li>• 距离相机15-20厘米</li>
-            <li>• 确保光线充足且均匀</li>
-          </ul>
-        </div>
+          <motion.button
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={openCamera}
+            disabled={isUploading}
+            className="relative w-full h-14 flex items-center justify-center rounded-xl bg-violet-600 text-white text-lg font-semibold shadow-lg transition"
+          >
+            立即拍照
+          </motion.button>
+        </motion.div>
+
+        {/* Privacy Notice */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-10 flex gap-2 text-[12px] text-gray-500"
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-4 w-4 text-green-500 shrink-0" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth="2"
+              d="M12 11c1.38 0 2.5-1.12 2.5-2.5S13.38 6 12 6 9.5 7.12 9.5 8.5 10.62 11 12 11z"
+            />
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth="2"
+              d="M12 11v9m-6 0h12a2 2 0 002-2v-5a7 7 0 10-14 0v5a2 2 0 002 2z"
+            />
+          </svg>
+          <p>
+            照片仅用于本次分析并经端到端加密。查看 
+            <a href="/privacy" className="underline">隐私政策</a>。
+          </p>
+        </motion.div>
       </main>
     </div>
   )
