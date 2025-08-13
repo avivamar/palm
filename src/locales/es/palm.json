@@ -186,6 +186,69 @@
     "languages_title": "Idiomas Soportados",
     "languages_list": "Inglés, Español, Chino, Japonés"
   },
+  "form": {
+    "title": "Análisis de Lectura de Palma con IA",
+    "description": "Sube fotos claras de tu palma y obtén insights personalizados sobre tu personalidad, vida y posibilidades futuras a través del arte ancestral de la quiromancia combinado con tecnología IA moderna.",
+    "backButton": "Volver al Inicio",
+    "steps": {
+      "upload": "Subir Fotos de Palma",
+      "analysis": "Análisis Inteligente IA",
+      "insights": "Obtener Insights",
+      "analysisDescription": "Tecnología IA avanzada analiza las líneas y características de tu palma",
+      "insightsDescription": "Obtén reportes detallados de insights sobre tu personalidad y futuro"
+    },
+    "upload": {
+      "title": "Subir Fotos de Palma",
+      "description": "Sube fotos claras de tu palma para comenzar tu lectura personalizada. La mano izquierda representa talento y potencial, la mano derecha representa realidad y desarrollo.",
+      "leftHand": "Mano Izquierda",
+      "rightHand": "Mano Derecha",
+      "camera": "Tomar Foto",
+      "capturing": "Capturando...",
+      "dragDrop": "Suelta imagen aquí",
+      "upload": "Subir foto de {hand}",
+      "clickSelect": "Arrastra o haz clic para seleccionar",
+      "fileTypes": "Soporta: JPEG, PNG, WebP (Máx 10MB)",
+      "preview": "Vista previa de {hand}",
+      "fileInfo": "{name} ({size} MB)",
+      "validation": {
+        "minOneHand": "Por favor sube al menos una foto de mano"
+      }
+    },
+    "tips": {
+      "title": "Consejos de Fotografía",
+      "lighting": "Iluminación adecuada, evita sombras",
+      "position": "Palma plana, dedos naturalmente separados",
+      "orientation": "Palma hacia arriba, foto vertical",
+      "recommendation": "Sube al menos una mano, recomendamos ambas para comparación"
+    },
+    "analysisType": {
+      "title": "Tipo de Análisis",
+      "free": "Análisis Básico Gratuito",
+      "experience": "Probar Ahora",
+      "description": "Obtén lectura básica de palma, actualiza al reporte completo después de completar"
+    },
+    "birthInfo": {
+      "title": "Información de Nacimiento (Opcional - Mejora la precisión)",
+      "birthDate": "Fecha de Nacimiento",
+      "birthTime": "Hora de Nacimiento",
+      "birthLocation": "Lugar de Nacimiento",
+      "locationPlaceholder": "Ciudad, País (ej., Madrid, España)"
+    },
+    "submit": {
+      "button": "Comenzar Análisis de Palma",
+      "loading": "Iniciando análisis...",
+      "privacy": "Comenzar análisis gratuito, no requiere registro"
+    },
+    "freemium": {
+      "title": "Modo de Experiencia Gratuita",
+      "description": "Recibirás un reporte básico gratuito de lectura de palma. Para análisis más detallado y consejos personalizados, puedes actualizar a la versión completa en la página de resultados.",
+      "features": {
+        "personality": "Rasgos básicos de personalidad",
+        "lines": "Líneas principales de la palma",
+        "fortune": "Lectura breve de fortuna"
+      }
+    }
+  },
   "common": {
     "loading": "Cargando...",
     "error": "Ocurrió un error",
