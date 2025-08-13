@@ -5,12 +5,25 @@
 
 import { FilesetResolver, HandLandmarker, HandLandmarkerResult } from '@mediapipe/tasks-vision';
 
+interface PalmLines {
+  lifeLine: { start: Point2D; end: Point2D; curve: Point2D[] };
+  heartLine: { start: Point2D; end: Point2D; curve: Point2D[] };
+  headLine: { start: Point2D; end: Point2D; curve: Point2D[] };
+  fateLine?: { start: Point2D; end: Point2D; curve: Point2D[] };
+}
+
+interface Point2D {
+  x: number;
+  y: number;
+}
+
 interface MLValidationResult {
   isValid: boolean;
   confidence: number;
   message: string;
   handCount: number;
   landmarks?: any[];
+  palmLines?: PalmLines;
   issues?: string[];
 }
 
@@ -182,6 +195,7 @@ function analyzeHandDetectionResults(results: HandLandmarkerResult): MLValidatio
       : '❌ ' + (issues[0] || '手掌图片不符合要求'),
     handCount,
     landmarks: results.landmarks,
+    palmLines: palmAnalysis.palmLines,
     issues
   };
 }
@@ -193,6 +207,7 @@ function analyzePalmVisibility(landmarks: any[]): {
   isPalmVisible: boolean;
   fingersSpread: number;
   palmArea: number;
+  palmLines?: PalmLines;
 } {
   // MediaPipe hand landmarks indices
   const WRIST = 0;
@@ -201,6 +216,13 @@ function analyzePalmVisibility(landmarks: any[]): {
   const MIDDLE_TIP = 12;
   const RING_TIP = 16;
   const PINKY_TIP = 20;
+  
+  // Palm line detection points based on MediaPipe landmarks
+  const THUMB_MCP = 2;  // 拇指掌指关节
+  const INDEX_MCP = 5;  // 食指掌指关节
+  const MIDDLE_MCP = 9; // 中指掌指关节
+  const RING_MCP = 13;  // 无名指掌指关节
+  const PINKY_MCP = 17; // 小指掌指关节
   
   // Calculate distances between finger tips (spread indicator)
   const fingerTips = [
@@ -237,10 +259,14 @@ function analyzePalmVisibility(landmarks: any[]): {
   // Check if palm is facing camera (z-coordinate analysis)
   const isPalmVisible = palmArea > 0.05 && fingersSpread > 0.5;
   
+  // Calculate approximate palm lines based on landmarks
+  const palmLines = isPalmVisible ? calculatePalmLines(landmarks) : undefined;
+  
   return {
     isPalmVisible,
     fingersSpread,
-    palmArea
+    palmArea,
+    palmLines
   };
 }
 
@@ -268,6 +294,91 @@ function calculateMLConfidence(
   );
   
   return Math.min(confidence, 1);
+}
+
+/**
+ * Calculate palm lines based on MediaPipe landmarks
+ * 基于MediaPipe地标计算掌纹线位置
+ */
+function calculatePalmLines(landmarks: any[]): PalmLines {
+  // MediaPipe 21个关键点索引
+  const WRIST = 0;
+  const THUMB_CMC = 1;
+  const THUMB_MCP = 2;
+  const THUMB_IP = 3;
+  const THUMB_TIP = 4;
+  const INDEX_MCP = 5;
+  const INDEX_PIP = 6;
+  const INDEX_DIP = 7;
+  const INDEX_TIP = 8;
+  const MIDDLE_MCP = 9;
+  const MIDDLE_PIP = 10;
+  const MIDDLE_DIP = 11;
+  const MIDDLE_TIP = 12;
+  const RING_MCP = 13;
+  const RING_PIP = 14;
+  const RING_DIP = 15;
+  const RING_TIP = 16;
+  const PINKY_MCP = 17;
+  const PINKY_PIP = 18;
+  const PINKY_DIP = 19;
+  const PINKY_TIP = 20;
+
+  // 生命线：从拇指和食指之间开始，环绕拇指球到手腕
+  const lifeLineStart = interpolatePoint(landmarks[THUMB_MCP], landmarks[INDEX_MCP], 0.3);
+  const lifeLineMid1 = interpolatePoint(landmarks[THUMB_CMC], landmarks[THUMB_MCP], 0.5);
+  const lifeLineMid2 = interpolatePoint(landmarks[THUMB_CMC], landmarks[WRIST], 0.4);
+  const lifeLineEnd = interpolatePoint(landmarks[WRIST], landmarks[THUMB_CMC], 0.2);
+  
+  // 心线（感情线）：从小指下方开始，横贯手掌上部
+  const heartLineStart = interpolatePoint(landmarks[PINKY_MCP], landmarks[RING_MCP], 0.5);
+  const heartLineMid1 = interpolatePoint(landmarks[RING_MCP], landmarks[MIDDLE_MCP], 0.5);
+  const heartLineMid2 = interpolatePoint(landmarks[MIDDLE_MCP], landmarks[INDEX_MCP], 0.5);
+  const heartLineEnd = interpolatePoint(landmarks[INDEX_MCP], landmarks[THUMB_MCP], 0.7);
+  
+  // 头线（智慧线）：从生命线起点开始，横贯手掌中部
+  const headLineStart = lifeLineStart; // 与生命线起点相同
+  const headLineMid1 = interpolatePoint(landmarks[INDEX_MCP], landmarks[MIDDLE_MCP], 0.4);
+  const headLineMid2 = interpolatePoint(landmarks[MIDDLE_MCP], landmarks[RING_MCP], 0.4);
+  const headLineEnd = interpolatePoint(landmarks[RING_MCP], landmarks[PINKY_MCP], 0.3);
+  
+  // 命运线（可选）：从手腕中部向中指延伸
+  const fateLineStart = landmarks[WRIST];
+  const fateLineMid = interpolatePoint(landmarks[WRIST], landmarks[MIDDLE_MCP], 0.5);
+  const fateLineEnd = interpolatePoint(landmarks[MIDDLE_MCP], landmarks[MIDDLE_PIP], 0.2);
+  
+  return {
+    lifeLine: {
+      start: lifeLineStart,
+      end: lifeLineEnd,
+      curve: [lifeLineMid1, lifeLineMid2]
+    },
+    heartLine: {
+      start: heartLineStart,
+      end: heartLineEnd,
+      curve: [heartLineMid1, heartLineMid2]
+    },
+    headLine: {
+      start: headLineStart,
+      end: headLineEnd,
+      curve: [headLineMid1, headLineMid2]
+    },
+    fateLine: {
+      start: fateLineStart,
+      end: fateLineEnd,
+      curve: [fateLineMid]
+    }
+  };
+}
+
+/**
+ * Interpolate between two points
+ */
+function interpolatePoint(p1: any, p2: any, t: number): Point2D {
+  return {
+    x: p1.x + (p2.x - p1.x) * t,
+    y: p1.y + (p2.y - p1.y) * t
+  };
 }
 
 /**
