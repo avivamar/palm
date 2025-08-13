@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
-import { validatePalmImage, getValidationMessage } from '@/utils/palmValidation'
+import { validatePalmCombined, getMLValidationMessage } from '@/utils/palmValidationML'
 
 interface Step13Props {
   userData: PalmUserData
@@ -82,10 +82,10 @@ export default function Step13Capture({
             timestamp: Date.now()
           })
           
-          // Validate the palm image
+          // Validate the palm image using advanced ML
           try {
-            const validationResult = await validatePalmImage(selectedFile)
-            const message = getValidationMessage(validationResult)
+            const validationResult = await validatePalmCombined(selectedFile)
+            const message = getMLValidationMessage(validationResult)
             setValidationMessage(message)
             
             trackEvent('palm_validation_result', {
