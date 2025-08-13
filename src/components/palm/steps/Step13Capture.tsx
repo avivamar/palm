@@ -242,6 +242,7 @@ export default function Step13Capture({
     }
   }
   
+  // 从相册选择文件
   const pickFile = () => {
     trackEvent('palm_file_picker_attempt', { 
       timestamp: Date.now()
@@ -250,8 +251,7 @@ export default function Step13Capture({
     const input = document.createElement('input')
     input.type = 'file'
     input.accept = 'image/*'
-    // 在移动设备上直接调用相机
-    ;(input as any).capture = 'environment'
+    // 不添加capture属性，这样会打开相册/文件管理器
     input.onchange = async (e) => {
       const files = (e.target as HTMLInputElement).files
       if (files && files.length > 0) {
@@ -271,6 +271,36 @@ export default function Step13Capture({
     input.click()
   }
 
+  // 直接调用原生相机拍照
+  const captureWithNativeCamera = () => {
+    trackEvent('palm_native_camera_capture_attempt', { 
+      timestamp: Date.now()
+    })
+    
+    const input = document.createElement('input')
+    input.type = 'file'
+    input.accept = 'image/*'
+    // 添加capture属性直接调用相机
+    ;(input as any).capture = 'environment'
+    input.onchange = async (e) => {
+      const files = (e.target as HTMLInputElement).files
+      if (files && files.length > 0) {
+        const selectedFile = files[0]
+        if (selectedFile) {
+          trackEvent('palm_native_camera_capture_success', { 
+            fileSize: selectedFile.size,
+            fileType: selectedFile.type,
+            timestamp: Date.now()
+          })
+          
+          // Process the captured image
+          await processImageFile(selectedFile)
+        }
+      }
+    }
+    input.click()
+  }
+
   // 检测是否为移动设备
   const isMobile = () => {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
@@ -278,14 +308,14 @@ export default function Step13Capture({
 
   // 优化的相机调用 - 添加更好的错误处理和降级方案
   const openCameraOptimized = async () => {
-    trackEvent('palm_camera_capture_attempt', { 
+    trackEvent('palm_camera_optimized_attempt', { 
       timestamp: Date.now(),
       isMobile: isMobile()
     })
 
-    // 移动设备优先使用文件选择器调用原生相机
+    // 移动设备优先使用原生相机调用
     if (isMobile()) {
-      pickFile()
+      captureWithNativeCamera()
       return
     }
 
