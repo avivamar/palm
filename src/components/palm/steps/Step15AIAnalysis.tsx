@@ -139,58 +139,86 @@ export default function Step15AIAnalysis({
     }
   })()
   
-  // 生成掌纹线条（使用真实关键点或更科学的手相学位置）
+  // 生成掌纹线条（基于标准手相学位置）
   const palmLines = (() => {
     const centerX = imageSize.width / 2
     const centerY = imageSize.height / 2
+    const handWidth = imageSize.width * 0.8  // 手掌宽度约为图片的80%
+    const handHeight = imageSize.height * 0.9 // 手掌高度约为图片的90%
     
     if (isRealUserImage && userData.palmLandmarks && userData.palmLandmarks.length > 0) {
       const pixels = convertLandmarksToPixels(userData.palmLandmarks, imageSize.width, imageSize.height)
       
-      // 基于MediaPipe关键点计算更准确的掌纹位置
+      // 基于MediaPipe关键点的相对位置计算标准手相线条
       const wrist = pixels[HAND_LANDMARKS.WRIST]
       const thumbBase = pixels[HAND_LANDMARKS.THUMB_MCP]
-      const indexBase = pixels[HAND_LANDMARKS.INDEX_FINGER_MCP]
+      const indexBase = pixels[HAND_LANDMARKS.INDEX_FINGER_MCP] 
       const middleBase = pixels[HAND_LANDMARKS.MIDDLE_FINGER_MCP]
       const pinkyBase = pixels[HAND_LANDMARKS.PINKY_MCP]
       
-      // 生命线：从拇指和食指之间弧形到手腕
-      const lifeLine = `${(indexBase?.x || centerX - 30) - 20},${(indexBase?.y || centerY - 20) + 30} ${(thumbBase?.x || centerX - 50) + 10},${(thumbBase?.y || centerY) + 20} ${(wrist?.x || centerX - 10) - 15},${(wrist?.y || centerY + 80) - 20}`
+      // 计算手掌实际范围
+      const palmTop = Math.min(indexBase?.y || centerY, middleBase?.y || centerY, pinkyBase?.y || centerY) + 40
+      const palmBottom = wrist?.y || (centerY + handHeight/3)
+      const palmLeft = thumbBase?.x || (centerX - handWidth/3)
+      const palmRight = pinkyBase?.x || (centerX + handWidth/3)
       
-      // 智慧线：从食指下方横穿手掌
-      const headLine = `${(indexBase?.x || centerX - 30) - 15},${(indexBase?.y || centerY - 20) + 40} ${(middleBase?.x || centerX) + 5},${(middleBase?.y || centerY - 15) + 50} ${(pinkyBase?.x || centerX + 40) - 10},${(pinkyBase?.y || centerY + 10) + 30}`
+      // 感情线：最上方横线，靠近手指基部
+      const heartLine = `${palmLeft + 20},${palmTop} ${centerX + 10},${palmTop - 5} ${palmRight - 10},${palmTop + 10}`
       
-      // 感情线：在手指基部下方的横线
-      const heartLine = `${(indexBase?.x || centerX - 30) - 5},${(indexBase?.y || centerY - 20) + 10} ${(middleBase?.x || centerX) + 10},${(middleBase?.y || centerY - 15) + 5} ${(pinkyBase?.x || centerX + 40) + 5},${(pinkyBase?.y || centerY + 10) - 10}`
+      // 智慧线：中间横线，从食指侧到小指侧略向下倾斜
+      const headLine = `${palmLeft + 10},${palmTop + 35} ${centerX + 15},${palmTop + 50} ${palmRight},${palmTop + 65}`
+      
+      // 生命线：围绕拇指的弧形线
+      const lifeLine = `${palmLeft + 25},${palmTop + 15} ${palmLeft},${palmTop + 50} ${palmLeft + 15},${palmBottom - 20}`
+      
+      // 命运线：从手腕垂直向上的直线
+      const fateLine = `${centerX + 5},${palmBottom} ${centerX},${centerY} ${centerX - 5},${palmTop + 20}`
       
       return [
-        { points: heartLine, color: "#e11d48", delay: 0.5, label: "感情线", strokeWidth: "4" },
-        { points: headLine, color: "#2563eb", delay: 1.0, label: "智慧线", strokeWidth: "4" },
-        { points: lifeLine, color: "#16a34a", delay: 1.5, label: "生命线", strokeWidth: "4" },
+        { points: heartLine, color: "#e11d48", delay: 0.5, label: "感情线", strokeWidth: "3", description: "主掌感情、人生观、品德" },
+        { points: headLine, color: "#2563eb", delay: 1.0, label: "智慧线", strokeWidth: "3", description: "主掌智慧、思维、判斷力" },
+        { points: lifeLine, color: "#16a34a", delay: 1.5, label: "生命線", strokeWidth: "3", description: "主掌生命健康、壽命長短" },
+        { points: fateLine, color: "#7c3aed", delay: 2.0, label: "命運線", strokeWidth: "3", description: "主掌事業、運勢、態度" },
       ]
     } else {
-      // 更科学的静态掌纹线条（基于手相学标准位置）
+      // 标准手相学位置的静态线条（基于手掌比例）
+      const palmTop = centerY - handHeight/3
+      const palmBottom = centerY + handHeight/3
+      const palmLeft = centerX - handWidth/3
+      const palmRight = centerX + handWidth/3
+      
       return [
         { 
-          points: `${centerX - 35},${centerY - 30} ${centerX + 10},${centerY - 35} ${centerX + 45},${centerY - 20}`, 
+          points: `${palmLeft + 20},${palmTop + 10} ${centerX + 10},${palmTop + 5} ${palmRight - 10},${palmTop + 15}`, 
           color: "#e11d48", 
           delay: 0.5, 
-          label: "感情线",
-          strokeWidth: "4"
+          label: "感情線",
+          strokeWidth: "3",
+          description: "主掌感情、人生觀、品德"
         },
         { 
-          points: `${centerX - 25},${centerY + 10} ${centerX + 15},${centerY + 20} ${centerX + 50},${centerY + 35}`, 
+          points: `${palmLeft + 10},${palmTop + 45} ${centerX + 15},${palmTop + 60} ${palmRight},${palmTop + 75}`, 
           color: "#2563eb", 
           delay: 1.0, 
-          label: "智慧线",
-          strokeWidth: "4"
+          label: "智慧線",
+          strokeWidth: "3",
+          description: "主掌智慧、思維、判斷力"
         },
         { 
-          points: `${centerX - 45},${centerY + 5} ${centerX - 20},${centerY + 30} ${centerX - 5},${centerY + 70}`, 
+          points: `${palmLeft + 25},${palmTop + 25} ${palmLeft - 5},${palmTop + 60} ${palmLeft + 15},${palmBottom - 10}`, 
           color: "#16a34a", 
           delay: 1.5, 
-          label: "生命线",
-          strokeWidth: "4"
+          label: "生命線",
+          strokeWidth: "3",
+          description: "主掌生命健康、壽命長短"
+        },
+        { 
+          points: `${centerX + 5},${palmBottom} ${centerX},${centerY} ${centerX - 5},${palmTop + 30}`, 
+          color: "#7c3aed", 
+          delay: 2.0, 
+          label: "命運線",
+          strokeWidth: "3",
+          description: "主掌事業、運勢、態度"
         },
       ]
     }
@@ -289,22 +317,40 @@ export default function Step15AIAnalysis({
                 
                 {/* 线条标签 */}
                 {line.label && (
-                  <motion.text
+                  <motion.g
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: line.delay + 0.8 }}
-                    x={line.points.split(' ')[1]?.split(',')[0] || "120"}
-                    y={(parseInt(line.points.split(' ')[1]?.split(',')[1] || "150") - 8).toString()}
-                    fill={line.color}
-                    fontSize="11"
-                    fontWeight="bold"
-                    textAnchor="middle"
-                    style={{
-                      filter: "drop-shadow(0 1px 2px rgba(255,255,255,0.8))"
-                    }}
                   >
-                    {line.label}
-                  </motion.text>
+                    <motion.text
+                      x={line.points.split(' ')[1]?.split(',')[0] || "120"}
+                      y={(parseInt(line.points.split(' ')[1]?.split(',')[1] || "150") - 15).toString()}
+                      fill={line.color}
+                      fontSize="12"
+                      fontWeight="bold"
+                      textAnchor="middle"
+                      style={{
+                        filter: "drop-shadow(0 1px 2px rgba(255,255,255,0.8))"
+                      }}
+                    >
+                      {line.label}
+                    </motion.text>
+                    {line.description && (
+                      <motion.text
+                        x={line.points.split(' ')[1]?.split(',')[0] || "120"}
+                        y={(parseInt(line.points.split(' ')[1]?.split(',')[1] || "150") - 2).toString()}
+                        fill={line.color}
+                        fontSize="8"
+                        textAnchor="middle"
+                        opacity="0.8"
+                        style={{
+                          filter: "drop-shadow(0 1px 2px rgba(255,255,255,0.8))"
+                        }}
+                      >
+                        {line.description}
+                      </motion.text>
+                    )}
+                  </motion.g>
                 )}
               </g>
             ))}
