@@ -67,20 +67,35 @@ export default function Step15AIAnalysis({
     }))
   }
   
-  // MediaPipe手部关键点索引
+  // MediaPipe手部关键点完整索引（21个点）
   const HAND_LANDMARKS = {
-    THUMB_TIP: 4,
-    INDEX_FINGER_TIP: 8,
-    MIDDLE_FINGER_TIP: 12,
-    RING_FINGER_TIP: 16,
-    PINKY_TIP: 20,
+    // 手腕
     WRIST: 0,
-    // 掌纹关键点
-    THUMB_MCP: 2,
-    INDEX_FINGER_MCP: 5,
-    MIDDLE_FINGER_MCP: 9,
-    RING_FINGER_MCP: 13,
-    PINKY_MCP: 17
+    // 拇指 (1-4)
+    THUMB_CMC: 1,    // 拇指根部
+    THUMB_MCP: 2,    // 拇指掌指关节
+    THUMB_IP: 3,     // 拇指指间关节
+    THUMB_TIP: 4,    // 拇指指尖
+    // 食指 (5-8)
+    INDEX_FINGER_MCP: 5,  // 食指掌指关节
+    INDEX_FINGER_PIP: 6,  // 食指近端指间关节
+    INDEX_FINGER_DIP: 7,  // 食指远端指间关节
+    INDEX_FINGER_TIP: 8,  // 食指指尖
+    // 中指 (9-12)
+    MIDDLE_FINGER_MCP: 9,   // 中指掌指关节
+    MIDDLE_FINGER_PIP: 10,  // 中指近端指间关节
+    MIDDLE_FINGER_DIP: 11,  // 中指远端指间关节
+    MIDDLE_FINGER_TIP: 12,  // 中指指尖
+    // 无名指 (13-16)
+    RING_FINGER_MCP: 13,    // 无名指掌指关节
+    RING_FINGER_PIP: 14,    // 无名指近端指间关节
+    RING_FINGER_DIP: 15,    // 无名指远端指间关节
+    RING_FINGER_TIP: 16,    // 无名指指尖
+    // 小指 (17-20)
+    PINKY_MCP: 17,          // 小指掌指关节
+    PINKY_PIP: 18,          // 小指近端指间关节
+    PINKY_DIP: 19,          // 小指远端指间关节
+    PINKY_TIP: 20,          // 小指指尖
   }
   
   // 生成手指含义标记点（使用真实关键点或后备坐标）
@@ -139,86 +154,143 @@ export default function Step15AIAnalysis({
     }
   })()
   
-  // 生成掌纹线条（基于标准手相学位置）
+  // 基于MediaPipe精确关键点的掌纹线条算法
   const palmLines = (() => {
     const centerX = imageSize.width / 2
     const centerY = imageSize.height / 2
-    const handWidth = imageSize.width * 0.8  // 手掌宽度约为图片的80%
-    const handHeight = imageSize.height * 0.9 // 手掌高度约为图片的90%
     
-    if (isRealUserImage && userData.palmLandmarks && userData.palmLandmarks.length > 0) {
+    if (isRealUserImage && userData.palmLandmarks && userData.palmLandmarks.length >= 21) {
       const pixels = convertLandmarksToPixels(userData.palmLandmarks, imageSize.width, imageSize.height)
       
-      // 基于MediaPipe关键点的相对位置计算标准手相线条
-      const wrist = pixels[HAND_LANDMARKS.WRIST]
-      const thumbBase = pixels[HAND_LANDMARKS.THUMB_MCP]
-      const indexBase = pixels[HAND_LANDMARKS.INDEX_FINGER_MCP] 
-      const middleBase = pixels[HAND_LANDMARKS.MIDDLE_FINGER_MCP]
-      const pinkyBase = pixels[HAND_LANDMARKS.PINKY_MCP]
+      // 获取关键解剖点（带默认值）
+      const wrist = pixels[HAND_LANDMARKS.WRIST] || { x: centerX, y: centerY + 100 }
+      const thumbCmc = pixels[HAND_LANDMARKS.THUMB_CMC] || { x: centerX - 60, y: centerY + 40 }
+      const thumbMcp = pixels[HAND_LANDMARKS.THUMB_MCP] || { x: centerX - 50, y: centerY + 20 }
+      const indexMcp = pixels[HAND_LANDMARKS.INDEX_FINGER_MCP] || { x: centerX - 30, y: centerY - 20 }
+      const middleMcp = pixels[HAND_LANDMARKS.MIDDLE_FINGER_MCP] || { x: centerX, y: centerY - 25 }
+      const ringMcp = pixels[HAND_LANDMARKS.RING_FINGER_MCP] || { x: centerX + 30, y: centerY - 20 }
+      const pinkyMcp = pixels[HAND_LANDMARKS.PINKY_MCP] || { x: centerX + 50, y: centerY - 10 }
       
-      // 计算手掌实际范围
-      const palmTop = Math.min(indexBase?.y || centerY, middleBase?.y || centerY, pinkyBase?.y || centerY) + 40
-      const palmBottom = wrist?.y || (centerY + handHeight/3)
-      const palmLeft = thumbBase?.x || (centerX - handWidth/3)
-      const palmRight = pinkyBase?.x || (centerX + handWidth/3)
+      // 计算手掌几何中心（基于掌指关节）
+      const palmCenterX = (indexMcp.x + middleMcp.x + ringMcp.x + pinkyMcp.x) / 4
+      const palmCenterY = (indexMcp.y + middleMcp.y + ringMcp.y + pinkyMcp.y) / 4
       
-      // 感情线：最上方横线，靠近手指基部
-      const heartLine = `${palmLeft + 20},${palmTop} ${centerX + 10},${palmTop - 5} ${palmRight - 10},${palmTop + 10}`
+      // 1. 感情线（Heart Line）- 连接食指基部到小指基部的弧线
+      // 在手相学中，感情线位于掌指关节上方约15-20像素处
+      const heartLineStart = { x: indexMcp.x - 10, y: indexMcp.y - 15 }
+      const heartLineMiddle = { x: palmCenterX, y: Math.min(indexMcp.y, middleMcp.y, ringMcp.y) - 10 }
+      const heartLineEnd = { x: pinkyMcp.x + 5, y: pinkyMcp.y - 5 }
+      const heartLine = `${heartLineStart.x},${heartLineStart.y} ${heartLineMiddle.x},${heartLineMiddle.y} ${heartLineEnd.x},${heartLineEnd.y}`
       
-      // 智慧线：中间横线，从食指侧到小指侧略向下倾斜
-      const headLine = `${palmLeft + 10},${palmTop + 35} ${centerX + 15},${palmTop + 50} ${palmRight},${palmTop + 65}`
+      // 2. 智慧线（Head Line）- 从食指和拇指之间向小指方向的斜线
+      // 智慧线起点在食指MCP和拇指MCP之间，向小指侧倾斜下降
+      const headLineStartX = (indexMcp.x + thumbMcp.x) / 2 - 5
+      const headLineStartY = (indexMcp.y + thumbMcp.y) / 2 + 20
+      const headLineEndX = pinkyMcp.x - 15
+      const headLineEndY = pinkyMcp.y + 25
+      const headLine = `${headLineStartX},${headLineStartY} ${palmCenterX + 10},${palmCenterY + 15} ${headLineEndX},${headLineEndY}`
       
-      // 生命线：围绕拇指的弧形线
-      const lifeLine = `${palmLeft + 25},${palmTop + 15} ${palmLeft},${palmTop + 50} ${palmLeft + 15},${palmBottom - 20}`
+      // 3. 生命线（Life Line）- 围绕拇指的弧形曲线
+      // 生命线从食指和拇指之间开始，弧形环绕拇指山丘到手腕
+      const lifeLineStartX = headLineStartX - 5  // 与智慧线起点接近
+      const lifeLineStartY = headLineStartY - 15
+      const lifeLineMiddleX = thumbCmc.x - 15  // 拇指根部左侧
+      const lifeLineMiddleY = (thumbCmc.y + wrist.y) / 2
+      const lifeLineEndX = wrist.x - 10
+      const lifeLineEndY = wrist.y - 15
+      const lifeLine = `${lifeLineStartX},${lifeLineStartY} ${lifeLineMiddleX},${lifeLineMiddleY} ${lifeLineEndX},${lifeLineEndY}`
       
-      // 命运线：从手腕垂直向上的直线
-      const fateLine = `${centerX + 5},${palmBottom} ${centerX},${centerY} ${centerX - 5},${palmTop + 20}`
-      
-      return [
-        { points: heartLine, color: "#e11d48", delay: 0.5, label: "感情线", strokeWidth: "3", description: "主掌感情、人生观、品德" },
-        { points: headLine, color: "#2563eb", delay: 1.0, label: "智慧线", strokeWidth: "3", description: "主掌智慧、思维、判斷力" },
-        { points: lifeLine, color: "#16a34a", delay: 1.5, label: "生命線", strokeWidth: "3", description: "主掌生命健康、壽命長短" },
-        { points: fateLine, color: "#7c3aed", delay: 2.0, label: "命運線", strokeWidth: "3", description: "主掌事業、運勢、態度" },
-      ]
-    } else {
-      // 标准手相学位置的静态线条（基于手掌比例）
-      const palmTop = centerY - handHeight/3
-      const palmBottom = centerY + handHeight/3
-      const palmLeft = centerX - handWidth/3
-      const palmRight = centerX + handWidth/3
+      // 4. 命运线（Fate Line）- 从手腕中央垂直向上到中指的直线
+      // 命运线沿手掌中央垂直方向，从手腕到中指基部
+      const fateLineStartX = wrist.x
+      const fateLineStartY = wrist.y
+      const fateLineEndX = middleMcp.x - 5
+      const fateLineEndY = middleMcp.y + 10
+      const fateLine = `${fateLineStartX},${fateLineStartY} ${palmCenterX},${palmCenterY + 20} ${fateLineEndX},${fateLineEndY}`
       
       return [
         { 
-          points: `${palmLeft + 20},${palmTop + 10} ${centerX + 10},${palmTop + 5} ${palmRight - 10},${palmTop + 15}`, 
+          points: heartLine, 
+          color: "#e11d48", 
+          delay: 0.5, 
+          label: "感情線", 
+          strokeWidth: "3", 
+          description: "主掌感情、人生觀、品德",
+          anatomyBased: true
+        },
+        { 
+          points: headLine, 
+          color: "#2563eb", 
+          delay: 1.0, 
+          label: "智慧線", 
+          strokeWidth: "3", 
+          description: "主掌智慧、思維、判斷力",
+          anatomyBased: true
+        },
+        { 
+          points: lifeLine, 
+          color: "#16a34a", 
+          delay: 1.5, 
+          label: "生命線", 
+          strokeWidth: "3", 
+          description: "主掌生命健康、壽命長短",
+          anatomyBased: true
+        },
+        { 
+          points: fateLine, 
+          color: "#7c3aed", 
+          delay: 2.0, 
+          label: "命運線", 
+          strokeWidth: "3", 
+          description: "主掌事業、運勢、態度",
+          anatomyBased: true
+        },
+      ]
+    } else {
+      // 回退到标准比例的静态线条
+      const handWidth = imageSize.width * 0.7
+      const handHeight = imageSize.height * 0.8
+      const palmTop = centerY - handHeight/3
+      const palmBottom = centerY + handHeight/2.5
+      const palmLeft = centerX - handWidth/2.5
+      const palmRight = centerX + handWidth/2.5
+      
+      return [
+        { 
+          points: `${palmLeft + 15},${palmTop + 20} ${centerX},${palmTop + 15} ${palmRight - 15},${palmTop + 25}`, 
           color: "#e11d48", 
           delay: 0.5, 
           label: "感情線",
           strokeWidth: "3",
-          description: "主掌感情、人生觀、品德"
+          description: "主掌感情、人生觀、品德",
+          anatomyBased: false
         },
         { 
-          points: `${palmLeft + 10},${palmTop + 45} ${centerX + 15},${palmTop + 60} ${palmRight},${palmTop + 75}`, 
+          points: `${palmLeft + 5},${palmTop + 55} ${centerX + 10},${palmTop + 65} ${palmRight - 5},${palmTop + 85}`, 
           color: "#2563eb", 
           delay: 1.0, 
           label: "智慧線",
           strokeWidth: "3",
-          description: "主掌智慧、思維、判斷力"
+          description: "主掌智慧、思維、判斷力",
+          anatomyBased: false
         },
         { 
-          points: `${palmLeft + 25},${palmTop + 25} ${palmLeft - 5},${palmTop + 60} ${palmLeft + 15},${palmBottom - 10}`, 
+          points: `${palmLeft + 10},${palmTop + 40} ${palmLeft - 10},${palmTop + 85} ${palmLeft + 5},${palmBottom - 15}`, 
           color: "#16a34a", 
           delay: 1.5, 
           label: "生命線",
           strokeWidth: "3",
-          description: "主掌生命健康、壽命長短"
+          description: "主掌生命健康、壽命長短",
+          anatomyBased: false
         },
         { 
-          points: `${centerX + 5},${palmBottom} ${centerX},${centerY} ${centerX - 5},${palmTop + 30}`, 
+          points: `${centerX},${palmBottom} ${centerX - 2},${centerY + 10} ${centerX - 5},${palmTop + 45}`, 
           color: "#7c3aed", 
           delay: 2.0, 
           label: "命運線",
           strokeWidth: "3",
-          description: "主掌事業、運勢、態度"
+          description: "主掌事業、運勢、態度",
+          anatomyBased: false
         },
       ]
     }
@@ -243,10 +315,12 @@ export default function Step15AIAnalysis({
             onLoad={handleImageLoad}
           />
           
-          {/* 实时检测状态提示 */}
+          {/* AI检测状态提示 */}
           {isRealUserImage && (
             <div className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
-              ✓ 实时分析中
+              {userData.palmLandmarks && userData.palmLandmarks.length >= 21 
+                ? '🎯 AI精确定位' 
+                : '✓ 实时分析中'}
             </div>
           )}
 
@@ -385,8 +459,10 @@ export default function Step15AIAnalysis({
           {isRealUserImage ? (
             <>
               ✨ 基于您的真实手掌照片进行深度分析<br/>
-              📊 检测到 {userData.palmLandmarks?.length || 0} 个关键点，正在解读财富密码<br/>
-              🔮 预计发现 3-5 个个性化投资机会
+              📊 MediaPipe AI精确定位 {userData.palmLandmarks?.length || 0} 个解剖关键点<br/>
+              {userData.palmLandmarks && userData.palmLandmarks.length >= 21 
+                ? '🎯 掌纹线条已根据真实手部结构绘制' 
+                : '🔮 正在解读财富密码和投资机会'}
             </>
           ) : (
             <>
