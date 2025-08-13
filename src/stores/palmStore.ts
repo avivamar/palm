@@ -11,6 +11,9 @@ export interface PalmUserData {
   palmImage?: string
   palmCaptureImage?: string
   palmPhoto?: string
+  palmImageData?: string  // Base64 encoded image data for display in Step15
+  palmLandmarks?: any[]   // MediaPipe hand landmarks for precise annotation
+  palmValidationResult?: any  // Full validation result from ML analysis
   birthDate?: string
   birthTime?: string
   birthLocation?: string

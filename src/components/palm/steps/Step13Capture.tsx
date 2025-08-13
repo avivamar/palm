@@ -96,11 +96,23 @@ export default function Step13Capture({
             })
             
             if (validationResult.isValid) {
-              // Valid palm image, proceed
-              setTimeout(() => {
-                updateUserData({ palmCaptureImage: selectedFile.name })
-                goToNextStep()
-              }, 2000)
+              // Valid palm image, save image data and landmarks
+              // Convert image to base64 for display in Step15
+              const reader = new FileReader()
+              reader.onload = () => {
+                const imageData = reader.result as string
+                
+                setTimeout(() => {
+                  updateUserData({ 
+                    palmCaptureImage: selectedFile.name,
+                    palmImageData: imageData,
+                    palmLandmarks: validationResult.landmarks,
+                    palmValidationResult: validationResult
+                  })
+                  goToNextStep()
+                }, 2000)
+              }
+              reader.readAsDataURL(selectedFile)
             } else {
               // Invalid image, allow retry
               setIsUploading(false)
@@ -161,7 +173,7 @@ export default function Step13Capture({
           className="mt-6"
         >
           <div className="bg-green-50 rounded-2xl p-6 flex items-center gap-4">
-            <img src="palm/img/pose-correct.png" className="w-28" alt="正确示范" />
+            <img src="/palm/img/pose-correct.png" className="w-28" alt="正确示范" />
             <div className="text-green-600 font-semibold text-lg">✅ 正确</div>
           </div>
 
