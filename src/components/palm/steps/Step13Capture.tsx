@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
+import { validatePalmImage, getValidationMessage } from '@/utils/palmValidation'
 
 interface Step13Props {
   userData: PalmUserData
@@ -17,6 +18,11 @@ export default function Step13Capture({
   trackEvent
 }: Step13Props) {
   const [isUploading, setIsUploading] = useState(false)
+  const [validationMessage, setValidationMessage] = useState<{
+    title: string;
+    description: string;
+    type: 'success' | 'warning' | 'error';
+  } | null>(null)
   
   useEffect(() => {
     trackEvent('palm_capture_view', { 
@@ -62,12 +68,13 @@ export default function Step13Capture({
     const input = document.createElement('input')
     input.type = 'file'
     input.accept = 'image/*'
-    input.onchange = (e) => {
+    input.onchange = async (e) => {
       const files = (e.target as HTMLInputElement).files
       if (files && files.length > 0) {
         const selectedFile = files[0]
         if (selectedFile) {
           setIsUploading(true)
+          setValidationMessage(null)
           
           trackEvent('palm_file_picker_success', { 
             fileSize: selectedFile.size,
@@ -75,11 +82,38 @@ export default function Step13Capture({
             timestamp: Date.now()
           })
           
-          // Simulate upload
-          setTimeout(() => {
-            updateUserData({ palmCaptureImage: selectedFile.name })
-            goToNextStep()
-          }, 1500)
+          // Validate the palm image
+          try {
+            const validationResult = await validatePalmImage(selectedFile)
+            const message = getValidationMessage(validationResult)
+            setValidationMessage(message)
+            
+            trackEvent('palm_validation_result', {
+              isValid: validationResult.isValid,
+              confidence: validationResult.confidence,
+              issues: validationResult.issues,
+              timestamp: Date.now()
+            })
+            
+            if (validationResult.isValid) {
+              // Valid palm image, proceed
+              setTimeout(() => {
+                updateUserData({ palmCaptureImage: selectedFile.name })
+                goToNextStep()
+              }, 2000)
+            } else {
+              // Invalid image, allow retry
+              setIsUploading(false)
+            }
+          } catch (error) {
+            console.error('Validation error:', error)
+            setValidationMessage({
+              title: '⚠️ 验证失败',
+              description: '无法验证图片，请重试',
+              type: 'error'
+            })
+            setIsUploading(false)
+          }
         }
       }
     }
@@ -137,6 +171,41 @@ export default function Step13Capture({
             <img src="/palm/img/pose-wrong3.png" className="w-16 opacity-60" alt="错误姿势" />
           </div>
         </motion.section>
+
+        {/* Validation Message */}
+        {validationMessage && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className={`mt-6 p-4 rounded-xl ${
+              validationMessage.type === 'success' 
+                ? 'bg-green-50 border border-green-200' 
+                : validationMessage.type === 'warning'
+                ? 'bg-yellow-50 border border-yellow-200'
+                : 'bg-red-50 border border-red-200'
+            }`}
+          >
+            <h3 className={`font-semibold ${
+              validationMessage.type === 'success' 
+                ? 'text-green-800' 
+                : validationMessage.type === 'warning'
+                ? 'text-yellow-800'
+                : 'text-red-800'
+            }`}>
+              {validationMessage.title}
+            </h3>
+            <p className={`mt-1 text-sm ${
+              validationMessage.type === 'success' 
+                ? 'text-green-600' 
+                : validationMessage.type === 'warning'
+                ? 'text-yellow-600'
+                : 'text-red-600'
+            }`}>
+              {validationMessage.description}
+            </p>
+          </motion.div>
+        )}
 
         {/* Actions */}
         <motion.div 

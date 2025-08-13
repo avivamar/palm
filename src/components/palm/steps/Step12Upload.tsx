@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
 
@@ -14,12 +14,9 @@ interface Step12Props {
 }
 
 export default function Step12Upload({ 
-  updateUserData,
   goToNextStep,
   trackEvent
 }: Step12Props) {
-  const [isUploading, setIsUploading] = useState(false)
-  
   useEffect(() => {
     trackEvent('palm_upload_view', { 
       timestamp: Date.now(),
@@ -27,72 +24,13 @@ export default function Step12Upload({
     })
   }, [])
   
-  const openCamera = async () => {
-    trackEvent('palm_camera_attempt', { 
+  const handleContinue = () => {
+    trackEvent('palm_step12_continue', { 
       timestamp: Date.now()
     })
     
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      try {
-        // Request camera access
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true })
-        
-        // Stop the stream immediately (we just need permission)
-        stream.getTracks().forEach(track => track.stop())
-        
-        trackEvent('palm_camera_success', { 
-          timestamp: Date.now()
-        })
-        
-        // Navigate to next step (capture)
-        goToNextStep()
-        
-      } catch (error) {
-        trackEvent('palm_camera_denied', { 
-          error: error instanceof Error ? error.message : 'Unknown error',
-          timestamp: Date.now()
-        })
-        fallbackUpload()
-      }
-    } else {
-      fallbackUpload()
-    }
-  }
-  
-  const fallbackUpload = () => {
-    trackEvent('palm_file_upload_attempt', { 
-      timestamp: Date.now()
-    })
-    
-    const input = document.createElement('input')
-    input.type = 'file'
-    input.accept = 'image/*'
-    input.onchange = (e) => {
-      const files = (e.target as HTMLInputElement).files
-      if (files && files.length > 0) {
-        const selectedFile = files[0]
-        if (selectedFile) {
-          setIsUploading(true)
-          
-          trackEvent('palm_file_selected', { 
-            fileSize: selectedFile.size,
-            fileType: selectedFile.type,
-            timestamp: Date.now()
-          })
-          
-          // Simulate upload process
-          setTimeout(() => {
-            updateUserData({ palmImage: selectedFile.name })
-            trackEvent('palm_upload_complete', { 
-              fileName: selectedFile.name
-            })
-            // Navigate to next step (capture/scan)
-            goToNextStep()
-          }, 2000)
-        }
-      }
-    }
-    input.click()
+    // Simply navigate to next step (Step 13) where actual upload/camera happens
+    goToNextStep()
   }
   
   return (
@@ -169,11 +107,10 @@ export default function Step12Upload({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          onClick={openCamera}
-          disabled={isUploading}
+          onClick={handleContinue}
           className="relative mt-8 w-full h-14 rounded-xl bg-violet-600 text-white text-lg font-semibold flex items-center justify-center shadow-lg active:scale-95 transition after:content-[''] after:absolute after:inset-0 after:rounded-xl after:bg-violet-600 after:blur-lg after:opacity-40 after:animate-pulse"
         >
-          {isUploading ? '上传中...' : '立即扫描，获取财富分析 →'}
+          立即扫描，获取财富分析 →
         </motion.button>
         
         <motion.p 

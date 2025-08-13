@@ -137,7 +137,7 @@ export default function Step11PalmLinePriority({
           transition={{ duration: 0.6, delay: 1.0 }}
           onClick={handleContinue}
           disabled={!selectedPriority}
-          className={`fixed bottom-6 left-1/2 -translate-x-1/2 w-[360px] h-12 rounded-xl font-semibold shadow-md transition ${
+          className={`mt-10 w-full max-w-[360px] mx-auto block h-12 rounded-xl font-semibold shadow-md transition ${
             selectedPriority
               ? 'bg-violet-600 text-white hover:bg-violet-500'
               : 'bg-violet-600 text-white opacity-40 cursor-not-allowed'
