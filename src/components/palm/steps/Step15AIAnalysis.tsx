@@ -83,61 +83,115 @@ export default function Step15AIAnalysis({
     PINKY_MCP: 17
   }
   
-  // 生成手指标记点（使用真实关键点或后备坐标）
-  const fingerTips = (() => {
+  // 生成手指含义标记点（使用真实关键点或后备坐标）
+  const fingerMeanings = (() => {
     if (isRealUserImage && userData.palmLandmarks && userData.palmLandmarks.length > 0) {
       const pixels = convertLandmarksToPixels(userData.palmLandmarks, imageSize.width, imageSize.height)
+      // 使用实际检测到的手指位置，但添加一些偏移确保标注准确
       return [
-        { x: pixels[HAND_LANDMARKS.THUMB_TIP]?.x || 90, y: pixels[HAND_LANDMARKS.THUMB_TIP]?.y || 60, color: '#8b5cf6', label: '拇指' },
-        { x: pixels[HAND_LANDMARKS.INDEX_FINGER_TIP]?.x || 123, y: pixels[HAND_LANDMARKS.INDEX_FINGER_TIP]?.y || 40, color: '#4f46e5', label: '食指' },
-        { x: pixels[HAND_LANDMARKS.MIDDLE_FINGER_TIP]?.x || 159, y: pixels[HAND_LANDMARKS.MIDDLE_FINGER_TIP]?.y || 45, color: '#0ea5e9', label: '中指' },
-        { x: pixels[HAND_LANDMARKS.RING_FINGER_TIP]?.x || 190, y: pixels[HAND_LANDMARKS.RING_FINGER_TIP]?.y || 65, color: '#10b981', label: '无名指' },
-        { x: pixels[HAND_LANDMARKS.PINKY_TIP]?.x || 215, y: pixels[HAND_LANDMARKS.PINKY_TIP]?.y || 95, color: '#f59e0b', label: '小指' }
+        { 
+          x: (pixels[HAND_LANDMARKS.THUMB_TIP]?.x || 90) - 10, 
+          y: (pixels[HAND_LANDMARKS.THUMB_TIP]?.y || 60) - 15, 
+          color: '#8b5cf6', 
+          label: '外在人格',
+          meaning: '行为表现' 
+        },
+        { 
+          x: (pixels[HAND_LANDMARKS.INDEX_FINGER_TIP]?.x || 123), 
+          y: (pixels[HAND_LANDMARKS.INDEX_FINGER_TIP]?.y || 40) - 15, 
+          color: '#4f46e5', 
+          label: '自尊心',
+          meaning: '内在自己' 
+        },
+        { 
+          x: (pixels[HAND_LANDMARKS.MIDDLE_FINGER_TIP]?.x || 159), 
+          y: (pixels[HAND_LANDMARKS.MIDDLE_FINGER_TIP]?.y || 45) - 15, 
+          color: '#0ea5e9', 
+          label: '社会性',
+          meaning: '现实能力' 
+        },
+        { 
+          x: (pixels[HAND_LANDMARKS.RING_FINGER_TIP]?.x || 190), 
+          y: (pixels[HAND_LANDMARKS.RING_FINGER_TIP]?.y || 65) - 15, 
+          color: '#10b981', 
+          label: '艺术天分',
+          meaning: '审美感性' 
+        },
+        { 
+          x: (pixels[HAND_LANDMARKS.PINKY_TIP]?.x || 215) + 10, 
+          y: (pixels[HAND_LANDMARKS.PINKY_TIP]?.y || 95) - 15, 
+          color: '#f59e0b', 
+          label: '潜在个性',
+          meaning: '天生特质' 
+        }
       ]
     } else {
-      // 后备静态坐标
+      // 更准确的静态坐标（基于手掌比例）
+      const centerX = imageSize.width / 2
+      const centerY = imageSize.height / 2
       return [
-        { x: 90, y: 60, color: '#8b5cf6', label: '拇指' },
-        { x: 123, y: 40, color: '#4f46e5', label: '食指' },
-        { x: 159, y: 45, color: '#0ea5e9', label: '中指' },
-        { x: 190, y: 65, color: '#10b981', label: '无名指' },
-        { x: 215, y: 95, color: '#f59e0b', label: '小指' }
+        { x: centerX - 60, y: centerY - 80, color: '#8b5cf6', label: '外在人格', meaning: '行为表现' },
+        { x: centerX - 25, y: centerY - 100, color: '#4f46e5', label: '自尊心', meaning: '内在自己' },
+        { x: centerX + 5, y: centerY - 105, color: '#0ea5e9', label: '社会性', meaning: '现实能力' },
+        { x: centerX + 35, y: centerY - 85, color: '#10b981', label: '艺术天分', meaning: '审美感性' },
+        { x: centerX + 65, y: centerY - 60, color: '#f59e0b', label: '潜在个性', meaning: '天生特质' }
       ]
     }
   })()
   
-  // 生成掌纹线条（使用真实关键点或后备坐标）
+  // 生成掌纹线条（使用真实关键点或更科学的手相学位置）
   const palmLines = (() => {
+    const centerX = imageSize.width / 2
+    const centerY = imageSize.height / 2
+    
     if (isRealUserImage && userData.palmLandmarks && userData.palmLandmarks.length > 0) {
       const pixels = convertLandmarksToPixels(userData.palmLandmarks, imageSize.width, imageSize.height)
       
-      // 获取安全的坐标值
-      const getCoord = (pixel: any, prop: 'x' | 'y', offset = 0, fallback = 0) => {
-        return (pixel?.[prop] ?? fallback) + offset
-      }
+      // 基于MediaPipe关键点计算更准确的掌纹位置
+      const wrist = pixels[HAND_LANDMARKS.WRIST]
+      const thumbBase = pixels[HAND_LANDMARKS.THUMB_MCP]
+      const indexBase = pixels[HAND_LANDMARKS.INDEX_FINGER_MCP]
+      const middleBase = pixels[HAND_LANDMARKS.MIDDLE_FINGER_MCP]
+      const pinkyBase = pixels[HAND_LANDMARKS.PINKY_MCP]
       
-      // 生命线（从手腕到拇指基部的弧线）
-      const lifeLine = `${getCoord(pixels[HAND_LANDMARKS.WRIST], 'x', 0, 95)},${getCoord(pixels[HAND_LANDMARKS.WRIST], 'y', 20, 215)} ${getCoord(pixels[HAND_LANDMARKS.THUMB_MCP], 'x', 30, 135)},${getCoord(pixels[HAND_LANDMARKS.THUMB_MCP], 'y', 50, 205)} ${getCoord(pixels[HAND_LANDMARKS.INDEX_FINGER_MCP], 'x', 20, 175)},${getCoord(pixels[HAND_LANDMARKS.INDEX_FINGER_MCP], 'y', 40, 195)}`
+      // 生命线：从拇指和食指之间弧形到手腕
+      const lifeLine = `${(indexBase?.x || centerX - 30) - 20},${(indexBase?.y || centerY - 20) + 30} ${(thumbBase?.x || centerX - 50) + 10},${(thumbBase?.y || centerY) + 20} ${(wrist?.x || centerX - 10) - 15},${(wrist?.y || centerY + 80) - 20}`
       
-      // 智慧线（横穿手掌）
-      const headLine = `${getCoord(pixels[HAND_LANDMARKS.INDEX_FINGER_MCP], 'x', -20, 100)},${getCoord(pixels[HAND_LANDMARKS.INDEX_FINGER_MCP], 'y', 30, 200)} ${getCoord(pixels[HAND_LANDMARKS.MIDDLE_FINGER_MCP], 'x', 10, 128)},${getCoord(pixels[HAND_LANDMARKS.MIDDLE_FINGER_MCP], 'y', 25, 170)} ${getCoord(pixels[HAND_LANDMARKS.RING_FINGER_MCP], 'x', 15, 165)},${getCoord(pixels[HAND_LANDMARKS.RING_FINGER_MCP], 'y', 20, 160)}`
+      // 智慧线：从食指下方横穿手掌
+      const headLine = `${(indexBase?.x || centerX - 30) - 15},${(indexBase?.y || centerY - 20) + 40} ${(middleBase?.x || centerX) + 5},${(middleBase?.y || centerY - 15) + 50} ${(pinkyBase?.x || centerX + 40) - 10},${(pinkyBase?.y || centerY + 10) + 30}`
       
-      // 感情线（手掌上方横线）
-      const heartLine = `${getCoord(pixels[HAND_LANDMARKS.INDEX_FINGER_MCP], 'x', 0, 120)},${getCoord(pixels[HAND_LANDMARKS.INDEX_FINGER_MCP], 'y', -40, 190)} ${getCoord(pixels[HAND_LANDMARKS.MIDDLE_FINGER_MCP], 'x', 25, 145)},${getCoord(pixels[HAND_LANDMARKS.MIDDLE_FINGER_MCP], 'y', -35, 150)} ${getCoord(pixels[HAND_LANDMARKS.RING_FINGER_MCP], 'x', 30, 180)},${getCoord(pixels[HAND_LANDMARKS.RING_FINGER_MCP], 'y', -30, 130)}`
+      // 感情线：在手指基部下方的横线
+      const heartLine = `${(indexBase?.x || centerX - 30) - 5},${(indexBase?.y || centerY - 20) + 10} ${(middleBase?.x || centerX) + 10},${(middleBase?.y || centerY - 15) + 5} ${(pinkyBase?.x || centerX + 40) + 5},${(pinkyBase?.y || centerY + 10) - 10}`
       
       return [
-        { points: heartLine, color: "#8b5cf6", delay: 0.1, label: "感情线" },
-        { points: headLine, color: "#4f46e5", delay: 0.2, label: "智慧线" },
-        { points: lifeLine, color: "#0ea5e9", delay: 0.3, label: "生命线" },
+        { points: heartLine, color: "#e11d48", delay: 0.5, label: "感情线", strokeWidth: "4" },
+        { points: headLine, color: "#2563eb", delay: 1.0, label: "智慧线", strokeWidth: "4" },
+        { points: lifeLine, color: "#16a34a", delay: 1.5, label: "生命线", strokeWidth: "4" },
       ]
     } else {
-      // 后备静态线条
+      // 更科学的静态掌纹线条（基于手相学标准位置）
       return [
-        { points: "120,190 145,150 180,130", color: "#8b5cf6", delay: 0.1, label: "感情线" },
-        { points: "100,200 128,170 165,160", color: "#4f46e5", delay: 0.2, label: "智慧线" },
-        { points: "95,215 135,205 175,195", color: "#0ea5e9", delay: 0.3, label: "生命线" },
-        { points: "110,230 150,230 185,225", color: "#10b981", delay: 0.4, label: "命运线" },
-        { points: "140,245 165,255 190,260", color: "#f59e0b", delay: 0.5, label: "财富线" }
+        { 
+          points: `${centerX - 35},${centerY - 30} ${centerX + 10},${centerY - 35} ${centerX + 45},${centerY - 20}`, 
+          color: "#e11d48", 
+          delay: 0.5, 
+          label: "感情线",
+          strokeWidth: "4"
+        },
+        { 
+          points: `${centerX - 25},${centerY + 10} ${centerX + 15},${centerY + 20} ${centerX + 50},${centerY + 35}`, 
+          color: "#2563eb", 
+          delay: 1.0, 
+          label: "智慧线",
+          strokeWidth: "4"
+        },
+        { 
+          points: `${centerX - 45},${centerY + 5} ${centerX - 20},${centerY + 30} ${centerX - 5},${centerY + 70}`, 
+          color: "#16a34a", 
+          delay: 1.5, 
+          label: "生命线",
+          strokeWidth: "4"
+        },
       ]
     }
   })()
@@ -168,37 +222,43 @@ export default function Step15AIAnalysis({
             </div>
           )}
 
-          {/* 指尖标记点 */}
-          {fingerTips.map((tip, index) => (
+          {/* 手指含义标记点 */}
+          {fingerMeanings.map((finger, index) => (
             <motion.div
               key={index}
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
+              transition={{ duration: 0.4, delay: 2.0 + index * 0.2 }}
               className="absolute group"
               style={{
-                left: `${tip.x}px`,
-                top: `${tip.y}px`,
+                left: `${finger.x}px`,
+                top: `${finger.y}px`,
               }}
             >
               {/* 标记点 */}
-              <div
-                className="w-4 h-4 rounded-full -translate-x-2 -translate-y-2 border-2 border-white shadow-lg"
-                style={{ backgroundColor: tip.color }}
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.3, delay: 2.0 + index * 0.2 }}
+                className="w-3 h-3 rounded-full -translate-x-1.5 -translate-y-1.5 border-2 border-white shadow-lg"
+                style={{ backgroundColor: finger.color }}
               />
               
-              {/* 标签（悬停显示） */}
-              {tip.label && (
-                <motion.div
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.2, delay: 1.0 + index * 0.05 }}
-                  className="absolute -top-6 -left-4 bg-black text-white text-xs px-2 py-1 rounded whitespace-nowrap"
-                  style={{ color: tip.color }}
-                >
-                  {tip.label}
-                </motion.div>
-              )}
+              {/* 标签 */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: 2.2 + index * 0.2 }}
+                className="absolute -top-8 -left-8 bg-white text-gray-800 text-xs px-2 py-1 rounded-lg shadow-md border whitespace-nowrap"
+                style={{ borderColor: finger.color }}
+              >
+                <div className="font-semibold" style={{ color: finger.color }}>
+                  {finger.label}
+                </div>
+                <div className="text-gray-600 text-xs">
+                  {finger.meaning}
+                </div>
+              </motion.div>
             </motion.div>
           ))}
 
@@ -206,35 +266,42 @@ export default function Step15AIAnalysis({
           <svg className="absolute inset-0 w-full h-full">
             {palmLines.map((line, index) => (
               <g key={index}>
-                {/* 掌纹线条 */}
+                {/* 掌纹线条动画 */}
                 <motion.polyline
                   points={line.points}
                   stroke={line.color}
-                  strokeWidth="3"
+                  strokeWidth={line.strokeWidth || "3"}
                   fill="none"
                   strokeLinecap="round"
-                  strokeDasharray="400"
-                  initial={{ strokeDashoffset: 400 }}
-                  animate={{ strokeDashoffset: 0 }}
+                  strokeLinejoin="round"
+                  strokeDasharray="200"
+                  initial={{ strokeDashoffset: 200, opacity: 0 }}
+                  animate={{ strokeDashoffset: 0, opacity: 1 }}
                   transition={{ 
-                    duration: 0.8, 
+                    duration: 1.2, 
                     delay: line.delay,
                     ease: "easeInOut"
+                  }}
+                  style={{
+                    filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.3))"
                   }}
                 />
                 
                 {/* 线条标签 */}
                 {line.label && (
                   <motion.text
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.4, delay: line.delay + 0.5 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: line.delay + 0.8 }}
                     x={line.points.split(' ')[1]?.split(',')[0] || "120"}
-                    y={line.points.split(' ')[1]?.split(',')[1] || "150"}
+                    y={(parseInt(line.points.split(' ')[1]?.split(',')[1] || "150") - 8).toString()}
                     fill={line.color}
-                    fontSize="10"
+                    fontSize="11"
                     fontWeight="bold"
                     textAnchor="middle"
+                    style={{
+                      filter: "drop-shadow(0 1px 2px rgba(255,255,255,0.8))"
+                    }}
                   >
                     {line.label}
                   </motion.text>
