@@ -18,6 +18,16 @@ let handLandmarker: HandLandmarker | null = null;
 let isModelLoading = false;
 let modelLoadPromise: Promise<void> | null = null;
 
+// Performance optimization: Pre-load model on page load
+if (typeof window !== 'undefined') {
+  // Start preloading MediaPipe model when the module loads
+  setTimeout(() => {
+    initializeHandLandmarker().catch(error => {
+      console.warn('MediaPipe preload failed:', error);
+    });
+  }, 2000); // Delay 2 seconds to not block initial page load
+}
+
 /**
  * Initialize MediaPipe Hand Landmarker
  */
@@ -58,11 +68,12 @@ async function initializeHandLandmarker(): Promise<void> {
 }
 
 /**
- * Validate palm image using MediaPipe ML model
+ * Validate palm image using MediaPipe ML model with progress callback
  */
-export async function validatePalmWithML(file: File): Promise<MLValidationResult> {
+export async function validatePalmWithML(file: File, onProgress?: (step: string) => void): Promise<MLValidationResult> {
   try {
     // Initialize model if needed
+    onProgress?.('正在初始化MediaPipe模型...');
     await initializeHandLandmarker();
     
     if (!handLandmarker) {
@@ -70,12 +81,15 @@ export async function validatePalmWithML(file: File): Promise<MLValidationResult
     }
 
     // Convert file to image
+    onProgress?.('正在处理图片...');
     const img = await fileToImage(file);
     
     // Detect hands
+    onProgress?.('正在检测手部特征...');
     const results = handLandmarker.detect(img);
     
     // Analyze results
+    onProgress?.('正在分析检测结果...');
     return analyzeHandDetectionResults(results);
   } catch (error) {
     console.error('ML validation error:', error);
@@ -356,6 +370,72 @@ export async function validatePalmWithAPI(file: File): Promise<MLValidationResul
       issues: ['无法连接到验证服务器']
     };
   }
+}
+
+/**
+ * Combined validation approach for maximum accuracy with progress callback
+ */
+export async function validatePalmCombinedWithProgress(
+  file: File, 
+  onProgress?: (step: string) => void
+): Promise<MLValidationResult> {
+  const results: MLValidationResult[] = []
+  
+  // Try MediaPipe first (client-side, fast)
+  try {
+    const mediaPipeResult = await validatePalmWithML(file, onProgress)
+    results.push(mediaPipeResult)
+    
+    // If MediaPipe is confident, no need for other checks
+    if (mediaPipeResult.confidence > 0.9) {
+      onProgress?.('MediaPipe验证完成！')
+      return mediaPipeResult
+    }
+  } catch (error) {
+    console.warn('MediaPipe validation failed:', error)
+    onProgress?.('MediaPipe验证失败，尝试备用方案...')
+  }
+  
+  // Try TensorFlow as backup
+  try {
+    onProgress?.('正在使用TensorFlow.js备用检测...')
+    const tfResult = await validatePalmWithTensorFlow(file)
+    results.push(tfResult)
+  } catch (error) {
+    console.warn('TensorFlow validation failed:', error)
+    onProgress?.('TensorFlow验证失败，尝试服务器验证...')
+  }
+  
+  // If both client-side methods are uncertain, try server API
+  if (results.every(r => r.confidence < 0.7)) {
+    try {
+      onProgress?.('正在连接服务器进行高精度验证...')
+      const apiResult = await validatePalmWithAPI(file)
+      results.push(apiResult)
+    } catch (error) {
+      console.warn('API validation failed:', error)
+      onProgress?.('所有验证方法已完成')
+    }
+  }
+  
+  // Combine results
+  if (results.length === 0) {
+    return {
+      isValid: false,
+      confidence: 0,
+      message: '所有验证方法都失败了',
+      handCount: 0,
+      issues: ['无法验证图片']
+    }
+  }
+  
+  // Use the most confident result
+  const bestResult = results.reduce((best, current) => 
+    current.confidence > best.confidence ? current : best
+  )
+  
+  onProgress?.('验证完成，正在分析结果...')
+  return bestResult
 }
 
 /**
