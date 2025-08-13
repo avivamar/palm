@@ -133,7 +133,18 @@ function analyzeHandDetectionResults(results: HandLandmarkerResult): MLValidatio
   const handCount = results.landmarks.length;
   
   // Check for palm visibility
-  const palmAnalysis = analyzePalmVisibility(results.landmarks[0]);
+  const firstLandmark = results.landmarks[0];
+  if (!firstLandmark) {
+    return {
+      isValid: false,
+      confidence: 0,
+      message: '未检测到手部关键点',
+      handCount: 0,
+      issues: ['无法识别手部结构']
+    };
+  }
+  
+  const palmAnalysis = analyzePalmVisibility(firstLandmark);
   
   if (!palmAnalysis.isPalmVisible) {
     issues.push('手掌不够清晰，请确保掌心朝向相机');
@@ -254,7 +265,7 @@ export async function validatePalmWithTensorFlow(file: File): Promise<MLValidati
   
   try {
     const handpose = await import('@tensorflow-models/handpose');
-    const tf = await import('@tensorflow/tfjs');
+    await import('@tensorflow/tfjs');
     
     // Load model
     const model = await handpose.load();
@@ -276,14 +287,25 @@ export async function validatePalmWithTensorFlow(file: File): Promise<MLValidati
     }
     
     // Analyze predictions
-    const confidence = predictions[0].handInViewConfidence || 0;
+    const firstPrediction = predictions[0];
+    if (!firstPrediction) {
+      return {
+        isValid: false,
+        confidence: 0,
+        message: '未检测到有效手掌数据',
+        handCount: 0,
+        issues: ['TensorFlow预测数据无效']
+      };
+    }
+    
+    const confidence = firstPrediction.handInViewConfidence || 0;
     
     return {
       isValid: confidence > 0.8,
       confidence,
       message: confidence > 0.8 ? '检测到手掌' : '手掌不够清晰',
       handCount: predictions.length,
-      landmarks: predictions[0].landmarks
+      landmarks: firstPrediction.landmarks
     };
   } catch (error) {
     console.error('TensorFlow validation error:', error);
