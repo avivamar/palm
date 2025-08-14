@@ -16,7 +16,14 @@ export default function Step15AIAnalysis({
   goToNextStep
 }: Step15Props) {
   const [analysisProgress, setAnalysisProgress] = useState(0)
-  const [imageSize, setImageSize] = useState({ width: 240, height: 240 })
+  const [imageSize, setImageSize] = useState({ width: 360, height: 360 })
+  const [imageDisplayInfo, setImageDisplayInfo] = useState({
+    displayWidth: 360,
+    displayHeight: 360,
+    offsetX: 0,
+    offsetY: 0,
+    scale: 1
+  })
   
   useEffect(() => {
     trackEvent('palm_ai_analysis_view', { 
@@ -49,20 +56,62 @@ export default function Step15AIAnalysis({
   const userImageData = userData.palmImageData || '/img/demohand.png'
   const isRealUserImage = !!userData.palmImageData
   
-  // 处理图片加载以获取实际尺寸
+  // 精确处理图片加载，计算object-cover后的实际显示区域
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const img = e.currentTarget
-    setImageSize({ width: img.clientWidth, height: img.clientHeight })
+    const containerWidth = 360 // 固定360px宽度
+    const containerHeight = 360 // 固定360px高度
+    
+    // 获取图片的自然尺寸
+    const naturalWidth = img.naturalWidth
+    const naturalHeight = img.naturalHeight
+    
+    // 计算object-cover的实际显示尺寸和偏移
+    const containerAspect = containerWidth / containerHeight
+    const imageAspect = naturalWidth / naturalHeight
+    
+    let displayWidth, displayHeight, offsetX, offsetY, scale
+    
+    if (imageAspect > containerAspect) {
+      // 图片更宽，以高度为准
+      displayHeight = containerHeight
+      displayWidth = naturalWidth * (containerHeight / naturalHeight)
+      offsetX = (containerWidth - displayWidth) / 2
+      offsetY = 0
+      scale = containerHeight / naturalHeight
+    } else {
+      // 图片更高，以宽度为准
+      displayWidth = containerWidth
+      displayHeight = naturalHeight * (containerWidth / naturalWidth)
+      offsetX = 0
+      offsetY = (containerHeight - displayHeight) / 2
+      scale = containerWidth / naturalWidth
+    }
+    
+    setImageDisplayInfo({
+      displayWidth,
+      displayHeight,
+      offsetX,
+      offsetY,
+      scale
+    })
+    
+    // 更新用于坐标计算的尺寸
+    setImageSize({ 
+      width: displayWidth, 
+      height: displayHeight 
+    })
   }
   
-  // 将MediaPipe关键点转换为像素坐标
-  const convertLandmarksToPixels = (landmarks: any[], width: number, height: number) => {
+  // 将MediaPipe关键点转换为容器内的精确像素坐标
+  const convertLandmarksToPixels = (landmarks: any[]) => {
     if (!landmarks || landmarks.length === 0) return []
     
     return landmarks.map((landmark, index) => ({
       id: index,
-      x: landmark.x * width,
-      y: landmark.y * height,
+      // 关键：使用实际显示区域的尺寸和偏移
+      x: imageDisplayInfo.offsetX + (landmark.x * imageDisplayInfo.displayWidth),
+      y: imageDisplayInfo.offsetY + (landmark.y * imageDisplayInfo.displayHeight),
       z: landmark.z || 0
     }))
   }
@@ -101,7 +150,7 @@ export default function Step15AIAnalysis({
   // 生成手指含义标记点（使用真实关键点或后备坐标）
   const fingerMeanings = (() => {
     if (isRealUserImage && userData.palmLandmarks && userData.palmLandmarks.length > 0) {
-      const pixels = convertLandmarksToPixels(userData.palmLandmarks, imageSize.width, imageSize.height)
+      const pixels = convertLandmarksToPixels(userData.palmLandmarks)
       // 使用实际检测到的手指位置，但添加一些偏移确保标注准确
       return [
         { 
@@ -160,7 +209,7 @@ export default function Step15AIAnalysis({
     const centerY = imageSize.height / 2
     
     if (isRealUserImage && userData.palmLandmarks && userData.palmLandmarks.length >= 21) {
-      const pixels = convertLandmarksToPixels(userData.palmLandmarks, imageSize.width, imageSize.height)
+      const pixels = convertLandmarksToPixels(userData.palmLandmarks)
       
       // 获取关键解剖点（带默认值）
       const wrist = pixels[HAND_LANDMARKS.WRIST] || { x: centerX, y: centerY + 100 }
@@ -297,229 +346,414 @@ export default function Step15AIAnalysis({
   })()
   
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-white text-gray-800">
-      {/* 预览卡片 */}
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white p-4">
+      {/* 科技感主容器 - 390px固定宽度 */}
       <motion.div 
-        initial={{ scale: 0.9, opacity: 0 }}
+        initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="w-[320px] rounded-3xl shadow-xl p-6 relative"
+        className="w-[390px] rounded-2xl bg-gradient-to-b from-slate-800/90 to-slate-900/90 backdrop-blur-xl border border-cyan-500/20 p-6 relative overflow-hidden shadow-2xl shadow-cyan-500/10"
       >
-        {/* 扫描框包裹层 */}
-        <div className="relative mx-auto w-60 h-60 overflow-hidden rounded-xl">
-          {/* 用户实际上传的手掌图片 */}
-          <img 
-            src={userImageData} 
-            alt={isRealUserImage ? "用户手掌照片" : "演示手掌照片"} 
-            className="w-full h-full object-cover" 
-            onLoad={handleImageLoad}
-          />
-          
-          {/* AI检测状态提示 */}
-          {isRealUserImage && (
-            <div className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">
-              {userData.palmLandmarks && userData.palmLandmarks.length >= 21 
-                ? '🎯 AI精确定位' 
-                : '✓ 实时分析中'}
+        {/* 科技感背景装饰 */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.1)_0%,transparent_50%)]"></div>
+        <div className="absolute top-0 left-0 w-20 h-20 bg-cyan-400/10 rounded-full blur-xl"></div>
+        <div className="absolute bottom-0 right-0 w-32 h-32 bg-blue-400/10 rounded-full blur-2xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[conic-gradient(from_0deg,transparent,rgba(6,182,212,0.1),transparent)] opacity-30"></div>
+        
+        {/* 内容区域 */}
+        <div className="relative z-10">
+          {/* 科技感标题 */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-6"
+          >
+            <div className="flex items-center justify-center mb-3">
+              <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center mr-3">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h1 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                AI 手相分析系统
+              </h1>
             </div>
-          )}
+            <p className="text-slate-300 text-sm">
+              {isRealUserImage ? '正在解析您的专属财富密码' : '演示智能分析过程'}
+            </p>
+          </motion.div>
 
-          {/* 手指含义标记点 */}
-          {fingerMeanings.map((finger, index) => (
-            <motion.div
-              key={index}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.4, delay: 2.0 + index * 0.2 }}
-              className="absolute group"
-              style={{
-                left: `${finger.x}px`,
-                top: `${finger.y}px`,
-              }}
-            >
-              {/* 标记点 */}
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.3, delay: 2.0 + index * 0.2 }}
-                className="w-3 h-3 rounded-full -translate-x-1.5 -translate-y-1.5 border-2 border-white shadow-lg"
-                style={{ backgroundColor: finger.color }}
-              />
-              
-              {/* 标签 */}
-              <motion.div
+          {/* 360px固定图像区域 */}
+          <div className="relative mx-auto w-[360px] h-[360px] overflow-hidden rounded-xl bg-slate-800/50 border border-cyan-500/30 shadow-inner shadow-cyan-500/10">
+            {/* 用户实际上传的手掌图片 */}
+            <img 
+              src={userImageData} 
+              alt={isRealUserImage ? "用户手掌照片" : "演示手掌照片"} 
+              className="w-full h-full object-cover" 
+              onLoad={handleImageLoad}
+            />
+            
+            {/* 科技感AI状态指示器 */}
+            {isRealUserImage && (
+              <motion.div 
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 2.2 + index * 0.2 }}
-                className="absolute -top-8 -left-8 bg-white text-gray-800 text-xs px-2 py-1 rounded-lg shadow-md border whitespace-nowrap"
-                style={{ borderColor: finger.color }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className="absolute top-3 left-3 bg-gradient-to-r from-cyan-500/90 to-blue-500/90 text-white text-xs px-3 py-1.5 rounded-lg shadow-lg backdrop-blur-sm border border-cyan-400/30"
               >
-                <div className="font-semibold" style={{ color: finger.color }}>
-                  {finger.label}
-                </div>
-                <div className="text-gray-600 text-xs">
-                  {finger.meaning}
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span>
+                    {userData.palmLandmarks && userData.palmLandmarks.length >= 21 
+                      ? 'AI定位成功' 
+                      : '实时分析中'}
+                  </span>
                 </div>
               </motion.div>
-            </motion.div>
-          ))}
+            )}
 
-          {/* SVG 掌纹动画 */}
-          <svg className="absolute inset-0 w-full h-full">
-            {palmLines.map((line, index) => (
-              <g key={index}>
-                {/* 掌纹线条动画 */}
-                <motion.polyline
-                  points={line.points}
-                  stroke={line.color}
-                  strokeWidth={line.strokeWidth || "3"}
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeDasharray="200"
-                  initial={{ strokeDashoffset: 200, opacity: 0 }}
-                  animate={{ strokeDashoffset: 0, opacity: 1 }}
-                  transition={{ 
-                    duration: 1.2, 
-                    delay: line.delay,
-                    ease: "easeInOut"
-                  }}
-                  style={{
-                    filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.3))"
+            {/* MediaPipe手部关键点精确可视化 */}
+            {isRealUserImage && userData.palmLandmarks && userData.palmLandmarks.length >= 21 && (
+              <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                {/* 绘制所有21个MediaPipe关键点 */}
+                {convertLandmarksToPixels(userData.palmLandmarks).map((point, index) => (
+                  <motion.g key={`landmark-${index}`}>
+                    {/* 科技感关键点 */}
+                    <motion.circle
+                      cx={point.x}
+                      cy={point.y}
+                      r="3"
+                      fill="rgba(6, 182, 212, 0.8)"
+                      stroke="rgba(34, 211, 238, 1)"
+                      strokeWidth="1.5"
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }}
+                    />
+                    {/* 光晕效果 */}
+                    <motion.circle
+                      cx={point.x}
+                      cy={point.y}
+                      r="6"
+                      fill="none"
+                      stroke="rgba(6, 182, 212, 0.3)"
+                      strokeWidth="1"
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.7 + index * 0.05 }}
+                    />
+                    {/* 科技感编号 */}
+                    <motion.text
+                      x={point.x}
+                      y={point.y - 10}
+                      textAnchor="middle"
+                      fontSize="7"
+                      fill="rgba(34, 211, 238, 1)"
+                      fontWeight="bold"
+                      fontFamily="monospace"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.3, delay: 0.8 + index * 0.05 }}
+                    >
+                      {index}
+                    </motion.text>
+                  </motion.g>
+                ))}
+                
+                {/* 绘制手部连接线 */}
+                {(() => {
+                  const pixels = convertLandmarksToPixels(userData.palmLandmarks);
+                  const connections = [
+                    // 拇指连接线
+                    [0, 1], [1, 2], [2, 3], [3, 4],
+                    // 食指连接线
+                    [0, 5], [5, 6], [6, 7], [7, 8],
+                    // 中指连接线
+                    [5, 9], [9, 10], [10, 11], [11, 12],
+                    // 无名指连接线
+                    [9, 13], [13, 14], [14, 15], [15, 16],
+                    // 小指连接线
+                    [13, 17], [17, 18], [18, 19], [19, 20],
+                    // 手掌连接线
+                    [0, 17]
+                  ];
+                  
+                  return connections.map(([start, end], index) => {
+                    const startPoint = pixels[start as number];
+                    const endPoint = pixels[end as number];
+                    if (!startPoint || !endPoint) return null;
+                    
+                    return (
+                      <motion.line
+                        key={`connection-${index}`}
+                        x1={startPoint.x}
+                        y1={startPoint.y}
+                        x2={endPoint.x}
+                        y2={endPoint.y}
+                        stroke="rgba(6, 182, 212, 0.6)"
+                        strokeWidth="1.5"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{ pathLength: 1, opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 1.5 + index * 0.1 }}
+                      />
+                    );
+                  });
+                })()}
+              </svg>
+            )}
+
+            {/* 手指含义标记点 - 改进样式 */}
+            {fingerMeanings.map((finger, index) => (
+              <motion.div
+                key={index}
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.4, delay: 2.5 + index * 0.2 }}
+                className="absolute group"
+                style={{
+                  left: `${finger.x}px`,
+                  top: `${finger.y}px`,
+                }}
+              >
+                {/* 标记点 - 增大并添加光晕效果 */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.3, delay: 2.5 + index * 0.2 }}
+                  className="w-4 h-4 rounded-full -translate-x-2 -translate-y-2 border-2 border-white shadow-lg"
+                  style={{ 
+                    backgroundColor: finger.color,
+                    boxShadow: `0 0 15px ${finger.color}40, 0 4px 8px rgba(0,0,0,0.3)`
                   }}
                 />
                 
-                {/* 线条标签 */}
-                {line.label && (
-                  <motion.g
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: line.delay + 0.8 }}
-                  >
-                    <motion.text
-                      x={line.points.split(' ')[1]?.split(',')[0] || "120"}
-                      y={(parseInt(line.points.split(' ')[1]?.split(',')[1] || "150") - 15).toString()}
-                      fill={line.color}
-                      fontSize="12"
-                      fontWeight="bold"
-                      textAnchor="middle"
-                      style={{
-                        filter: "drop-shadow(0 1px 2px rgba(255,255,255,0.8))"
-                      }}
+                {/* 标签 - 改进样式 */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: 2.7 + index * 0.2 }}
+                  className="absolute -top-12 -left-12 bg-white/90 backdrop-blur-sm text-gray-800 text-xs px-3 py-2 rounded-xl shadow-lg border border-white/50 whitespace-nowrap"
+                  style={{ borderColor: finger.color }}
+                >
+                  <div className="font-bold text-sm" style={{ color: finger.color }}>
+                    {finger.label}
+                  </div>
+                  <div className="text-gray-600 text-xs mt-1">
+                    {finger.meaning}
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+
+            {/* 科技感扫描框 */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="absolute inset-0 pointer-events-none"
+            >
+              <div className="absolute left-0 top-0 w-8 h-8 border-l-2 border-t-2 border-cyan-400 rounded-tl"></div>
+              <div className="absolute right-0 top-0 w-8 h-8 border-r-2 border-t-2 border-cyan-400 rounded-tr"></div>
+              <div className="absolute left-0 bottom-0 w-8 h-8 border-l-2 border-b-2 border-cyan-400 rounded-bl"></div>
+              <div className="absolute right-0 bottom-0 w-8 h-8 border-r-2 border-b-2 border-cyan-400 rounded-br"></div>
+              
+              {/* 角落闪烁效果 */}
+              <div className="absolute left-1 top-1 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
+              <div className="absolute right-1 top-1 w-1 h-1 bg-cyan-400 rounded-full animate-pulse delay-75"></div>
+              <div className="absolute left-1 bottom-1 w-1 h-1 bg-cyan-400 rounded-full animate-pulse delay-150"></div>
+              <div className="absolute right-1 bottom-1 w-1 h-1 bg-cyan-400 rounded-full animate-pulse delay-300"></div>
+            </motion.div>
+            
+            {/* 科技感扫描线 */}
+            <motion.div
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="absolute left-0 right-0 top-1/2 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent animate-scan shadow-lg shadow-cyan-400/50"
+            ></motion.div>
+
+            {/* SVG 掌纹动画 - 改进效果 */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none">
+              {palmLines.map((line, index) => (
+                <g key={index}>
+                  {/* 掌纹线条动画 - 改进样式 */}
+                  <motion.polyline
+                    points={line.points}
+                    stroke={line.color}
+                    strokeWidth={line.strokeWidth || "4"}
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeDasharray="300"
+                    initial={{ strokeDashoffset: 300, opacity: 0 }}
+                    animate={{ strokeDashoffset: 0, opacity: 0.9 }}
+                    transition={{ 
+                      duration: 1.5, 
+                      delay: line.delay,
+                      ease: "easeInOut"
+                    }}
+                    style={{
+                      filter: "drop-shadow(0 3px 6px rgba(0,0,0,0.4))"
+                    }}
+                  />
+                  
+                  {/* 线条标签 - 改进位置和样式 */}
+                  {line.label && (
+                    <motion.g
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5, delay: line.delay + 1.0 }}
                     >
-                      {line.label}
-                    </motion.text>
-                    {line.description && (
+                      {/* 背景圆形 */}
+                      <motion.circle
+                        cx={line.points.split(' ')[1]?.split(',')[0] || "120"}
+                        cy={(parseInt(line.points.split(' ')[1]?.split(',')[1] || "150") - 10).toString()}
+                        r="18"
+                        fill="rgba(255, 255, 255, 0.9)"
+                        stroke={line.color}
+                        strokeWidth="2"
+                      />
+                      {/* 标签文字 */}
                       <motion.text
                         x={line.points.split(' ')[1]?.split(',')[0] || "120"}
-                        y={(parseInt(line.points.split(' ')[1]?.split(',')[1] || "150") - 2).toString()}
+                        y={(parseInt(line.points.split(' ')[1]?.split(',')[1] || "150") - 6).toString()}
                         fill={line.color}
-                        fontSize="8"
+                        fontSize="11"
+                        fontWeight="bold"
                         textAnchor="middle"
-                        opacity="0.8"
-                        style={{
-                          filter: "drop-shadow(0 1px 2px rgba(255,255,255,0.8))"
-                        }}
                       >
-                        {line.description}
+                        {line.label}
                       </motion.text>
-                    )}
-                  </motion.g>
-                )}
-              </g>
-            ))}
-          </svg>
+                    </motion.g>
+                  )}
+                </g>
+              ))}
+            </svg>
+          </div>
 
-          {/* 四角扫描框 */}
-          <div className="absolute left-0 top-0 w-8 h-8 border-l-4 border-t-4 border-violet-600"></div>
-          <div className="absolute right-0 top-0 w-8 h-8 border-r-4 border-t-4 border-violet-600"></div>
-          <div className="absolute left-0 bottom-0 w-8 h-8 border-l-4 border-b-4 border-violet-600"></div>
-          <div className="absolute right-0 bottom-0 w-8 h-8 border-r-4 border-b-4 border-violet-600"></div>
-          
-          {/* 横向扫描线 */}
-          <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-violet-400 opacity-70 animate-scan"></div>
+          {/* 科技感信息显示区域 */}
+          <div className="mt-6 space-y-4">
+            {/* 分析状态指示器 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+              className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 border border-cyan-500/20 shadow-lg"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                  <h3 className="text-sm font-bold text-cyan-400">系统状态</h3>
+                </div>
+                <div className="text-xs text-slate-400 font-mono">
+                  {Math.round(analysisProgress)}%
+                </div>
+              </div>
+              
+              {isRealUserImage ? (
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-slate-300">检测精度</span>
+                    <span className="text-cyan-400 font-mono">
+                      {userData.palmValidationResult?.confidence ? 
+                        `${Math.round(userData.palmValidationResult.confidence * 100)}%` : 
+                        '分析中...'}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-slate-300">关键点</span>
+                    <span className="text-cyan-400 font-mono">
+                      {userData.palmLandmarks?.length || 0} / 21
+                    </span>
+                  </div>
+                  {userData.palmLandmarks && userData.palmLandmarks.length >= 21 && (
+                    <div className="mt-2 p-2 bg-cyan-500/10 rounded border border-cyan-500/20">
+                      <p className="text-xs text-cyan-300">
+                        ✓ 所有关键点已精确识别
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="text-xs text-slate-400 space-y-1">
+                  <p>• 当前为演示模式</p>
+                  <p>• 展示AI分析能力</p>
+                  <p>• 上传真实照片获得专属分析</p>
+                </div>
+              )}
+            </motion.div>
+
+            {/* 科技感进度条 */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
+              className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 border border-cyan-500/20"
+            >
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs text-cyan-400 font-mono">分析进度</span>
+                <span className="text-xs text-cyan-400 font-mono">{Math.round(analysisProgress)}%</span>
+              </div>
+              <div className="w-full bg-slate-700 rounded-full h-1.5 overflow-hidden">
+                <motion.div 
+                  className="bg-gradient-to-r from-cyan-400 to-blue-400 h-full rounded-full shadow-lg shadow-cyan-400/50"
+                  style={{ width: `${analysisProgress}%` }}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${analysisProgress}%` }}
+                  transition={{ duration: 0.5 }}
+                />
+                {/* 进度条光效 */}
+                <motion.div
+                  className="absolute top-0 h-full w-8 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                  style={{ left: `${Math.max(0, analysisProgress - 8)}%` }}
+                  animate={{ x: ['-100%', '100%'] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
 
-        {/* 文案 */}
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-6 text-lg font-bold text-violet-600"
-        >
-          🤖 {isRealUserImage ? 'AI正在解析您的专属财富密码' : 'AI演示分析过程'}
-        </motion.h2>
-        
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.0 }}
-          className="mt-2 text-sm text-gray-600 leading-relaxed"
-        >
-          {isRealUserImage ? (
-            <>
-              ✨ 基于您的真实手掌照片进行深度分析<br/>
-              📊 MediaPipe AI精确定位 {userData.palmLandmarks?.length || 0} 个解剖关键点<br/>
-              {userData.palmLandmarks && userData.palmLandmarks.length >= 21 
-                ? '🎯 掌纹线条已根据真实手部结构绘制' 
-                : '🔮 正在解读财富密码和投资机会'}
-            </>
-          ) : (
-            <>
-              📊 演示如何分析掌纹投资特征和财富机会<br/>
-              🔮 真实分析将基于您上传的手掌照片进行
-            </>
-          )}
-        </motion.p>
-        
-        {/* 分析状态详情 */}
-        {isRealUserImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-            className="mt-3 space-y-1"
-          >
-            <div className="flex items-center text-xs text-gray-500">
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-              验证结果: {userData.palmValidationResult?.confidence ? 
-                `${Math.round(userData.palmValidationResult.confidence * 100)}% 置信度` : 
-                '分析中...'}
-            </div>
-            <div className="flex items-center text-xs text-gray-500">
-              <div className="w-2 h-2 bg-blue-500 rounded-full mr-2"></div>
-              检测的手部: {userData.palmValidationResult?.handCount || 1} 只
-            </div>
-          </motion.div>
-        )}
-        
-        {/* 进度指示 */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.2 }}
-          className="mt-4 text-center"
-        >
-          <div className="text-sm text-violet-600 font-medium">
-            分析进度: {Math.round(analysisProgress)}%
-          </div>
-          <div className="mt-2 w-full bg-gray-200 rounded-full h-2">
-            <div 
-              className="bg-violet-600 h-2 rounded-full transition-all duration-500"
-              style={{ width: `${analysisProgress}%` }}
-            ></div>
-          </div>
-        </motion.div>
       </motion.div>
       
       {/* CSS动画样式 */}
       <style jsx>{`
         @keyframes scan {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
+          0% { 
+            transform: translateX(-100%);
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+          }
+          100% { 
+            transform: translateX(100%);
+            opacity: 0;
+          }
         }
         .animate-scan {
-          animation: scan 2.5s linear infinite;
+          animation: scan 3s ease-in-out infinite;
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
+          }
         }
       `}</style>
     </div>

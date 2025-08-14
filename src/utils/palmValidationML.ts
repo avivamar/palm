@@ -24,6 +24,7 @@ interface MLValidationResult {
   handCount: number;
   landmarks?: any[];
   palmLines?: PalmLines;
+  cvDetectedLines?: any[]; // OpenCV检测到的线条
   issues?: string[];
 }
 
