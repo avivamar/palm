@@ -11,18 +11,19 @@ interface Step15Props {
   trackEvent: (type: string, data?: any) => void
 }
 
-// 设计系统配置
+// 设计系统配置 - 匹配 flow/0-3 的风格
 const DESIGN_SYSTEM = {
   colors: {
-    primary: '#06b6d4', // cyan-500
-    primaryLight: '#22d3ee', // cyan-400
-    background: '#0f172a', // slate-900
-    backgroundSecondary: '#1e293b', // slate-800
-    text: '#f1f5f9', // slate-100
-    textSecondary: '#94a3b8', // slate-400
+    primary: '#7c3aed', // violet-600
+    primaryLight: '#8b5cf6', // violet-500
+    background: '#f9fafb', // gray-50
+    backgroundSecondary: '#ffffff', // white
+    text: '#111827', // gray-900
+    textSecondary: '#6b7280', // gray-500
     success: '#10b981', // emerald-500
     error: '#ef4444', // red-500
     warning: '#f59e0b', // amber-500
+    accent: '#ea580c', // orange-600
   },
   spacing: {
     xs: '4px',
@@ -32,16 +33,15 @@ const DESIGN_SYSTEM = {
     xl: '32px',
   },
   typography: {
-    // 统一字体大小
-    title: 'text-xl font-bold',
-    subtitle: 'text-sm font-medium',
-    body: 'text-sm',
-    caption: 'text-xs',
-    label: 'text-xs font-semibold',
+    title: 'text-2xl font-bold',
+    subtitle: 'text-lg font-medium',
+    body: 'text-base',
+    caption: 'text-sm',
+    label: 'text-xs font-medium',
   },
   container: {
     width: 390,
-    imageSize: 360,
+    imageSize: 350,
   }
 }
 
@@ -197,7 +197,7 @@ export default function Step15AIAnalysis({
         { 
           x: (pixels[HAND_LANDMARKS.PINKY_TIP]?.x || 0) + 12, 
           y: (pixels[HAND_LANDMARKS.PINKY_TIP]?.y || 0) - 20, 
-          color: '#8b5cf6', 
+          color: DESIGN_SYSTEM.colors.primaryLight, 
           label: '潜在个性',
           meaning: '天生特质' 
         }
@@ -211,7 +211,7 @@ export default function Step15AIAnalysis({
         { x: centerX - 40, y: centerY - 140, color: DESIGN_SYSTEM.colors.primary, label: '自尊心', meaning: '内在自己' },
         { x: centerX, y: centerY - 145, color: DESIGN_SYSTEM.colors.primaryLight, label: '社会性', meaning: '现实能力' },
         { x: centerX + 40, y: centerY - 135, color: DESIGN_SYSTEM.colors.success, label: '艺术天分', meaning: '审美感性' },
-        { x: centerX + 80, y: centerY - 110, color: '#8b5cf6', label: '潜在个性', meaning: '天生特质' }
+        { x: centerX + 80, y: centerY - 110, color: DESIGN_SYSTEM.colors.primaryLight, label: '潜在个性', meaning: '天生特质' }
       ]
     }
   }
@@ -219,42 +219,49 @@ export default function Step15AIAnalysis({
   const fingerMeanings = generateFingerMeanings()
   
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-slate-100 p-4">
-      {/* 主容器 - 390px固定宽度 */}
-      <motion.div 
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className="w-[390px] rounded-2xl bg-gradient-to-b from-slate-800/90 to-slate-900/90 backdrop-blur-xl border border-cyan-500/20 overflow-hidden shadow-2xl shadow-cyan-500/10"
-      >
-        {/* 标题区域 - 统一设计 */}
-        <div className="p-6 border-b border-cyan-500/10">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <div className="flex items-center justify-center mb-3">
-              <div className="w-8 h-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center mr-3">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h1 className={`${DESIGN_SYSTEM.typography.title} bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent`}>
-                AI智能手相分析
-              </h1>
-            </div>
-            <p className={`${DESIGN_SYSTEM.typography.body} text-slate-300`}>
-              {isRealUserImage ? '正在解析您的专属财富密码' : '演示智能分析过程'}
-            </p>
-          </motion.div>
+    <div className="min-h-screen bg-gray-50 flex justify-center">
+      <main className="w-[390px] mx-auto px-4 pb-16">
+        {/* Logo */}
+        <header className="py-4 flex justify-center">
+          <img src="/palm/img/logo.svg" alt="ThePalmistryLife" className="h-7" />
+        </header>
+
+        {/* Progress */}
+        <div className="relative w-full h-2 bg-gray-200 rounded-full mb-8">
+          <motion.div 
+            className="h-full bg-violet-500 rounded-full transition-all"
+            initial={{ width: 0 }}
+            animate={{ width: `${Math.min(analysisProgress, 100)}%` }}
+            transition={{ duration: 0.5 }}
+          />
+          <span className="absolute right-0 -top-6 text-xs text-gray-500">Step 15 / 20</span>
         </div>
 
+        {/* Title */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center space-y-3 mb-8"
+        >
+          <h1 className="text-2xl font-bold text-violet-600">AI正在解读你的财富密码</h1>
+          <p className="text-gray-600 leading-snug">
+            {isRealUserImage ? '🔍 正在分析您的手掌纹路特征' : '💡 演示智能分析过程'}
+          </p>
+          <div className="mt-3 text-sm text-orange-600 font-medium animate-pulse">
+            🤖 AI已识别到 {landmarks?.length || 21} 个关键点，分析进度 {Math.round(analysisProgress)}%
+          </div>
+        </motion.section>
+
         {/* 图像分析区域 */}
-        <div className="p-6">
-          {/* 360px固定图像容器 - 精确边框对齐 */}
-          <div className="relative mx-auto w-[360px] h-[360px] rounded-xl overflow-hidden bg-slate-800/50 border-2 border-cyan-500/30 shadow-inner">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden mb-8"
+        >
+          {/* 350px固定图像容器 */}
+          <div className="relative mx-auto w-[350px] h-[350px] bg-gray-100">
             {/* 手掌图片 */}
             <img 
               src={userImageData} 
@@ -263,43 +270,46 @@ export default function Step15AIAnalysis({
               onLoad={handleImageLoad}
             />
             
-            {/* AI状态指示器 - 统一设计 */}
-            {(
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.4, delay: 0.3 }}
-                className="absolute top-4 left-4 bg-gradient-to-r from-cyan-500/90 to-blue-500/90 text-white rounded-lg shadow-lg backdrop-blur-sm border border-cyan-400/30 px-3 py-2"
-              >
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className={DESIGN_SYSTEM.typography.caption}>
-                    {landmarks && landmarks.length >= 21 
-                      ? 'AI定位成功 - 21个关键点' 
-                      : '实时分析中'}
-                  </span>
-                </div>
-              </motion.div>
-            )}
+            {/* AI状态指示器 */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+              className="absolute top-3 left-3 bg-violet-600 text-white rounded-lg shadow-lg px-3 py-2"
+            >
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span className="text-xs font-medium">
+                  {landmarks && landmarks.length >= 21 
+                    ? 'AI识别完成' 
+                    : '正在分析中'}
+                </span>
+              </div>
+            </motion.div>
 
-            {/* 精确的扫描框 - 完全对齐图像边界 */}
+            {/* 分析扫描框 */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="absolute inset-0 pointer-events-none"
             >
-              {/* 四角扫描框 - 精确对齐 */}
-              <div className="absolute left-2 top-2 w-6 h-6 border-l-2 border-t-2 border-cyan-400"></div>
-              <div className="absolute right-2 top-2 w-6 h-6 border-r-2 border-t-2 border-cyan-400"></div>
-              <div className="absolute left-2 bottom-2 w-6 h-6 border-l-2 border-b-2 border-cyan-400"></div>
-              <div className="absolute right-2 bottom-2 w-6 h-6 border-r-2 border-b-2 border-cyan-400"></div>
+              {/* 四角扫描框 */}
+              <div className="absolute left-2 top-2 w-6 h-6 border-l-2 border-t-2 border-violet-500"></div>
+              <div className="absolute right-2 top-2 w-6 h-6 border-r-2 border-t-2 border-violet-500"></div>
+              <div className="absolute left-2 bottom-2 w-6 h-6 border-l-2 border-b-2 border-violet-500"></div>
+              <div className="absolute right-2 bottom-2 w-6 h-6 border-r-2 border-b-2 border-violet-500"></div>
               
-              {/* 角落光点 */}
-              <div className="absolute left-3 top-3 w-1 h-1 bg-cyan-400 rounded-full animate-pulse"></div>
-              <div className="absolute right-3 top-3 w-1 h-1 bg-cyan-400 rounded-full animate-pulse delay-75"></div>
-              <div className="absolute left-3 bottom-3 w-1 h-1 bg-cyan-400 rounded-full animate-pulse delay-150"></div>
-              <div className="absolute right-3 bottom-3 w-1 h-1 bg-cyan-400 rounded-full animate-pulse delay-300"></div>
+              {/* 扫描线动画 */}
+              <motion.div 
+                className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-violet-500 to-transparent"
+                animate={{ y: [0, 350, 0] }}
+                transition={{ 
+                  duration: 3, 
+                  repeat: Infinity, 
+                  ease: 'linear' 
+                }}
+              />
             </motion.div>
 
             {/* MediaPipe 21个关键点完整可视化 */}
@@ -567,119 +577,113 @@ export default function Step15AIAnalysis({
             ))}
           </div>
 
-          {/* 分析状态卡片 - 统一设计 */}
-          <div className="mt-6 space-y-4">
-            {/* 状态指示器 */}
+          {/* 分析详情卡片 */}
+          <div className="p-4 bg-gray-50 border-t border-gray-200">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.0 }}
-              className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 border border-cyan-500/20"
+              className="space-y-4"
             >
-              <div className="flex items-center justify-between mb-3">
+              {/* 分析进度 */}
+              <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
-                  <h3 className={`${DESIGN_SYSTEM.typography.subtitle} text-cyan-400`}>系统状态</h3>
+                  <div className="w-2 h-2 bg-violet-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-medium text-gray-700">分析进度</span>
                 </div>
-                <div className={`${DESIGN_SYSTEM.typography.caption} text-slate-400 font-mono`}>
+                <span className="text-sm font-mono text-violet-600">
                   {Math.round(analysisProgress)}%
-                </div>
+                </span>
               </div>
               
               {/* 分析详情 */}
-              <div className="grid grid-cols-2 gap-4 text-xs">
+              <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-slate-300">检测精度</span>
-                    <span className="text-cyan-400 font-mono">
+                    <span className="text-gray-600">检测精度</span>
+                    <span className="text-violet-600 font-medium">
                       {userData.palmValidationResult?.confidence ? 
                         `${Math.round(userData.palmValidationResult.confidence * 100)}%` : 
                         '93%'}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-300">关键点</span>
-                    <span className="text-cyan-400 font-mono">
+                    <span className="text-gray-600">关键点</span>
+                    <span className="text-violet-600 font-medium">
                       {landmarks?.length || 21} / 21
                     </span>
                   </div>
                 </div>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-slate-300">检测手部</span>
-                    <span className="text-cyan-400 font-mono">1 只</span>
+                    <span className="text-gray-600">检测手部</span>
+                    <span className="text-violet-600 font-medium">1 只</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-slate-300">AI引擎</span>
-                    <span className="text-cyan-400 font-mono">MediaPipe</span>
+                    <span className="text-gray-600">AI引擎</span>
+                    <span className="text-violet-600 font-medium">MediaPipe</span>
                   </div>
                 </div>
               </div>
               
-              {/* 21个关键点说明 */}
+              {/* 关键点分析详情 */}
               {(landmarks && landmarks.length >= 21) && (
-                <div className="mt-4 p-3 bg-cyan-500/10 rounded-lg border border-cyan-500/20">
-                  <h4 className={`${DESIGN_SYSTEM.typography.label} text-cyan-300 mb-2`}>
-                    MediaPipe 21个关键点检测成功
+                <div className="p-3 bg-violet-50 rounded-lg border border-violet-200">
+                  <h4 className="text-sm font-medium text-violet-700 mb-2">
+                    ✨ MediaPipe 21个关键点识别成功
                   </h4>
                   <div className="grid grid-cols-2 gap-2 text-xs">
                     <div className="space-y-1">
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                        <span className="text-slate-300">0: 手腕</span>
+                        <span className="text-gray-600">0: 手腕</span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 rounded-full bg-orange-500"></div>
-                        <span className="text-slate-300">1-4: 拇指</span>
+                        <span className="text-gray-600">1-4: 拇指</span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                        <span className="text-slate-300">5-8: 食指</span>
+                        <span className="text-gray-600">5-8: 食指</span>
                       </div>
                     </div>
                     <div className="space-y-1">
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-                        <span className="text-slate-300">9-12: 中指</span>
+                        <span className="text-gray-600">9-12: 中指</span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 rounded-full bg-purple-500"></div>
-                        <span className="text-slate-300">13-16: 无名指</span>
+                        <span className="text-gray-600">13-16: 无名指</span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 rounded-full bg-pink-500"></div>
-                        <span className="text-slate-300">17-20: 小指</span>
+                        <span className="text-gray-600">17-20: 小指</span>
                       </div>
                     </div>
                   </div>
                 </div>
               )}
             </motion.div>
-
-            {/* 进度条 */}
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-              className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 border border-cyan-500/20"
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className={`${DESIGN_SYSTEM.typography.caption} text-cyan-400 font-mono`}>分析进度</span>
-                <span className={`${DESIGN_SYSTEM.typography.caption} text-cyan-400 font-mono`}>{Math.round(analysisProgress)}%</span>
-              </div>
-              <div className="w-full bg-slate-700 rounded-full h-2 overflow-hidden">
-                <motion.div 
-                  className="bg-gradient-to-r from-cyan-400 to-blue-400 h-full rounded-full"
-                  style={{ width: `${analysisProgress}%` }}
-                  initial={{ width: 0 }}
-                  animate={{ width: `${analysisProgress}%` }}
-                  transition={{ duration: 0.5 }}
-                />
-              </div>
-            </motion.div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+
+        {/* Legal & location */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.4 }}
+        >
+          <p className="mt-6 text-center text-[10px] leading-snug text-gray-400 px-4">
+            AI分析结果仅供参考，不构成投资建议。
+            <a href="/privacy" className="underline">隐私政策</a>、
+            <a href="/terms" className="underline">服务条款</a>
+          </p>
+          <p className="mt-2 text-center text-[10px] text-gray-400">
+            智能分析引擎&nbsp;v2.1
+          </p>
+        </motion.div>
+      </main>
     </div>
   )
 }

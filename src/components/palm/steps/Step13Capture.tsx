@@ -64,11 +64,34 @@ export default function Step13Capture({
       return
     }
 
-    // 检查是否为HTTPS或localhost
-    const isSecure = location.protocol === 'https:' || location.hostname === 'localhost'
-    if (!isSecure) {
-      console.error('需要HTTPS才能访问相机')
-      fallbackToNativeCamera('需要安全连接才能访问相机')
+    // 检查是否为安全上下文（支持开发环境）
+    const isSecureContext = () => {
+      // HTTPS 连接
+      if (location.protocol === 'https:') return true
+      
+      // localhost 和 127.0.0.1
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') return true
+      
+      // 局域网IP（开发测试）
+      const isLocalNetwork = /^(10\.|172\.(1[6-9]|2\d|3[01])\.|192\.168\.)/.test(location.hostname)
+      if (isLocalNetwork) {
+        console.warn('局域网环境，尝试访问相机（可能被浏览器阻止）')
+        return true
+      }
+      
+      // 开发端口（如 :3000, :8080 等）
+      const isDevelopmentPort = /:(3000|3001|4000|5000|5173|8080|8000|9000)$/.test(location.host)
+      if (isDevelopmentPort) {
+        console.warn('开发端口环境，尝试访问相机（可能被浏览器阻止）')
+        return true
+      }
+      
+      return false
+    }
+
+    if (!isSecureContext()) {
+      console.error('需要安全连接才能访问相机')
+      fallbackToNativeCamera('需要HTTPS或安全环境才能访问相机')
       return
     }
 
@@ -780,7 +803,7 @@ export default function Step13Capture({
                 <div className="text-sm text-blue-700">
                   <p className="font-medium">智能相机模式:</p>
                   <p className="mt-1">优先使用引导蒙版拍照，如权限受限会自动切换到系统相机</p>
-                  <p className="mt-1 text-xs text-blue-600">📷 需要相机权限 • 🔒 HTTPS安全连接</p>
+                  <p className="mt-1 text-xs text-blue-600">📷 需要相机权限 • 🔒 支持HTTPS/localhost/局域网</p>
                 </div>
               </div>
             </motion.div>
