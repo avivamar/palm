@@ -408,8 +408,11 @@ export default function Step15AIAnalysis({
                   ];
                   
                   return connections.map(([start, end], index) => {
-                    const startPoint = pixels[start as number];
-                    const endPoint = pixels[end as number];
+                    // 类型安全检查
+                    if (typeof start !== 'number' || typeof end !== 'number') return null;
+                    
+                    const startPoint = pixels[start];
+                    const endPoint = pixels[end];
                     if (!startPoint || !endPoint) return null;
                     
                     // 根据连接线类型确定颜色
