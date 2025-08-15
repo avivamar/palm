@@ -1,26 +1,189 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 interface CameraOverlayProps {
   isVisible: boolean
   onClose?: () => void
+  stream?: MediaStream | null
 }
 
-export default function CameraOverlay({ isVisible, onClose }: CameraOverlayProps) {
+export default function CameraOverlay({ isVisible, onClose, stream }: CameraOverlayProps) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [videoLoaded, setVideoLoaded] = useState(false)
+  const [videoError, setVideoError] = useState<string | null>(null)
+  
+  // 设置视频流和监听器
+  useEffect(() => {
+    if (!isVisible || !stream || !videoRef.current) return
+    
+    const video = videoRef.current
+    console.log('CameraOverlay: 设置视频流', {
+      streamId: stream.id,
+      streamActive: stream.active,
+      videoTracks: stream.getVideoTracks().length
+    })
+    
+    // 清除之前的流
+    if (video.srcObject) {
+      const oldStream = video.srcObject as MediaStream
+      if (oldStream !== stream) {
+        oldStream.getTracks().forEach(track => track.stop())
+      }
+    }
+    
+    // 设置新的视频流
+    video.srcObject = stream
+    
+    // 强制设置视频属性
+    video.autoplay = true
+    video.muted = true
+    video.playsInline = true
+    
+    // 视频事件监听器
+    const handleLoadedMetadata = () => {
+      console.log('CameraOverlay: 视频元数据加载完成', {
+        videoWidth: video.videoWidth,
+        videoHeight: video.videoHeight,
+        duration: video.duration,
+        readyState: video.readyState
+      })
+      
+      // 确保视频开始播放
+      video.play().then(() => {
+        console.log('CameraOverlay: 视频播放成功')
+        setVideoLoaded(true)
+        setVideoError(null)
+      }).catch(err => {
+        console.error('CameraOverlay: 视频播放失败:', err)
+        setVideoError('视频播放失败: ' + err.message)
+        
+        // 尝试用户交互后播放
+        const handleUserClick = () => {
+          video.play()
+          document.removeEventListener('click', handleUserClick)
+        }
+        document.addEventListener('click', handleUserClick)
+      })
+    }
+    
+    const handleCanPlay = () => {
+      console.log('CameraOverlay: 视频可以播放')
+      setVideoLoaded(true)
+    }
+    
+    const handleError = (error: Event) => {
+      console.error('CameraOverlay: 视频错误:', error)
+      console.error('CameraOverlay: 错误详情:', video.error)
+      setVideoError(`视频错误: ${video.error?.message || 'Unknown error'}`)
+      setVideoLoaded(false)
+    }
+    
+    const handleLoadStart = () => {
+      console.log('CameraOverlay: 开始加载视频')
+      setVideoLoaded(false)
+      setVideoError(null)
+    }
+    
+    const handleStalled = () => {
+      console.warn('CameraOverlay: 视频流停滞')
+      setVideoError('视频流连接不稳定')
+    }
+    
+    const handleWaiting = () => {
+      console.warn('CameraOverlay: 视频等待数据')
+    }
+    
+    // 添加事件监听器
+    video.addEventListener('loadedmetadata', handleLoadedMetadata)
+    video.addEventListener('canplay', handleCanPlay)
+    video.addEventListener('error', handleError)
+    video.addEventListener('loadstart', handleLoadStart)
+    video.addEventListener('stalled', handleStalled)
+    video.addEventListener('waiting', handleWaiting)
+    
+    // 检查视频轨道状态
+    const videoTrack = stream.getVideoTracks()[0]
+    if (videoTrack) {
+      console.log('CameraOverlay: 视频轨道信息:', {
+        label: videoTrack.label,
+        enabled: videoTrack.enabled,
+        readyState: videoTrack.readyState,
+        settings: videoTrack.getSettings()
+      })
+      
+      // 监听轨道结束事件
+      videoTrack.onended = () => {
+        console.warn('CameraOverlay: 视频轨道结束')
+        setVideoError('视频轨道已断开')
+      }
+    }
+    
+    // 清理函数
+    return () => {
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata)
+      video.removeEventListener('canplay', handleCanPlay)
+      video.removeEventListener('error', handleError)
+      video.removeEventListener('loadstart', handleLoadStart)
+      video.removeEventListener('stalled', handleStalled)
+      video.removeEventListener('waiting', handleWaiting)
+    }
+  }, [isVisible, stream])
+  
   if (!isVisible) return null
 
   return (
     <div className="fixed inset-0 z-50 bg-black">
       {/* 相机视频流容器 */}
       <video 
+        ref={videoRef}
         id="camera-stream"
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
         playsInline
         muted
       />
+      
+      {/* 视频加载状态覆盖层 */}
+      {!videoLoaded && !videoError && (
+        <div className="absolute inset-0 bg-black flex items-center justify-center">
+          <div className="text-white text-center">
+            <motion.div
+              className="w-8 h-8 border-2 border-white border-t-transparent rounded-full mx-auto mb-4"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+            />
+            <p className="text-lg">正在连接相机...</p>
+            <p className="text-sm text-gray-300 mt-2">请允许相机权限</p>
+          </div>
+        </div>
+      )}
+      
+      {/* 视频错误覆盖层 */}
+      {videoError && (
+        <div className="absolute inset-0 bg-black flex items-center justify-center">
+          <div className="text-white text-center p-6">
+            <div className="text-red-500 text-4xl mb-4">⚠️</div>
+            <p className="text-lg font-semibold mb-2">相机连接失败</p>
+            <p className="text-sm text-gray-300 mb-4">{videoError}</p>
+            <button
+              onClick={() => {
+                setVideoError(null)
+                setVideoLoaded(false)
+                // 尝试重新播放
+                if (videoRef.current && stream) {
+                  videoRef.current.srcObject = stream
+                  videoRef.current.play().catch(console.error)
+                }
+              }}
+              className="px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition-colors"
+            >
+              重试连接
+            </button>
+          </div>
+        </div>
+      )}
       
       {/* 半透明遮罩层 */}
       <div className="absolute inset-0 bg-black/40 pointer-events-none" />
@@ -103,9 +266,25 @@ export default function CameraOverlay({ isVisible, onClose }: CameraOverlayProps
           {/* 拍照按钮 - 居中 */}
           <button
             id="capture-button"
-            className="w-20 h-20 rounded-full bg-white ring-4 ring-white/30 hover:scale-105 transition-transform relative"
+            disabled={!videoLoaded}
+            className={`w-20 h-20 rounded-full ring-4 ring-white/30 transition-all relative ${
+              videoLoaded 
+                ? 'bg-white hover:scale-105' 
+                : 'bg-gray-400 cursor-not-allowed'
+            }`}
           >
-            <div className="absolute inset-2 rounded-full bg-white shadow-inner" />
+            <div className={`absolute inset-2 rounded-full shadow-inner ${
+              videoLoaded ? 'bg-white' : 'bg-gray-300'
+            }`} />
+            {!videoLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <motion.div
+                  className="w-4 h-4 border-2 border-gray-600 border-t-transparent rounded-full"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                />
+              </div>
+            )}
           </button>
           
           {/* 占位元素，保持拍照按钮居中 */}

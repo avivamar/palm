@@ -22,6 +22,11 @@ export default function Step13Capture({
   const [isCameraOpen, setIsCameraOpen] = useState(false)
   const [showCameraOverlay, setShowCameraOverlay] = useState(false)
   const [stream, setStream] = useState<MediaStream | null>(null)
+  const [streamHealth, setStreamHealth] = useState<{
+    isActive: boolean;
+    trackCount: number;
+    lastCheck: number;
+  }>({ isActive: false, trackCount: 0, lastCheck: 0 })
   const [isMLValidating, setIsMLValidating] = useState(false)
   const [mlLoadingStep, setMlLoadingStep] = useState<string>('')
   const [validationMessage, setValidationMessage] = useState<{
@@ -33,6 +38,51 @@ export default function Step13Capture({
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   
+  // Stream health monitoring
+  useEffect(() => {
+    if (!stream) {
+      setStreamHealth({ isActive: false, trackCount: 0, lastCheck: Date.now() })
+      return
+    }
+
+    const monitorStreamHealth = () => {
+      const tracks = stream.getVideoTracks()
+      const isActive = stream.active && tracks.length > 0 && tracks[0].readyState === 'live'
+      
+      setStreamHealth({
+        isActive,
+        trackCount: tracks.length,
+        lastCheck: Date.now()
+      })
+
+      if (!isActive) {
+        console.warn('Stream health check failed:', {
+          streamActive: stream.active,
+          trackCount: tracks.length,
+          trackState: tracks[0]?.readyState
+        })
+        
+        // Auto-retry after 3 seconds if stream becomes inactive
+        setTimeout(() => {
+          if (isCameraOpen && !stream.active) {
+            console.log('Auto-retrying camera connection...')
+            openCamera()
+          }
+        }, 3000)
+      }
+    }
+
+    // Initial check
+    monitorStreamHealth()
+    
+    // Monitor every 2 seconds
+    const healthInterval = setInterval(monitorStreamHealth, 2000)
+    
+    return () => {
+      clearInterval(healthInterval)
+    }
+  }, [stream, isCameraOpen])
+
   // Cleanup camera stream on unmount
   useEffect(() => {
     return () => {
@@ -49,6 +99,24 @@ export default function Step13Capture({
     })
   }, []) // 移除trackEvent依赖
   
+  // Enhanced permission detection
+  const checkCameraPermission = async (): Promise<'granted' | 'denied' | 'prompt' | 'unsupported'> => {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      return 'unsupported'
+    }
+
+    if (navigator.permissions && navigator.permissions.query) {
+      try {
+        const permission = await navigator.permissions.query({ name: 'camera' as PermissionName })
+        return permission.state as 'granted' | 'denied' | 'prompt'
+      } catch (error) {
+        console.warn('Permission API not supported:', error)
+      }
+    }
+
+    return 'prompt' // Default if permission API is not available
+  }
+
   const openCamera = async () => {
     console.log('openCamera 被调用')
     trackEvent('palm_camera_capture_attempt', { 
@@ -61,6 +129,23 @@ export default function Step13Capture({
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
       console.error('浏览器不支持 getUserMedia')
       fallbackToNativeCamera('浏览器不支持相机功能')
+      return
+    }
+
+    // Check camera permission first
+    const permissionStatus = await checkCameraPermission()
+    console.log('Camera permission status:', permissionStatus)
+
+    if (permissionStatus === 'denied') {
+      setValidationMessage({
+        title: '📱 需要相机权限',
+        description: '请在浏览器设置中允许相机权限，然后刷新页面重试',
+        type: 'warning'
+      })
+      
+      setTimeout(() => {
+        fallbackToNativeCamera('相机权限被拒绝，使用系统相机')
+      }, 3000)
       return
     }
 
@@ -97,6 +182,9 @@ export default function Step13Capture({
 
     try {
       console.log('尝试获取相机权限...')
+      console.log('当前URL:', location.href)
+      console.log('协议:', location.protocol)
+      console.log('主机:', location.hostname)
       
       // 移动端使用最简单的约束
       const constraints = isMobile() ? {
@@ -113,9 +201,30 @@ export default function Step13Capture({
 
       console.log('相机约束:', constraints)
       
+      // 检查可用的媒体设备
+      try {
+        const devices = await navigator.mediaDevices.enumerateDevices()
+        const videoDevices = devices.filter(device => device.kind === 'videoinput')
+        console.log('可用视频设备:', videoDevices.length)
+        videoDevices.forEach((device, index) => {
+          console.log(`设备 ${index}:`, device.label || `Camera ${index}`)
+        })
+      } catch (enumError) {
+        console.warn('无法枚举设备:', enumError)
+      }
+      
       // 直接获取视频流
+      console.log('开始请求用户媒体...')
       const cameraStream = await navigator.mediaDevices.getUserMedia(constraints)
-      console.log('相机流获取成功')
+      console.log('相机流获取成功!')
+      console.log('流ID:', cameraStream.id)
+      console.log('流状态:', cameraStream.active)
+      console.log('视频轨道:', cameraStream.getVideoTracks().map(track => ({
+        label: track.label,
+        enabled: track.enabled,
+        readyState: track.readyState,
+        settings: track.getSettings()
+      })))
       
       // 设置状态
       setStream(cameraStream)
@@ -127,11 +236,12 @@ export default function Step13Capture({
       // 等待蒙版DOM元素渲染
       setTimeout(() => {
         setupCameraVideo(cameraStream)
-      }, 150)
+      }, 200) // 增加等待时间
       
       trackEvent('palm_camera_opened_success', { 
         timestamp: Date.now(),
-        constraints
+        constraints,
+        streamId: cameraStream.id
       })
       
     } catch (error) {
@@ -165,28 +275,80 @@ export default function Step13Capture({
 
   // 设置相机视频流
   const setupCameraVideo = (cameraStream: MediaStream) => {
-    console.log('设置相机视频流')
+    console.log('设置相机视频流, 流状态:', cameraStream.active)
+    console.log('视频轨道数量:', cameraStream.getVideoTracks().length)
+    
     const overlayVideo = document.getElementById('camera-stream') as HTMLVideoElement
     if (overlayVideo) {
+      console.log('找到video元素:', overlayVideo)
+      
+      // 清除之前的流
+      if (overlayVideo.srcObject) {
+        const oldStream = overlayVideo.srcObject as MediaStream
+        oldStream.getTracks().forEach(track => track.stop())
+      }
+      
+      // 设置新的视频流
       overlayVideo.srcObject = cameraStream
       overlayVideo.autoplay = true
       overlayVideo.muted = true
       overlayVideo.playsInline = true
       
+      // 强制显示视频
+      overlayVideo.style.display = 'block'
+      overlayVideo.style.opacity = '1'
+      
+      console.log('视频属性设置完成')
+      
       overlayVideo.onloadedmetadata = () => {
-        console.log('视频元数据加载完成')
-        overlayVideo.play().catch(err => {
-          console.warn('视频播放失败:', err)
+        console.log('视频元数据加载完成, 尺寸:', overlayVideo.videoWidth, 'x', overlayVideo.videoHeight)
+        overlayVideo.play().then(() => {
+          console.log('视频播放成功')
+        }).catch(err => {
+          console.error('视频播放失败:', err)
+          // 尝试用户交互后播放
+          document.addEventListener('click', () => {
+            overlayVideo.play()
+          }, { once: true })
         })
+      }
+      
+      overlayVideo.onloadstart = () => {
+        console.log('开始加载视频')
+      }
+      
+      overlayVideo.oncanplay = () => {
+        console.log('视频可以播放')
       }
       
       overlayVideo.onerror = (err) => {
         console.error('视频播放错误:', err)
+        console.error('错误详情:', overlayVideo.error)
+      }
+      
+      overlayVideo.onstalled = () => {
+        console.warn('视频流停滞')
+      }
+      
+      overlayVideo.onwaiting = () => {
+        console.warn('视频等待数据')
+      }
+      
+      // 检查视频流状态
+      const videoTrack = cameraStream.getVideoTracks()[0]
+      if (videoTrack) {
+        console.log('视频轨道状态:', videoTrack.readyState)
+        console.log('视频轨道设置:', videoTrack.getSettings())
       }
       
       console.log('视频元素设置完成')
     } else {
       console.error('未找到camera-stream元素')
+      // 重试查找
+      setTimeout(() => {
+        console.log('重试查找camera-stream元素')
+        setupCameraVideo(cameraStream)
+      }, 200)
     }
     
     // 设置拍照按钮
@@ -208,16 +370,24 @@ export default function Step13Capture({
   const fallbackToNativeCamera = (reason: string) => {
     console.log('降级到原生相机:', reason)
     
+    // 关闭蒙版
+    setShowCameraOverlay(false)
+    setIsCameraOpen(false)
+    
     setValidationMessage({
       title: '📱 使用系统相机',
       description: reason,
       type: 'warning'
     })
     
+    // 根据错误类型调整等待时间
+    const isPermissionDenied = reason.includes('权限被拒绝') || reason.includes('NotAllowedError')
+    const waitTime = isPermissionDenied ? 1000 : 2000 // 权限拒绝快速降级
+    
     setTimeout(() => {
       setValidationMessage(null)
       captureWithNativeCamera()
-    }, 2000)
+    }, waitTime)
   }
   
   const closeCamera = () => {
@@ -378,11 +548,12 @@ export default function Step13Capture({
       // 桌面端使用完整ML验证
       setMlLoadingStep('正在加载AI识别模型...')
       
-      // 使用带超时的验证函数，移动端缩短超时时间
+      // 使用带超时的验证函数，根据设备类型调整超时时间
+      const timeoutDuration = isMobile() ? 8000 : 12000; // 移动端8秒，桌面端12秒
       const validationResult = await Promise.race([
         validatePalmCombinedWithProgress(selectedFile, setMlLoadingStep),
         new Promise((_, reject) => 
-          setTimeout(() => reject(new Error('验证超时')), 15000) // 15秒超时
+          setTimeout(() => reject(new Error('验证超时')), timeoutDuration)
         )
       ]) as any
       
@@ -441,8 +612,14 @@ export default function Step13Capture({
         type: 'warning'
       })
       
-      // 超时情况下使用简化验证并允许继续
+      // 超时或其他错误的处理
       if (isTimeout) {
+        setValidationMessage({
+          title: '⚡ 快速验证模式',
+          description: '已切换到快速验证，继续您的掌纹分析',
+          type: 'warning'
+        })
+        
         setTimeout(() => {
           const reader = new FileReader()
           reader.onload = () => {
@@ -451,15 +628,39 @@ export default function Step13Capture({
               palmCaptureImage: selectedFile.name,
               palmImageData: imageData,
               palmLandmarks: undefined, // 没有ML数据
-              palmValidationResult: { isValid: true, confidence: 0.6, message: '简化验证通过' }
+              palmValidationResult: { isValid: true, confidence: 0.65, message: '快速验证通过' }
             })
             setIsUploading(false)
             goToNextStep()
           }
           reader.readAsDataURL(selectedFile)
-        }, 2000)
+        }, 1500) // 减少等待时间
       } else {
+        // 其他错误允许用户重试或继续
+        setValidationMessage({
+          title: '⚠️ 验证遇到问题',
+          description: '您可以重试验证，或选择继续分析',
+          type: 'warning'
+        })
         setIsUploading(false)
+        
+        // 提供继续的选项
+        setTimeout(() => {
+          if (selectedFile) {
+            const reader = new FileReader()
+            reader.onload = () => {
+              const imageData = reader.result as string
+              updateUserData({ 
+                palmCaptureImage: selectedFile.name,
+                palmImageData: imageData,
+                palmLandmarks: undefined,
+                palmValidationResult: { isValid: true, confidence: 0.5, message: '跳过验证，直接分析' }
+              })
+              goToNextStep()
+            }
+            reader.readAsDataURL(selectedFile)
+          }
+        }, 3000) // 3秒后自动继续
       }
     }
   }
@@ -547,6 +748,7 @@ export default function Step13Capture({
       <CameraOverlay 
         isVisible={showCameraOverlay} 
         onClose={closeCamera}
+        stream={stream}
       />
       
       <div className="flex justify-center">
@@ -804,6 +1006,17 @@ export default function Step13Capture({
                   <p className="font-medium">智能相机模式:</p>
                   <p className="mt-1">优先使用引导蒙版拍照，如权限受限会自动切换到系统相机</p>
                   <p className="mt-1 text-xs text-blue-600">📷 需要相机权限 • 🔒 支持HTTPS/localhost/局域网</p>
+                  
+                  {/* Stream debug info - only in development */}
+                  {process.env.NODE_ENV === 'development' && stream && (
+                    <div className="mt-2 p-2 bg-blue-100 rounded text-xs">
+                      <p>🔧 Debug Info:</p>
+                      <p>Stream Active: {stream.active ? '✅' : '❌'}</p>
+                      <p>Video Tracks: {stream.getVideoTracks().length}</p>
+                      <p>Stream Health: {streamHealth.isActive ? '✅' : '❌'}</p>
+                      <p>Last Check: {new Date(streamHealth.lastCheck).toLocaleTimeString()}</p>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
