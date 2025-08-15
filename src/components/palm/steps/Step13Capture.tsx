@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
 import { validatePalmCombinedWithProgress, getMLValidationMessage } from '@/utils/palmValidationML'
+import CameraOverlay from '../CameraOverlay'
 
 interface Step13Props {
   userData: PalmUserData
@@ -19,6 +20,7 @@ export default function Step13Capture({
 }: Step13Props) {
   const [isUploading, setIsUploading] = useState(false)
   const [isCameraOpen, setIsCameraOpen] = useState(false)
+  const [showCameraOverlay, setShowCameraOverlay] = useState(false)
   const [stream, setStream] = useState<MediaStream | null>(null)
   const [isMLValidating, setIsMLValidating] = useState(false)
   const [mlLoadingStep, setMlLoadingStep] = useState<string>('')
@@ -51,6 +53,9 @@ export default function Step13Capture({
     trackEvent('palm_camera_capture_attempt', { 
       timestamp: Date.now()
     })
+    
+    // 使用新的相机引导蒙版
+    setShowCameraOverlay(true)
     
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
@@ -96,17 +101,24 @@ export default function Step13Capture({
         setStream(cameraStream)
         setIsCameraOpen(true)
         
-        // Set video source with better error handling
-        if (videoRef.current) {
-          videoRef.current.srcObject = cameraStream
-          
-          // 确保视频开始播放
-          try {
-            await videoRef.current.play()
-          } catch (playError) {
-            console.warn('视频自动播放失败，用户可能需要手动开始:', playError)
+        // 将视频流设置到蒙版组件中的video元素
+        setTimeout(() => {
+          const overlayVideo = document.getElementById('camera-stream') as HTMLVideoElement
+          if (overlayVideo) {
+            overlayVideo.srcObject = cameraStream
+            overlayVideo.play().catch(err => {
+              console.warn('视频播放失败:', err)
+            })
           }
-        }
+        }, 100)
+        
+        // 设置拍照按钮的点击事件
+        setTimeout(() => {
+          const captureBtn = document.getElementById('capture-button')
+          if (captureBtn) {
+            captureBtn.onclick = () => captureImage()
+          }
+        }, 200)
         
         trackEvent('palm_camera_opened', { 
           timestamp: Date.now(),
@@ -151,10 +163,47 @@ export default function Step13Capture({
       setStream(null)
     }
     setIsCameraOpen(false)
+    setShowCameraOverlay(false)
     
     trackEvent('palm_camera_closed', { 
       timestamp: Date.now()
     })
+  }
+  
+  // 新的拍照函数，配合引导蒙版使用
+  const captureImage = async () => {
+    const overlayVideo = document.getElementById('camera-stream') as HTMLVideoElement
+    if (!overlayVideo || !canvasRef.current) return
+    
+    const canvas = canvasRef.current
+    const context = canvas.getContext('2d')
+    
+    if (!context) return
+    
+    // 设置画布尺寸匹配视频
+    canvas.width = overlayVideo.videoWidth
+    canvas.height = overlayVideo.videoHeight
+    
+    // 绘制当前视频帧到画布
+    context.drawImage(overlayVideo, 0, 0)
+    
+    // 转换画布为blob
+    canvas.toBlob(async (blob) => {
+      if (!blob) return
+      
+      // 创建File对象
+      const file = new File([blob], 'palm-photo.jpg', { type: 'image/jpeg' })
+      
+      // 关闭相机和蒙版
+      closeCamera()
+      
+      // 处理拍摄的图片
+      await processImageFile(file)
+      
+      trackEvent('palm_camera_capture_success', {
+        timestamp: Date.now()
+      })
+    }, 'image/jpeg', 0.9) // 90%质量
   }
   
   const capturePhoto = async () => {
@@ -433,8 +482,15 @@ export default function Step13Capture({
   }
   
   return (
-    <div className="flex justify-center">
-      <main className="w-full max-w-[412px] min-h-screen px-6 pt-6 pb-24 bg-white text-gray-900">
+    <>
+      {/* 相机引导蒙版 */}
+      <CameraOverlay 
+        isVisible={showCameraOverlay} 
+        onClose={closeCamera}
+      />
+      
+      <div className="flex justify-center">
+        <main className="w-full max-w-[412px] min-h-screen px-6 pt-6 pb-24 bg-white text-gray-900">
         {/* Logo & Progress */}
         <motion.img 
           initial={{ opacity: 0, y: -20 }}
@@ -516,6 +572,9 @@ export default function Step13Capture({
                 })
               }}
             />
+            
+            {/* Hidden canvas for capturing image */}
+            <canvas ref={canvasRef} className="hidden" />
             
             {/* Loading overlay for video */}
             {stream && (
@@ -725,5 +784,6 @@ export default function Step13Capture({
         </motion.div>
       </main>
     </div>
+    </>
   )
 }
