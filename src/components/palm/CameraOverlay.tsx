@@ -31,7 +31,7 @@ export default function CameraOverlay({ isVisible, onClose }: CameraOverlayProps
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="relative w-[320px] h-[380px]"
+          className="relative w-[380px] h-[450px]"
         >
           {/* SVG手掌轮廓 */}
           <svg 
@@ -89,7 +89,7 @@ export default function CameraOverlay({ isVisible, onClose }: CameraOverlayProps
       
       {/* 底部控制按钮 */}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-        <div className="flex items-center justify-center space-x-8">
+        <div className="flex items-center justify-between">
           {/* 取消按钮 */}
           <button
             onClick={onClose}
@@ -100,7 +100,7 @@ export default function CameraOverlay({ isVisible, onClose }: CameraOverlayProps
             </svg>
           </button>
           
-          {/* 拍照按钮 */}
+          {/* 拍照按钮 - 居中 */}
           <button
             id="capture-button"
             className="w-20 h-20 rounded-full bg-white ring-4 ring-white/30 hover:scale-105 transition-transform relative"
@@ -108,15 +108,8 @@ export default function CameraOverlay({ isVisible, onClose }: CameraOverlayProps
             <div className="absolute inset-2 rounded-full bg-white shadow-inner" />
           </button>
           
-          {/* 切换相机按钮 */}
-          <button
-            id="switch-camera"
-            className="w-14 h-14 rounded-full bg-gray-700/80 backdrop-blur-sm flex items-center justify-center text-white hover:bg-gray-600/80 transition-colors"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-            </svg>
-          </button>
+          {/* 占位元素，保持拍照按钮居中 */}
+          <div className="w-14 h-14"></div>
         </div>
         
         {/* 拍摄提示 */}

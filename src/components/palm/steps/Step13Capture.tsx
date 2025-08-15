@@ -50,111 +50,151 @@ export default function Step13Capture({
   }, []) // 移除trackEvent依赖
   
   const openCamera = async () => {
+    console.log('openCamera 被调用')
     trackEvent('palm_camera_capture_attempt', { 
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      userAgent: navigator.userAgent,
+      isMobile: isMobile()
     })
     
-    // 使用新的相机引导蒙版
-    setShowCameraOverlay(true)
-    
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      try {
-        // 移动端优化：使用更宽松的相机设置
-        let cameraConstraints = {
-          video: { 
-            width: { ideal: 1920, max: 1920, min: 640 },
-            height: { ideal: 1080, max: 1080, min: 480 },
-            facingMode: 'environment' // 后置摄像头
-          }
-        }
-        
-        // 移动端降级方案
-        if (isMobile()) {
-          cameraConstraints = {
-            video: { 
-              width: { ideal: 1280, max: 1920, min: 320 },
-              height: { ideal: 720, max: 1080, min: 240 },
-              facingMode: 'environment' // 优先后置摄像头，失败时会自动降级到前置
-            }
-          }
-        }
-        
-        let cameraStream: MediaStream
-        
-        try {
-          // 首先尝试理想设置
-          cameraStream = await navigator.mediaDevices.getUserMedia(cameraConstraints)
-        } catch (firstError) {
-          console.warn('理想相机设置失败，尝试基础设置:', firstError)
-          
-          // 降级到最基础的设置
-          try {
-            cameraStream = await navigator.mediaDevices.getUserMedia({ 
-              video: true 
-            })
-          } catch (fallbackError) {
-            console.error('所有相机设置都失败:', fallbackError)
-            throw fallbackError
-          }
-        }
-        
-        setStream(cameraStream)
-        setIsCameraOpen(true)
-        
-        // 将视频流设置到蒙版组件中的video元素
-        setTimeout(() => {
-          const overlayVideo = document.getElementById('camera-stream') as HTMLVideoElement
-          if (overlayVideo) {
-            overlayVideo.srcObject = cameraStream
-            overlayVideo.play().catch(err => {
-              console.warn('视频播放失败:', err)
-            })
-          }
-        }, 100)
-        
-        // 设置拍照按钮的点击事件
-        setTimeout(() => {
-          const captureBtn = document.getElementById('capture-button')
-          if (captureBtn) {
-            captureBtn.onclick = () => captureImage()
-          }
-        }, 200)
-        
-        trackEvent('palm_camera_opened', { 
-          timestamp: Date.now(),
-          constraints: cameraConstraints
-        })
-        
-      } catch (error) {
-        console.error('Camera access error:', error)
-        trackEvent('palm_camera_capture_denied', { 
-          error: error instanceof Error ? error.message : 'Unknown error',
-          timestamp: Date.now()
-        })
-        
-        // 显示用户友好的错误消息
-        setValidationMessage({
-          title: '📷 相机访问失败',
-          description: '无法访问相机，请检查权限设置或使用相册上传',
-          type: 'warning'
-        })
-        
-        // 短暂显示错误后自动关闭相机界面
-        setTimeout(() => {
-          setValidationMessage(null)
-        }, 3000)
-      }
-    } else {
-      // Browser doesn't support camera, fallback to file picker
-      setValidationMessage({
-        title: '📱 不支持相机',
-        description: '您的浏览器不支持相机功能，请使用相册上传',
-        type: 'warning'
-      })
-      setTimeout(() => {
-        setValidationMessage(null)
-      }, 3000)
+    // 检查基本支持
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      console.error('浏览器不支持 getUserMedia')
+      fallbackToNativeCamera('浏览器不支持相机功能')
+      return
     }
+
+    // 检查是否为HTTPS或localhost
+    const isSecure = location.protocol === 'https:' || location.hostname === 'localhost'
+    if (!isSecure) {
+      console.error('需要HTTPS才能访问相机')
+      fallbackToNativeCamera('需要安全连接才能访问相机')
+      return
+    }
+
+    try {
+      console.log('尝试获取相机权限...')
+      
+      // 移动端使用最简单的约束
+      const constraints = isMobile() ? {
+        video: {
+          facingMode: 'environment'
+        }
+      } : {
+        video: {
+          width: { ideal: 1280, max: 1920, min: 640 },
+          height: { ideal: 720, max: 1080, min: 480 },
+          facingMode: 'environment'
+        }
+      }
+
+      console.log('相机约束:', constraints)
+      
+      // 直接获取视频流
+      const cameraStream = await navigator.mediaDevices.getUserMedia(constraints)
+      console.log('相机流获取成功')
+      
+      // 设置状态
+      setStream(cameraStream)
+      setIsCameraOpen(true)
+      
+      // 成功获取相机后才显示蒙版
+      setShowCameraOverlay(true)
+      
+      // 等待蒙版DOM元素渲染
+      setTimeout(() => {
+        setupCameraVideo(cameraStream)
+      }, 150)
+      
+      trackEvent('palm_camera_opened_success', { 
+        timestamp: Date.now(),
+        constraints
+      })
+      
+    } catch (error) {
+      console.error('获取相机失败:', error)
+      
+      // 分析错误类型
+      const errorName = error instanceof Error ? error.name : 'Unknown'
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error'
+      
+      console.log('错误类型:', errorName)
+      console.log('错误信息:', errorMessage)
+      
+      trackEvent('palm_camera_capture_failed', { 
+        error: errorMessage,
+        errorName,
+        timestamp: Date.now()
+      })
+      
+      // 根据错误类型处理
+      if (errorName === 'NotAllowedError') {
+        fallbackToNativeCamera('相机权限被拒绝，将使用系统相机')
+      } else if (errorName === 'NotFoundError') {
+        fallbackToNativeCamera('未找到相机设备，将使用系统相机')
+      } else if (errorName === 'NotReadableError') {
+        fallbackToNativeCamera('相机被其他应用占用，将使用系统相机')
+      } else {
+        fallbackToNativeCamera('无法访问相机，将使用系统相机')
+      }
+    }
+  }
+
+  // 设置相机视频流
+  const setupCameraVideo = (cameraStream: MediaStream) => {
+    console.log('设置相机视频流')
+    const overlayVideo = document.getElementById('camera-stream') as HTMLVideoElement
+    if (overlayVideo) {
+      overlayVideo.srcObject = cameraStream
+      overlayVideo.autoplay = true
+      overlayVideo.muted = true
+      overlayVideo.playsInline = true
+      
+      overlayVideo.onloadedmetadata = () => {
+        console.log('视频元数据加载完成')
+        overlayVideo.play().catch(err => {
+          console.warn('视频播放失败:', err)
+        })
+      }
+      
+      overlayVideo.onerror = (err) => {
+        console.error('视频播放错误:', err)
+      }
+      
+      console.log('视频元素设置完成')
+    } else {
+      console.error('未找到camera-stream元素')
+    }
+    
+    // 设置拍照按钮
+    setTimeout(() => {
+      const captureBtn = document.getElementById('capture-button')
+      if (captureBtn) {
+        console.log('拍照按钮绑定成功')
+        captureBtn.onclick = () => {
+          console.log('拍照按钮被点击')
+          captureImage()
+        }
+      } else {
+        console.error('未找到capture-button元素')
+      }
+    }, 100)
+  }
+
+  // 降级到原生相机
+  const fallbackToNativeCamera = (reason: string) => {
+    console.log('降级到原生相机:', reason)
+    
+    setValidationMessage({
+      title: '📱 使用系统相机',
+      description: reason,
+      type: 'warning'
+    })
+    
+    setTimeout(() => {
+      setValidationMessage(null)
+      captureWithNativeCamera()
+    }, 2000)
   }
   
   const closeCamera = () => {
@@ -169,6 +209,7 @@ export default function Step13Capture({
       timestamp: Date.now()
     })
   }
+  
   
   // 新的拍照函数，配合引导蒙版使用
   const captureImage = async () => {
@@ -464,20 +505,16 @@ export default function Step13Capture({
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
   }
 
-  // 优化的相机调用 - 添加更好的错误处理和降级方案
+  // 优化的相机调用 - 直接调用新的相机逻辑
   const openCameraOptimized = async () => {
+    console.log('openCameraOptimized 被调用')
     trackEvent('palm_camera_optimized_attempt', { 
       timestamp: Date.now(),
-      isMobile: isMobile()
+      isMobile: isMobile(),
+      userAgent: navigator.userAgent
     })
 
-    // 移动设备优先使用原生相机调用
-    if (isMobile()) {
-      captureWithNativeCamera()
-      return
-    }
-
-    // 桌面设备尝试自定义相机
+    // 直接调用新的相机逻辑，内部已包含降级措施
     await openCamera()
   }
   
@@ -741,8 +778,9 @@ export default function Step13Capture({
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <div className="text-sm text-blue-700">
-                  <p className="font-medium">移动端优化提示:</p>
-                  <p className="mt-1">为了更好的体验，移动端使用快速验证模式，无需等待复杂的AI分析</p>
+                  <p className="font-medium">智能相机模式:</p>
+                  <p className="mt-1">优先使用引导蒙版拍照，如权限受限会自动切换到系统相机</p>
+                  <p className="mt-1 text-xs text-blue-600">📷 需要相机权限 • 🔒 HTTPS安全连接</p>
                 </div>
               </div>
             </motion.div>
