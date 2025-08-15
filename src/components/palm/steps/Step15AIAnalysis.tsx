@@ -167,36 +167,36 @@ export default function Step15AIAnalysis({
       
       return [
         { 
-          x: pixels[HAND_LANDMARKS.THUMB_TIP]?.x - 12, 
-          y: pixels[HAND_LANDMARKS.THUMB_TIP]?.y - 20, 
+          x: (pixels[HAND_LANDMARKS.THUMB_TIP]?.x || 0) - 12, 
+          y: (pixels[HAND_LANDMARKS.THUMB_TIP]?.y || 0) - 20, 
           color: DESIGN_SYSTEM.colors.warning, 
           label: '外在人格',
           meaning: '行为表现' 
         },
         { 
-          x: pixels[HAND_LANDMARKS.INDEX_TIP]?.x, 
-          y: pixels[HAND_LANDMARKS.INDEX_TIP]?.y - 20, 
+          x: pixels[HAND_LANDMARKS.INDEX_TIP]?.x || 0, 
+          y: (pixels[HAND_LANDMARKS.INDEX_TIP]?.y || 0) - 20, 
           color: DESIGN_SYSTEM.colors.primary, 
           label: '自尊心',
           meaning: '内在自己' 
         },
         { 
-          x: pixels[HAND_LANDMARKS.MIDDLE_TIP]?.x, 
-          y: pixels[HAND_LANDMARKS.MIDDLE_TIP]?.y - 20, 
+          x: pixels[HAND_LANDMARKS.MIDDLE_TIP]?.x || 0, 
+          y: (pixels[HAND_LANDMARKS.MIDDLE_TIP]?.y || 0) - 20, 
           color: DESIGN_SYSTEM.colors.primaryLight, 
           label: '社会性',
           meaning: '现实能力' 
         },
         { 
-          x: pixels[HAND_LANDMARKS.RING_TIP]?.x, 
-          y: pixels[HAND_LANDMARKS.RING_TIP]?.y - 20, 
+          x: pixels[HAND_LANDMARKS.RING_TIP]?.x || 0, 
+          y: (pixels[HAND_LANDMARKS.RING_TIP]?.y || 0) - 20, 
           color: DESIGN_SYSTEM.colors.success, 
           label: '艺术天分',
           meaning: '审美感性' 
         },
         { 
-          x: pixels[HAND_LANDMARKS.PINKY_TIP]?.x + 12, 
-          y: pixels[HAND_LANDMARKS.PINKY_TIP]?.y - 20, 
+          x: (pixels[HAND_LANDMARKS.PINKY_TIP]?.x || 0) + 12, 
+          y: (pixels[HAND_LANDMARKS.PINKY_TIP]?.y || 0) - 20, 
           color: '#8b5cf6', 
           label: '潜在个性',
           meaning: '天生特质' 
