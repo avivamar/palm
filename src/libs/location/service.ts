@@ -5,7 +5,7 @@
 
 import type { LocationServiceConfig } from './config';
 import { checkServiceAvailability, locationConfig } from './config';
-import { createTimeoutFetch, LocationErrorHandler, withRetry } from './error-handler';
+import { LocationErrorHandler, withRetry } from './error-handler';
 
 // Unified location result interface
 export type LocationResult = {
@@ -109,7 +109,6 @@ export class LocationSearchService {
   private rateLimiter: RateLimiter;
   private availability: ReturnType<typeof checkServiceAvailability>;
   private errorHandler: LocationErrorHandler;
-  private timeoutFetch: ReturnType<typeof createTimeoutFetch>;
 
   constructor() {
     this.cache = new LocationCache(
@@ -119,7 +118,6 @@ export class LocationSearchService {
     this.rateLimiter = new RateLimiter();
     this.availability = checkServiceAvailability();
     this.errorHandler = new LocationErrorHandler();
-    this.timeoutFetch = createTimeoutFetch(10000); // 10秒超时
   }
 
   /**

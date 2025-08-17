@@ -25,7 +25,7 @@ export default function Step7PalmLines({
     const getLocation = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
-          (position) => {
+          (_position) => {
             setCurrentLocation('🌍 全球');
           },
           () => {

@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { PALM_STEPS_CONFIG, getExperimentVariant } from '@/libs/palm/config'
+import { NormalizedLandmark } from '@mediapipe/tasks-vision'
 
 export interface PalmUserData {
   gender?: 'male' | 'female'
@@ -12,7 +13,13 @@ export interface PalmUserData {
   palmCaptureImage?: string
   palmPhoto?: string
   palmImageData?: string  // Base64 encoded image data for display in Step15
-  palmLandmarks?: any[]   // MediaPipe hand landmarks for precise annotation
+  
+  // MediaPipe 手部检测数据
+  palmLandmarks?: NormalizedLandmark[]     // MediaPipe 21个关键点坐标 (归一化)
+  palmWorldLandmarks?: NormalizedLandmark[] // 世界坐标系中的关键点
+  palmHandedness?: 'Left' | 'Right'        // 检测到的手部左右
+  palmConfidence?: number                  // 检测置信度 (0-1)
+  
   palmValidationResult?: any  // Full validation result from ML analysis
   birthDate?: string
   birthTime?: string

@@ -102,7 +102,7 @@ export class LocationErrorHandler {
             message: `Authentication failed for ${service}`,
             userMessage: '服务认证失败，正在尝试其他搜索方式',
             service,
-            originalError: error as Error,
+            originalError: error as unknown as Error,
             timestamp,
             retryable: false,
           };
@@ -113,7 +113,7 @@ export class LocationErrorHandler {
             message: `Rate limit exceeded for ${service}`,
             userMessage: '搜索请求过于频繁，正在尝试其他搜索方式',
             service,
-            originalError: error as Error,
+            originalError: error as unknown as Error,
             timestamp,
             retryable: true,
           };
@@ -124,7 +124,7 @@ export class LocationErrorHandler {
             message: `API quota exceeded for ${service}`,
             userMessage: '搜索配额已用完，正在尝试其他搜索方式',
             service,
-            originalError: error as Error,
+            originalError: error as unknown as Error,
             timestamp,
             retryable: false,
           };
@@ -138,7 +138,7 @@ export class LocationErrorHandler {
             message: `Service unavailable for ${service}`,
             userMessage: '搜索服务暂时不可用，正在尝试其他搜索方式',
             service,
-            originalError: error as Error,
+            originalError: error as unknown as Error,
             timestamp,
             retryable: true,
           };

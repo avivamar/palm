@@ -3,13 +3,23 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
+import { ProcessedHandData } from '@/libs/mediapipe/HandLandmarkerService';
+
 interface CameraOverlayProps {
   isVisible: boolean
   onClose?: () => void
   stream?: MediaStream | null
+  detectedHands?: ProcessedHandData[]
+  showHandLandmarks?: boolean
 }
 
-export default function CameraOverlay({ isVisible, onClose, stream }: CameraOverlayProps) {
+export default function CameraOverlay({ 
+  isVisible, 
+  onClose, 
+  stream, 
+  detectedHands = [],
+  showHandLandmarks = true 
+}: CameraOverlayProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoLoaded, setVideoLoaded] = useState(false)
   const [videoError, setVideoError] = useState<string | null>(null)
@@ -221,7 +231,68 @@ export default function CameraOverlay({ isVisible, onClose, stream }: CameraOver
             </defs>
           </svg>
           
-          {/* 中心透明区域提示 */}
+          {/* MediaPipe 实时手部检测可视化 */}
+          {showHandLandmarks && detectedHands.length > 0 && (
+            <svg className="absolute inset-0 w-full h-full pointer-events-none">
+              {detectedHands.map((hand, handIndex) => {
+                // 手部连接线
+                const connections: [number, number][] = [
+                  // 拇指
+                  [0, 1], [1, 2], [2, 3], [3, 4],
+                  // 食指
+                  [0, 5], [5, 6], [6, 7], [7, 8],
+                  // 中指
+                  [5, 9], [9, 10], [10, 11], [11, 12],
+                  // 无名指
+                  [9, 13], [13, 14], [14, 15], [15, 16],
+                  // 小指
+                  [13, 17], [17, 18], [18, 19], [19, 20],
+                  // 手掌
+                  [0, 17]
+                ];
+                
+                return (
+                  <g key={`hand-${handIndex}`}>
+                    {/* 连接线 */}
+                    {connections.map(([start, end], connectionIndex) => {
+                      const startPoint = hand.landmarks[start as number];
+                      const endPoint = hand.landmarks[end as number];
+                      if (!startPoint || !endPoint) return null;
+                      
+                      return (
+                        <line
+                          key={`connection-${handIndex}-${connectionIndex}`}
+                          x1={startPoint.x * 380} // 容器宽度
+                          y1={startPoint.y * 450} // 容器高度
+                          x2={endPoint.x * 380}
+                          y2={endPoint.y * 450}
+                          stroke="#00ff00"
+                          strokeWidth="2"
+                          strokeOpacity="0.8"
+                        />
+                      );
+                    })}
+                    
+                    {/* 关键点 */}
+                    {hand.landmarks.map((landmark, pointIndex) => (
+                      <circle
+                        key={`point-${handIndex}-${pointIndex}`}
+                        cx={landmark.x * 380}
+                        cy={landmark.y * 450}
+                        r="4"
+                        fill="#00ff00"
+                        stroke="#ffffff"
+                        strokeWidth="1"
+                        fillOpacity="0.9"
+                      />
+                    ))}
+                  </g>
+                );
+              })}
+            </svg>
+          )}
+          
+          {/* 中心提示信息 */}
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white">
               <motion.div
@@ -230,8 +301,21 @@ export default function CameraOverlay({ isVisible, onClose, stream }: CameraOver
                 transition={{ delay: 0.5 }}
                 className="space-y-2"
               >
-                <p className="text-lg font-semibold text-green-400">请将左手放入框内</p>
-                <p className="text-sm text-gray-300">保持手掌平整，手指自然张开</p>
+                {detectedHands.length > 0 ? (
+                  <>
+                    <p className="text-lg font-semibold text-green-400">
+                      ✅ 检测到 {detectedHands.length} 只手
+                    </p>
+                    <p className="text-sm text-gray-300">
+                      {detectedHands[0]?.handedness} 手 | 置信度: {Math.round((detectedHands[0]?.confidence || 0) * 100)}%
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p className="text-lg font-semibold text-yellow-400">请将手掌放入框内</p>
+                    <p className="text-sm text-gray-300">保持手掌平整，手指自然张开</p>
+                  </>
+                )}
               </motion.div>
             </div>
           </div>

@@ -6,6 +6,8 @@ import { motion } from 'framer-motion';
 import { PalmUserData } from '@/stores/palmStore';
 import { getMLValidationMessage, validatePalmCombinedWithProgress } from '@/utils/palmValidationML';
 import CameraOverlay from '../CameraOverlay';
+import { useMediaPipeHandDetection } from '@/hooks/useMediaPipeHandDetection';
+import { ProcessedHandData } from '@/libs/mediapipe/HandLandmarkerService';
 
 type Step13Props = {
   userData: PalmUserData;
@@ -34,8 +36,49 @@ export default function Step13Capture({
     description: string;
     type: 'success' | 'warning' | 'error';
   } | null>(null);
+  const [detectedHands, setDetectedHands] = useState<ProcessedHandData[]>([]);
+  const [isRealTimeDetection, setIsRealTimeDetection] = useState(false);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  
+  // MediaPipe 手部检测
+  const {
+    isInitialized: isMediaPipeReady,
+    isDetecting,
+    hands,
+    initialize: initializeMediaPipe,
+    detectImage,
+    startVideoDetection,
+    stopVideoDetection,
+    reset: resetMediaPipe
+  } = useMediaPipeHandDetection({
+    numHands: 1, // 只检测一只手
+    minHandDetectionConfidence: 0.7,
+    minHandPresenceConfidence: 0.5,
+    minTrackingConfidence: 0.5,
+    fps: 15, // 降低帧率以提高性能
+    onResults: (result) => {
+      console.log('MediaPipe 检测到手部:', result);
+      if (result.landmarks && result.landmarks.length > 0) {
+        // 更新检测到的手部数据
+        const processedHands: ProcessedHandData[] = result.landmarks.map((landmarks, index) => ({
+          landmarks,
+          worldLandmarks: result.worldLandmarks?.[index] || [],
+          handedness: result.handednesses?.[index]?.[0]?.categoryName === 'Left' ? 'Left' : 'Right',
+          confidence: result.handednesses?.[index]?.[0]?.score || 0
+        }));
+        setDetectedHands(processedHands);
+      }
+    },
+    onError: (error) => {
+      console.error('MediaPipe 检测错误:', error);
+      setValidationMessage({
+        title: '🤖 AI检测错误',
+        description: '手部检测出现问题，请重试',
+        type: 'error'
+      });
+    }
+  });
   
   // Stream health monitoring
   useEffect(() => {
@@ -96,7 +139,26 @@ export default function Step13Capture({
       timestamp: Date.now(),
       step: 13,
     });
-  }, [trackEvent]);
+    
+    // 初始化 MediaPipe
+    initializeMediaPipe().catch(console.error);
+  }, [trackEvent, initializeMediaPipe]);
+  
+  // 监听手部检测结果
+  useEffect(() => {
+    if (hands && hands.length > 0) {
+      setDetectedHands(hands);
+      console.log('检测到', hands.length, '只手');
+    }
+  }, [hands]);
+  
+  // 清理 MediaPipe 资源
+  useEffect(() => {
+    return () => {
+      stopVideoDetection();
+      resetMediaPipe();
+    };
+  }, [stopVideoDetection, resetMediaPipe]);
   
   // Enhanced permission detection
   const checkCameraPermission = async (): Promise<'granted' | 'denied' | 'prompt' | 'unsupported'> => {
@@ -289,6 +351,23 @@ export default function Step13Capture({
       
       // 设置新的视频流
       overlayVideo.srcObject = cameraStream
+      
+      // 监听视频就绪事件
+      overlayVideo.onloadedmetadata = () => {
+        console.log('视频元数据加载完成')
+        overlayVideo.play().then(() => {
+          console.log('视频播放成功')
+          
+          // 开始 MediaPipe 实时检测
+          if (isMediaPipeReady && !isDetecting) {
+            startVideoDetection(overlayVideo);
+            setIsRealTimeDetection(true);
+            console.log('🤖 开始 MediaPipe 实时手部检测');
+          }
+        }).catch(err => {
+          console.error('视频播放失败:', err)
+        })
+      }
       overlayVideo.autoplay = true
       overlayVideo.muted = true
       overlayVideo.playsInline = true
@@ -420,12 +499,56 @@ export default function Step13Capture({
     // 绘制当前视频帧到画布
     context.drawImage(overlayVideo, 0, 0)
     
+    // 检测当前帧的手部（确保获取最新的检测结果）
+    let finalHandData = detectedHands;
+    if (isMediaPipeReady && overlayVideo) {
+      try {
+        console.log('📸 拍照时进行最终手部检测...');
+        // 创建临时画布进行检测
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = overlayVideo.videoWidth;
+        tempCanvas.height = overlayVideo.videoHeight;
+        const tempCtx = tempCanvas.getContext('2d');
+        if (tempCtx) {
+          tempCtx.drawImage(overlayVideo, 0, 0);
+          const latestHands = await detectImage(tempCanvas);
+          if (latestHands.length > 0) {
+            finalHandData = latestHands;
+            console.log('✅ 拍照时检测到', latestHands.length, '只手');
+          }
+        }
+      } catch (error) {
+        console.warn('拍照时手部检测失败，使用实时检测结果:', error);
+      }
+    }
+    
     // 转换画布为blob
     canvas.toBlob(async (blob) => {
       if (!blob) return
       
       // 创建File对象
       const file = new File([blob], 'palm-photo.jpg', { type: 'image/jpeg' })
+      
+      // 保存 MediaPipe 检测结果到用户数据
+      if (finalHandData.length > 0) {
+        const bestHand = finalHandData[0]; // 取置信度最高的手
+        if (bestHand) {
+          console.log('💾 保存手部检测数据:', {
+            handedness: bestHand.handedness,
+            confidence: bestHand.confidence,
+            landmarksCount: bestHand.landmarks.length
+          });
+          
+          updateUserData({
+            palmLandmarks: bestHand.landmarks,
+            palmWorldLandmarks: bestHand.worldLandmarks,
+            palmHandedness: bestHand.handedness,
+            palmConfidence: bestHand.confidence
+          });
+        }
+      } else {
+        console.warn('⚠️ 拍照时未检测到手部，将使用图片分析');
+      }
       
       // 关闭相机和蒙版
       closeCamera()
@@ -434,7 +557,10 @@ export default function Step13Capture({
       await processImageFile(file)
       
       trackEvent('palm_camera_capture_success', {
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        handsDetected: finalHandData.length,
+        handedness: finalHandData[0]?.handedness,
+        confidence: finalHandData[0]?.confidence
       })
     }, 'image/jpeg', 0.9) // 90%质量
   }
@@ -713,11 +839,13 @@ export default function Step13Capture({
   
   return (
     <>
-      {/* 相机引导蒙版 */}
+      {/* 相机引导蒙版 - 集成 MediaPipe 实时检测 */}
       <CameraOverlay 
         isVisible={showCameraOverlay} 
         onClose={closeCamera}
         stream={stream}
+        detectedHands={detectedHands}
+        showHandLandmarks={isRealTimeDetection}
       />
       
       <div className="flex justify-center">
