@@ -1,152 +1,151 @@
-'use client'
+'use client';
 
-import { useEffect, useState, useRef } from 'react'
-import { motion } from 'framer-motion'
-import { PalmUserData } from '@/stores/palmStore'
-import { validatePalmCombinedWithProgress, getMLValidationMessage } from '@/utils/palmValidationML'
-import CameraOverlay from '../CameraOverlay'
+import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 
-interface Step13Props {
-  userData: PalmUserData
-  updateUserData: (data: Partial<PalmUserData>) => void
-  goToNextStep: () => void
-  trackEvent: (type: string, data?: any) => void
-}
+import { PalmUserData } from '@/stores/palmStore';
+import { getMLValidationMessage, validatePalmCombinedWithProgress } from '@/utils/palmValidationML';
+import CameraOverlay from '../CameraOverlay';
 
-export default function Step13Capture({ 
+type Step13Props = {
+  userData: PalmUserData;
+  updateUserData: (data: Partial<PalmUserData>) => void;
+  goToNextStep: () => void;
+  trackEvent: (type: string, data?: any) => void;
+};
+
+export default function Step13Capture({
   updateUserData,
   goToNextStep,
-  trackEvent
+  trackEvent,
 }: Step13Props) {
-  const [isUploading, setIsUploading] = useState(false)
-  const [isCameraOpen, setIsCameraOpen] = useState(false)
-  const [showCameraOverlay, setShowCameraOverlay] = useState(false)
-  const [stream, setStream] = useState<MediaStream | null>(null)
+  const [isUploading, setIsUploading] = useState(false);
+  const [showCameraOverlay, setShowCameraOverlay] = useState(false);
+  const [stream, setStream] = useState<MediaStream | null>(null);
   const [streamHealth, setStreamHealth] = useState<{
     isActive: boolean;
     trackCount: number;
     lastCheck: number;
-  }>({ isActive: false, trackCount: 0, lastCheck: 0 })
-  const [isMLValidating, setIsMLValidating] = useState(false)
-  const [mlLoadingStep, setMlLoadingStep] = useState<string>('')
+  }>({ isActive: false, trackCount: 0, lastCheck: 0 });
+  const [isMLValidating, setIsMLValidating] = useState(false);
+  const [mlLoadingStep, setMlLoadingStep] = useState<string>('');
   const [validationMessage, setValidationMessage] = useState<{
     title: string;
     description: string;
     type: 'success' | 'warning' | 'error';
-  } | null>(null)
-  
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  } | null>(null);
+
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   
   // Stream health monitoring
   useEffect(() => {
     if (!stream) {
-      setStreamHealth({ isActive: false, trackCount: 0, lastCheck: Date.now() })
-      return
+      setStreamHealth({ isActive: false, trackCount: 0, lastCheck: Date.now() });
+      return;
     }
 
     const monitorStreamHealth = () => {
-      const tracks = stream.getVideoTracks()
-      const isActive = stream.active && tracks.length > 0 && tracks[0]?.readyState === 'live'
-      
+      const tracks = stream.getVideoTracks();
+      const isActive = stream.active && tracks.length > 0 && tracks[0]?.readyState === 'live';
+
       setStreamHealth({
         isActive,
         trackCount: tracks.length,
-        lastCheck: Date.now()
-      })
+        lastCheck: Date.now(),
+      });
 
       if (!isActive) {
         console.warn('Stream health check failed:', {
           streamActive: stream.active,
           trackCount: tracks.length,
-          trackState: tracks[0]?.readyState
-        })
-        
+          trackState: tracks[0]?.readyState,
+        });
+
         // Auto-retry after 3 seconds if stream becomes inactive
         setTimeout(() => {
-          if (isCameraOpen && !stream.active) {
-            console.log('Auto-retrying camera connection...')
-            openCamera()
+          if (showCameraOverlay && !stream.active) {
+            console.log('Auto-retrying camera connection...');
+            openCamera();
           }
-        }, 3000)
+        }, 3000);
       }
-    }
+    };
 
     // Initial check
-    monitorStreamHealth()
-    
+    monitorStreamHealth();
+
     // Monitor every 2 seconds
-    const healthInterval = setInterval(monitorStreamHealth, 2000)
-    
+    const healthInterval = setInterval(monitorStreamHealth, 2000);
+
     return () => {
-      clearInterval(healthInterval)
-    }
-  }, [stream, isCameraOpen])
+      clearInterval(healthInterval);
+    };
+  }, [stream, showCameraOverlay]);
 
   // Cleanup camera stream on unmount
   useEffect(() => {
     return () => {
       if (stream) {
-        stream.getTracks().forEach(track => track.stop())
+        stream.getTracks().forEach((track) => track.stop());
       }
-    }
-  }, [stream])
-  
+    };
+  }, [stream]);
+
   useEffect(() => {
-    trackEvent('palm_capture_view', { 
+    trackEvent('palm_capture_view', {
       timestamp: Date.now(),
-      step: 13
-    })
-  }, []) // 移除trackEvent依赖
+      step: 13,
+    });
+  }, [trackEvent]);
   
   // Enhanced permission detection
   const checkCameraPermission = async (): Promise<'granted' | 'denied' | 'prompt' | 'unsupported'> => {
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      return 'unsupported'
+      return 'unsupported';
     }
 
     if (navigator.permissions && navigator.permissions.query) {
       try {
-        const permission = await navigator.permissions.query({ name: 'camera' as PermissionName })
-        return permission.state as 'granted' | 'denied' | 'prompt'
+        const permission = await navigator.permissions.query({ name: 'camera' as PermissionName });
+        return permission.state as 'granted' | 'denied' | 'prompt';
       } catch (error) {
-        console.warn('Permission API not supported:', error)
+        console.warn('Permission API not supported:', error);
       }
     }
 
-    return 'prompt' // Default if permission API is not available
-  }
+    return 'prompt'; // Default if permission API is not available
+  };
 
   const openCamera = async () => {
-    console.log('openCamera 被调用')
-    trackEvent('palm_camera_capture_attempt', { 
+    console.log('openCamera 被调用');
+    trackEvent('palm_camera_capture_attempt', {
       timestamp: Date.now(),
       userAgent: navigator.userAgent,
-      isMobile: isMobile()
-    })
-    
+      isMobile: isMobile(),
+    });
+
     // 检查基本支持
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      console.error('浏览器不支持 getUserMedia')
-      fallbackToNativeCamera('浏览器不支持相机功能')
-      return
+      console.error('浏览器不支持 getUserMedia');
+      fallbackToNativeCamera('浏览器不支持相机功能');
+      return;
     }
 
     // Check camera permission first
-    const permissionStatus = await checkCameraPermission()
-    console.log('Camera permission status:', permissionStatus)
+    const permissionStatus = await checkCameraPermission();
+    console.log('Camera permission status:', permissionStatus);
 
     if (permissionStatus === 'denied') {
       setValidationMessage({
         title: '📱 需要相机权限',
         description: '请在浏览器设置中允许相机权限，然后刷新页面重试',
-        type: 'warning'
-      })
-      
+        type: 'warning',
+      });
+
       setTimeout(() => {
-        fallbackToNativeCamera('相机权限被拒绝，使用系统相机')
-      }, 3000)
-      return
+        fallbackToNativeCamera('相机权限被拒绝，使用系统相机');
+      }, 3000);
+      return;
     }
 
     // 检查是否为安全上下文（支持开发环境）
@@ -226,9 +225,9 @@ export default function Step13Capture({
         settings: track.getSettings()
       })))
       
-      // 设置状态
+      // 设置状态 - 只使用CameraOverlay，不使用内联video
       setStream(cameraStream)
-      setIsCameraOpen(true)
+      // setIsCameraOpen(true) // 注释掉，避免双重视频渲染
       
       // 成功获取相机后才显示蒙版
       setShowCameraOverlay(true)
@@ -372,7 +371,7 @@ export default function Step13Capture({
     
     // 关闭蒙版
     setShowCameraOverlay(false)
-    setIsCameraOpen(false)
+    // setIsCameraOpen(false) // 注释掉，只使用CameraOverlay
     
     setValidationMessage({
       title: '📱 使用系统相机',
@@ -395,7 +394,7 @@ export default function Step13Capture({
       stream.getTracks().forEach(track => track.stop())
       setStream(null)
     }
-    setIsCameraOpen(false)
+    // setIsCameraOpen(false) // 注释掉，只使用CameraOverlay
     setShowCameraOverlay(false)
     
     trackEvent('palm_camera_closed', { 
@@ -440,37 +439,7 @@ export default function Step13Capture({
     }, 'image/jpeg', 0.9) // 90%质量
   }
   
-  const capturePhoto = async () => {
-    if (!videoRef.current || !canvasRef.current) return
-    
-    const video = videoRef.current
-    const canvas = canvasRef.current
-    const context = canvas.getContext('2d')
-    
-    if (!context) return
-    
-    // Set canvas size to match video
-    canvas.width = video.videoWidth
-    canvas.height = video.videoHeight
-    
-    // Draw current video frame to canvas
-    context.drawImage(video, 0, 0)
-    
-    // Convert canvas to blob
-    canvas.toBlob(async (blob) => {
-      if (!blob) return
-      
-      // Create a File object from blob
-      const file = new File([blob], 'palm-photo.jpg', { type: 'image/jpeg' })
-      
-      // Close camera
-      closeCamera()
-      
-      // Process the captured image
-      await processImageFile(file)
-      
-    }, 'image/jpeg', 0.8) // 80% quality
-  }
+  // capturePhoto函数已移除，统一使用CameraOverlay组件的拍照功能
   
   const processImageFile = async (selectedFile: File) => {
     setIsUploading(true)
@@ -802,90 +771,8 @@ export default function Step13Capture({
           </div>
         </motion.section>
 
-        {/* Camera Preview */}
-        {isCameraOpen && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            className="mt-6 relative bg-black rounded-2xl overflow-hidden"
-          >
-            {/* Video Preview */}
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              muted
-              className="w-full h-64 object-cover"
-              onLoadedMetadata={() => {
-                // 确保视频元数据加载后开始播放
-                if (videoRef.current) {
-                  videoRef.current.play().catch(error => {
-                    console.warn('视频播放失败:', error)
-                  })
-                }
-              }}
-              onError={(e) => {
-                console.error('视频错误:', e)
-                setValidationMessage({
-                  title: '📹 视频显示错误',
-                  description: '视频流显示异常，请重试或使用相册上传',
-                  type: 'error'
-                })
-              }}
-            />
-            
-            {/* Hidden canvas for capturing image */}
-            <canvas ref={canvasRef} className="hidden" />
-            
-            {/* Loading overlay for video */}
-            {stream && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                <div className="text-white text-sm">
-                  正在加载摄像头...
-                </div>
-              </div>
-            )}
-            
-            {/* Camera Controls Overlay */}
-            <div className="absolute inset-0 flex flex-col justify-between p-4">
-              {/* Top Bar - Close Button */}
-              <div className="flex justify-between items-center">
-                <button
-                  onClick={closeCamera}
-                  className="bg-black bg-opacity-50 text-white rounded-full p-2"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-                <div className="bg-black bg-opacity-50 text-white text-xs px-3 py-1 rounded-full">
-                  请将手掌对准镜头
-                </div>
-              </div>
-
-              {/* Bottom Bar - Capture Button */}
-              <div className="flex justify-center">
-                <button
-                  onClick={capturePhoto}
-                  disabled={isUploading}
-                  className="bg-white text-gray-900 rounded-full p-4 shadow-lg hover:scale-105 transition-transform disabled:opacity-50"
-                >
-                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            {/* Guide Overlay */}
-            <div className="absolute inset-0 pointer-events-none">
-              {/* Hand outline guide */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 border-2 border-white border-dashed rounded-lg opacity-50"></div>
-            </div>
-          </motion.div>
-        )}
+        {/* Camera Preview - 移除内联video，只使用CameraOverlay组件避免闪烁 */}
+        {/* 注释掉内联video实现，统一使用CameraOverlay组件 */}
 
         {/* Hidden canvas for photo capture */}
         <canvas ref={canvasRef} className="hidden" />
@@ -964,7 +851,7 @@ export default function Step13Capture({
         )}
 
         {/* Actions - Only show when camera is not open */}
-        {!isCameraOpen && (
+        {!showCameraOverlay && (
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

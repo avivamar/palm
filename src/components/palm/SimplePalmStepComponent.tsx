@@ -9,7 +9,7 @@ import Step1Gender from './steps/Step1Gender'
 import Step2Energy from './steps/Step2Energy'
 import Step3Hand from './steps/Step3Hand'
 import Step4Motivation from './steps/Step4Motivation'
-import Step5Analysis from './steps/Step5Analysis'
+import Step5Encouragement from './steps/Step5Encouragement'
 import Step6Birth from './steps/Step6Birth'
 import Step7PalmLines from './steps/Step7PalmLines'
 import Step8Fingers from './steps/Step8Fingers'
@@ -28,7 +28,7 @@ import Step20FinalOffer from './steps/Step20FinalOffer'
 
 const steps = [
   Step0Landing, Step1Gender, Step2Energy, Step3Hand, Step4Motivation,
-  Step5Analysis, Step6Birth, Step7PalmLines, Step8Fingers, Step9Location,
+  Step5Encouragement, Step6Birth, Step7PalmLines, Step8Fingers, Step9Location,
   Step10Progress, Step11PalmLinePriority, Step12Upload, Step13Capture,
   Step14ScanProgress, Step15AIAnalysis, Step16EmailVerification,
   Step17Storytelling, Step18PricingSelection, Step19InvestmentPlan,

@@ -103,17 +103,17 @@ export default function Step3Hand({
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           className="text-center space-y-3 mb-8"
         >
-          <h1 className="text-2xl font-bold text-violet-600">揭秘你的财富优势手</h1>
+          <h1 className="text-2xl font-bold text-gray-900">
+            您主要使用哪只手？
+          </h1>
           <p className="text-gray-600 leading-snug">
-            💡 惯用手决定主要财富流向，非惯用手显示潜在机会
+            不同的惯用手反映出不同的性格特质和能量流向
           </p>
-          <div className="mt-3 text-sm text-orange-600 font-medium animate-pulse">
-            📊 93.7%的高净值人群掌纹显示明确的财富手特征
-          </div>
         </motion.section>
+
 
         {/* Options */}
         <motion.div

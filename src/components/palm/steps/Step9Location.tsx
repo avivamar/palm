@@ -1,122 +1,155 @@
-'use client'
+'use client';
 
-import { useEffect, useState, useRef } from 'react'
-import { motion } from 'framer-motion'
-import { PalmUserData } from '@/stores/palmStore'
+import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 
-interface Step9Props {
-  userData: PalmUserData
-  updateUserData: (data: Partial<PalmUserData>) => void
-  goToNextStep: () => void
-  trackEvent: (type: string, data?: any) => void
-  experiments: Record<string, string>
-  sessionId: string
-}
+import type { PalmUserData } from '@/stores/palmStore';
+import type { LocationResult as ServiceLocationResult } from '@/libs/location/service';
 
-interface LocationResult {
-  display_name: string
-  name: string
-  lat: string
-  lon: string
+type Step9Props = {
+  userData: PalmUserData;
+  updateUserData: (data: Partial<PalmUserData>) => void;
+  goToNextStep: () => void;
+  trackEvent: (type: string, data?: any) => void;
+  experiments: Record<string, string>;
+  sessionId: string;
+};
+
+// Keep original interface for backward compatibility
+type LocationResult = {
+  display_name: string;
+  name: string;
+  lat: string;
+  lon: string;
   address?: {
-    country?: string
-    state?: string
-    province?: string
-  }
+    country?: string;
+    state?: string;
+    province?: string;
+  };
+};
+
+// Convert service result to component format
+function convertServiceResult(result: ServiceLocationResult): LocationResult {
+  return {
+    display_name: result.displayName,
+    name: result.name,
+    lat: result.lat.toString(),
+    lon: result.lon.toString(),
+    address: {
+      country: result.country,
+      state: result.state,
+      province: result.state,
+    },
+  };
 }
 
-interface BirthLocation {
-  name: string
-  fullName: string
-  latitude: number
-  longitude: number
-  country: string
-  state: string
-  raw: LocationResult
-}
+type BirthLocation = {
+  name: string;
+  fullName: string;
+  latitude: number;
+  longitude: number;
+  country: string;
+  state: string;
+  raw: LocationResult;
+};
 
 export default function Step9Location({ 
   updateUserData,
   trackEvent, 
   goToNextStep
 }: Step9Props) {
-  const [locationInput, setLocationInput] = useState('')
-  const [searchResults, setSearchResults] = useState<LocationResult[]>([])
-  const [selectedLocation, setSelectedLocation] = useState<BirthLocation | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [showResults, setShowResults] = useState(false)
-  const [currentLocation, setCurrentLocation] = useState('检测当前位置中…')
-  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const [locationInput, setLocationInput] = useState('');
+  const [searchResults, setSearchResults] = useState<LocationResult[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<BirthLocation | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const [currentLocation, setCurrentLocation] = useState('检测当前位置中…');
+  const searchTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   useEffect(() => {
     trackEvent('palm_location_view', { 
       timestamp: Date.now(),
       step: 9
-    })
+    });
     
     // 获取当前位置显示
     fetch("https://ipapi.co/json/")
       .then(r => r.json())
       .then(d => {
-        setCurrentLocation(`${d.country_name || ""} ${d.region || ""}`)
+        setCurrentLocation(`${d.country_name || ""} ${d.region || ""}`);
       })
       .catch(() => {
-        setCurrentLocation("")
-      })
-  }, [])
+        setCurrentLocation("");
+      });
+  }, []);
   
-  // 地点搜索功能
+  // 地点搜索功能 - 使用API端点
   const searchLocations = async (query: string) => {
     if (query.length < 2) {
-      setShowResults(false)
-      return
+      setShowResults(false);
+      return;
     }
     
     try {
-      setIsLoading(true)
+      setIsLoading(true);
+      console.log('开始搜索地点:', query);
       
-      const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=8&addressdetails=1&accept-language=zh-CN,zh,en`
-      )
+      // 使用API端点进行搜索
+      const response = await fetch(`/api/location/search?q=${encodeURIComponent(query)}&limit=8`);
       
-      const data = await response.json()
-      setSearchResults(data)
-      setShowResults(true)
+      if (!response.ok) {
+        throw new Error(`API请求失败: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('API返回结果:', data);
+      
+      if (data.success && data.results) {
+        // 转换为组件期望的格式
+        const convertedResults = data.results.map(convertServiceResult);
+        setSearchResults(convertedResults);
+        setShowResults(true);
+        console.log('搜索完成，找到', convertedResults.length, '个结果');
+      } else {
+        console.warn('API返回无效数据:', data);
+        setSearchResults([]);
+        setShowResults(true);
+      }
       
     } catch (error) {
-      console.error('搜索地点时出错:', error)
-      setSearchResults([])
-      setShowResults(true)
+      console.error('搜索地点时出错:', error);
+      setSearchResults([]);
+      setShowResults(true);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }
+  };
   
   // 处理输入变化
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const query = e.target.value.trim()
-    setLocationInput(query)
+    const query = e.target.value.trim();
+    setLocationInput(query);
     
     // 如果有选中的地点且输入值改变，清除选择
     if (selectedLocation && query !== selectedLocation.name) {
-      setSelectedLocation(null)
+      setSelectedLocation(null);
     }
     
     // 防抖搜索
     if (searchTimeoutRef.current) {
-      clearTimeout(searchTimeoutRef.current)
+      clearTimeout(searchTimeoutRef.current);
     }
     
     searchTimeoutRef.current = setTimeout(() => {
-      searchLocations(query)
-    }, 300)
-  }
+      searchLocations(query);
+    }, 300);
+  };
   
   // 选择地点
   const selectLocation = (locationData: LocationResult) => {
-    const shortName = locationData.name || locationData.display_name.split(',')[0] || locationData.display_name
-    const country = locationData.address?.country || ''
-    const state = locationData.address?.state || locationData.address?.province || ''
+    const shortName = locationData.name || locationData.display_name.split(',')[0] || locationData.display_name;
+    const country = locationData.address?.country || '';
+    const state = locationData.address?.state || locationData.address?.province || '';
     
     const birthLocation: BirthLocation = {
       name: shortName,
@@ -126,50 +159,50 @@ export default function Step9Location({
       country: country,
       state: state,
       raw: locationData
-    }
+    };
     
-    setSelectedLocation(birthLocation)
-    setLocationInput(shortName)
-    setShowResults(false)
+    setSelectedLocation(birthLocation);
+    setLocationInput(shortName);
+    setShowResults(false);
     
     trackEvent('palm_location_select', {
       location: birthLocation,
       timestamp: Date.now()
-    })
-  }
+    });
+  };
   
   // 清除选择
   const clearSelection = () => {
-    setSelectedLocation(null)
-    setLocationInput('')
-    setShowResults(false)
-  }
+    setSelectedLocation(null);
+    setLocationInput('');
+    setShowResults(false);
+  };
   
   // 继续到下一步
   const handleContinue = () => {
     if (selectedLocation) {
-      updateUserData({ birthLocation: selectedLocation.fullName })
+      updateUserData({ birthLocation: selectedLocation.fullName });
       trackEvent('palm_step9_complete', { 
         location: selectedLocation
-      })
-      goToNextStep()
+      });
+      goToNextStep();
     }
-  }
+  };
   
   // 点击外部隐藏搜索结果
   const handleClickOutside = (e: React.MouseEvent) => {
-    const target = e.target as HTMLElement
+    const target = e.target as HTMLElement;
     if (!target.closest('.location-search') && !target.closest('.search-results')) {
-      setShowResults(false)
+      setShowResults(false);
     }
-  }
+  };
   
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside as any)
+    document.addEventListener('click', handleClickOutside as any);
     return () => {
-      document.removeEventListener('click', handleClickOutside as any)
-    }
-  }, [])
+      document.removeEventListener('click', handleClickOutside as any);
+    };
+  }, []);
   
   return (
     <motion.div
@@ -229,9 +262,9 @@ export default function Step9Location({
               <div className="p-4 text-center text-gray-500">未找到相关地点</div>
             ) : (
               searchResults.map((result, index) => {
-                const shortName = result.name || result.display_name.split(',')[0]
-                const country = result.address?.country || ''
-                const state = result.address?.state || result.address?.province || ''
+                const shortName = result.name || result.display_name.split(',')[0];
+                const country = result.address?.country || '';
+                const state = result.address?.state || result.address?.province || '';
                 
                 return (
                   <button
@@ -243,7 +276,7 @@ export default function Step9Location({
                     <div className="text-sm text-gray-600">{country}{state ? ', ' + state : ''}</div>
                     <div className="text-xs text-gray-400 mt-1">{result.display_name}</div>
                   </button>
-                )
+                );
               })
             )}
           </div>
@@ -308,5 +341,5 @@ export default function Step9Location({
         <span>{currentLocation}</span>&nbsp;节点
       </p>
     </motion.div>
-  )
+  );
 }

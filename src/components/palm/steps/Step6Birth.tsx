@@ -238,7 +238,7 @@ export default function Step6Birth({
           </div>
 
           <div className="mt-6 text-xs text-gray-500 leading-relaxed">
-            💡 <strong>出生时间</strong>能帮助我们生成更精确的星盘和财富分析。
+            💡 <strong>出生时间</strong>能帮助我们生成更精确的手相对应的星盘和财富分析。
             如果不记得具体时间也没关系，我们会使用默认的中午12点进行计算。
           </div>
         </motion.div>

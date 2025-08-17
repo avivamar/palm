@@ -7,6 +7,7 @@ import { generateMockMediaPipeLandmarks } from '@/utils/mockMediaPipeData'
 
 interface Step15Props {
   userData: PalmUserData
+  updateUserData: (data: Partial<PalmUserData>) => void
   goToNextStep: () => void
   trackEvent: (type: string, data?: any) => void
 }
@@ -47,6 +48,7 @@ const DESIGN_SYSTEM = {
 
 export default function Step15AIAnalysis({ 
   userData,
+  updateUserData,
   trackEvent, 
   goToNextStep
 }: Step15Props) {
@@ -56,7 +58,8 @@ export default function Step15AIAnalysis({
     displayHeight: DESIGN_SYSTEM.container.imageSize,
     offsetX: 0,
     offsetY: 0,
-    scale: 1
+    scale: 1,
+    isLoaded: false
   })
   
   useEffect(() => {
@@ -74,9 +77,10 @@ export default function Step15AIAnalysis({
           trackEvent('palm_ai_analysis_complete', { 
             duration: Date.now() - performance.now()
           })
-          setTimeout(() => {
-            goToNextStep()
-          }, 2000)
+          // 暂时注释掉自动跳转，用于测试MediaPipe坐标映射
+          // setTimeout(() => {
+          //   goToNextStep()
+          // }, 2000)
           return 100
         }
         return newProgress
@@ -86,8 +90,15 @@ export default function Step15AIAnalysis({
     return () => clearInterval(analysisTimer)
   }, [])
   
-  // 获取用户的真实图片数据
-  const userImageData = userData.palmImageData || '/palm/img/demohand.png'
+  // 获取用户的真实图片数据 - 使用测试图片
+  const [testImageIndex, setTestImageIndex] = useState(0);
+  const testImages = [
+    { src: '/palm/test-hand-labeled.png', name: '标注图片' },
+    { src: '/palm/test-hand-original.jpg', name: '原始照片' },
+    { src: '/palm/img/demohand.png', name: '演示图片' }
+  ];
+  
+  const userImageData = userData.palmImageData || testImages[testImageIndex]?.src || '/palm/img/demohand.png';
   const isRealUserImage = !!userData.palmImageData
   
   // 如果没有真实的MediaPipe数据，使用模拟数据进行测试
@@ -129,21 +140,108 @@ export default function Step15AIAnalysis({
       displayHeight,
       offsetX,
       offsetY,
+      scale,
+      isLoaded: true
+    });
+    
+    // 添加调试信息
+    console.log('Image loaded:', {
+      naturalWidth,
+      naturalHeight,
+      containerWidth,
+      containerHeight,
+      displayWidth,
+      displayHeight,
+      offsetX,
+      offsetY,
       scale
-    })
+    });
   }
   
   // 将MediaPipe关键点转换为精确像素坐标
+  // MediaPipe官方实现参考: https://mediapipe-studio.webapps.google.com/demo/hand_landmarker
   const convertLandmarksToPixels = (landmarks: any[]) => {
-    if (!landmarks || landmarks.length === 0) return []
+    if (!landmarks || landmarks.length === 0) return [];
     
-    return landmarks.map((landmark, index) => ({
-      id: index,
-      x: imageDisplayInfo.offsetX + (landmark.x * imageDisplayInfo.displayWidth),
-      y: imageDisplayInfo.offsetY + (landmark.y * imageDisplayInfo.displayHeight),
-      z: landmark.z || 0
-    }))
-  }
+    const containerSize = DESIGN_SYSTEM.container.imageSize;
+    
+    const convertedPoints = landmarks.map((landmark, index) => {
+      // MediaPipe坐标系统:
+      // - x: 0(左) -> 1(右)
+      // - y: 0(上) -> 1(下)
+      // - z: 深度信息，负值表示离相机近
+      
+      // 直接映射到显示容器坐标
+      // 注意：MediaPipe的y轴和屏幕坐标系统一致（从上到下）
+      let x = landmark.x * containerSize;
+      let y = landmark.y * containerSize;
+      
+      // 如果有图片显示信息，考虑object-cover的偏移
+      if (imageDisplayInfo.isLoaded) {
+        // 根据图片的实际显示区域调整坐标
+        const scaleX = imageDisplayInfo.displayWidth / containerSize;
+        const scaleY = imageDisplayInfo.displayHeight / containerSize;
+        
+        if (scaleX !== 1 || scaleY !== 1) {
+          // 需要考虑缩放和偏移
+          x = imageDisplayInfo.offsetX + (landmark.x * imageDisplayInfo.displayWidth);
+          y = imageDisplayInfo.offsetY + (landmark.y * imageDisplayInfo.displayHeight);
+        }
+      }
+      
+      // 边界限制
+      const clampedX = Math.max(0, Math.min(containerSize, x));
+      const clampedY = Math.max(0, Math.min(containerSize, y));
+      
+      return {
+        id: index,
+        x: clampedX,
+        y: clampedY,
+        z: landmark.z || 0,
+        originalX: landmark.x,
+        originalY: landmark.y,
+        visibility: landmark.visibility || 1 // MediaPipe提供的可见性分数
+      };
+    });
+    
+    // 添加详细调试信息
+    if (convertedPoints.length > 0 && window.location.search.includes('debug')) {
+      console.log('=== MediaPipe坐标转换详情 ===');
+      console.log('容器尺寸:', containerSize);
+      console.log('图片显示信息:', imageDisplayInfo);
+      console.log('原始MediaPipe坐标示例 (手腕):', {
+        x: landmarks[0].x,
+        y: landmarks[0].y,
+        z: landmarks[0].z
+      });
+      console.log('转换后像素坐标 (手腕):', {
+        x: convertedPoints[0]?.x || 0,
+        y: convertedPoints[0]?.y || 0
+      });
+      
+      // 打印关键点的坐标
+      const keyPoints = [
+        { name: '手腕', index: 0 },
+        { name: '拇指尖', index: 4 },
+        { name: '食指尖', index: 8 },
+        { name: '中指尖', index: 12 },
+        { name: '无名指尖', index: 16 },
+        { name: '小指尖', index: 20 }
+      ];
+      
+      console.log('关键点坐标:');
+      keyPoints.forEach(point => {
+        if (convertedPoints[point.index]) {
+          console.log(`  ${point.name}:`, {
+            原始: { x: landmarks[point.index].x.toFixed(3), y: landmarks[point.index].y.toFixed(3) },
+            像素: { x: convertedPoints[point.index]?.x.toFixed(1) || '0', y: convertedPoints[point.index]?.y.toFixed(1) || '0' }
+          });
+        }
+      });
+    }
+    
+    return convertedPoints;
+  };
   
   // MediaPipe手部关键点索引
   const HAND_LANDMARKS = {
@@ -581,6 +679,113 @@ export default function Step15AIAnalysis({
                 </div>
               )}
             </motion.div>
+          </div>
+        </motion.div>
+
+        {/* 测试控制面板 - 用于MediaPipe坐标映射测试 */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.4 }}
+          className="mt-6 space-y-4"
+        >
+          {/* 图片切换按钮 */}
+          <div className="flex justify-center gap-2">
+            {testImages.map((img, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setTestImageIndex(index);
+                  // 重置图片加载状态
+                  setImageDisplayInfo(prev => ({ ...prev, isLoaded: false }));
+                  console.log('切换到测试图片:', img.name);
+                }}
+                className={`px-3 py-1 text-sm rounded-lg transition-colors ${
+                  testImageIndex === index
+                    ? 'bg-violet-600 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                {img.name}
+              </button>
+            ))}
+          </div>
+          
+          {/* 坐标测试按钮 */}
+          <div className="flex justify-center gap-2">
+            <button
+              onClick={() => {
+                console.clear();
+                console.log('%c=== MediaPipe坐标映射测试 ===', 'color: #7c3aed; font-weight: bold; font-size: 16px');
+                console.log('当前图片:', testImages[testImageIndex]?.name || '未知');
+                console.log('图片显示信息:', imageDisplayInfo);
+                console.log('原始MediaPipe landmarks (归一化坐标):', landmarks);
+                const pixels = convertLandmarksToPixels(landmarks);
+                console.log('转换后的像素坐标:', pixels);
+                console.log('容器尺寸:', DESIGN_SYSTEM.container.imageSize, 'x', DESIGN_SYSTEM.container.imageSize);
+                
+                // 验证图片元素
+                const img = document.querySelector('.palm-analysis-image') as HTMLImageElement;
+                if (img) {
+                  console.log('%c图片元素信息:', 'color: #10b981; font-weight: bold');
+                  console.log('  自然尺寸:', img.naturalWidth, 'x', img.naturalHeight);
+                  console.log('  显示尺寸:', img.width, 'x', img.height);
+                  console.log('  complete状态:', img.complete);
+                  console.log('  src:', img.src);
+                  
+                  // 重新计算显示信息
+                  if (img.complete && img.naturalWidth > 0) {
+                    handleImageLoad({ currentTarget: img } as any);
+                  }
+                } else {
+                  console.error('未找到图片元素');
+                }
+                
+                // 输出MediaPipe官方文档链接
+                console.log('%c参考资料:', 'color: #f59e0b; font-weight: bold');
+                console.log('MediaPipe官方演示: https://mediapipe-studio.webapps.google.com/demo/hand_landmarker');
+                console.log('CodePen示例: https://codepen.io/mediapipe-preview/pen/gOKBGPN');
+              }}
+              className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            >
+              🔍 测试坐标映射
+            </button>
+            
+            <button
+              onClick={() => {
+                // 生成新的随机MediaPipe数据进行测试
+                const newLandmarks = generateMockMediaPipeLandmarks();
+                // 添加一些随机偏移
+                const randomizedLandmarks = newLandmarks.map(point => ({
+                  ...point,
+                  x: Math.max(0, Math.min(1, point.x + (Math.random() - 0.5) * 0.1)),
+                  y: Math.max(0, Math.min(1, point.y + (Math.random() - 0.5) * 0.1))
+                }));
+                
+                updateUserData({ palmLandmarks: randomizedLandmarks });
+                console.log('生成新的测试坐标');
+              }}
+              className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
+            >
+              🎲 随机坐标
+            </button>
+            
+            <button
+              onClick={() => {
+                // 继续到下一步
+                goToNextStep();
+              }}
+              className="px-6 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition-colors"
+            >
+              继续分析 →
+            </button>
+          </div>
+          
+          {/* 调试信息显示 */}
+          <div className="text-xs text-gray-500 text-center space-y-1">
+            <p>图片加载状态: {imageDisplayInfo.isLoaded ? '✅ 已加载' : '⏳ 加载中'}</p>
+            <p>关键点数量: {landmarks?.length || 0} / 21</p>
+            <p>分析进度: {Math.round(analysisProgress)}%</p>
           </div>
         </motion.div>
 
