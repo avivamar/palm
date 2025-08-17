@@ -492,7 +492,7 @@ export function getSecurityHeaders(): Record<string, string> {
   headers['X-Frame-Options'] = 'DENY';
   headers['X-XSS-Protection'] = '1; mode=block';
   headers['Referrer-Policy'] = 'strict-origin-when-cross-origin';
-  headers['Permissions-Policy'] = 'camera=(), microphone=(), geolocation=()';
+  headers['Permissions-Policy'] = 'camera=(self), microphone=(self), geolocation=()';
 
   return headers;
 }
