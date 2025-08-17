@@ -206,7 +206,7 @@ export default function Step15AIAnalysis({
     });
     
     // 添加详细调试信息
-    if (convertedPoints.length > 0 && window.location.search.includes('debug')) {
+    if (convertedPoints.length > 0 && typeof window !== 'undefined' && window.location.search.includes('debug')) {
       console.log('=== MediaPipe坐标转换详情 ===');
       console.log('容器尺寸:', containerSize);
       console.log('图片显示信息:', imageDisplayInfo);

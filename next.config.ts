@@ -74,10 +74,10 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // 添加缓存头配置
+  // 添加缓存头配置和权限策略
   async headers() {
     return [
-      // HTML页面缓存配置 - 允许bfcache
+      // 相机权限和安全策略配置
       {
         source: '/((?!_next|api|static).*)',
         headers: [
@@ -85,6 +85,25 @@ const nextConfig: NextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=0, must-revalidate',
           },
+          // 相机权限策略 - 允许同源和HTTPS
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(self), microphone=(), geolocation=(self), display-capture=()'
+          },
+          // CSP配置 - 允许MediaPipe CDN和相机访问
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://cdn.jsdelivr.net https://storage.googleapis.com; connect-src 'self' https://cdn.jsdelivr.net https://storage.googleapis.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; media-src 'self' blob:; font-src 'self' data:"
+          },
+          // 允许跨域资源共享
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'unsafe-none'
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin-allow-popups'
+          }
         ],
       },
       {

@@ -210,13 +210,37 @@ export default function Step13Capture({
       return;
     }
 
-    // 检查是否为安全上下文（支持开发环境）
+    // 检查是否为安全上下文（支持开发环境和部署平台）
     const isSecureContext = () => {
       // HTTPS 连接
-      if (location.protocol === 'https:') return true
+      if (location.protocol === 'https:') {
+        console.log('HTTPS环境，安全连接')
+        return true
+      }
       
       // localhost 和 127.0.0.1
-      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') return true
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        console.log('本地环境，安全连接')
+        return true
+      }
+      
+      // Vercel域名检测（.vercel.app等）
+      if (location.hostname.includes('.vercel.app') || location.hostname.includes('.vercel.com')) {
+        console.log('Vercel HTTPS环境，安全连接')
+        return true
+      }
+      
+      // Netlify域名检测
+      if (location.hostname.includes('.netlify.app') || location.hostname.includes('.netlify.com')) {
+        console.log('Netlify HTTPS环境，安全连接')
+        return true
+      }
+      
+      // Railway域名检测
+      if (location.hostname.includes('.railway.app') || location.hostname.includes('.up.railway.app')) {
+        console.log('Railway HTTPS环境，安全连接')
+        return true
+      }
       
       // 局域网IP（开发测试）
       const isLocalNetwork = /^(10\.|172\.(1[6-9]|2\d|3[01])\.|192\.168\.)/.test(location.hostname)
@@ -274,10 +298,35 @@ export default function Step13Capture({
         console.warn('无法枚举设备:', enumError)
       }
       
-      // 直接获取视频流
+      // 逐步降级获取视频流
       console.log('开始请求用户媒体...')
-      const cameraStream = await navigator.mediaDevices.getUserMedia(constraints)
-      console.log('相机流获取成功!')
+      let cameraStream: MediaStream | null = null
+      
+      // 尝试多种约束配置
+      const constraintOptions = [
+        constraints, // 原始约束
+        { video: { facingMode: 'environment' } }, // 简化约束
+        { video: true }, // 最基本约束
+      ]
+      
+      for (let i = 0; i < constraintOptions.length; i++) {
+        try {
+          console.log(`尝试约束配置 ${i + 1}:`, constraintOptions[i])
+          cameraStream = await navigator.mediaDevices.getUserMedia(constraintOptions[i])
+          console.log('相机流获取成功!')
+          break
+        } catch (streamError) {
+          console.warn(`约束配置 ${i + 1} 失败:`, streamError)
+          if (i === constraintOptions.length - 1) {
+            throw streamError // 最后一次尝试失败则抛出错误
+          }
+        }
+      }
+      
+      if (!cameraStream) {
+        throw new Error('无法获取相机流')
+      }
+      
       console.log('流ID:', cameraStream.id)
       console.log('流状态:', cameraStream.active)
       console.log('视频轨道:', cameraStream.getVideoTracks().map(track => ({
@@ -289,10 +338,7 @@ export default function Step13Capture({
       
       // 设置状态 - 只使用CameraOverlay，不使用内联video
       setStream(cameraStream)
-      // setIsCameraOpen(true) // 注释掉，避免双重视频渲染
-      
-      // 成功获取相机后才显示蒙版
-      setShowCameraOverlay(true)
+      setShowCameraOverlay(true) // 显示相机覆盖层
       
       // 等待蒙版DOM元素渲染
       setTimeout(() => {
