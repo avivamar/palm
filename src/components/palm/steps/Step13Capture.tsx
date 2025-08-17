@@ -360,14 +360,16 @@ export default function Step13Capture({
         settings: track.getSettings()
       })))
       
-      // 设置状态 - 只使用CameraOverlay，不使用内联video
+      // 设置状态 - 只使用CameraOverlay，让组件内部处理视频流
       setStream(cameraStream)
       setShowCameraOverlay(true) // 显示相机覆盖层
       
-      // 等待蒙版DOM元素渲染
+      console.log('相机流已设置到state，CameraOverlay组件将处理视频显示')
+      
+      // 稍后绑定拍照按钮 - 等待CameraOverlay渲染完成
       setTimeout(() => {
-        setupCameraVideo(cameraStream)
-      }, 200) // 增加等待时间
+        setupCaptureButton()
+      }, 300)
       
       trackEvent('palm_camera_opened_success', { 
         timestamp: Date.now(),
@@ -404,100 +406,20 @@ export default function Step13Capture({
     }
   }
 
-  // 设置相机视频流
-  const setupCameraVideo = (cameraStream: MediaStream) => {
-    console.log('设置相机视频流, 流状态:', cameraStream.active)
-    console.log('视频轨道数量:', cameraStream.getVideoTracks().length)
-    
-    const overlayVideo = document.getElementById('camera-stream') as HTMLVideoElement
-    if (overlayVideo) {
-      console.log('找到video元素:', overlayVideo)
-      
-      // 清除之前的流
-      if (overlayVideo.srcObject) {
-        const oldStream = overlayVideo.srcObject as MediaStream
-        oldStream.getTracks().forEach(track => track.stop())
+  // 设置拍照按钮事件 - 只处理按钮绑定，视频流由CameraOverlay处理
+  const setupCaptureButton = () => {
+    const captureBtn = document.getElementById('capture-button')
+    if (captureBtn) {
+      console.log('拍照按钮绑定成功')
+      captureBtn.onclick = () => {
+        console.log('拍照按钮被点击')
+        captureImage()
       }
-      
-      // 设置新的视频流
-      overlayVideo.srcObject = cameraStream
-      
-      // 设置视频属性
-      overlayVideo.autoplay = true
-      overlayVideo.muted = true
-      overlayVideo.playsInline = true
-      
-      // 强制显示视频
-      overlayVideo.style.display = 'block'
-      overlayVideo.style.opacity = '1'
-      
-      console.log('视频属性设置完成')
-      
-      // 监听视频就绪事件 - 只设置一次
-      overlayVideo.onloadedmetadata = () => {
-        console.log('视频元数据加载完成, 尺寸:', overlayVideo.videoWidth, 'x', overlayVideo.videoHeight)
-        overlayVideo.play().then(() => {
-          console.log('视频播放成功')
-        }).catch(err => {
-          console.error('视频播放失败:', err)
-          // 尝试用户交互后播放
-          document.addEventListener('click', () => {
-            overlayVideo.play()
-          }, { once: true })
-        })
-      }
-      
-      overlayVideo.onloadstart = () => {
-        console.log('开始加载视频')
-      }
-      
-      overlayVideo.oncanplay = () => {
-        console.log('视频可以播放')
-      }
-      
-      overlayVideo.onerror = (err) => {
-        console.error('视频播放错误:', err)
-        console.error('错误详情:', overlayVideo.error)
-      }
-      
-      overlayVideo.onstalled = () => {
-        console.warn('视频流停滞')
-      }
-      
-      overlayVideo.onwaiting = () => {
-        console.warn('视频等待数据')
-      }
-      
-      // 检查视频流状态
-      const videoTrack = cameraStream.getVideoTracks()[0]
-      if (videoTrack) {
-        console.log('视频轨道状态:', videoTrack.readyState)
-        console.log('视频轨道设置:', videoTrack.getSettings())
-      }
-      
-      console.log('视频元素设置完成')
     } else {
-      console.error('未找到camera-stream元素')
-      // 重试查找
-      setTimeout(() => {
-        console.log('重试查找camera-stream元素')
-        setupCameraVideo(cameraStream)
-      }, 200)
+      console.error('未找到capture-button元素，重试中...')
+      // 重试
+      setTimeout(setupCaptureButton, 200)
     }
-    
-    // 设置拍照按钮
-    setTimeout(() => {
-      const captureBtn = document.getElementById('capture-button')
-      if (captureBtn) {
-        console.log('拍照按钮绑定成功')
-        captureBtn.onclick = () => {
-          console.log('拍照按钮被点击')
-          captureImage()
-        }
-      } else {
-        console.error('未找到capture-button元素')
-      }
-    }, 100)
   }
 
   // 降级到原生相机

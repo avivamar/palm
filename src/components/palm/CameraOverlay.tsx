@@ -26,25 +26,39 @@ export default function CameraOverlay({
   
   // 设置视频流和监听器
   useEffect(() => {
-    if (!isVisible || !stream || !videoRef.current) return
+    if (!isVisible || !stream || !videoRef.current) {
+      console.log('CameraOverlay: 跳过视频流设置', { isVisible, hasStream: !!stream, hasVideoRef: !!videoRef.current })
+      return
+    }
     
     const video = videoRef.current
-    console.log('CameraOverlay: 设置视频流', {
+    console.log('CameraOverlay: 开始设置视频流', {
       streamId: stream.id,
       streamActive: stream.active,
-      videoTracks: stream.getVideoTracks().length
+      videoTracks: stream.getVideoTracks().length,
+      videoTrackStates: stream.getVideoTracks().map(track => ({
+        label: track.label,
+        enabled: track.enabled,
+        readyState: track.readyState
+      }))
     })
     
     // 清除之前的流
     if (video.srcObject) {
       const oldStream = video.srcObject as MediaStream
       if (oldStream !== stream) {
+        console.log('CameraOverlay: 清除旧的视频流')
         oldStream.getTracks().forEach(track => track.stop())
       }
     }
     
+    // 重置视频状态
+    setVideoLoaded(false)
+    setVideoError(null)
+    
     // 设置新的视频流
     video.srcObject = stream
+    console.log('CameraOverlay: 视频流已设置到video元素')
     
     // 强制设置视频属性
     video.autoplay = true
