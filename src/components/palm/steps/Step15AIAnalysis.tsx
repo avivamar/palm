@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
-import { generateMockMediaPipeLandmarks } from '@/utils/mockMediaPipeData'
+import { generateMockMediaPipeLandmarks, getRealMediaPipeLandmarks, HAND_CONNECTIONS } from '@/utils/mockMediaPipeData'
 
 interface Step15Props {
   userData: PalmUserData
@@ -101,8 +101,9 @@ export default function Step15AIAnalysis({
   const userImageData = userData.palmImageData || testImages[testImageIndex]?.src || '/palm/img/demohand.png';
   const isRealUserImage = !!userData.palmImageData
   
-  // 如果没有真实的MediaPipe数据，使用模拟数据进行测试
-  const landmarks = userData.palmLandmarks || generateMockMediaPipeLandmarks()
+  // 使用真实的MediaPipe识别数据（基于 image copy 5.png）
+  const [useRealData, setUseRealData] = useState(true);
+  const landmarks = userData.palmLandmarks || (useRealData ? getRealMediaPipeLandmarks() : generateMockMediaPipeLandmarks())
   
   // 精确处理图片加载和坐标计算
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -410,20 +411,43 @@ export default function Step15AIAnalysis({
               />
             </motion.div>
 
-            {/* MediaPipe 21个关键点完整可视化 */}
+            {/* MediaPipe 21个关键点完整可视化 - 仿照官方绿色风格 */}
             {landmarks && landmarks.length >= 21 && (
               <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                {/* 21个关键点标记 */}
+                {/* 手掌连接线 - 绿色 */}
+                {(() => {
+                  const pixels = convertLandmarksToPixels(landmarks);
+                  return HAND_CONNECTIONS.map((connection, index) => {
+                    if (!connection || connection.length !== 2) return null;
+                    const [start, end] = connection;
+                    if (typeof start !== 'number' || typeof end !== 'number') return null;
+                    const startPoint = pixels[start];
+                    const endPoint = pixels[end];
+                    if (!startPoint || !endPoint) return null;
+                    
+                    return (
+                      <motion.line
+                        key={`connection-${index}`}
+                        x1={startPoint.x}
+                        y1={startPoint.y}
+                        x2={endPoint.x}
+                        y2={endPoint.y}
+                        stroke="#00ff00"
+                        strokeWidth="2"
+                        strokeOpacity="0.7"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{ pathLength: 1, opacity: 0.7 }}
+                        transition={{ duration: 0.5, delay: index * 0.02 }}
+                      />
+                    );
+                  });
+                })()}
+                
+                {/* 21个关键点标记 - 绿色 */}
                 {convertLandmarksToPixels(landmarks).map((point, index) => {
-                  // 不同部位使用不同颜色
+                  // MediaPipe官方绿色风格
                   const getPointColor = (index: number) => {
-                    if (index === 0) return { fill: '#ef4444', stroke: '#dc2626', name: '手腕' } // 红色 - 手腕
-                    if (index >= 1 && index <= 4) return { fill: '#f59e0b', stroke: '#d97706', name: '拇指' } // 橙色 - 拇指
-                    if (index >= 5 && index <= 8) return { fill: '#10b981', stroke: '#059669', name: '食指' } // 绿色 - 食指
-                    if (index >= 9 && index <= 12) return { fill: '#3b82f6', stroke: '#2563eb', name: '中指' } // 蓝色 - 中指
-                    if (index >= 13 && index <= 16) return { fill: '#8b5cf6', stroke: '#7c3aed', name: '无名指' } // 紫色 - 无名指
-                    if (index >= 17 && index <= 20) return { fill: '#ec4899', stroke: '#db2777', name: '小指' } // 粉色 - 小指
-                    return { fill: '#06b6d4', stroke: '#0891b2', name: '其他' }
+                    return { fill: '#00ff00', stroke: '#00ff00', name: `P${index}` }
                   }
                   
                   const pointColor = getPointColor(index)
@@ -434,24 +458,25 @@ export default function Step15AIAnalysis({
                       <motion.circle
                         cx={point.x}
                         cy={point.y}
-                        r="6"
+                        r="8"
                         fill="none"
-                        stroke={pointColor.stroke}
-                        strokeWidth="0.5"
+                        stroke="#00ff00"
+                        strokeWidth="1"
                         opacity="0.3"
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 0.3 }}
                         transition={{ duration: 0.4, delay: 0.3 + index * 0.03 }}
                       />
                       
-                      {/* 主要关键点 */}
+                      {/* 主要关键点 - 绿色圆点 */}
                       <motion.circle
                         cx={point.x}
                         cy={point.y}
-                        r="3"
-                        fill={pointColor.fill}
-                        stroke="white"
+                        r="4"
+                        fill="#00ff00"
+                        stroke="#00ff00"
                         strokeWidth="1"
+                        fillOpacity="0.9"
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.3, delay: 0.5 + index * 0.03 }}
@@ -753,21 +778,15 @@ export default function Step15AIAnalysis({
             
             <button
               onClick={() => {
-                // 生成新的随机MediaPipe数据进行测试
-                const newLandmarks = generateMockMediaPipeLandmarks();
-                // 添加一些随机偏移
-                const randomizedLandmarks = newLandmarks.map(point => ({
-                  ...point,
-                  x: Math.max(0, Math.min(1, point.x + (Math.random() - 0.5) * 0.1)),
-                  y: Math.max(0, Math.min(1, point.y + (Math.random() - 0.5) * 0.1))
-                }));
-                
-                updateUserData({ palmLandmarks: randomizedLandmarks });
-                console.log('生成新的测试坐标');
+                // 切换真实/模拟数据
+                setUseRealData(!useRealData);
+                const newLandmarks = !useRealData ? getRealMediaPipeLandmarks() : generateMockMediaPipeLandmarks();
+                updateUserData({ palmLandmarks: newLandmarks });
+                console.log('切换到:', !useRealData ? '真实MediaPipe数据' : '模拟数据');
               }}
               className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
             >
-              🎲 随机坐标
+              {useRealData ? '🎯 真实坐标' : '🎲 模拟坐标'}
             </button>
             
             <button
