@@ -47,7 +47,7 @@ export default function Step13Capture({
 
     const monitorStreamHealth = () => {
       const tracks = stream.getVideoTracks()
-      const isActive = stream.active && tracks.length > 0 && tracks[0].readyState === 'live'
+      const isActive = stream.active && tracks.length > 0 && tracks[0]?.readyState === 'live'
       
       setStreamHealth({
         isActive,
