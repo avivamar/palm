@@ -1,6 +1,6 @@
 [
   {
-    "name": "rolitt 官方网站",
+    "name": " 官方网站",
     "description": "针对 Next.js 15 项目的配置，使用 Tailwind CSS、TypeScript、shadcn/ui、国际化、8个独立功能包架构及动画库的开发规范",
     "version": "2.0.0",
     "rules": [

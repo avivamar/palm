@@ -1,6 +1,6 @@
 # 产品开发规范 v4.0
 
-基于 Next.js 15 的现代化 AI 伴侣产品营销与电商平台开发规范，集成完整的支付系统、用户管理、内容管理、Shopify集成、多语言邮件模板系统和8个独立功能包的Monorepo架构。
+基于 Next.js 15 的现代化手相学网站，包含了手相学的所有功能，集成完整的支付系统、用户管理、内容管理、Shopify集成、多语言邮件模板系统和8个独立功能包的Monorepo架构。
 根目录下 readme.md 详细介绍了本项目，本文档旨在让 claude 更好的理解本项目的开发规范，以及如何参与本项目的开发。
 
 ## **设计哲学**: "商业价值优先，技术服务业务" - 每一个技术决策都有明确的商业回报
@@ -10,7 +10,7 @@
 
 ```json
 {
-  "name": "rolitt-official",
+  "name": "palm-official",
   "version": "4.0.0",
   "架构模式": "monorepo + dual-auth + async-payment + 8-workspace-packages",
   "核心技术": [
