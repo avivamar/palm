@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { PalmUserData } from '@/stores/palmStore';
 import { getMLValidationMessage, validatePalmCombinedWithProgress } from '@/utils/palmValidationML';
 import CameraOverlay from '../CameraOverlay';
+import CameraDebugOverlay from '../CameraDebugOverlay';
 import { useMediaPipeHandDetection } from '@/hooks/useMediaPipeHandDetection';
 import { ProcessedHandData } from '@/libs/mediapipe/HandLandmarkerService';
 
@@ -37,19 +38,17 @@ export default function Step13Capture({
     type: 'success' | 'warning' | 'error';
   } | null>(null);
   const [detectedHands, setDetectedHands] = useState<ProcessedHandData[]>([]);
-  const [isRealTimeDetection, setIsRealTimeDetection] = useState(false);
+  const [isRealTimeDetection, _setIsRealTimeDetection] = useState(false);
+  const [showDebugMode, setShowDebugMode] = useState(false);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
   // MediaPipe 手部检测
   const {
     isInitialized: isMediaPipeReady,
-    isDetecting,
     hands,
     initialize: initializeMediaPipe,
     detectImage,
-    startVideoDetection,
-    stopVideoDetection,
     reset: resetMediaPipe
   } = useMediaPipeHandDetection({
     numHands: 1, // 只检测一只手
@@ -140,8 +139,34 @@ export default function Step13Capture({
       step: 13,
     });
     
-    // 初始化 MediaPipe
-    initializeMediaPipe().catch(console.error);
+    // 初始化 MediaPipe - 添加超时和错误处理
+    const initMediaPipe = async () => {
+      try {
+        console.log('🚀 开始初始化MediaPipe...')
+        
+        // 设置10秒超时
+        const timeoutPromise = new Promise((_, reject) => {
+          setTimeout(() => reject(new Error('MediaPipe初始化超时')), 10000)
+        })
+        
+        await Promise.race([
+          initializeMediaPipe(),
+          timeoutPromise
+        ])
+        
+        console.log('✅ MediaPipe初始化完成')
+      } catch (error) {
+        console.error('❌ MediaPipe初始化失败:', error)
+        setValidationMessage({
+          title: '⚠️ AI检测暂不可用',
+          description: 'MediaPipe加载失败，将使用基础相机功能',
+          type: 'warning'
+        })
+      }
+    }
+    
+    // 延迟初始化，避免阻塞UI
+    setTimeout(initMediaPipe, 1000)
   }, [trackEvent, initializeMediaPipe]);
   
   // 监听手部检测结果
@@ -155,10 +180,9 @@ export default function Step13Capture({
   // 清理 MediaPipe 资源
   useEffect(() => {
     return () => {
-      stopVideoDetection();
       resetMediaPipe();
     };
-  }, [stopVideoDetection, resetMediaPipe]);
+  }, [resetMediaPipe]);
   
   // Enhanced permission detection
   const checkCameraPermission = async (): Promise<'granted' | 'denied' | 'prompt' | 'unsupported'> => {
@@ -398,22 +422,7 @@ export default function Step13Capture({
       // 设置新的视频流
       overlayVideo.srcObject = cameraStream
       
-      // 监听视频就绪事件
-      overlayVideo.onloadedmetadata = () => {
-        console.log('视频元数据加载完成')
-        overlayVideo.play().then(() => {
-          console.log('视频播放成功')
-          
-          // 开始 MediaPipe 实时检测
-          if (isMediaPipeReady && !isDetecting) {
-            startVideoDetection(overlayVideo);
-            setIsRealTimeDetection(true);
-            console.log('🤖 开始 MediaPipe 实时手部检测');
-          }
-        }).catch(err => {
-          console.error('视频播放失败:', err)
-        })
-      }
+      // 设置视频属性
       overlayVideo.autoplay = true
       overlayVideo.muted = true
       overlayVideo.playsInline = true
@@ -424,6 +433,7 @@ export default function Step13Capture({
       
       console.log('视频属性设置完成')
       
+      // 监听视频就绪事件 - 只设置一次
       overlayVideo.onloadedmetadata = () => {
         console.log('视频元数据加载完成, 尺寸:', overlayVideo.videoWidth, 'x', overlayVideo.videoHeight)
         overlayVideo.play().then(() => {
@@ -885,9 +895,15 @@ export default function Step13Capture({
   
   return (
     <>
+      {/* 相机调试模式 */}
+      <CameraDebugOverlay 
+        isVisible={showDebugMode}
+        onClose={() => setShowDebugMode(false)}
+      />
+      
       {/* 相机引导蒙版 - 集成 MediaPipe 实时检测 */}
       <CameraOverlay 
-        isVisible={showCameraOverlay} 
+        isVisible={showCameraOverlay && !showDebugMode} 
         onClose={closeCamera}
         stream={stream}
         detectedHands={detectedHands}
@@ -1051,6 +1067,22 @@ export default function Step13Capture({
           >
             {isMLValidating ? '验证中...' : isMobile() ? '📱 拍照上传' : '💻 立即拍照'}
           </motion.button>
+          
+          {/* 调试模式按钮 - 开发和测试环境 */}
+          {(typeof window !== 'undefined' && (
+            window.location.hostname === 'localhost' || 
+            window.location.hostname.includes('.vercel.app') ||
+            window.location.search.includes('debug')
+          )) && (
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowDebugMode(true)}
+              className="w-full h-10 flex items-center justify-center rounded-lg bg-orange-500 text-white font-medium shadow transition"
+            >
+              🔧 相机调试模式
+            </motion.button>
+          )}
           
           {/* 移动端特别提示 */}
           {isMobile() && (
