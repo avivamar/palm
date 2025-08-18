@@ -37,7 +37,7 @@
         "description": "透過我們友善的登入流程，無縫登入您的帳戶。"
       },
       "title": "登入您的帳戶",
-      "alt": "Rolitt 標誌",
+      "alt": "Thepalmistrylife 標誌",
       "footer": "還不是會員？",
       "footer_link": "立即註冊成為我們的首批會員",
       "google_button": "使用 Google 繼續",
@@ -63,7 +63,7 @@
         "description": "透過我們直觀的註冊流程輕鬆建立您的帳戶。"
       },
       "title": "建立您的帳戶",
-      "alt": "Rolitt 標誌",
+      "alt": "Thepalmistrylife 標誌",
       "footer": "已經是會員？",
       "footer_link": "在此登入",
       "google_button": "使用 Google 繼續",
@@ -226,8 +226,8 @@
     "signin_link": "登入"
   },
   "UserProfile": {
-    "meta_title": "用戶檔案 | Rolitt",
-    "meta_description": "管理您的 Rolitt 用戶檔案、偏好設定和帳戶資訊。",
+    "meta_title": "用戶檔案 | Thepalmistrylife",
+    "meta_description": "管理您的 Thepalmistrylife 用戶檔案、偏好設定和帳戶資訊。",
     "title": "用戶檔案",
     "subtitle": "管理您的個人資訊和偏好設定",
     "personal_info": {
@@ -270,7 +270,7 @@
     },
     "preferences": {
       "title": "偏好設定",
-      "description": "自訂您的 Rolitt 體驗",
+      "description": "自訂您的 Thepalmistrylife 體驗",
       "language": {
         "label": "語言",
         "options": {

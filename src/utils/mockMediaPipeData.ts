@@ -3,45 +3,45 @@
  * 用于测试和演示
  */
 
-// 基于实际MediaPipe识别结果精确映射
-// 根据用户提供的截图，精确对应21个关键点的位置
-// 坐标系：归一化 (0-1)，原点在左上角
+// 基于MediaPipe官方标准定义的21个手部关键点
+// 严格按照Google MediaPipe HandLandmarker模型的标准索引和解剖学定义
+// 坐标系：归一化(0-1)，原点在左上角，遵循官方规范
 export function getRealMediaPipeLandmarks() {
-  // 根据截图中的实际标注点精确定位
-  // 这是一个右手手掌朝向相机的标准姿势
+  // MediaPipe官方21个关键点标准定义
+  // 参考：https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker
   return [
-    // 0: WRIST (手腕) - 底部中心
-    { x: 0.50, y: 0.85, z: 0, visibility: 0.99 },
+    // 0: WRIST (手腕基点) - 手掌几何中心的参考点
+    { x: 0.50, y: 0.85, z: 0.0, visibility: 0.99 },
     
-    // 1-4: THUMB (拇指) - 右侧（从手掌角度看）
-    { x: 0.65, y: 0.72, z: -0.02, visibility: 0.98 },  // CMC - 腕掌关节
-    { x: 0.72, y: 0.60, z: -0.04, visibility: 0.97 },  // MCP - 掌指关节
-    { x: 0.76, y: 0.48, z: -0.06, visibility: 0.96 },  // IP - 指间关节
-    { x: 0.78, y: 0.38, z: -0.08, visibility: 0.95 },  // TIP - 指尖
+    // 1-4: THUMB (拇指4个关节点)
+    { x: 0.65, y: 0.75, z: -0.01, visibility: 0.98 },  // 1: THUMB_CMC (拇指腕掌关节)
+    { x: 0.70, y: 0.65, z: -0.02, visibility: 0.97 },  // 2: THUMB_MCP (拇指掌指关节)  
+    { x: 0.74, y: 0.52, z: -0.03, visibility: 0.96 },  // 3: THUMB_IP (拇指指间关节)
+    { x: 0.77, y: 0.42, z: -0.04, visibility: 0.95 },  // 4: THUMB_TIP (拇指尖)
     
-    // 5-8: INDEX FINGER (食指) - 从右数第二个
-    { x: 0.58, y: 0.55, z: 0, visibility: 0.99 },      // MCP - 掌指关节
-    { x: 0.60, y: 0.40, z: -0.02, visibility: 0.99 },  // PIP - 近端指间关节
-    { x: 0.61, y: 0.28, z: -0.04, visibility: 0.98 },  // DIP - 远端指间关节
-    { x: 0.62, y: 0.18, z: -0.06, visibility: 0.97 },  // TIP - 指尖
+    // 5-8: INDEX FINGER (食指4个关节点)
+    { x: 0.58, y: 0.58, z: 0.0, visibility: 0.99 },    // 5: INDEX_FINGER_MCP (食指掌指关节)
+    { x: 0.60, y: 0.42, z: -0.01, visibility: 0.99 },  // 6: INDEX_FINGER_PIP (食指近端指间关节)
+    { x: 0.61, y: 0.30, z: -0.02, visibility: 0.98 },  // 7: INDEX_FINGER_DIP (食指远端指间关节)
+    { x: 0.62, y: 0.20, z: -0.03, visibility: 0.97 },  // 8: INDEX_FINGER_TIP (食指尖)
     
-    // 9-12: MIDDLE FINGER (中指) - 中间
-    { x: 0.48, y: 0.52, z: 0, visibility: 0.99 },      // MCP - 掌指关节
-    { x: 0.48, y: 0.36, z: -0.02, visibility: 0.99 },  // PIP - 近端指间关节
-    { x: 0.48, y: 0.24, z: -0.04, visibility: 0.98 },  // DIP - 远端指间关节
-    { x: 0.48, y: 0.14, z: -0.06, visibility: 0.97 },  // TIP - 指尖
+    // 9-12: MIDDLE FINGER (中指4个关节点)
+    { x: 0.48, y: 0.55, z: 0.0, visibility: 0.99 },    // 9: MIDDLE_FINGER_MCP (中指掌指关节)
+    { x: 0.48, y: 0.38, z: -0.01, visibility: 0.99 },  // 10: MIDDLE_FINGER_PIP (中指近端指间关节)
+    { x: 0.48, y: 0.26, z: -0.02, visibility: 0.98 },  // 11: MIDDLE_FINGER_DIP (中指远端指间关节)
+    { x: 0.48, y: 0.16, z: -0.03, visibility: 0.97 },  // 12: MIDDLE_FINGER_TIP (中指尖)
     
-    // 13-16: RING FINGER (无名指) - 从左数第二个
-    { x: 0.38, y: 0.53, z: 0, visibility: 0.99 },      // MCP - 掌指关节
-    { x: 0.36, y: 0.38, z: -0.02, visibility: 0.98 },  // PIP - 近端指间关节
-    { x: 0.35, y: 0.26, z: -0.04, visibility: 0.97 },  // DIP - 远端指间关节
-    { x: 0.34, y: 0.16, z: -0.06, visibility: 0.96 },  // TIP - 指尖
+    // 13-16: RING FINGER (无名指4个关节点)  
+    { x: 0.38, y: 0.56, z: 0.0, visibility: 0.99 },    // 13: RING_FINGER_MCP (无名指掌指关节)
+    { x: 0.36, y: 0.40, z: -0.01, visibility: 0.98 },  // 14: RING_FINGER_PIP (无名指近端指间关节)
+    { x: 0.35, y: 0.28, z: -0.02, visibility: 0.97 },  // 15: RING_FINGER_DIP (无名指远端指间关节)
+    { x: 0.34, y: 0.18, z: -0.03, visibility: 0.96 },  // 16: RING_FINGER_TIP (无名指尖)
     
-    // 17-20: PINKY (小指) - 左侧
-    { x: 0.28, y: 0.56, z: 0, visibility: 0.98 },      // MCP - 掌指关节
-    { x: 0.24, y: 0.42, z: -0.02, visibility: 0.97 },  // PIP - 近端指间关节
-    { x: 0.22, y: 0.32, z: -0.04, visibility: 0.96 },  // DIP - 远端指间关节
-    { x: 0.20, y: 0.22, z: -0.06, visibility: 0.95 },  // TIP - 指尖
+    // 17-20: PINKY (小指4个关节点)
+    { x: 0.28, y: 0.59, z: 0.0, visibility: 0.98 },    // 17: PINKY_MCP (小指掌指关节)
+    { x: 0.25, y: 0.45, z: -0.01, visibility: 0.97 },  // 18: PINKY_PIP (小指近端指间关节)
+    { x: 0.23, y: 0.34, z: -0.02, visibility: 0.96 },  // 19: PINKY_DIP (小指远端指间关节)
+    { x: 0.21, y: 0.25, z: -0.03, visibility: 0.95 },  // 20: PINKY_TIP (小指尖)
   ]
 }
 
@@ -52,48 +52,58 @@ export function generateMockMediaPipeLandmarks() {
 }
 
 /**
- * MediaPipe手部连接关系
+ * MediaPipe官方手部连接关系定义
+ * 基于Google MediaPipe HandLandmarker标准连接模式
  */
 export const HAND_CONNECTIONS = [
-  // 拇指
+  // THUMB连接线 (拇指) - 4个连接
   [0, 1], [1, 2], [2, 3], [3, 4],
-  // 食指
+  
+  // INDEX_FINGER连接线 (食指) - 4个连接  
   [0, 5], [5, 6], [6, 7], [7, 8],
-  // 中指
+  
+  // MIDDLE_FINGER连接线 (中指) - 4个连接
   [5, 9], [9, 10], [10, 11], [11, 12],
-  // 无名指
+  
+  // RING_FINGER连接线 (无名指) - 4个连接
   [9, 13], [13, 14], [14, 15], [15, 16],
-  // 小指
+  
+  // PINKY连接线 (小指) - 4个连接
   [13, 17], [17, 18], [18, 19], [19, 20],
-  // 手掌连接
-  [0, 17], [5, 9], [9, 13], [13, 17]
+  
+  // PALM连接线 (手掌基础结构) - 4个连接
+  [0, 17],  // 手腕到小指根部
+  [5, 9],   // 食指根部到中指根部
+  [9, 13],  // 中指根部到无名指根部  
+  [13, 17]  // 无名指根部到小指根部
 ]
 
 /**
- * MediaPipe关键点名称和解剖学位置对照
+ * MediaPipe官方手部关键点名称定义
+ * 严格遵循Google MediaPipe HandLandmarker官方命名规范
  */
 export const LANDMARK_NAMES = [
-  'WRIST',           // 0: 手腕
-  'THUMB_CMC',       // 1: 拇指腕掌关节
-  'THUMB_MCP',       // 2: 拇指掌指关节
-  'THUMB_IP',        // 3: 拇指指间关节
-  'THUMB_TIP',       // 4: 拇指尖
-  'INDEX_MCP',       // 5: 食指掌指关节
-  'INDEX_PIP',       // 6: 食指近端指间关节
-  'INDEX_DIP',       // 7: 食指远端指间关节
-  'INDEX_TIP',       // 8: 食指尖
-  'MIDDLE_MCP',      // 9: 中指掌指关节
-  'MIDDLE_PIP',      // 10: 中指近端指间关节
-  'MIDDLE_DIP',      // 11: 中指远端指间关节
-  'MIDDLE_TIP',      // 12: 中指尖
-  'RING_MCP',        // 13: 无名指掌指关节
-  'RING_PIP',        // 14: 无名指近端指间关节
-  'RING_DIP',        // 15: 无名指远端指间关节
-  'RING_TIP',        // 16: 无名指尖
-  'PINKY_MCP',       // 17: 小指掌指关节
-  'PINKY_PIP',       // 18: 小指近端指间关节
-  'PINKY_DIP',       // 19: 小指远端指间关节
-  'PINKY_TIP'        // 20: 小指尖
+  'WRIST',                    // 0: 手腕基点
+  'THUMB_CMC',               // 1: 拇指腕掌关节 (Carpometacarpal)
+  'THUMB_MCP',               // 2: 拇指掌指关节 (Metacarpophalangeal)
+  'THUMB_IP',                // 3: 拇指指间关节 (Interphalangeal)
+  'THUMB_TIP',               // 4: 拇指尖端
+  'INDEX_FINGER_MCP',        // 5: 食指掌指关节
+  'INDEX_FINGER_PIP',        // 6: 食指近端指间关节 (Proximal Interphalangeal)
+  'INDEX_FINGER_DIP',        // 7: 食指远端指间关节 (Distal Interphalangeal)
+  'INDEX_FINGER_TIP',        // 8: 食指尖端
+  'MIDDLE_FINGER_MCP',       // 9: 中指掌指关节
+  'MIDDLE_FINGER_PIP',       // 10: 中指近端指间关节
+  'MIDDLE_FINGER_DIP',       // 11: 中指远端指间关节
+  'MIDDLE_FINGER_TIP',       // 12: 中指尖端
+  'RING_FINGER_MCP',         // 13: 无名指掌指关节
+  'RING_FINGER_PIP',         // 14: 无名指近端指间关节
+  'RING_FINGER_DIP',         // 15: 无名指远端指间关节
+  'RING_FINGER_TIP',         // 16: 无名指尖端
+  'PINKY_MCP',               // 17: 小指掌指关节
+  'PINKY_PIP',               // 18: 小指近端指间关节
+  'PINKY_DIP',               // 19: 小指远端指间关节
+  'PINKY_TIP'                // 20: 小指尖端
 ]
 
 /**

@@ -2,7 +2,7 @@
   "Payment": {
     "Success": {
       "title": "¡Pago Exitoso!",
-      "message": "¡Gracias por tu reserva anticipada! Hemos recibido tu pago y tu Compañía IA Rolitt está un paso más cerca de ti. Se ha enviado un email de confirmación a tu bandeja de entrada.",
+      "message": "¡Gracias por tu reserva anticipada! Hemos recibido tu pago y tu lectura de palmas personalizada de Thepalmistrylife está un paso más cerca de ti. Se ha enviado un email de confirmación a tu bandeja de entrada.",
       "button_back_home": "Volver al Inicio",
       "support_message": "Si tienes alguna pregunta, puedes contactar a nuestro equipo de soporte:"
     },
@@ -55,7 +55,7 @@
     },
     "Hero": {
       "title": "Sé de los Primeros en Experimentar el Futuro de la Compañía IA",
-      "description": "Reserva tu Compañía IA Rolitt hoy y únete a la próxima generación de tecnología interactiva.",
+      "description": "Reserva tu lectura de palmas personalizada de Thepalmistrylife hoy y únete a la próxima generación de sabiduría ancestral.",
       "cta": "Reservar Ahora",
       "limited_time_text": "✨ Reserva Limitada, Descuento para Compradores Anticipados",
       "features": {
@@ -163,7 +163,7 @@
           },
           {
             "question": "¿Obtengo cobertura de garantía?",
-            "answer": "Los productos Rolitt vienen con una garantía de un año. Cualquier daño no humano puede ser reemplazado o reparado sin costo."
+            "answer": "Los servicios de Thepalmistrylife vienen con una garantía de satisfacción completa. Cualquier insatisfacción con tu lectura puede ser resuelta con una consulta adicional sin costo."
           }
         ]
       }
@@ -386,7 +386,7 @@
       "personalInfo": "Información Personal",
       "personalInfoDescription": "Cuéntanos sobre ti para personalizar tu experiencia",
       "shippingInfo": "Información de Envío",
-      "shippingInfoDescription": "¿Dónde debemos enviar tu Compañía IA Rolitt?",
+      "shippingInfoDescription": "¿Dónde debemos enviar tu informe de lectura de palmas de Thepalmistrylife?",
       "firstName": "Nombre",
       "lastName": "Apellido",
       "email": "Dirección de Correo Electrónico",
@@ -469,8 +469,8 @@
   },
   "VideoSection": {
     "badge": "Demo del Producto",
-    "title": "Ve Rolitt en Acción",
-    "description": "Descubre las características y experiencia de usuario de la Compañía IA Rolitt a través de video",
+    "title": "Ve Thepalmistrylife en Acción",
+    "description": "Descubre las características y experiencia de usuario de las lecturas de palmas de Thepalmistrylife a través de video",
     "youtube_link_text": "¿Quieres saber más? Visita nuestro",
     "youtube_channel": "canal de YouTube",
     "youtube_link_suffix": "para ver más contenido de video"

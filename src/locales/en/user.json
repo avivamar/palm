@@ -37,7 +37,7 @@
         "description": "Sign in to your account seamlessly through our user-friendly login process."
       },
       "title": "Sign in to your account",
-      "alt": "Rolitt Logo",
+      "alt": "Thepalmistrylife Logo",
       "footer": "Not a member yet?",
       "footer_link": "Sign up now to be one of our first members",
       "google_button": "Continue with Google",
@@ -226,8 +226,8 @@
     "signin_link": "Sign In"
   },
   "UserProfile": {
-    "meta_title": "User Profile | Rolitt",
-    "meta_description": "Manage your Rolitt user profile, preferences, and account information.",
+    "meta_title": "User Profile | Thepalmistrylife",
+    "meta_description": "Manage your Thepalmistrylife user profile, preferences, and account information.",
     "title": "User Profile",
     "subtitle": "Manage your personal information and preferences",
     "personal_info": {
@@ -270,7 +270,7 @@
     },
     "preferences": {
       "title": "Preferences",
-      "description": "Customize your Rolitt experience",
+      "description": "Customize your Thepalmistrylife experience",
       "language": {
         "label": "Language",
         "options": {

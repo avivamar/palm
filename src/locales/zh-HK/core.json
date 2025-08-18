@@ -1,7 +1,7 @@
 {
   "RootLayout": {
-    "meta_title": "Rolitt - 新一代人工智能伴侶",
-    "meta_description": "Rolitt 是支援您日常生活的下一代人工智能伴侶。"
+    "meta_title": "Thepalmistrylife - 新一代手相學服務",
+    "meta_description": "Thepalmistrylife 是提供專業手相分析和人生指導的現代化服務平台。"
   },
   "BaseTemplate": {
     "skip_to_content": "跳至主要內容"
@@ -29,7 +29,7 @@
     "terms": "服務條款",
     "privacy": "隱私政策",
     "cookies": "Cookie 政策",
-    "copyright": "© 2024 Rolitt Inc. Based on love, passion and sustained effort版權所有。",
+    "copyright": "© 2024 Thepalmistrylife Inc. Based on love, passion and sustained effort版權所有。",
     "product": "產品",
     "community": "社群",
 
@@ -43,7 +43,7 @@
     "refund_policy": "退款政策",
     "shipping_policy": "運送政策",
     "contact_information": "聯絡資訊",
-    "company_description": "Rolitt 是結合情感識別、自然語言處理和機器學習技術的下一代人工智能伴侶，提供富有同理心的情感支援和智能互動。",
+    "company_description": "Thepalmistrylife 是結合傳統手相學智慧與現代科技的專業服務平台，提供準確的手相分析和人生指導。",
     "newsletter_title": "訂閱電子報",
     "newsletter_description": "獲取我們最新產品、功能和公告的更新資訊。",
     "email_placeholder": "輸入您的電子郵件",
@@ -66,7 +66,7 @@
     "company": "公司",
     "about": "關於",
     "pre-order": "預購",
-  "rolittai": "Rolitt AI",
+  "rolittai": "Thepalmistrylife",
     "services": "服務",
     "contact": "聯絡",
     "nav": {
@@ -150,7 +150,7 @@
     "noEventsYet": "尚無事件。"
   },
   "NotFound": {
-    "meta_title": "找不到頁面 | Rolitt",
+    "meta_title": "找不到頁面 | Thepalmistrylife",
     "meta_description": "您要找的頁面不存在或已被移動。",
     "title": "找不到頁面",
     "description": "您要找的頁面不存在或已被移動。",

@@ -1,7 +1,7 @@
 {
   "RootLayout": {
-    "meta_title": "Rolitt - Compañía IA de Nueva Generación",
-    "meta_description": "Rolitt es una compañía IA de nueva generación que apoya tu vida diaria."
+    "meta_title": "Thepalmistrylife - Servicios de Quiromancia de Nueva Generación",
+    "meta_description": "Thepalmistrylife es una plataforma de quiromancia de nueva generación que apoya tu vida diaria."
   },
   "BaseTemplate": {
     "skip_to_content": "Saltar al contenido"
@@ -29,7 +29,7 @@
     "terms": "Términos de Servicio",
     "privacy": "Política de Privacidad",
     "cookies": "Política de Cookies",
-    "copyright": "© 2024 Rolitt Inc. Todos los derechos reservados.",
+    "copyright": "© 2024 Thepalmistrylife Inc. Todos los derechos reservados.",
     "product": "Producto",
     "community": "Comunidad",
     "rights_reserved": "Todos los derechos reservados.",
@@ -39,7 +39,7 @@
     "refund_policy": "Política de Reembolsos",
     "shipping_policy": "Política de Envíos",
     "contact_information": "Información de Contacto",
-    "company_description": "Rolitt es una compañía IA de nueva generación que combina reconocimiento de emociones, procesamiento de lenguaje natural y tecnologías de aprendizaje automático para proporcionar soporte emocional compasivo e interacciones inteligentes.",
+    "company_description": "Thepalmistrylife es una plataforma de quiromancia de nueva generación que combina sabiduría ancestral, análisis de palmas y tecnologías modernas para proporcionar orientación espiritual compasiva e insights personalizados.",
     "newsletter_title": "Suscribirse al Boletín",
     "newsletter_description": "Recibe actualizaciones sobre nuestros últimos productos, características y anuncios.",
     "email_placeholder": "Ingresa tu email",
@@ -61,7 +61,7 @@
     "company": "Empresa",
     "about": "Acerca de",
     "contact": "Contacto",
-    "rolittai": "Rolitt IA",
+    "rolittai": "Thepalmistrylife",
     "services": "Servicios",
     "nav": {
       "home": "Inicio",
@@ -141,7 +141,7 @@
     "noEventsYet": "Aún no hay eventos."
   },
   "NotFound": {
-    "meta_title": "Página No Encontrada | Rolitt",
+    "meta_title": "Página No Encontrada | Thepalmistrylife",
     "meta_description": "La página que buscas no existe o ha sido movida.",
     "title": "Página No Encontrada",
     "description": "La página que buscas no existe o ha sido movida.",

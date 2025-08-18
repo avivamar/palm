@@ -37,7 +37,7 @@
         "description": "Inicia sesión en tu cuenta de manera fluida a través de nuestro proceso de inicio de sesión amigable."
       },
       "title": "Inicia sesión en tu cuenta",
-      "alt": "Logo de Rolitt",
+      "alt": "Logo de Thepalmistrylife",
       "footer": "¿Aún no eres miembro?",
       "footer_link": "Regístrate ahora para ser uno de nuestros primeros miembros",
       "google_button": "Continuar con Google",
@@ -63,7 +63,7 @@
         "description": "Crea tu cuenta fácilmente a través de nuestro proceso de registro intuitivo."
       },
       "title": "Crea tu cuenta",
-      "alt": "Logo de Rolitt",
+      "alt": "Logo de Thepalmistrylife",
       "footer": "¿Ya eres miembro?",
       "footer_link": "Inicia sesión aquí",
       "google_button": "Continuar con Google",
@@ -226,8 +226,8 @@
     "signin_link": "Iniciar Sesión"
   },
   "UserProfile": {
-    "meta_title": "Perfil de Usuario | Rolitt",
-    "meta_description": "Gestiona tu perfil de usuario de Rolitt, preferencias e información de cuenta.",
+    "meta_title": "Perfil de Usuario | Thepalmistrylife",
+    "meta_description": "Gestiona tu perfil de usuario de Thepalmistrylife, preferencias e información de cuenta de quiromancia.",
     "title": "Perfil de Usuario",
     "subtitle": "Gestiona tu información personal y preferencias",
     "personal_info": {
@@ -270,7 +270,7 @@
     },
     "preferences": {
       "title": "Preferencias",
-      "description": "Personaliza tu experiencia con Rolitt",
+      "description": "Personaliza tu experiencia con Thepalmistrylife",
       "language": {
         "label": "Idioma",
         "options": {

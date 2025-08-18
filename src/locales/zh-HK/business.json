@@ -1,10 +1,10 @@
 {
 
   "Portfolio": {
-    "meta_title": "我們的作品集 | Rolitt",
-    "meta_description": "探索Rolitt在各個行業的AI伴侶項目和成功案例。",
+    "meta_title": "我們的作品集 | Thepalmistrylife",
+    "meta_description": "探索Thepalmistrylife在各個行業的手相學項目和成功案例。",
     "title": "我們的作品集",
-    "subtitle": "了解Rolitt的AI伴侶如何改變各行業的數碼體驗。",
+    "subtitle": "了解Thepalmistrylife的手相學服務如何改變各行業的數碼體驗。",
     "filter_all": "所有項目",
     "filter_personal": "個人助理",
     "filter_business": "商業解決方案",
@@ -14,8 +14,8 @@
     "no_projects": "沒有找到符合您條件的項目。"
   },
   "PortfolioSlug": {
-    "meta_title": "{title} | Rolitt作品集",
-    "meta_description": "了解{title}，這是一個{shortDescription}的Rolitt AI伴侶項目。",
+    "meta_title": "{title} | Thepalmistrylife作品集",
+    "meta_description": "了解{title}，這是一個{shortDescription}的Thepalmistrylife手相學項目。",
     "back_to_portfolio": "返回作品集",
     "client": "客戶",
     "category": "類別",
