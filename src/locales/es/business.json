@@ -1,10 +1,10 @@
 {
 
   "Portfolio": {
-    "meta_title": "Nuestro Portafolio | Rolitt",
-    "meta_description": "Explore el portafolio de proyectos de compañía IA de Rolitt e historias de éxito en diversas industrias.",
+    "meta_title": "Nuestro Portafolio | Thepalmistrylife",
+    "meta_description": "Explore el portafolio de lecturas de palmas de Thepalmistrylife e historias de éxito en diversas áreas de la vida.",
     "title": "Nuestro Portafolio",
-    "subtitle": "Descubra cómo la compañía IA de Rolitt está transformando las experiencias digitales en todas las industrias.",
+    "subtitle": "Descubra cómo las lecturas de palmas de Thepalmistrylife están transformando vidas y proporcionando orientación en todas las áreas.",
     "filter_all": "Todos los Proyectos",
     "filter_personal": "Asistente Personal",
     "filter_business": "Soluciones Empresariales",
@@ -14,8 +14,8 @@
     "no_projects": "No se encontraron proyectos que coincidan con sus criterios."
   },
   "PortfolioSlug": {
-    "meta_title": "{title} | Portafolio Rolitt",
-    "meta_description": "Conozca {title}, un proyecto de compañía IA de Rolitt que {shortDescription}.",
+    "meta_title": "{title} | Portafolio Thepalmistrylife",
+    "meta_description": "Conozca {title}, una lectura de palmas de Thepalmistrylife que {shortDescription}.",
     "back_to_portfolio": "Volver al Portafolio",
     "client": "Cliente",
     "category": "Categoría",

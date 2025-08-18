@@ -8,20 +8,20 @@
     "sign_up_link": "Registrarse"
   },
   "BaseTemplate": {
-    "description": "Reserva hoy tu Compañero IA Rolitt y únete a la próxima generación de tecnología interactiva.",
-    "made_with": "Hecho con <author>Rolitt</author>."
+    "description": "Reserva hoy tu lectura de quiromancia Thepalmistrylife y descubre el arte ancestral de la lectura de palmas.",
+  "made_with": "Hecho con <author>Thepalmistrylife</author>."
   },
   "Index": {
-    "meta_title": "Rolitt – Tu Compañero IA Emocional Inteligente",
-    "meta_description": "¡Conoce a Rolitt, tu compañero emocional inteligente! Con tecnología IA avanzada, Rolitt trae alegría, apoyo y aventura a tu vida diaria. ¡Explora las infinitas posibilidades de la compañía IA!",
-    "meta_keywords": "Rolitt, compañero IA, robot inteligente, robot de apoyo emocional, robot compañero familiar, robot IA, robot doméstico inteligente, robot de reconocimiento emocional, robot de interacción por voz, robot asistente personal, robot de tecnología futura, robot innovador, tecnología robótica, desarrollo de robots, aplicaciones robóticas, soluciones robóticas, aprendizaje robótico, robot interactivo, seguridad robótica, protección de privacidad robótica, robot de computación emocional, robot de procesamiento del lenguaje natural, robot de aprendizaje automático, robot de cifrado de extremo a extremo",
-    "meta_og_title": "Rolitt - Redefiniendo la Compañía IA",
-    "meta_og_description": "Experimenta Rolitt, un compañero IA que entiende tus emociones y añade alegría a tu vida. Rolitt no es solo un asistente inteligente, sino tu compañero emocional.",
-    "meta_og_image_alt": "Compañero IA Rolitt - Tu Apoyo Emocional Inteligente",
-    "meta_twitter_title": "Rolitt: Inaugurando una Nueva Era de Compañía Emocional Inteligente",
-    "meta_twitter_description": "Conoce a Rolitt, un compañero IA que percibe tus emociones y se adapta a tus necesidades. Deja que la tecnología caliente tu día a día.",
-    "product_name": "Compañero IA Emocional Inteligente Rolitt",
-    "product_description": "Rolitt es un compañero IA de próxima generación que combina reconocimiento emocional, procesamiento del lenguaje natural y tecnologías de aprendizaje automático para proporcionarte apoyo emocional e interacción inteligente.",
+    "meta_title": "Thepalmistrylife – Tu Guía de Quiromancia Inteligente",
+  "meta_description": "¡Conoce a Thepalmistrylife, tu guía de quiromancia inteligente! Con tecnología avanzada, Thepalmistrylife trae sabiduría ancestral y orientación a tu vida diaria. ¡Explora las infinitas posibilidades de la lectura de palmas!",
+  "meta_keywords": "Thepalmistrylife, quiromancia, lectura de palmas, adivinación, predicción del futuro, líneas de la mano, análisis de palmas, sabiduría ancestral, guía espiritual, autoconocimiento, destino, personalidad, amor y relaciones, carrera profesional, salud y bienestar, interpretación de manos, arte adivinatorio, consulta online, lectura personalizada, orientación vital",
+  "meta_og_title": "Thepalmistrylife - Redefiniendo la Quiromancia",
+  "meta_og_description": "Experimenta Thepalmistrylife, una plataforma que entiende las líneas de tus manos y revela los secretos de tu destino. Thepalmistrylife no es solo una herramienta, sino tu guía espiritual.",
+  "meta_og_image_alt": "Thepalmistrylife - Tu Guía de Quiromancia Inteligente",
+  "meta_twitter_title": "Thepalmistrylife: Inaugurando una Nueva Era de Quiromancia Digital",
+  "meta_twitter_description": "Conoce a Thepalmistrylife, una plataforma que lee las líneas de tus manos y revela tu destino. Deja que la sabiduría ancestral ilumine tu camino.",
+  "product_name": "Guía de Quiromancia Inteligente Thepalmistrylife",
+  "product_description": "Thepalmistrylife es una plataforma de próxima generación que combina sabiduría ancestral, análisis de patrones y tecnologías modernas para proporcionarte lecturas de palmas precisas y orientación personalizada.",
     "sponsors_title": "Nuestros Socios"
   },
   "Counter": {
@@ -210,7 +210,7 @@
   "dashboard": {
     "title": "Panel de Control",
     "welcome_back": "Bienvenido de vuelta,",
-    "welcome_message": "Bienvenido a tu centro de usuario Rolitt, gestiona tu experiencia de compañero IA aquí"
+    "welcome_message": "Bienvenido a tu centro de usuario Thepalmistrylife, gestiona tu experiencia de quiromancia aquí"
   },
   "billing": {
     "title": "Facturación y Pagos",
@@ -308,7 +308,7 @@
     "company": "Company",
     "about": "About",
     "pre-order": "Pre-order",
-    "rolittai": "Rolitt AI",
+    "rolittai": "Thepalmistrylife",
     "services": "Services",
     "contact": "Contact",
     "nav": {
@@ -323,9 +323,9 @@
 
   },
   "Hero": {
-    "follow_twitter": "Follow Rolittai on Twitter",
+    "follow_twitter": "Follow Thepalmistrylife on Twitter",
     "title": "Yoyo: Future of Friendship - Get Early Access",
-    "description": "Rolitt: Where AI Meets Warmth – Your 24/7 Emotional Companion Toy",
+    "description": "Thepalmistrylife: Donde la Sabiduría Ancestral Encuentra la Tecnología – Tu Guía de Quiromancia 24/7",
     "primary_button": "Pre-order Now",
     "secondary_button": "Early Bird Plan",
     "avatar": "Join over 1,000 people worldwide discovering our innovations."
@@ -366,27 +366,27 @@
     "feature6_detail_spec2": "30‑day trial & 1‑yr swap"
   },
   "FAQ": {
-    "meta_title": "Frequently Asked Questions | Rolitt",
+    "meta_title": "Frequently Asked Questions | Thepalmistrylife",
     "meta_description": "Find answers to common questions about our robotics solutions, technology, and services.",
-    "meta_keywords": "robotics FAQ, technology questions, Rolitt support, robotics help",
-    "meta_og_title": "Frequently Asked Questions | Rolitt",
+    "meta_keywords": "palmistry FAQ, technology questions, Thepalmistrylife support, palmistry help",
+    "meta_og_title": "Frequently Asked Questions | Thepalmistrylife",
     "meta_og_description": "Get answers to common questions about our robotics solutions and services. Find the information you need quickly and easily.",
-    "meta_twitter_title": "Frequently Asked Questions | Rolitt",
+    "meta_twitter_title": "Frequently Asked Questions | Thepalmistrylife",
     "meta_twitter_description": "Get answers to common questions about our robotics solutions and services. Find the information you need quickly and easily.",
     "title": "Frequently Asked Questions",
     "subtitle": "Find Answers",
-    "question_1": "What types of robotics solutions does Rolitt offer?",
-    "answer_1": "Rolitt offers a wide range of robotics solutions including industrial automation systems, healthcare assistance robots, educational robotics platforms, and home automation solutions. Each product line is designed to address specific needs in different sectors while leveraging our core AI and robotics technologies.",
-    "question_2": "How can I integrate Rolitt's technology with my existing systems?",
-    "answer_2": "Our solutions are designed with interoperability in mind. We provide comprehensive APIs, documentation, and integration support to ensure seamless connection with your existing infrastructure. Our technical team works closely with clients during implementation to ensure successful integration and minimal disruption.",
-    "question_3": "What kind of support does Rolitt provide after purchase?",
-    "answer_3": "We offer comprehensive post-purchase support including technical assistance, maintenance services, software updates, and training programs. Our support packages can be tailored to your specific needs, from basic troubleshooting to full-service maintenance contracts with guaranteed response times.",
-    "question_4": "Is Rolitt's technology suitable for small businesses?",
-    "answer_4": "Absolutely! We have solutions designed for organizations of all sizes. For small businesses, we offer scalable options that provide advanced capabilities without requiring extensive infrastructure or technical expertise. Our modular approach allows you to start small and expand as your needs grow.",
-    "question_5": "How does Rolitt ensure the security of its robotic systems?",
-    "answer_5": "Security is a top priority at Rolitt. We implement multiple layers of protection including encrypted communications, secure authentication protocols, regular security updates, and comprehensive vulnerability testing. Our systems are designed with privacy-by-design principles and comply with relevant industry standards and regulations.",
-    "question_6": "What makes Rolitt's technology different from competitors?",
-    "answer_6": "Our key differentiator is our proprietary AI technology that enables more adaptive, intelligent behavior in our robotic systems. Additionally, we focus on user-friendly interfaces, seamless integration capabilities, and robust security features. Our solutions are developed with extensive real-world testing to ensure reliability and performance in diverse environments.",
+    "question_1": "What types of palmistry services does Thepalmistrylife offer?",
+  "answer_1": "Thepalmistrylife offers a wide range of palmistry services including detailed palm readings, personality analysis, future predictions, and relationship guidance. Each service is designed to provide personalized insights while leveraging ancient wisdom and modern analytical techniques.",
+    "question_2": "How can I integrate Thepalmistrylife's services with my daily life?",
+  "answer_2": "Our palmistry services are designed to be easily integrated into your daily routine. We provide comprehensive guidance, personalized insights, and ongoing support to help you apply palmistry wisdom to your life decisions. Our experts work closely with clients to ensure meaningful and practical application.",
+    "question_3": "What kind of support does Thepalmistrylife provide after purchase?",
+  "answer_3": "We offer comprehensive post-purchase support including consultation assistance, guidance services, insight updates, and training programs. Our support packages can be tailored to your specific needs, from basic palmistry questions to full-service guidance contracts with guaranteed response times.",
+    "question_4": "Is Thepalmistrylife's service suitable for beginners?",
+  "answer_4": "Absolutely! We have services designed for people of all experience levels. For beginners, we offer scalable options that provide advanced palmistry insights without requiring extensive knowledge or expertise. Our modular approach allows you to start with basic readings and expand as your understanding grows.",
+    "question_5": "How does Thepalmistrylife ensure the security of its palmistry systems?",
+  "answer_5": "Security is a top priority at Thepalmistrylife. We implement multiple layers of protection including encrypted communications, secure authentication protocols, regular security updates, and comprehensive vulnerability testing. Our systems are designed with privacy-by-design principles and comply with relevant industry standards and regulations.",
+    "question_6": "What makes Thepalmistrylife's technology different from competitors?",
+  "answer_6": "Our key differentiator is our proprietary AI technology that enables more adaptive, intelligent behavior in our palmistry systems. Additionally, we focus on user-friendly interfaces, seamless integration capabilities, and robust security features. Our solutions are developed with extensive real-world testing to ensure reliability and performance in diverse environments.",
     "still_have_questions": "Still have questions? We're here to help!",
     "contact_us_text": "Contact our support team for personalized assistance with your specific needs."
   },

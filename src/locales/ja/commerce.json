@@ -2,7 +2,7 @@
   "Payment": {
     "Success": {
       "title": "お支払い完了！",
-      "message": "ご予約いただきありがとうございます！お支払いを確認いたしました。あなたのRolitt AIコンパニオンはもうすぐお手元に届きます。確認メールをお送りいたしました。",
+      "message": "ご予約いただきありがとうございます！お支払いを確認いたしました。あなたのThepalmistrylife サービスはもうすぐご利用いただけます。確認メールをお送りいたしました。",
       "button_back_home": "ホームに戻る",
       "support_message": "ご質問がございましたら、サポートチームにお気軽にお問い合わせください："
     },
@@ -34,7 +34,7 @@
   "PreOrder": {
     "Hero": {
       "title": "AIコンパニオンシップの未来を最初に体験してください",
-      "description": "今すぐRolitt AIコンパニオンをご予約いただき、次世代のインタラクティブテクノロジーにご参加ください。",
+      "description": "今すぐThepalmistrylife 手相学分析サービスをご予約いただき、次世代の占術テクノロジーにご参加ください。",
       "cta": "今すぐ予約する",
       "limited_time_text": "✨ 限定予約、早期購入割引",
       "features": {
@@ -142,7 +142,7 @@
           },
           {
             "question": "保証は付いていますか？",
-            "answer": "Rolitt製品には1年間の保証が付いています。人為的でない損傷については無料で交換・修理いたします。"
+            "answer": "Thepalmistrylife サービスには1年間の品質保証が付いています。サービス品質に問題がある場合は無料で再分析いたします。"
           }
         ]
       }
@@ -254,7 +254,7 @@
     },
     "hero": {
       "title": "AIコンパニオンシップの未来を最初に体験してください",
-      "description": "今すぐRolitt AIコンパニオンをご予約いただき、次世代のインタラクティブテクノロジーにご参加ください。",
+      "description": "今すぐThepalmistrylife 手相学分析サービスをご予約いただき、次世代の占術テクノロジーにご参加ください。",
       "cta": "今すぐ予約する",
       "limited_time_text": "✨ 限定予約、早期購入割引",
       "features": {
@@ -396,7 +396,7 @@
           },
           {
             "question": "保証は付いていますか？",
-            "answer": "Rolitt製品には1年間の保証が付いています。人為的でない損傷については無料で交換・修理いたします。"
+          "answer": "Thepalmistrylife サービスには1年間の品質保証が付いています。サービス品質に問題がある場合は無料で再分析いたします。"
           }
         ]
       }
@@ -409,7 +409,7 @@
       "personalInfo": "個人情報",
       "personalInfoDescription": "あなたの体験をパーソナライズするために、ご自身について教えてください",
       "shippingInfo": "配送情報",
-      "shippingInfoDescription": "RolittAIコンパニオンをどちらにお送りしますか？",
+      "shippingInfoDescription": "Thepalmistrylife 分析レポートをどちらにお送りしますか？",
       "firstName": "名",
       "lastName": "姓",
       "email": "メールアドレス",
@@ -492,8 +492,8 @@
   },
   "VideoSection": {
     "badge": "製品デモ",
-    "title": "Rolittの動作を確認",
-    "description": "動画でRolitt AIコンパニオンの機能とユーザー体験をご確認ください",
+    "title": "Thepalmistrylifeの動作を確認",
+    "description": "動画でThepalmistrylife 手相学分析サービスの機能とユーザー体験をご確認ください",
     "youtube_link_text": "詳しく知りたい方は、ぜひ",
     "youtube_channel": "YouTubeチャンネル",
     "youtube_link_suffix": "をご覧いただき、さらに多くの動画コンテンツをお楽しみください"

@@ -64,7 +64,7 @@
     },
     "Features": {
       "title": "革命性 AI 功能",
-      "description": "體驗尖端技術和情感智能的完美結合。",
+      "description": "體驗尖端技術和手相學智慧的完美結合。",
       "ai": {
         "title": "先進 AI",
         "description": "由最先進的語言模型驅動，提供自然對話體驗"
@@ -360,7 +360,7 @@
           },
           {
             "question": "我是否享有保修服務？",
-            "answer": "Rolitt 產品享有一年保修。任何非人為損壞都可以免費更換或維修。"
+            "answer": "Thepalmistrylife 服務享有一年品質保證。任何服務品質問題都可以免費重新解讀或諮詢。"
           }
         ]
       }
@@ -373,7 +373,7 @@
       "personalInfo": "個人信息",
       "personalInfoDescription": "告訴我哋關於您嘅信息以個性化您嘅體驗",
       "shippingInfo": "配送信息",
-      "shippingInfoDescription": "我哋應該將您嘅 Thepalmistrylife 手相解讀報告送到邊度？",
+      "shippingInfoDescription": "我哋應該將您嘅 Thepalmistrylife 手相解讀報告發送到邊個電子郵件地址？",
       "firstName": "名字",
       "lastName": "姓氏",
       "email": "電子郵件地址",

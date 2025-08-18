@@ -31,7 +31,7 @@
   "title": "Dashboard",
   "welcome_back": "Welcome back,",
   "hello_greeting": "Hello",
-  "welcome_message": "Welcome to your Rolitt user center, manage your AI companion experience here",
+  "welcome_message": "Welcome to your Thepalmistrylife user center, manage your palmistry reading experience here",
   "need_login": "Need to Sign In",
   "please_login": "Please sign in to access your user center",
   "sign_in_now": "Sign In Now",
@@ -64,7 +64,7 @@
     "title": "Recent Activity",
     "description": "Your account activity record",
     "account_created": "Account created successfully",
-    "account_created_desc": "Welcome to Rolitt! Your account has been successfully created",
+    "account_created_desc": "Welcome to Thepalmistrylife! Your account has been successfully created",
     "recent": "Recently",
     "no_other_activity": "No other activity records",
     "start_exploring": "Start exploring to see more activities!"

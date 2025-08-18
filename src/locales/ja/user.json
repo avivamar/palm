@@ -37,7 +37,7 @@
         "description": "ユーザーフレンドリーなログインプロセスで、アカウントにシームレスにサインインしてください。"
       },
       "title": "アカウントにログイン",
-      "alt": "Rolittロゴ",
+      "alt": "Thepalmistrylifeロゴ",
       "footer": "まだメンバーではありませんか？",
       "footer_link": "今すぐ登録して初期メンバーの一員になりましょう",
       "google_button": "Googleで続行",
@@ -226,8 +226,8 @@
     "signin_link": "ログイン"
   },
   "UserProfile": {
-    "meta_title": "ユーザープロフィール | Rolitt",
-    "meta_description": "Rolittのユーザープロフィール、設定、アカウント情報を管理してください。",
+    "meta_title": "ユーザープロフィール | Thepalmistrylife",
+    "meta_description": "Thepalmistrylifeのユーザープロフィール、設定、アカウント情報を管理してください。",
     "title": "ユーザープロフィール",
     "subtitle": "個人情報と設定を管理",
     "personal_info": {
@@ -270,7 +270,7 @@
     },
     "preferences": {
       "title": "設定",
-      "description": "Rolittエクスペリエンスをカスタマイズ",
+      "description": "Thepalmistrylifeエクスペリエンスをカスタマイズ",
       "language": {
         "label": "言語",
         "options": {

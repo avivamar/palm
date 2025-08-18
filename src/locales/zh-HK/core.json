@@ -1,7 +1,7 @@
 {
   "RootLayout": {
-    "meta_title": "Thepalmistrylife - 新一代手相學服務",
-    "meta_description": "Thepalmistrylife 是提供專業手相分析和人生指導的現代化服務平台。"
+    "meta_title": "Thepalmistrylife - 新一代手相學智能分析",
+    "meta_description": "Thepalmistrylife 是支援您日常生活的下一代手相學智能分析。"
   },
   "BaseTemplate": {
     "skip_to_content": "跳至主要內容"
@@ -43,7 +43,7 @@
     "refund_policy": "退款政策",
     "shipping_policy": "運送政策",
     "contact_information": "聯絡資訊",
-    "company_description": "Thepalmistrylife 是結合傳統手相學智慧與現代科技的專業服務平台，提供準確的手相分析和人生指導。",
+    "company_description": "Thepalmistrylife 是結合古老手相學智慧、自然語言處理和機器學習技術的下一代智能分析平台，提供富有洞察力的手相分析和智能指導。",
     "newsletter_title": "訂閱電子報",
     "newsletter_description": "獲取我們最新產品、功能和公告的更新資訊。",
     "email_placeholder": "輸入您的電子郵件",

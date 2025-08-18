@@ -2,7 +2,7 @@
   "Payment": {
     "Success": {
       "title": "Payment Successful!",
-      "message": "Thank you for your pre-order! We've received your payment and your Rolitt AI Companion is one step closer to you. A confirmation email has been sent to your inbox.",
+      "message": "Thank you for your pre-order! We've received your payment and your Thepalmistrylife palmistry reading is one step closer to you. A confirmation email has been sent to your inbox.",
       "button_back_home": "Back to Home",
       "support_message": "If you have any questions, you can contact our support team:"
     },
@@ -57,7 +57,7 @@
       "personalInfo": "Personal Information",
       "personalInfoDescription": "Tell us about yourself to personalize your experience",
       "shippingInfo": "Shipping Information",
-      "shippingInfoDescription": "Where should we send your Rolitt AI Companion?",
+      "shippingInfoDescription": "Where should we send your Thepalmistrylife palmistry reading materials?",
       "firstName": "First Name",
       "lastName": "Last Name",
       "email": "Email Address",
@@ -81,7 +81,7 @@
     },
     "Hero": {
       "title": "Be Among the First to Experience the Future of AI Companionship",
-      "description": "Pre-order your Rolitt AI Companion today and join the next generation of interactive technology.",
+      "description": "Pre-order your Thepalmistrylife palmistry reading today and discover the ancient art of palm reading.",
       "cta": "Pre-order Now",
       "limited_time_text": "✨ Limited Pre-order, Early Bird Discount",
       "features": {
@@ -212,7 +212,7 @@
           },
           {
             "question": "Do I get warranty coverage?",
-            "answer": "Rolitt products come with a one-year warranty. Any non-human damage can be replaced or repaired free of charge."
+            "answer": "Thepalmistrylife services come with a satisfaction guarantee. Any issues with your reading can be addressed through our support team."
           }
         ]
       }
@@ -290,7 +290,7 @@
   },
   "PaymentSuccess": {
     "title": "Payment Successful!",
-    "message": "Thank you for your pre-order! We've received your payment and your Rolitt AI Companion is one step closer to you. A confirmation email has been sent to your inbox.",
+    "message": "Thank you for your pre-order! We've received your payment and your Thepalmistrylife palmistry reading is one step closer to you. A confirmation email has been sent to your inbox.",
     "button_back_home": "Back to Home",
     "support_message": "If you have any questions, you can contact our support team:"
   },
@@ -302,7 +302,7 @@
   "preOrder": {
     "hero": {
       "title": "Be Among the First to Experience the Future of AI Companionship",
-      "description": "Pre-order your Rolitt AI Companion today and join the next generation of interactive technology.",
+      "description": "Pre-order your Thepalmistrylife palmistry reading today and discover the ancient art of palm reading.",
       "cta": "Pre-order Now",
       "limited_time_text": "✨ Limited Pre-order, Early Bird Discount",
       "features": {
@@ -444,7 +444,7 @@
           },
           {
             "question": "Do I get warranty coverage?",
-            "answer": "Rolitt products come with a one-year warranty. Any non-human damage can be replaced or repaired free of charge."
+            "answer": "Thepalmistrylife services come with a satisfaction guarantee. Any issues with your reading can be addressed through our support team."
           }
         ]
       }
@@ -520,8 +520,8 @@
   },
   "VideoSection": {
     "badge": "Product Demo",
-    "title": "See Rolitt in Action",
-    "description": "Discover the features and user experience of Rolitt AI Companion through video",
+    "title": "See Thepalmistrylife in Action",
+      "description": "Discover the features and user experience of Thepalmistrylife palmistry readings through video",
     "youtube_link_text": "Want to learn more? Visit our",
     "youtube_channel": "YouTube channel",
     "youtube_link_suffix": "to watch more video content"

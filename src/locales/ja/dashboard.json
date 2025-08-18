@@ -31,7 +31,7 @@
   "title": "ダッシュボード",
   "hello_greeting": "こんにちは",
   "welcome_back": "おかえりなさい、",
-  "welcome_message": "Rolittユーザーセンターへようこそ。こちらでAIコンパニオンの体験を管理できます",
+  "welcome_message": "Thepalmistrylifeユーザーセンターへようこそ。こちらで手相学の体験を管理できます",
   "need_login": "サインインが必要です",
   "please_login": "ユーザーセンターにアクセスするにはサインインしてください",
   "sign_in_now": "今すぐサインイン",
@@ -64,7 +64,7 @@
     "title": "最近のアクティビティ",
     "description": "アカウントアクティビティの記録",
     "account_created": "アカウントが正常に作成されました",
-    "account_created_desc": "Rolittへようこそ！アカウントが正常に作成されました",
+    "account_created_desc": "Thepalmistrylifeへようこそ！アカウントが正常に作成されました",
     "recent": "最近",
     "no_other_activity": "他のアクティビティ記録はありません",
     "start_exploring": "探索を開始してより多くのアクティビティを見ましょう！"

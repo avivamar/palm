@@ -31,7 +31,7 @@
   "title": "儀表板",
   "welcome_back": "歡迎回來，",
   "hello_greeting": "您好",
-  "welcome_message": "歡迎來到您的 Rolitt 用戶中心，在這裡管理您的 AI 伴侶體驗",
+  "welcome_message": "歡迎來到您的 Thepalmistrylife 用戶中心，在這裡管理您的手相學體驗",
   "need_login": "需要登入",
   "please_login": "請登入以存取您的用戶中心",
   "sign_in_now": "立即登入",
@@ -64,7 +64,7 @@
     "title": "最近活動",
     "description": "您的帳戶活動記錄",
     "account_created": "帳戶成功建立",
-    "account_created_desc": "歡迎來到 Rolitt！您的帳戶已成功建立",
+    "account_created_desc": "歡迎來到 Thepalmistrylife！您的帳戶已成功建立",
     "recent": "最近",
     "no_other_activity": "沒有其他活動記錄",
     "start_exploring": "開始探索以查看更多活動！"

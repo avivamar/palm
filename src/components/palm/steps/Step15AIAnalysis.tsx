@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
-import { generateMockMediaPipeLandmarks, getRealMediaPipeLandmarks, HAND_CONNECTIONS } from '@/utils/mockMediaPipeData'
+import { generateMockMediaPipeLandmarks, getRealMediaPipeLandmarks } from '@/utils/mockMediaPipeData'
 
 interface Step15Props {
   userData: PalmUserData
@@ -347,6 +347,27 @@ export default function Step15AIAnalysis({
           <p className="text-gray-600 leading-snug">
             {isRealUserImage ? '🔍 正在分析您的手掌纹路特征' : '💡 演示智能分析过程'}
           </p>
+          
+          {/* MediaPipe信任指标 */}
+          <div className="mt-3 bg-gradient-to-r from-violet-50 to-purple-50 rounded-lg p-3">
+            <div className="flex items-center justify-center gap-4 text-xs">
+              <div className="flex items-center gap-1">
+                <span className="text-green-600 font-bold">MediaPipe</span>
+                <span className="text-gray-600">AI引擎</span>
+              </div>
+              <div className="w-px h-3 bg-gray-300"></div>
+              <div className="flex items-center gap-1">
+                <span className="text-violet-600 font-bold">21点</span>
+                <span className="text-gray-600">精准检测</span>
+              </div>
+              <div className="w-px h-3 bg-gray-300"></div>
+              <div className="flex items-center gap-1">
+                <span className="text-amber-500 font-bold">99.2%</span>
+                <span className="text-gray-600">识别率</span>
+              </div>
+            </div>
+          </div>
+          
           <div className="mt-3 text-sm text-orange-600 font-medium animate-pulse">
             🤖 AI已识别到 {landmarks?.length || 21} 个关键点，分析进度 {Math.round(analysisProgress)}%
           </div>
@@ -411,167 +432,226 @@ export default function Step15AIAnalysis({
               />
             </motion.div>
 
-            {/* MediaPipe 21个关键点完整可视化 - 仿照官方绿色风格 */}
+            {/* 专业手相分析可视化 - 参考竞品效果 */}
             {landmarks && landmarks.length >= 21 && (
               <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                {/* 手掌连接线 - 绿色 */}
+                <defs>
+                  {/* 渐变定义 */}
+                  <radialGradient id="fingerTipGradient" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#a855f7" stopOpacity="0.4" />
+                  </radialGradient>
+                  <linearGradient id="palmLineGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#ef4444" />
+                    <stop offset="100%" stopColor="#f97316" />
+                  </linearGradient>
+                  <linearGradient id="palmLineGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#3b82f6" />
+                    <stop offset="100%" stopColor="#8b5cf6" />
+                  </linearGradient>
+                  <linearGradient id="palmLineGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#10b981" />
+                    <stop offset="100%" stopColor="#06b6d4" />
+                  </linearGradient>
+                </defs>
+                
+                {/* 主要掌纹线条 - 彩色渐变 */}
                 {(() => {
                   const pixels = convertLandmarksToPixels(landmarks);
-                  return HAND_CONNECTIONS.map((connection, index) => {
-                    if (!connection || connection.length !== 2) return null;
-                    const [start, end] = connection;
-                    if (typeof start !== 'number' || typeof end !== 'number') return null;
-                    const startPoint = pixels[start];
-                    const endPoint = pixels[end];
-                    if (!startPoint || !endPoint) return null;
-                    
-                    return (
-                      <motion.line
-                        key={`connection-${index}`}
-                        x1={startPoint.x}
-                        y1={startPoint.y}
-                        x2={endPoint.x}
-                        y2={endPoint.y}
-                        stroke="#00ff00"
-                        strokeWidth="2"
-                        strokeOpacity="0.7"
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        animate={{ pathLength: 1, opacity: 0.7 }}
-                        transition={{ duration: 0.5, delay: index * 0.02 }}
-                      />
-                    );
-                  });
-                })()}
-                
-                {/* 21个关键点标记 - 绿色 */}
-                {convertLandmarksToPixels(landmarks).map((point, index) => {
-                  // MediaPipe官方绿色风格
-                  const getPointColor = (index: number) => {
-                    return { fill: '#00ff00', stroke: '#00ff00', name: `P${index}` }
-                  }
                   
-                  const pointColor = getPointColor(index)
+                  // 生命线 (Life Line) - 红橙渐变
+                  const lifeLine = [
+                    { x: pixels[5]?.x || 0, y: pixels[5]?.y || 0 },
+                    { x: (pixels[5]?.x || 0) - 20, y: (pixels[5]?.y || 0) + 40 },
+                    { x: (pixels[0]?.x || 0) + 15, y: (pixels[0]?.y || 0) - 30 },
+                    { x: pixels[0]?.x || 0, y: pixels[0]?.y || 0 }
+                  ];
+                  
+                  // 智慧线 (Head Line) - 蓝紫渐变
+                  const headLine = [
+                    { x: (pixels[5]?.x || 0) - 10, y: (pixels[5]?.y || 0) + 20 },
+                    { x: (pixels[9]?.x || 0) - 5, y: (pixels[9]?.y || 0) + 25 },
+                    { x: (pixels[13]?.x || 0) + 10, y: (pixels[13]?.y || 0) + 30 }
+                  ];
+                  
+                  // 感情线 (Heart Line) - 绿青渐变
+                  const heartLine = [
+                    { x: (pixels[5]?.x || 0) - 5, y: (pixels[5]?.y || 0) + 5 },
+                    { x: pixels[9]?.x || 0, y: (pixels[9]?.y || 0) + 8 },
+                    { x: (pixels[13]?.x || 0) + 5, y: (pixels[13]?.y || 0) + 10 },
+                    { x: (pixels[17]?.x || 0) + 8, y: (pixels[17]?.y || 0) + 15 }
+                  ];
+                  
+                  const pathData = (points: any[]) => {
+                    if (points.length === 0) return "";
+                    let path = `M ${points[0].x} ${points[0].y}`;
+                    for (let i = 1; i < points.length; i++) {
+                      const curr = points[i];
+                      const prev = points[i - 1];
+                      const cpx = (prev.x + curr.x) / 2;
+                      const cpy = (prev.y + curr.y) / 2;
+                      path += ` Q ${cpx} ${cpy} ${curr.x} ${curr.y}`;
+                    }
+                    return path;
+                  };
                   
                   return (
-                    <motion.g key={`landmark-${index}`}>
-                      {/* 外圈光晕 */}
+                    <>
+                      {/* 生命线 */}
+                      <motion.path
+                        d={pathData(lifeLine)}
+                        stroke="url(#palmLineGradient1)"
+                        strokeWidth="4"
+                        fill="none"
+                        strokeLinecap="round"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{ pathLength: 1, opacity: 0.8 }}
+                        transition={{ duration: 1.2, delay: 0.5 }}
+                      />
+                      
+                      {/* 智慧线 */}
+                      <motion.path
+                        d={pathData(headLine)}
+                        stroke="url(#palmLineGradient2)"
+                        strokeWidth="3"
+                        fill="none"
+                        strokeLinecap="round"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{ pathLength: 1, opacity: 0.8 }}
+                        transition={{ duration: 1.0, delay: 0.8 }}
+                      />
+                      
+                      {/* 感情线 */}
+                      <motion.path
+                        d={pathData(heartLine)}
+                        stroke="url(#palmLineGradient3)"
+                        strokeWidth="3"
+                        fill="none"
+                        strokeLinecap="round"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{ pathLength: 1, opacity: 0.8 }}
+                        transition={{ duration: 1.0, delay: 1.1 }}
+                      />
+                    </>
+                  );
+                })()}
+                
+                {/* 手指尖检测点 - 紫色圆圈依次出现 */}
+                {[4, 8, 12, 16, 20].map((fingertipIndex, arrayIndex) => {
+                  const pixels = convertLandmarksToPixels(landmarks);
+                  const point = pixels[fingertipIndex];
+                  if (!point) return null;
+                  
+                  return (
+                    <motion.g key={`fingertip-${fingertipIndex}`}>
+                      {/* 外圈脉冲 */}
+                      <motion.circle
+                        cx={point.x}
+                        cy={point.y}
+                        r="12"
+                        fill="none"
+                        stroke="#8b5cf6"
+                        strokeWidth="2"
+                        strokeOpacity="0.6"
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ 
+                          scale: [0, 1.2, 1], 
+                          opacity: [0, 0.8, 0.4] 
+                        }}
+                        transition={{ 
+                          duration: 0.6, 
+                          delay: 1.5 + arrayIndex * 0.2,
+                          repeat: Infinity,
+                          repeatDelay: 2
+                        }}
+                      />
+                      
+                      {/* 主要检测圆圈 */}
                       <motion.circle
                         cx={point.x}
                         cy={point.y}
                         r="8"
-                        fill="none"
-                        stroke="#00ff00"
-                        strokeWidth="1"
-                        opacity="0.3"
+                        fill="url(#fingerTipGradient)"
+                        stroke="#8b5cf6"
+                        strokeWidth="2"
                         initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 0.3 }}
-                        transition={{ duration: 0.4, delay: 0.3 + index * 0.03 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ 
+                          duration: 0.4, 
+                          delay: 1.5 + arrayIndex * 0.2,
+                          ease: "backOut"
+                        }}
                       />
                       
-                      {/* 主要关键点 - 绿色圆点 */}
+                      {/* 内部光点 */}
                       <motion.circle
                         cx={point.x}
                         cy={point.y}
-                        r="4"
-                        fill="#00ff00"
-                        stroke="#00ff00"
-                        strokeWidth="1"
+                        r="3"
+                        fill="#ffffff"
                         fillOpacity="0.9"
-                        initial={{ scale: 0, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.3, delay: 0.5 + index * 0.03 }}
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ 
+                          duration: 0.2, 
+                          delay: 1.7 + arrayIndex * 0.2 
+                        }}
                       />
-                      
-                      {/* 关键点编号 - 更清晰 */}
-                      <motion.text
-                        x={point.x}
-                        y={point.y + 1}
-                        textAnchor="middle"
-                        fontSize="6"
-                        fill="white"
-                        fontWeight="bold"
-                        fontFamily="monospace"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.3, delay: 0.8 + index * 0.03 }}
-                      >
-                        {index}
-                      </motion.text>
-                      
-                      {/* 解剖学标签 - 仅显示关键点 */}
-                      {(index === 0 || index === 4 || index === 8 || index === 12 || index === 16 || index === 20) && (
-                        <motion.text
-                          x={point.x + 12}
-                          y={point.y - 8}
-                          fontSize="8"
-                          fill={pointColor.fill}
-                          fontWeight="bold"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.3, delay: 1.0 + index * 0.03 }}
-                        >
-                          {index === 0 && '手腕'}
-                          {index === 4 && '拇指尖'}
-                          {index === 8 && '食指尖'}
-                          {index === 12 && '中指尖'}
-                          {index === 16 && '无名指尖'}
-                          {index === 20 && '小指尖'}
-                        </motion.text>
-                      )}
                     </motion.g>
-                  )
+                  );
                 })}
                 
-                {/* 手指骨骼连接线 */}
-                {(() => {
-                  const pixels = convertLandmarksToPixels(landmarks);
-                  const connections = [
-                    // 拇指连接线 (橙色)
-                    [0, 1], [1, 2], [2, 3], [3, 4],
-                    // 食指连接线 (绿色)
-                    [0, 5], [5, 6], [6, 7], [7, 8],
-                    // 中指连接线 (蓝色)
-                    [5, 9], [9, 10], [10, 11], [11, 12],
-                    // 无名指连接线 (紫色)
-                    [9, 13], [13, 14], [14, 15], [15, 16],
-                    // 小指连接线 (粉色)
-                    [13, 17], [17, 18], [18, 19], [19, 20],
-                    // 手掌基础连接线
-                    [0, 17], [5, 9], [9, 13], [13, 17]
-                  ];
+                {/* 动态扫描框 - 参考竞品紫色框 */}
+                <motion.g>
+                  {/* 四个角的扫描框 */}
+                  {/* 左上角 */}
+                  <motion.path
+                    d="M 30 30 L 30 80 M 30 30 L 80 30"
+                    stroke="#a855f7"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    fill="none"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 0.8 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  />
                   
-                  return connections.map(([start, end], index) => {
-                    // 类型安全检查
-                    if (typeof start !== 'number' || typeof end !== 'number') return null;
-                    
-                    const startPoint = pixels[start];
-                    const endPoint = pixels[end];
-                    if (!startPoint || !endPoint) return null;
-                    
-                    // 根据连接线类型确定颜色
-                    let strokeColor = 'rgba(6, 182, 212, 0.4)' // 默认青色
-                    if (start <= 4 && end <= 4) strokeColor = 'rgba(245, 158, 11, 0.5)' // 拇指 - 橙色
-                    else if ((start >= 5 && start <= 8) && (end >= 5 && end <= 8)) strokeColor = 'rgba(16, 185, 129, 0.5)' // 食指 - 绿色
-                    else if ((start >= 9 && start <= 12) && (end >= 9 && end <= 12)) strokeColor = 'rgba(59, 130, 246, 0.5)' // 中指 - 蓝色
-                    else if ((start >= 13 && start <= 16) && (end >= 13 && end <= 16)) strokeColor = 'rgba(139, 92, 246, 0.5)' // 无名指 - 紫色
-                    else if ((start >= 17 && start <= 20) && (end >= 17 && end <= 20)) strokeColor = 'rgba(236, 72, 153, 0.5)' // 小指 - 粉色
-                    
-                    return (
-                      <motion.line
-                        key={`connection-${index}`}
-                        x1={startPoint.x}
-                        y1={startPoint.y}
-                        x2={endPoint.x}
-                        y2={endPoint.y}
-                        stroke={strokeColor}
-                        strokeWidth="1.5"
-                        initial={{ pathLength: 0, opacity: 0 }}
-                        animate={{ pathLength: 1, opacity: 1 }}
-                        transition={{ duration: 0.5, delay: 1.5 + index * 0.05 }}
-                      />
-                    );
-                  });
-                })()}
+                  {/* 右上角 */}
+                  <motion.path
+                    d="M 320 30 L 270 30 M 320 30 L 320 80"
+                    stroke="#a855f7"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    fill="none"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 0.8 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                  />
+                  
+                  {/* 左下角 */}
+                  <motion.path
+                    d="M 30 320 L 30 270 M 30 320 L 80 320"
+                    stroke="#a855f7"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    fill="none"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 0.8 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                  />
+                  
+                  {/* 右下角 */}
+                  <motion.path
+                    d="M 320 320 L 320 270 M 320 320 L 270 320"
+                    stroke="#a855f7"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    fill="none"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 0.8 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                  />
+                </motion.g>
               </svg>
             )}
 

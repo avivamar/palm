@@ -153,7 +153,8 @@
       "WebSearch",
       "WebFetch(domain:ai.google.dev)",
       "WebFetch(domain:developers.google.com)",
-      "WebFetch(domain:www.researchgate.net)"
+      "WebFetch(domain:www.researchgate.net)",
+      "WebFetch(domain:appnebula.co)"
     ],
     "deny": []
   }
