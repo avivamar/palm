@@ -119,39 +119,6 @@ export default function Step13CaptureOptimized({
     goToNextStep()
   }
 
-  // 处理文件选择结果
-  const handleFileSelection = (e: Event) => {
-    const files = (e.target as HTMLInputElement).files
-    if (files && files.length > 0) {
-      const file = files[0]
-      if (file) {
-        console.log('File selected:', file.name)
-        setIsProcessing(true)
-        
-        const reader = new FileReader()
-        reader.onload = () => {
-          const imageData = reader.result as string
-          
-          updateUserData({ 
-            palmImageData: imageData,
-            palmCaptureMethod: 'file'
-          })
-          
-          trackEvent('palm_file_upload_success', {
-            timestamp: Date.now(),
-            fileName: file.name,
-            fileSize: file.size,
-            method: 'native_selection'
-          })
-          
-          setIsProcessing(false)
-          goToNextStep()
-        }
-        reader.readAsDataURL(file)
-      }
-    }
-  }
-
   return (
     <>
       {/* 优化版相机蒙版 */}
