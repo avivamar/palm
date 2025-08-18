@@ -111,33 +111,15 @@ export default function CameraOverlayOptimized({
       {/* 半透明遮罩 - 让用户能看到场景 */}
       <div className="absolute inset-0 bg-black/20 pointer-events-none" />
       
-      {/* 手掌轮廓引导 - 简洁的白色线条 */}
+      {/* 手掌轮廓引导 - 使用现有的优质SVG */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="relative">
-          {/* 简化的手掌轮廓 */}
-          <svg 
-            width="280" 
-            height="350" 
-            viewBox="0 0 280 350" 
-            fill="none"
-            className="drop-shadow-lg"
-          >
-            {/* 手掌主体轮廓 */}
-            <path
-              d="M140 320 C100 320 70 290 70 250 L70 150 C70 120 75 100 85 85 L85 60 C85 40 95 30 105 30 C115 30 125 40 125 60 L125 50 C125 30 135 20 145 20 C155 20 165 30 165 50 L165 45 C165 25 175 15 185 15 C195 15 205 25 205 45 L205 55 C205 35 215 25 225 25 C235 25 245 35 245 55 L245 150 C245 150 250 180 240 220 C230 260 200 320 140 320 Z"
-              stroke="white"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="opacity-90"
-            />
-            
-            {/* 手指分隔线 */}
-            <line x1="105" y1="80" x2="105" y2="140" stroke="white" strokeWidth="2" className="opacity-70" />
-            <line x1="135" y1="70" x2="135" y2="140" stroke="white" strokeWidth="2" className="opacity-70" />
-            <line x1="165" y1="70" x2="165" y2="140" stroke="white" strokeWidth="2" className="opacity-70" />
-            <line x1="195" y1="80" x2="195" y2="140" stroke="white" strokeWidth="2" className="opacity-70" />
-          </svg>
+          {/* 使用项目中的专业手掌轮廓 */}
+          <img 
+            src="/palm/plamcarema.svg" 
+            alt="手掌轮廓引导"
+            className="w-[280px] h-[350px] drop-shadow-lg opacity-90"
+          />
           
           {/* 提示文字 */}
           {!isReady && (
