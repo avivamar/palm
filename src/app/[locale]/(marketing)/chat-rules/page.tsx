@@ -41,9 +41,8 @@ export default async function ChatRulesPage({ params }: { params: Promise<{ loca
           </p>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Rules for Live Chat Conversations</h2>
-          
+
           <p>When engaging in live chat conversations with psychics, you should follow these rules:</p>
-          
           <ul className="list-disc pl-6 mb-4">
             <li>Ask psychics clear and specific questions about your concerns and interests. Your questions should be one at a time and should not be vague.</li>
             <li>Do not end the chat without getting a response from the psychic.</li>
@@ -53,7 +52,6 @@ export default async function ChatRulesPage({ params }: { params: Promise<{ loca
           </ul>
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Consequences of Rule Violations</h2>
-          
           <p>
             Each violation of these rules will result in a warning. If you continue to violate the rules after a second warning,
             your access to live chat may be terminated and you may receive a corresponding notification.
@@ -67,7 +65,7 @@ export default async function ChatRulesPage({ params }: { params: Promise<{ loca
             </Link>
             .
           </p>
-          
+
           <p>
             You may challenge the termination of your live chat access by contacting us through our
             {' '}

@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: 'Refund Policy | Rolitt',
-  description: 'Refund Policy for Rolitt - Learn about our refund procedures and terms.',
+  title: 'Refund Policy | NEBULA',
+  description: 'Refund Policy for NEBULA - Learn about our refund procedures and terms for personalized compatibility reports and relationship guidance.',
 };
 
 export default async function RefundPolicy({ params }: { params: Promise<{ locale: string }> }) {
@@ -13,102 +13,62 @@ export default async function RefundPolicy({ params }: { params: Promise<{ local
     <div className="container py-12 md:py-20">
       <div className="mx-auto max-w-3xl">
         <h1 className="mb-8 text-4xl font-bold tracking-tight sm:text-5xl">
-          Return & Refund Policy
+          Refund Policy
         </h1>
         <div className="prose prose-lg dark:prose-invert">
-          <h2 className="text-2xl font-bold mt-8 mb-4">Return & Refund Policy for Rolitt</h2>
-          <p className="text-muted-foreground mb-6">Effective Date: November 11, 2024</p>
+          <p className="text-muted-foreground mb-6">Effective Date: August 17, 2021</p>
 
           <p>
-            Thank you for shopping with Rolitt Inc.! We are committed to providing high-quality products and ensuring a smooth and pleasant shopping experience. Below is our Return and Refund Policy:
+            This refund guarantee policy ("Refund Policy") applies to purchases made on the
+            {' '}
+            <a href="https://asknebula.com" className="text-primary hover:underline">
+              https://asknebula.com
+            </a>
+            {' '}
+            website.
           </p>
 
-          <h3 className="text-xl font-bold mt-8 mb-4">1. Return Eligibility</h3>
+          <h3 className="text-xl font-bold mt-8 mb-4">General Refund Rules</h3>
+          <p>
+            Generally, the fees you pay for services are non-refundable and/or non-exchangeable, unless otherwise specified in this Refund Policy or required by applicable law.
+          </p>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">Refund Guarantee Rules</h3>
+          <p>
+            However, if you meet the following conditions, we decide to provide you with a refund opportunity ("Voluntary Refund").
+          </p>
+          <p>
+            If you did not achieve the expected results through our personalized compatibility report and relationship guidance, and meet all of the following conditions, you are eligible for a voluntary refund:
+          </p>
           <ul className="list-disc pl-6 mb-4">
-            <li>
-              <strong>Return Period:</strong>
-              {' '}
-              You may request a return within 7 days of receiving the product.
-            </li>
-            <li>
-              <strong>Valid Return Reasons:</strong>
-              {' '}
-              We only accept returns under the following conditions:
-              <ul className="list-disc pl-6 mt-2">
-                <li>The product is defective or damaged upon delivery.</li>
-                <li>The delivered product differs from your selected color.</li>
-                <li>The delivered product significantly differs from the description provided at the time of purchase.</li>
-              </ul>
-            </li>
-            <li>
-              <strong>Return Requirements:</strong>
-              <ul className="list-disc pl-6 mt-2">
-                <li>The returned product must be in its original, unused, and unopened condition.</li>
-                <li>If you find defects, damages, or discrepancies, please provide clear photos to support your claim.</li>
-                <li>The return request must be submitted within 7 days from the delivery date.</li>
-              </ul>
-            </li>
+            <li>You contact us within 30 days after purchasing the personalized compatibility report and relationship guidance; and</li>
+            <li>You have followed the personalized compatibility report and relationship guidance for at least 14 consecutive days within the first 30 days after purchase; and</li>
+            <li>You can prove that you have followed the personalized compatibility report and relationship guidance as described in the "How to Prove You Have Followed the Guidelines" section below.</li>
+          </ul>
+          <p>
+            We will review your application and notify you by email whether it is approved. If the application is approved, we will process your refund and automatically transfer the amount to your credit card or original payment method.
+          </p>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">How to Prove You Have Followed the Guidelines</h3>
+          <p>
+            To be eligible for a voluntary refund, you must provide evidence that you have followed the personalized compatibility report and relationship guidance for at least 14 consecutive days. This evidence may include:
+          </p>
+          <ul className="list-disc pl-6 mb-4">
+            <li>Screenshots or photos showing your implementation of the guidance</li>
+            <li>Detailed written records of your daily activities following the recommendations</li>
+            <li>Any other documentation that demonstrates your consistent adherence to the provided guidance</li>
           </ul>
 
-          <h3 className="text-xl font-bold mt-8 mb-4">2. Return Process</h3>
-          <ul className="list-disc pl-6 mb-4">
-            <li>
-              Please contact our customer service team before returning any items and provide your order number, product photos, and a detailed description of the issue.
-            </li>
-            <li>
-              Once the return is approved, you will have 7 days to return the product.
-            </li>
-            <li>
-              The returned product must include all accessories and original packaging.
-            </li>
-          </ul>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">3. Return Shipping Costs</h3>
-          <ul className="list-disc pl-6 mb-4">
-            <li>
-              If the return is due to defects, damage, or order errors, Rolitt will cover the return shipping costs.
-            </li>
-            <li>
-              If the return is due to personal reasons (e.g., change of mind), the customer is responsible for return shipping fees.
-            </li>
-          </ul>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">4. Refund Processing</h3>
-          <ul className="list-disc pl-6 mb-4">
-            <li>
-              Once we receive the returned product and confirm that it meets our return conditions, we will process the refund within 30 days.
-            </li>
-            <li>
-              The refund will be issued via the original payment method, and a 12% restocking fee will be deducted.
-            </li>
-            <li>
-              Final sale items are not eligible for return.
-            </li>
-          </ul>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">5. Additional Fees for Returns & Exchanges</h3>
+          <h3 className="text-xl font-bold mt-8 mb-4">Important Notice</h3>
           <p>
-            If the returned product shows signs of damage, contamination, wear, or missing parts, Rolitt reserves the right to deduct the diminished value of the product from the refund.
-          </p>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">6. Order Cancellations</h3>
-          <p>
-            You may cancel your order before the product is shipped. Please contact our customer service team, and we will process your refund immediately after receiving your cancellation request.
-          </p>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">7. Warranty</h3>
-          <p>
-            Rolitt offers a 1-year warranty for non-EEA (European Economic Area) countries and a 2-year warranty for EEA countries.
-          </p>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">Contact Information</h3>
-          <p>
-            If you have any questions, please contact us at:
+            Please note that this refund guarantee is offered voluntarily by us and is not required by law. We reserve the right to modify or discontinue this refund guarantee at any time without prior notice. Any changes to this policy will be effective immediately upon posting on our website.
           </p>
           <p>
-            <a href="mailto:support@rolitt.com" className="text-primary hover:underline">cs@rolitt.com</a>
-            <br />
-            <a href="http://rolitt.shop" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">http://rolitt.shop</a>
+            This Refund Policy is part of our Terms of Service and is subject to the same terms and conditions. By using our services, you agree to be bound by this Refund Policy.
+          </p>
+
+          <p className="text-sm text-muted-foreground mt-8">
+            Last updated: August 17, 2021
           </p>
         </div>
       </div>
