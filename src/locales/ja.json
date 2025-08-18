@@ -249,7 +249,7 @@
     "contact": "お問い合わせ",
 
     "pre-order": "先行予約",
-    "copyright": "© 2024 Rolitt Inc. Made with passion and love.",
+    "copyright": "© 2024 Thepalmistrylife. 情熱と愛を込めて作られました。",
     "rights_reserved": "All rights reserved.",
     "follow_us": "フォローする",
     "about_us": "会社概要",
@@ -261,14 +261,18 @@
     "refund_policy": "返金ポリシー",
     "shipping_policy": "配送ポリシー",
     "contact_information": "お問い合わせ情報",
-    "company_description": "Rolittは、感情認識、自然言語処理、機械学習技術を組み合わせ、思いやりのある感情サポートとインテリジェントなインタラクションを提供する次世代のAIパートナーです。",
+    "company_description": "手相人生は、伝統的な手相学の知恵と現代技術を組み合わせ、正確で深い手相分析と人生指導を提供する専門的な手相鑑定サービスプラットフォームです。",
     "newsletter_title": "ニュースレターを購読",
     "newsletter_description": "最新の製品、機能、お知らせを入手しましょう。",
     "email_placeholder": "メールアドレスを入力",
     "subscribe": "購読",
     "policies": "ポリシー",
     "privacy_policy": "プライバシーポリシー",
-    "terms_of_service": "利用規約"
+    "terms_of_service": "利用規約",
+    "services": "サービス",
+    "palm_reading": "手相鑑定",
+    "testimonials": "お客様の声",
+    "faq": "よくある質問"
   },
 
   "PaymentSuccess": {

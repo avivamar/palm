@@ -8,20 +8,20 @@
     "sign_up_link": "Sign up"
   },
   "BaseTemplate": {
-    "description": "Pre-order your Rolitt AI Companion today and join the next generation of interactive technology.",
-    "made_with": "Made with <author>Rolitt</author>."
+    "description": "Discover your palm's secrets with Thepalmistrylife today and unlock the wisdom of palmistry.",
+    "made_with": "Made with <author>Thepalmistrylife</author>."
   },
   "Index": {
-    "meta_title": "Rolitt – Your Intelligent Emotional AI Companion",
-    "meta_description": "Meet Rolitt, your intelligent emotional companion! With advanced AI technology, Rolitt brings joy, support, and adventure to your daily life. Explore the endless possibilities of AI companionship!",
-    "meta_keywords": "Rolitt, AI companion, smart robot, emotional support robot, family companion robot, AI robot, smart home robot, emotional recognition robot, voice interaction robot, personal assistant robot, future technology robot, innovative robot, robot technology, robot development, robot applications, robot solutions, robot learning, interactive robot, robot safety, robot privacy protection, emotional computing robot, natural language processing robot, machine learning robot, end-to-end encryption robot",
-    "meta_og_title": "Rolitt - Redefining AI Companionship",
-    "meta_og_description": "Experience Rolitt, an AI companion that understands your emotions and adds joy to your life. Rolitt is not just a smart assistant but your emotional partner.",
-    "meta_og_image_alt": "Rolitt AI Companion - Your Intelligent Emotional Support",
-    "meta_twitter_title": "Rolitt: Ushering in a New Era of Intelligent Emotional Companionship",
-    "meta_twitter_description": "Meet Rolitt, an AI companion that senses your emotions and adapts to your needs. Let technology warm your every day.",
-    "product_name": "Rolitt Intelligent Emotional AI Companion",
-    "product_description": "Rolitt is a next-generation AI companion that combines emotional recognition, natural language processing, and machine learning technologies to provide you with thoughtful emotional support and intelligent interaction.",
+    "meta_title": "Thepalmistrylife – Your Professional Palm Reading Service",
+    "meta_description": "Discover the secrets hidden in your palms with Thepalmistrylife! Our expert palmists provide accurate palm readings and life guidance. Explore the ancient wisdom of palmistry!",
+    "meta_keywords": "palmistry, palm reading, hand analysis, life lines, fortune telling, destiny reading, palm reader, chiromancy, hand reading, future prediction, personality analysis, love lines, career guidance, spiritual guidance, ancient wisdom, divination, palm interpretation, hand fortune, life guidance, personal insights",
+    "meta_og_title": "Thepalmistrylife - Unlock Your Palm's Secrets",
+    "meta_og_description": "Experience professional palm reading with Thepalmistrylife. Discover what your palms reveal about your personality, relationships, and future. Ancient wisdom meets modern insight.",
+    "meta_og_image_alt": "Thepalmistrylife Palm Reading - Your Personal Life Guide",
+    "meta_twitter_title": "Thepalmistrylife: Discover Your Destiny Through Palm Reading",
+    "meta_twitter_description": "Unlock the secrets in your palms with professional palmistry services. Get insights into your personality, relationships, and future path.",
+    "product_name": "Thepalmistrylife Professional Palm Reading Service",
+    "product_description": "Thepalmistrylife is a professional palmistry platform that combines traditional palm reading wisdom with modern technology to provide you with accurate palm analysis and life guidance.",
     "sponsors_title": "Our Partners"
   },
   "Counter": {
@@ -239,13 +239,17 @@
     "contact": "Contact",
 
     "pre-order": "Pre-order",
-    "copyright": "© 2024 Rolitt Inc. Made with passion and love.",
+    "copyright": "© 2024 Thepalmistrylife. Made with passion and love.",
     "rights_reserved": "All rights reserved.",
     "follow_us": "Follow Us",
     "about_us": "About Us",
 
     "contact_us": "Contact Us",
     "products": "Products",
+    "services": "Services",
+    "palm_reading": "Palm Reading",
+    "testimonials": "Testimonials",
+    "faq": "FAQ",
 
     "features": "Features",
     "refund_policy": "Refund Policy",

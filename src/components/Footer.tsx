@@ -35,23 +35,23 @@ export function Footer() {
               {t('company_description')}
             </p>
             <div className="flex space-x-3 mb-6">
-              <a href="https://www.facebook.com/profile.php?id=61560959570699" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors duration-200">
+              <a href="https://www.facebook.com/thepalmistrylife" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors duration-200">
                 <span className="sr-only">Facebook</span>
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="https://www.instagram.com/rolittrobot/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors duration-200">
+              <a href="https://www.instagram.com/thepalmistrylife/" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors duration-200">
                 <span className="sr-only">Instagram</span>
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="https://x.com/Rolittai" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors duration-200">
+              <a href="https://x.com/thepalmistrylife" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors duration-200">
                 <span className="sr-only">Twitter</span>
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="https://www.linkedin.com/company/rolitt" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors duration-200">
+              <a href="https://www.linkedin.com/company/thepalmistrylife" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors duration-200">
                 <span className="sr-only">LinkedIn</span>
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href="https://www.youtube.com/@RolittRobot" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors duration-200">
+              <a href="https://www.youtube.com/@thepalmistrylife" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors duration-200">
                 <span className="sr-only">YouTube</span>
                 <Youtube className="h-5 w-5" />
               </a>
@@ -59,14 +59,14 @@ export function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                <a href="mailto:support@rolitt.com" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  support@rolitt.com
+                <a href="mailto:info@thepalmistrylife.com" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  info@thepalmistrylife.com
                 </a>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-                <a href="tel:+13024442859" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  +1 (302) 444-2859
+                <a href="tel:+18885551234" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  +1 (888) 555-1234
                 </a>
               </div>
             </div>
@@ -76,22 +76,22 @@ export function Footer() {
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground mb-4">
-                  {t('products')}
+                  {t('services')}
                 </h3>
                 <ul className="space-y-3">
                   <li>
-                    <Link href="/solution" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      {t('solutions')}
-                    </Link>
-                  </li>
-                  <li>
                     <Link href="/#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      {t('features')}
+                      {t('palm_reading')}
                     </Link>
                   </li>
                   <li>
-                    <Link href="/partner" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      {t('partners')}
+                    <Link href="/#testimonials" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      {t('testimonials')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/#faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      {t('faq')}
                     </Link>
                   </li>
                 </ul>
@@ -105,11 +105,6 @@ export function Footer() {
                   <li>
                     <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                       {t('about_us')}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/timeline" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      {t('timeline')}
                     </Link>
                   </li>
                   <li>

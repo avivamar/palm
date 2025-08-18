@@ -240,14 +240,18 @@
     "refund_policy": "退款政策",
     "shipping_policy": "運送政策",
     "contact_information": "聯絡資訊",
-    "company_description": "Rolitt 是新一代 AI 夥伴，結合情感識別、自然語言處理和機器學習技術，提供貼心的情感支持和智能互動。",
+    "company_description": "手相人生是專業的手相解讀服務平台，結合傳統手相學智慧與現代科技，為您提供準確、深入的手相分析和人生指導。",
     "newsletter_title": "訂閱我們的電子報",
     "newsletter_description": "隨時掌握我們最新的產品、特色和公告。",
     "email_placeholder": "輸入您的電子郵件",
     "subscribe": "訂閱",
     "policies": "政策",
     "privacy_policy": "隱私政策",
-    "terms_of_service": "服務條款"
+    "terms_of_service": "服務條款",
+    "services": "服務",
+    "palm_reading": "手相解讀",
+    "testimonials": "客戶見證",
+    "faq": "常見問題"
   },
 
   "payment": {

@@ -404,7 +404,7 @@
     "about": "About",
     "contact": "Contact",
     "pre-order": "Pre-order",
-    "copyright": "© 2024 Rolitt Inc. Made with passion and love.",
+    "copyright": "© 2024 Thepalmistrylife. Hecho con pasión y amor.",
     "rights_reserved": "All rights reserved.",
     "follow_us": "Follow Us",
     "about_us": "About Us",
@@ -414,14 +414,18 @@
     "refund_policy": "Refund Policy",
     "shipping_policy": "Shipping Policy",
     "contact_information": "Contact Information",
-    "company_description": "Rolitt is a next-generation AI companion that combines emotional recognition, natural language processing, and machine learning technologies to provide thoughtful emotional support and intelligent interaction.",
+    "company_description": "Thepalmistrylife es una plataforma profesional de lectura de palmas que combina la sabiduría tradicional de la quiromancia con tecnología moderna para brindar análisis precisos y profundos de las palmas y orientación de vida.",
     "newsletter_title": "Subscribe to our newsletter",
     "newsletter_description": "Stay updated with our latest products, features, and announcements.",
     "email_placeholder": "Enter your email",
     "subscribe": "Subscribe",
-    "policies": "Policies",
-    "privacy_policy": "Privacy Policy",
-    "terms_of_service": "Terms of Service"
+    "policies": "Políticas",
+    "privacy_policy": "Política de Privacidad",
+    "terms_of_service": "Términos de Servicio",
+    "services": "Servicios",
+    "palm_reading": "Lectura de Palmas",
+    "testimonials": "Testimonios",
+    "faq": "Preguntas Frecuentes"
   },
 
   "PaymentSuccess": {

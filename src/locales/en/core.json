@@ -1,7 +1,7 @@
 {
   "RootLayout": {
-    "meta_title": "Rolitt - Next Generation AI Companion",
-    "meta_description": "Rolitt is a next-generation AI companion that supports your daily life."
+    "meta_title": "Thepalmistrylife - Professional Palm Reading Service",
+    "meta_description": "Thepalmistrylife is a professional palmistry platform that provides accurate palm readings and life guidance."
   },
   "BaseTemplate": {
     "skip_to_content": "Skip to content"
@@ -29,7 +29,7 @@
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
     "cookies": "Cookie Policy",
-    "copyright": "© 2024 Rolitt Inc. Based on love, passion and sustained effort. All rights reserved.",
+    "copyright": "© 2024 Thepalmistrylife. Based on love, passion and sustained effort. All rights reserved.",
     "product": "Product",
     "community": "Community",
     "pre-order": "Pre-order",
@@ -40,7 +40,7 @@
     "refund_policy": "Refund Policy",
     "shipping_policy": "Shipping Policy",
     "contact_information": "Contact Information",
-    "company_description": "Rolitt is a next-generation AI companion that combines emotion recognition, natural language processing, and machine learning technologies to provide compassionate emotional support and intelligent interactions.",
+    "company_description": "Thepalmistrylife is a professional palmistry platform that combines traditional palm reading wisdom with modern technology to provide accurate palm analysis and life guidance.",
     "newsletter_title": "Subscribe to Newsletter",
     "newsletter_description": "Get updates about our latest products, features, and announcements.",
     "email_placeholder": "Enter your email",
@@ -62,7 +62,7 @@
     "company": "Company",
     "about": "About",
     "pre-order": "Pre-order",
-    "rolittai": "Rolitt AI",
+    "palmistry": "Palmistry",
     "services": "Services",
     "contact": "Contact",
     "nav": {
@@ -144,7 +144,7 @@
     "noEventsYet": "No events yet."
   },
   "NotFound": {
-    "meta_title": "Page Not Found | Rolitt",
+    "meta_title": "Page Not Found | Thepalmistrylife",
     "meta_description": "The page you are looking for does not exist or has been moved.",
     "title": "Page Not Found",
     "description": "The page you are looking for doesn't exist or has been moved.",
