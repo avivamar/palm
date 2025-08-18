@@ -4,7 +4,7 @@
  */
 
 // 仅导入类型，运行时通过动态 import 以避免 SSR/构建期问题
-import type { HandLandmarker, FilesetResolver, NormalizedLandmark } from '@mediapipe/tasks-vision'
+import type { HandLandmarker, NormalizedLandmark } from '@mediapipe/tasks-vision'
 
 let handLandmarker: HandLandmarker | null = null
 let isInitializing = false
@@ -71,7 +71,7 @@ export async function initializeHandLandmarker(): Promise<HandLandmarker> {
       console.log('✅ MediaPipe HandLandmarker initialized successfully with CPU delegate')
     }
 
-    return handLandmarker
+    return handLandmarker!
     
   } catch (error) {
     console.error('❌ Failed to initialize HandLandmarker:', error, {
@@ -203,8 +203,12 @@ export async function detectHandFromFile(file: File): Promise<{
  */
 export function cleanupHandLandmarker() {
   if (handLandmarker) {
-    // @ts-expect-error close may exist at runtime on the concrete instance
-    handLandmarker.close && handLandmarker.close()
+    // MediaPipe对象可能有close方法
+    try {
+      (handLandmarker as any).close?.()
+    } catch (error) {
+      console.warn('Failed to close HandLandmarker:', error)
+    }
     handLandmarker = null
     console.log('🧹 HandLandmarker cleaned up')
   }
