@@ -124,9 +124,9 @@ async function validateBrightness(img: HTMLImageElement): Promise<{ passed: bool
   // 计算平均亮度
   let totalBrightness = 0
   for (let i = 0; i < data.length; i += 4) {
-    const r = data[i]
-    const g = data[i + 1]
-    const b = data[i + 2]
+    const r = data[i] || 0
+    const g = data[i + 1] || 0
+    const b = data[i + 2] || 0
     // 使用感知亮度公式
     const brightness = 0.299 * r + 0.587 * g + 0.114 * b
     totalBrightness += brightness
@@ -162,7 +162,7 @@ async function validateContrast(img: HTMLImageElement): Promise<{ passed: boolea
   // 计算亮度值的标准差
   const brightnesses: number[] = []
   for (let i = 0; i < data.length; i += 4) {
-    const brightness = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]
+    const brightness = 0.299 * (data[i] || 0) + 0.587 * (data[i + 1] || 0) + 0.114 * (data[i + 2] || 0)
     brightnesses.push(brightness / 255)
   }
   
@@ -208,8 +208,8 @@ async function validateBlur(img: HTMLImageElement): Promise<{ passed: boolean; s
       const idxTop = ((y - 1) * width + x) * 4
       
       // 计算水平和垂直方向的梯度
-      const dx = Math.abs(data[idx] - data[idxLeft])
-      const dy = Math.abs(data[idx] - data[idxTop])
+      const dx = Math.abs((data[idx] || 0) - (data[idxLeft] || 0))
+      const dy = Math.abs((data[idx] || 0) - (data[idxTop] || 0))
       
       edgeStrength += Math.sqrt(dx * dx + dy * dy)
     }

@@ -13,7 +13,7 @@ type Step13Props = {
 };
 
 export default function Step13CaptureOptimized({
-  userData,
+  userData: _userData, // 暂时未使用，用下划线前缀避免编译警告
   updateUserData,
   goToNextStep,
   trackEvent,
