@@ -82,30 +82,7 @@
         "description": "忘れられないインタラクティブ体験を創造します"
       }
     },
-    "Timeline": {
-      "title": "製品の歩み",
-      "description": "予約から配送までの歩みをご確認ください",
-      "preOrder": {
-        "date": "現在",
-        "title": "予約段階",
-        "description": "早期購入価格を確保し、AIコンパニオンを最初に受け取る方の一人になってください"
-      },
-      "production": {
-        "date": "2024年第2四半期",
-        "title": "製造段階",
-        "description": "最新テクノロジーを使用して、あなたのAIコンパニオンを丁寧に製作しています"
-      },
-      "shipping": {
-        "date": "2024年第3四半期",
-        "title": "配送段階",
-        "description": "プレミアム包装でお届けの準備を整えています"
-      },
-      "delivery": {
-        "date": "2024年第3四半期",
-        "title": "配送",
-        "description": "あなたの新しい親友となる準備ができたAIコンパニオンがお手元に届きます"
-      }
-    },
+
     "Pricing": {
       "title": "早期購入特別価格",
       "description": "AIコンパニオン第一陣の限定時間オファー",

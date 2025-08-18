@@ -15,9 +15,6 @@ export function Navbar() {
   const links = [
     { href: '/', label: tNav('home') },
     { href: '/about', label: tNav('about') },
-    { href: '/timeline', label: tNav('timeline') },
-    { href: '/solution', label: tNav('solution') },
-    { href: '/partner', label: tNav('partner') },
     { href: '/blog', label: 'Blog' },
     { href: '/contact', label: tNav('contact') },
   ];
@@ -35,7 +32,7 @@ export function Navbar() {
             <div className="relative w-32 h-12">
               <Image
                 src="/palmlogo.svg"
-                alt="Rolitt"
+                alt="Thepalmistrylife"
                 width={480}
                 height={165}
                 className="w-full h-full"

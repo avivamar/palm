@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: 'Shipping Policy | Rolitt',
-  description: 'Shipping Policy for Rolitt - Learn about our shipping procedures and delivery times.',
+  title: 'Shipping Policy | Thepalmistrylife',
+  description: 'Shipping Policy for Thepalmistrylife - Learn about our shipping procedures and delivery times.',
 };
 
 export default async function Shipping({ params }: { params: Promise<{ locale: string }> }) {
@@ -16,11 +16,11 @@ export default async function Shipping({ params }: { params: Promise<{ locale: s
           Shipping Policy
         </h1>
         <div className="prose prose-lg dark:prose-invert">
-          <h2 className="text-2xl font-bold mt-8 mb-4">Shipping Policy for Rolitt</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4">Shipping Policy for Thepalmistrylife</h2>
           <p className="text-muted-foreground mb-6">Last Updated: November 15, 2024</p>
 
           <p>
-            We aim to provide efficient and reliable shipping services to ensure your Rolitt products reach you in perfect condition. Please review our shipping policy below for important information regarding delivery times, shipping methods, and other relevant details.
+            We aim to provide efficient and reliable shipping services to ensure your Thepalmistrylife products reach you in perfect condition. Please review our shipping policy below for important information regarding delivery times, shipping methods, and other relevant details.
           </p>
 
           <h3 className="text-xl font-bold mt-8 mb-4">1. Processing Time</h3>
@@ -105,7 +105,7 @@ export default async function Shipping({ params }: { params: Promise<{ locale: s
           <p className="mt-8">
             For any questions or concerns regarding shipping, please contact our customer service team at
             {' '}
-            <a href="mailto:support@rolitt.com" className="text-primary hover:underline">support@rolitt.com</a>
+            <a href="mailto:support@thepalmistry.life" className="text-primary hover:underline">support@thepalmistry.life</a>
             .
           </p>
         </div>

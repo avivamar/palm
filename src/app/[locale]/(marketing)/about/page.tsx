@@ -14,7 +14,7 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'About' });
 
   // 获取基础URL
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.rolitt.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://thepalmistry.life';
   // 构建规范链接
   const canonicalUrl = `${baseUrl}/${locale}/about`;
 
@@ -204,7 +204,7 @@ export default async function About(props: IAboutProps) {
           <div className="relative z-10">
             <h2 className="text-3xl font-bold mb-4">Join Us on Our Journey</h2>
             <p className="text-lg mb-8 max-w-2xl mx-auto text-muted-foreground">
-              Discover how Rolitt is redefining the relationship between humans and technology.
+              Discover the ancient art of palmistry and unlock the secrets hidden in your hands.
             </p>
             <Link
               href="/contact"

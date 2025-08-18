@@ -108,42 +108,15 @@ export default function Step13CaptureOptimized({
     setShowCamera(false)
   }
 
-  // 原生文件选择 - 恢复原生相机/相册选择
-  const handleFileUpload = () => {
-    trackEvent('palm_file_upload_attempt', {
+  // 取消操作 - 直接跳过
+  const handleCancel = () => {
+    trackEvent('palm_capture_cancelled', {
       timestamp: Date.now(),
       isMobile: isMobile(),
     })
-
-    // 创建选择器让用户选择拍照或相册
-    if (isMobile()) {
-      // 移动端：显示选择对话框
-      const userChoice = confirm('选择图片来源：\n确定 = 拍照\n取消 = 从相册选择')
-      
-      const input = document.createElement('input')
-      input.type = 'file'
-      input.accept = 'image/*'
-      
-      if (userChoice) {
-        // 用户选择拍照
-        input.capture = 'environment'
-        trackEvent('palm_native_camera_selected', { timestamp: Date.now() })
-      } else {
-        // 用户选择相册
-        // 不设置capture属性，允许从相册选择
-        trackEvent('palm_gallery_selected', { timestamp: Date.now() })
-      }
-      
-      input.onchange = handleFileSelection
-      input.click()
-    } else {
-      // 桌面端：直接文件选择
-      const input = document.createElement('input')
-      input.type = 'file'
-      input.accept = 'image/*'
-      input.onchange = handleFileSelection
-      input.click()
-    }
+    
+    // 直接进入下一步，不进行任何拍照或选择操作
+    goToNextStep()
   }
 
   // 处理文件选择结果
@@ -328,18 +301,15 @@ export default function Step13CaptureOptimized({
               )}
             </motion.button>
 
-            {/* 次要操作：相机/相册选择 */}
+            {/* 次要操作：跳过 */}
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.95 }}
-              onClick={handleFileUpload}
+              onClick={handleCancel}
               disabled={isProcessing}
-              className="w-full h-12 rounded-xl border-2 border-violet-300 text-violet-600 font-medium transition hover:bg-violet-50 disabled:opacity-50 flex items-center justify-center"
+              className="w-full h-12 rounded-xl border-2 border-gray-300 text-gray-600 font-medium transition hover:bg-gray-50 disabled:opacity-50 flex items-center justify-center"
             >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              {isMobile() ? '拍照/相册选择' : '选择图片文件'}
+              跳过此步骤
             </motion.button>
           </motion.div>
 

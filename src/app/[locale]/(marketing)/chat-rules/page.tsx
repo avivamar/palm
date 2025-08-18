@@ -3,8 +3,8 @@ import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Live Chat Rules | NEBULA',
-  description: 'Guidelines and rules for using NEBULA live chat services with psychics, ensuring respectful interactions.',
+  title: 'Live Chat Rules | Thepalmistrylife',
+  description: 'Guidelines and rules for using Thepalmistrylife live chat services with psychics, ensuring respectful interactions.',
 };
 
 export default async function ChatRulesPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -33,9 +33,9 @@ export default async function ChatRulesPage({ params }: { params: Promise<{ loca
           <p>
             Your conversations with astrologers, tarot readers, numerologists, or other psychics (
             <strong>Psychics</strong>
-            ) in the live chat section of AskNebula (
+            ) in the live chat section of Thepalmistrylife (
             <strong>Live Chat</strong>
-            ) are hosted by us and are subject to these AskNebula Live Chat Rules (
+            ) are hosted by us and are subject to these Thepalmistrylife Live Chat Rules (
             <strong>Rules</strong>
             ).
           </p>
@@ -69,7 +69,7 @@ export default async function ChatRulesPage({ params }: { params: Promise<{ loca
           <p>
             You may challenge the termination of your live chat access by contacting us through our
             {' '}
-            <a href="https://24hours.support-nebula.com/hc/en-us" className="text-primary hover:underline">
+            <a href="https://thepalmistry.life/contact" className="text-primary hover:underline">
               Support Center
             </a>
             .

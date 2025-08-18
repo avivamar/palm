@@ -32,14 +32,11 @@
     "copyright": "© 2024 Rolitt Inc. Based on love, passion and sustained effort. All rights reserved.",
     "product": "Product",
     "community": "Community",
-    "solution": "Solution",
     "pre-order": "Pre-order",
     "rights_reserved": "All rights reserved.",
     "follow_us": "Follow Us",
     "about_us": "About Us",
-    "partners": "Partners",
     "contact_us": "Contact Us",
-    "solutions": "Solutions",
     "refund_policy": "Refund Policy",
     "shipping_policy": "Shipping Policy",
     "contact_information": "Contact Information",
@@ -50,8 +47,7 @@
     "subscribe": "Subscribe",
     "policies": "Policies",
     "privacy_policy": "Privacy Policy",
-    "terms_of_service": "Terms of Service",
-    "timeline": "Timeline"
+    "terms_of_service": "Terms of Service"
   },
 
   "Navbar": {
@@ -59,7 +55,6 @@
       "signin": "Sign in",
       "signup": "Sign up"
     },
-    "timeline": "Timeline",
     "product": "Product",
     "docs": "Docs",
     "blog": "Blog",
@@ -67,17 +62,13 @@
     "company": "Company",
     "about": "About",
     "pre-order": "Pre-order",
-    "solution": "Solutions",
-    "partner": "Partners",
     "rolittai": "Rolitt AI",
     "services": "Services",
     "contact": "Contact",
     "nav": {
       "home": "Home",
       "about": "About",
-      "timeline": "Timeline",
-      "solution": "Solutions",
-      "partner": "Partners",
+
       "contact": "Contact",
       "auth": {
         "signin": "Sign In",

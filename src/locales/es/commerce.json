@@ -103,30 +103,7 @@
         "description": "Crea experiencias interactivas inolvidables"
       }
     },
-    "Timeline": {
-      "title": "Viaje del Producto",
-      "description": "Sigue nuestro viaje desde la reserva hasta la entrega",
-      "preOrder": {
-        "date": "Ahora",
-        "title": "Fase de Reserva",
-        "description": "Asegura tu precio de comprador anticipado y sé de los primeros en recibir tu compañía IA"
-      },
-      "production": {
-        "date": "Q2 2024",
-        "title": "Fase de Producción",
-        "description": "Tu compañía IA está siendo cuidadosamente elaborada con la última tecnología"
-      },
-      "shipping": {
-        "date": "Q3 2024",
-        "title": "Fase de Envío",
-        "description": "Tu compañía IA está preparada para la entrega con embalaje premium"
-      },
-      "delivery": {
-        "date": "Q3 2024",
-        "title": "Entrega",
-        "description": "Tu compañía IA llega a tu puerta, lista para convertirse en tu nuevo mejor amigo"
-      }
-    },
+
     "Pricing": {
       "title": "Oferta Especial para Compradores Anticipados",
       "description": "Oferta por tiempo limitado para nuestro primer lote de compañías IA",
@@ -336,30 +313,7 @@
         "description": "Crea experiencias interactivas inolvidables"
       }
     },
-    "timeline": {
-      "title": "Viaje del Producto",
-      "description": "Sigue nuestro viaje desde la reserva hasta la entrega",
-      "preOrder": {
-        "date": "Ahora",
-        "title": "Fase de Reserva",
-        "description": "Asegura tu precio de comprador anticipado y sé de los primeros en recibir tu compañía IA"
-      },
-      "production": {
-        "date": "Q2 2024",
-        "title": "Fase de Producción",
-        "description": "Tu compañía IA está siendo cuidadosamente elaborada con la última tecnología"
-      },
-      "shipping": {
-        "date": "Q3 2024",
-        "title": "Fase de Envío",
-        "description": "Tu compañía IA está preparada para la entrega con embalaje premium"
-      },
-      "delivery": {
-        "date": "Q3 2024",
-        "title": "Entrega",
-        "description": "Tu compañía IA llega a tu puerta, lista para convertirse en tu nuevo mejor amigo"
-      }
-    },
+
     "pricing": {
       "title": "Oferta Especial para Compradores Anticipados",
       "description": "Oferta por tiempo limitado para nuestro primer lote de compañías IA",

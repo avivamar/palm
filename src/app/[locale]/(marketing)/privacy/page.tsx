@@ -5,8 +5,8 @@ import Markdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | Rolitt',
-  description: 'Privacy Policy for Rolitt - Learn how we collect, use, and protect your personal information.',
+  title: 'Privacy Policy | Thepalmistrylife',
+  description: 'Privacy Policy for Thepalmistrylife - Learn how we collect, use, and protect your personal information.',
 };
 
 async function getPrivacyContent() {

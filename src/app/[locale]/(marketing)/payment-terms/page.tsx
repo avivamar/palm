@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: 'Payment Terms | NEBULA',
-  description: 'Payment terms and conditions for NEBULA palm reading services including credits, billing, and refunds.',
+  title: 'Payment Terms | Thepalmistrylife',
+  description: 'Payment terms and conditions for Thepalmistrylife palm reading services including credits, billing, and refunds.',
 };
 
 export default async function PaymentTermsPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -47,7 +47,7 @@ export default async function PaymentTermsPage({ params }: { params: Promise<{ l
           <p className="mt-4">
             You will receive a notification whenever you top up your balance. You can deactivate this feature through
             {' '}
-            <a href="https://asknebula.com/settings/personal" className="text-blue-600 hover:underline">
+            <a href="https://thepalmistry.life/settings/personal" className="text-blue-600 hover:underline">
               Account Settings
             </a>
             .
@@ -63,7 +63,7 @@ export default async function PaymentTermsPage({ params }: { params: Promise<{ l
             If you cancel the automatic top-up of your Credit Balance, the feature will be disabled, but you can still use all the credits remaining in your Credit Balance.
           </p>
           <p className="mt-4">
-            <a href="https://asknebula.com/settings/personal" className="text-blue-600 hover:underline">
+            <a href="https://thepalmistry.life/settings/personal" className="text-blue-600 hover:underline">
               You can turn off the automatic Credit Balance top-up feature on the Account Settings page
             </a>
             {' '}
@@ -92,7 +92,7 @@ export default async function PaymentTermsPage({ params }: { params: Promise<{ l
 
           <h2 className="text-2xl font-semibold mt-8 mb-4">Refunds</h2>
           <p>
-            <a href="https://asknebula.com/terms" className="text-blue-600 hover:underline">
+            <a href="https://thepalmistry.life/terms" className="text-blue-600 hover:underline">
               Refund rules are explained in our Terms and Conditions
             </a>
             .
@@ -110,7 +110,7 @@ export default async function PaymentTermsPage({ params }: { params: Promise<{ l
           <p>
             If you have any questions about these terms, please contact our
             {' '}
-            <a href="https://24hours.support-nebula.com/hc/en-us" className="text-blue-600 hover:underline">
+            <a href="https://thepalmistry.life/contact" className="text-blue-600 hover:underline">
               Support Center
             </a>
             .

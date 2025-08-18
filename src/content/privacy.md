@@ -2,7 +2,7 @@
 
 **Important Information**
 
-This Privacy Policy describes how NEBULA ("we," "us," or "our") collects, uses, and shares your personal information when you use our services, including our website, mobile applications, and any related services (collectively, the "Services").
+This Privacy Policy describes how Thepalmistrylife ("we," "us," or "our") collects, uses, and shares your personal information when you use our services, including our website, mobile applications, and any related services (collectively, the "Services").
 
 **Data Collection**
 
@@ -200,7 +200,7 @@ You have the right to:
 - Data portability
 
 ### How to Exercise Your Rights
-To exercise these rights, please contact us at [privacy@nebula.com](mailto:privacy@nebula.com). We will respond to your request within the timeframe required by applicable law.
+To exercise these rights, please contact us at [privacy@thepalmistry.life](mailto:privacy@thepalmistry.life). We will respond to your request within the timeframe required by applicable law.
 
 ### EEA Users - Additional Rights
 If you are located in the EEA, you have additional rights under GDPR:
@@ -249,11 +249,11 @@ Your continued use of our Services after the effective date constitutes acceptan
 
 If you have any questions about this Privacy Policy or our privacy practices, please contact us:
 
-**Email**: [privacy@nebula.com](mailto:privacy@nebula.com)
-**Address**: NEBULA Privacy Team, [Company Address]
+**Email**: [privacy@thepalmistry.life](mailto:privacy@thepalmistry.life)
+**Address**: Thepalmistrylife Privacy Team, [Company Address]
 **Phone**: [Phone Number]
 
-For EEA users, you can also contact our Data Protection Officer at [dpo@nebula.com](mailto:dpo@nebula.com).
+For EEA users, you can also contact our Data Protection Officer at [dpo@thepalmistry.life](mailto:dpo@thepalmistry.life).
 
 ---
 

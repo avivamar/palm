@@ -82,30 +82,7 @@
         "description": "創造難忘的互動體驗"
       }
     },
-    "Timeline": {
-      "title": "產品旅程",
-      "description": "跟隨我們從預訂到交付的旅程",
-      "preOrder": {
-        "date": "現在",
-        "title": "預訂階段",
-        "description": "鎖定您的早鳥價格，成為首批收到 AI 伴侶的人"
-      },
-      "production": {
-        "date": "2024年第二季",
-        "title": "生產階段",
-        "description": "您的 AI 伴侶正在用最新技術精心製作"
-      },
-      "shipping": {
-        "date": "2024年第三季",
-        "title": "發貨階段",
-        "description": "您的 AI 伴侶正在準備高級包裝發貨"
-      },
-      "delivery": {
-        "date": "2024年第三季",
-        "title": "交付",
-        "description": "您的 AI 伴侶送達您的門前，準備成為您的新夥伴"
-      }
-    },
+
     "Pricing": {
       "title": "早鳥特惠",
       "description": "我們首批 AI 伴侶的限時優惠",
@@ -323,30 +300,7 @@
         "description": "創造難忘的互動體驗"
       }
     },
-    "timeline": {
-      "title": "產品旅程",
-      "description": "跟隨我們從預訂到交付的旅程",
-      "preOrder": {
-        "date": "現在",
-        "title": "預訂階段",
-        "description": "鎖定您的早鳥價格，成為首批收到 AI 伴侶的人"
-      },
-      "production": {
-        "date": "2024年第二季",
-        "title": "生產階段",
-        "description": "您的 AI 伴侶正在用最新技術精心製作"
-      },
-      "shipping": {
-        "date": "2024年第三季",
-        "title": "發貨階段",
-        "description": "您的 AI 伴侶正在準備高級包裝發貨"
-      },
-      "delivery": {
-        "date": "2024年第三季",
-        "title": "交付",
-        "description": "您的 AI 伴侶送達您的門前，準備成為您的新夥伴"
-      }
-    },
+
     "pricing": {
       "title": "早鳥特惠",
       "description": "我們首批 AI 伴侶的限時優惠",

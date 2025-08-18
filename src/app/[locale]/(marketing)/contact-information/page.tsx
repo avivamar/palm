@@ -12,8 +12,8 @@ export async function generateMetadata({
   await params; // Ensure params is awaited for Next.js
 
   return {
-    title: 'Contact Information | Rolitt',
-    description: 'Contact information for Rolitt - Get in touch with our team for support, inquiries, or feedback.',
+    title: 'Contact Information | Thepalmistrylife',
+    description: 'Contact information for Thepalmistrylife - Get in touch with our team for support, inquiries, or feedback.',
   };
 }
 
@@ -27,11 +27,11 @@ export default async function ContactInformation({ params }: ContactInformationP
           Contact Information
         </h1>
         <div className="prose prose-lg dark:prose-invert">
-          <h2 className="text-2xl font-bold mt-8 mb-4">Get in Touch with Rolitt</h2>
+          <h2 className="text-2xl font-bold mt-8 mb-4">Get in Touch with Thepalmistrylife</h2>
           <p className="text-muted-foreground mb-6">Last Updated: November 15, 2024</p>
 
           <p>
-            Thank you for your interest in Rolitt. We're here to help with any questions, concerns, or feedback you may have. Please find our contact information below.
+            Thank you for your interest in Thepalmistrylife. We're here to help with any questions, concerns, or feedback you may have. Please find our contact information below.
           </p>
 
           <h3 className="text-xl font-bold mt-8 mb-4">Customer Support</h3>
@@ -42,12 +42,12 @@ export default async function ContactInformation({ params }: ContactInformationP
             <li>
               <strong>Email:</strong>
               {' '}
-              <a href="mailto:support@rolitt.com" className="text-primary hover:underline">support@rolitt.com</a>
+              <a href="mailto:support@thepalmistry.life" className="text-primary hover:underline">support@thepalmistry.life</a>
             </li>
             <li>
               <strong>Phone:</strong>
               {' '}
-              +1 (302) 444-2859
+              +1 (302) 555-2859
             </li>
             <li>
               <strong>Hours:</strong>
@@ -69,7 +69,7 @@ export default async function ContactInformation({ params }: ContactInformationP
             <li>
               <strong>Email:</strong>
               {' '}
-              <a href="mailto:cs@rolitt.com" className="text-primary hover:underline">cs@rolitt.com</a>
+              <a href="mailto:cs@thepalmistry.life" className="text-primary hover:underline">cs@thepalmistry.life</a>
             </li>
             <li>Please include your order number and details about your return request</li>
           </ul>
@@ -82,7 +82,7 @@ export default async function ContactInformation({ params }: ContactInformationP
             <li>
               <strong>Email:</strong>
               {' '}
-              <a href="mailto:business@rolitt.com" className="text-primary hover:underline">business@rolitt.com</a>
+              <a href="mailto:business@thepalmistry.life" className="text-primary hover:underline">business@thepalmistry.life</a>
             </li>
           </ul>
 
@@ -94,7 +94,7 @@ export default async function ContactInformation({ params }: ContactInformationP
             <li>
               <strong>Email:</strong>
               {' '}
-              <a href="mailto:press@rolitt.com" className="text-primary hover:underline">press@rolitt.com</a>
+              <a href="mailto:press@thepalmistry.life" className="text-primary hover:underline">press@thepalmistry.life</a>
             </li>
           </ul>
 
@@ -103,7 +103,7 @@ export default async function ContactInformation({ params }: ContactInformationP
             For legal documents and physical mail:
           </p>
           <address className="not-italic">
-            Rolitt Inc.
+            Thepalmistrylife LLC
             <br />
             1111B S Governors Ave STE 20948
             <br />
@@ -120,32 +120,27 @@ export default async function ContactInformation({ params }: ContactInformationP
             <li>
               <strong>Facebook:</strong>
               {' '}
-              <a href="https://www.facebook.com/profile.php?id=61560959570699" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://www.facebook.com/thepalmistrylife" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Facebook</a>
             </li>
             <li>
               <strong>Instagram:</strong>
               {' '}
-              <a href="https://www.instagram.com/rolittrobot/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://www.instagram.com/thepalmistrylife/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Instagram</a>
             </li>
             <li>
               <strong>Twitter/X:</strong>
               {' '}
-              <a href="https://x.com/Rolittai" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">X</a>
+              <a href="https://x.com/thepalmistrylife" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">X</a>
             </li>
             <li>
               <strong>LinkedIn:</strong>
               {' '}
-              <a href="https://www.linkedin.com/company/rolitt" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href="https://www.linkedin.com/company/thepalmistrylife" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </li>
             <li>
               <strong>YouTube:</strong>
               {' '}
-              <a href="https://www.youtube.com/@RolittRobot" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">YouTube</a>
-            </li>
-            <li>
-              <strong>GitHub:</strong>
-              {' '}
-              <a href="https://github.com/rolittai" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href="https://www.youtube.com/@thepalmistrylife" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">YouTube</a>
             </li>
           </ul>
 

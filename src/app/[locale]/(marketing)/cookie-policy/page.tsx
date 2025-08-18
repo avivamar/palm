@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: 'Cookie Policy | NEBULA',
-  description: 'Learn about how NEBULA uses cookies and similar technologies to enhance your experience.',
+  title: 'Cookie Policy | Thepalmistrylife',
+  description: 'Learn about how Thepalmistrylife uses cookies and similar technologies to enhance your experience.',
 };
 
 export default async function CookiePolicyPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -30,7 +30,7 @@ export default async function CookiePolicyPage({ params }: { params: Promise<{ l
           </p>
           <p>
             If you have any questions, you can contact us through our{' '}
-            <a href="https://24hours.support-nebula.com/hc/en-us" className="text-primary hover:underline">
+            <a href="https://thepalmistry.life/contact" className="text-primary hover:underline">
               Support Center
             </a>.
           </p>
@@ -206,13 +206,13 @@ export default async function CookiePolicyPage({ params }: { params: Promise<{ l
           </p>
           <div className="mt-4 p-4 bg-gray-50 rounded-lg">
             <p>
-              <strong>NEBULA</strong>
+              <strong>Thepalmistrylife</strong>
             </p>
             <p>
               Email:
               {' '}
-              <a href="mailto:support@nebula.com" className="text-blue-600 hover:underline">
-                support@nebula.com
+              <a href="mailto:support@thepalmistry.life" className="text-blue-600 hover:underline">
+                support@thepalmistry.life
               </a>
             </p>
           </div>

@@ -112,7 +112,7 @@ export default function CameraOverlayOptimized({
       <div className="absolute inset-0 bg-black/20 pointer-events-none" />
       
       {/* 手掌轮廓引导 - 使用现有的优质SVG */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
         <div className="relative">
           {/* 使用项目中的专业手掌轮廓 - 更大显示 */}
           <img 
@@ -121,12 +121,12 @@ export default function CameraOverlayOptimized({
             className="w-[360px] h-[450px] drop-shadow-lg opacity-90"
           />
           
-          {/* 提示文字 */}
+          {/* 提示文字 - 调整位置避免与按钮重叠 */}
           {!isReady && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 text-white text-center"
+              className="absolute -bottom-24 left-1/2 transform -translate-x-1/2 text-white text-center z-20"
             >
               <p className="text-sm">正在加载相机...</p>
             </motion.div>
@@ -136,10 +136,10 @@ export default function CameraOverlayOptimized({
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="absolute -bottom-16 left-1/2 transform -translate-x-1/2 text-white text-center whitespace-nowrap"
+              className="absolute -bottom-24 left-1/2 transform -translate-x-1/2 text-white text-center whitespace-nowrap z-20"
             >
-              <p className="text-sm font-medium">将手掌放入框内</p>
-              <p className="text-xs opacity-70 mt-1">保持手掌平整，光线充足</p>
+              <p className="text-lg font-medium">将手掌放入框内</p>
+              <p className="text-sm opacity-80 mt-1">保持手掌平整，稳定后自动拍照</p>
             </motion.div>
           )}
         </div>
@@ -182,7 +182,7 @@ export default function CameraOverlayOptimized({
       </div>
       
       {/* 底部拍照按钮 - 参考竞品设计 */}
-      <div className="absolute bottom-0 left-0 right-0 p-8">
+      <div className="absolute bottom-0 left-0 right-0 p-8 z-30">
         <div className="flex justify-center">
           {isReady && !countdown ? (
             <motion.button
@@ -192,13 +192,13 @@ export default function CameraOverlayOptimized({
               className="relative"
             >
               {/* 外圈 */}
-              <div className="w-20 h-20 rounded-full border-4 border-white/80 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-full border-4 border-white/80 flex items-center justify-center bg-black/20 backdrop-blur">
                 {/* 内圈 */}
                 <div className="w-14 h-14 rounded-full bg-white" />
               </div>
             </motion.button>
           ) : (
-            <div className="w-20 h-20 rounded-full border-4 border-white/30 flex items-center justify-center">
+            <div className="w-20 h-20 rounded-full border-4 border-white/30 flex items-center justify-center bg-black/20 backdrop-blur">
               <div className="w-14 h-14 rounded-full bg-white/30" />
             </div>
           )}

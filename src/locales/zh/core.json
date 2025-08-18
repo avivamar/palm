@@ -50,8 +50,7 @@
     "subscribe": "訂閱",
     "policies": "政策",
     "privacy_policy": "隱私政策",
-    "terms_of_service": "服務條款",
-    "timeline": "時間軸"
+    "terms_of_service": "服務條款"
   },
 
   "Navbar": {
@@ -59,7 +58,6 @@
       "signin": "登入",
       "signup": "註冊"
     },
-    "timeline": "時間軸",
     "product": "產品",
     "docs": "文件",
     "blog": "部落格",
@@ -67,17 +65,11 @@
     "company": "公司",
     "about": "關於",
     "pre-order": "預購",
-    "solution": "解決方案",
-    "partner": "合作夥伴",
-    "rolittai": "Rolitt AI",
     "services": "服務",
     "contact": "聯絡",
     "nav": {
       "home": "首頁",
       "about": "關於",
-      "timeline": "時間軸",
-      "solution": "解決方案",
-      "partner": "合作夥伴",
       "contact": "聯絡",
       "auth": {
         "signin": "登入",

@@ -9,7 +9,7 @@ export default function Footer() {
             {new Date().getFullYear()}
           </span>
           {' '}
-          Rolitt. All rights reserved.
+          Thepalmistrylife. All rights reserved.
         </p>
       </div>
     </footer>

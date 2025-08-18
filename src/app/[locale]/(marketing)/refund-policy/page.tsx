@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: 'Refund Policy | NEBULA',
-  description: 'Refund Policy for NEBULA - Learn about our refund procedures and terms for personalized compatibility reports and relationship guidance.',
+  title: 'Refund Policy | Thepalmistrylife',
+  description: 'Refund Policy for Thepalmistrylife - Learn about our refund procedures and terms for personalized compatibility reports and relationship guidance.',
 };
 
 export default async function RefundPolicy({ params }: { params: Promise<{ locale: string }> }) {
@@ -21,8 +21,8 @@ export default async function RefundPolicy({ params }: { params: Promise<{ local
           <p>
             This refund guarantee policy ("Refund Policy") applies to purchases made on the
             {' '}
-            <a href="https://asknebula.com" className="text-primary hover:underline">
-              https://asknebula.com
+            <a href="https://thepalmistry.life" className="text-primary hover:underline">
+              https://thepalmistry.life
             </a>
             {' '}
             website.

@@ -80,43 +80,6 @@
     "still_have_questions": "¿Aún tienes preguntas? ¡Estamos aquí para ayudar!",
     "contact_us_text": "Contacta a nuestro equipo de soporte para asistencia personalizada con tus necesidades específicas."
   },
-  "Timeline": {
-    "meta_title": "Cronología de Nuestra Empresa | Hitos y Eventos Clave",
-    "meta_description": "Explora el viaje de nuestra empresa a través de hitos y eventos clave que han moldeado nuestra historia y visión para el futuro.",
-    "meta_og_image_alt": "Representación Visual de la Cronología de la Empresa",
-    "title": "Nuestro Viaje",
-    "description": "Descubre los momentos clave que han definido nuestro camino y moldeado nuestra visión para el futuro.",
-    "event1": {
-      "date": "Noviembre 2023",
-      "title": "El Comienzo de una Idea",
-      "description": "El fundador AVIVA compró un juguete parlante para su hija de 4 años. Aunque se veía lindo, sintió que era solo un juguete de plástico. Inspirado por su experiencia en la industria de internet, AVIVA decidió crear un juguete robótico impulsado por IA."
-    },
-    "event2": {
-      "date": "Abril 2024",
-      "title": "Formando el Equipo Central",
-      "description": "AVIVA reconoció los desafíos de crear un producto tan innovador. Entrevistó a muchos expertos de la industria y reunió un equipo apasionado. Comenzaron a desarrollar el producto Rolitt en un espacio de oficina prestado."
-    },
-    "event3": {
-      "date": "Junio-Agosto 2024",
-      "title": "Desarrollo e Iteración del Producto",
-      "description": "El equipo trabajó incansablemente, iterando en el diseño y funcionalidad del producto. Se enfocaron en crear una compañía que no solo fuera inteligente sino también emocionalmente resonante. Esta fase involucró investigación extensa, creación de prototipos y sesiones de retroalimentación del usuario para refinar la experiencia del usuario."
-    },
-    "event4": {
-      "date": "Septiembre 2024",
-      "title": "Asegurando Asociaciones Clave",
-      "description": "Nos asociamos exitosamente con proveedores líderes de tecnología IA y empresas manufactureras para asegurar que Rolitt se construya con componentes de la más alta calidad y tecnología de vanguardia. Estas asociaciones son cruciales para nuestras capacidades de producción e innovación."
-    },
-    "event5": {
-      "date": "Octubre 2024",
-      "title": "Pre-lanzamiento y Construcción de Comunidad",
-      "description": "Lanzamos nuestra campaña de reserva anticipada y comenzamos a construir una comunidad de adoptadores tempranos. La respuesta fue abrumadoramente positiva, con miles de personas expresando interés en Rolitt. Este apoyo temprano ha sido instrumental para validar nuestra visión y motivar a nuestro equipo."
-    },
-    "event6": {
-      "date": "2025",
-      "title": "El Futuro de Rolitt",
-      "description": "Estamos comprometidos con la innovación y mejora continuas. Nuestra hoja de ruta incluye expandir las capacidades de Rolitt, introducir nuevas características y explorar nuevas aplicaciones para nuestra tecnología. Creemos que Rolitt es solo el comienzo de una nueva era de interacción humano-robot."
-    }
-  },
   "About": {
     "meta_title": "Acerca de Rolitt | Nuestra Historia y Misión",
     "meta_description": "Aprende más sobre Rolitt, nuestra misión, visión y el equipo detrás de nuestra innovadora compañía IA.",

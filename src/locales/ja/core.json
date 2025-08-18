@@ -32,14 +32,14 @@
     "copyright": "© 2024 Rolitt Inc. Based on love, passion and sustained effortAll rights reserved.",
     "product": "製品",
     "community": "コミュニティ",
-    "solution": "ソリューション",
+
     "pre-order": "予約注文",
     "rights_reserved": "すべての権利を保有します。",
     "follow_us": "フォローする",
     "about_us": "会社概要",
-    "partners": "パートナー",
+
     "contact_us": "お問い合わせ",
-    "solutions": "ソリューション",
+
     "refund_policy": "返金ポリシー",
     "shipping_policy": "配送ポリシー",
     "contact_information": "お問い合わせ先",
@@ -50,8 +50,7 @@
     "subscribe": "登録",
     "policies": "ポリシー",
     "privacy_policy": "プライバシーポリシー",
-    "terms_of_service": "利用規約",
-    "timeline": "タイムライン"
+    "terms_of_service": "利用規約"
   },
 
   "Navbar": {
@@ -59,7 +58,7 @@
       "signin": "ログイン",
       "signup": "新規登録"
     },
-    "timeline": "タイムライン",
+    
     "product": "製品",
     "docs": "ドキュメント",
     "blog": "ブログ",
@@ -67,17 +66,15 @@
     "company": "会社",
     "about": "会社概要",
     "pre-order": "予約注文",
-    "solution": "ソリューション",
-    "partner": "パートナー",
-    "rolittai": "Rolitt AI",
+  "rolittai": "Rolitt AI",
     "services": "サービス",
     "contact": "お問い合わせ",
     "nav": {
       "home": "ホーム",
       "about": "会社概要",
-      "timeline": "タイムライン",
-      "solution": "ソリューション",
-      "partner": "パートナー",
+
+
+
       "contact": "お問い合わせ",
       "auth": {
         "signin": "ログイン",

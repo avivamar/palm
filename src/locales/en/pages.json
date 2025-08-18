@@ -80,43 +80,7 @@
     "still_have_questions": "Still have questions? We're here to help!",
     "contact_us_text": "Contact our support team for personalized assistance with your specific needs."
   },
-  "Timeline": {
-    "meta_title": "Our Company Timeline | Key Milestones and Events",
-    "meta_description": "Explore the journey of our company through key milestones and events that have shaped our history and vision for the future.",
-    "meta_og_image_alt": "Company Timeline Visual Representation",
-    "title": "Our Journey",
-    "description": "Discover the key moments that have defined our path and shaped our vision for the future.",
-    "event1": {
-      "date": "November 2023",
-      "title": "The Beginning of an Idea",
-      "description": "Founder AVIVA bought a talking toy for his 4-year-old daughter. While it looked cute, he felt it was just a plastic toy. Inspired by his experience in the internet industry, AVIVA decided to create an AI-powered robotic toy."
-    },
-    "event2": {
-      "date": "April 2024",
-      "title": "Forming the Core Team",
-      "description": "AVIVA recognized the challenges of creating such an innovative product. He interviewed many industry experts and assembled a passionate team. They began developing the Rolitt product in a borrowed office space."
-    },
-    "event3": {
-      "date": "June-August 2024",
-      "title": "Product Development and Iteration",
-      "description": "The team worked tirelessly, iterating on the product design and functionality. They focused on creating a companion that was not only intelligent but also emotionally resonant. This phase involved extensive research, prototyping, and user feedback sessions to refine the user experience."
-    },
-    "event4": {
-      "date": "September 2024",
-      "title": "Securing Key Partnerships",
-      "description": "We successfully partnered with leading AI technology providers and manufacturing companies to ensure that Rolitt is built with the highest quality components and cutting-edge technology. These partnerships are crucial for our production and innovation capabilities."
-    },
-    "event5": {
-      "date": "October 2024",
-      "title": "Pre-launch and Community Building",
-      "description": "We launched our pre-order campaign and began building a community of early adopters. The response was overwhelmingly positive, with thousands of people expressing interest in Rolitt. This early support has been instrumental in validating our vision and motivating our team."
-    },
-    "event6": {
-      "date": "2025",
-      "title": "The Future of Rolitt",
-      "description": "We are committed to continuous innovation and improvement. Our roadmap includes expanding Rolitt's capabilities, introducing new features, and exploring new applications for our technology. We believe that Rolitt is just the beginning of a new era of human-robot interaction."
-    }
-  },
+
   "About": {
     "meta_title": "About Rolitt | Our Story and Mission",
     "meta_description": "Learn more about Rolitt, our mission, vision, and the team behind our innovative AI companion.",
