@@ -11,6 +11,7 @@ export interface PalmUserData {
   selectedPrice?: number
   palmImage?: string
   palmCaptureImage?: string
+  palmCaptureMethod?: 'camera' | 'file'  // 捕获方式：相机或文件上传
   palmPhoto?: string
   palmImageData?: string  // Base64 encoded image data for display in Step15
   
