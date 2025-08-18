@@ -149,7 +149,10 @@
       "Bash(export DATABASE_URL=\"postgres://postgres.kyuzzfvhukbkcvivsebm:a0wmOg6LfUESDe2r@aws-0-us-west-1.pooler.supabase.com:6543/postgres?sslmode=require&supa=base-pooler.x\")",
       "Bash(do sed -i '' -e 's|\"\"/img/|\"\"img/|g' -e 's|Palm-AI|ThePalmistryLife|g' -e 's|Palm AI|ThePalmistryLife|g' \"$file\")",
       "Bash(do echo:*)",
-      "Bash(npm cache clean:*)"
+      "Bash(npm cache clean:*)",
+      "WebSearch",
+      "WebFetch(domain:ai.google.dev)",
+      "WebFetch(domain:developers.google.com)"
     ],
     "deny": []
   }
