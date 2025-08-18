@@ -3,7 +3,9 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
-import { generateMockMediaPipeLandmarks, getRealMediaPipeLandmarks } from '@/utils/mockMediaPipeData'
+import { getRealMediaPipeLandmarks } from '@/utils/mockMediaPipeData'
+import { detectHandFromBase64, validateHandLandmarks } from '@/utils/realHandDetection'
+import { NormalizedLandmark } from '@mediapipe/tasks-vision'
 
 interface Step15Props {
   userData: PalmUserData
@@ -61,12 +63,20 @@ export default function Step15AIAnalysis({
     scale: 1,
     isLoaded: false
   })
+  const [detectedLandmarks, setDetectedLandmarks] = useState<NormalizedLandmark[] | null>(null)
+  const [isDetecting, setIsDetecting] = useState(false)
+  const [detectionError, setDetectionError] = useState<string | null>(null)
   
   useEffect(() => {
     trackEvent('palm_ai_analysis_view', { 
       timestamp: Date.now(),
       step: 15
     })
+    
+    // 如果有用户图片，执行真实的MediaPipe检测
+    if (userData.palmImageData && !detectedLandmarks && !isDetecting) {
+      performRealHandDetection()
+    }
     
     // 模拟AI分析进度
     const analysisTimer = setInterval(() => {
@@ -88,7 +98,58 @@ export default function Step15AIAnalysis({
     }, 800)
     
     return () => clearInterval(analysisTimer)
-  }, [])
+  }, [userData.palmImageData])
+  
+  // 执行真实的手部检测
+  const performRealHandDetection = async () => {
+    if (!userData.palmImageData) return
+    
+    setIsDetecting(true)
+    setDetectionError(null)
+    console.log('🚀 Starting real MediaPipe hand detection...')
+    
+    try {
+      const result = await detectHandFromBase64(userData.palmImageData)
+      
+      if (validateHandLandmarks(result.landmarks)) {
+        setDetectedLandmarks(result.landmarks)
+        
+        // 保存检测结果到用户数据
+        updateUserData({
+          palmLandmarks: result.landmarks,
+          palmWorldLandmarks: result.worldLandmarks
+        })
+        
+        console.log('✅ Real hand detection successful:', {
+          handedness: result.handedness,
+          confidence: result.confidence.toFixed(3),
+          landmarks: result.landmarks.length
+        })
+        
+        trackEvent('palm_real_detection_success', {
+          handedness: result.handedness,
+          confidence: result.confidence,
+          landmarks: result.landmarks.length
+        })
+      } else {
+        throw new Error('Invalid landmarks detected')
+      }
+      
+    } catch (error) {
+      console.error('❌ Real hand detection failed:', error)
+      setDetectionError(error instanceof Error ? error.message : 'Detection failed')
+      
+      // fallback到mock数据
+      const mockLandmarks = getRealMediaPipeLandmarks()
+      setDetectedLandmarks(mockLandmarks)
+      
+      trackEvent('palm_detection_fallback', {
+        error: error instanceof Error ? error.message : 'Unknown error'
+      })
+    } finally {
+      setIsDetecting(false)
+    }
+  }
   
   // 获取用户的真实图片数据 - 使用测试图片
   const [testImageIndex, setTestImageIndex] = useState(0);
@@ -101,9 +162,8 @@ export default function Step15AIAnalysis({
   const userImageData = userData.palmImageData || testImages[testImageIndex]?.src || '/palm/img/demohand.png';
   const isRealUserImage = !!userData.palmImageData
   
-  // 使用真实的MediaPipe识别数据（基于 image copy 5.png）
-  const [useRealData, setUseRealData] = useState(true);
-  const landmarks = userData.palmLandmarks || (useRealData ? getRealMediaPipeLandmarks() : generateMockMediaPipeLandmarks())
+  // 使用真实检测的landmarks或fallback到mock数据
+  const landmarks = detectedLandmarks || userData.palmLandmarks || getRealMediaPipeLandmarks()
   
   // 精确处理图片加载和坐标计算
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -369,7 +429,26 @@ export default function Step15AIAnalysis({
           </div>
           
           <div className="mt-3 text-sm text-orange-600 font-medium animate-pulse">
-            🤖 AI已识别到 {landmarks?.length || 21} 个关键点，分析进度 {Math.round(analysisProgress)}%
+            {isDetecting ? (
+              <span className="flex items-center gap-2">
+                <motion.div
+                  className="w-3 h-3 border-2 border-orange-500 border-t-transparent rounded-full"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                />
+                🔍 正在执行真实MediaPipe检测...
+              </span>
+            ) : detectedLandmarks ? (
+              <span className="text-green-600">
+                ✅ 真实检测完成！识别到 {landmarks?.length || 21} 个关键点，分析进度 {Math.round(analysisProgress)}%
+              </span>
+            ) : detectionError ? (
+              <span className="text-red-600">
+                ⚠️ 检测失败，使用演示数据: {detectionError}
+              </span>
+            ) : (
+              <span>🤖 AI已识别到 {landmarks?.length || 21} 个关键点，分析进度 {Math.round(analysisProgress)}%</span>
+            )}
           </div>
         </motion.section>
 
@@ -858,15 +937,14 @@ export default function Step15AIAnalysis({
             
             <button
               onClick={() => {
-                // 切换真实/模拟数据
-                setUseRealData(!useRealData);
-                const newLandmarks = !useRealData ? getRealMediaPipeLandmarks() : generateMockMediaPipeLandmarks();
-                updateUserData({ palmLandmarks: newLandmarks });
-                console.log('切换到:', !useRealData ? '真实MediaPipe数据' : '模拟数据');
+                // 手动重新检测
+                if (userData.palmImageData) {
+                  performRealHandDetection();
+                }
               }}
               className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
             >
-              {useRealData ? '🎯 真实坐标' : '🎲 模拟坐标'}
+              🔄 重新检测
             </button>
             
             <button
