@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import { ChevronDown } from 'lucide-react';
 import { JsonLd } from '@/components/JsonLd';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 export const metadata: Metadata = {
   title: 'Frequently Asked Questions | NEBULA',
@@ -144,19 +143,18 @@ export default function FAQPage() {
             />
           </div>
 
-          <div className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-4">
             {nebulaFaqData.map((item, index) => (
-              <Collapsible key={index} className="rounded-lg border">
-                <CollapsibleTrigger className="flex w-full items-center justify-between p-6 text-left hover:bg-muted/50">
+              <AccordionItem key={index} value={`item-${index}`} className="rounded-lg border">
+                <AccordionTrigger className="px-6 py-4 text-left hover:bg-muted/50">
                   <h3 className="text-lg font-semibold">{item.question}</h3>
-                  <ChevronDown className="h-5 w-5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
-                </CollapsibleTrigger>
-                <CollapsibleContent className="px-6 pb-6">
+                </AccordionTrigger>
+                <AccordionContent className="px-6 pb-6">
                   <p className="text-muted-foreground">{item.answer}</p>
-                </CollapsibleContent>
-              </Collapsible>
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
+          </Accordion>
 
           <div className="mt-16 rounded-lg bg-muted/50 p-8 text-center">
             <h2 className="mb-4 text-2xl font-bold">Still have questions?</h2>
