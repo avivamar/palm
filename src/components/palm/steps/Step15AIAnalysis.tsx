@@ -227,41 +227,31 @@ export default function Step15AIAnalysis({
     const containerSize = DESIGN_SYSTEM.container.imageSize;
     
     const convertedPoints = landmarks.map((landmark, index) => {
-      // MediaPipe坐标系统:
-      // - x: 0(左) -> 1(右)
-      // - y: 0(上) -> 1(下)
-      // - z: 深度信息，负值表示离相机近
-      
-      // 直接映射到显示容器坐标
-      // 注意：MediaPipe的y轴和屏幕坐标系统一致（从上到下）
-      let x = landmark.x * containerSize;
-      let y = landmark.y * containerSize;
-      
-      // 如果有图片显示信息，考虑object-cover的偏移
+      // MediaPipe坐标系统归一化: x,y∈[0,1]
+      // 将其映射到容器坐标，优先使用图片实际显示区域(考虑object-cover的裁剪与偏移)
+      let x: number;
+      let y: number;
+
       if (imageDisplayInfo.isLoaded) {
-        // 根据图片的实际显示区域调整坐标
-        const scaleX = imageDisplayInfo.displayWidth / containerSize;
-        const scaleY = imageDisplayInfo.displayHeight / containerSize;
-        
-        if (scaleX !== 1 || scaleY !== 1) {
-          // 需要考虑缩放和偏移
-          x = imageDisplayInfo.offsetX + (landmark.x * imageDisplayInfo.displayWidth);
-          y = imageDisplayInfo.offsetY + (landmark.y * imageDisplayInfo.displayHeight);
-        }
+        // 使用图片在容器内的实际显示宽高与偏移
+        x = imageDisplayInfo.offsetX + (landmark.x * imageDisplayInfo.displayWidth);
+        y = imageDisplayInfo.offsetY + (landmark.y * imageDisplayInfo.displayHeight);
+      } else {
+        // 兜底：在图片未加载完成前，按容器尺寸粗略映射
+        x = landmark.x * containerSize;
+        y = landmark.y * containerSize;
       }
       
-      // 边界限制
-      const clampedX = Math.max(0, Math.min(containerSize, x));
-      const clampedY = Math.max(0, Math.min(containerSize, y));
-      
+      // 注意：这里不再强制 clamp 到 [0, containerSize]，
+      // 让 SVG 自然裁剪越界坐标，可避免裁剪导致的边缘误差。
       return {
         id: index,
-        x: clampedX,
-        y: clampedY,
+        x,
+        y,
         z: landmark.z || 0,
         originalX: landmark.x,
         originalY: landmark.y,
-        visibility: landmark.visibility || 1 // MediaPipe提供的可见性分数
+        visibility: landmark.visibility || 1
       };
     });
     
@@ -280,7 +270,6 @@ export default function Step15AIAnalysis({
         y: convertedPoints[0]?.y || 0
       });
       
-      // 打印关键点的坐标
       const keyPoints = [
         { name: '手腕', index: 0 },
         { name: '拇指尖', index: 4 },
@@ -465,7 +454,7 @@ export default function Step15AIAnalysis({
             <img 
               src={userImageData} 
               alt={isRealUserImage ? "用户手掌照片" : "演示手掌照片"} 
-              className="w-full h-full object-cover" 
+              className="palm-analysis-image w-full h-full object-cover" 
               onLoad={handleImageLoad}
             />
             
@@ -512,7 +501,7 @@ export default function Step15AIAnalysis({
             </motion.div>
 
             {/* 专业手相分析可视化 - 参考竞品效果 */}
-            {landmarks && landmarks.length >= 21 && (
+            {imageDisplayInfo.isLoaded && landmarks && landmarks.length >= 21 && (
               <svg className="absolute inset-0 w-full h-full pointer-events-none">
                 <defs>
                   {/* 渐变定义 */}

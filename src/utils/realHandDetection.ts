@@ -3,7 +3,8 @@
  * 使用Google官方MediaPipe HandLandmarker模型
  */
 
-import { HandLandmarker, FilesetResolver, NormalizedLandmark } from '@mediapipe/tasks-vision'
+// 仅导入类型，运行时通过动态 import 以避免 SSR/构建期问题
+import type { HandLandmarker, FilesetResolver, NormalizedLandmark } from '@mediapipe/tasks-vision'
 
 let handLandmarker: HandLandmarker | null = null
 let isInitializing = false
@@ -25,30 +26,57 @@ export async function initializeHandLandmarker(): Promise<HandLandmarker> {
   try {
     isInitializing = true
     console.log('🚀 Initializing MediaPipe HandLandmarker...')
-    
+
+    // 仅在浏览器环境初始化
+    if (typeof window === 'undefined') {
+      throw new Error('HandLandmarker must be initialized in the browser environment')
+    }
+
+    // 运行时动态导入，避免在服务端或构建阶段加载 WASM 依赖
+    const visionTasks = await import('@mediapipe/tasks-vision')
+    const { HandLandmarker: HandLandmarkerCtor, FilesetResolver: FilesetResolverCtor } = visionTasks as unknown as {
+      HandLandmarker: any
+      FilesetResolver: any
+    }
+
     // 创建文件集解析器
-    const vision = await FilesetResolver.forVisionTasks(
-      "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.22/wasm"
-    )
-    
-    // 创建手部检测器
-    handLandmarker = await HandLandmarker.createFromOptions(vision, {
-      baseOptions: {
-        modelAssetPath: "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task",
-        delegate: "GPU" // 使用GPU加速
-      },
-      runningMode: "IMAGE",
-      numHands: 1, // 只检测一只手
+    const wasmBase = process.env.NEXT_PUBLIC_MEDIAPIPE_WASM_BASE ||
+      'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.22/wasm'
+    const vision = await FilesetResolverCtor.forVisionTasks(wasmBase)
+
+    const modelAssetPath = process.env.NEXT_PUBLIC_HAND_LANDMARKER_MODEL ||
+      'https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task'
+
+    // 优先尝试 GPU，加速失败则自动回退到 CPU，提升兼容性（如 iOS Safari 等）
+    const commonOptions = {
+      runningMode: 'IMAGE' as const,
+      numHands: 1,
       minHandDetectionConfidence: 0.5,
       minHandPresenceConfidence: 0.5,
-      minTrackingConfidence: 0.5
-    })
-    
-    console.log('✅ MediaPipe HandLandmarker initialized successfully')
+      minTrackingConfidence: 0.5,
+    }
+
+    try {
+      handLandmarker = await HandLandmarkerCtor.createFromOptions(vision, {
+        baseOptions: { modelAssetPath, delegate: 'GPU' },
+        ...commonOptions,
+      })
+      console.log('✅ MediaPipe HandLandmarker initialized successfully with GPU delegate')
+    } catch (gpuError) {
+      console.warn('⚠️ GPU delegate initialization failed, falling back to CPU:', gpuError)
+      handLandmarker = await HandLandmarkerCtor.createFromOptions(vision, {
+        baseOptions: { modelAssetPath, delegate: 'CPU' },
+        ...commonOptions,
+      })
+      console.log('✅ MediaPipe HandLandmarker initialized successfully with CPU delegate')
+    }
+
     return handLandmarker
     
   } catch (error) {
-    console.error('❌ Failed to initialize HandLandmarker:', error)
+    console.error('❌ Failed to initialize HandLandmarker:', error, {
+      userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : 'unknown',
+    })
     throw error
   } finally {
     isInitializing = false
@@ -134,6 +162,7 @@ export async function detectHandFromBase64(base64Image: string): Promise<{
       reject(new Error('Failed to load image'))
     }
     
+    // base64 数据无需跨域，但为了统一处理保留
     img.crossOrigin = 'anonymous'
     img.src = base64Image
   })
@@ -174,7 +203,8 @@ export async function detectHandFromFile(file: File): Promise<{
  */
 export function cleanupHandLandmarker() {
   if (handLandmarker) {
-    handLandmarker.close()
+    // @ts-expect-error close may exist at runtime on the concrete instance
+    handLandmarker.close && handLandmarker.close()
     handLandmarker = null
     console.log('🧹 HandLandmarker cleaned up')
   }
