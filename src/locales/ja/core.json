@@ -1,7 +1,7 @@
 {
   "RootLayout": {
-    "meta_title": "Rolitt - 次世代AIコンパニオン",
-    "meta_description": "Rolittは、あなたの日常生活をサポートする次世代AIコンパニオンです。"
+    "meta_title": "Thepalmistrylife - 次世代手相学分析",
+    "meta_description": "Thepalmistrylifeは、あなたの日常生活をサポートする次世代手相学分析です。"
   },
   "BaseTemplate": {
     "skip_to_content": "コンテンツに移動"
@@ -29,7 +29,7 @@
     "terms": "利用規約",
     "privacy": "プライバシーポリシー",
     "cookies": "クッキーポリシー",
-    "copyright": "© 2024 Rolitt Inc. Based on love, passion and sustained effortAll rights reserved.",
+    "copyright": "© 2024 Thepalmistrylife Inc. Based on love, passion and sustained effortAll rights reserved.",
     "product": "製品",
     "community": "コミュニティ",
 
@@ -43,7 +43,7 @@
     "refund_policy": "返金ポリシー",
     "shipping_policy": "配送ポリシー",
     "contact_information": "お問い合わせ先",
-    "company_description": "Rolittは、感情認識、自然言語処理、機械学習技術を組み合わせて、思いやりのある感情的サポートとインテリジェントなインタラクションを提供する次世代AIコンパニオンです。",
+    "company_description": "Thepalmistrylifeは、感情認識、自然言語処理、機械学習技術を組み合わせて、思いやりのある感情的サポートとインテリジェントなインタラクションを提供する次世代手相学分析です。",
     "newsletter_title": "ニュースレター登録",
     "newsletter_description": "最新の製品、機能、お知らせの更新情報をお受け取りください。",
     "email_placeholder": "メールアドレスを入力",
@@ -66,7 +66,7 @@
     "company": "会社",
     "about": "会社概要",
     "pre-order": "予約注文",
-  "rolittai": "Rolitt AI",
+  "rolittai": "Thepalmistrylife",
     "services": "サービス",
     "contact": "お問い合わせ",
     "nav": {
@@ -150,7 +150,7 @@
     "noEventsYet": "まだイベントはありません。"
   },
   "NotFound": {
-    "meta_title": "ページが見つかりません | Rolitt",
+    "meta_title": "ページが見つかりません | Thepalmistrylife",
     "meta_description": "お探しのページは存在しないか、移動されました。",
     "title": "ページが見つかりません",
     "description": "お探しのページは存在しないか、移動されました。",
