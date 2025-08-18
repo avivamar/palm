@@ -114,11 +114,11 @@ export default function CameraOverlayOptimized({
       {/* 手掌轮廓引导 - 使用现有的优质SVG */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="relative">
-          {/* 使用项目中的专业手掌轮廓 */}
+          {/* 使用项目中的专业手掌轮廓 - 更大显示 */}
           <img 
             src="/palm/plamcarema.svg" 
             alt="手掌轮廓引导"
-            className="w-[280px] h-[350px] drop-shadow-lg opacity-90"
+            className="w-[360px] h-[450px] drop-shadow-lg opacity-90"
           />
           
           {/* 提示文字 */}

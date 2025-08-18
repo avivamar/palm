@@ -108,43 +108,75 @@ export default function Step13CaptureOptimized({
     setShowCamera(false)
   }
 
-  // 文件上传
+  // 原生文件选择 - 恢复原生相机/相册选择
   const handleFileUpload = () => {
-    const input = document.createElement('input')
-    input.type = 'file'
-    input.accept = 'image/*'
-    input.capture = 'environment'
-    
-    input.onchange = (e) => {
-      const files = (e.target as HTMLInputElement).files
-      if (files && files.length > 0) {
-        const file = files[0]
-        if (file) {
-          setIsProcessing(true)
+    trackEvent('palm_file_upload_attempt', {
+      timestamp: Date.now(),
+      isMobile: isMobile(),
+    })
+
+    // 创建选择器让用户选择拍照或相册
+    if (isMobile()) {
+      // 移动端：显示选择对话框
+      const userChoice = confirm('选择图片来源：\n确定 = 拍照\n取消 = 从相册选择')
+      
+      const input = document.createElement('input')
+      input.type = 'file'
+      input.accept = 'image/*'
+      
+      if (userChoice) {
+        // 用户选择拍照
+        input.capture = 'environment'
+        trackEvent('palm_native_camera_selected', { timestamp: Date.now() })
+      } else {
+        // 用户选择相册
+        // 不设置capture属性，允许从相册选择
+        trackEvent('palm_gallery_selected', { timestamp: Date.now() })
+      }
+      
+      input.onchange = handleFileSelection
+      input.click()
+    } else {
+      // 桌面端：直接文件选择
+      const input = document.createElement('input')
+      input.type = 'file'
+      input.accept = 'image/*'
+      input.onchange = handleFileSelection
+      input.click()
+    }
+  }
+
+  // 处理文件选择结果
+  const handleFileSelection = (e: Event) => {
+    const files = (e.target as HTMLInputElement).files
+    if (files && files.length > 0) {
+      const file = files[0]
+      if (file) {
+        console.log('File selected:', file.name)
+        setIsProcessing(true)
+        
+        const reader = new FileReader()
+        reader.onload = () => {
+          const imageData = reader.result as string
           
-          const reader = new FileReader()
-          reader.onload = () => {
-            const imageData = reader.result as string
-            
-            updateUserData({ 
-              palmImageData: imageData,
-              palmCaptureMethod: 'file'
-            })
-            
-            trackEvent('palm_file_uploaded', {
-              timestamp: Date.now(),
-              fileName: file.name,
-              fileSize: file.size
-            })
-            
-            setIsProcessing(false)
-            goToNextStep()
-          }
-          reader.readAsDataURL(file)
+          updateUserData({ 
+            palmImageData: imageData,
+            palmCaptureMethod: 'file'
+          })
+          
+          trackEvent('palm_file_upload_success', {
+            timestamp: Date.now(),
+            fileName: file.name,
+            fileSize: file.size,
+            method: 'native_selection'
+          })
+          
+          setIsProcessing(false)
+          goToNextStep()
         }
+        reader.readAsDataURL(file)
       }
     }
-    input.click()
   }
 
   return (
@@ -198,40 +230,54 @@ export default function Step13CaptureOptimized({
             请按照指示拍摄清晰的手掌照片，AI将分析您的掌纹特征
           </motion.p>
 
-          {/* Illustration */}
+          {/* Illustration - 恢复完整的拍摄要求 */}
           <motion.section 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-8"
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-6"
           >
-            <div className="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-6">
-              {/* 手掌示意图 */}
-              <div className="flex justify-center mb-4">
-                <svg width="120" height="150" viewBox="0 0 120 150" fill="none">
-                  <path
-                    d="M60 140 C40 140 25 125 25 105 L25 65 C25 50 28 40 33 33 L33 20 C33 10 38 5 43 5 C48 5 53 10 53 20 L53 15 C53 5 58 0 63 0 C68 0 73 5 73 15 L73 13 C73 3 78 -2 83 -2 C88 -2 93 3 93 13 L93 18 C93 8 98 3 103 3 C108 3 113 8 113 18 L113 65 C113 65 115 80 110 100 C105 120 85 140 60 140 Z"
-                    fill="url(#gradient)"
-                    fillOpacity="0.3"
-                    stroke="#8B5CF6"
-                    strokeWidth="2"
-                  />
-                  <defs>
-                    <linearGradient id="gradient" x1="60" y1="0" x2="60" y2="140">
-                      <stop stopColor="#8B5CF6" />
-                      <stop offset="1" stopColor="#EC4899" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </div>
-              
+            <div className="bg-green-50 rounded-2xl p-6 flex items-center gap-4">
+              <img src="/palm/img/pose-correct.png" className="w-28" alt="正确示范" />
+              <div className="text-green-600 font-semibold text-lg">✅ 正确姿势</div>
+            </div>
+
+            <div className="mt-4 bg-red-50 rounded-2xl p-4 flex justify-center gap-3">
+              <img src="/palm/img/pose-wrong1.png" className="w-16 opacity-60" alt="错误姿势" />
+              <img src="/palm/img/pose-wrong2.png" className="w-16 opacity-60" alt="错误姿势" />
+              <img src="/palm/img/pose-wrong3.png" className="w-16 opacity-60" alt="错误姿势" />
+            </div>
+
+            {/* 详细拍摄要求 */}
+            <div className="mt-6 bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-6">
               <div className="text-center">
-                <p className="text-sm font-medium text-violet-600">拍摄要求</p>
-                <ul className="mt-2 text-xs text-gray-600 space-y-1">
-                  <li>✓ 手掌平整展开</li>
-                  <li>✓ 光线充足均匀</li>
-                  <li>✓ 掌纹清晰可见</li>
-                </ul>
+                <p className="text-sm font-medium text-violet-600 mb-3">📸 拍摄技巧</p>
+                <div className="grid grid-cols-2 gap-3 text-xs text-gray-600">
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>手掌完全展开</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>光线充足均匀</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>掌纹清晰可见</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>背景简洁干净</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>避免阴影遮挡</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    <span>保持手掌稳定</span>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.section>
@@ -282,7 +328,7 @@ export default function Step13CaptureOptimized({
               )}
             </motion.button>
 
-            {/* 次要操作：文件上传 */}
+            {/* 次要操作：相机/相册选择 */}
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.95 }}
@@ -291,9 +337,9 @@ export default function Step13CaptureOptimized({
               className="w-full h-12 rounded-xl border-2 border-violet-300 text-violet-600 font-medium transition hover:bg-violet-50 disabled:opacity-50 flex items-center justify-center"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              从相册选择
+              {isMobile() ? '拍照/相册选择' : '选择图片文件'}
             </motion.button>
           </motion.div>
 

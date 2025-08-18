@@ -16,221 +16,233 @@ export default async function Terms({ params }: { params: Promise<{ locale: stri
           Terms of Service
         </h1>
         <div className="prose prose-lg dark:prose-invert">
-          <h2 className="text-2xl font-bold mt-8 mb-4">Terms of Service for Rolitt</h2>
-          <p className="text-muted-foreground mb-6">Effective Date: November 11, 2024</p>
+          <h2 className="text-2xl font-bold mt-8 mb-4">Terms of Service</h2>
+          <p className="text-muted-foreground mb-6">Effective Date: December 1, 2024</p>
 
+          <h3 className="text-xl font-bold mt-8 mb-4">Acceptance of Terms</h3>
           <p>
-            These Terms of Service ("Terms") govern the use of the Rolitt website and services provided by Rolitt Inc. ("Company", "We", "Our", "Us"). By accessing or using our website, you agree to be bound by these Terms and any additional terms or policies referenced herein. If you do not agree with these Terms, you should not access or use our services.
+            By accessing or using the NEBULA website and services ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our Service.
           </p>
 
-          <h3 className="text-xl font-bold mt-8 mb-4">1. Acceptance of Terms</h3>
-          <p>
-            By using the Rolitt website and services hosted on the Shopify platform (the "Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Service, including our Privacy Policy and any other policies incorporated by reference.
-          </p>
-          <ul className="list-disc pl-6 mb-4">
-            <li>
-              <strong>Eligibility:</strong>
-              {' '}
-              You must be at least 18 years old or have the legal capacity to enter into a binding contract in your jurisdiction. If you are using the Service on behalf of someone under the age of 18, you must have legal authority to do so.
-            </li>
-            <li>
-              <strong>Modification:</strong>
-              {' '}
-              Rolitt reserves the right to modify or update these Terms at any time without prior notice. It is your responsibility to review these Terms regularly. Any updates will be effective immediately upon posting on this website.
-            </li>
-          </ul>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">2. Registration and Account</h3>
-          <ul className="list-disc pl-6 mb-4">
-            <li>
-              <strong>Account Creation:</strong>
-              {' '}
-              To use certain features of the Service, you may be required to create an account. During registration, you agree to provide accurate, current, and complete information, and to maintain the security of your account credentials.
-            </li>
-            <li>
-              <strong>Account Security:</strong>
-              {' '}
-              You are responsible for safeguarding your account and notifying Rolitt immediately of any unauthorized use or breach of security. Rolitt is not responsible for any loss or damage caused by unauthorized use of your account.
-            </li>
-            <li>
-              <strong>User Content:</strong>
-              {' '}
-              You retain ownership of the content you submit to the Service (e.g., reviews, comments, or other user-generated content), but by submitting it, you grant Rolitt Inc. a worldwide, irrevocable, royalty-free license to use, display, modify, and distribute the content.
-            </li>
-          </ul>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">3. Orders and Payments</h3>
-          <ul className="list-disc pl-6 mb-4">
-            <li>
-              <strong>Product Availability:</strong>
-              {' '}
-              While we make every effort to ensure accurate product listings, availability and pricing are subject to change without notice. We do not guarantee that products or services will be available at all times.
-            </li>
-            <li>
-              <strong>Pricing:</strong>
-              {' '}
-              All prices on the Service are listed in USD, excluding taxes and shipping. We reserve the right to modify product pricing, shipping charges, or promotional offers at any time.
-            </li>
-            <li>
-              <strong>Payment:</strong>
-              {' '}
-              All payments are processed securely through Shopify's payment platform, and you agree to provide accurate and valid payment information. You authorize Rolitt Inc. to charge the payment method you select at checkout for the total cost of your order, including applicable taxes, shipping, and other fees.
-            </li>
-          </ul>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">4. Shipping and Delivery</h3>
-          <ul className="list-disc pl-6 mb-4">
-            <li>
-              <strong>Processing Time:</strong>
-              {' '}
-              We aim to ship products promptly after the order is placed. Shipping times may vary depending on product availability and your location.
-            </li>
-            <li>
-              <strong>Shipping Charges:</strong>
-              {' '}
-              Shipping charges will be calculated and displayed at checkout based on the delivery method and destination.
-            </li>
-            <li>
-              <strong>Delivery:</strong>
-              {' '}
-              Delivery times depend on the shipping method and location. Rolitt is not liable for delays caused by third-party carriers or customs processing.
-            </li>
-            <li>
-              <strong>Risk of Loss:</strong>
-              {' '}
-              All products purchased from Rolitt are shipped in accordance with our shipping terms. The risk of loss and title for such products passes to you upon delivery to the carrier.
-            </li>
-          </ul>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">5. Returns and Refunds</h3>
-          <ul className="list-disc pl-6 mb-4">
-            <li>
-              <strong>Return Policy:</strong>
-              {' '}
-              For information on returns, exchanges, and refunds, please refer to our detailed Return Policy on the website.
-            </li>
-            <li>
-              <strong>Refunds:</strong>
-              {' '}
-              If you are eligible for a refund under our Return Policy, the refund will be processed to the original payment method used for the purchase.
-            </li>
-            <li>
-              <strong>Non-Returnable Items:</strong>
-              {' '}
-              Certain products may be non-returnable due to their nature (e.g., perishable goods, intimate items).
-            </li>
-          </ul>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">6. Third-Party Services</h3>
-          <ul className="list-disc pl-6 mb-4">
-            <li>
-              <strong>Third-Party Links:</strong>
-              {' '}
-              The Service may contain links to third-party websites or services that are not owned or controlled by Rolitt Inc. We are not responsible for the content, privacy policies, or practices of third-party services.
-            </li>
-            <li>
-              <strong>Third-Party Content:</strong>
-              {' '}
-              Any opinions, advice, statements, services, offers, or other information expressed in or available through third-party websites are those of the respective authors or distributors and not of Rolitt Inc.
-            </li>
-          </ul>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">7. User Responsibilities and Restrictions</h3>
-          <p>
-            You agree not to use the Service for any unlawful purpose or in a way that violates these Terms. Prohibited activities include, but are not limited to:
-          </p>
-          <ul className="list-disc pl-6 mb-4">
-            <li>
-              <strong>Harassment or Defamation:</strong>
-              {' '}
-              You may not engage in conduct that harasses, abuses, or defames others.
-            </li>
-            <li>
-              <strong>Infringement:</strong>
-              {' '}
-              You may not use the Service to infringe on the intellectual property rights of others, including trademarks, copyrights, or patents.
-            </li>
-            <li>
-              <strong>Malicious Activities:</strong>
-              {' '}
-              You may not upload viruses, malware, or harmful code to the Service, or use the Service to disrupt or interfere with its normal operation.
-            </li>
-          </ul>
-
-          <h3 className="text-xl font-bold mt-8 mb-4">8. Limitation of Liability</h3>
-          <p>
-            To the fullest extent permitted by law, Rolitt Inc. and its affiliates, officers, directors, employees, agents, and suppliers are not liable for any indirect, incidental, special, consequential, or punitive damages arising from:
-          </p>
-          <ul className="list-disc pl-6 mb-4">
-            <li>Your use or inability to use the Service.</li>
-            <li>The purchase of products from the Service.</li>
-            <li>Any content provided by third parties on the Service.</li>
-          </ul>
-          <p>
-            Rolitt Inc.'s total liability, whether in contract, tort, or otherwise, shall not exceed the amount paid by you to Rolitt Inc. for the specific product or service giving rise to the claim.
+          <h3 className="text-xl font-bold mt-8 mb-4">Important Disclaimers</h3>
+          <p className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg border border-yellow-200 dark:border-yellow-800">
+            <strong>IMPORTANT:</strong>
+            {' '}
+            NEBULA provides palm reading and astrological services for entertainment purposes only. Our readings are not intended to replace professional advice from licensed medical, legal, financial, or psychological professionals. Please consult appropriate professionals for serious life decisions.
           </p>
 
-          <h3 className="text-xl font-bold mt-8 mb-4">9. Indemnification</h3>
-          <p>
-            You agree to indemnify and hold harmless Rolitt Inc., its affiliates, officers, directors, employees, and agents from any claims, damages, losses, and expenses (including reasonable attorneys' fees) arising from:
-          </p>
+          <h3 className="text-xl font-bold mt-8 mb-4">Account Registration</h3>
           <ul className="list-disc pl-6 mb-4">
-            <li>Your violation of these Terms.</li>
-            <li>Your use of the Service.</li>
-            <li>Any content you post or submit to the Service.</li>
+            <li>You must be at least 18 years old to create an account</li>
+            <li>You must provide accurate and complete information during registration</li>
+            <li>You are responsible for maintaining the confidentiality of your account credentials</li>
+            <li>You must notify us immediately of any unauthorized use of your account</li>
           </ul>
 
-          <h3 className="text-xl font-bold mt-8 mb-4">10. Termination</h3>
+          <h3 className="text-xl font-bold mt-8 mb-4">Service Terms</h3>
           <ul className="list-disc pl-6 mb-4">
             <li>
-              <strong>By Rolitt:</strong>
+              <strong>Palm Reading Services:</strong>
               {' '}
-              We may suspend or terminate your access to the Service, with or without notice, for violations of these Terms or other behavior that we deem detrimental to the Service or our brand.
+              Our AI-powered palm reading analysis is provided for entertainment and self-reflection purposes
             </li>
             <li>
-              <strong>By You:</strong>
+              <strong>Accuracy:</strong>
               {' '}
-              You may terminate your account at any time by contacting us. However, termination does not affect any obligations or liabilities incurred before the termination.
+              We do not guarantee the accuracy of readings or predictions
+            </li>
+            <li>
+              <strong>Personal Responsibility:</strong>
+              {' '}
+              You acknowledge that any decisions made based on our readings are your own responsibility
+            </li>
+            <li>
+              <strong>Service Availability:</strong>
+              {' '}
+              We strive to maintain service availability but do not guarantee uninterrupted access
             </li>
           </ul>
 
-          <h3 className="text-xl font-bold mt-8 mb-4">11. Governing Law</h3>
+          <h3 className="text-xl font-bold mt-8 mb-4">Third-Party Advertising</h3>
           <p>
-            These Terms shall be governed by and construed in accordance with the laws of the state of Delaware, USA, without regard to its conflict of laws principles. You agree to submit to the exclusive jurisdiction of the courts located in Delaware for any disputes arising out of these Terms or your use of the Service.
+            Our Service may display advertisements from third parties. We are not responsible for the content, accuracy, or practices of third-party advertisers. Your interactions with advertisers are solely between you and the advertiser.
           </p>
 
-          <h3 className="text-xl font-bold mt-8 mb-4">12. Miscellaneous</h3>
+          <h3 className="text-xl font-bold mt-8 mb-4">Intellectual Property</h3>
           <ul className="list-disc pl-6 mb-4">
+            <li>All content on our Service, including text, graphics, logos, and software, is our property or licensed to us</li>
+            <li>You may not reproduce, distribute, or create derivative works without our written permission</li>
+            <li>User-generated content remains your property, but you grant us a license to use it in connection with our Service</li>
+          </ul>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">User Content</h3>
+          <p>
+            By submitting content to our Service (including photos for palm reading), you:
+          </p>
+          <ul className="list-disc pl-6 mb-4">
+            <li>Represent that you own or have the right to submit such content</li>
+            <li>Grant us a non-exclusive license to use, process, and analyze your content</li>
+            <li>Agree that your content will not violate any laws or third-party rights</li>
+          </ul>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">Payment and Refund Policy</h3>
+          <h4 className="text-lg font-semibold mt-6 mb-3">Payment Terms</h4>
+          <ul className="list-disc pl-6 mb-4">
+            <li>All fees are charged in advance and are non-refundable except as required by law</li>
+            <li>Prices are subject to change with notice</li>
+            <li>You authorize us to charge your payment method for all fees</li>
+          </ul>
+
+          <h4 className="text-lg font-semibold mt-6 mb-3">Refund Policy</h4>
+          <ul className="list-disc pl-6 mb-4">
+            <li>
+              <strong>General Policy:</strong>
+              {' '}
+              All sales are final. We do not offer refunds for digital services once delivered
+            </li>
+            <li>
+              <strong>Technical Issues:</strong>
+              {' '}
+              If you experience technical problems preventing service delivery, contact us within 48 hours
+            </li>
+            <li>
+              <strong>EU Residents:</strong>
+              {' '}
+              You have the right to withdraw from purchases within 14 days, except for digital content that has been delivered
+            </li>
+          </ul>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">User Representations and Restrictions</h3>
+          <p>You represent and warrant that:</p>
+          <ul className="list-disc pl-6 mb-4">
+            <li>You are at least 18 years old</li>
+            <li>You will use our Service only for lawful purposes</li>
+            <li>You will not use our Service for commercial purposes without permission</li>
+            <li>You will not attempt to reverse engineer or hack our Service</li>
+            <li>You will not submit false or misleading information</li>
+          </ul>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">Prohibited Activities</h3>
+          <p>You agree not to:</p>
+          <ul className="list-disc pl-6 mb-4">
+            <li>Use our Service for any illegal or unauthorized purpose</li>
+            <li>Violate any laws in your jurisdiction</li>
+            <li>Transmit viruses, malware, or other harmful code</li>
+            <li>Harass, abuse, or harm other users</li>
+            <li>Impersonate any person or entity</li>
+            <li>Collect user information without consent</li>
+          </ul>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">Disclaimers</h3>
+          <p className="bg-gray-50 dark:bg-gray-900/50 p-4 rounded-lg border">
+            <strong>DISCLAIMER:</strong>
+            {' '}
+            Our Service is provided "as is" without warranties of any kind. We disclaim all warranties, express or implied, including warranties of merchantability, fitness for a particular purpose, and non-infringement. We do not warrant that our Service will be uninterrupted, secure, or error-free.
+          </p>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">Limitation of Liability</h3>
+          <p>
+            To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including loss of profits, data, or other intangible losses, resulting from your use of our Service.
+          </p>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">Indemnification</h3>
+          <p>
+            You agree to indemnify and hold us harmless from any claims, damages, losses, and expenses arising from your use of our Service or violation of these Terms.
+          </p>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">International Use</h3>
+          <p>
+            Our Service is controlled and operated from the United States. We make no representation that our Service is appropriate or available for use in other locations. If you access our Service from other jurisdictions, you are responsible for compliance with local laws.
+          </p>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">Mandatory Binding Arbitration and Class Action Waiver</h3>
+          <h4 className="text-lg font-semibold mt-6 mb-3">Arbitration Agreement</h4>
+          <p>
+            Any dispute arising from these Terms or your use of our Service will be resolved through binding arbitration rather than in court, except that you may assert claims in small claims court if they qualify.
+          </p>
+
+          <h4 className="text-lg font-semibold mt-6 mb-3">Arbitration Process</h4>
+          <ul className="list-disc pl-6 mb-4">
+            <li>
+              <strong>Administrator:</strong>
+              {' '}
+              American Arbitration Association (AAA)
+            </li>
+            <li>
+              <strong>Rules:</strong>
+              {' '}
+              AAA Consumer Arbitration Rules
+            </li>
+            <li>
+              <strong>Location:</strong>
+              {' '}
+              Your county of residence or another mutually agreed location
+            </li>
+            <li>
+              <strong>Costs:</strong>
+              {' '}
+              We will pay arbitration fees for claims under $10,000
+            </li>
+          </ul>
+
+          <h4 className="text-lg font-semibold mt-6 mb-3">Class Action Waiver</h4>
+          <p>
+            You agree that disputes will be resolved individually and not as part of a class action, collective action, or representative proceeding.
+          </p>
+
+          <h4 className="text-lg font-semibold mt-6 mb-3">Arbitrator Powers</h4>
+          <p>
+            The arbitrator may award the same damages and relief as a court, but only in favor of the individual party seeking relief.
+          </p>
+
+          <h4 className="text-lg font-semibold mt-6 mb-3">Time Limit</h4>
+          <p>
+            Any arbitration must be commenced within one year of the dispute arising, or the claim will be permanently barred.
+          </p>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">Governing Law</h3>
+          <p>
+            These Terms are governed by the laws of the State of California, United States, without regard to conflict of law principles.
+          </p>
+
+          <h3 className="text-xl font-bold mt-8 mb-4">Miscellaneous</h3>
+          <ul className="list-disc pl-6 mb-4">
+            <li>
+              <strong>Waiver:</strong>
+              {' '}
+              Our failure to enforce any provision does not constitute a waiver
+            </li>
             <li>
               <strong>Severability:</strong>
               {' '}
-              If any provision of these Terms is deemed invalid or unenforceable, the remaining provisions will remain in full force and effect.
+              If any provision is invalid, the remaining provisions remain in effect
             </li>
             <li>
-              <strong>Entire Agreement:</strong>
+              <strong>Assignment:</strong>
               {' '}
-              These Terms, along with the Privacy Policy and any other policies referenced herein, constitute the entire agreement between you and Rolitt Inc. regarding your use of the Service.
+              We may assign these Terms; you may not assign them without our consent
             </li>
             <li>
-              <strong>Force Majeure:</strong>
+              <strong>Electronic Communications:</strong>
               {' '}
-              Rolitt Inc. will not be liable for failure or delay in performance due to causes beyond its reasonable control, including but not limited to natural disasters, acts of government, labor disputes, or other force majeure events.
+              You consent to receive communications electronically
             </li>
           </ul>
 
           <h3 className="text-xl font-bold mt-8 mb-4">Contact Information</h3>
           <p>
-            For any questions regarding these Terms of Service, please contact us at:
+            For questions about these Terms, please contact us at:
           </p>
-          <p className="font-bold">Rolitt Inc.</p>
           <p>
-            <a href="mailto:support@rolitt.com" className="text-primary hover:underline">support@rolitt.com</a>
-            <br />
-            Phone: +1 (302) 444-2859
-            <br />
-            Website:
+            Email:
             {' '}
-            <a href="http://rolitt.shop" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">http://rolitt.shop</a>
+            <a href="mailto:support@nebula-palm.com" className="text-primary hover:underline">
+              support@nebula-palm.com
+            </a>
+          </p>
+
+          <p className="text-sm text-muted-foreground mt-8">
+            Last Updated: December 1, 2024
           </p>
         </div>
       </div>
