@@ -1,6 +1,6 @@
 /**
  * 免费的手部检测和背景消除方案
- * 不依赖付费API，使用本地算法和免费服务
+ * 不依赖付费API，使用本地算法和免费服务。
  */
 
 import type { NormalizedLandmark } from '@mediapipe/tasks-vision'
