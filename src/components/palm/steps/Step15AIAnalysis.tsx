@@ -681,7 +681,10 @@ export default function Step15AIAnalysis({
                     [5, 9], [9, 13], [13, 17]
                   ];
                   
-                  return connections.map(([from, to], index) => {
+                  return connections.map((connection, index) => {
+                    const [from, to] = connection;
+                    if (from === undefined || to === undefined) return null;
+                    
                     const fromPoint = pixels[from];
                     const toPoint = pixels[to];
                     
