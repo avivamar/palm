@@ -87,7 +87,7 @@ async function detectHandWithFlorence2(imageBase64: string): Promise<AdvancedHan
  */
 async function segmentHandWithSAM2(
   imageBase64: string, 
-  boundingBox?: { x: number, y: number, width: number, height: number }
+  _boundingBox?: { x: number, y: number, width: number, height: number }
 ): Promise<string> {
   try {
     console.log('🎯 Starting SAM 2.1 hand segmentation...')
