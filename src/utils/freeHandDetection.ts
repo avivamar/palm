@@ -42,9 +42,9 @@ export async function removeBackgroundFree(imageBase64: string): Promise<string>
       
       // 改进的皮肤检测算法
       for (let i = 0; i < data.length; i += 4) {
-        const r = data[i]
-        const g = data[i + 1]
-        const b = data[i + 2]
+        const r = data[i] ?? 0
+        const g = data[i + 1] ?? 0
+        const b = data[i + 2] ?? 0
         
         // 更精确的肤色检测
         const isSkinTone = detectSkinTone(r, g, b)
@@ -98,7 +98,7 @@ function detectSkinTone(r: number, g: number, b: number): boolean {
  */
 function detectHandRegion(
   pixelIndex: number, 
-  totalPixels: number, 
+  _totalPixels: number, 
   width: number, 
   height: number
 ): boolean {
@@ -200,16 +200,16 @@ export async function enhanceImageForDetection(imageBase64: string): Promise<str
       // 图像增强处理
       for (let i = 0; i < data.length; i += 4) {
         // 增加对比度
-        data[i] = Math.min(255, (data[i] - 128) * 1.2 + 128)     // R
-        data[i + 1] = Math.min(255, (data[i + 1] - 128) * 1.2 + 128) // G
-        data[i + 2] = Math.min(255, (data[i + 2] - 128) * 1.2 + 128) // B
+        data[i] = Math.min(255, ((data[i] ?? 0) - 128) * 1.2 + 128)     // R
+        data[i + 1] = Math.min(255, ((data[i + 1] ?? 0) - 128) * 1.2 + 128) // G
+        data[i + 2] = Math.min(255, ((data[i + 2] ?? 0) - 128) * 1.2 + 128) // B
         
         // 锐化处理
-        const brightness = (data[i] + data[i + 1] + data[i + 2]) / 3
+        const brightness = ((data[i] ?? 0) + (data[i + 1] ?? 0) + (data[i + 2] ?? 0)) / 3
         if (brightness > 100) {
-          data[i] = Math.min(255, data[i] * 1.1)
-          data[i + 1] = Math.min(255, data[i + 1] * 1.1)
-          data[i + 2] = Math.min(255, data[i + 2] * 1.1)
+          data[i] = Math.min(255, (data[i] ?? 0) * 1.1)
+          data[i + 1] = Math.min(255, (data[i + 1] ?? 0) * 1.1)
+          data[i + 2] = Math.min(255, (data[i + 2] ?? 0) * 1.1)
         }
       }
       
@@ -295,6 +295,8 @@ function calculateHandSpread(landmarks: NormalizedLandmark[]): number {
   // 计算拇指到小指的距离
   const thumbTip = landmarks[4]  // 拇指尖
   const pinkyTip = landmarks[20] // 小指尖
+  
+  if (!thumbTip || !pinkyTip) return 0
   
   const distance = Math.sqrt(
     Math.pow(thumbTip.x - pinkyTip.x, 2) + 
