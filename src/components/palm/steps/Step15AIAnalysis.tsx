@@ -506,9 +506,17 @@ export default function Step15AIAnalysis({
                 <defs>
                   {/* 渐变定义 */}
                   <radialGradient id="fingerTipGradient" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#a855f7" stopOpacity="0.4" />
+                    <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.9" />
+                    <stop offset="70%" stopColor="#a855f7" stopOpacity="0.6" />
+                    <stop offset="100%" stopColor="#7c3aed" stopOpacity="0.3" />
                   </radialGradient>
+                  <filter id="glowEffect">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge> 
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
                   <linearGradient id="palmLineGradient1" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#ef4444" />
                     <stop offset="100%" stopColor="#f97316" />
@@ -523,31 +531,34 @@ export default function Step15AIAnalysis({
                   </linearGradient>
                 </defs>
                 
-                {/* 主要掌纹线条 - 彩色渐变 */}
+                {/* 主要掌纹线条 - 基于真实手部解剖学定位 */}
                 {(() => {
                   const pixels = convertLandmarksToPixels(landmarks);
                   
-                  // 生命线 (Life Line) - 红橙渐变
+                  // 生命线 (Life Line) - 从食指根部弧形绕过拇指到手腕附近
                   const lifeLine = [
-                    { x: pixels[5]?.x || 0, y: pixels[5]?.y || 0 },
-                    { x: (pixels[5]?.x || 0) - 20, y: (pixels[5]?.y || 0) + 40 },
-                    { x: (pixels[0]?.x || 0) + 15, y: (pixels[0]?.y || 0) - 30 },
-                    { x: pixels[0]?.x || 0, y: pixels[0]?.y || 0 }
+                    { x: (pixels[5]?.x || 0) - 10, y: (pixels[5]?.y || 0) + 10 }, // 食指根部
+                    { x: (pixels[5]?.x || 0) - 25, y: (pixels[5]?.y || 0) + 35 }, // 弧形中点
+                    { x: (pixels[1]?.x || 0) - 15, y: (pixels[1]?.y || 0) + 45 }, // 拇指侧
+                    { x: (pixels[0]?.x || 0) - 5, y: (pixels[0]?.y || 0) + 20 }, // 手腕上方
+                    { x: pixels[0]?.x || 0, y: (pixels[0]?.y || 0) + 35 } // 手腕附近
                   ];
                   
-                  // 智慧线 (Head Line) - 蓝紫渐变
+                  // 智慧线 (Head Line) - 从食指和拇指之间横穿手掌
                   const headLine = [
-                    { x: (pixels[5]?.x || 0) - 10, y: (pixels[5]?.y || 0) + 20 },
-                    { x: (pixels[9]?.x || 0) - 5, y: (pixels[9]?.y || 0) + 25 },
-                    { x: (pixels[13]?.x || 0) + 10, y: (pixels[13]?.y || 0) + 30 }
+                    { x: (pixels[5]?.x || 0) - 15, y: (pixels[5]?.y || 0) + 25 }, // 起点：食指下方
+                    { x: (pixels[9]?.x || 0) - 8, y: (pixels[9]?.y || 0) + 30 }, // 中指下方
+                    { x: (pixels[13]?.x || 0) + 5, y: (pixels[13]?.y || 0) + 35 }, // 无名指下方
+                    { x: (pixels[17]?.x || 0) + 15, y: (pixels[17]?.y || 0) + 40 } // 小指侧边缘
                   ];
                   
-                  // 感情线 (Heart Line) - 绿青渐变
+                  // 感情线 (Heart Line) - 横贯手掌上部，从小指侧到食指侧
                   const heartLine = [
-                    { x: (pixels[5]?.x || 0) - 5, y: (pixels[5]?.y || 0) + 5 },
-                    { x: pixels[9]?.x || 0, y: (pixels[9]?.y || 0) + 8 },
-                    { x: (pixels[13]?.x || 0) + 5, y: (pixels[13]?.y || 0) + 10 },
-                    { x: (pixels[17]?.x || 0) + 8, y: (pixels[17]?.y || 0) + 15 }
+                    { x: (pixels[20]?.x || 0) + 8, y: (pixels[20]?.y || 0) + 15 }, // 小指尖下方
+                    { x: (pixels[16]?.x || 0) + 3, y: (pixels[16]?.y || 0) + 12 }, // 无名指尖下方
+                    { x: (pixels[12]?.x || 0) - 2, y: (pixels[12]?.y || 0) + 10 }, // 中指尖下方
+                    { x: (pixels[8]?.x || 0) - 5, y: (pixels[8]?.y || 0) + 8 }, // 食指尖下方
+                    { x: (pixels[5]?.x || 0) - 8, y: (pixels[5]?.y || 0) + 5 }  // 食指根部
                   ];
                   
                   const pathData = (points: any[]) => {
@@ -604,6 +615,99 @@ export default function Step15AIAnalysis({
                   );
                 })()}
                 
+                {/* MediaPipe 21个关键点 - 绿色圆点 */}
+                {(() => {
+                  const pixels = convertLandmarksToPixels(landmarks);
+                  return pixels.map((point, index) => {
+                    if (!point) return null;
+                    
+                    return (
+                      <motion.g key={`landmark-${index}`}>
+                        {/* MediaPipe绿色关键点 */}
+                        <motion.circle
+                          cx={point.x}
+                          cy={point.y}
+                          r="4"
+                          fill="#10b981"
+                          stroke="#ffffff"
+                          strokeWidth="1"
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 0.9 }}
+                          transition={{ 
+                            duration: 0.3, 
+                            delay: 0.5 + index * 0.05,
+                            ease: "backOut"
+                          }}
+                        />
+                        
+                        {/* 关键点索引标签 - 仅在调试模式显示 */}
+                        {typeof window !== 'undefined' && window.location.search.includes('debug') && (
+                          <motion.text
+                            x={point.x + 6}
+                            y={point.y - 6}
+                            fill="#10b981"
+                            fontSize="10"
+                            fontWeight="bold"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 0.8 }}
+                            transition={{ delay: 0.8 + index * 0.05 }}
+                          >
+                            {index}
+                          </motion.text>
+                        )}
+                      </motion.g>
+                    );
+                  });
+                })()}
+                
+                {/* MediaPipe手部连接线 */}
+                {(() => {
+                  const pixels = convertLandmarksToPixels(landmarks);
+                  if (pixels.length < 21) return null;
+                  
+                  // MediaPipe官方手部连接定义
+                  const connections = [
+                    // 拇指
+                    [0, 1], [1, 2], [2, 3], [3, 4],
+                    // 食指
+                    [0, 5], [5, 6], [6, 7], [7, 8],
+                    // 中指
+                    [0, 9], [9, 10], [10, 11], [11, 12],
+                    // 无名指
+                    [0, 13], [13, 14], [14, 15], [15, 16],
+                    // 小指
+                    [0, 17], [17, 18], [18, 19], [19, 20],
+                    // 横向连接
+                    [5, 9], [9, 13], [13, 17]
+                  ];
+                  
+                  return connections.map(([from, to], index) => {
+                    const fromPoint = pixels[from];
+                    const toPoint = pixels[to];
+                    
+                    if (!fromPoint || !toPoint) return null;
+                    
+                    return (
+                      <motion.line
+                        key={`connection-${index}`}
+                        x1={fromPoint.x}
+                        y1={fromPoint.y}
+                        x2={toPoint.x}
+                        y2={toPoint.y}
+                        stroke="#10b981"
+                        strokeWidth="2"
+                        strokeOpacity="0.6"
+                        initial={{ pathLength: 0, opacity: 0 }}
+                        animate={{ pathLength: 1, opacity: 0.6 }}
+                        transition={{ 
+                          duration: 0.4, 
+                          delay: 0.8 + index * 0.02 
+                        }}
+                      />
+                    );
+                  });
+                })()}
+
                 {/* 手指尖检测点 - 紫色圆圈依次出现 */}
                 {[4, 8, 12, 16, 20].map((fingertipIndex, arrayIndex) => {
                   const pixels = convertLandmarksToPixels(landmarks);
@@ -612,57 +716,97 @@ export default function Step15AIAnalysis({
                   
                   return (
                     <motion.g key={`fingertip-${fingertipIndex}`}>
-                      {/* 外圈脉冲 */}
+                      {/* 最外层光晕效果 */}
+                      <motion.circle
+                        cx={point.x}
+                        cy={point.y}
+                        r="18"
+                        fill="none"
+                        stroke="#8b5cf6"
+                        strokeWidth="1"
+                        strokeOpacity="0.3"
+                        filter="url(#glowEffect)"
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ 
+                          scale: [0.5, 1.5, 1], 
+                          opacity: [0, 0.6, 0.2] 
+                        }}
+                        transition={{ 
+                          duration: 1.2, 
+                          delay: 1.3 + arrayIndex * 0.2,
+                          repeat: Infinity,
+                          repeatDelay: 3
+                        }}
+                      />
+                      
+                      {/* 中层脉冲圆环 */}
                       <motion.circle
                         cx={point.x}
                         cy={point.y}
                         r="12"
                         fill="none"
-                        stroke="#8b5cf6"
-                        strokeWidth="2"
-                        strokeOpacity="0.6"
+                        stroke="#a855f7"
+                        strokeWidth="2.5"
+                        strokeOpacity="0.7"
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ 
-                          scale: [0, 1.2, 1], 
-                          opacity: [0, 0.8, 0.4] 
+                          scale: [0.8, 1.3, 1], 
+                          opacity: [0, 0.9, 0.5] 
                         }}
                         transition={{ 
-                          duration: 0.6, 
+                          duration: 0.8, 
                           delay: 1.5 + arrayIndex * 0.2,
                           repeat: Infinity,
-                          repeatDelay: 2
+                          repeatDelay: 2.5
                         }}
                       />
                       
-                      {/* 主要检测圆圈 */}
+                      {/* 主要检测圆圈 - 增强视觉效果 */}
                       <motion.circle
                         cx={point.x}
                         cy={point.y}
-                        r="8"
+                        r="10"
                         fill="url(#fingerTipGradient)"
-                        stroke="#8b5cf6"
+                        stroke="#ffffff"
                         strokeWidth="2"
+                        strokeOpacity="0.9"
+                        filter="url(#glowEffect)"
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ 
-                          duration: 0.4, 
+                          duration: 0.5, 
                           delay: 1.5 + arrayIndex * 0.2,
                           ease: "backOut"
                         }}
                       />
                       
-                      {/* 内部光点 */}
+                      {/* 内部紫色核心 */}
                       <motion.circle
                         cx={point.x}
                         cy={point.y}
-                        r="3"
+                        r="6"
+                        fill="#8b5cf6"
+                        fillOpacity="0.8"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ 
+                          duration: 0.3, 
+                          delay: 1.7 + arrayIndex * 0.2 
+                        }}
+                      />
+                      
+                      {/* 最内层白色光点 */}
+                      <motion.circle
+                        cx={point.x}
+                        cy={point.y}
+                        r="2"
                         fill="#ffffff"
-                        fillOpacity="0.9"
+                        fillOpacity="1.0"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         transition={{ 
                           duration: 0.2, 
-                          delay: 1.7 + arrayIndex * 0.2 
+                          delay: 1.9 + arrayIndex * 0.2 
                         }}
                       />
                     </motion.g>

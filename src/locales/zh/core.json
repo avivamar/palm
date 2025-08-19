@@ -29,6 +29,7 @@
     "terms": "服務條款",
     "privacy": "隱私政策",
     "cookies": "Cookie 政策",
+    "payment_terms": "付款條款",
     "copyright": "© 2024 Thepalmistrylife Inc. Based on love, passion and sustained effort版權所有。",
     "product": "產品",
     "community": "社群",
@@ -50,7 +51,11 @@
     "subscribe": "訂閱",
     "policies": "政策",
     "privacy_policy": "隱私政策",
-    "terms_of_service": "服務條款"
+    "terms_of_service": "服務條款",
+    "services": "服務",
+    "palm_reading": "手相解讀",
+    "testimonials": "用戶見證",
+    "faq": "常見問題"
   },
 
   "Navbar": {

@@ -131,6 +131,16 @@ export function Footer() {
                     </Link>
                   </li>
                   <li>
+                    <Link href="/cookie-policy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      {t('cookies')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/payment-terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                      {t('payment_terms')}
+                    </Link>
+                  </li>
+                  <li>
                     <Link href="/refund-policy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                       {t('refund_policy')}
                     </Link>

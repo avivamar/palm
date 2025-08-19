@@ -29,6 +29,7 @@
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
     "cookies": "Cookie Policy",
+    "payment_terms": "Payment Terms",
     "copyright": "© 2024 Thepalmistrylife. Based on love, passion and sustained effort. All rights reserved.",
     "product": "Product",
     "community": "Community",
@@ -47,7 +48,11 @@
     "subscribe": "Subscribe",
     "policies": "Policies",
     "privacy_policy": "Privacy Policy",
-    "terms_of_service": "Terms of Service"
+    "terms_of_service": "Terms of Service",
+    "services": "Services",
+    "palm_reading": "Palm Reading",
+    "testimonials": "Testimonials",
+    "faq": "FAQ"
   },
 
   "Navbar": {

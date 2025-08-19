@@ -29,6 +29,7 @@
     "terms": "Términos de Servicio",
     "privacy": "Política de Privacidad",
     "cookies": "Política de Cookies",
+    "payment_terms": "Términos de Pago",
     "copyright": "© 2024 Thepalmistrylife Inc. Todos los derechos reservados.",
     "product": "Producto",
     "community": "Comunidad",
@@ -46,7 +47,11 @@
     "subscribe": "Suscribirse",
     "policies": "Políticas",
     "privacy_policy": "Política de Privacidad",
-    "terms_of_service": "Términos de Servicio"
+    "terms_of_service": "Términos de Servicio",
+    "services": "Servicios",
+    "palm_reading": "Lectura de Palmas",
+    "testimonials": "Testimonios",
+    "faq": "Preguntas Frecuentes"
   },
 
   "Navbar": {
