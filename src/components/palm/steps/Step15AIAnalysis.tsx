@@ -6,6 +6,7 @@ import { PalmUserData } from '@/stores/palmStore'
 import { getRealMediaPipeLandmarks } from '@/utils/mockMediaPipeData'
 import { detectHandFromBase64, validateHandLandmarks } from '@/utils/realHandDetection'
 import { detectHandAdvanced, validateAdvancedDetectionResult, type AdvancedHandDetectionResult } from '@/utils/advancedHandDetection'
+import { detectHandFree, assessDetectionQuality, type FreeHandDetectionResult } from '@/utils/freeHandDetection'
 import { NormalizedLandmark } from '@mediapipe/tasks-vision'
 
 interface Step15Props {
@@ -68,6 +69,7 @@ export default function Step15AIAnalysis({
   const [isDetecting, setIsDetecting] = useState(false)
   const [detectionError, setDetectionError] = useState<string | null>(null)
   const [advancedResult, setAdvancedResult] = useState<AdvancedHandDetectionResult | null>(null)
+  const [freeResult, setFreeResult] = useState<FreeHandDetectionResult | null>(null)
   const [backgroundRemoved, setBackgroundRemoved] = useState(false)
   const [detectionMethod, setDetectionMethod] = useState<string>('未开始')
   
@@ -77,9 +79,15 @@ export default function Step15AIAnalysis({
       step: 15
     })
     
-    // 如果有用户图片，执行先进的AI检测
-    if (userData.palmImageData && !advancedResult && !isDetecting) {
-      performAdvancedHandDetection()
+    // 如果有用户图片，智能选择检测方案
+    if (userData.palmImageData && !advancedResult && !freeResult && !isDetecting) {
+      const hasApiKeys = process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY && process.env.REPLICATE_API_TOKEN
+      
+      if (hasApiKeys && process.env.NODE_ENV === 'production') {
+        performAdvancedHandDetection() // 付费高级检测
+      } else {
+        performFreeHandDetection() // 免费检测
+      }
     }
     
     // 模拟AI分析进度
@@ -103,6 +111,70 @@ export default function Step15AIAnalysis({
     
     return () => clearInterval(analysisTimer)
   }, [userData.palmImageData])
+  
+  // 免费手部检测函数
+  const performFreeHandDetection = async () => {
+    if (!userData.palmImageData) {
+      console.warn('⚠️ No user image data available for free detection')
+      setDetectionError('没有用户图片数据')
+      return
+    }
+    
+    setIsDetecting(true)
+    setDetectionError(null)
+    setDetectionMethod('🆓 免费AI检测启动中...')
+    console.log('🆓 Starting free hand detection...')
+    
+    try {
+      const result = await detectHandFree(userData.palmImageData)
+      
+      if (result.landmarks.length >= 18) { // 允许稍微低一点的要求
+        setFreeResult(result)
+        setDetectedLandmarks(result.landmarks)
+        setBackgroundRemoved(result.segmentedImage !== userData.palmImageData)
+        setDetectionMethod(`✅ 免费${result.method === 'free-canvas-bg-removal' ? '+背景优化' : ''}`)
+        
+        // 质量评估
+        const quality = assessDetectionQuality(result)
+        console.log(`🎯 Detection quality: ${quality.quality} (${quality.score}/100)`)
+        if (quality.suggestions.length > 0) {
+          console.log('💡 Suggestions:', quality.suggestions)
+        }
+        
+        updateUserData({
+          palmLandmarks: result.landmarks,
+          palmWorldLandmarks: result.worldLandmarks,
+          palmProcessedImage: result.segmentedImage
+        })
+        
+        trackEvent('palm_free_detection_success', {
+          method: result.method,
+          confidence: result.confidence,
+          landmarks: result.landmarks.length,
+          processingTime: result.processingTime,
+          quality: quality.quality,
+          score: quality.score
+        })
+        
+      } else {
+        throw new Error(`检测到的关键点不足: ${result.landmarks.length}/21`)
+      }
+      
+    } catch (error) {
+      console.error('❌ Free detection failed:', error)
+      setDetectionError(`免费检测失败: ${error instanceof Error ? error.message : 'Unknown error'}`)
+      setDetectionMethod('❌ 免费检测失败')
+      
+      // 提供重新拍照建议
+      setDetectionError('免费检测失败，建议：1) 确保手掌居中 2) 改善光线条件 3) 使用简洁背景')
+      
+      trackEvent('palm_free_detection_failed', {
+        error: error instanceof Error ? error.message : 'Unknown error'
+      })
+    } finally {
+      setIsDetecting(false)
+    }
+  }
   
   // 执行先进的AI手部检测和背景消除
   const performAdvancedHandDetection = async () => {
@@ -209,9 +281,9 @@ export default function Step15AIAnalysis({
   ];
   
   // 优先使用处理后的图片（背景已消除），然后是原始用户图片，最后是测试图片
-  const userImageData = advancedResult?.segmentedImage || userData.palmImageData || testImages[testImageIndex]?.src || '/palm/img/demohand.png';
+  const userImageData = advancedResult?.segmentedImage || freeResult?.segmentedImage || userData.palmImageData || testImages[testImageIndex]?.src || '/palm/img/demohand.png';
   const isRealUserImage = !!userData.palmImageData
-  const isProcessedImage = !!advancedResult?.segmentedImage
+  const isProcessedImage = !!(advancedResult?.segmentedImage || freeResult?.segmentedImage)
   
   // 严格使用真实检测的landmarks - 不再fallback到mock数据！
   const landmarks = detectedLandmarks || userData.palmLandmarks || []
@@ -462,9 +534,10 @@ export default function Step15AIAnalysis({
                   {advancedResult?.detectionMethod === 'florence-2' ? 'Florence-2' :
                    advancedResult?.detectionMethod === 'sam-2' ? 'SAM 2.1' :
                    advancedResult?.detectionMethod === 'handSegNet' ? 'HandSegNet' :
+                   freeResult ? '免费MediaPipe' :
                    'MediaPipe'}
                 </span>
-                <span className="text-gray-600">AI引擎</span>
+                <span className="text-gray-600">{freeResult ? '免费引擎' : 'AI引擎'}</span>
               </div>
               <div className="w-px h-3 bg-gray-300"></div>
               <div className="flex items-center gap-1">
@@ -480,7 +553,9 @@ export default function Step15AIAnalysis({
               <div className="w-px h-3 bg-gray-300"></div>
               <div className="flex items-center gap-1">
                 <span className="text-amber-500 font-bold">
-                  {advancedResult ? `${Math.round(advancedResult.confidence * 100)}%` : '99.2%'}
+                  {advancedResult ? `${Math.round(advancedResult.confidence * 100)}%` :
+                   freeResult ? `${Math.round(freeResult.confidence * 100)}%` : 
+                   '99.2%'}
                 </span>
                 <span className="text-gray-600">识别率</span>
               </div>

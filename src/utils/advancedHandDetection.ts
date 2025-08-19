@@ -224,15 +224,26 @@ async function cropImageToBoundingBox(
 }
 
 /**
- * 主要的先进手部检测函数
+ * 主要的先进手部检测函数 - 优化成本版本
  */
 export async function detectHandAdvanced(imageBase64: string): Promise<AdvancedHandDetectionResult> {
-  console.log('🚀 Starting advanced hand detection pipeline...')
+  console.log('🚀 Starting cost-optimized advanced hand detection pipeline...')
   const overallStartTime = performance.now()
   
+  // 成本优化：优先使用免费方案
+  const useAdvancedAI = process.env.NODE_ENV === 'production' && 
+                       process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY &&
+                       process.env.REPLICATE_API_TOKEN
+  
   try {
-    // 步骤1: Florence-2 零样本检测
-    let result = await detectHandWithFlorence2(imageBase64)
+    let result: AdvancedHandDetectionResult | null = null
+    
+    if (useAdvancedAI) {
+      // 步骤1: Florence-2 零样本检测 (付费用户)
+      result = await detectHandWithFlorence2(imageBase64)
+    } else {
+      console.log('💡 Using free MediaPipe detection (no API keys configured)')
+    }
     
     if (result) {
       // 步骤2: SAM 2.1 精确分割和背景消除
