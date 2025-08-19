@@ -280,9 +280,9 @@ export default function Step15AIAnalysis({
   ];
   
   // 优先使用处理后的图片（背景已消除），然后是原始用户图片，最后是测试图片
-  const userImageData = advancedResult?.segmentedImage || freeResult?.segmentedImage || userData.palmImageData || testImages[testImageIndex]?.src || '/palm/img/demohand.png';
+  const userImageData = advancedResult?.segmentedImage || freeResult?.segmentedImage || userData.palmProcessedImage || userData.palmImageData || testImages[testImageIndex]?.src || '/palm/img/demohand.png';
   const isRealUserImage = !!userData.palmImageData
-  const isProcessedImage = !!(advancedResult?.segmentedImage || freeResult?.segmentedImage)
+  const isProcessedImage = !!(advancedResult?.segmentedImage || freeResult?.segmentedImage || userData.palmProcessedImage)
   
   // 严格使用真实检测的landmarks - 不再fallback到mock数据！
   const landmarks = detectedLandmarks || userData.palmLandmarks || []
@@ -1230,9 +1230,17 @@ export default function Step15AIAnalysis({
                 if (userData.palmImageData) {
                   // 重置状态
                   setAdvancedResult(null)
+                  setFreeResult(null)
                   setDetectedLandmarks(null)
                   setBackgroundRemoved(false)
-                  performAdvancedHandDetection();
+                  
+                  // 智能选择检测方案
+                  const hasApiKeys = process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY && process.env.REPLICATE_API_TOKEN
+                  if (hasApiKeys && process.env.NODE_ENV === 'production') {
+                    performAdvancedHandDetection();
+                  } else {
+                    performFreeHandDetection();
+                  }
                 }
               }}
               className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"

@@ -14,6 +14,7 @@ export interface PalmUserData {
   palmCaptureMethod?: 'camera' | 'file' | 'gallery'  // 捕获方式：相机、文件上传或相册选择
   palmPhoto?: string
   palmImageData?: string  // Base64 encoded image data for display in Step15
+  palmProcessedImage?: string  // AI处理后的图片 (背景消除等)
   
   // MediaPipe 手部检测数据
   palmLandmarks?: NormalizedLandmark[]     // MediaPipe 21个关键点坐标 (归一化)
