@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
-import { getRealMediaPipeLandmarks } from '@/utils/mockMediaPipeData'
 import { detectHandFromBase64, validateHandLandmarks } from '@/utils/realHandDetection'
 import { detectHandAdvanced, validateAdvancedDetectionResult, type AdvancedHandDetectionResult } from '@/utils/advancedHandDetection'
 import { detectHandFree, assessDetectionQuality, type FreeHandDetectionResult } from '@/utils/freeHandDetection'
