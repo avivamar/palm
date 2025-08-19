@@ -10,19 +10,19 @@
   },
   "hero": {
     "badge": "AI驱动手相分析",
-    "title": "感到困顿或失调？你的双手已经知道原因",
-    "titleBefore": "感到困顿或失调？你的",
-    "titleAfter": "已经知道原因",
+    "title": "感到迷茫或失去方向？你的{highlight}早已知道答案",
+    "titleBefore": "感到迷茫或失去方向？你的",
+    "titleAfter": "早已知道答案",
     "highlight": "双手",
     "subtitle": {
-      "upload": "上传你的手相。",
-      "birth": "输入你的出生日期。",
-      "report": "获得由AI、占星术和手相学驱动的免费个性化报告。"
+      "upload": "上传你的手掌照片",
+      "birth": "输入你的出生日期",
+      "report": "获得由AI、占星术和手相学驱动的免费个性化报告"
     },
-    "cta": "开始我的免费分析",
-    "privacy": "无需注册 · 私密安全",
-    "analyzing": "AI正在分析手相模式...",
+    "cta": "开始免费手相分析",
+    "privacy": "无需注册 · 隐私安全",
+    "analyzing": "AI正在分析手掌纹路...",
     "start_analysis": "开始你的免费手相分析",
-    "analysis_subtitle": "上传手相照片获得个性化AI分析报告"
+    "analysis_subtitle": "上传你的手掌照片，获得个性化的AI分析报告"
   }
 }

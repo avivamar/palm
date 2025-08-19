@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
 import { getRealMediaPipeLandmarks } from '@/utils/mockMediaPipeData'
 import { detectHandFromBase64, validateHandLandmarks } from '@/utils/realHandDetection'
+import { detectHandAdvanced, validateAdvancedDetectionResult, type AdvancedHandDetectionResult } from '@/utils/advancedHandDetection'
 import { NormalizedLandmark } from '@mediapipe/tasks-vision'
 
 interface Step15Props {
@@ -66,6 +67,9 @@ export default function Step15AIAnalysis({
   const [detectedLandmarks, setDetectedLandmarks] = useState<NormalizedLandmark[] | null>(null)
   const [isDetecting, setIsDetecting] = useState(false)
   const [detectionError, setDetectionError] = useState<string | null>(null)
+  const [advancedResult, setAdvancedResult] = useState<AdvancedHandDetectionResult | null>(null)
+  const [backgroundRemoved, setBackgroundRemoved] = useState(false)
+  const [detectionMethod, setDetectionMethod] = useState<string>('未开始')
   
   useEffect(() => {
     trackEvent('palm_ai_analysis_view', { 
@@ -73,9 +77,9 @@ export default function Step15AIAnalysis({
       step: 15
     })
     
-    // 如果有用户图片，执行真实的MediaPipe检测
-    if (userData.palmImageData && !detectedLandmarks && !isDetecting) {
-      performRealHandDetection()
+    // 如果有用户图片，执行先进的AI检测
+    if (userData.palmImageData && !advancedResult && !isDetecting) {
+      performAdvancedHandDetection()
     }
     
     // 模拟AI分析进度
@@ -100,52 +104,97 @@ export default function Step15AIAnalysis({
     return () => clearInterval(analysisTimer)
   }, [userData.palmImageData])
   
-  // 执行真实的手部检测
-  const performRealHandDetection = async () => {
-    if (!userData.palmImageData) return
+  // 执行先进的AI手部检测和背景消除
+  const performAdvancedHandDetection = async () => {
+    if (!userData.palmImageData) {
+      console.warn('⚠️ No user image data available for advanced detection')
+      setDetectionError('没有用户图片数据')
+      return
+    }
     
     setIsDetecting(true)
     setDetectionError(null)
-    console.log('🚀 Starting real MediaPipe hand detection...')
+    setDetectionMethod('正在启动...')
+    console.log('🚀 Starting advanced AI hand detection pipeline...')
     
     try {
-      const result = await detectHandFromBase64(userData.palmImageData)
+      setDetectionMethod('Florence-2 检测中...')
+      const result = await detectHandAdvanced(userData.palmImageData)
       
-      if (validateHandLandmarks(result.landmarks)) {
+      if (validateAdvancedDetectionResult(result)) {
+        setAdvancedResult(result)
         setDetectedLandmarks(result.landmarks)
+        setBackgroundRemoved(result.segmentedImage !== userData.palmImageData)
+        setDetectionMethod(`✅ ${result.detectionMethod}`)
         
         // 保存检测结果到用户数据
         updateUserData({
           palmLandmarks: result.landmarks,
-          palmWorldLandmarks: result.worldLandmarks
+          palmWorldLandmarks: result.worldLandmarks,
+          palmProcessedImage: result.segmentedImage // 保存处理后的图片
         })
         
-        console.log('✅ Real hand detection successful:', {
+        console.log('✅ Advanced hand detection successful:', {
+          method: result.detectionMethod,
           handedness: result.handedness,
           confidence: result.confidence.toFixed(3),
-          landmarks: result.landmarks.length
+          landmarks: result.landmarks.length,
+          backgroundRemoved: result.segmentedImage !== userData.palmImageData,
+          processingTime: result.processingTime.toFixed(2) + 'ms'
         })
         
-        trackEvent('palm_real_detection_success', {
+        trackEvent('palm_advanced_detection_success', {
+          method: result.detectionMethod,
           handedness: result.handedness,
           confidence: result.confidence,
-          landmarks: result.landmarks.length
+          landmarks: result.landmarks.length,
+          backgroundRemoved: result.segmentedImage !== userData.palmImageData,
+          processingTime: result.processingTime
         })
       } else {
-        throw new Error('Invalid landmarks detected')
+        throw new Error('Advanced detection validation failed')
       }
       
     } catch (error) {
-      console.error('❌ Real hand detection failed:', error)
-      setDetectionError(error instanceof Error ? error.message : 'Detection failed')
+      console.error('❌ Advanced hand detection failed:', error)
+      setDetectionError(error instanceof Error ? error.message : 'Advanced detection failed')
+      setDetectionMethod('❌ 检测失败')
       
-      // fallback到mock数据
-      const mockLandmarks = getRealMediaPipeLandmarks()
-      setDetectedLandmarks(mockLandmarks)
-      
-      trackEvent('palm_detection_fallback', {
-        error: error instanceof Error ? error.message : 'Unknown error'
-      })
+      // 智能fallback策略 - 仍然尝试真实检测，但不使用mock数据
+      console.log('🔄 Trying fallback MediaPipe detection...')
+      try {
+        setDetectionMethod('MediaPipe 备用检测...')
+        const fallbackResult = await detectHandFromBase64(userData.palmImageData)
+        
+        if (validateHandLandmarks(fallbackResult.landmarks)) {
+          setDetectedLandmarks(fallbackResult.landmarks)
+          setDetectionMethod('✅ MediaPipe (备用)')
+          
+          updateUserData({
+            palmLandmarks: fallbackResult.landmarks,
+            palmWorldLandmarks: fallbackResult.worldLandmarks
+          })
+          
+          trackEvent('palm_fallback_detection_success', {
+            method: 'mediapipe',
+            confidence: fallbackResult.confidence,
+            landmarks: fallbackResult.landmarks.length
+          })
+        } else {
+          throw new Error('Fallback detection also failed')
+        }
+      } catch (fallbackError) {
+        console.error('❌ Fallback detection also failed:', fallbackError)
+        setDetectionMethod('❌ 所有方法失败')
+        
+        // 最后的resort - 告知用户重新拍照
+        setDetectionError('检测失败，请重新拍摄清晰的手掌照片，确保手掌居中且背景简洁')
+        
+        trackEvent('palm_all_detection_failed', {
+          originalError: error instanceof Error ? error.message : 'Unknown error',
+          fallbackError: fallbackError instanceof Error ? fallbackError.message : 'Unknown error'
+        })
+      }
     } finally {
       setIsDetecting(false)
     }
@@ -159,11 +208,13 @@ export default function Step15AIAnalysis({
     { src: '/palm/img/demohand.png', name: '演示图片' }
   ];
   
-  const userImageData = userData.palmImageData || testImages[testImageIndex]?.src || '/palm/img/demohand.png';
+  // 优先使用处理后的图片（背景已消除），然后是原始用户图片，最后是测试图片
+  const userImageData = advancedResult?.segmentedImage || userData.palmImageData || testImages[testImageIndex]?.src || '/palm/img/demohand.png';
   const isRealUserImage = !!userData.palmImageData
+  const isProcessedImage = !!advancedResult?.segmentedImage
   
-  // 使用真实检测的landmarks或fallback到mock数据
-  const landmarks = detectedLandmarks || userData.palmLandmarks || getRealMediaPipeLandmarks()
+  // 严格使用真实检测的landmarks - 不再fallback到mock数据！
+  const landmarks = detectedLandmarks || userData.palmLandmarks || []
   
   // 精确处理图片加载和坐标计算
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
@@ -392,16 +443,27 @@ export default function Step15AIAnalysis({
           transition={{ duration: 0.6 }}
           className="text-center space-y-3 mb-8"
         >
-          <h1 className="text-2xl font-bold text-violet-600">AI正在解读你的财富密码</h1>
+          <h1 className="text-2xl font-bold text-violet-600">
+            {isRealUserImage ? 'AI正在解读你的财富密码' : '高级AI检测演示'}
+          </h1>
           <p className="text-gray-600 leading-snug">
-            {isRealUserImage ? '🔍 正在分析您的手掌纹路特征' : '💡 演示智能分析过程'}
+            {isRealUserImage 
+              ? (isProcessedImage 
+                ? '🚀 使用2025年最先进的AI技术分析您的手掌' 
+                : '🔍 正在分析您的手掌纹路特征')
+              : '💡 演示2025年最新AI检测技术'}
           </p>
           
-          {/* MediaPipe信任指标 */}
-          <div className="mt-3 bg-gradient-to-r from-violet-50 to-purple-50 rounded-lg p-3">
-            <div className="flex items-center justify-center gap-4 text-xs">
+          {/* 2025年AI技术信任指标 */}
+          <div className="mt-3 bg-gradient-to-r from-blue-50 via-violet-50 to-green-50 rounded-lg p-3">
+            <div className="flex items-center justify-center gap-3 text-xs">
               <div className="flex items-center gap-1">
-                <span className="text-green-600 font-bold">MediaPipe</span>
+                <span className="text-blue-600 font-bold">
+                  {advancedResult?.detectionMethod === 'florence-2' ? 'Florence-2' :
+                   advancedResult?.detectionMethod === 'sam-2' ? 'SAM 2.1' :
+                   advancedResult?.detectionMethod === 'handSegNet' ? 'HandSegNet' :
+                   'MediaPipe'}
+                </span>
                 <span className="text-gray-600">AI引擎</span>
               </div>
               <div className="w-px h-3 bg-gray-300"></div>
@@ -411,7 +473,15 @@ export default function Step15AIAnalysis({
               </div>
               <div className="w-px h-3 bg-gray-300"></div>
               <div className="flex items-center gap-1">
-                <span className="text-amber-500 font-bold">99.2%</span>
+                <span className="text-green-600 font-bold">
+                  {backgroundRemoved ? '背景已消除' : '原始图像'}
+                </span>
+              </div>
+              <div className="w-px h-3 bg-gray-300"></div>
+              <div className="flex items-center gap-1">
+                <span className="text-amber-500 font-bold">
+                  {advancedResult ? `${Math.round(advancedResult.confidence * 100)}%` : '99.2%'}
+                </span>
                 <span className="text-gray-600">识别率</span>
               </div>
             </div>
@@ -425,18 +495,27 @@ export default function Step15AIAnalysis({
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
                 />
-                🔍 正在执行真实MediaPipe检测...
+                🚀 {detectionMethod}
+              </span>
+            ) : advancedResult ? (
+              <span className="text-green-600">
+                ✅ {detectionMethod} 完成！识别到 {landmarks?.length || 0} 个关键点
+                {advancedResult.processingTime && ` (${advancedResult.processingTime.toFixed(0)}ms)`}
+                {backgroundRemoved && ' + 背景已消除'}
+                ，分析进度 {Math.round(analysisProgress)}%
               </span>
             ) : detectedLandmarks ? (
               <span className="text-green-600">
-                ✅ 真实检测完成！识别到 {landmarks?.length || 21} 个关键点，分析进度 {Math.round(analysisProgress)}%
+                ✅ {detectionMethod} 完成！识别到 {landmarks?.length || 0} 个关键点，分析进度 {Math.round(analysisProgress)}%
               </span>
             ) : detectionError ? (
               <span className="text-red-600">
-                ⚠️ 检测失败，使用演示数据: {detectionError}
+                ⚠️ {detectionMethod}: {detectionError}
               </span>
+            ) : landmarks.length > 0 ? (
+              <span>🤖 AI已识别到 {landmarks.length} 个关键点，分析进度 {Math.round(analysisProgress)}%</span>
             ) : (
-              <span>🤖 AI已识别到 {landmarks?.length || 21} 个关键点，分析进度 {Math.round(analysisProgress)}%</span>
+              <span className="text-gray-500">⏳ 等待用户图片上传...</span>
             )}
           </div>
         </motion.section>
@@ -500,7 +579,7 @@ export default function Step15AIAnalysis({
               />
             </motion.div>
 
-            {/* 专业手相分析可视化 - 参考竞品效果 */}
+            {/* 专业手相分析可视化 - 仅在有真实检测结果时显示 */}
             {imageDisplayInfo.isLoaded && landmarks && landmarks.length >= 21 && (
               <svg className="absolute inset-0 w-full h-full pointer-events-none">
                 <defs>
@@ -1073,9 +1152,13 @@ export default function Step15AIAnalysis({
             
             <button
               onClick={() => {
-                // 手动重新检测
+                // 手动重新执行先进检测
                 if (userData.palmImageData) {
-                  performRealHandDetection();
+                  // 重置状态
+                  setAdvancedResult(null)
+                  setDetectedLandmarks(null)
+                  setBackgroundRemoved(false)
+                  performAdvancedHandDetection();
                 }
               }}
               className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
