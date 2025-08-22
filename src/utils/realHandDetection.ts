@@ -64,7 +64,7 @@ export async function initializeHandLandmarker(): Promise<HandLandmarker> {
       })
       console.log('✅ MediaPipe HandLandmarker initialized successfully with GPU delegate')
     } catch (gpuError) {
-      console.warn('⚠️ GPU delegate initialization failed, falling back to CPU:', gpuError)
+      console.warn('⚠️ GPU delegate initialization failed, falling back to CPU')
       handLandmarker = await HandLandmarkerCtor.createFromOptions(vision, {
         baseOptions: { modelAssetPath, delegate: 'CPU' },
         ...commonOptions,
@@ -143,17 +143,24 @@ export async function detectHandLandmarks(imageElement: HTMLImageElement): Promi
  */
 async function preprocessImageForDetection(img: HTMLImageElement): Promise<string> {
   return new Promise((resolve, reject) => {
-    const canvas = document.createElement('canvas')
-    const ctx = canvas.getContext('2d')
-    
-    if (!ctx) {
-      reject(new Error('Canvas context not available'))
-      return
-    }
-    
-    canvas.width = img.naturalWidth
-    canvas.height = img.naturalHeight
-    ctx.drawImage(img, 0, 0)
+    try {
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')
+      
+      if (!ctx) {
+        reject(new Error('Canvas context not available'))
+        return
+      }
+      
+      // 确保图片已加载
+      if (!img.naturalWidth || !img.naturalHeight) {
+        reject(new Error('Image not loaded'))
+        return
+      }
+      
+      canvas.width = img.naturalWidth
+      canvas.height = img.naturalHeight
+      ctx.drawImage(img, 0, 0)
     
     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
     const data = imageData.data
@@ -186,8 +193,12 @@ async function preprocessImageForDetection(img: HTMLImageElement): Promise<strin
       }
     }
     
-    ctx.putImageData(imageData, 0, 0)
-    resolve(canvas.toDataURL('image/jpeg', 0.95))
+      ctx.putImageData(imageData, 0, 0)
+      resolve(canvas.toDataURL('image/jpeg', 0.95))
+    } catch (error) {
+      console.error('图像预处理失败:', error)
+      reject(error)
+    }
   })
 }
 
@@ -226,8 +237,12 @@ export async function detectHandFromBase64(base64Image: string): Promise<{
         processedImg.onerror = async () => {
           // 预处理失败，使用原图
           console.warn('⚠️ 预处理图片加载失败，使用原图')
-          const result = await detectHandLandmarks(img)
-          resolve(result)
+          try {
+            const result = await detectHandLandmarks(img)
+            resolve(result)
+          } catch (detectError) {
+            reject(detectError)
+          }
         }
         
         processedImg.crossOrigin = 'anonymous'

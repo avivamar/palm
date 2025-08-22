@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { PalmUserData } from '@/stores/palmStore'
-import { detectHandFromBase64, validateHandLandmarks } from '@/utils/realHandDetection'
-import { detectHandAdvanced, validateAdvancedDetectionResult, type AdvancedHandDetectionResult } from '@/utils/advancedHandDetection'
+// realHandDetection functions are imported dynamically when needed
 import { detectHandFree, assessDetectionQuality, type FreeHandDetectionResult } from '@/utils/freeHandDetection'
 import { NormalizedLandmark } from '@mediapipe/tasks-vision'
 
@@ -67,10 +66,110 @@ export default function Step15AIAnalysis({
   const [detectedLandmarks, setDetectedLandmarks] = useState<NormalizedLandmark[] | null>(null)
   const [isDetecting, setIsDetecting] = useState(false)
   const [detectionError, setDetectionError] = useState<string | null>(null)
-  const [advancedResult, setAdvancedResult] = useState<AdvancedHandDetectionResult | null>(null)
+  const [advancedResult, setAdvancedResult] = useState<any>(null)
   const [freeResult, setFreeResult] = useState<FreeHandDetectionResult | null>(null)
   const [backgroundRemoved, setBackgroundRemoved] = useState(false)
   const [detectionMethod, setDetectionMethod] = useState<string>('未开始')
+  
+  // 检查环境配置并启动检测
+  const checkEnvironmentAndStartDetection = async () => {
+    try {
+      // 调用调试API检查环境配置
+      const response = await fetch('/api/debug/detection-env')
+      const envData = await response.json()
+      
+      console.log('🔧 环境变量检查:', {
+        ...envData.environment,
+        timestamp: envData.timestamp
+      })
+      
+      // 根据环境配置选择检测方案
+      if (envData.environment.canUseAdvancedAI && process.env.NODE_ENV === 'production') {
+        console.log('🚀 启用高级AI检测 (Florence-2 + SAM 2.1)')
+        // 通过API路由调用高级检测
+        performAdvancedHandDetectionViaAPI()
+      } else {
+        console.log('🆓 使用免费MediaPipe检测 (原因: canUseAdvancedAI=' + envData.environment.canUseAdvancedAI + ', NODE_ENV=' + process.env.NODE_ENV + ')')
+        performFreeHandDetection()
+      }
+    } catch (error) {
+      console.error('环境检查失败，使用免费检测:', error)
+      performFreeHandDetection()
+    }
+  }
+  
+  // 通过API路由调用高级检测
+  const performAdvancedHandDetectionViaAPI = async () => {
+    if (!userData.palmImageData) {
+      console.warn('⚠️ No user image data available for advanced detection')
+      setDetectionError('没有用户图片数据')
+      return
+    }
+    
+    setIsDetecting(true)
+    setDetectionError(null)
+    setDetectionMethod('高级AI检测中...')
+    console.log('🚀 通过API路由调用高级AI检测...')
+    
+    try {
+      // 先调用背景消除API
+      setDetectionMethod('背景消除中...')
+      const bgRemovalResponse = await fetch('/api/remove-background', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          image: userData.palmImageData,
+          model: 'u2net_hand'
+        })
+      })
+      
+      if (bgRemovalResponse.ok) {
+        const bgResult = await bgRemovalResponse.json()
+        if (bgResult.processedImage) {
+          console.log('✅ 背景消除成功')
+          setBackgroundRemoved(true)
+          
+          // 使用处理后的图片进行MediaPipe检测
+          setDetectionMethod('MediaPipe精准检测中...')
+          const { detectHandFromBase64 } = await import('@/utils/realHandDetection')
+          const result = await detectHandFromBase64(bgResult.processedImage)
+          
+          if (result.landmarks.length === 21) {
+            setDetectedLandmarks(result.landmarks)
+            setDetectionMethod('✅ 高级AI + 背景消除')
+            
+            updateUserData({
+              palmLandmarks: result.landmarks,
+              palmWorldLandmarks: result.worldLandmarks,
+              palmProcessedImage: bgResult.processedImage
+            })
+            
+            trackEvent('palm_advanced_api_detection_success', {
+              backgroundRemoved: true,
+              confidence: result.confidence,
+              landmarks: result.landmarks.length
+            })
+            
+            return
+          }
+        }
+      }
+      
+      // 如果背景消除失败或检测失败，回退到免费检测
+      console.warn('⚠️ 高级AI检测失败，回退到免费检测')
+      performFreeHandDetection()
+      
+    } catch (error) {
+      console.error('❌ 高级AI检测失败:', error)
+      setDetectionError('高级检测失败')
+      setDetectionMethod('❌ 检测失败')
+      
+      // 回退到免费检测
+      performFreeHandDetection()
+    } finally {
+      setIsDetecting(false)
+    }
+  }
   
   useEffect(() => {
     trackEvent('palm_ai_analysis_view', { 
@@ -80,27 +179,8 @@ export default function Step15AIAnalysis({
     
     // 如果有用户图片，智能选择检测方案
     if (userData.palmImageData && !advancedResult && !freeResult && !isDetecting) {
-      // 检查环境变量是否存在
-      const huggingFaceKey = process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY
-      const replicateToken = process.env.REPLICATE_API_TOKEN
-      const removeBgKey = process.env.REMOVE_BG_API_KEY
-      
-      console.log('🔧 环境变量检查:', {
-        huggingFaceKey: huggingFaceKey ? '✅ 已配置' : '❌ 缺失',
-        replicateToken: replicateToken ? '✅ 已配置' : '❌ 缺失',
-        removeBgKey: removeBgKey ? '✅ 已配置' : '❌ 缺失',
-        nodeEnv: process.env.NODE_ENV
-      })
-      
-      const hasAdvancedAI = huggingFaceKey && replicateToken
-      
-      if (hasAdvancedAI && process.env.NODE_ENV === 'production') {
-        console.log('🚀 启用高级AI检测 (Florence-2 + SAM 2.1)')
-        performAdvancedHandDetection() // 付费高级检测
-      } else {
-        console.log('🆓 使用免费MediaPipe检测')
-        performFreeHandDetection() // 免费检测
-      }
+      // 检查环境配置并选择检测方案
+      checkEnvironmentAndStartDetection()
     }
     
     // 模拟AI分析进度
@@ -189,101 +269,7 @@ export default function Step15AIAnalysis({
     }
   }
   
-  // 执行先进的AI手部检测和背景消除
-  const performAdvancedHandDetection = async () => {
-    if (!userData.palmImageData) {
-      console.warn('⚠️ No user image data available for advanced detection')
-      setDetectionError('没有用户图片数据')
-      return
-    }
-    
-    setIsDetecting(true)
-    setDetectionError(null)
-    setDetectionMethod('正在启动...')
-    console.log('🚀 Starting advanced AI hand detection pipeline...')
-    
-    try {
-      setDetectionMethod('Florence-2 检测中...')
-      const result = await detectHandAdvanced(userData.palmImageData)
-      
-      if (validateAdvancedDetectionResult(result)) {
-        setAdvancedResult(result)
-        setDetectedLandmarks(result.landmarks)
-        setBackgroundRemoved(result.segmentedImage !== userData.palmImageData)
-        setDetectionMethod(`✅ ${result.detectionMethod}`)
-        
-        // 保存检测结果到用户数据
-        updateUserData({
-          palmLandmarks: result.landmarks,
-          palmWorldLandmarks: result.worldLandmarks,
-          palmProcessedImage: result.segmentedImage // 保存处理后的图片
-        })
-        
-        console.log('✅ Advanced hand detection successful:', {
-          method: result.detectionMethod,
-          handedness: result.handedness,
-          confidence: result.confidence.toFixed(3),
-          landmarks: result.landmarks.length,
-          backgroundRemoved: result.segmentedImage !== userData.palmImageData,
-          processingTime: result.processingTime.toFixed(2) + 'ms'
-        })
-        
-        trackEvent('palm_advanced_detection_success', {
-          method: result.detectionMethod,
-          handedness: result.handedness,
-          confidence: result.confidence,
-          landmarks: result.landmarks.length,
-          backgroundRemoved: result.segmentedImage !== userData.palmImageData,
-          processingTime: result.processingTime
-        })
-      } else {
-        throw new Error('Advanced detection validation failed')
-      }
-      
-    } catch (error) {
-      console.error('❌ Advanced hand detection failed:', error)
-      setDetectionError(error instanceof Error ? error.message : 'Advanced detection failed')
-      setDetectionMethod('❌ 检测失败')
-      
-      // 智能fallback策略 - 仍然尝试真实检测，但不使用mock数据
-      console.log('🔄 Trying fallback MediaPipe detection...')
-      try {
-        setDetectionMethod('MediaPipe 备用检测...')
-        const fallbackResult = await detectHandFromBase64(userData.palmImageData)
-        
-        if (validateHandLandmarks(fallbackResult.landmarks)) {
-          setDetectedLandmarks(fallbackResult.landmarks)
-          setDetectionMethod('✅ MediaPipe (备用)')
-          
-          updateUserData({
-            palmLandmarks: fallbackResult.landmarks,
-            palmWorldLandmarks: fallbackResult.worldLandmarks
-          })
-          
-          trackEvent('palm_fallback_detection_success', {
-            method: 'mediapipe',
-            confidence: fallbackResult.confidence,
-            landmarks: fallbackResult.landmarks.length
-          })
-        } else {
-          throw new Error('Fallback detection also failed')
-        }
-      } catch (fallbackError) {
-        console.error('❌ Fallback detection also failed:', fallbackError)
-        setDetectionMethod('❌ 所有方法失败')
-        
-        // 最后的resort - 告知用户重新拍照
-        setDetectionError('检测失败，请重新拍摄清晰的手掌照片，确保手掌居中且背景简洁')
-        
-        trackEvent('palm_all_detection_failed', {
-          originalError: error instanceof Error ? error.message : 'Unknown error',
-          fallbackError: fallbackError instanceof Error ? fallbackError.message : 'Unknown error'
-        })
-      }
-    } finally {
-      setIsDetecting(false)
-    }
-  }
+  // 旧版本的高级检测函数已移除，现在使用 performAdvancedHandDetectionViaAPI
   
   // 获取用户的真实图片数据 - 使用测试图片
   const [testImageIndex, setTestImageIndex] = useState(0);
@@ -1248,24 +1234,9 @@ export default function Step15AIAnalysis({
                   setDetectedLandmarks(null)
                   setBackgroundRemoved(false)
                   
-                  // 智能选择检测方案
-                  const huggingFaceKey = process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY
-                  const replicateToken = process.env.REPLICATE_API_TOKEN
-                  const hasAdvancedAI = huggingFaceKey && replicateToken
-                  
-                  console.log('🔄 重新检测 - 环境变量状态:', {
-                    huggingFaceKey: huggingFaceKey ? '✅' : '❌',
-                    replicateToken: replicateToken ? '✅' : '❌',
-                    nodeEnv: process.env.NODE_ENV
-                  })
-                  
-                  if (hasAdvancedAI && process.env.NODE_ENV === 'production') {
-                    console.log('🚀 启用高级AI检测')
-                    performAdvancedHandDetection();
-                  } else {
-                    console.log('🆓 使用免费检测')
-                    performFreeHandDetection();
-                  }
+                  // 重新检测
+                  console.log('🔄 重新检测启动...')
+                  checkEnvironmentAndStartDetection()
                 }
               }}
               className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
