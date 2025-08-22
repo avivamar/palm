@@ -1,12 +1,10 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import {
-  PalmContactSection,
   PalmFAQSection,
   PalmFeaturesSection,
   PalmHeroSection,
   PalmHowItWorksSection,
-  PalmPricingSection,
   PalmTestimonialsSection,
 } from '@/components/palm';
 
@@ -47,9 +45,7 @@ export default async function PalmPage({ params }: PalmPageProps) {
       <PalmHowItWorksSection />
       <PalmFeaturesSection />
       <PalmTestimonialsSection />
-      <PalmPricingSection />
       <PalmFAQSection />
-      <PalmContactSection />
     </main>
   );
 }
