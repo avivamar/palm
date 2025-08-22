@@ -7,6 +7,7 @@ import {
   PalmHeroSection,
   PalmHowItWorksSection,
   PalmPricingSection,
+  PalmTestimonialsSection,
 } from '@/components/palm';
 
 type PalmPageProps = {
@@ -45,6 +46,7 @@ export default async function PalmPage({ params }: PalmPageProps) {
       <PalmHeroSection />
       <PalmHowItWorksSection />
       <PalmFeaturesSection />
+      <PalmTestimonialsSection />
       <PalmPricingSection />
       <PalmFAQSection />
       <PalmContactSection />

@@ -80,11 +80,25 @@ export default function Step15AIAnalysis({
     
     // 如果有用户图片，智能选择检测方案
     if (userData.palmImageData && !advancedResult && !freeResult && !isDetecting) {
-      const hasApiKeys = process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY && process.env.REPLICATE_API_TOKEN
+      // 检查环境变量是否存在
+      const huggingFaceKey = process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY
+      const replicateToken = process.env.REPLICATE_API_TOKEN
+      const removeBgKey = process.env.REMOVE_BG_API_KEY
       
-      if (hasApiKeys && process.env.NODE_ENV === 'production') {
+      console.log('🔧 环境变量检查:', {
+        huggingFaceKey: huggingFaceKey ? '✅ 已配置' : '❌ 缺失',
+        replicateToken: replicateToken ? '✅ 已配置' : '❌ 缺失',
+        removeBgKey: removeBgKey ? '✅ 已配置' : '❌ 缺失',
+        nodeEnv: process.env.NODE_ENV
+      })
+      
+      const hasAdvancedAI = huggingFaceKey && replicateToken
+      
+      if (hasAdvancedAI && process.env.NODE_ENV === 'production') {
+        console.log('🚀 启用高级AI检测 (Florence-2 + SAM 2.1)')
         performAdvancedHandDetection() // 付费高级检测
       } else {
+        console.log('🆓 使用免费MediaPipe检测')
         performFreeHandDetection() // 免费检测
       }
     }
@@ -1235,10 +1249,21 @@ export default function Step15AIAnalysis({
                   setBackgroundRemoved(false)
                   
                   // 智能选择检测方案
-                  const hasApiKeys = process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY && process.env.REPLICATE_API_TOKEN
-                  if (hasApiKeys && process.env.NODE_ENV === 'production') {
+                  const huggingFaceKey = process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY
+                  const replicateToken = process.env.REPLICATE_API_TOKEN
+                  const hasAdvancedAI = huggingFaceKey && replicateToken
+                  
+                  console.log('🔄 重新检测 - 环境变量状态:', {
+                    huggingFaceKey: huggingFaceKey ? '✅' : '❌',
+                    replicateToken: replicateToken ? '✅' : '❌',
+                    nodeEnv: process.env.NODE_ENV
+                  })
+                  
+                  if (hasAdvancedAI && process.env.NODE_ENV === 'production') {
+                    console.log('🚀 启用高级AI检测')
                     performAdvancedHandDetection();
                   } else {
+                    console.log('🆓 使用免费检测')
                     performFreeHandDetection();
                   }
                 }

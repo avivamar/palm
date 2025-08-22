@@ -1,6 +1,7 @@
+export { PalmContactSection } from './PalmContactSection';
+export { PalmFAQSection } from './PalmFAQSection';
+export { PalmFeaturesSection } from './PalmFeaturesSection';
 export { PalmHeroSection } from './PalmHeroSection';
 export { PalmHowItWorksSection } from './PalmHowItWorksSection';
-export { PalmFeaturesSection } from './PalmFeaturesSection';
 export { PalmPricingSection } from './PalmPricingSection';
-export { PalmFAQSection } from './PalmFAQSection';
-export { PalmContactSection } from './PalmContactSection';
+export { PalmTestimonialsSection } from './PalmTestimonialsSection';

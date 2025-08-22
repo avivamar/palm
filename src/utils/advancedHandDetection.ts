@@ -231,9 +231,16 @@ export async function detectHandAdvanced(imageBase64: string): Promise<AdvancedH
   const overallStartTime = performance.now()
   
   // 成本优化：优先使用免费方案
-  const useAdvancedAI = process.env.NODE_ENV === 'production' && 
-                       process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY &&
-                       process.env.REPLICATE_API_TOKEN
+  const huggingFaceKey = process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY
+  const replicateToken = process.env.REPLICATE_API_TOKEN
+  const useAdvancedAI = process.env.NODE_ENV === 'production' && huggingFaceKey && replicateToken
+  
+  console.log('🔍 高级检测环境检查:', {
+    nodeEnv: process.env.NODE_ENV,
+    huggingFaceKey: huggingFaceKey ? `${huggingFaceKey.slice(0, 8)}...` : '缺失',
+    replicateToken: replicateToken ? `${replicateToken.slice(0, 8)}...` : '缺失',
+    useAdvancedAI
+  })
   
   try {
     let result: AdvancedHandDetectionResult | null = null

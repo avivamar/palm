@@ -30,6 +30,13 @@ export async function POST(request: NextRequest) {
       )
     }
     
+    // 检查环境变量可用性
+    console.log('🔧 API环境变量检查:', {
+      REPLICATE_API_TOKEN: process.env.REPLICATE_API_TOKEN ? '✅ 已设置' : '❌ 缺失',
+      REMOVE_BG_API_KEY: process.env.REMOVE_BG_API_KEY ? '✅ 已设置' : '❌ 缺失',
+      NODE_ENV: process.env.NODE_ENV
+    })
+    
     console.log(`🎯 Starting background removal with model: ${model}`)
     const startTime = performance.now()
     

@@ -51,9 +51,10 @@ export async function initializeHandLandmarker(): Promise<HandLandmarker> {
     const commonOptions = {
       runningMode: 'IMAGE' as const,
       numHands: 1,
-      minHandDetectionConfidence: 0.5,
-      minHandPresenceConfidence: 0.5,
-      minTrackingConfidence: 0.5,
+      // 提高检测精度 - 降低阈值提高灵敏度
+      minHandDetectionConfidence: 0.3,  // 从 0.5 降低到 0.3
+      minHandPresenceConfidence: 0.3,   // 从 0.5 降低到 0.3
+      minTrackingConfidence: 0.3,       // 从 0.5 降低到 0.3
     }
 
     try {
@@ -138,6 +139,59 @@ export async function detectHandLandmarks(imageElement: HTMLImageElement): Promi
 }
 
 /**
+ * 图片预处理 - 提高MediaPipe检测精度
+ */
+async function preprocessImageForDetection(img: HTMLImageElement): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')
+    
+    if (!ctx) {
+      reject(new Error('Canvas context not available'))
+      return
+    }
+    
+    canvas.width = img.naturalWidth
+    canvas.height = img.naturalHeight
+    ctx.drawImage(img, 0, 0)
+    
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+    const data = imageData.data
+    
+    // 图像增强处理
+    for (let i = 0; i < data.length; i += 4) {
+      const r = data[i] ?? 0
+      const g = data[i + 1] ?? 0
+      const b = data[i + 2] ?? 0
+      
+      // 1. 提高对比度
+      const contrast = 1.3
+      const newR = Math.min(255, Math.max(0, (r - 128) * contrast + 128))
+      const newG = Math.min(255, Math.max(0, (g - 128) * contrast + 128))
+      const newB = Math.min(255, Math.max(0, (b - 128) * contrast + 128))
+      
+      // 2. 调整亮度 - 让手掌更清晰
+      const brightness = 1.1
+      data[i] = Math.min(255, newR * brightness)
+      data[i + 1] = Math.min(255, newG * brightness)
+      data[i + 2] = Math.min(255, newB * brightness)
+      
+      // 3. 锐化处理 - 增强边缘
+      const avgIntensity = ((data[i] ?? 0) + (data[i + 1] ?? 0) + (data[i + 2] ?? 0)) / 3
+      if (avgIntensity > 120) {
+        const sharpen = 1.15
+        data[i] = Math.min(255, (data[i] ?? 0) * sharpen)
+        data[i + 1] = Math.min(255, (data[i + 1] ?? 0) * sharpen)
+        data[i + 2] = Math.min(255, (data[i + 2] ?? 0) * sharpen)
+      }
+    }
+    
+    ctx.putImageData(imageData, 0, 0)
+    resolve(canvas.toDataURL('image/jpeg', 0.95))
+  })
+}
+
+/**
  * 从Base64图片进行手部检测
  */
 export async function detectHandFromBase64(base64Image: string): Promise<{
@@ -151,10 +205,43 @@ export async function detectHandFromBase64(base64Image: string): Promise<{
     
     img.onload = async () => {
       try {
-        const result = await detectHandLandmarks(img)
-        resolve(result)
+        // 预处理图片 - 提高对比度和清晰度
+        console.log('📝 预处理图片以提高检测精度...')
+        const processedImageData = await preprocessImageForDetection(img)
+        const processedImg = new Image()
+        
+        processedImg.onload = async () => {
+          try {
+            const result = await detectHandLandmarks(processedImg)
+            console.log('✅ 预处理图片检测成功')
+            resolve(result)
+          } catch (error) {
+            // 如果预处理后失败，尝试原图
+            console.warn('⚠️ 预处理图片检测失败，尝试原图:', error)
+            const fallbackResult = await detectHandLandmarks(img)
+            resolve(fallbackResult)
+          }
+        }
+        
+        processedImg.onerror = async () => {
+          // 预处理失败，使用原图
+          console.warn('⚠️ 预处理图片加载失败，使用原图')
+          const result = await detectHandLandmarks(img)
+          resolve(result)
+        }
+        
+        processedImg.crossOrigin = 'anonymous'
+        processedImg.src = processedImageData
+        
       } catch (error) {
-        reject(error)
+        // 预处理失败，直接使用原图
+        console.warn('⚠️ 预处理失败，直接使用原图:', error)
+        try {
+          const result = await detectHandLandmarks(img)
+          resolve(result)
+        } catch (detectionError) {
+          reject(detectionError)
+        }
       }
     }
     
