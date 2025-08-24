@@ -1,194 +1,262 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import { PalmUserData } from '@/stores/palmStore'
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
-interface Step10Props {
-  userData: PalmUserData
-  updateUserData: (data: Partial<PalmUserData>) => void
-  goToNextStep: () => void
-  trackEvent: (type: string, data?: any) => void
-  experiments: Record<string, string>
-  sessionId: string
-}
+import type { ZodiacSign } from '@/libs/astrology/zodiac';
+import type { PalmStepConfig } from '@/libs/palm/config';
+import type { PalmUserData } from '@/stores/palmStore';
 
-export default function Step10Progress({ 
-  trackEvent, 
-  goToNextStep 
-}: Step10Props) {
-  const [progress, setProgress] = useState(0)
-  const [counter, setCounter] = useState(0)
-  const [status, setStatus] = useState('开始分析...')
-  const [isComplete, setIsComplete] = useState(false)
-  
-  const targetCounter = 847329 // 目标数字
-  
+import { calculateZodiacSign } from '@/libs/astrology/zodiac';
+
+type Step10Props = {
+  userData: PalmUserData;
+  updateUserData: (data: Partial<PalmUserData>) => void;
+  goToNextStep: () => void;
+  trackEvent: (event: string, properties?: Record<string, any>) => void;
+  config: PalmStepConfig;
+  locale: string;
+  canProceed: boolean;
+  sessionId: string;
+  experiments: Record<string, any>;
+};
+
+const Step10Progress = ({
+  userData,
+  updateUserData: _updateUserData,
+  goToNextStep,
+  trackEvent: _trackEvent,
+  config: _config,
+  locale: _locale,
+  canProceed: _canProceed,
+  sessionId: _sessionId,
+  experiments: _experiments,
+}: Step10Props) => {
+  const [progress, setProgress] = useState(0);
+  const [currentStatus, setCurrentStatus] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+  const [zodiacSign, setZodiacSign] = useState<ZodiacSign | null>(null);
+
+  // Calculate zodiac sign from birth date
   useEffect(() => {
-    trackEvent('palm_progress_view', { 
-      timestamp: Date.now(),
-      step: 10
-    })
-    
-    // 设置今天日期（在JSX中使用）
-    
-    // 动画进度条和计数器
-    const progressInterval = setInterval(() => {
-      setProgress(prev => {
-        const next = prev + (Math.random() * 3 + 1)
-        if (next >= 100) {
-          clearInterval(progressInterval)
-          setProgress(100)
-          setIsComplete(true)
-          setStatus('分析完成！')
-          setTimeout(() => {
-            trackEvent('palm_progress_complete', { 
-              duration: Date.now() - performance.now()
-            })
-            goToNextStep()
-          }, 2000)
-          return 100
-        }
-        return next
-      })
-    }, 150)
-    
-    // 计数器动画
-    const counterInterval = setInterval(() => {
-      setCounter(prev => {
-        const increment = Math.floor(targetCounter / 100)
-        const next = prev + increment
-        if (next >= targetCounter) {
-          clearInterval(counterInterval)
-          return targetCounter
-        }
-        return next
-      })
-    }, 50)
-    
-    // 状态文字更新
-    const statusTexts = [
-      '开始分析...',
-      '读取掌纹数据...',
-      '分析生命线...',
-      '计算财富指数...',
-      '生成个性化建议...',
-      '准备报告...',
-      '分析完成！'
-    ]
-    
-    let statusIndex = 0
-    const statusInterval = setInterval(() => {
-      if (statusIndex < statusTexts.length - 1) {
-        statusIndex++
-        const nextStatus = statusTexts[statusIndex]
-        if (nextStatus) {
-          setStatus(nextStatus)
-        }
-      }
-    }, 2000)
-    
-    return () => {
-      clearInterval(progressInterval)
-      clearInterval(counterInterval)
-      clearInterval(statusInterval)
+    if (userData.birthDate) {
+      const sign = calculateZodiacSign(userData.birthDate);
+      setZodiacSign(sign);
     }
-  }, []) // 移除依赖，避免无限循环
-  
-  // 计算圆形进度条的stroke-dashoffset
-  const circumference = 2 * Math.PI * 40 // r=40
-  const strokeDashoffset = circumference - (progress / 100) * circumference
-  
+  }, [userData.birthDate]);
+
+  // Personalized status texts based on zodiac sign
+  const getStatusTexts = () => {
+    const baseTexts = [
+      'Analyzing your palm lines...',
+      'Processing hand geometry...',
+      'Calculating life patterns...',
+      'Generating insights...',
+      'Finalizing your reading...',
+    ];
+
+    if (zodiacSign) {
+      return [
+        `Analyzing your ${zodiacSign.name} palm characteristics...`,
+        `Processing ${zodiacSign.name} hand geometry patterns...`,
+        `Calculating life patterns for ${zodiacSign.name}...`,
+        `Generating ${zodiacSign.name}-specific insights...`,
+        'Finalizing your personalized reading...',
+      ];
+    }
+
+    return baseTexts;
+  };
+
+  const statusTexts = getStatusTexts();
+
+  // Progress animation
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          return 100;
+        }
+        return prev + Math.random() * 3 + 1;
+      });
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Status text animation
+  useEffect(() => {
+    const statusInterval = setInterval(() => {
+      setCurrentStatus((prev) => {
+        if (prev >= statusTexts.length - 1) {
+          clearInterval(statusInterval);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 2000);
+
+    return () => clearInterval(statusInterval);
+  }, [statusTexts.length]);
+
+  // Complete animation and proceed
+  useEffect(() => {
+    if (progress >= 100 && currentStatus >= statusTexts.length - 1) {
+      setTimeout(() => {
+        setIsComplete(true);
+        setTimeout(() => {
+          goToNextStep();
+        }, 2000);
+      }, 1000);
+    }
+  }, [progress, currentStatus, statusTexts.length, goToNextStep]);
+
+  const getCompletionMessage = () => {
+    if (zodiacSign) {
+      return `Your ${zodiacSign.name} palm analysis is complete! ${zodiacSign.element} energy flows through your hands, revealing unique insights about your destiny.`;
+    }
+    return 'Your palm analysis is complete! Unique insights about your destiny have been revealed.';
+  };
+
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#5E4BFB] via-[#6C63FF] to-[#9C6BFF] text-white">
-      {/* 顶部导航 */}
-      <header className="absolute top-4 left-4">
-        <img src="/palm/img/logo.svg" className="h-6" alt="ThePalmistryLife" />
-      </header>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 text-white p-6">
+      <div className="max-w-md w-full space-y-8">
+        {/* Header */}
+        <div className="text-center space-y-4">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="w-20 h-20 mx-auto bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center"
+          >
+            <svg
+              className="w-10 h-10 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z"
+              />
+            </svg>
+          </motion.div>
 
-      {/* 统计说明 */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-center px-6 leading-snug"
-      >
-        我们已帮助 <span className="font-bold">{counter.toLocaleString()}</span> 位用户发现财富机会！<br/>
-        <span className="text-xs text-white/70">
-          *平均投资收益率提升3.7% | 截至 {new Date().toLocaleDateString('zh-CN')}
-        </span>
-      </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-2xl font-bold"
+          >
+            {zodiacSign ? `${zodiacSign.name} Palm Analysis` : 'Palm Analysis'}
+          </motion.h1>
 
-      {/* SVG 圆环 */}
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        className="relative mt-10 w-40 h-40"
-      >
-        <svg width="100%" height="100%">
-          <circle cx="50%" cy="50%" r="40" stroke="#ffffff30" strokeWidth="8" fill="none"/>
-          <circle 
-            cx="50%" 
-            cy="50%" 
-            r="40"
-            stroke="#ffffff" 
-            strokeWidth="8" 
-            fill="none"
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            strokeDashoffset={strokeDashoffset}
-            style={{ transition: 'stroke-dashoffset 0.3s linear' }}
-            transform="rotate(-90 80 80)"
-          />
-        </svg>
-        <span className="absolute inset-0 flex items-center justify-center text-xl font-semibold">
-          {Math.round(progress)} %
-        </span>
-      </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-purple-200"
+          >
+            {zodiacSign
+              ? `Analyzing your ${zodiacSign.name} characteristics and palm patterns...`
+              : 'Analyzing your unique palm patterns...'}
+          </motion.p>
+        </div>
 
-      {/* 状态文字 */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.6 }}
-        className="mt-8 text-center"
-      >
-        <p className="text-lg font-medium">{status}</p>
-        {!isComplete && (
-          <div className="flex justify-center mt-2">
-            <div className="flex space-x-1">
-              <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
-              <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-              <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-            </div>
+        {/* Progress Bar */}
+        <div className="space-y-4">
+          <div className="w-full bg-purple-800/30 rounded-full h-3 overflow-hidden">
+            <motion.div
+              className="h-full bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.5 }}
+            />
           </div>
-        )}
-      </motion.div>
 
-      {/* 完成消息 */}
-      {isComplete && (
+          <div className="flex justify-between text-sm text-purple-200">
+            <span>Progress</span>
+            <span>
+              {Math.round(progress)}
+              %
+            </span>
+          </div>
+        </div>
+
+        {/* Status Text */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="mt-6 text-center"
+          key={currentStatus}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          className="text-center"
         >
-          <div className="text-2xl mb-2">✨</div>
-          <p className="text-lg font-semibold">您的财富报告已准备就绪！</p>
-          <p className="text-sm text-white/80 mt-1">正在跳转到报告页面...</p>
+          <p className="text-lg text-purple-100">
+            {statusTexts[currentStatus] || statusTexts[0]}
+          </p>
         </motion.div>
-      )}
 
-      {/* 底部信息 */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.0 }}
-        className="absolute bottom-8 text-center text-sm text-white/60"
-      >
-        <p>分析基于AI算法和专业占星学原理</p>
-      </motion.div>
+        {/* Zodiac Information */}
+        {zodiacSign && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1 }}
+            className="bg-purple-800/20 rounded-lg p-4 text-center space-y-2"
+          >
+            <div className="text-2xl">{zodiacSign.symbol}</div>
+            <div className="text-sm text-purple-200">
+              {zodiacSign.element}
+              {' • '}
+              {zodiacSign.dateRange}
+            </div>
+            <div className="text-xs text-purple-300">
+              {zodiacSign.traits.slice(0, 3).join(' • ')}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Completion Message */}
+        {isComplete && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center space-y-4"
+          >
+            <div className="text-4xl">✨</div>
+            <p className="text-lg text-green-300 font-medium">
+              {getCompletionMessage()}
+            </p>
+            <p className="text-sm text-purple-200">
+              Redirecting to your results...
+            </p>
+          </motion.div>
+        )}
+
+        {/* Animated dots */}
+        <div className="flex justify-center space-x-2">
+          {[0, 1, 2].map((i) => (
+            <motion.div
+              key={i}
+              className="w-2 h-2 bg-purple-400 rounded-full"
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                delay: i * 0.2,
+              }}
+            />
+          ))}
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
+
+export default Step10Progress;

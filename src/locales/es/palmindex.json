@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "title": "Palm AI - Lectura de Palma Avanzada con Inteligencia Artificial",
+    "description": "Descubre tu futuro a través de la lectura de palma impulsada por IA. Sube tu foto de palma, ingresa tu fecha de nacimiento y obtén información personalizada sobre amor, carrera, salud y personalidad.",
+    "keywords": "lectura de palma, quiromancia IA, adivinación, astrología, análisis de personalidad, predicción del futuro, análisis de palma, adivinación IA"
+  },
+  "hero": {
+    "badge": "Lectura de Palma con IA",
+    "titleBefore": "¿Te sientes atascado o fuera de sincronía? Tus ",
+    "highlight": "manos",
+    "titleAfter": " ya saben por qué",
+    "subtitle": {
+      "upload": "Sube tu foto de palma.",
+      "birth": "Ingresa tu fecha de nacimiento.",
+      "report": "Obtén un informe personalizado GRATIS impulsado por IA, astrología y quiromancia."
+    },
+    "cta": "Comenzar Mi Lectura Gratis",
+    "privacy": "Sin registro · Privado y Seguro",
+    "analyzing": "IA analizando patrones de palma...",
+    "start_analysis": "Comienza Tu Análisis de Palma Gratis",
+    "analysis_subtitle": "Sube tus fotos de palma para obtener un informe de análisis personalizado con IA"
+  },
+  "howItWorks": {
+    "title": "Cómo Funciona",
+    "subtitle": "Tu viaje al autodescubrimiento en pasos simples",
+    "steps": [
+      {
+        "title": "Subir Foto de Palma",
+        "description": "Toma una foto clara y bien iluminada de la palma de tu mano dominante"
+      },
+      {
+        "title": "Ingresar Detalles de Nacimiento",
+        "description": "Proporciona tu fecha y hora de nacimiento para alineación astrológica"
+      },
+      {
+        "title": "Análisis de Palma con IA",
+        "description": "Redes neuronales avanzadas escanean líneas, montes y formas de la palma"
+      },
+      {
+        "title": "Fusión Astrológica",
+        "description": "Combina quiromancia con astrología y ciencia de la personalidad"
+      },
+      {
+        "title": "Procesamiento Instantáneo",
+        "description": "Cálculo ultrarrápido genera información en tiempo real"
+      },
+      {
+        "title": "Informe Detallado",
+        "description": "Recibe análisis completo cubriendo todos los aspectos de la vida"
+      }
+    ],
+    "privacy": {
+      "title": "Privacidad Protegida",
+      "description": "Tus fotos están encriptadas y se eliminan automáticamente después del análisis"
+    }
+  },
+  "features": {
+    "title": "Perspectivas Integrales de Vida",
+    "subtitle": "Descubre cada aspecto de tu vida a través del análisis avanzado de palma",
+    "categories": [
+      {
+        "title": "Amor y Relaciones",
+        "description": "Descubre tu compatibilidad romántica, patrones de relación y perspectivas de vida amorosa",
+        "highlights": ["Análisis de compatibilidad", "Tiempo de relación", "Lectura de línea del amor"]
+      },
+      {
+        "title": "Carrera y Éxito",
+        "description": "Descubre tus fortalezas profesionales, camino profesional y potencial de éxito",
+        "highlights": ["Orientación profesional", "Indicadores de éxito", "Fortalezas profesionales"]
+      },
+      {
+        "title": "Salud y Bienestar",
+        "description": "Obtén información sobre tus patrones de salud, vitalidad y recomendaciones de bienestar",
+        "highlights": ["Indicadores de salud", "Evaluación de vitalidad", "Consejos de bienestar"]
+      },
+      {
+        "title": "Perspectivas de Personalidad",
+        "description": "Comprende tus rasgos de carácter, fortalezas y áreas de desarrollo personal",
+        "highlights": ["Análisis de carácter", "Rasgos de personalidad", "Áreas de crecimiento"]
+      }
+    ],
+    "accuracyBadge": "95% de Precisión",
+    "usersBadge": "500K+ Usuarios"
+  },
+  "testimonials": {
+    "title": "Lo Que Dicen Nuestros Usuarios",
+    "subtitle": "Experiencias reales de personas que han descubierto su camino",
+    "reviews": [
+      {
+        "name": "Sarah Chen",
+        "role": "Directora de Marketing",
+        "content": "¡Las perspectivas profesionales fueron increíblemente precisas! Me ayudó a entender mejor mis fortalezas profesionales.",
+        "rating": 5
+      },
+      {
+        "name": "Michael Rodriguez",
+        "role": "Emprendedor",
+        "content": "El análisis de relaciones fue exacto. Me dio claridad sobre mis patrones de vida amorosa.",
+        "rating": 5
+      },
+      {
+        "name": "Emily Johnson",
+        "role": "Profesora",
+        "content": "¡Tecnología asombrosa! Las perspectivas de personalidad me ayudaron con el autodescubrimiento y el crecimiento personal.",
+        "rating": 5
+      }
+    ],
+    "cta": "Únete a miles descubriendo su destino"
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Todo lo que necesitas saber sobre la lectura de palma",
+    "questions": [
+      {
+        "question": "¿Qué tan precisa es la lectura de palma con IA?",
+        "answer": "Nuestro sistema de IA logra un 95% de precisión al combinar el conocimiento tradicional de quiromancia con algoritmos avanzados de aprendizaje automático entrenados en miles de lecturas de palma."
+      },
+      {
+        "question": "¿Qué tipo de foto debo subir?",
+        "answer": "Toma una foto clara de tu palma con buena iluminación y los dedos ligeramente separados. Muestra toda tu palma desde la muñeca hasta las puntas de los dedos. La iluminación interior y exterior funcionan bien."
+      },
+      {
+        "question": "¿Cuánto tiempo toma el análisis?",
+        "answer": "Nuestra IA procesa tu lectura de palma en menos de 2 minutos. Recibirás tu informe detallado inmediatamente después de que se complete el análisis."
+      },
+      {
+        "question": "¿Mis datos son seguros y privados?",
+        "answer": "Sí, absolutamente. Usamos encriptación de grado empresarial, tus fotos se eliminan automáticamente después del análisis y nunca compartimos tu información personal."
+      },
+      {
+        "question": "¿Puedo obtener múltiples lecturas?",
+        "answer": "¡Sí! Puedes obtener lecturas para ambas manos o actualizar tu lectura a medida que cambia tu vida. Los paquetes premium incluyen lecturas ilimitadas."
+      },
+      {
+        "question": "¿Ofrecen reembolsos?",
+        "answer": "Sí, ofrecemos una garantía de devolución de dinero de 30 días. Si no estás satisfecho con tu lectura, contacta a nuestro equipo de soporte para un reembolso completo."
+      }
+    ],
+    "contactSupport": "¿Todavía tienes preguntas? Contacta a nuestro equipo de soporte"
+  }
+}

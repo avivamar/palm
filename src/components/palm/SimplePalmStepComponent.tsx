@@ -96,6 +96,9 @@ export function SimplePalmStepComponent({ step, locale }: SimplePalmStepComponen
       trackEvent={trackEvent}
       experiments={{}}
       sessionId={`palm_${Date.now()}`}
+      config={{} as any}
+      locale="en"
+      canProceed={true}
     />
   )
 }

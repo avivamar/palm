@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "title": "Palm AI - Advanced Palm Reading with Artificial Intelligence",
+    "description": "Discover your future through AI-powered palm reading. Upload your palm photo, enter your birth date, and get personalized insights about love, career, health, and personality.",
+    "keywords": "palm reading, AI palmistry, fortune telling, astrology, personality analysis, future prediction, palm analysis, AI divination"
+  },
+  "hero": {
+    "badge": "AI-Powered Palm Reading",
+    "titleBefore": "Feeling stuck or out of sync? Your ",
+    "highlight": "hands",
+    "titleAfter": " already know why",
+    "subtitle": {
+      "upload": "Upload your palm.",
+      "birth": "Enter your birth date.",
+      "report": "Get a FREE personalized report powered by AI, astrology, and palmistry."
+    },
+    "cta": "Start My Free Reading",
+    "privacy": "No signup needed · Private & Secure",
+    "analyzing": "AI analyzing palm patterns...",
+    "start_analysis": "Start Your Free Palm Analysis",
+    "analysis_subtitle": "Upload your palm photos to get a personalized AI analysis report"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "subtitle": "Your journey to self-discovery in simple steps",
+    "steps": [
+      {
+        "title": "Upload Palm Photo",
+        "description": "Take a clear, well-lit photo of your dominant hand palm"
+      },
+      {
+        "title": "Enter Birth Details",
+        "description": "Provide your birth date and time for astrological alignment"
+      },
+      {
+        "title": "AI Palm Analysis",
+        "description": "Advanced neural networks scan palm lines, mounts and shapes"
+      },
+      {
+        "title": "Astrological Fusion",
+        "description": "Combines palmistry with astrology and personality science"
+      },
+      {
+        "title": "Instant Processing",
+        "description": "Lightning-fast computation generates insights in real-time"
+      },
+      {
+        "title": "Detailed Report",
+        "description": "Receive comprehensive analysis covering all life aspects"
+      }
+    ],
+    "privacy": {
+      "title": "Privacy Protected",
+      "description": "Your photos are encrypted and automatically deleted after analysis"
+    }
+  },
+  "features": {
+    "title": "Comprehensive Life Insights",
+    "subtitle": "Discover every aspect of your life through advanced palm analysis",
+    "categories": [
+      {
+        "title": "Love & Relationships",
+        "description": "Discover your romantic compatibility, relationship patterns, and love life insights",
+        "highlights": ["Compatibility analysis", "Relationship timing", "Love line reading"]
+      },
+      {
+        "title": "Career & Success",
+        "description": "Uncover your professional strengths, career path, and success potential",
+        "highlights": ["Career guidance", "Success indicators", "Professional strengths"]
+      },
+      {
+        "title": "Health & Wellness",
+        "description": "Get insights into your health patterns, vitality, and wellness recommendations",
+        "highlights": ["Health indicators", "Vitality assessment", "Wellness tips"]
+      },
+      {
+        "title": "Personality Insights",
+        "description": "Understand your character traits, strengths, and personal development areas",
+        "highlights": ["Character analysis", "Personality traits", "Growth areas"]
+      }
+    ],
+    "accuracyBadge": "95% Accuracy",
+    "usersBadge": "500K+ Users"
+  },
+  "testimonials": {
+    "title": "What Our Users Say",
+    "subtitle": "Real experiences from people who've discovered their path",
+    "reviews": [
+      {
+        "name": "Sarah Chen",
+        "role": "Marketing Director",
+        "content": "The career insights were incredibly accurate! It helped me understand my professional strengths better.",
+        "rating": 5
+      },
+      {
+        "name": "Michael Rodriguez",
+        "role": "Entrepreneur",
+        "content": "The relationship analysis was spot-on. It gave me clarity about my love life patterns.",
+        "rating": 5
+      },
+      {
+        "name": "Emily Johnson",
+        "role": "Teacher",
+        "content": "Amazing technology! The personality insights helped me with self-discovery and personal growth.",
+        "rating": 5
+      }
+    ],
+    "cta": "Join thousands discovering their destiny"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about palm reading",
+    "questions": [
+      {
+        "question": "How accurate is AI palm reading?",
+        "answer": "Our AI system achieves 95% accuracy by combining traditional palmistry knowledge with advanced machine learning algorithms trained on thousands of palm readings."
+      },
+      {
+        "question": "What kind of photo should I upload?",
+        "answer": "Take a clear photo of your palm in good lighting with fingers slightly spread. Show your entire palm from wrist to fingertips. Both indoor and outdoor lighting work well."
+      },
+      {
+        "question": "How long does the analysis take?",
+        "answer": "Our AI processes your palm reading in under 2 minutes. You'll receive your detailed report immediately after the analysis is complete."
+      },
+      {
+        "question": "Is my data secure and private?",
+        "answer": "Yes, absolutely. We use enterprise-grade encryption, your photos are automatically deleted after analysis, and we never share your personal information."
+      },
+      {
+        "question": "Can I get multiple readings?",
+        "answer": "Yes! You can get readings for both hands or update your reading as your life changes. Premium packages include unlimited readings."
+      },
+      {
+        "question": "Do you offer refunds?",
+        "answer": "Yes, we offer a 30-day money-back guarantee. If you're not satisfied with your reading, contact our support team for a full refund."
+      }
+    ],
+    "contactSupport": "Still have questions? Contact our support team"
+  }
+}

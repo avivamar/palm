@@ -6,16 +6,13 @@ import {
   CheckCircle,
   CreditCard,
   Download,
-  Plus,
+  Sparkles,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import React, { useEffect, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
 import { Skeleton } from '@/components/ui/skeleton';
 
 type PaymentMethod = {
@@ -110,7 +107,6 @@ const getStatusIcon = (status: Invoice['status']) => {
 };
 
 export function BillingContent() {
-  const [isAddingPaymentMethod, setIsAddingPaymentMethod] = useState(false);
   const [billingData, setBillingData] = useState<BillingData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -121,14 +117,34 @@ export function BillingContent() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch('/api/dashboard/billing');
+      // For demo purposes, we'll simulate getting user status
+      const user = { email: 'demo@example.com' };
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch billing data');
-      }
+      // For now, return mock data. This will be replaced with real API call
+      const mockData: BillingData = {
+        currentPlan: {
+          name: user ? 'Free Trial' : 'No Plan',
+          price: 0,
+          currency: 'USD',
+          interval: 'month',
+          nextBilling: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+          status: user ? 'active' : 'inactive',
+        },
+        paymentMethods: [],
+        invoices: [],
+        usage: {
+          apiCalls: 0,
+          storage: 0,
+          bandwidth: 0,
+        },
+        stats: {
+          totalSpent: 0,
+          totalOrders: 0,
+          avgOrderValue: 0,
+        },
+      };
 
-      const data = await response.json();
-      setBillingData(data);
+      setBillingData(mockData);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
@@ -140,21 +156,6 @@ export function BillingContent() {
   useEffect(() => {
     fetchBillingData();
   }, []);
-
-  const handleAddPaymentMethod = () => {
-    // TODO: Implement add payment method functionality
-    setIsAddingPaymentMethod(true);
-  };
-
-  const handleRemovePaymentMethod = (_methodId: string) => {
-    // TODO: Implement remove payment method functionality
-    // Remove payment method from user account
-  };
-
-  const handleSetDefaultPaymentMethod = (_methodId: string) => {
-    // TODO: Implement set default payment method functionality
-    // Set payment method as default
-  };
 
   const handleDownloadInvoice = (invoiceId: string) => {
     // TODO: Implement download invoice functionality
@@ -219,187 +220,88 @@ export function BillingContent() {
       {/* Current Plan */}
       <Card>
         <CardHeader>
-          <CardTitle>{t('billing.current_plan.title')}</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Sparkles className="h-5 w-5" />
+            {t('billing.current_plan.title')}
+          </CardTitle>
           <CardDescription>
             {t('billing.current_plan.description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <div>
-              <h3 className="text-lg font-semibold">{billingData.currentPlan.name}</h3>
-              <p className="text-muted-foreground">
-                $
-                {billingData.currentPlan.price.toFixed(2)}
-                /
-                {billingData.currentPlan.interval}
+          {billingData.currentPlan.status === 'inactive' ? (
+            <div className="text-center py-8">
+              <Sparkles className="mx-auto h-12 w-12 text-primary mb-4" />
+              <h3 className="text-lg font-semibold mb-2">
+                Start Your Palm Reading Journey
+              </h3>
+              <p className="text-muted-foreground mb-6">
+                Get unlimited palm readings with AI-powered insights
               </p>
-              <p className="text-sm text-muted-foreground mt-1">
-                {t('billing.current_plan.next_billing', {
-                  date: new Date(billingData.currentPlan.nextBilling).toLocaleDateString(),
-                })}
-              </p>
+              <Button 
+                onClick={() => window.location.href = '/palm'}
+                className="bg-primary hover:bg-primary/90"
+              >
+                Start Free Trial
+              </Button>
             </div>
-            <div className="flex gap-2">
-              <Button variant="outline">{t('billing.current_plan.change_plan')}</Button>
-              <Button variant="outline">{t('billing.current_plan.cancel_subscription')}</Button>
+          ) : (
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <div>
+                <h3 className="text-lg font-semibold">{billingData.currentPlan.name}</h3>
+                <p className="text-muted-foreground">
+                  $
+                  {billingData.currentPlan.price.toFixed(2)}
+                  /
+                  {billingData.currentPlan.interval}
+                </p>
+                {billingData.currentPlan.price === 0 && (
+                  <p className="text-sm text-green-600 mt-1">
+                    Free trial active - Upload and analyze palm photos for free!
+                  </p>
+                )}
+              </div>
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline"
+                  onClick={() => window.location.href = '/pricing'}
+                >
+                  {billingData.currentPlan.price === 0 ? 'View Plans' : t('billing.current_plan.change_plan')}
+                </Button>
+                {billingData.currentPlan.price > 0 && (
+                  <Button variant="outline" className="text-destructive hover:text-destructive">
+                    {t('billing.current_plan.cancel_subscription')}
+                  </Button>
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </CardContent>
       </Card>
 
       {/* Payment Methods */}
       <Card>
         <CardHeader>
-          <div className="flex justify-between items-center">
-            <div>
-              <CardTitle>{t('billing.payment_methods.title')}</CardTitle>
-              <CardDescription>
-                {t('billing.payment_methods.description')}
-              </CardDescription>
-            </div>
-            <Button onClick={handleAddPaymentMethod}>
-              <Plus className="mr-2 h-4 w-4" />
-              {t('billing.payment_methods.add_payment_method')}
-            </Button>
-          </div>
+          <CardTitle>{t('billing.payment_methods.title')}</CardTitle>
+          <CardDescription>
+            {t('billing.payment_methods.description')}
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
-            {billingData.paymentMethods.length > 0
-              ? (
-                  billingData.paymentMethods.map((method, index) => (
-                    <div key={method.id}>
-                      <div className="flex items-center justify-between p-4 border rounded-lg">
-                        <div className="flex items-center gap-4">
-                          <CreditCard className="h-8 w-8 text-muted-foreground" />
-                          <div>
-                            {method.type === 'card' && (
-                              <>
-                                <p className="font-medium">
-                                  {method.brand?.toUpperCase()}
-                                  {' '}
-                                  ****
-                                  {' '}
-                                  {method.last4 ?? ''}
-                                </p>
-                                <p className="text-sm text-muted-foreground">
-                                  {t('billing.payment_methods.expires', {
-                                    month: method.expiryMonth ?? 0,
-                                    year: method.expiryYear ?? 0,
-                                  })}
-                                </p>
-                              </>
-                            )}
-                            {method.type === 'paypal' && (
-                              <>
-                                <p className="font-medium">PayPal</p>
-                                <p className="text-sm text-muted-foreground">{method.email ?? ''}</p>
-                              </>
-                            )}
-                            {method.type === 'bank' && (
-                              <>
-                                <p className="font-medium">{method.bankName ?? ''}</p>
-                                <p className="text-sm text-muted-foreground">
-                                  {t('billing.payment_methods.ending_in', { last4: method.last4 ?? '' })}
-                                </p>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          {method.isDefault && (
-                            <Badge variant="secondary">{t('billing.payment_methods.default')}</Badge>
-                          )}
-                          <div className="flex gap-2">
-                            {!method.isDefault && (
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => handleSetDefaultPaymentMethod(method.id)}
-                              >
-                                {t('billing.payment_methods.set_default')}
-                              </Button>
-                            )}
-                            <Button
-                              variant="ghost"
-                              size="sm"
-                              onClick={() => handleRemovePaymentMethod(method.id)}
-                            >
-                              {t('billing.payment_methods.remove')}
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                      {index < billingData.paymentMethods.length - 1 && <Separator className="my-4" />}
-                    </div>
-                  ))
-                )
-              : (
-                  <div className="text-center py-8">
-                    <CreditCard className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-                    <h3 className="text-lg font-semibold mb-2">{t('billing.payment_methods.no_methods')}</h3>
-                    <p className="text-muted-foreground mb-4">
-                      {t('billing.payment_methods.no_methods_desc')}
-                    </p>
-                    <Button onClick={handleAddPaymentMethod}>
-                      <Plus className="mr-2 h-4 w-4" />
-                      {t('billing.payment_methods.add_payment_method')}
-                    </Button>
-                  </div>
-                )}
+          <div className="text-center py-8">
+            <CreditCard className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
+            <p className="text-muted-foreground">
+              Payment methods are managed through our secure checkout process.
+            </p>
+            {billingData.currentPlan.price > 0 && (
+              <p className="text-sm text-muted-foreground mt-2">
+                Your subscription payments are processed securely through Stripe.
+              </p>
+            )}
           </div>
         </CardContent>
       </Card>
 
-      {/* Add Payment Method Form */}
-      {isAddingPaymentMethod && (
-        <Card>
-          <CardHeader>
-            <CardTitle>{t('billing.payment_methods.add_payment_method')}</CardTitle>
-            <CardDescription>
-              {t('billing.payment_methods.add_payment_method_desc')}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="cardNumber">{t('billing.payment_methods.card_number')}</Label>
-                  <Input id="cardNumber" placeholder="1234 5678 9012 3456" />
-                </div>
-                <div>
-                  <Label htmlFor="cardName">{t('billing.payment_methods.cardholder_name')}</Label>
-                  <Input id="cardName" placeholder="John Doe" />
-                </div>
-              </div>
-              <div className="grid grid-cols-3 gap-4">
-                <div>
-                  <Label htmlFor="expiryMonth">{t('billing.payment_methods.expiry_month')}</Label>
-                  <Input id="expiryMonth" placeholder="MM" />
-                </div>
-                <div>
-                  <Label htmlFor="expiryYear">{t('billing.payment_methods.expiry_year')}</Label>
-                  <Input id="expiryYear" placeholder="YYYY" />
-                </div>
-                <div>
-                  <Label htmlFor="cvv">{t('billing.payment_methods.cvv')}</Label>
-                  <Input id="cvv" placeholder="123" />
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <Button>{t('billing.payment_methods.add_payment_method')}</Button>
-                <Button
-                  variant="outline"
-                  onClick={() => setIsAddingPaymentMethod(false)}
-                >
-                  {t('billing.payment_methods.cancel')}
-                </Button>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      )}
 
       {/* Billing History */}
       <Card>

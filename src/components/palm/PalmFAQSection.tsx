@@ -14,44 +14,16 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 export function PalmFAQSection() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
-
-  const faqs = [
-    {
-      question: 'How accurate is AI palm reading?',
-      answer: 'Our AI combines traditional palmistry knowledge with modern machine learning, achieving over 85% accuracy in personality trait identification. The system analyzes thousands of palm features and cross-references them with astrological data for comprehensive insights.',
-    },
-    {
-      question: 'What kind of photo should I upload?',
-      answer: 'Upload a clear, well-lit photo of your dominant hand palm facing the camera. Ensure all palm lines are visible, avoid shadows, and take the photo in natural light for best results. The image should be at least 1080p resolution.',
-    },
-    {
-      question: 'How long does the analysis take?',
-      answer: 'Most readings are completed within 30-60 seconds. Our AI processes your palm image instantly, but generating the comprehensive report with astrological insights may take up to 2 minutes for premium readings.',
-    },
-    {
-      question: 'Is my data secure and private?',
-      answer: 'Absolutely. We use end-to-end encryption for all uploads. Your photos are automatically deleted after analysis, and we never store personal images. All data is processed securely and complies with GDPR and privacy regulations.',
-    },
-    {
-      question: 'Can I get multiple readings?',
-      answer: 'Yes! Basic and Premium plans allow one reading, but you can purchase additional readings anytime. Lifetime Access includes unlimited re-readings as your life evolves and changes.',
-    },
-    {
-      question: 'What payment methods do you accept?',
-      answer: 'We accept all major credit cards (Visa, MasterCard, American Express), PayPal, Apple Pay, and Google Pay. All transactions are secured with 256-bit SSL encryption.',
-    },
-    {
-      question: 'Do you offer refunds?',
-      answer: 'Yes, we offer a 30-day money-back guarantee. If you\'re not satisfied with your reading, contact our support team for a full refund, no questions asked.',
-    },
-    {
-      question: 'How is this different from traditional palm reading?',
-      answer: 'Our AI combines the wisdom of traditional palmistry with modern technology and astrological insights. You get instant, consistent results without the subjectivity of human interpretation, plus detailed written reports you can reference anytime.',
-    },
-  ];
+  const t = useTranslations('palmindex.faq');
+  
+  const faqs = t.raw('questions') as Array<{
+    question: string;
+    answer: string;
+  }>;
 
   const toggleFAQ = (index: number) => {
     setOpenFAQ(openFAQ === index ? null : index);
@@ -70,13 +42,13 @@ export function PalmFAQSection() {
         >
           <Badge variant="secondary" className="mb-4 bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300">
             <HelpCircle className="w-3 h-3 mr-1" />
-            Got Questions?
+            {t('title')}
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            Frequently Asked Questions
+            {t('subtitle')}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Everything you need to know about Palm AI and how it works.
+            {t('contactSupport')}
           </p>
         </motion.div>
 
@@ -161,17 +133,17 @@ export function PalmFAQSection() {
         >
           <Card className="p-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
             <h3 className="text-xl font-bold mb-4">
-              Still Have Questions?
+              {t('contactSupport')}
             </h3>
             <p className="mb-6 opacity-90">
-              Our support team is here to help you get the most out of your palm reading experience.
+              {t('subtitle')}
             </p>
             <Button 
               variant="secondary" 
               size="lg"
               className="bg-white text-blue-600 hover:bg-gray-100"
             >
-              Contact Support
+              {t('contactSupport')}
             </Button>
           </Card>
         </motion.div>

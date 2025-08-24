@@ -5,38 +5,41 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Heart, Briefcase, TrendingUp, Users, Star, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 export function PalmFeaturesSection() {
+  const t = useTranslations('palmindex.features');
+
   const features = [
     {
       icon: Heart,
-      title: 'Love & Relationships',
-      description: 'Discover your romantic compatibility, relationship patterns, and love life insights',
-      highlights: ['Compatibility analysis', 'Relationship timing', 'Love line reading'],
+      title: t('categories.0.title'),
+      description: t('categories.0.description'),
+      highlights: t.raw('categories.0.highlights') as string[],
       color: 'from-pink-500 to-rose-500',
       bgColor: 'bg-pink-50 dark:bg-pink-950',
     },
     {
       icon: Briefcase,
-      title: 'Career & Success',
-      description: 'Uncover your professional strengths, career path, and success potential',
-      highlights: ['Career guidance', 'Success indicators', 'Professional strengths'],
+      title: t('categories.1.title'),
+      description: t('categories.1.description'),
+      highlights: t.raw('categories.1.highlights') as string[],
       color: 'from-blue-500 to-indigo-500',
       bgColor: 'bg-blue-50 dark:bg-blue-950',
     },
     {
       icon: TrendingUp,
-      title: 'Health & Wellness',
-      description: 'Get insights into your health patterns, vitality, and wellness recommendations',
-      highlights: ['Health indicators', 'Vitality assessment', 'Wellness tips'],
+      title: t('categories.2.title'),
+      description: t('categories.2.description'),
+      highlights: t.raw('categories.2.highlights') as string[],
       color: 'from-green-500 to-emerald-500',
       bgColor: 'bg-green-50 dark:bg-green-950',
     },
     {
       icon: Users,
-      title: 'Personality Insights',
-      description: 'Understand your character traits, strengths, and personal development areas',
-      highlights: ['Character analysis', 'Personality traits', 'Growth areas'],
+      title: t('categories.3.title'),
+      description: t('categories.3.description'),
+      highlights: t.raw('categories.3.highlights') as string[],
       color: 'from-purple-500 to-violet-500',
       bgColor: 'bg-purple-50 dark:bg-purple-950',
     },
@@ -76,14 +79,13 @@ export function PalmFeaturesSection() {
         >
           <Badge variant="secondary" className="mb-4 bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300">
             <Star className="w-3 h-3 mr-1" />
-            Comprehensive Analysis
+            {t('accuracyBadge')}
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            What Your Palm Reveals
+            {t('title')}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Get deep insights into every aspect of your life through advanced AI palm reading 
-            combined with astrological wisdom.
+            {t('subtitle')}
           </p>
         </motion.div>
 
@@ -138,7 +140,7 @@ export function PalmFeaturesSection() {
           className="text-center mb-12"
         >
           <h3 className="text-2xl font-bold mb-8 text-gray-800 dark:text-gray-200">
-            What Our Users Say
+            {t('usersBadge')}
           </h3>
           
           <div className="grid md:grid-cols-3 gap-6">

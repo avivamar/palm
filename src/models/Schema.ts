@@ -39,6 +39,8 @@ export const imageMimeTypeEnum = pgEnum('image_mime_type', ['image/jpeg', 'image
 export const subscriptionStatusEnum = pgEnum('subscription_status', ['active', 'canceled', 'incomplete', 'incomplete_expired', 'past_due', 'trialing', 'unpaid']);
 export const subscriptionPlanEnum = pgEnum('subscription_plan', ['free', 'basic', 'pro', 'premium']);
 export const usageResourceEnum = pgEnum('usage_resource', ['chat_messages', 'ai_calls', 'api_requests', 'storage_mb']);
+export const paymentMethodTypeEnum = pgEnum('payment_method_type', ['card', 'bank_account', 'paypal', 'alipay', 'wechat_pay']);
+export const cardBrandEnum = pgEnum('card_brand', ['visa', 'mastercard', 'amex', 'discover', 'unionpay', 'jcb', 'diners']);
 
 // Table Schemas
 
@@ -350,6 +352,68 @@ export const subscriptionUsageSchema = pgTable('subscription_usage', {
   periodIdx: index('idx_usage_period').on(table.periodStart, table.periodEnd),
   resetAtIdx: index('idx_usage_reset_at').on(table.resetAt),
   subscriptionIdIdx: index('idx_usage_subscription_id').on(table.subscriptionId),
+}));
+
+// Payment methods table for storing user payment methods (支付方法管理)
+export const paymentMethodsSchema = pgTable('payment_methods', {
+  id: text('id').primaryKey(), // Nanoid generated
+  userId: text('user_id').notNull().references(() => usersSchema.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
+  
+  // Stripe payment method details
+  stripePaymentMethodId: text('stripe_payment_method_id').unique().notNull(),
+  stripeCustomerId: text('stripe_customer_id').notNull(),
+  
+  // Payment method type and details
+  type: paymentMethodTypeEnum('type').notNull(),
+  
+  // Card specific fields
+  cardBrand: cardBrandEnum('card_brand'),
+  cardLast4: varchar('card_last4', { length: 4 }),
+  cardExpMonth: integer('card_exp_month'),
+  cardExpYear: integer('card_exp_year'),
+  cardFingerprint: text('card_fingerprint'), // For duplicate detection
+  
+  // Bank account specific fields
+  bankName: text('bank_name'),
+  bankLast4: varchar('bank_last4', { length: 4 }),
+  bankAccountType: varchar('bank_account_type', { length: 20 }), // checking, savings
+  
+  // PayPal/Alipay/WeChat specific fields
+  paypalEmail: text('paypal_email'),
+  digitalWalletId: text('digital_wallet_id'),
+  
+  // Billing details
+  billingName: text('billing_name'),
+  billingEmail: text('billing_email'),
+  billingPhone: text('billing_phone'),
+  billingAddressLine1: text('billing_address_line1'),
+  billingAddressLine2: text('billing_address_line2'),
+  billingAddressCity: text('billing_address_city'),
+  billingAddressState: text('billing_address_state'),
+  billingAddressPostalCode: text('billing_address_postal_code'),
+  billingAddressCountry: varchar('billing_address_country', { length: 2 }), // ISO country code
+  
+  // Status and metadata
+  isDefault: boolean('is_default').default(false).notNull(),
+  isActive: boolean('is_active').default(true).notNull(),
+  verificationStatus: varchar('verification_status', { length: 50 }), // verified, pending, failed
+  
+  // Security and compliance
+  lastUsedAt: timestamp('last_used_at', { withTimezone: true, mode: 'date' }),
+  failedAttempts: integer('failed_attempts').default(0),
+  
+  // Metadata for additional info
+  metadata: jsonb('metadata'), // Additional provider-specific data
+  
+  createdAt: timestamp('created_at', { withTimezone: true, mode: 'date' }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true, mode: 'date' }).defaultNow(),
+}, table => ({
+  // Indexes for performance
+  userIdIdx: index('idx_payment_methods_user_id').on(table.userId),
+  stripePaymentMethodIdx: uniqueIndex('idx_payment_methods_stripe_id').on(table.stripePaymentMethodId),
+  defaultIdx: index('idx_payment_methods_default').on(table.userId, table.isDefault),
+  typeIdx: index('idx_payment_methods_type').on(table.type),
+  activeIdx: index('idx_payment_methods_active').on(table.isActive),
 }));
 
 // Palm AI Analysis Tables
