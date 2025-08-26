@@ -8,53 +8,53 @@ import { Badge as BadgeComponent } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 
 export function PalmHowItWorksSection() {
-  const t = useTranslations('palmindex.howItWorks');
+  const t = useTranslations('palmindex');
 
   const steps = [
     {
       icon: Upload,
-      title: t('steps.0.title'),
-      description: t('steps.0.description'),
+      title: t('howItWorks.steps.0.title'),
+      description: t('howItWorks.steps.0.description'),
       color: 'from-purple-500 via-purple-600 to-indigo-600',
       bgColor: 'bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-purple-950 dark:to-indigo-950',
       glowColor: 'shadow-purple-500/20',
     },
     {
       icon: Calendar,
-      title: t('steps.1.title'),
-      description: t('steps.1.description'),
+      title: t('howItWorks.steps.1.title'),
+      description: t('howItWorks.steps.1.description'),
       color: 'from-blue-500 via-blue-600 to-cyan-600',
       bgColor: 'bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-950 dark:to-cyan-950',
       glowColor: 'shadow-blue-500/20',
     },
     {
       icon: Brain,
-      title: t('steps.2.title'),
-      description: t('steps.2.description'),
+      title: t('howItWorks.steps.2.title'),
+      description: t('howItWorks.steps.2.description'),
       color: 'from-indigo-500 via-indigo-600 to-purple-600',
       bgColor: 'bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-indigo-950 dark:to-purple-950',
       glowColor: 'shadow-indigo-500/20',
     },
     {
       icon: Sparkles,
-      title: t('steps.3.title'),
-      description: t('steps.3.description'),
+      title: t('howItWorks.steps.3.title'),
+      description: t('howItWorks.steps.3.description'),
       color: 'from-cyan-500 via-cyan-600 to-teal-600',
       bgColor: 'bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-cyan-950 dark:to-teal-950',
       glowColor: 'shadow-cyan-500/20',
     },
     {
       icon: Zap,
-      title: t('steps.4.title'),
-      description: t('steps.4.description'),
+      title: t('howItWorks.steps.4.title'),
+      description: t('howItWorks.steps.4.description'),
       color: 'from-yellow-500 via-orange-500 to-red-500',
       bgColor: 'bg-gradient-to-br from-yellow-50 to-orange-50 dark:from-yellow-950 dark:to-orange-950',
       glowColor: 'shadow-yellow-500/20',
     },
     {
       icon: FileText,
-      title: t('steps.5.title'),
-      description: t('steps.5.description'),
+      title: t('howItWorks.steps.5.title'),
+      description: t('howItWorks.steps.5.description'),
       color: 'from-emerald-500 via-green-600 to-teal-600',
       bgColor: 'bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-950 dark:to-green-950',
       glowColor: 'shadow-emerald-500/20',
@@ -74,10 +74,10 @@ export function PalmHowItWorksSection() {
         >
           <BadgeComponent variant="secondary" className="mb-4 bg-gradient-to-r from-purple-100 to-indigo-100 text-purple-700 dark:from-purple-900 dark:to-indigo-900 dark:text-purple-300 border-0 shadow-lg">
             <Brain className="w-3 h-3 mr-1" />
-            {t('title')}
+            {t('howItWorks.title')}
           </BadgeComponent>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-            {t('subtitle')}
+            {t('howItWorks.subtitle')}
           </h2>
         </motion.div>
 
@@ -127,7 +127,7 @@ export function PalmHowItWorksSection() {
           <Card className="inline-flex items-center gap-3 px-6 py-4 bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800">
             <Shield className="w-5 h-5 text-green-600 dark:text-green-400" />
             <span className="text-green-800 dark:text-green-200 font-medium">
-              🚫 {t('privacy.description')}
+              🚫 {t('howItWorks.privacy.description')}
             </span>
           </Card>
         </motion.div>

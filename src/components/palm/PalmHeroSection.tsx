@@ -12,7 +12,7 @@ import { PalmAnalysisForm } from './PalmAnalysisForm';
 export function PalmHeroSection() {
   const [isHovered, setIsHovered] = useState(false);
   const [showAnalysisForm, setShowAnalysisForm] = useState(false);
-  const t = useTranslations('palm.hero');
+  const t = useTranslations('palmindex');
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden palm-page-bg">
@@ -40,7 +40,7 @@ export function PalmHeroSection() {
             >
               <Badge variant="secondary" className="bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300" suppressHydrationWarning>
                 <Sparkles className="w-3 h-3 mr-1" />
-                {t('badge')}
+                {t('hero.badge')}
               </Badge>
             </motion.div>
 
@@ -52,7 +52,7 @@ export function PalmHeroSection() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white leading-tight"
               suppressHydrationWarning
             >
-              {t('titleBefore')}
+              {t('hero.titleBefore')}
               <motion.span 
                 className="relative inline-block bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 bg-clip-text text-transparent font-extrabold"
                 initial={{ scale: 1 }}
@@ -65,7 +65,7 @@ export function PalmHeroSection() {
                   ease: "easeInOut"
                 }}
               >
-                {t('highlight')}
+                {t('hero.highlight')}
                 <motion.div
                   className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full shadow-lg"
                   initial={{ scaleX: 0, opacity: 0 }}
@@ -83,7 +83,7 @@ export function PalmHeroSection() {
                   }}
                 />
               </motion.span>
-              {t('titleAfter')}
+              {t('hero.titleAfter')}
             </motion.h1>
 
             {/* Subtitle */}
@@ -95,15 +95,15 @@ export function PalmHeroSection() {
             >
               <div className="flex items-center justify-center lg:justify-start gap-2">
                 <Camera className="w-5 h-5 text-purple-500" />
-                <span>{t('subtitle.upload')}</span>
+                <span>{t('hero.subtitle.upload')}</span>
               </div>
               <div className="flex items-center justify-center lg:justify-start gap-2">
                 <Sparkles className="w-5 h-5 text-blue-500" />
-                <span>{t('subtitle.birth')}</span>
+                <span>{t('hero.subtitle.birth')}</span>
               </div>
               <div className="flex items-center justify-center lg:justify-start gap-2">
                 <Zap className="w-5 h-5 text-indigo-500" />
-                <span>{t('subtitle.report')}</span>
+                <span>{t('hero.subtitle.report')}</span>
               </div>
             </motion.div>
 
@@ -122,7 +122,7 @@ export function PalmHeroSection() {
                 onClick={() => setShowAnalysisForm(true)}
               >
                 <Upload className={`w-5 h-5 mr-2 transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`} />
-                {t('cta')}
+                {t('hero.cta')}
                 <motion.span
                   className="ml-2"
                   animate={{ x: isHovered ? 5 : 0 }}
@@ -133,7 +133,7 @@ export function PalmHeroSection() {
               </Button>
               
               <p className="text-sm text-gray-500 dark:text-gray-400">
-                {t('privacy')}
+                {t('hero.privacy')}
               </p>
             </motion.div>
           </motion.div>
@@ -193,7 +193,7 @@ export function PalmHeroSection() {
                   transition={{ delay: 2 }}
                   className="text-center text-sm text-gray-600 dark:text-gray-400 mt-4"
                 >
-                  {t('analyzing')}
+                  {t('hero.analyzing')}
                 </motion.p>
               </div>
             </Card>
@@ -213,7 +213,7 @@ export function PalmHeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-3xl md:text-4xl font-bold mb-4 palm-fade-in"
               >
-                {t('start_analysis')}
+                {t('hero.start_analysis')}
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0, y: -10 }}
@@ -221,7 +221,7 @@ export function PalmHeroSection() {
                 transition={{ delay: 0.1 }}
                 className="text-lg text-gray-600 dark:text-gray-300"
               >
-                {t('analysis_subtitle')}
+                {t('hero.analysis_subtitle')}
               </motion.p>
             </div>
 

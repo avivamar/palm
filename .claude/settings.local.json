@@ -154,7 +154,10 @@
       "WebFetch(domain:ai.google.dev)",
       "WebFetch(domain:developers.google.com)",
       "WebFetch(domain:www.researchgate.net)",
-      "WebFetch(domain:appnebula.co)"
+      "WebFetch(domain:appnebula.co)",
+      "Bash(if [ -f \"/Users/aviva/github/avivamar/palm/src/locales/$locale/palmindex.json\" ])",
+      "Bash(jq:*)",
+      "Bash(npm start)"
     ],
     "deny": []
   }

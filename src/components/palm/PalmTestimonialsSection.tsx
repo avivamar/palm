@@ -7,9 +7,9 @@ import { Card } from '@/components/ui/card';
 import { useTranslations } from 'next-intl';
 
 export function PalmTestimonialsSection() {
-  const t = useTranslations('palmindex.testimonials');
+  const t = useTranslations('palmindex');
   
-  const testimonials = t.raw('reviews') as Array<{
+  const testimonials = (t.raw('testimonials.reviews') || []) as Array<{
     name: string;
     role: string;
     content: string;
@@ -30,19 +30,19 @@ export function PalmTestimonialsSection() {
         >
           <Badge variant="secondary" className="mb-4 bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300">
             <Star className="w-3 h-3 mr-1" />
-            {t('title')}
+            {t('testimonials.title')}
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            {t('subtitle')}
+            {t('testimonials.subtitle')}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            {t('cta')}
+            {t('testimonials.cta')}
           </p>
         </motion.div>
 
         {/* Testimonials Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {testimonials.map((testimonial, index) => (
+          {Array.isArray(testimonials) && testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}

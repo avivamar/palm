@@ -16,22 +16,22 @@ type PalmPageProps = {
 
 export async function generateMetadata({ params }: PalmPageProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'palm.meta' });
+  const t = await getTranslations({ locale, namespace: 'palmindex' });
 
   return {
-    title: t('title'),
-    description: t('description'),
-    keywords: t('keywords'),
+    title: t('meta.title'),
+    description: t('meta.description'),
+    keywords: t('meta.keywords'),
     openGraph: {
-      title: t('title'),
-      description: t('description'),
+      title: t('meta.title'),
+      description: t('meta.description'),
       type: 'website',
       locale,
     },
     twitter: {
       card: 'summary_large_image',
-      title: t('title'),
-      description: t('description'),
+      title: t('meta.title'),
+      description: t('meta.description'),
     },
   };
 }

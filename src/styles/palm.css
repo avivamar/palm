@@ -7,18 +7,20 @@
    颜色变量定义
    ========================================================================== */
 :root {
-  /* Palm 主题色 */
-  --palm-primary: #667eea;
-  --palm-primary-dark: #5a6fd8;
-  --palm-primary-light: #7c94ed;
+  /* Palm 主题色 - 紫色系 */
+  --palm-primary: #a855f7;
+  --palm-primary-dark: #9333ea;
+  --palm-primary-light: #c084fc;
   
-  /* Palm 渐变色 */
-  --palm-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --palm-gradient-light: linear-gradient(135deg, #7c94ed 0%, #8e5bb8 100%);
+  /* Palm 渐变色 - 紫色系 */
+  --palm-gradient: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);
+  --palm-gradient-light: linear-gradient(135deg, #c084fc 0%, #6366f1 100%);
   
-  /* Palm 辅助色 */
-  --palm-purple: #764ba2;
-  --palm-blue: #667eea;
+  /* Palm 辅助色 - 紫色主题 */
+  --palm-purple: #a855f7;
+  --palm-violet: #8b5cf6;
+  --palm-indigo: #6366f1;
+  --palm-blue: #3b82f6;
   --palm-gold: #ffd700;
   --palm-pink: #ff6b9d;
   
@@ -55,6 +57,24 @@
 
 /* 暗色模式 */
 [data-theme="dark"], .dark {
+  /* Palm 暗色模式主题色调整 */
+  --palm-primary: #c084fc;
+  --palm-primary-dark: #a855f7;
+  --palm-primary-light: #d8b4fe;
+  
+  /* Palm 暗色模式渐变色调整 */
+  --palm-gradient: linear-gradient(135deg, #c084fc 0%, #4f46e5 100%);
+  --palm-gradient-light: linear-gradient(135deg, #d8b4fe 0%, #6366f1 100%);
+  
+  /* Palm 暗色模式辅助色调整 */
+  --palm-purple: #c084fc;
+  --palm-violet: #a78bfa;
+  --palm-indigo: #818cf8;
+  --palm-blue: #60a5fa;
+  --palm-gold: #fbbf24;
+  --palm-pink: #f472b6;
+  
+  /* 暗色模式灰度色反转 */
   --palm-gray-50: #1f2937;
   --palm-gray-100: #374151;
   --palm-gray-200: #4b5563;

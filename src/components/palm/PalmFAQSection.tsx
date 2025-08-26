@@ -18,9 +18,9 @@ import { useTranslations } from 'next-intl';
 
 export function PalmFAQSection() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
-  const t = useTranslations('palmindex.faq');
+  const t = useTranslations('palmindex');
   
-  const faqs = t.raw('questions') as Array<{
+  const faqs = (t.raw('faq.questions') || []) as Array<{
     question: string;
     answer: string;
   }>;
@@ -42,19 +42,19 @@ export function PalmFAQSection() {
         >
           <Badge variant="secondary" className="mb-4 bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300">
             <HelpCircle className="w-3 h-3 mr-1" />
-            {t('title')}
+            {t('faq.title')}
           </Badge>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            {t('subtitle')}
+            {t('faq.subtitle')}
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            {t('contactSupport')}
+            {t('faq.contactSupport')}
           </p>
         </motion.div>
 
         {/* FAQ Items */}
         <div className="space-y-4 mb-12">
-          {faqs.map((faq, index) => (
+          {Array.isArray(faqs) && faqs.map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -133,17 +133,17 @@ export function PalmFAQSection() {
         >
           <Card className="p-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
             <h3 className="text-xl font-bold mb-4">
-              {t('contactSupport')}
+              {t('faq.contactSupport')}
             </h3>
             <p className="mb-6 opacity-90">
-              {t('subtitle')}
+              {t('faq.subtitle')}
             </p>
             <Button 
               variant="secondary" 
               size="lg"
               className="bg-white text-blue-600 hover:bg-gray-100"
             >
-              {t('contactSupport')}
+              {t('faq.contactSupport')}
             </Button>
           </Card>
         </motion.div>
