@@ -12,7 +12,7 @@ import { PalmAnalysisForm } from './PalmAnalysisForm';
 export function PalmHeroSection() {
   const [isHovered, setIsHovered] = useState(false);
   const [showAnalysisForm, setShowAnalysisForm] = useState(false);
-  const t = useTranslations('palmindex');
+  const t = useTranslations('palm');
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 py-20 overflow-hidden palm-page-bg">

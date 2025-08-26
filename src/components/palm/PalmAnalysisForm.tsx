@@ -16,7 +16,7 @@ interface PalmAnalysisFormProps {
 export function PalmAnalysisForm({ onBack, embedded = false }: PalmAnalysisFormProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const t = useTranslations('palmindex');
+  const t = useTranslations('palm');
 
   const handleSubmit = async (formData: PalmAnalysisFormData) => {
     setIsLoading(true);

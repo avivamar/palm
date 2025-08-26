@@ -16,7 +16,7 @@ type PalmPageProps = {
 
 export async function generateMetadata({ params }: PalmPageProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'palmindex' });
+  const t = await getTranslations({ locale, namespace: 'palm' });
 
   return {
     title: t('meta.title'),

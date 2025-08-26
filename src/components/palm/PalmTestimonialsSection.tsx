@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { useTranslations } from 'next-intl';
 
 export function PalmTestimonialsSection() {
-  const t = useTranslations('palmindex');
+  const t = useTranslations('palm');
   
   const testimonials = (t.raw('testimonials.reviews') || []) as Array<{
     name: string;

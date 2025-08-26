@@ -8,7 +8,7 @@ import { Badge as BadgeComponent } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 
 export function PalmHowItWorksSection() {
-  const t = useTranslations('palmindex');
+  const t = useTranslations('palm');
 
   const steps = [
     {

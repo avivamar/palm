@@ -18,7 +18,7 @@ import { useTranslations } from 'next-intl';
 
 export function PalmFAQSection() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(0);
-  const t = useTranslations('palmindex');
+  const t = useTranslations('palm');
   
   const faqs = (t.raw('faq.questions') || []) as Array<{
     question: string;

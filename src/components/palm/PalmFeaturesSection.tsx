@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 
 export function PalmFeaturesSection() {
-  const t = useTranslations('palmindex');
+  const t = useTranslations('palm');
 
   const features = [
     {
