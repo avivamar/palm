@@ -17,7 +17,7 @@
 1. 访问 [Notion Developers](https://www.notion.so/my-integrations)
 2. 点击 "+ New integration"
 3. 填写集成信息：
-   - Name: `Rolitt Blog Integration`
+   - Name: `Blog Integration`
    - Associated workspace: 选择你的工作空间
    - Type: Internal
 4. 点击 "Submit" 创建集成

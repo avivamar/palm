@@ -1,6 +1,6 @@
 export const blogConfig = {
   // Site information
-  title: 'Rolitt Blog',
+  title: 'Blog',
   description: 'Latest insights, updates and thoughts from the Rolitt team.',
   url: 'https://www.rolitt.com/blog',
 
@@ -57,7 +57,7 @@ export const blogConfig = {
     },
     openGraph: {
       type: 'website',
-      siteName: 'Rolitt Blog',
+      siteName: 'Blog',
     },
     schema: {
       organization: {

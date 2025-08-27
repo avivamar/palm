@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   return generateBlogMetadata({
     title: post.title,
-    description: post.excerpt || `Read ${post.title} on Rolitt Blog`,
+    description: post.excerpt || `Read ${post.title} on Blog`,
     path: `/blog/${post.slug}`,
     publishedTime: post.date,
     authors: post.author ? [post.author] : undefined,
@@ -72,7 +72,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   // Generate structured data
   const blogJsonLd = generateBlogJsonLd({
     title: post.title,
-    description: post.excerpt || `Read ${post.title} on Rolitt Blog`,
+    description: post.excerpt || `Read ${post.title} on Blog`,
     image: post.image,
     path: `/blog/${post.slug}`,
     authors: post.author ? [post.author] : undefined,
