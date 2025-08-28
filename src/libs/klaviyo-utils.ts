@@ -96,9 +96,9 @@ export function isValidEmail(email: string): boolean {
 }
 
 /**
- */* Thepalmistrylife 预售事件工具类
+ * Thepalmistrylife 预售事件工具类
  */
-export const/* ThepalmistrylifeKlaviyoEvents = {
+export const RolittKlaviyoEvents = {
   /**
    * 发送预售开始事件（幂等）
    */

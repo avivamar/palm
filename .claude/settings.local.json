@@ -162,7 +162,8 @@
       "Bash(src/locales/zh.json src/locales/zh-HK.json)",
       "Bash({} ;)",
       "Bash(/Users/aviva/github/avivamar/palm/scripts/replace-comments.sh:*)",
-      "Bash(src/locales/ja.json src/locales/es.json)"
+      "Bash(src/locales/ja.json src/locales/es.json)",
+      "Bash(/Users/aviva/github/avivamar/palm/scripts/fix-comment-syntax.sh:*)"
     ],
     "deny": []
   }
