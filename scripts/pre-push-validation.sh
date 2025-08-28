@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Pre-push validation script for Rolitt project
+# Pre-push validation script for/* Thepalmistrylife project
 # This script validates all builds before pushing to ensure deployment success
 
 set -e  # Exit on any error
@@ -36,7 +36,7 @@ command_exists() {
 
 # Main validation function
 main() {
-    print_status "Starting pre-push validation for Rolitt project..."
+    print_status "Starting pre-push validation for/* Thepalmistrylife project..."
     
     # Check if we're in the right directory
     if [ ! -f "package.json" ] || [ ! -f "next.config.ts" ]; then

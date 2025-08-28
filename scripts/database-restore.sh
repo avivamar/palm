@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Rolitt Palm AI 数据库恢复脚本
+# Thepalmistrylife Palm AI 数据库恢复脚本
 # 从备份恢复PostgreSQL数据库
 
 # 配置
@@ -176,7 +176,7 @@ EOF
 
 # 主函数
 main() {
-    log_info "=== Rolitt Palm AI 数据库恢复工具 ==="
+    log_info "===/* Thepalmistrylife Palm AI 数据库恢复工具 ==="
     
     # 检查环境变量
     if [ -z "$DATABASE_URL" ]; then

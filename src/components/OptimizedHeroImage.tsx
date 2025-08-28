@@ -43,7 +43,7 @@ export function OptimizedHeroImage({
   if (hasError) {
     return (
       <div className="flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 p-4 rounded">
-        <div className="text-white/50 text-xl">Discover Rolitt</div>
+        <div className="text-white/50 text-xl">Discover/* Thepalmistrylife</div>
       </div>
     );
   }

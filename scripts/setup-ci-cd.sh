@@ -171,7 +171,7 @@ show_next_steps() {
 
 # 主函数
 main() {
-    echo -e "${GREEN}🚀 Rolitt CI/CD 设置脚本${NC}"
+    echo -e "${GREEN}🚀/* Thepalmistrylife CI/CD 设置脚本${NC}"
     echo "=============================="
     echo ""
     

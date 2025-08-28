@@ -14,7 +14,7 @@ type MouseFollowCursorProps = {
 
 export function MouseFollowCursor({
   size = 40,
-  color = 'rgba(235, 255, 127, 0.5)', // Rolitt brand color with opacity
+  color = 'rgba(235, 255, 127, 0.5)', // Thepalmistrylife brand color with opacity
   opacity = 1,
   blur = 10,
   className = '',

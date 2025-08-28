@@ -142,7 +142,7 @@
     "pre-order": "Pre-order",
     "solution": "Solutions",
     "partner": "Partners",
-    "rolittai": "Rolitt AI",
+    "rolittai": "Thepalmistrylife",
     "services": "Services",
     "contact": "Contact",
     "nav": {
@@ -157,7 +157,7 @@
     }
   },
   "Hero": {
-    "follow_twitter": "Follow Rolittai on Twitter",
+    "follow_twitter": "Follow Thepalmistrylife on Twitter",
     "title": "Yoyo: Future of Friendship - Get Early Access",
     "description": "Rolitt: Where AI Meets Warmth – Your 24/7 Emotional Companion Toy",
     "primary_button": "Pre-order Now",
@@ -210,16 +210,16 @@
     "title": "Frequently Asked Questions",
     "subtitle": "Find Answers",
     "question_1": "What types of robotics solutions does Rolitt offer?",
-    "answer_1": "Rolitt offers a wide range of robotics solutions including industrial automation systems, healthcare assistance robots, educational robotics platforms, and home automation solutions. Each product line is designed to address specific needs in different sectors while leveraging our core AI and robotics technologies.",
-    "question_2": "How can I integrate Rolitt's technology with my existing systems?",
+    "answer_1": "Thepalmistrylife offers a wide range of robotics solutions including industrial automation systems, healthcare assistance robots, educational robotics platforms, and home automation solutions. Each product line is designed to address specific needs in different sectors while leveraging our core AI and robotics technologies.",
+    "question_2": "How can I integrate Thepalmistrylife's technology with my existing systems?",
     "answer_2": "Our solutions are designed with interoperability in mind. We provide comprehensive APIs, documentation, and integration support to ensure seamless connection with your existing infrastructure. Our technical team works closely with clients during implementation to ensure successful integration and minimal disruption.",
-    "question_3": "What kind of support does Rolitt provide after purchase?",
+    "question_3": "What kind of support does Thepalmistrylife provides after purchase?",
     "answer_3": "We offer comprehensive post-purchase support including technical assistance, maintenance services, software updates, and training programs. Our support packages can be tailored to your specific needs, from basic troubleshooting to full-service maintenance contracts with guaranteed response times.",
-    "question_4": "Is Rolitt's technology suitable for small businesses?",
+    "question_4": "Is Thepalmistrylife's technology suitable for small businesses?",
     "answer_4": "Absolutely! We have solutions designed for organizations of all sizes. For small businesses, we offer scalable options that provide advanced capabilities without requiring extensive infrastructure or technical expertise. Our modular approach allows you to start small and expand as your needs grow.",
     "question_5": "How does Rolitt ensure the security of its robotic systems?",
     "answer_5": "Security is a top priority at Rolitt. We implement multiple layers of protection including encrypted communications, secure authentication protocols, regular security updates, and comprehensive vulnerability testing. Our systems are designed with privacy-by-design principles and comply with relevant industry standards and regulations.",
-    "question_6": "What makes Rolitt's technology different from competitors?",
+    "question_6": "What makes Thepalmistrylife's technology different from competitors?",
     "answer_6": "Our key differentiator is our proprietary AI technology that enables more adaptive, intelligent behavior in our robotic systems. Additionally, we focus on user-friendly interfaces, seamless integration capabilities, and robust security features. Our solutions are developed with extensive real-world testing to ensure reliability and performance in diverse environments.",
     "still_have_questions": "Still have questions? We're here to help!",
     "contact_us_text": "Contact our support team for personalized assistance with your specific needs."
@@ -267,7 +267,7 @@
 
   "PaymentSuccess": {
     "title": "Payment Successful!",
-    "message": "Thank you for your pre-order! We've received your payment and your Rolitt AI Companion is one step closer to you. A confirmation email has been sent to your inbox.",
+    "message": "Thank you for your pre-order! We've received your payment and your Thepalmistrylife Companion is one step closer to you. A confirmation email has been sent to your inbox.",
     "button_back_home": "Back to Home",
     "support_message": "If you have any questions, you can contact our support team:"
   },
@@ -321,19 +321,19 @@
   },
   "Terms": {
     "meta_title": "Terms of Service | Rolitt",
-    "meta_description": "Read our terms of service to understand the rules and guidelines for using Rolitt's products and services.",
+    "meta_description": "Read our terms of service to understand the rules and guidelines for using Thepalmistrylife's products and services.",
     "title": "Terms of Service",
     "last_updated": "Last updated: June 15, 2024",
     "section1_title": "1. Acceptance of Terms",
-    "section1_content": "By accessing or using Rolitt's services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.",
+    "section1_content": "By accessing or using Thepalmistrylife's services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.",
     "section2_title": "2. Use License",
-    "section2_content": "Permission is granted to temporarily use Rolitt's services for personal, non-commercial purposes. This license does not include: modifying or copying materials; using materials for commercial purposes; attempting to decompile or reverse engineer any software; removing any copyright or proprietary notations; or transferring materials to another person or 'mirroring' materials on any other server.",
+    "section2_content": "Permission is granted to temporarily use Thepalmistrylife's services for personal, non-commercial purposes. This license does not include: modifying or copying materials; using materials for commercial purposes; attempting to decompile or reverse engineer any software; removing any copyright or proprietary notations; or transferring materials to another person or 'mirroring' materials on any other server.",
     "section3_title": "3. Disclaimer",
-    "section3_content": "Rolitt's services are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim all warranties, including without limitation implied warranties of merchantability and fitness for a particular purpose.",
+    "section3_content": "Thepalmistrylife's services are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim all warranties, including without limitation implied warranties of merchantability and fitness for a particular purpose.",
     "section4_title": "4. Limitations",
     "section4_content": "In no event shall Rolitt or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use our services.",
     "section5_title": "5. Revisions and Errata",
-    "section5_content": "The materials appearing on Rolitt's services could include technical, typographical, or photographic errors. We do not warrant that any of the materials are accurate, complete or current. We may make changes to the materials at any time without notice."
+    "section5_content": "The materials appearing on Thepalmistrylife's services could include technical, typographical, or photographic errors. We do not warrant that any of the materials are accurate, complete or current. We may make changes to the materials at any time without notice."
   },
   "Privacy": {
     "meta_title": "Privacy Policy | Rolitt",
@@ -410,7 +410,7 @@
   "preOrder": {
     "hero": {
       "title": "Be Among the First to Experience the Future of AI Companionship",
-      "description": "Pre-order your Rolitt AI Companion today and join the next generation of interactive technology.",
+      "description": "Pre-order your Thepalmistrylife Companion today and join the next generation of interactive technology.",
       "cta": "Pre-order Now",
       "colors": {
         "honey_khaki": "Honey Khaki",
@@ -595,7 +595,7 @@
   "VideoSection": {
     "badge": "Product Demo",
     "title": "See Rolitt in Action",
-    "description": "Discover the features and user experience of Rolitt AI Companion through video",
+    "description": "Discover the features and user experience of Thepalmistrylife Companion through video",
     "youtube_link_text": "Want to learn more? Visit our",
     "youtube_channel": "YouTube channel",
     "youtube_link_suffix": "to watch more video content"
@@ -630,7 +630,7 @@
   "Payment": {
     "Success": {
       "title": "Payment Successful!",
-      "message": "Thank you for your pre-order! We've received your payment and your Rolitt AI Companion is one step closer to you. A confirmation email has been sent to your inbox.",
+      "message": "Thank you for your pre-order! We've received your payment and your Thepalmistrylife Companion is one step closer to you. A confirmation email has been sent to your inbox.",
       "button_back_home": "Back to Home",
       "support_message": "If you have any questions, you can contact our support team:"
     },
@@ -662,7 +662,7 @@
   "PreOrder": {
     "Hero": {
       "title": "Be Among the First to Experience the Future of AI Companionship",
-      "description": "Pre-order your Rolitt AI Companion today and join the next generation of interactive technology.",
+      "description": "Pre-order your Thepalmistrylife Companion today and join the next generation of interactive technology.",
       "cta": "Pre-order Now",
       "colors": {
         "honey_khaki": "Honey Khaki",

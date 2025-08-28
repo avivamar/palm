@@ -20,13 +20,13 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Rolitt',
+    template: '%s |/* Thepalmistrylife',
     default: 'Rolitt - Your AI Companion',
   },
   description: 'Rolitt is a next-generation AI companion that combines emotional recognition, natural language processing, and machine learning technologies.',
   metadataBase: new URL(process.env.SITE_URL || 'https://www.rolitt.com'),
   applicationName: 'Rolitt',
-  authors: [{ name: 'Rolitt Team', url: 'https://www.rolitt.com/about' }],
+  authors: [{ name: 'Thepalmistrylife Team', url: 'https://www.rolitt.com/about' }],
   generator: 'Next.js',
   keywords: ['AI companion', 'emotional AI', 'smart robot', 'Rolitt', 'AI technology'],
   referrer: 'origin-when-cross-origin',

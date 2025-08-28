@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import { z } from 'zod';
 
 import { getDB } from '@/libs/DB';
-import { RolittKlaviyoEvents } from '@/libs/klaviyo-utils';
+import {/* ThepalmistrylifeKlaviyoEvents } from '@/libs/klaviyo-utils';
 import { preordersSchema, usersSchema } from '@/models/Schema';
 
 // Preorder initialization form validation schema
@@ -149,7 +149,7 @@ export async function processPreorderMarketingAsync(
       console.error(`[MarketingAsync] 📧 Sending Klaviyo preorder intention event: ${preorderId}`);
 
       await Promise.race([
-        RolittKlaviyoEvents.preorderStarted(email, {
+       /* ThepalmistrylifeKlaviyoEvents.preorderStarted(email, {
           color,
           preorder_id: preorderId,
           preorder_number: `ROL-${preorderId.substring(0, 8).toUpperCase()}`,
@@ -377,7 +377,7 @@ export async function createUserAndLinkPreorder(
       });
 
       if (preorderData) {
-        await RolittKlaviyoEvents.preorderCompleted(email, {
+        await/* ThepalmistrylifeKlaviyoEvents.preorderCompleted(email, {
           color: preorderData.color,
           preorder_id: preorderId,
           preorder_number: preorderData.preorderNumber || `ROL-${preorderId.substring(0, 8).toUpperCase()}`,
@@ -427,7 +427,7 @@ export async function triggerAbandonedCartMarketing(preorderId: string): Promise
 
     // 1. Send abandoned cart event to Klaviyo
     try {
-      await RolittKlaviyoEvents.abandonedCart(preorder.email, {
+      await/* ThepalmistrylifeKlaviyoEvents.abandonedCart(preorder.email, {
         color: preorder.color,
         preorder_id: preorderId,
         preorder_number: preorder.preorderNumber || `ROL-${preorderId.substring(0, 8).toUpperCase()}`,

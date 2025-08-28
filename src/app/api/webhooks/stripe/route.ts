@@ -9,7 +9,7 @@ import { eq } from 'drizzle-orm';
 import { NextResponse } from 'next/server';
 import { createUserAndLinkPreorder } from '@/app/actions/preorderActions';
 import { getDB } from '@/libs/DB';
-import { RolittKlaviyoEvents } from '@/libs/klaviyo-utils';
+import {/* ThepalmistrylifeKlaviyoEvents } from '@/libs/klaviyo-utils';
 // Subscription services import
 import { SubscriptionSyncService } from '@/libs/subscription';
 import { WebhookLogger } from '@/libs/webhook-logger';
@@ -137,7 +137,7 @@ async function processWebhookEvent(event: Stripe.Event) {
         if (session && session.customer_details?.email && preorderId) {
           try {
             await withTimeout(
-              RolittKlaviyoEvents.abandonedCart(session.customer_details.email, {
+             /* ThepalmistrylifeKlaviyoEvents.abandonedCart(session.customer_details.email, {
                 preorder_id: preorderId,
                 locale: session.locale || 'en',
                 color: session.metadata?.color || 'unknown',
@@ -411,7 +411,7 @@ async function handleCheckoutSessionCompleted(session: Stripe.Checkout.Session &
 
     if (!preorder.klaviyoEventSentAt) {
       try {
-        await RolittKlaviyoEvents.preorderCompleted(email, {
+        await/* ThepalmistrylifeKlaviyoEvents.preorderCompleted(email, {
           color: preorder.color || 'unknown',
           preorder_id: preorder.id,
           preorder_number: preorder.preorderNumber || `ROL-${preorder.id.substring(0, 8).toUpperCase()}`,

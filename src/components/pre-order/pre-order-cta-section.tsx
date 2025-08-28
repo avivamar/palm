@@ -11,7 +11,7 @@ export function PreOrderCtaSection() {
             Don't Miss Out
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-300 dark:text-gray-400">
-            Secure your Rolitt today and be among the first to experience the
+            Secure your/* Thepalmistrylife today and be among the first to experience the
             future of companionship.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">

@@ -430,7 +430,7 @@
 
   "PaymentSuccess": {
     "title": "Payment Successful!",
-    "message": "Thank you for your pre-order! We've received your payment and your Rolitt AI Companion is one step closer to you. A confirmation email has been sent to your inbox.",
+    "message": "Thank you for your pre-order! We've received your payment and your Thepalmistrylife Companion is one step closer to you. A confirmation email has been sent to your inbox.",
     "button_back_home": "Back to Home",
     "support_message": "If you have any questions, you can contact our support team:"
   },
@@ -484,19 +484,19 @@
   },
   "Terms": {
     "meta_title": "Terms of Service | Rolitt",
-    "meta_description": "Read our terms of service to understand the rules and guidelines for using Rolitt's products and services.",
+    "meta_description": "Read our terms of service to understand the rules and guidelines for using Thepalmistrylife's products and services.",
     "title": "Terms of Service",
     "last_updated": "Last updated: June 15, 2024",
     "section1_title": "1. Acceptance of Terms",
-    "section1_content": "By accessing or using Rolitt's services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.",
+    "section1_content": "By accessing or using Thepalmistrylife's services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.",
     "section2_title": "2. Use License",
-    "section2_content": "Permission is granted to temporarily use Rolitt's services for personal, non-commercial purposes. This license does not include: modifying or copying materials; using materials for commercial purposes; attempting to decompile or reverse engineer any software; removing any copyright or proprietary notations; or transferring materials to another person or 'mirroring' materials on any other server.",
+    "section2_content": "Permission is granted to temporarily use Thepalmistrylife's services for personal, non-commercial purposes. This license does not include: modifying or copying materials; using materials for commercial purposes; attempting to decompile or reverse engineer any software; removing any copyright or proprietary notations; or transferring materials to another person or 'mirroring' materials on any other server.",
     "section3_title": "3. Disclaimer",
-    "section3_content": "Rolitt's services are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim all warranties, including without limitation implied warranties of merchantability and fitness for a particular purpose.",
+    "section3_content": "Thepalmistrylife's services are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim all warranties, including without limitation implied warranties of merchantability and fitness for a particular purpose.",
     "section4_title": "4. Limitations",
     "section4_content": "In no event shall Rolitt or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use our services.",
     "section5_title": "5. Revisions and Errata",
-    "section5_content": "The materials appearing on Rolitt's services could include technical, typographical, or photographic errors. We do not warrant that any of the materials are accurate, complete or current. We may make changes to the materials at any time without notice."
+    "section5_content": "The materials appearing on Thepalmistrylife's services could include technical, typographical, or photographic errors. We do not warrant that any of the materials are accurate, complete or current. We may make changes to the materials at any time without notice."
   },
   "Privacy": {
     "meta_title": "Privacy Policy | Rolitt",
@@ -573,7 +573,7 @@
   "preOrder": {
     "hero": {
       "title": "Be Among the First to Experience the Future of AI Companionship",
-      "description": "Pre-order your Rolitt AI Companion today and join the next generation of interactive technology.",
+      "description": "Pre-order your Thepalmistrylife Companion today and join the next generation of interactive technology.",
       "cta": "Pre-order Now",
       "colors": {
         "honey_khaki": "Caqui Miel",
@@ -758,7 +758,7 @@
   "VideoSection": {
     "badge": "Product Demo",
     "title": "See Rolitt in Action",
-    "description": "Discover the features and user experience of Rolitt AI Companion through video",
+    "description": "Discover the features and user experience of Thepalmistrylife Companion through video",
     "youtube_link_text": "Want to learn more? Visit our",
     "youtube_channel": "YouTube channel",
     "youtube_link_suffix": "to watch more video content"

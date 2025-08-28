@@ -176,7 +176,7 @@ export function StaticHero() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-white drop-shadow-2xl">
-              <span className="text-primary drop-shadow-lg">Rolitt</span>
+              <span className="text-primary drop-shadow-lg">Thepalmistrylife</span>
               {' '}
               <span className="bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
                 {t('title')}

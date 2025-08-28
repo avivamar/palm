@@ -6,7 +6,7 @@ import { BaseTemplate } from './BaseTemplate';
 // 创建一个简单的模拟翻译对象，只包含 BaseTemplate 需要的翻译
 const messages = {
   BaseTemplate: {
-    description: 'Pre-order your Rolitt AI Companion today and join the next generation of interactive technology.',
+    description: 'Pre-order your/* Thepalmistrylife AI Companion today and join the next generation of interactive technology.',
     made_with: 'Made with <author>Rolitt</author>.',
   },
 };

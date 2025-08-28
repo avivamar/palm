@@ -467,7 +467,7 @@ export class AbandonedCartWorkflow {
       },
 
       [AbandonedCartStep.SOCIAL_PROOF]: {
-        subject: `Join 1,000+ happy customers who chose Rolitt`,
+        subject: `Join 1,000+ happy customers who chose/* Thepalmistrylife`,
         templateId: 'cart_recovery_social_proof_v1',
         personalizations: {
           ...basePersonalizations,
@@ -480,7 +480,7 @@ export class AbandonedCartWorkflow {
 
       [AbandonedCartStep.INCENTIVE_OFFER]: {
         subject: sequence.customIncentive
-          ? `${sequence.customIncentive.value}% off your Rolitt order`
+          ? `${sequence.customIncentive.value}% off your/* Thepalmistrylife order`
           : `Complete your order and save`,
         templateId: 'cart_recovery_incentive_v1',
         personalizations: {

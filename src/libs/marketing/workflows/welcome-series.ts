@@ -208,7 +208,7 @@ export class WelcomeSeriesWorkflow {
       [WelcomeSeriesStep.IMMEDIATE_WELCOME]: {
         step,
         delay: 0,
-        subject: `Welcome to Rolitt, ${userProfile.firstName || 'Friend'}! 🎉`,
+        subject: `Welcome to/* Thepalmistrylife, ${userProfile.firstName || 'Friend'}! 🎉`,
         templateId: 'welcome_immediate_v1',
         personalizations: {
           firstName: userProfile.firstName || 'Friend',
@@ -242,7 +242,7 @@ export class WelcomeSeriesWorkflow {
           {
             variantId: 'video_focus',
             percentage: 50,
-            subject: `See Rolitt in Action (Video Inside)`,
+            subject: `See/* Thepalmistrylife in Action (Video Inside)`,
             templateId: 'welcome_product_video_v1',
           },
         ],
@@ -251,7 +251,7 @@ export class WelcomeSeriesWorkflow {
       [WelcomeSeriesStep.FEATURE_HIGHLIGHTS]: {
         step,
         delay: 72, // 3 days after welcome
-        subject: `3 Reasons Why Early Adopters Love Rolitt`,
+        subject: `3 Reasons Why Early Adopters Love/* Thepalmistrylife`,
         templateId: 'welcome_features_v1',
         personalizations: {
           firstName: userProfile.firstName || 'Friend',
@@ -301,7 +301,7 @@ export class WelcomeSeriesWorkflow {
       [WelcomeSeriesStep.COMMUNITY_INVITATION]: {
         step,
         delay: 240, // 10 days after welcome
-        subject: `Join the Rolitt Community`,
+        subject: `Join the/* Thepalmistrylife Community`,
         templateId: 'welcome_community_v1',
         personalizations: {
           firstName: userProfile.firstName || 'Friend',
@@ -671,8 +671,8 @@ export class WelcomeSeriesWorkflow {
 
   private getPersonalizedCTA(_userProfile: UserProfile, step: WelcomeSeriesStep): string {
     const ctaMap: Record<WelcomeSeriesStep, string> = {
-      [WelcomeSeriesStep.IMMEDIATE_WELCOME]: 'Explore Rolitt',
-      [WelcomeSeriesStep.PRODUCT_INTRODUCTION]: 'See Rolitt in Action',
+      [WelcomeSeriesStep.IMMEDIATE_WELCOME]: 'Explore/* Thepalmistrylife',
+      [WelcomeSeriesStep.PRODUCT_INTRODUCTION]: 'See/* Thepalmistrylife in Action',
       [WelcomeSeriesStep.FEATURE_HIGHLIGHTS]: 'Discover All Features',
       [WelcomeSeriesStep.SOCIAL_PROOF]: 'Join 1,000+ Happy Customers',
       [WelcomeSeriesStep.EARLY_BIRD_OFFER]: 'Claim Your Discount',

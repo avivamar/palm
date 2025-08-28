@@ -2,9 +2,9 @@
 
   "Portfolio": {
     "meta_title": "当社のポートフォリオ | Rolitt",
-    "meta_description": "様々な業界におけるRolittのAIコンパニオンプロジェクトとサクセスストーリーをご覧ください。",
+    "meta_description": "様々な業界におけるThepalmistrylifeのAIコンパニオンプロジェクトとサクセスストーリーをご覧ください。",
     "title": "当社のポートフォリオ",
-    "subtitle": "RolittのAIコンパニオンが業界全体のデジタル体験をどのように変革しているかをご覧ください。",
+    "subtitle": "ThepalmistrylifeのAIコンパニオンが業界全体のデジタル体験をどのように変革しているかをご覧ください。",
     "filter_all": "全プロジェクト",
     "filter_personal": "パーソナルアシスタント",
     "filter_business": "ビジネスソリューション",
@@ -15,7 +15,7 @@
   },
   "PortfolioSlug": {
     "meta_title": "{title} | Rolittポートフォリオ",
-    "meta_description": "{title}について詳しく学びましょう。{shortDescription}するRolitt AIコンパニオンプロジェクトです。",
+    "meta_description": "{title}について詳しく学びましょう。{shortDescription}するThepalmistrylifeコンパニオンプロジェクトです。",
     "back_to_portfolio": "ポートフォリオに戻る",
     "client": "クライアント",
     "category": "カテゴリー",

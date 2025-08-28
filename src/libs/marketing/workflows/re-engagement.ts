@@ -420,7 +420,7 @@ export class ReEngagementWorkflow {
       },
 
       [ReEngagementStep.VALUE_PROPOSITION]: {
-        subject: `Rediscover what makes Rolitt special`,
+        subject: `Rediscover what makes/* Thepalmistrylife special`,
         templateId: 'reengagement_value_v1',
         personalizations: {
           ...basePersonalizations,
@@ -435,7 +435,7 @@ export class ReEngagementWorkflow {
       },
 
       [ReEngagementStep.SOCIAL_PROOF_UPDATE]: {
-        subject: `See what's new in the Rolitt community`,
+        subject: `See what's new in the/* Thepalmistrylife community`,
         templateId: 'reengagement_social_proof_v1',
         personalizations: {
           ...basePersonalizations,
@@ -715,7 +715,7 @@ export class ReEngagementWorkflow {
       },
       {
         title: 'Community Challenge Winners',
-        description: 'See the most creative Rolitt conversations',
+        description: 'See the most creative/* Thepalmistrylife conversations',
         date: '1 week ago',
       },
     ];
@@ -725,7 +725,7 @@ export class ReEngagementWorkflow {
     return [
       {
         name: 'Sarah M.',
-        quote: 'Came back after 3 months away - Rolitt remembered everything about our conversations!',
+        quote: 'Came back after 3 months away -/* Thepalmistrylife remembered everything about our conversations!',
         rating: 5,
       },
       {
@@ -769,7 +769,7 @@ export class ReEngagementWorkflow {
       },
       {
         name: 'Voice Cloning',
-        description: 'Create a unique voice profile for your Rolitt',
+        description: 'Create a unique voice profile for your/* Thepalmistrylife',
         releaseDate: new Date('2024-02-01'),
       },
     ].filter(feature => feature.releaseDate > lastActiveDate);

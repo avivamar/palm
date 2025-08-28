@@ -148,7 +148,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div className="flex items-center gap-4 pt-4 border-t">
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-medium">
-                    {post.author || 'Rolitt Team'}
+                    {post.author || 'Thepalmistrylife Team'}
                   </span>
                 </div>
                 <div className="text-sm text-muted-foreground">

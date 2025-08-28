@@ -14,7 +14,7 @@ Disallow: /portfolio/
 Disallow: /test/
 
 # Host
-Host: https://www.rolitt.com
+Host: https://www.thepalmistrylife.com
 
 # Sitemaps
-Sitemap: https://www.rolitt.com/sitemap.xml
+Sitemap: https://www.thepalmistrylife.com/sitemap.xml

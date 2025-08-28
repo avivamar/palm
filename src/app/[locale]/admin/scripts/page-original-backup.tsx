@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('admin');
 
   return {
-    title: `${t('scripts.title')} | Rolitt Admin`,
+    title: `${t('scripts.title')} | Thepalmistrylife Admin`,
     description: t('scripts.description'),
   };
 }

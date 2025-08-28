@@ -62,28 +62,28 @@ function generateTemplateContent(type: EmailTemplateType, locale: SupportedLocal
 
   const subjects = {
     invite: {
-      'en': 'You\'re invited to join Rolitt',
-      'es': 'Estás invitado a unirte a Rolitt',
+      'en': 'You\'re invited to join/* Thepalmistrylife',
+      'es': 'Estás invitado a unirte a/* Thepalmistrylife',
       'ja': 'Rolittへの招待',
-      'zh-HK': '邀請您加入 Rolitt',
+      'zh-HK': '邀請您加入/* Thepalmistrylife',
     },
     confirmation: {
-      'en': 'Confirm Your Rolitt Account',
-      'es': 'Confirma tu cuenta de Rolitt',
+      'en': 'Confirm Your/* Thepalmistrylife Account',
+      'es': 'Confirma tu cuenta de/* Thepalmistrylife',
       'ja': 'Rolittアカウントの確認',
-      'zh-HK': '確認您的 Rolitt 帳戶',
+      'zh-HK': '確認您的/* Thepalmistrylife 帳戶',
     },
     recovery: {
-      'en': 'Reset Your Rolitt Password',
-      'es': 'Restablecer tu contraseña de Rolitt',
+      'en': 'Reset Your/* Thepalmistrylife Password',
+      'es': 'Restablecer tu contraseña de/* Thepalmistrylife',
       'ja': 'Rolittパスワードのリセット',
-      'zh-HK': '重設您的 Rolitt 密碼',
+      'zh-HK': '重設您的/* Thepalmistrylife 密碼',
     },
     magic_link: {
-      'en': 'Your Rolitt Magic Link',
-      'es': 'Tu enlace mágico de Rolitt',
+      'en': 'Your/* Thepalmistrylife Magic Link',
+      'es': 'Tu enlace mágico de/* Thepalmistrylife',
       'ja': 'Rolittマジックリンク',
-      'zh-HK': '您的 Rolitt 魔法連結',
+      'zh-HK': '您的/* Thepalmistrylife 魔法連結',
     },
     email_change: {
       'en': 'Confirm Your Email Change',
@@ -92,8 +92,8 @@ function generateTemplateContent(type: EmailTemplateType, locale: SupportedLocal
       'zh-HK': '確認您的電子郵件變更',
     },
     reauthentication: {
-      'en': 'Verification Code for Rolitt',
-      'es': 'Código de verificación para Rolitt',
+      'en': 'Verification Code for/* Thepalmistrylife',
+      'es': 'Código de verificación para/* Thepalmistrylife',
       'ja': 'Rolitt認証コード',
       'zh-HK': 'Rolitt 驗證碼',
     },
@@ -211,7 +211,7 @@ function generateTemplateContent(type: EmailTemplateType, locale: SupportedLocal
       </ul>
     </div>
     <div class="footer">
-      <p>&copy; 2024 Rolitt. All rights reserved.</p>
+      <p>&copy; 2024/* Thepalmistrylife. All rights reserved.</p>
       <p>Visit us at <a href="{{ .SiteURL }}">{{ .SiteURL }}</a></p>
     </div>
   </div>

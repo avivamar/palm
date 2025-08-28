@@ -106,27 +106,27 @@ function mockGenerateEmailTemplate(
 ): EmailTemplateContent {
   const subjects = {
     confirmation: {
-      'en': 'Confirm Your Rolitt Account',
-      'es': 'Confirma tu cuenta de Rolitt',
-      'zh-HK': '確認您的 Rolitt 帳戶',
+      'en': 'Confirm Your/* Thepalmistrylife Account',
+      'es': 'Confirma tu cuenta de/* Thepalmistrylife',
+      'zh-HK': '確認您的/* Thepalmistrylife 帳戶',
       'ja': 'Rolittアカウントの確認',
     },
     recovery: {
-      'en': 'Reset Your Rolitt Password',
-      'es': 'Restablecer tu contraseña de Rolitt',
-      'zh-HK': '重設您的 Rolitt 密碼',
+      'en': 'Reset Your/* Thepalmistrylife Password',
+      'es': 'Restablecer tu contraseña de/* Thepalmistrylife',
+      'zh-HK': '重設您的/* Thepalmistrylife 密碼',
       'ja': 'Rolittパスワードのリセット',
     },
     invite: {
-      'en': 'You\'re invited to join Rolitt',
-      'es': 'Estás invitado a unirte a Rolitt',
-      'zh-HK': '邀請您加入 Rolitt',
+      'en': 'You\'re invited to join/* Thepalmistrylife',
+      'es': 'Estás invitado a unirte a/* Thepalmistrylife',
+      'zh-HK': '邀請您加入/* Thepalmistrylife',
       'ja': 'Rolittへの招待',
     },
     magic_link: {
-      'en': 'Your Rolitt Magic Link',
-      'es': 'Tu enlace mágico de Rolitt',
-      'zh-HK': '您的 Rolitt 魔法連結',
+      'en': 'Your/* Thepalmistrylife Magic Link',
+      'es': 'Tu enlace mágico de/* Thepalmistrylife',
+      'zh-HK': '您的/* Thepalmistrylife 魔法連結',
       'ja': 'Rolittマジックリンク',
     },
     email_change: {
@@ -136,8 +136,8 @@ function mockGenerateEmailTemplate(
       'ja': 'メールアドレス変更の確認',
     },
     reauthentication: {
-      'en': 'Verification Code for Rolitt',
-      'es': 'Código de verificación para Rolitt',
+      'en': 'Verification Code for/* Thepalmistrylife',
+      'es': 'Código de verificación para/* Thepalmistrylife',
       'zh-HK': 'Rolitt 驗證碼',
       'ja': 'Rolitt認証コード',
     },
@@ -195,7 +195,7 @@ function mockGenerateEmailTemplate(
     }`
     + `Email: ${variables.Email}\n`
     + `Site: ${variables.SiteURL}\n\n`
-    + `© 2024 Rolitt. All rights reserved.`;
+    + `© 2024/* Thepalmistrylife. All rights reserved.`;
 
   return {
     subject,

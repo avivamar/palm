@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Install Git hooks for Rolitt project
+# Install Git hooks for/* Thepalmistrylife project
 # This script sets up the pre-push hook for automated validation
 
 set -e  # Exit on any error
@@ -40,7 +40,7 @@ HOOKS_DIR="$PROJECT_ROOT/.git/hooks"
 PRE_PUSH_HOOK="$HOOKS_DIR/pre-push"
 VALIDATION_SCRIPT="$PROJECT_ROOT/scripts/pre-push-validation.sh"
 
-print_status "Installing Git hooks for Rolitt project..."
+print_status "Installing Git hooks for/* Thepalmistrylife project..."
 print_status "Project root: $PROJECT_ROOT"
 
 # Check if validation script exists
@@ -76,7 +76,7 @@ print_status "Creating pre-push hook..."
 cat > "$PRE_PUSH_HOOK" << 'EOF'
 #!/bin/bash
 
-# Git pre-push hook for Rolitt project
+# Git pre-push hook for/* Thepalmistrylife project
 # This hook runs the pre-push validation script before allowing a push
 
 echo "🔍 Running pre-push validation..."

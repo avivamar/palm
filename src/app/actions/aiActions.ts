@@ -315,7 +315,7 @@ User Type: ${userType || 'standard'}
 Issue Category: ${issueCategory || 'general'}
 Previous Contact: None
 Urgency Level: ${urgencyLevel || 'normal'}
-Product/Service: Rolitt AI Companion`;
+Product/Service:/* Thepalmistrylife AI Companion`;
 
     // Create a full prompt by combining system and user messages
     const fullPrompt = `${systemPrompt}\n\nUser: ${question}`;

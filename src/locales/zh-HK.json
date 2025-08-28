@@ -8,20 +8,20 @@
     "sign_up_link": "註冊"
   },
   "BaseTemplate": {
-    "description": "立即預訂您的 Rolitt AI 伴侶，加入下一代互動技術。",
-    "made_with": "由 <author>Rolitt</author> 製作。"
+    "description": "立即預訂您的 Thepalmistrylife 伴侶，加入下一代互動技術。",
+    "made_with": "由 <author>Thepalmistrylife</author> 製作。"
   },
   "Index": {
-    "meta_title": "Rolitt – 您的智能情感 AI 夥伴",
-    "meta_description": "認識 Rolitt，您的智能情感夥伴！憑藉先進的 AI 技術，Rolitt 為您的日常生活帶來歡樂、支持和冒險。探索 AI 夥伴關係的無限可能！",
-    "meta_keywords": "Rolitt、AI 夥伴、智能機器人、情感支持機器人、家庭夥伴機器人、AI 機器人、智能家居機器人、情感識別機器人、語音互動機器人、個人助理機器人、未來科技機器人、創新機器人、機器人技術、機器人開發、機器人應用、機器人解決方案、機器人學習、互動機器人、機器人安全、機器人隱私保護、情感運算機器人、自然語言處理機器人、機器學習機器人、端到端加密機器人",
-    "meta_og_title": "Rolitt - 重新定義 AI 夥伴關係",
-    "meta_og_description": "體驗 Rolitt，一個理解您情感並為生活增添歡樂的 AI 夥伴。Rolitt 不僅是智能助手，更是您的情感夥伴。",
-    "meta_og_image_alt": "Rolitt AI 夥伴 - 您的智能情感支持",
-    "meta_twitter_title": "Rolitt：開啟智能情感夥伴關係新紀元",
-    "meta_twitter_description": "認識 Rolitt，一個感知您情感並適應您需求的 AI 夥伴。讓科技溫暖您的每一天。",
-    "product_name": "Rolitt 智能情感 AI 夥伴",
-    "product_description": "Rolitt 是新一代 AI 夥伴，結合情感識別、自然語言處理和機器學習技術，為您提供貼心的情感支持和智能互動。",
+    "meta_title": "Thepalmistrylife – 您的智能情感 AI 夥伴",
+    "meta_description": "認識 Thepalmistrylife，您的智能情感夥伴！憑藉先進的 AI 技術，Thepalmistrylife 為您的日常生活帶來歡樂、支持和冒險。探索 AI 夥伴關係的無限可能！",
+    "meta_keywords": "Thepalmistrylife、AI 夥伴、智能機器人、情感支持機器人、家庭夥伴機器人、AI 機器人、智能家居機器人、情感識別機器人、語音互動機器人、個人助理機器人、未來科技機器人、創新機器人、機器人技術、機器人開發、機器人應用、機器人解決方案、機器人學習、互動機器人、機器人安全、機器人隱私保護、情感運算機器人、自然語言處理機器人、機器學習機器人、端到端加密機器人",
+    "meta_og_title": "Thepalmistrylife - 重新定義 AI 夥伴關係",
+    "meta_og_description": "體驗 Thepalmistrylife，一個理解您情感並為生活增添歡樂的 AI 夥伴。Thepalmistrylife 不僅是智能助手，更是您的情感夥伴。",
+    "meta_og_image_alt": "Thepalmistrylife 夥伴 - 您的智能情感支持",
+    "meta_twitter_title": "Thepalmistrylife：開啟智能情感夥伴關係新紀元",
+    "meta_twitter_description": "認識 Thepalmistrylife，一個感知您情感並適應您需求的 AI 夥伴。讓科技溫暖您的每一天。",
+    "product_name": "Thepalmistrylife 智能情感 AI 夥伴",
+    "product_description": "Thepalmistrylife 是新一代 AI 夥伴，結合情感識別、自然語言處理和機器學習技術，為您提供貼心的情感支持和智能互動。",
     "sponsors_title": "我們的合作夥伴"
   },
   "Counter": {
@@ -93,7 +93,7 @@
     "meta_title": "用戶中心",
     "hello_message": "您好，{email}！",
     "alternative_message": "想要使用相同的技術堆疊更快地構建您的 SaaS？試試 <url></url>。",
-    "welcome_subtitle": "歡迎來到您的 Rolitt 用戶中心，在這裡管理您的 AI 伴侶體驗",
+    "welcome_subtitle": "歡迎來到您的 Thepalmistrylife 用戶中心，在這裡管理您的 AI 伴侶體驗",
     "profile_status": "個人資料狀態",
     "account_verification": "帳戶驗證",
     "total_orders": "總訂單數",
@@ -110,7 +110,7 @@
     "account_settings_desc": "配置您的帳戶設置和偏好",
     "recent_activity": "最近活動",
     "account_created": "帳戶已創建",
-    "account_created_desc": "歡迎來到 Rolitt！您的帳戶已成功創建。",
+    "account_created_desc": "歡迎來到 Thepalmistrylife！您的帳戶已成功創建。",
     "no_activity": "暫無其他活動。開始探索以在此處查看更多更新！",
     "auth_required": "需要身份驗證",
     "auth_required_desc": "請登入以訪問您的儀表板。",
@@ -138,7 +138,7 @@
     "pre-order": "預購",
     "solution": "解決方案",
     "partner": "合作夥伴",
-    "rolittai": "Rolitt AI",
+    "thepalmistrylifeai": "Thepalmistrylife",
     "services": "服務",
     "contact": "聯絡我們",
     "nav": {
@@ -155,9 +155,9 @@
     }
   },
   "Hero": {
-    "follow_twitter": "在 Twitter 上關注 Rolittai",
+    "follow_twitter": "在 Twitter 上關注 Thepalmistrylife",
     "title": "Yoyo: 友誼的未來，獲得早期訪問權限",
-    "description": "Rolitt：AI 與溫暖相遇的地方 – 您的 24/7 情感夥伴玩具",
+    "description": "Thepalmistrylife：AI 與溫暖相遇的地方 – 您的 24/7 情感夥伴玩具",
     "primary_button": "立即預購",
     "secondary_button": "早鳥方案",
     "avatar": "加入全球超過 1,000 位正在探索我們創新的人們。"
@@ -198,33 +198,33 @@
     "feature6_detail_spec2": "30 天試用和 1 年更換"
   },
   "FAQ": {
-    "meta_title": "常見問題 | Rolitt",
+    "meta_title": "常見問題 | Thepalmistrylife",
     "meta_description": "尋找關於我們機器人解決方案、技術和服務的常見問題解答。",
-    "meta_keywords": "機器人常見問題、技術問題、Rolitt 支援、機器人協助",
-    "meta_og_title": "常見問題 | Rolitt",
+    "meta_keywords": "機器人常見問題、技術問題、Thepalmistrylife 支援、機器人協助",
+    "meta_og_title": "常見問題 | Thepalmistrylife",
     "meta_og_description": "獲取關於我們機器人解決方案和服務的常見問題解答。快速輕鬆地找到您需要的資訊。",
-    "meta_twitter_title": "常見問題 | Rolitt",
-    "meta_twitter_description": "獲取關於我們Rolitt機器人解決方案和服務的常見問題解答。快速輕鬆地找到您需要的資訊。",
+    "meta_twitter_title": "常見問題 | Thepalmistrylife",
+    "meta_twitter_description": "獲取關於我們Thepalmistrylife機器人解決方案和服務的常見問題解答。快速輕鬆地找到您需要的資訊。",
     "title": "常見問題",
     "subtitle": "尋找關於我們產品和服務最常見問題的解答",
-    "question_1": "Rolitt 提供哪些類型的機器人解決方案？",
-    "answer_1": "Rolitt 提供廣泛的機器人解決方案，包括工業自動化系統、醫療assisted機器人、教育機器人平台和家庭自動化解決方案。每個產品線都旨在解決不同領域的特定需求，同時利用我們的核心 AI 和機器人技術。",
-    "question_2": "如何將 Rolitt 的技術與我現有的系統整合？",
+    "question_1": "Thepalmistrylife 提供哪些類型的機器人解決方案？",
+    "answer_1": "Thepalmistrylife 提供廣泛的機器人解決方案，包括工業自動化系統、醫療assisted機器人、教育機器人平台和家庭自動化解決方案。每個產品線都旨在解決不同領域的特定需求，同時利用我們的核心 AI 和機器人技術。",
+    "question_2": "如何將 Thepalmistrylife 的技術與我現有的系統整合？",
     "answer_2": "我們的解決方案設計時考慮了互操作性。我們提供完整的 API、文件和整合支援，確保與您現有基礎設施的無縫連接。我們的技術團隊在實施過程中與客戶密切合作，確保成功整合和最小化干擋。",
-    "question_3": "Rolitt 在購買後提供什麼樣的支援？",
+    "question_3": "Thepalmistrylife 在購買後提供什麼樣的支援？",
     "answer_3": "我們提供全面的售後支援，包括技術協助、維護服務、軟體更新和培訓計劃。我們的支援方案可以根據您的特定需求進行調整，從基本故障排除到具有保證回應時間的完整服務維護合約。",
-    "question_4": "Rolitt 的技術適合小型企業嗎？",
+    "question_4": "Thepalmistrylife 的技術適合小型企業嗎？",
     "answer_4": "當然！我們有為各種規模的組織設計的解決方案。對於小型企業，我們提供可擴展的選項，提供先進功能而不需要大量基礎設施或技術專業知識。我們的模組化方法讓您可以從小規模開始，隨著需求增長而擴展。",
-    "question_5": "Rolitt 如何確保其機器人系統的安全性？",
-    "answer_5": "安全性是 Rolitt 的首要任務。我們實施多層保護，包括加密通訊、安全認證協議、定期安全更新和全面的漏洞測試。我們的系統採用隱私設計原則，並符合相關行業標準和法規。",
-    "question_6": "Rolitt 的技術與競爭對手有何不同？",
+    "question_5": "Thepalmistrylife 如何確保其機器人系統的安全性？",
+    "answer_5": "安全性是 Thepalmistrylife 的首要任務。我們實施多層保護，包括加密通訊、安全認證協議、定期安全更新和全面的漏洞測試。我們的系統採用隱私設計原則，並符合相關行業標準和法規。",
+    "question_6": "Thepalmistrylife 的技術與競爭對手有何不同？",
     "answer_6": "我們的關鍵差異在於我們的專有 AI 技術，使我們的機器人系統具有更適應性、更智能的行為。此外，我們專注於用戶友好的界面、無縫整合能力和強大的安全功能。我們的解決方案經過廣泛的實際測試，確保在各種環境中的可靠性和性能。",
     "still_have_questions": "還有其他問題？我們隨時為您服務！",
     "contact_us_text": "聯絡我們的支援團隊，獲取針對您特定需求的個人化協助。"
   },
   "CTA": {
     "title": "不要錯過這個限時機會！",
-    "description": "成為首批將 Rolitt 帶回家的人之一！我們的早鳥優惠不會持續太久。立即預訂您的夥伴，節省 $70。",
+    "description": "成為首批將 Thepalmistrylife 帶回家的人之一！我們的早鳥優惠不會持續太久。立即預訂您的夥伴，節省 $70。",
     "button_text": "以 $249 預購"
   },
   "Footer": {
@@ -277,7 +277,7 @@
     "event2": {
       "date": "2024 年 4 月",
       "title": "組建核心團隊",
-      "description": "AVIVA 認識到創建如此創新產品的挑戰。他採訪了許多行業專家，組建了一個充滿熱情的團隊。他們在借來的辦公室空間開始開發 Rolitt 產品。"
+      "description": "AVIVA 認識到創建如此創新產品的挑戰。他採訪了許多行業專家，組建了一個充滿熱情的團隊。他們在借來的辦公室空間開始開發 Thepalmistrylife 產品。"
     },
     "event3": {
       "date": "2024 年 6-8 月",
@@ -287,12 +287,12 @@
     "event4": {
       "date": "2024 年 8 月底",
       "title": "完善原型",
-      "description": "開始很艱難，但 Rolitt 團隊保持承諾。到 8 月底，我們完善了原型，標誌著一個重要的里程碑。"
+      "description": "開始很艱難，但 Thepalmistrylife 團隊保持承諾。到 8 月底，我們完善了原型，標誌著一個重要的里程碑。"
     },
     "event5": {
       "date": "2024 年 9 月",
-      "title": "向世界介紹 Rolitt",
-      "description": "隨著原型準備就緒，我們很興奮地向世界介紹 Rolitt。我們致力於持續改進和迭代，向前邁進。"
+      "title": "向世界介紹 Thepalmistrylife",
+      "description": "隨著原型準備就緒，我們很興奮地向世界介紹 Thepalmistrylife。我們致力於持續改進和迭代，向前邁進。"
     }
   },
   "payment": {
@@ -343,24 +343,24 @@
     "toggle": "切換主題"
   },
   "Terms": {
-    "meta_title": "服務條款 | Rolitt",
-    "meta_description": "閱讀我們的服務條款，了解使用 Rolitt 產品和服務的規則和指南。",
+    "meta_title": "服務條款 | Thepalmistrylife",
+    "meta_description": "閱讀我們的服務條款，了解使用 Thepalmistrylife 產品和服務的規則和指南。",
     "title": "服務條款",
     "last_updated": "最後更新：2024 年 6 月 15 日",
     "section1_title": "1. 接受條款",
-    "section1_content": "通過訪問或使用 Rolitt 的服務，您同意受這些服務條款和所有適用法律法規的約束。如果您不同意這些條款中的任何一條，您將被禁止使用或訪問我們的服務。",
+    "section1_content": "通過訪問或使用 Thepalmistrylife 的服務，您同意受這些服務條款和所有適用法律法規的約束。如果您不同意這些條款中的任何一條，您將被禁止使用或訪問我們的服務。",
     "section2_title": "2. 使用許可",
-    "section2_content": "允許臨時使用 Rolitt 的服務用於個人、非商業目的。此許可不包括：修改或複製材料；將材料用於商業目的；嘗試反編譯或反向工程任何軟體；移除任何版權或專有標記；或將材料轉移給他人或在任何其他伺服器上「鏡像」材料。",
+    "section2_content": "允許臨時使用 Thepalmistrylife 的服務用於個人、非商業目的。此許可不包括：修改或複製材料；將材料用於商業目的；嘗試反編譯或反向工程任何軟體；移除任何版權或專有標記；或將材料轉移給他人或在任何其他伺服器上「鏡像」材料。",
     "section3_title": "3. 免責聲明",
-    "section3_content": "Rolitt 的服務按「原樣」提供。我們不提供任何明示或暗示的保證，並特此否認所有保證，包括但不限於對適銷性和特定用途適用性的暗示保證。",
+    "section3_content": "Thepalmistrylife 的服務按「原樣」提供。我們不提供任何明示或暗示的保證，並特此否認所有保證，包括但不限於對適銷性和特定用途適用性的暗示保證。",
     "section4_title": "4. 限制",
-    "section4_content": "在任何情況下，Rolitt 或其供應商均不對因使用或無法使用我們的服務而產生的任何損害（包括但不限於數據或利潤損失，或由於業務中斷）負責。",
+    "section4_content": "在任何情況下，Thepalmistrylife 或其供應商均不對因使用或無法使用我們的服務而產生的任何損害（包括但不限於數據或利潤損失，或由於業務中斷）負責。",
     "section5_title": "5. 修訂和錯誤",
-    "section5_content": "出現在 Rolitt 服務上的材料可能包含技術、排版或攝影錯誤。我們不保證任何材料都是準確、完整或最新的。我們可能隨時更改材料，恕不另行通知。"
+    "section5_content": "出現在 Thepalmistrylife 服務上的材料可能包含技術、排版或攝影錯誤。我們不保證任何材料都是準確、完整或最新的。我們可能隨時更改材料，恕不另行通知。"
   },
   "Privacy": {
-    "meta_title": "隱私政策 | Rolitt",
-    "meta_description": "了解 Rolitt 如何收集、使用和保護您的個人資訊。",
+    "meta_title": "隱私政策 | Thepalmistrylife",
+    "meta_description": "了解 Thepalmistrylife 如何收集、使用和保護您的個人資訊。",
     "title": "隱私政策",
     "last_updated": "最後更新：2024 年 6 月 15 日",
     "section1_title": "1. 我們收集的資訊",
@@ -375,7 +375,7 @@
     "section5_content": "我們採取合理措施幫助保護您的個人資訊免於丟失、盜竊、濫用、未經授權的訪問、披露、更改和破壞。但是，沒有安全系統是無懈可擊的，我們不能保證我們系統的安全性。"
   },
   "NotFound": {
-    "meta_title": "找不到頁面 | Rolitt",
+    "meta_title": "找不到頁面 | Thepalmistrylife",
     "meta_description": "您尋找的頁面不存在或已被移動。",
     "title": "找不到頁面",
     "description": "您尋找的頁面不存在或已被移動。",
@@ -433,7 +433,7 @@
   "preOrder": {
     "hero": {
       "title": "成為首批體驗 AI 夥伴關係未來的人",
-      "description": "立即預購您的 Rolitt AI 夥伴，加入新一代互動科技的行列。",
+      "description": "立即預購您的 Thepalmistrylife 夥伴，加入新一代互動科技的行列。",
       "cta": "立即預購",
       "colors": {
         "honey_khaki": "蜂蜜卡其",
@@ -545,7 +545,7 @@
           },
           {
             "question": "是否享有售後質保？",
-            "answer": "Rolitt 產品提供一年質保，非人為損壞均可免費更換或維修。"
+            "answer": "Thepalmistrylife 產品提供一年質保，非人為損壞均可免費更換或維修。"
           }
         ]
       }
@@ -617,8 +617,8 @@
   },
   "VideoSection": {
     "badge": "產品演示",
-    "title": "看看 Rolitt 的實際表現",
-    "description": "通過影片了解 Rolitt AI 夥伴的功能特性和使用體驗",
+    "title": "看看 Thepalmistrylife 的實際表現",
+    "description": "通過影片了解 Thepalmistrylife 夥伴的功能特性和使用體驗",
     "youtube_link_text": "想了解更多？訪問我們的",
     "youtube_channel": "YouTube 頻道",
     "youtube_link_suffix": "查看更多影片內容"
@@ -677,7 +677,7 @@
   "Payment": {
     "Success": {
       "title": "付款成功！",
-      "message": "感謝您的預訂！我們已收到您的付款，您的 Rolitt AI 伴侶離您又近了一步。確認郵件已發送到您的收件箱。",
+      "message": "感謝您的預訂！我們已收到您的付款，您的 Thepalmistrylife 伴侶離您又近了一步。確認郵件已發送到您的收件箱。",
       "button_back_home": "返回首頁",
       "support_message": "如果您有任何問題，可以聯繫我們的支持團隊："
     },
@@ -709,7 +709,7 @@
   "PreOrder": {
     "Hero": {
       "title": "成為首批體驗 AI 伴侶未來的人",
-      "description": "立即預訂您的 Rolitt AI 伴侶，加入下一代互動技術。",
+      "description": "立即預訂您的 Thepalmistrylife 伴侶，加入下一代互動技術。",
       "cta": "立即預訂",
       "colors": {
         "honey_khaki": "蜜糖卡其",
@@ -847,7 +847,7 @@
   "dashboard": {
     "title": "儀表板",
     "welcome_back": "歡迎回來，",
-    "welcome_message": "歡迎來到 Rolitt 用戶中心。在這裡管理您的 AI 伴侶體驗"
+    "welcome_message": "歡迎來到 Thepalmistrylife 用戶中心。在這裡管理您的 AI 伴侶體驗"
   },
   "billing": {
     "title": "帳單和付款",
@@ -913,7 +913,7 @@
         "description": "使用我們用戶友好的登入流程，輕鬆登入您的帳戶。"
       },
       "title": "登入您的帳戶",
-      "alt": "Rolitt 標誌",
+      "alt": "Thepalmistrylife 標誌",
       "footer": "還不是會員？",
       "footer_link": "立刻註冊成為第一批會員",
       "google_button": "使用 Google 繼續",
@@ -939,7 +939,7 @@
         "description": "通過我們直覺的註冊流程，輕鬆創建帳戶。"
       },
       "title": "創建您的帳戶",
-      "alt": "Rolitt 標誌",
+      "alt": "Thepalmistrylife 標誌",
       "footer": "已經是會員？",
       "footer_link": "在此登入",
       "google_button": "使用 Google 繼續",
@@ -998,7 +998,7 @@
     "meta_title": "登入",
     "meta_description": "使用我們用戶友好的登入流程，輕鬆登入您的帳戶。",
     "title": "登入您的帳戶",
-    "alt": "Rolitt 標誌",
+    "alt": "Thepalmistrylife 標誌",
     "footer": "還不是會員？",
     "footer_link": "立刻註冊成為第一批會員",
     "google_button": "使用 Google 繼續",
@@ -1016,7 +1016,7 @@
     "meta_title": "註冊",
     "meta_description": "通過我們直覺的註冊流程，輕鬆創建帳戶。",
     "title": "創建您的帳戶",
-    "alt": "Rolitt 標誌",
+    "alt": "Thepalmistrylife 標誌",
     "footer": "已經是會員？",
     "footer_link": "在此登入",
     "google_button": "使用 Google 繼續",
@@ -1032,7 +1032,7 @@
     "link": "登入"
   },
   "NotFound": {
-    "meta_title": "找不到頁面 | Rolitt",
+    "meta_title": "找不到頁面 | Thepalmistrylife",
     "meta_description": "您尋找的頁面不存在或已被移動。",
     "title": "找不到頁面",
     "description": "您尋找的頁面不存在或已被移動。",

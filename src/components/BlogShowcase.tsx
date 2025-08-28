@@ -81,7 +81,7 @@ export default async function BlogShowcase({ posts }: BlogShowcaseProps) {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2 text-sm text-muted-foreground">
                         <User className="w-3 h-3" />
-                        <span>{post.author || 'Rolitt Team'}</span>
+                        <span>{post.author || 'Thepalmistrylife Team'}</span>
                       </div>
                       <div className="flex items-center gap-1 text-primary font-medium text-sm group-hover:translate-x-1 transition-transform duration-200">
                         <span>{t('read_more')}</span>

@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = 'Rolitt';
+export const alt = 'Thepalmistrylife';
 export const size = {
   width: 1200,
   height: 630,
@@ -11,7 +11,7 @@ type Props = {
   title?: string;
 };
 
-export default async function Image({ title = 'Rolitt' }: Props) {
+export default async function Image({ title = 'Thepalmistrylife' }: Props) {
   return new ImageResponse(
     (
       <div

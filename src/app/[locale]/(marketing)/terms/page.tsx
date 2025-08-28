@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | Rolitt',
-  description: 'Terms of Service for Rolitt - Read our terms and conditions for using our products and services.',
+  title: 'Terms of Service | Thepalmistrylife',
+  description: 'Terms of Service for Thepalmistrylife - Read our terms and conditions for using our products and services.',
 };
 
 export default async function Terms({ params }: { params: Promise<{ locale: string }> }) {

@@ -113,7 +113,7 @@ function extractPageProperties(page: any): Omit<NotionBlogPost, 'content'> {
     slug: safeExtractText(properties.Slug?.rich_text),
     date: properties.Date?.date?.start || new Date().toISOString(),
     excerpt: safeExtractText(properties.Excerpt?.rich_text),
-    author: safeExtractText(properties.Author?.rich_text) || 'Rolitt Team',
+    author: safeExtractText(properties.Author?.rich_text) || 'Thepalmistrylife Team',
     category: safeExtractSelectName(properties.Category?.select),
     tags: properties.Tags?.multi_select?.map((tag: any) => safeExtractSelectName(tag)) || [],
     published: properties.Published?.checkbox || false,

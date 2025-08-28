@@ -41,7 +41,7 @@ const socialProofData = {
       avatar: 'SC',
     },
     {
-      quote: 'Amazing technology! Can\'t wait to receive my Rolitt AI companion.',
+      quote: 'Amazing technology! Can\'t wait to receive my/* Thepalmistrylife AI companion.',
       author: 'Michael Rodriguez',
       role: 'Early Adopter',
       avatar: 'MR',

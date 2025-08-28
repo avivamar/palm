@@ -73,7 +73,7 @@ function verifyShopifyWebhook(rawBody: string, signature: string): boolean {
 async function handleOrderCreate(payload: ShopifyWebhookPayload): Promise<void> {
   const db = await getDB();
 
-  // Check if this is a Rolitt-synced order
+  // Thepalmistrylife-synced order
   const isRolittOrder = payload.tags?.includes('rolitt-sync');
 
   if (isRolittOrder) {

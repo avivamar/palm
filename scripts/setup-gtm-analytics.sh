@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # GTM 多平台分析工具集成设置脚本
-# 作者: Rolitt Development Team
+# 作者:/* Thepalmistrylife Development Team
 # 日期: $(date +%Y-%m-%d)
 
 set -e

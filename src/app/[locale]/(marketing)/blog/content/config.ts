@@ -1,17 +1,17 @@
 export const blogConfig = {
   // Site information
   title: 'Blog',
-  description: 'Latest insights, updates and thoughts from the Rolitt team.',
-  url: 'https://www.rolitt.com/blog',
+  description: 'Latest insights, updates and thoughts from the Thepalmistrylife team.',
+  url: 'https://www.thepalmistrylife.com/blog',
 
   // Author information
   author: {
-    name: 'Rolitt Team',
-    email: 'support@rolitt.com',
-    twitter: '@rolittai',
-    url: 'https://www.rolitt.com/about',
-    image: 'https://www.rolitt.com/images/team/rolitt-team.jpg',
-    description: 'The Rolitt team consists of AI researchers, engineers, and designers passionate about creating emotional AI companions.',
+    name: 'Thepalmistrylife Team',
+    email: 'support@thepalmistrylife.com',
+    twitter: '@thepalmistrylifeai',
+    url: 'https://www.thepalmistrylife.com/about',
+    image: 'https://www.thepalmistrylife.com/images/team/thepalmistrylife-team.jpg',
+    description: 'The Thepalmistrylife team consists of AI researchers, engineers, and designers passionate about creating emotional AI companions.',
   },
 
   // Blog settings
@@ -29,7 +29,7 @@ export const blogConfig = {
 
   // Default tags
   defaultTags: [
-    'rolitt',
+    'thepalmistrylife',
     'ai hardware',
     'innovation',
     'business',
@@ -61,13 +61,13 @@ export const blogConfig = {
     },
     schema: {
       organization: {
-        name: 'Rolitt Inc.',
-        url: 'https://www.rolitt.com',
-        logo: 'https://www.rolitt.com/palmlogo.svg',
+        name: 'Thepalmistrylife Inc.',
+        url: 'https://www.thepalmistrylife.com',
+        logo: 'https://www.thepalmistrylife.com/palmlogo.svg',
         sameAs: [
-          'https://twitter.com/rolittai',
-          'https://linkedin.com/company/rolitt',
-          'https://github.com/rolitt',
+          'https://twitter.com/thepalmistrylifeai',
+          'https://linkedin.com/company/thepalmistrylife',
+          'https://github.com/thepalmistrylife',
         ],
       },
     },

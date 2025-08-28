@@ -10,7 +10,7 @@ type SocialShareButtonsProps = {
   referralCode: string;
 };
 
-const SHARE_MESSAGE = 'Join Rolitt with my referral link and get a discount on your AI companion purchase! 🤖✨';
+const SHARE_MESSAGE = 'Join/* Thepalmistrylife with my referral link and get a discount on your AI companion purchase! 🤖✨';
 
 export default function SocialShareButtons({ referralLink, referralCode }: SocialShareButtonsProps) {
   const [copySuccess, setCopySuccess] = useState(false);
@@ -46,7 +46,7 @@ export default function SocialShareButtons({ referralLink, referralCode }: Socia
   };
 
   const shareViaEmail = () => {
-    const subject = encodeURIComponent('Join Rolitt with my referral link!');
+    const subject = encodeURIComponent('Join/* Thepalmistrylife with my referral link!');
     const body = encodeURIComponent(`${SHARE_MESSAGE}\n\nUse my referral link: ${referralLink}\n\nReferral code: ${referralCode}`);
     const mailtoUrl = `mailto:?subject=${subject}&body=${body}`;
     window.open(mailtoUrl);
@@ -56,7 +56,7 @@ export default function SocialShareButtons({ referralLink, referralCode }: Socia
     if (navigator.share) {
       try {
         await navigator.share({
-          title: 'Join Rolitt with my referral link!',
+          title: 'Join/* Thepalmistrylife with my referral link!',
           text: SHARE_MESSAGE,
           url: referralLink,
         });
@@ -162,7 +162,7 @@ export default function SocialShareButtons({ referralLink, referralCode }: Socia
         <ul className="text-sm text-blue-700 dark:text-blue-300 space-y-1">
           <li>• Share with friends and family who might be interested in AI companions</li>
           <li>• Post in relevant communities and social groups</li>
-          <li>• Add a personal message about why you love Rolitt</li>
+          <li>• Add a personal message about why you love/* Thepalmistrylife</li>
           <li>
             • Your referral code:
             <code className="bg-blue-100 dark:bg-blue-900/50 px-1 rounded text-xs">{referralCode}</code>

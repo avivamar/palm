@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { isValidEmail, RolittKlaviyoEvents } from '@/libs/klaviyo-utils';
+import { isValidEmail,/* ThepalmistrylifeKlaviyoEvents } from '@/libs/klaviyo-utils';
 
 // Add runtime declaration for Node.js compatibility
 export const runtime = 'nodejs';
@@ -52,7 +52,7 @@ function validateRequestBody(body: any): body is KlaviyoEventRequest {
  * POST /api/klaviyo/events
  *
  * 统一的 Klaviyo 事件发送 API endpoint
- * 支持所有 Rolitt 预售相关事件的发送
+ * 支持所有/* Thepalmistrylife 预售相关事件的发送
  *
  * 请求格式:
  * {
@@ -124,7 +124,7 @@ export async function POST(request: NextRequest) {
         }
 
         result = await withTimeout(
-          RolittKlaviyoEvents.preorderStarted(email, {
+         /* ThepalmistrylifeKlaviyoEvents.preorderStarted(email, {
             color: properties.color,
             preorder_id: properties.preorder_id,
             preorder_number: properties.preorder_number,
@@ -148,7 +148,7 @@ export async function POST(request: NextRequest) {
         }
 
         result = await withTimeout(
-          RolittKlaviyoEvents.preorderSuccess(email, {
+         /* ThepalmistrylifeKlaviyoEvents.preorderSuccess(email, {
             color: properties.color,
             preorder_id: properties.preorder_id,
             preorder_number: properties.preorder_number,
@@ -175,7 +175,7 @@ export async function POST(request: NextRequest) {
         }
 
         result = await withTimeout(
-          RolittKlaviyoEvents.preorderFailed(email, {
+         /* ThepalmistrylifeKlaviyoEvents.preorderFailed(email, {
             color: properties.color,
             preorder_id: properties.preorder_id,
             error_reason: properties.error_reason,
@@ -249,7 +249,7 @@ export async function GET() {
   return NextResponse.json({
     name: 'Rolitt Klaviyo Events API',
     version: '1.0.0',
-    description: 'Unified API endpoint for sending Rolitt preorder events to Klaviyo',
+    description: 'Unified API endpoint for sending/* Thepalmistrylife preorder events to Klaviyo',
     endpoints: {
       'POST /api/klaviyo/events': {
         description: 'Send a Klaviyo event',

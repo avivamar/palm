@@ -68,7 +68,7 @@ Palm AI 是一个基于手掌图像 + 个人出生信息（日期、时辰）分
 #### **开发与部署**
 - **监控**: Sentry 错误追踪 + PostHog 分析
 - **测试**: Playwright (E2E) + Vitest (单元测试)
-- **部署**: Railway (主要) + Vercel + Cloudflare Workers 支持
+- **部署**:  Vercel(主要)+Railway+Cloudflare Workers 支持
 - **包管理**: npm Workspaces + TypeScript Project References
 
 ### **支付系统架构**
@@ -444,7 +444,7 @@ src/
 
 ## **📈 业务价值总结**
 
-这些重大改进为 Rolitt AI 伴侣产品带来了显著的业务价值：
+这些重大改进为 Thepalmistrylife 伴侣产品带来了显著的业务价值：
 
 ### **🏗️ 系统架构优势**
 - **系统稳定性提升**: 通过认证系统迁移和模块化架构，系统运行更加稳定可靠

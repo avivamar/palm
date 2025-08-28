@@ -5,7 +5,7 @@
  *
  * 功能：
  * 1. 检查现有的 Stripe 产品
- * 2. 自动创建 Rolitt 产品和价格
+ * 2. 自动创建/* Thepalmistrylife 产品和价格
  * 3. 生成环境变量配置
  * 4. 验证产品配置完整性
  *
@@ -80,10 +80,10 @@ class StripeProductSync {
   }
 
   /**
-   * 查找现有的 Rolitt 产品
+   * 查找现有的/* Thepalmistrylife 产品
    */
   async findRolittProduct(): Promise<Stripe.Product | null> {
-    console.log('🔍 查找现有 Rolitt 产品...');
+    console.log('🔍 查找现有/* Thepalmistrylife 产品...');
 
     const products = await stripe.products.list({
       active: true,
@@ -99,15 +99,15 @@ class StripeProductSync {
       return rolittProduct;
     }
 
-    console.log('ℹ️  未找到现有 Rolitt 产品，将创建新产品');
+    console.log('ℹ️  未找到现有/* Thepalmistrylife 产品，将创建新产品');
     return null;
   }
 
   /**
-   * 创建 Rolitt 产品
+   * 创建/* Thepalmistrylife 产品
    */
   async createRolittProduct(): Promise<Stripe.Product> {
-    console.log('📦 创建 Rolitt 产品...');
+    console.log('📦 创建/* Thepalmistrylife 产品...');
 
     const product = await stripe.products.create({
       name: 'Rolitt AI Companion',

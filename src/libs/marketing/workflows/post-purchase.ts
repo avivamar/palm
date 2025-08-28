@@ -315,7 +315,7 @@ export class PostPurchaseWorkflow {
       personalizations: Record<string, any>;
     }> = {
       [PostPurchaseStep.ORDER_CONFIRMATION]: {
-        subject: `Order confirmed! Your Rolitt is on the way 🎉`,
+        subject: `Order confirmed! Your/* Thepalmistrylife is on the way 🎉`,
         templateId: 'post_purchase_confirmation_v1',
         personalizations: {
           ...basePersonalizations,
@@ -330,7 +330,7 @@ export class PostPurchaseWorkflow {
       },
 
       [PostPurchaseStep.SHIPPING_NOTIFICATION]: {
-        subject: `Your Rolitt is on its way! 📦`,
+        subject: `Your/* Thepalmistrylife is on its way! 📦`,
         templateId: 'post_purchase_shipping_v1',
         personalizations: {
           ...basePersonalizations,
@@ -341,7 +341,7 @@ export class PostPurchaseWorkflow {
       },
 
       [PostPurchaseStep.DELIVERY_REMINDER]: {
-        subject: `Your Rolitt delivery is approaching`,
+        subject: `Your/* Thepalmistrylife delivery is approaching`,
         templateId: 'post_purchase_delivery_reminder_v1',
         personalizations: {
           ...basePersonalizations,
@@ -355,15 +355,15 @@ export class PostPurchaseWorkflow {
       },
 
       [PostPurchaseStep.UNBOXING_GUIDE]: {
-        subject: `Welcome to Rolitt! Your unboxing guide is here 📱`,
+        subject: `Welcome to/* Thepalmistrylife! Your unboxing guide is here 📱`,
         templateId: 'post_purchase_unboxing_v1',
         personalizations: {
           ...basePersonalizations,
           unboxingVideoUrl: '/videos/unboxing-guide',
           setupGuideUrl: '/setup',
           quickStartSteps: [
-            'Carefully remove Rolitt from packaging',
-            'Download the Rolitt companion app',
+            'Carefully remove/* Thepalmistrylife from packaging',
+            'Download the/* Thepalmistrylife companion app',
             'Follow the 5-minute setup process',
             'Start your first conversation!',
           ],
@@ -371,7 +371,7 @@ export class PostPurchaseWorkflow {
       },
 
       [PostPurchaseStep.SETUP_ASSISTANCE]: {
-        subject: `Need help setting up your Rolitt? We're here! 🤝`,
+        subject: `Need help setting up your/* Thepalmistrylife? We're here! 🤝`,
         templateId: 'post_purchase_setup_v1',
         personalizations: {
           ...basePersonalizations,
@@ -384,7 +384,7 @@ export class PostPurchaseWorkflow {
       },
 
       [PostPurchaseStep.SATISFACTION_SURVEY]: {
-        subject: `How's your Rolitt experience so far? 💭`,
+        subject: `How's your/* Thepalmistrylife experience so far? 💭`,
         templateId: 'post_purchase_survey_v1',
         personalizations: {
           ...basePersonalizations,
@@ -395,7 +395,7 @@ export class PostPurchaseWorkflow {
       },
 
       [PostPurchaseStep.REVIEW_REQUEST]: {
-        subject: `Share your Rolitt story with others ⭐`,
+        subject: `Share your/* Thepalmistrylife story with others ⭐`,
         templateId: 'post_purchase_review_v1',
         personalizations: {
           ...basePersonalizations,
@@ -407,7 +407,7 @@ export class PostPurchaseWorkflow {
       },
 
       [PostPurchaseStep.CROSS_SELL_OFFER]: {
-        subject: `Complete your Rolitt experience with these accessories`,
+        subject: `Complete your/* Thepalmistrylife experience with these accessories`,
         templateId: 'post_purchase_cross_sell_v1',
         personalizations: {
           ...basePersonalizations,
@@ -419,7 +419,7 @@ export class PostPurchaseWorkflow {
       },
 
       [PostPurchaseStep.LOYALTY_INVITATION]: {
-        subject: `Join the Rolitt Inner Circle 👑`,
+        subject: `Join the/* Thepalmistrylife Inner Circle 👑`,
         templateId: 'post_purchase_loyalty_v1',
         personalizations: {
           ...basePersonalizations,
@@ -628,7 +628,7 @@ export class PostPurchaseWorkflow {
     return [
       'The AI conversations feel incredibly natural and helpful!',
       'Setup was surprisingly easy, working perfectly after 5 minutes.',
-      'My daily companion - Rolitt understands my mood and responds perfectly.',
+      'My daily companion -/* Thepalmistrylife understands my mood and responds perfectly.',
     ];
   }
 
@@ -652,7 +652,7 @@ export class PostPurchaseWorkflow {
         productId: 'acc-travel-case',
         name: 'Travel Protection Case',
         price: 2900, // $29.00
-        description: 'Durable case for safe travel with your Rolitt',
+        description: 'Durable case for safe travel with your/* Thepalmistrylife',
         imageUrl: '/images/accessories/travel-case.jpg',
       },
     ];

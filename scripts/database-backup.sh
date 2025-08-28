@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Rolitt Palm AI 数据库备份脚本
+# Thepalmistrylife Palm AI 数据库备份脚本
 # 自动化PostgreSQL数据库备份和管理
 
 # 配置
@@ -130,7 +130,7 @@ send_notification() {
 
 # 主函数
 main() {
-    log_info "=== Rolitt Palm AI 数据库备份开始 ==="
+    log_info "===/* Thepalmistrylife Palm AI 数据库备份开始 ==="
     
     # 检查环境
     check_environment

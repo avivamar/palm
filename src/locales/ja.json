@@ -8,20 +8,20 @@
     "sign_up_link": "新規登録"
   },
   "BaseTemplate": {
-    "description": "Rolitt AIコンパニオンを今すぐ予約して、次世代のインタラクティブテクノロジーの一員になりましょう。",
-    "made_with": "<author>Rolitt</author>で作成"
+    "description": "Thepalmistrylifeコンパニオンを今すぐ予約して、次世代のインタラクティブテクノロジーの一員になりましょう。",
+    "made_with": "<author>Thepalmistrylife</author>で作成"
   },
   "Index": {
-    "meta_title": "Rolitt – あなたの知的な感情AIコンパニオン",
-    "meta_description": "Rolittをご紹介します。あなたの知的な感情コンパニオンです！先進的なAI技術により、Rolittはあなたの日常生活に喜び、サポート、そして冒険をもたらします。AIコンパニオンシップの無限の可能性を探索しましょう！",
-    "meta_keywords": "Rolitt, AIコンパニオン, スマートロボット, 感情サポートロボット, 家族向けコンパニオンロボット, AIロボット, スマートホームロボット, 感情認識ロボット, 音声インタラクションロボット, パーソナルアシスタントロボット, 未来技術ロボット, 革新的ロボット, ロボット技術, ロボット開発, ロボットアプリケーション, ロボットソリューション, ロボット学習, インタラクティブロボット, ロボット安全性, ロボットプライバシー保護, 感情コンピューティングロボット, 自然言語処理ロボット, 機械学習ロボット, エンドツーエンド暗号化ロボット",
-    "meta_og_title": "Rolitt - AIコンパニオンシップの再定義",
-    "meta_og_description": "あなたの感情を理解し、生活に喜びをもたらすAIコンパニオン、Rolittをご体験ください。Rolittは単なるスマートアシスタントではなく、あなたの感情パートナーです。",
-    "meta_og_image_alt": "Rolitt AIコンパニオン - あなたの知的な感情サポート",
-    "meta_twitter_title": "Rolitt：知的な感情コンパニオンシップの新時代を開く",
-    "meta_twitter_description": "あなたの感情を感じ取り、ニーズに合わせて適応するAIコンパニオン、Rolittをご紹介します。テクノロジーで毎日を温かく。",
-    "product_name": "Rolitt 知的な感情AIコンパニオン",
-    "product_description": "Rolittは、感情認識、自然言語処理、機械学習技術を組み合わせた次世代AIコンパニオンで、思いやりのある感情サポートと知的なインタラクションを提供します。",
+    "meta_title": "Thepalmistrylife – あなたの知的な感情AIコンパニオン",
+    "meta_description": "Thepalmistrylifeをご紹介します。あなたの知的な感情コンパニオンです！先進的なAI技術により、Thepalmistrylifeはあなたの日常生活に喜び、サポート、そして冒険をもたらします。AIコンパニオンシップの無限の可能性を探索しましょう！",
+    "meta_keywords": "Thepalmistrylife, AIコンパニオン, スマートロボット, 感情サポートロボット, 家族向けコンパニオンロボット, AIロボット, スマートホームロボット, 感情認識ロボット, 音声インタラクションロボット, パーソナルアシスタントロボット, 未来技術ロボット, 革新的ロボット, ロボット技術, ロボット開発, ロボットアプリケーション, ロボットソリューション, ロボット学習, インタラクティブロボット, ロボット安全性, ロボットプライバシー保護, 感情コンピューティングロボット, 自然言語処理ロボット, 機械学習ロボット, エンドツーエンド暗号化ロボット",
+    "meta_og_title": "Thepalmistrylife - AIコンパニオンシップの再定義",
+    "meta_og_description": "あなたの感情を理解し、生活に喜びをもたらすAIコンパニオン、Thepalmistrylifeをご体験ください。Thepalmistrylifeは単なるスマートアシスタントではなく、あなたの感情パートナーです。",
+    "meta_og_image_alt": "Thepalmistrylifeコンパニオン - あなたの知的な感情サポート",
+    "meta_twitter_title": "Thepalmistrylife：知的な感情コンパニオンシップの新時代を開く",
+    "meta_twitter_description": "あなたの感情を感じ取り、ニーズに合わせて適応するAIコンパニオン、Thepalmistrylifeをご紹介します。テクノロジーで毎日を温かく。",
+    "product_name": "Thepalmistrylife 知的な感情AIコンパニオン",
+    "product_description": "Thepalmistrylifeは、感情認識、自然言語処理、機械学習技術を組み合わせた次世代AIコンパニオンで、思いやりのある感情サポートと知的なインタラクションを提供します。",
     "sponsors_title": "パートナー企業"
   },
   "Counter": {
@@ -93,7 +93,7 @@
     "meta_title": "サインイン",
     "meta_description": "ユーザーフレンドリーなログインプロセスでアカウントにシームレスにサインインしてください。",
     "sign_in_title": "アカウントにサインイン",
-    "sign_in_alt": "Rolitt ロゴ",
+    "sign_in_alt": "Thepalmistrylife ロゴ",
     "sign_in_footer": "メンバーではありませんか？",
     "sign_in_footer_link": "14日間の無料トライアルを開始",
     "google_button": "Google で続行",
@@ -111,7 +111,7 @@
     "meta_title": "サインアップ",
     "meta_description": "直感的なサインアッププロセスを通じて簡単にアカウントを作成してください。",
     "sign_up_title": "アカウントを作成",
-    "sign_up_alt": "Rolitt ロゴ",
+    "sign_up_alt": "Thepalmistrylife ロゴ",
     "sign_up_footer": "すでにメンバーですか？",
     "sign_up_footer_link": "こちらからサインイン",
     "google_button": "Google で続行",
@@ -151,7 +151,7 @@
     "company": "会社",
     "about": "会社概要",
     "pre-order": "予約注文",
-    "Rolittai": "Rolitt AI",
+    "Thepalmistrylife": "Thepalmistrylife",
     "services": "サービス",
     "contact": "お問い合わせ",
     "nav": {
@@ -167,9 +167,9 @@
 
   },
   "Hero": {
-    "follow_twitter": "TwitterでRolittをフォロー",
+    "follow_twitter": "TwitterでThepalmistrylifeをフォロー",
     "title": "Yoyo: 新しい友情の形 - 先行アクセス受付中",
-    "description": "Rolitt：AIと温かさが出会う場所 – あなたの24時間365日の感情コンパニオン",
+    "description": "Thepalmistrylife：AIと温かさが出会う場所 – あなたの24時間365日の感情コンパニオン",
     "primary_button": "今すぐ予約",
     "secondary_button": "早期予約プラン",
     "avatar": "世界中の5,000人以上の人々が私たちの革新を発見しています。"
@@ -219,24 +219,24 @@
     "meta_twitter_description": "当社のロボットソリューションとサービスに関する一般的な質問の回答を素早く簡単に見つけることができます。",
     "title": "よくある質問",
     "subtitle": "当社の製品とサービスに関する最も一般的な質問の回答をご覧ください",
-    "question_1": "Rolittはどのようなロボットソリューションを提供していますか？",
-    "answer_1": "Rolittは、産業用自動化システム、医療支援ロボット、教育用ロボットプラットフォーム、ホームオートメーションソリューションなど、幅広いロボットソリューションを提供しています。各製品ラインは、当社のコアAIとロボット技術を活用しながら、異なるセクターの特定のニーズに対応するように設計されています。",
-    "question_2": "Rolittの技術を既存のシステムとどのように統合できますか？",
+    "question_1": "Thepalmistrylifeはどのようなロボットソリューションを提供していますか？",
+    "answer_1": "Thepalmistrylifeは、産業用自動化システム、医療支援ロボット、教育用ロボットプラットフォーム、ホームオートメーションソリューションなど、幅広いロボットソリューションを提供しています。各製品ラインは、当社のコアAIとロボット技術を活用しながら、異なるセクターの特定のニーズに対応するように設計されています。",
+    "question_2": "Thepalmistrylifeの技術を既存のシステムとどのように統合できますか？",
     "answer_2": "当社のソリューションは、相互運用性を考慮して設計されています。包括的なAPI、ドキュメント、統合サポートを提供し、既存のインフラストラクチャとのシームレスな接続を確保します。当社の技術チームは、実装中にクライアントと密接に協力し、成功した統合と最小限の混乱を確保します。",
-    "question_3": "Rolittは購入後にどのようなサポートを提供していますか？",
+    "question_3": "Thepalmistrylifeは購入後にどのようなサポートを提供していますか？",
     "answer_3": "技術支援、メンテナンスサービス、ソフトウェアアップデート、トレーニングプログラムなど、包括的な購入後サポートを提供しています。当社のサポートパッケージは、基本的なトラブルシューティングから保証された応答時間を備えたフルサービスのメンテナンス契約まで、お客様の特定のニーズに合わせてカスタマイズできます。",
-    "question_4": "Rolittの技術は小規模企業に適していますか？",
+    "question_4": "Thepalmistrylifeの技術は小規模企業に適していますか？",
     "answer_4": "もちろんです！当社は、あらゆる規模の組織向けに設計されたソリューションを提供しています。小規模企業向けには、広範なインフラストラクチャや技術的専門知識を必要とせずに高度な機能を提供するスケーラブルなオプションを提供しています。当社のモジュラーアプローチにより、小規模から始めて、ニーズに応じて拡張できます。",
-    "question_5": "Rolittはロボットシステムのセキュリティをどのように確保していますか？",
-    "answer_5": "セキュリティはRolittの最優先事項です。暗号化された通信、安全な認証プロトコル、定期的なセキュリティアップデート、包括的な脆弱性テストなど、複数の保護層を実装しています。当社のシステムは、プライバシーを設計に組み込む原則に基づいて設計され、関連する業界標準と規制に準拠しています。",
-    "question_6": "Rolittの技術は競合他社とどのように異なりますか？",
+    "question_5": "Thepalmistrylifeはロボットシステムのセキュリティをどのように確保していますか？",
+    "answer_5": "セキュリティはThepalmistrylifeの最優先事項です。暗号化された通信、安全な認証プロトコル、定期的なセキュリティアップデート、包括的な脆弱性テストなど、複数の保護層を実装しています。当社のシステムは、プライバシーを設計に組み込む原則に基づいて設計され、関連する業界標準と規制に準拠しています。",
+    "question_6": "Thepalmistrylifeの技術は競合他社とどのように異なりますか？",
     "answer_6": "当社の主要な差別化要因は、ロボットシステムにより適応性の高い、インテリジェントな動作を可能にする独自のAI技術です。さらに、ユーザーフレンドリーなインターフェース、シームレスな統合機能、堅牢なセキュリティ機能に焦点を当てています。当社のソリューションは、多様な環境での信頼性とパフォーマンスを確保するために、広範な実世界テストを通じて開発されています。",
     "still_have_questions": "まだ質問がありますか？お手伝いします！",
     "contact_us_text": "お客様の特定のニーズに合わせた個別のサポートについては、当社のサポートチームにお問い合わせください。"
   },
   "CTA": {
     "title": "この限定機会をお見逃しなく！",
-    "description": "Rolittをいち早くお迎えしましょう！早期予約特典は期間限定です。今すぐ予約して70ドルお得に。",
+    "description": "Thepalmistrylifeをいち早くお迎えしましょう！早期予約特典は期間限定です。今すぐ予約して70ドルお得に。",
     "button_text": "199ドルで予約する"
   },
   "Footer": {
@@ -277,7 +277,7 @@
 
   "PaymentSuccess": {
     "title": "お支払い成功！",
-    "message": "ご予約いただきありがとうございます！お支払いを確認いたしました。Rolitt AIコンパニオンがあなたに一歩近づきました。確認メールが受信トレイに送信されました。",
+    "message": "ご予約いただきありがとうございます！お支払いを確認いたしました。Thepalmistrylifeコンパニオンがあなたに一歩近づきました。確認メールが受信トレイに送信されました。",
     "button_back_home": "ホームに戻る",
     "support_message": "ご不明な点がございましたら、サポートチームまでお問い合わせください："
   },
@@ -338,19 +338,19 @@
   },
   "Terms": {
     "meta_title": "Terms of Service | Rolitt",
-    "meta_description": "Read our terms of service to understand the rules and guidelines for using Rolitt's products and services.",
+    "meta_description": "Read our terms of service to understand the rules and guidelines for using Thepalmistrylife's products and services.",
     "title": "Terms of Service",
     "last_updated": "Last updated: June 15, 2024",
     "section1_title": "1. Acceptance of Terms",
-    "section1_content": "By accessing or using Rolitt's services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.",
+    "section1_content": "By accessing or using Thepalmistrylife's services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing our services.",
     "section2_title": "2. Use License",
-    "section2_content": "Permission is granted to temporarily use Rolitt's services for personal, non-commercial purposes. This license does not include: modifying or copying materials; using materials for commercial purposes; attempting to decompile or reverse engineer any software; removing any copyright or proprietary notations; or transferring materials to another person or 'mirroring' materials on any other server.",
+    "section2_content": "Permission is granted to temporarily use Thepalmistrylife's services for personal, non-commercial purposes. This license does not include: modifying or copying materials; using materials for commercial purposes; attempting to decompile or reverse engineer any software; removing any copyright or proprietary notations; or transferring materials to another person or 'mirroring' materials on any other server.",
     "section3_title": "3. Disclaimer",
-    "section3_content": "Rolitt's services are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim all warranties, including without limitation implied warranties of merchantability and fitness for a particular purpose.",
+    "section3_content": "Thepalmistrylife's services are provided on an 'as is' basis. We make no warranties, expressed or implied, and hereby disclaim all warranties, including without limitation implied warranties of merchantability and fitness for a particular purpose.",
     "section4_title": "4. Limitations",
     "section4_content": "In no event shall Rolitt or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use our services.",
     "section5_title": "5. Revisions and Errata",
-    "section5_content": "The materials appearing on Rolitt's services could include technical, typographical, or photographic errors. We do not warrant that any of the materials are accurate, complete or current. We may make changes to the materials at any time without notice."
+    "section5_content": "The materials appearing on Thepalmistrylife's services could include technical, typographical, or photographic errors. We do not warrant that any of the materials are accurate, complete or current. We may make changes to the materials at any time without notice."
   },
   "Privacy": {
     "meta_title": "Privacy Policy | Rolitt",
@@ -427,7 +427,7 @@
   "preOrder": {
     "hero": {
       "title": "AIコンパニオンシップの未来をいち早く体験しましょう",
-      "description": "Rolitt AIコンパニオンを今すぐ予約して、次世代のインタラクティブテクノロジーの一員になりましょう。",
+      "description": "Thepalmistrylifeコンパニオンを今すぐ予約して、次世代のインタラクティブテクノロジーの一員になりましょう。",
       "cta": "今すぐ予約"
     },
     "features": {
@@ -605,8 +605,8 @@
   },
   "VideoSection": {
     "badge": "製品デモ",
-    "title": "Rolittの実際の動作をご覧ください",
-    "description": "動画でRolitt AIコンパニオンの機能と使用体験をご紹介します",
+    "title": "Thepalmistrylifeの実際の動作をご覧ください",
+    "description": "動画でThepalmistrylifeコンパニオンの機能と使用体験をご紹介します",
     "youtube_link_text": "詳しく知りたいですか？私たちの",
     "youtube_channel": "YouTubeチャンネル",
     "youtube_link_suffix": "でより多くの動画コンテンツをご覧ください"

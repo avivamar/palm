@@ -14,7 +14,7 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-echo -e "${BLUE}🎨 BIMI配置工具 - Rolitt邮件品牌化${NC}"
+echo -e "${BLUE}🎨 BIMI配置工具 -/* Thepalmistrylife邮件品牌化${NC}"
 echo "========================================"
 
 # API请求函数

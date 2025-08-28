@@ -663,7 +663,7 @@ export class LoyaltyProgramWorkflow {
     const tierBenefits = this.tierBenefits[member.currentTier];
 
     return {
-      subject: `Welcome to Rolitt Rewards, ${member.firstName || 'Member'}! 🎉`,
+      subject: `Welcome to/* Thepalmistrylife Rewards, ${member.firstName || 'Member'}! 🎉`,
       templateId: 'loyalty_welcome_v1',
       personalizations: {
         firstName: member.firstName || 'Member',

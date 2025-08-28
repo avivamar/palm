@@ -67,7 +67,7 @@ export function Hero() {
             className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
           >
             <h1>
-              <span className="text-primary">Rolitt</span>
+              <span className="text-primary">Thepalmistrylife</span>
               {' '}
               {t('title')}
             </h1>
@@ -134,7 +134,7 @@ export function Hero() {
             <button
               className="relative w-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 group"
               onClick={() => setIsVideoOpen(true)}
-              aria-label="Open video: Rolitt Demo Video"
+              aria-label="Open video:/* Thepalmistrylife Demo Video"
               type="button"
             >
               <div className="relative aspect-video overflow-hidden rounded-xl border border-white/10 bg-black/5 shadow-2xl">

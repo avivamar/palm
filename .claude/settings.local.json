@@ -157,7 +157,12 @@
       "WebFetch(domain:appnebula.co)",
       "Bash(if [ -f \"/Users/aviva/github/avivamar/palm/src/locales/$locale/palmindex.json\" ])",
       "Bash(jq:*)",
-      "Bash(npm start)"
+      "Bash(npm start)",
+      "Bash(/Users/aviva/github/avivamar/palm/scripts/replace-display-text.sh:*)",
+      "Bash(src/locales/zh.json src/locales/zh-HK.json)",
+      "Bash({} ;)",
+      "Bash(/Users/aviva/github/avivamar/palm/scripts/replace-comments.sh:*)",
+      "Bash(src/locales/ja.json src/locales/es.json)"
     ],
     "deny": []
   }

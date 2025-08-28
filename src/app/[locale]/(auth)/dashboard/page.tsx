@@ -12,7 +12,7 @@ export async function generateMetadata(props: {
   });
 
   return {
-    title: `${t('meta_title')} - Rolitt`,
+    title: `${t('meta_title')} -/* Thepalmistrylife`,
   };
 }
 

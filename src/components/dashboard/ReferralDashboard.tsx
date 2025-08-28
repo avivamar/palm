@@ -104,8 +104,8 @@ export default function ReferralDashboard() {
 
     if (navigator.share) {
       navigator.share({
-        title: 'Join Rolitt with my referral link',
-        text: 'Get a discount on your Rolitt AI companion purchase!',
+        title: 'Join/* Thepalmistrylife with my referral link',
+        text: 'Get a discount on your/* Thepalmistrylife AI companion purchase!',
         url: link,
       });
     } else {

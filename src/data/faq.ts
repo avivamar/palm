@@ -2,7 +2,7 @@ export const faqData = {
   'en': [
     {
       id: 'what-is-rolitt',
-      question: 'What is Rolitt AI Companion?',
+      question: 'What is/* Thepalmistrylife AI Companion?',
       answer: 'Rolitt AI Companion is an interactive plush toy powered by advanced AI technology. It combines emotional recognition, natural language processing, and machine learning to create meaningful interactions and emotional connections with users.',
       keywords: 'AI companion, smart toy, interactive plush, emotional recognition',
     },
@@ -15,12 +15,12 @@ export const faqData = {
     {
       id: 'is-it-safe',
       question: 'Is it safe for children?',
-      answer: 'Yes, Rolitt is designed with child safety in mind. It features robust privacy protection, content filtering, and parental controls. All interactions are encrypted and stored securely, ensuring a safe environment for children.',
+      answer: 'Yes,/* Thepalmistrylife is designed with child safety in mind. It features robust privacy protection, content filtering, and parental controls. All interactions are encrypted and stored securely, ensuring a safe environment for children.',
       keywords: 'child safety, privacy protection, parental controls, secure environment',
     },
     {
       id: 'language-support',
-      question: 'What languages does Rolitt support?',
+      question: 'What languages does/* Thepalmistrylife support?',
       answer: 'Rolitt currently supports English, Japanese, Chinese, and Spanish. Our AI continuously learns and improves its language capabilities to provide natural conversations in each supported language.',
       keywords: 'multilingual support, language learning, natural conversation, AI capabilities',
     },
@@ -32,7 +32,7 @@ export const faqData = {
     },
     {
       id: 'what-makes-different',
-      question: 'What makes Rolitt different from other AI companions?',
+      question: 'What makes/* Thepalmistrylife different from other AI companions?',
       answer: 'Rolitt stands out through its combination of emotional intelligence, natural language understanding, and physical interaction through the plush toy form. It creates a unique blend of digital and physical companionship that feels more natural and engaging.',
       keywords: 'emotional intelligence, natural language, physical interaction',
     },
@@ -71,7 +71,7 @@ export const faqData = {
   ],
   'es': [
     {
-      question: '¿Qué es Rolitt AI Companion?',
+      question: '¿Qué es/* Thepalmistrylife AI Companion?',
       answer: 'Rolitt AI Companion es un juguete de peluche interactivo impulsado por tecnología de IA avanzada. Combina reconocimiento emocional, procesamiento de lenguaje natural y aprendizaje automático para crear interacciones significativas y conexiones emocionales con los usuarios.',
       keywords: 'compañero IA, juguete inteligente, peluche interactivo, reconocimiento emocional',
     },
@@ -82,11 +82,11 @@ export const faqData = {
     },
     {
       question: '¿Es seguro para niños?',
-      answer: 'Sí, Rolitt está diseñado pensando en la seguridad infantil. Cuenta con protección robusta de privacidad, filtrado de contenido y controles parentales. Todas las interacciones están encriptadas y almacenadas de forma segura.',
+      answer: 'Sí,/* Thepalmistrylife está diseñado pensando en la seguridad infantil. Cuenta con protección robusta de privacidad, filtrado de contenido y controles parentales. Todas las interacciones están encriptadas y almacenadas de forma segura.',
       keywords: 'seguridad infantil, protección de privacidad, controles parentales',
     },
     {
-      question: '¿Qué idiomas soporta Rolitt?',
+      question: '¿Qué idiomas soporta/* Thepalmistrylife?',
       answer: 'Rolitt actualmente soporta inglés, japonés, chino y español. Nuestra IA aprende continuamente y mejora sus capacidades lingüísticas para proporcionar conversaciones naturales en cada idioma soportado.',
       keywords: 'soporte multiidioma, aprendizaje de idiomas, conversación natural',
     },
@@ -96,7 +96,7 @@ export const faqData = {
       keywords: 'aprendizaje automático, personalización, IA adaptativa',
     },
     {
-      question: '¿Qué hace diferente a Rolitt de otros compañeros IA?',
+      question: '¿Qué hace diferente a/* Thepalmistrylife de otros compañeros IA?',
       answer: 'Rolitt se destaca por su combinación de inteligencia emocional, comprensión del lenguaje natural e interacción física a través de la forma de juguete de peluche. Crea una mezcla única de compañía digital y física que se siente más natural y atractiva.',
       keywords: 'inteligencia emocional, lenguaje natural, interacción física',
     },
