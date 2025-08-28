@@ -10,13 +10,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 export default function NotFound() {
   const t = useTranslations('NotFound');
 
-  // 俏皮的 404 消息数组
+  // Fun 404 messages array
   const funMessages = [
-    '🤖 我们的 AI 伙伴也找不到这个页面...',
-    '🔍 页面去度假了，但忘了告诉我们',
-    '🚀 这个页面可能飞到了另一个维度',
-    '🎭 页面在玩捉迷藏，而且它赢了',
-    '🌟 也许这个页面还在未来等着被创造',
+    '🤖 Our AI buddy couldn\'t find this page either...',
+    '🔍 The page went on vacation and forgot to tell us',
+    '🚀 This page might have flown to another dimension',
+    '🎭 The page is playing hide and seek, and it won',
+    '🌟 Maybe this page is waiting to be created in the future',
   ];
 
   const randomMessage = funMessages[Math.floor(Math.random() * funMessages.length)];
@@ -71,13 +71,13 @@ export default function NotFound() {
             <div className="grid grid-cols-2 gap-2">
               <Button variant="outline" onClick={handleGoBack} className="w-full">
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                返回上页
+                Go Back
               </Button>
 
               <Button variant="outline" asChild className="w-full">
                 <Link href="/contact">
                   <Search className="w-4 h-4 mr-2" />
-                  联系我们
+                  Contact Us
                 </Link>
               </Button>
             </div>
@@ -86,32 +86,32 @@ export default function NotFound() {
           {/* 热门页面推荐 */}
           <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
             <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 text-center">
-              或者访问这些热门页面：
+              Or visit these popular pages:
             </p>
             <div className="grid grid-cols-2 gap-2 text-sm">
               <Link
-                href="/pre-order"
+                href="/palm"
                 className="text-blue-600 dark:text-blue-400 hover:underline text-center py-1"
               >
-                🛒 预购产品
+                🔮 Palm Reading
               </Link>
               <Link
                 href="/about"
                 className="text-blue-600 dark:text-blue-400 hover:underline text-center py-1"
               >
-                ℹ️ 关于我们
+                ℹ️ About Us
               </Link>
               <Link
                 href="/blog"
                 className="text-blue-600 dark:text-blue-400 hover:underline text-center py-1"
               >
-                📝 博客
+                📝 Blog
               </Link>
               <Link
                 href="/faq"
                 className="text-blue-600 dark:text-blue-400 hover:underline text-center py-1"
               >
-                ❓ 常见问题
+                ❓ FAQ
               </Link>
             </div>
           </div>

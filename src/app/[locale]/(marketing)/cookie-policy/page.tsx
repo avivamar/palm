@@ -211,8 +211,8 @@ export default async function CookiePolicyPage({ params }: { params: Promise<{ l
             <p>
               Email:
               {' '}
-              <a href="mailto:support@thepalmistry.life" className="text-blue-600 hover:underline">
-                support@thepalmistry.life
+              <a href="mailto:contact@thepalmistry.life" className="text-blue-600 hover:underline">
+                contact@thepalmistry.life
               </a>
             </p>
           </div>

@@ -42,7 +42,7 @@ export default async function ContactInformation({ params }: ContactInformationP
             <li>
               <strong>Email:</strong>
               {' '}
-              <a href="mailto:support@thepalmistry.life" className="text-primary hover:underline">support@thepalmistry.life</a>
+              <a href="mailto:contact@thepalmistry.life" className="text-primary hover:underline">contact@thepalmistry.life</a>
             </li>
             <li>
               <strong>Phone:</strong>

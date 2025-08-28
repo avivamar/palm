@@ -105,7 +105,7 @@ export default async function Shipping({ params }: { params: Promise<{ locale: s
           <p className="mt-8">
             For any questions or concerns regarding shipping, please contact our customer service team at
             {' '}
-            <a href="mailto:support@thepalmistry.life" className="text-primary hover:underline">support@thepalmistry.life</a>
+            <a href="mailto:contact@thepalmistry.life" className="text-primary hover:underline">contact@thepalmistry.life</a>
             .
           </p>
         </div>
