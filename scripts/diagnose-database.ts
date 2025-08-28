@@ -5,9 +5,9 @@
  * Comprehensive test for Supabase database connection issues
  */
 
+import { exec } from 'node:child_process';
+import { promisify } from 'node:util';
 import { config } from 'dotenv';
-import { exec } from 'child_process';
-import { promisify } from 'util';
 
 const execAsync = promisify(exec);
 
@@ -16,16 +16,16 @@ config({ path: '.env.local' });
 
 async function diagnoseDatabase() {
   console.log('\n🔬 Database Connection Diagnostics\n');
-  console.log('=' .repeat(50));
+  console.log('='.repeat(50));
 
   // 1. Check environment variables
   console.log('\n1️⃣ Environment Variables Check:');
   console.log('-'.repeat(30));
-  
+
   const requiredEnvVars = [
     'DATABASE_URL',
-    'NEXT_PUBLIC_SUPABASE_URL', 
-    'NEXT_PUBLIC_SUPABASE_ANON_KEY'
+    'NEXT_PUBLIC_SUPABASE_URL',
+    'NEXT_PUBLIC_SUPABASE_ANON_KEY',
   ];
 
   let envVarsOk = true;
@@ -60,22 +60,22 @@ async function diagnoseDatabase() {
   // 2. Parse DATABASE_URL
   console.log('\n2️⃣ DATABASE_URL Analysis:');
   console.log('-'.repeat(30));
-  
+
   const dbUrl = process.env.DATABASE_URL!;
-  
+
   // Extract components using regex
-  const urlPattern = /postgres(?:ql)?:\/\/([^:]+)(?::([^@]+))?@([^:\/]+)(?::(\d+))?\/([^?]+)(?:\?(.+))?/;
+  const urlPattern = /postgres(?:ql)?:\/\/([^:@]+)(?::([^@]+))?@([^:/]+)(?::(\d+))?\/([^?]+)(?:\?(.+))?/;
   const match = dbUrl.match(urlPattern);
-  
+
   if (match) {
     const [, user, password, host, port, database, params] = match;
-    
+
     console.log(`User: ${user}`);
-    console.log(`Password: ${password ? '***' + password.slice(-4) : 'Not provided'}`);
+    console.log(`Password: ${password ? `***${password.slice(-4)}` : 'Not provided'}`);
     console.log(`Host: ${host}`);
     console.log(`Port: ${port || '5432'}`);
     console.log(`Database: ${database}`);
-    
+
     if (params) {
       console.log('Parameters:');
       const searchParams = new URLSearchParams(params);
@@ -89,14 +89,14 @@ async function diagnoseDatabase() {
     console.log('-'.repeat(30));
 
     // Check if it's a pooler connection
-    if (host.includes('pooler.supabase.com')) {
+    if (host && host.includes('pooler.supabase.com')) {
       console.log('✅ Using Supabase pooler (recommended)');
       if (port === '6543') {
         console.log('✅ Using correct pooler port (6543)');
       } else if (port === '5432') {
         console.log('⚠️ Port 5432 is for direct connection, not pooler. Try port 6543.');
       }
-    } else if (host.includes('supabase.com')) {
+    } else if (host && host.includes('supabase.com')) {
       console.log('ℹ️ Using direct Supabase connection (not pooler)');
       if (port === '5432') {
         console.log('✅ Using correct direct port (5432)');
@@ -111,7 +111,7 @@ async function diagnoseDatabase() {
     }
 
     // Check user format
-    if (user.includes('.')) {
+    if (user && user.includes('.')) {
       const [prefix, projectRef] = user.split('.');
       if (prefix === 'postgres' && projectRef) {
         console.log(`✅ User format looks correct (postgres.${projectRef})`);
@@ -127,18 +127,18 @@ async function diagnoseDatabase() {
   // 3. Test network connectivity
   console.log('\n4️⃣ Network Connectivity Test:');
   console.log('-'.repeat(30));
-  
+
   if (match) {
     const host = match[3];
     const port = match[4] || '5432';
-    
+
     try {
       // Test DNS resolution
       const { stdout } = await execAsync(`nslookup ${host}`);
       if (stdout.includes('Address:')) {
         console.log(`✅ DNS resolution successful for ${host}`);
       }
-    } catch (error) {
+    } catch {
       console.log(`❌ DNS resolution failed for ${host}`);
     }
 
@@ -146,7 +146,7 @@ async function diagnoseDatabase() {
     try {
       await execAsync(`nc -zv ${host} ${port}`, { timeout: 5000 });
       console.log(`✅ Port ${port} is reachable on ${host}`);
-    } catch (error) {
+    } catch {
       // nc might not be available, try telnet
       try {
         await execAsync(`echo | telnet ${host} ${port}`, { timeout: 5000 });
@@ -160,7 +160,7 @@ async function diagnoseDatabase() {
   // 4. Provide solution
   console.log('\n5️⃣ Recommended Actions:');
   console.log('-'.repeat(30));
-  
+
   console.log(`
 1. Go to your Supabase project dashboard
 2. Navigate to Settings → Database
@@ -187,6 +187,6 @@ DATABASE_URL="postgres://postgres.[project-ref]:[password]@db.[project-ref].supa
 }
 
 // Run diagnostics
-diagnoseDatabase().catch(error => {
+diagnoseDatabase().catch((error) => {
   console.error('Diagnostic error:', error);
 });
