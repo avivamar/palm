@@ -160,7 +160,7 @@ export default function Step16EmailVerification({
                 type="email" 
                 value={email}
                 onChange={handleEmailChange}
-                placeholder="burnmylin@gmail.com"
+                placeholder="tom@gmail.com"
                 className={`w-full px-4 py-4 text-base border-2 rounded-2xl focus:outline-none bg-white transition-all duration-300 focus:transform focus:-translate-y-0.5 focus:shadow-lg ${
                   emailValid === null 
                     ? 'border-gray-200 focus:border-violet-400' 
