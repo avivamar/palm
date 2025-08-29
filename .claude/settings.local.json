@@ -163,7 +163,8 @@
       "Bash({} ;)",
       "Bash(/Users/aviva/github/avivamar/palm/scripts/replace-comments.sh:*)",
       "Bash(src/locales/ja.json src/locales/es.json)",
-      "Bash(/Users/aviva/github/avivamar/palm/scripts/fix-comment-syntax.sh:*)"
+      "Bash(/Users/aviva/github/avivamar/palm/scripts/fix-comment-syntax.sh:*)",
+      "Bash(claude doctor)"
     ],
     "deny": []
   }
