@@ -165,7 +165,7 @@
     "color": "^5.0.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.40.0",
-    "firebase": "^11.9.1",
+    "firebase": "^12.2.1",
     "forwarded-parse": "^2.1.2",
     "framer-motion": "^12.5.0",
     "graphql": "^16.10.0",
